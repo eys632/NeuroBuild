@@ -1,0 +1,209 @@
+Only in /home/eys632/26-2proj-FineTuning/ui_integration_workspace/NeuroBuild_ui_test_copy: COPIED_FROM_ORIGINAL.md
+Only in /home/eys632/26-2project/backend: __pycache__
+diff -ru --exclude .git --exclude .venv --exclude models --exclude output /home/eys632/26-2project/backend/app.py /home/eys632/26-2proj-FineTuning/ui_integration_workspace/NeuroBuild_ui_test_copy/backend/app.py
+--- /home/eys632/26-2project/backend/app.py	2026-03-22 04:34:40.955279329 +0900
++++ /home/eys632/26-2proj-FineTuning/ui_integration_workspace/NeuroBuild_ui_test_copy/backend/app.py	2026-05-27 17:36:25.645224877 +0900
+@@ -11,7 +11,7 @@
+ from pydantic import BaseModel, Field
+ 
+ from backend.ifc_mvp import generate_simple_box_building
+-from backend.llm_qwen import interpret_delta_prompt, interpret_prompt
++from backend.llm_qwen import interpret_delta_prompt, interpret_prompt, get_llm_status
+ from backend.edit_ops import apply_ops
+ from backend.prompt_parser import BuildingParams, parse_prompt, parse_prompt_delta
+ from backend.agent_runner import build_corrective_prompt, verify_supported_intents
+@@ -449,6 +449,11 @@
+     return InterpretResponse(model_id="Qwen/Qwen2.5-7B-Instruct", data=out.data, raw_json=out.raw_text)
+ 
+ 
++@app.get("/api/llm/status")
++def llm_status() -> dict[str, Any]:
++    return get_llm_status()
++
++
+ @app.get("/api/files/{filename}")
+ def get_file(filename: str):
+     # basic safety: only allow UUID.ifc
+diff -ru --exclude .git --exclude .venv --exclude models --exclude output /home/eys632/26-2project/backend/llm_qwen.py /home/eys632/26-2proj-FineTuning/ui_integration_workspace/NeuroBuild_ui_test_copy/backend/llm_qwen.py
+--- /home/eys632/26-2project/backend/llm_qwen.py	2026-03-22 03:44:46.062897072 +0900
++++ /home/eys632/26-2proj-FineTuning/ui_integration_workspace/NeuroBuild_ui_test_copy/backend/llm_qwen.py	2026-05-27 17:36:25.645224877 +0900
+@@ -18,6 +18,13 @@
+ VLLM_MODEL_ENV = "VLLM_MODEL"
+ VLLM_TIMEOUT_SEC_ENV = "VLLM_TIMEOUT_SEC"
+ 
++NB_LLM_MODE_ENV = "NB_LLM_MODE"
++NB_MODEL_ID_ENV = "NB_MODEL_ID"
++NB_ADAPTER_PATH_ENV = "NB_ADAPTER_PATH"
++NB_VLLM_BASE_URL_ENV = "NB_VLLM_BASE_URL"
++NB_VLLM_MODEL_ENV = "NB_VLLM_MODEL"
++NB_VLLM_TIMEOUT_SEC_ENV = "NB_VLLM_TIMEOUT_SEC"
++
+ 
+ @dataclass(frozen=True)
+ class LlmOutput:
+@@ -28,6 +35,39 @@
+ _model_lock = threading.Lock()
+ _model = None
+ _tokenizer = None
++_loaded_info: dict[str, Any] = {
++    "mode": None,
++    "model_id": None,
++    "adapter_path": None,
++    "device": None,
++    "loaded": False,
++}
++
++
++def _get_llm_mode() -> str:
++    mode = (os.environ.get(NB_LLM_MODE_ENV) or "base").strip().lower()
++    if mode not in ("base", "lora", "vllm"):
++        mode = "base"
++    return mode
++
++
++def _get_model_id() -> str:
++    return (os.environ.get(NB_MODEL_ID_ENV) or MODEL_ID_DEFAULT).strip()
++
++
++def _get_adapter_path() -> str | None:
++    val = (os.environ.get(NB_ADAPTER_PATH_ENV) or "").strip()
++    return val or None
++
++
++def _get_vllm_base_url() -> str | None:
++    val = (os.environ.get(NB_VLLM_BASE_URL_ENV) or os.environ.get(VLLM_BASE_URL_ENV) or "").strip()
++    return val or None
++
++
++def _get_vllm_model() -> str | None:
++    val = (os.environ.get(NB_VLLM_MODEL_ENV) or os.environ.get(VLLM_MODEL_ENV) or "").strip()
++    return val or None
+ 
+ 
+ def _get_cache_dir() -> str | None:
+@@ -40,12 +80,30 @@
+     return str(default_dir)
+ 
+ 
+-def load_model(model_id: str = MODEL_ID_DEFAULT):
++def load_model(model_id: str | None = None):
+     global _model, _tokenizer
+     with _model_lock:
+-        if _model is not None and _tokenizer is not None:
++        mode = _get_llm_mode()
++        if mode == "vllm":
++            raise RuntimeError("NB_LLM_MODE=vllm에서는 로컬 모델을 로딩하지 않습니다")
++
++        if not model_id:
++            model_id = _get_model_id()
++
++        adapter_path = _get_adapter_path() if mode == "lora" else None
++
++        if (
++            _model is not None
++            and _tokenizer is not None
++            and _loaded_info.get("mode") == mode
++            and _loaded_info.get("model_id") == model_id
++            and _loaded_info.get("adapter_path") == adapter_path
++        ):
+             return _model, _tokenizer
+ 
++        _model = None
++        _tokenizer = None
++
+         cache_dir = _get_cache_dir()
+         tokenizer = AutoTokenizer.from_pretrained(model_id, cache_dir=cache_dir, trust_remote_code=True)
+ 
+@@ -59,28 +117,51 @@
+             model = AutoModelForCausalLM.from_pretrained(model_id, dtype=dtype, **common_kwargs)
+         except TypeError:
+             model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=dtype, **common_kwargs)
++
++        if mode == "lora":
++            if not adapter_path:
++                raise RuntimeError(f"NB_LLM_MODE=lora인데 {NB_ADAPTER_PATH_ENV}가 비어 있습니다")
++            try:
++                from peft import PeftModel
++            except Exception as e:
++                raise RuntimeError(f"peft import 실패: {e}") from e
++            model = PeftModel.from_pretrained(model, adapter_path)
++
+         model.eval()
+ 
++        device = "cuda" if torch.cuda.is_available() else "cpu"
++        _loaded_info.update(
++            {
++                "mode": mode,
++                "model_id": model_id,
++                "adapter_path": adapter_path,
++                "device": device,
++                "loaded": True,
++            }
++        )
++
+         _model, _tokenizer = model, tokenizer
+         return model, tokenizer
+ 
+ 
+ def _vllm_enabled() -> bool:
+-    return bool(os.environ.get(VLLM_BASE_URL_ENV))
++    return _get_llm_mode() == "vllm"
+ 
+ 
+ def _call_vllm_chat(*, messages: list[dict[str, str]], max_tokens: int) -> str:
+-    base_url = (os.environ.get(VLLM_BASE_URL_ENV) or "").strip().rstrip("/")
++    base_url = (_get_vllm_base_url() or "").strip().rstrip("/")
+     if not base_url:
+-        raise ValueError(f"{VLLM_BASE_URL_ENV} is not set")
++        raise ValueError(f"{NB_VLLM_BASE_URL_ENV} 또는 {VLLM_BASE_URL_ENV}가 설정되지 않았습니다")
+ 
+-    model_name = (os.environ.get(VLLM_MODEL_ENV) or "").strip()
++    model_name = (_get_vllm_model() or "").strip()
+     if not model_name:
+         raise ValueError(
+-            f"{VLLM_MODEL_ENV} is not set. Example: export {VLLM_MODEL_ENV}=a100-qwen (same as --served-model-name)"
++            f"{NB_VLLM_MODEL_ENV} 또는 {VLLM_MODEL_ENV}가 설정되지 않았습니다. 예: export {NB_VLLM_MODEL_ENV}=a100-qwen"
+         )
+ 
+-    timeout = float(os.environ.get(VLLM_TIMEOUT_SEC_ENV, "600"))
++    timeout = float(
++        os.environ.get(NB_VLLM_TIMEOUT_SEC_ENV, os.environ.get(VLLM_TIMEOUT_SEC_ENV, "600"))
++    )
+ 
+     url = f"{base_url}/v1/chat/completions"
+     payload = {
+@@ -164,7 +245,7 @@
+ """
+ 
+ 
+-def interpret_prompt(prompt: str, *, model_id: str = MODEL_ID_DEFAULT, max_new_tokens: int = 512) -> LlmOutput:
++def interpret_prompt(prompt: str, *, model_id: str | None = None, max_new_tokens: int = 512) -> LlmOutput:
+     messages = [
+         {"role": "system", "content": _SCHEMA_INSTRUCTIONS},
+         {"role": "user", "content": prompt.strip()},
+@@ -245,7 +326,7 @@
+ def interpret_delta_prompt(
+     prompt: str,
+     *,
+-    model_id: str = MODEL_ID_DEFAULT,
++    model_id: str | None = None,
+     max_new_tokens: int = 256,
+     current_state: dict[str, Any] | None = None,
+ ) -> LlmOutput:
+@@ -313,3 +394,13 @@
+         raise ValueError("No JSON object found in model output")
+ 
+     return text[best_start:best_end]
++
++
++def get_llm_status() -> dict[str, Any]:
++    mode = _get_llm_mode()
++    info = dict(_loaded_info)
++    info["mode"] = mode
++    info["model_id"] = _get_model_id()
++    info["adapter_path"] = _get_adapter_path() if mode == "lora" else None
++    info["loaded"] = bool(info.get("loaded"))
++    return info
+Only in /home/eys632/26-2proj-FineTuning/ui_integration_workspace/NeuroBuild_ui_test_copy: requirements-lora.txt
+Only in /home/eys632/26-2proj-FineTuning/ui_integration_workspace/NeuroBuild_ui_test_copy: run_base_8101.sh
+Only in /home/eys632/26-2proj-FineTuning/ui_integration_workspace/NeuroBuild_ui_test_copy: run_lora_8102.sh

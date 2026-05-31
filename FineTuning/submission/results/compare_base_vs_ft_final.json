@@ -1,0 +1,26 @@
+{
+  "base": {
+    "total_examples": 40,
+    "json_parse_success_rate": 1.0,
+    "schema_valid_rate": 0.85,
+    "op_exact_match_rate": 0.55,
+    "slot_accuracy_avg": 0.6375
+  },
+  "candidate": {
+    "total_examples": 40,
+    "json_parse_success_rate": 1.0,
+    "schema_valid_rate": 0.975,
+    "op_exact_match_rate": 0.95,
+    "slot_accuracy_avg": 0.95
+  },
+  "compare": {
+    "total_compared": 40,
+    "improvement_count": 16,
+    "regression_count": 0,
+    "tie_count": 24
+  },
+  "inputs": {
+    "base": "results/base_hf_seed_test_final.jsonl",
+    "candidate": "results/ft_hf_seed_test_final.jsonl"
+  }
+}

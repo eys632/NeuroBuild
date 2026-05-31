@@ -1,0 +1,10 @@
+{"id":"ui_001","prompt_ko":"환기창만 넣어줘.","expected_behavior":"창문 크기 preset을 small로 해석해야 한다.","expected_op":"set_windows_size_preset","note":"fine-tuned 개선 유형"}
+{"id":"ui_002","prompt_ko":"욕실 쪽 외벽 창문은 빼줘.","expected_behavior":"욕실 쪽 외벽 창문 제외로 해석해야 한다.","expected_op":"set_avoid_bathroom_zone","note":"fine-tuned 개선 유형"}
+{"id":"ui_003","prompt_ko":"외벽 출입문은 빼줘.","expected_behavior":"외벽 출입문을 false로 설정해야 한다.","expected_op":"set_exterior_door","note":"boolean 의도 테스트"}
+{"id":"ui_004","prompt_ko":"모든 외벽에 창문을 2개씩 넣어줘.","expected_behavior":"벽마다 창문 2개로 해석해야 한다.","expected_op":"set_windows_per_wall","note":"기본 동작 확인"}
+{"id":"ui_005","prompt_ko":"창문 전부 없애줘.","expected_behavior":"창문 제거로 해석해야 한다.","expected_op":"remove_all_windows","note":"기본 동작 확인"}
+{"id":"ui_006","prompt_ko":"화장실 하나 더 추가해줘.","expected_behavior":"화장실 추가로 해석해야 한다.","expected_op":"add_bathroom","note":"증가형 의도"}
+{"id":"ui_007","prompt_ko":"화장실을 2개로 해줘.","expected_behavior":"화장실 개수 2로 설정해야 한다.","expected_op":"set_bathroom_count","note":"절대값 설정"}
+{"id":"ui_008","prompt_ko":"창문을 크게 해줘.","expected_behavior":"창문 크기 preset을 large로 해석해야 한다.","expected_op":"set_windows_size_preset","note":"크기 설정"}
+{"id":"ui_009","prompt_ko":"동쪽 벽에만 창문을 넣어줘.","expected_behavior":"현재 backend가 방향별 벽 선택을 지원하지 않으면 빈 edits 또는 skipped 처리되어야 한다.","expected_empty_edits":true,"note":"지원 불가 요청 처리 테스트"}
+{"id":"ui_010","prompt_ko":"창문 좀 늘려줘.","expected_behavior":"애매한 요청이므로 빈 edits 또는 명확화가 필요하다.","expected_empty_edits":true,"note":"애매한 요청 처리 테스트"}

@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "mode": "hf",
+    "model_id_or_path": "/home/eys632/26-2project/models/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28",
+    "adapter_path": "checkpoints/qwen25_7b_lora_final/adapter",
+    "max_samples": 40,
+    "dataset_path": "data/seed_test.jsonl",
+    "system_prompt_path": "configs/delta_system_prompt.txt"
+  },
+  "total_examples": 40,
+  "json_parse_success_rate": 1.0,
+  "schema_valid_rate": 0.975,
+  "op_exact_match_rate": 0.95,
+  "slot_accuracy_avg": 0.95,
+  "output": "results/ft_hf_seed_test_final.jsonl"
+}

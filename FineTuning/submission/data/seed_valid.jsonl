@@ -1,0 +1,20 @@
+{"id":"delta_valid_001","category":"window_remove","prompt_ko":"외벽 창문 전부 없애줘.","gold":{"edits":[{"op":"remove_all_windows"}],"notes":""}}
+{"id":"delta_valid_002","category":"window_count","prompt_ko":"외벽마다 창문 2개씩으로 해줘.","gold":{"edits":[{"op":"set_windows_per_wall","value":2}],"notes":""}}
+{"id":"delta_valid_003","category":"window_count","prompt_ko":"벽마다 창문 5개씩 넣어줘.","gold":{"edits":[{"op":"set_windows_per_wall","value":5}],"notes":""}}
+{"id":"delta_valid_004","category":"window_size","prompt_ko":"창문은 큰 창으로 바꿔줘.","gold":{"edits":[{"op":"set_windows_size_preset","value":"large"}],"notes":""}}
+{"id":"delta_valid_005","category":"window_size","prompt_ko":"창문을 작게 해줘.","gold":{"edits":[{"op":"set_windows_size_preset","value":"small"}],"notes":""}}
+{"id":"delta_valid_006","category":"avoid_bathroom","prompt_ko":"욕실 쪽 창문은 빼줘.","gold":{"edits":[{"op":"set_avoid_bathroom_zone","value":true}],"notes":""}}
+{"id":"delta_valid_007","category":"avoid_bathroom","prompt_ko":"욕실 쪽도 창문 허용해줘.","gold":{"edits":[{"op":"set_avoid_bathroom_zone","value":false}],"notes":""}}
+{"id":"delta_valid_008","category":"exterior_door","prompt_ko":"외벽 출입문 추가해줘.","gold":{"edits":[{"op":"set_exterior_door","value":true}],"notes":""}}
+{"id":"delta_valid_009","category":"exterior_door","prompt_ko":"현관문은 제거해줘.","gold":{"edits":[{"op":"set_exterior_door","value":false}],"notes":""}}
+{"id":"delta_valid_010","category":"bathroom_set","prompt_ko":"화장실 2개로 맞춰줘.","gold":{"edits":[{"op":"set_bathroom_count","value":2}],"notes":""}}
+{"id":"delta_valid_011","category":"bathroom_set","prompt_ko":"욕실 1개로 해줘.","gold":{"edits":[{"op":"set_bathroom_count","value":1}],"notes":""}}
+{"id":"delta_valid_012","category":"bathroom_add","prompt_ko":"화장실 하나 더 추가해줘.","gold":{"edits":[{"op":"add_bathroom","value":1}],"notes":""}}
+{"id":"delta_valid_013","category":"bathroom_add","prompt_ko":"욕실을 2개 더 늘려줘.","gold":{"edits":[{"op":"increment_bathroom_count","value":2}],"notes":""}}
+{"id":"delta_valid_014","category":"mixed","prompt_ko":"창문 3개씩, 크기는 보통으로 해줘.","gold":{"edits":[{"op":"set_windows_per_wall","value":3},{"op":"set_windows_size_preset","value":"medium"}],"notes":""}}
+{"id":"delta_valid_015","category":"mixed","prompt_ko":"화장실 3개로 하고 욕실 쪽 창문은 제외해줘.","gold":{"edits":[{"op":"set_bathroom_count","value":3},{"op":"set_avoid_bathroom_zone","value":true}],"notes":""}}
+{"id":"delta_valid_016","category":"mixed","prompt_ko":"출입문 추가하고 창문은 작게 해줘.","gold":{"edits":[{"op":"set_exterior_door","value":true},{"op":"set_windows_size_preset","value":"small"}],"notes":""}}
+{"id":"delta_valid_017","category":"unsupported","prompt_ko":"계단을 추가해줘.","gold":{"edits":[],"notes":"지원하지 않는 요청: 계단"}}
+{"id":"delta_valid_018","category":"unsupported","prompt_ko":"층고를 4m로 바꿔줘.","gold":{"edits":[],"notes":"지원하지 않는 요청: 층고"}}
+{"id":"delta_valid_019","category":"ambiguous","prompt_ko":"창문 위치 바꿔줘.","gold":{"edits":[],"notes":"애매함: 위치 불명확"}}
+{"id":"delta_valid_020","category":"ambiguous","prompt_ko":"문 좀 바꿔줘.","gold":{"edits":[],"notes":"애매함: 대상 불명확"}}

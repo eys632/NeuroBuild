@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NeuroBuild Delta Ops Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["edits"],
+  "properties": {
+    "edits": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/op_item"}
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 500
+    }
+  },
+  "$defs": {
+    "op_item": {
+      "oneOf": [
+        {"$ref": "#/$defs/set_windows_per_wall"},
+        {"$ref": "#/$defs/remove_all_windows"},
+        {"$ref": "#/$defs/set_windows_size_preset"},
+        {"$ref": "#/$defs/set_avoid_bathroom_zone"},
+        {"$ref": "#/$defs/set_exterior_door"},
+        {"$ref": "#/$defs/add_exterior_door"},
+        {"$ref": "#/$defs/set_bathroom_count"},
+        {"$ref": "#/$defs/add_bathroom"},
+        {"$ref": "#/$defs/increment_bathroom_count"}
+      ]
+    },
+    "set_windows_per_wall": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value"],
+      "properties": {
+        "op": {"const": "set_windows_per_wall"},
+        "type": {"const": "set_windows_per_wall"},
+        "value": {"type": "integer", "minimum": 0, "maximum": 10}
+      },
+      "anyOf": [{"required": ["op"]}, {"required": ["type"]}]
+    },
+    "remove_all_windows": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {"const": "remove_all_windows"},
+        "type": {"const": "remove_all_windows"}
+      },
+      "anyOf": [{"required": ["op"]}, {"required": ["type"]}]
+    },
+    "set_windows_size_preset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value"],
+      "properties": {
+        "op": {"const": "set_windows_size_preset"},
+        "type": {"const": "set_windows_size_preset"},
+        "value": {"enum": ["small", "medium", "large"]}
+      },
+      "anyOf": [{"required": ["op"]}, {"required": ["type"]}]
+    },
+    "set_avoid_bathroom_zone": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value"],
+      "properties": {
+        "op": {"const": "set_avoid_bathroom_zone"},
+        "type": {"const": "set_avoid_bathroom_zone"},
+        "value": {"type": "boolean"}
+      },
+      "anyOf": [{"required": ["op"]}, {"required": ["type"]}]
+    },
+    "set_exterior_door": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value"],
+      "properties": {
+        "op": {"const": "set_exterior_door"},
+        "type": {"const": "set_exterior_door"},
+        "value": {"type": "boolean"}
+      },
+      "anyOf": [{"required": ["op"]}, {"required": ["type"]}]
+    },
+    "add_exterior_door": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {"const": "add_exterior_door"},
+        "type": {"const": "add_exterior_door"},
+        "value": {"type": "boolean"}
+      },
+      "anyOf": [{"required": ["op"]}, {"required": ["type"]}]
+    },
+    "set_bathroom_count": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value"],
+      "properties": {
+        "op": {"const": "set_bathroom_count"},
+        "type": {"const": "set_bathroom_count"},
+        "value": {"type": "integer", "minimum": 0, "maximum": 10}
+      },
+      "anyOf": [{"required": ["op"]}, {"required": ["type"]}]
+    },
+    "add_bathroom": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {"const": "add_bathroom"},
+        "type": {"const": "add_bathroom"},
+        "value": {"type": "integer", "minimum": 1, "maximum": 10}
+      },
+      "anyOf": [{"required": ["op"]}, {"required": ["type"]}]
+    },
+    "increment_bathroom_count": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "op": {"const": "increment_bathroom_count"},
+        "type": {"const": "increment_bathroom_count"},
+        "value": {"type": "integer", "minimum": 1, "maximum": 10}
+      },
+      "anyOf": [{"required": ["op"]}, {"required": ["type"]}]
+    }
+  }
+}

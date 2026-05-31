@@ -1,0 +1,35 @@
+{
+  "base_status": {
+    "mode": "base",
+    "model_id": "/home/eys632/26-2project/models/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28",
+    "adapter_path": null,
+    "device": null,
+    "loaded": false
+  },
+  "lora_status": {
+    "mode": "lora",
+    "model_id": "/home/eys632/26-2project/models/models--Qwen--Qwen2.5-7B-Instruct/snapshots/a09a35458c702b33eeacc393d103063234e8bc28",
+    "adapter_path": "/home/eys632/26-2proj-FineTuning/checkpoints/qwen25_7b_lora_final/adapter",
+    "device": null,
+    "loaded": false
+  },
+  "base_initial": {
+    "status": 200,
+    "error": null,
+    "file_id": "df4448ab-a1de-436a-8426-c637e5091a92"
+  },
+  "lora_initial": {
+    "status": 200,
+    "error": null,
+    "file_id": "84be2564-2619-48e4-8b20-cd965dbd8e56"
+  },
+  "counts": {
+    "total": 10,
+    "base_pass": 7,
+    "lora_pass": 8
+  },
+  "outputs": {
+    "base": "submission/ui_eval_results/ui_base_results.jsonl",
+    "lora": "submission/ui_eval_results/ui_lora_results.jsonl"
+  }
+}
