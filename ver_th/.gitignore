@@ -1,0 +1,8 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+outputs/*.ifc
+outputs/*.json
+.streamlit.out.log
+.streamlit.err.log

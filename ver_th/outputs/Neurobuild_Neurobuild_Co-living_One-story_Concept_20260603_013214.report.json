@@ -1,0 +1,540 @@
+{
+  "brief": {
+    "raw_text": "2층집 만들어줘",
+    "mode": "new",
+    "occupants": 4,
+    "budget_krw": 300000000,
+    "room_count": 4,
+    "floors": 2,
+    "living_room_preference": "large",
+    "style_keywords": [
+      "미래지향",
+      "코리빙",
+      "단층",
+      "가성비"
+    ],
+    "location_hint": null,
+    "special_requirements": [],
+    "confidence": 0.72,
+    "source": "regex:llm_failed:HF HTTP 403: Hugging Face 토큰에 Inference Providers 호출 권한이 없습니다. 새 User Access Token을 만들 때 'Make calls to Inference Providers' 권한을 켜야 합니다. 원문: {\"error\":\"This authentication method does not have sufficient permissions to call Inference Providers on behalf of user hantelligence\"}"
+  },
+  "plan": {
+    "title": "Neurobuild Co-living One-story Concept",
+    "width": 13.7,
+    "depth": 8.4,
+    "floors": 2,
+    "rooms": [
+      {
+        "id": "living",
+        "name": "공유 라운지 / 거실",
+        "kind": "living",
+        "x": 0.24,
+        "y": 0.24,
+        "width": 6.8839999999999995,
+        "depth": 4.968,
+        "area": 34.2
+      },
+      {
+        "id": "kitchen",
+        "name": "다이닝 키친",
+        "kind": "kitchen",
+        "x": 0.24,
+        "y": 5.376,
+        "width": 6.8839999999999995,
+        "depth": 2.6160000000000005,
+        "area": 18.01
+      },
+      {
+        "id": "bed1",
+        "name": "개인 침실 1",
+        "kind": "bedroom",
+        "x": 7.303999999999999,
+        "y": 0.24,
+        "width": 2.988,
+        "depth": 2.784,
+        "area": 8.32
+      },
+      {
+        "id": "bed2",
+        "name": "개인 침실 2",
+        "kind": "bedroom",
+        "x": 10.472,
+        "y": 0.24,
+        "width": 2.988,
+        "depth": 2.784,
+        "area": 8.32
+      },
+      {
+        "id": "bed3",
+        "name": "개인 침실 3",
+        "kind": "bedroom",
+        "x": 7.303999999999999,
+        "y": 3.144,
+        "width": 2.988,
+        "depth": 2.784,
+        "area": 8.32
+      },
+      {
+        "id": "bed4",
+        "name": "개인 침실 4",
+        "kind": "bedroom",
+        "x": 10.472,
+        "y": 3.144,
+        "width": 2.988,
+        "depth": 2.784,
+        "area": 8.32
+      },
+      {
+        "id": "bath1",
+        "name": "공용 화장실",
+        "kind": "bath",
+        "x": 7.303999999999999,
+        "y": 6.216,
+        "width": 2.9548799999999997,
+        "depth": 1.848,
+        "area": 5.46
+      },
+      {
+        "id": "entry",
+        "name": "현관 / 수납",
+        "kind": "service",
+        "x": 10.50512,
+        "y": 6.216,
+        "width": 2.7702,
+        "depth": 1.848,
+        "area": 5.12
+      }
+    ],
+    "walls": [
+      {
+        "name": "외벽 남측",
+        "x1": 0,
+        "y1": 0,
+        "x2": 13.7,
+        "y2": 0,
+        "thickness": 0.24,
+        "height": 2.8,
+        "wall_type": "external"
+      },
+      {
+        "name": "외벽 동측",
+        "x1": 13.7,
+        "y1": 0,
+        "x2": 13.7,
+        "y2": 8.4,
+        "thickness": 0.24,
+        "height": 2.8,
+        "wall_type": "external"
+      },
+      {
+        "name": "외벽 북측",
+        "x1": 13.7,
+        "y1": 8.4,
+        "x2": 0,
+        "y2": 8.4,
+        "thickness": 0.24,
+        "height": 2.8,
+        "wall_type": "external"
+      },
+      {
+        "name": "외벽 서측",
+        "x1": 0,
+        "y1": 8.4,
+        "x2": 0,
+        "y2": 0,
+        "thickness": 0.24,
+        "height": 2.8,
+        "wall_type": "external"
+      },
+      {
+        "name": "실내벽 4",
+        "x1": 7.124,
+        "y1": 5.376,
+        "x2": 7.124,
+        "y2": 7.992000000000001,
+        "thickness": 0.16,
+        "height": 2.7,
+        "wall_type": "internal"
+      },
+      {
+        "name": "실내벽 5",
+        "x1": 10.292,
+        "y1": 3.024,
+        "x2": 7.303999999999999,
+        "y2": 3.024,
+        "thickness": 0.16,
+        "height": 2.7,
+        "wall_type": "internal"
+      },
+      {
+        "name": "실내벽 6",
+        "x1": 7.303999999999999,
+        "y1": 3.144,
+        "x2": 10.292,
+        "y2": 3.144,
+        "thickness": 0.16,
+        "height": 2.7,
+        "wall_type": "internal"
+      },
+      {
+        "name": "실내벽 7",
+        "x1": 10.292,
+        "y1": 3.144,
+        "x2": 10.292,
+        "y2": 5.928,
+        "thickness": 0.16,
+        "height": 2.7,
+        "wall_type": "internal"
+      },
+      {
+        "name": "실내벽 8",
+        "x1": 10.292,
+        "y1": 5.928,
+        "x2": 7.303999999999999,
+        "y2": 5.928,
+        "thickness": 0.16,
+        "height": 2.7,
+        "wall_type": "internal"
+      },
+      {
+        "name": "실내벽 9",
+        "x1": 7.303999999999999,
+        "y1": 5.928,
+        "x2": 7.303999999999999,
+        "y2": 3.144,
+        "thickness": 0.16,
+        "height": 2.7,
+        "wall_type": "internal"
+      },
+      {
+        "name": "실내벽 10",
+        "x1": 10.472,
+        "y1": 5.928,
+        "x2": 10.472,
+        "y2": 3.144,
+        "thickness": 0.16,
+        "height": 2.7,
+        "wall_type": "internal"
+      },
+      {
+        "name": "실내벽 11",
+        "x1": 7.303999999999999,
+        "y1": 6.216,
+        "x2": 10.25888,
+        "y2": 6.216,
+        "thickness": 0.16,
+        "height": 2.7,
+        "wall_type": "internal"
+      },
+      {
+        "name": "실내벽 12",
+        "x1": 10.50512,
+        "y1": 6.216,
+        "x2": 13.27532,
+        "y2": 6.216,
+        "thickness": 0.16,
+        "height": 2.7,
+        "wall_type": "internal"
+      }
+    ],
+    "openings": [
+      {
+        "name": "메인 현관문",
+        "kind": "door",
+        "x": 1.15,
+        "y": 0,
+        "width": 1.0,
+        "height": 2.1,
+        "sill_height": 0,
+        "rotation_deg": 0
+      },
+      {
+        "name": "거실 남측 창",
+        "kind": "window",
+        "x": 3.425,
+        "y": 0,
+        "width": 2.8,
+        "height": 1.3,
+        "sill_height": 0.75,
+        "rotation_deg": 0
+      },
+      {
+        "name": "북측 창",
+        "kind": "window",
+        "x": 4.109999999999999,
+        "y": 8.4,
+        "width": 2.0,
+        "height": 1.1,
+        "sill_height": 0.9,
+        "rotation_deg": 0
+      },
+      {
+        "name": "침실1 창",
+        "kind": "window",
+        "x": 8.798,
+        "y": 0,
+        "width": 1.2,
+        "height": 1.0,
+        "sill_height": 0.9,
+        "rotation_deg": 0
+      },
+      {
+        "name": "침실2 창",
+        "kind": "window",
+        "x": 11.966,
+        "y": 0,
+        "width": 1.2,
+        "height": 1.0,
+        "sill_height": 0.9,
+        "rotation_deg": 0
+      },
+      {
+        "name": "침실3 창",
+        "kind": "window",
+        "x": 8.798,
+        "y": 0,
+        "width": 1.2,
+        "height": 1.0,
+        "sill_height": 0.9,
+        "rotation_deg": 0
+      },
+      {
+        "name": "침실4 창",
+        "kind": "window",
+        "x": 11.966,
+        "y": 0,
+        "width": 1.2,
+        "height": 1.0,
+        "sill_height": 0.9,
+        "rotation_deg": 0
+      }
+    ],
+    "gross_area": 230.16,
+    "net_room_area": 96.07,
+    "estimated_cost_krw": 563892000,
+    "cost_per_sqm_krw": 2450000,
+    "budget_status": "예산 초과 위험",
+    "notes": [
+      "개념설계 자동 생성안입니다. 실시설계, 구조, 설비, 인허가 검토 전에는 시공 도면으로 사용할 수 없습니다.",
+      "대지 주소, 용도지역, 도로 접도 조건을 입력하면 법무팀 RAG 검토 정확도가 올라갑니다.",
+      "공용 생활을 위해 거실, 다이닝, 키친을 하나의 공유 라운지로 계획했습니다.",
+      "예산 초과 위험이 있어 면적 축소, 마감 조정, 습식공간 단순화가 필요합니다."
+    ],
+    "metrics": {
+      "occupants": 4,
+      "bedrooms": 4,
+      "area_per_person_sqm": 57.5,
+      "budget_krw": 300000000,
+      "estimated_cost_krw": 563892000,
+      "budget_delta_krw": -263892000
+    }
+  },
+  "reports": [
+    {
+      "team": "기획팀",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "used_llm": false,
+      "status": "llm_failed",
+      "summary": "CEO 요청을 4명 거주, 침실 4개, 2층, 예산 300,000,000원 기준으로 구조화했습니다. 현재안은 연면적 230.2㎡, 예상 공사비 563,892,000원입니다.",
+      "action_items": [
+        "대지 주소 입력",
+        "법무 검토 조건 확정",
+        "면적/방/예산 수정 옵션 검토"
+      ],
+      "rag_hits": [],
+      "warnings": [
+        "HF HTTP 403: Hugging Face 토큰에 Inference Providers 호출 권한이 없습니다. 새 User Access Token을 만들 때 'Make calls to Inference Providers' 권한을 켜야 합니다. 원문: {\"error\":\"This authentication method does not have sufficient permissions to call Inference Providers on behalf of user hantelligence\"}"
+      ],
+      "raw_model_output": null
+    },
+    {
+      "team": "법무팀",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "used_llm": false,
+      "status": "llm_failed",
+      "summary": "법무팀은 용도지역, 건폐율, 용적률, 도로 접도, 주차, 채광 및 환기 조건을 우선 체크했습니다. 현재 입력에는 대지 정보가 없어 법적 가능 여부는 조건부 검토로 표시합니다.",
+      "action_items": [
+        "대지 주소 입력",
+        "관할 지자체 조례 확인",
+        "도로 폭과 주차 기준 확인"
+      ],
+      "rag_hits": [
+        {
+          "source": "legal_seed",
+          "title": "건축법 기본 검토: 대지와 도로",
+          "text": "개념설계 단계에서는 대지가 건축 가능한 도로에 접하는지, 용도지역 조건과 진입 동선, 소방 및 일조 접근성을 먼저 확인해야 한다. 실제 인허가에는 대지 주소, 지번, 도로 폭, 용도지역 및 지자체 조례 확인이 필요하다.",
+          "score": 5.0,
+          "meta": {
+            "jurisdiction": "KR",
+            "tags": [
+              "건축법",
+              "도로",
+              "대지",
+              "단독주택"
+            ]
+          }
+        },
+        {
+          "source": "legal_seed",
+          "title": "단독주택 개념설계 체크: 건폐율과 용적률",
+          "text": "단독주택의 허용 규모는 용도지역과 지자체 조례에 따른 건폐율과 용적률 제한을 받는다. 대지 면적이 없는 상태에서는 면적 적정성만 검토하고 최종 가능 여부는 판단하지 않는다.",
+          "score": 2.5,
+          "meta": {
+            "jurisdiction": "KR",
+            "tags": [
+              "건폐율",
+              "용적률",
+              "용도지역",
+              "조례"
+            ]
+          }
+        },
+        {
+          "source": "legal_seed",
+          "title": "주차와 부대시설 검토",
+          "text": "주차 설치 기준은 지역과 주택 규모, 조례에 따라 달라진다. 개념설계에서는 차량 진입 방향, 주차 1대 이상 가능성, 보행 동선을 우선 검토한다.",
+          "score": 2.5,
+          "meta": {
+            "jurisdiction": "KR",
+            "tags": [
+              "주차",
+              "부대시설",
+              "단독주택"
+            ]
+          }
+        }
+      ],
+      "warnings": [
+        "대지 주소, 지번, 용도지역 정보가 없어 최종 인허가 적합성은 판정하지 않았습니다.",
+        "HF HTTP 403: Hugging Face 토큰에 Inference Providers 호출 권한이 없습니다. 새 User Access Token을 만들 때 'Make calls to Inference Providers' 권한을 켜야 합니다. 원문: {\"error\":\"This authentication method does not have sufficient permissions to call Inference Providers on behalf of user hantelligence\"}"
+      ],
+      "raw_model_output": null
+    },
+    {
+      "team": "디자인팀",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "used_llm": false,
+      "status": "llm_failed",
+      "summary": "디자인팀은 개인 침실 4개와 큰 공유 라운지/다이닝/키친을 분리한 코리빙형 단층 주택을 제안합니다. 입면은 단순한 박스 매스, 수평 지붕선, 큰 창호, 스마트홈 코어를 권장합니다.",
+      "action_items": [
+        "공유 라운지 남향 창 확보",
+        "개인실 방음 보강",
+        "데크 또는 마당 연결 검토"
+      ],
+      "rag_hits": [
+        {
+          "source": "design_seed",
+          "title": "코리빙 주택 트렌드: 개인실과 큰 공유 라운지",
+          "text": "여러 명이 함께 사는 주택은 개인 침실의 독립성을 유지하면서 거실, 다이닝, 키친을 하나의 공유 라운지로 묶는 구성이 만족도가 높다.",
+          "score": 2.5,
+          "meta": {
+            "tags": [
+              "코리빙",
+              "공유거실",
+              "개인실",
+              "청년주거"
+            ]
+          }
+        },
+        {
+          "source": "design_seed",
+          "title": "단층 주택 트렌드: 긴 매스와 중정형 외부공간",
+          "text": "단층 주택은 긴 장방형 매스, 남향 창호, 마당 또는 데크와 연결되는 공용공간이 유리하다. 동선이 단순하고 유지관리성이 좋다.",
+          "score": 0.15,
+          "meta": {
+            "tags": [
+              "단층",
+              "마당",
+              "중정",
+              "자연채광"
+            ]
+          }
+        }
+      ],
+      "warnings": [
+        "HF HTTP 403: Hugging Face 토큰에 Inference Providers 호출 권한이 없습니다. 새 User Access Token을 만들 때 'Make calls to Inference Providers' 권한을 켜야 합니다. 원문: {\"error\":\"This authentication method does not have sufficient permissions to call Inference Providers on behalf of user hantelligence\"}"
+      ],
+      "raw_model_output": null
+    },
+    {
+      "team": "예산팀",
+      "model": "Qwen/Qwen2.5-7B-Instruct",
+      "used_llm": false,
+      "status": "llm_failed",
+      "summary": "예산팀 추정: 연면적 230.2㎡ × 2,450,000원/㎡ = 563,892,000원입니다. 예산 차이는 -263,892,000원이고 상태는 '예산 초과 위험'입니다.",
+      "action_items": [
+        "예비비 7~15% 별도 확보",
+        "습식공간 집중 배치 유지",
+        "단순 장방형 매스로 구조비 절감"
+      ],
+      "rag_hits": [
+        {
+          "source": "budget_seed",
+          "title": "국내 소규모 단독주택 예산 항목",
+          "text": "총사업비는 직접공사비 외에 설계비, 인허가 비용, 구조 및 설비 검토, 외부공간, 가구 옵션, 예비비를 포함해 관리해야 한다.",
+          "score": 5.0,
+          "meta": {
+            "tags": [
+              "공사비",
+              "설계비",
+              "인허가",
+              "예비비"
+            ]
+          }
+        },
+        {
+          "source": "budget_seed",
+          "title": "가성비 단층 주택 비용 전략",
+          "text": "단순한 장방형 평면, 반복 가능한 침실 모듈, 습식공간 집중 배치, 구조 그리드 단순화는 공사비 절감에 유리하다.",
+          "score": 2.5,
+          "meta": {
+            "tags": [
+              "예산",
+              "단층",
+              "가성비",
+              "모듈"
+            ]
+          }
+        },
+        {
+          "source": "budget_seed",
+          "title": "면적과 비용의 민감도",
+          "text": "동일한 마감 수준이라면 연면적이 커질수록 총 공사비가 빠르게 증가한다. 예산 상한이 명확할 때는 설계 면적 우선순위를 정해야 한다.",
+          "score": 2.5,
+          "meta": {
+            "tags": [
+              "평당가",
+              "연면적",
+              "비용"
+            ]
+          }
+        }
+      ],
+      "warnings": [
+        "예산 초과 위험: 면적 축소 또는 마감/외부공간 범위 조정이 필요합니다.",
+        "HF HTTP 403: Hugging Face 토큰에 Inference Providers 호출 권한이 없습니다. 새 User Access Token을 만들 때 'Make calls to Inference Providers' 권한을 켜야 합니다. 원문: {\"error\":\"This authentication method does not have sufficient permissions to call Inference Providers on behalf of user hantelligence\"}"
+      ],
+      "raw_model_output": null
+    },
+    {
+      "team": "설계팀",
+      "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+      "used_llm": false,
+      "status": "llm_failed",
+      "summary": "설계팀은 단순 장방형 매스 안에 좌측 공용 라운지, 우측 4개 개인실, 후면 서비스 코어를 배치했습니다. IFC에는 슬래브, 벽체, 문, 창, 공간, 기본 가구 프록시가 포함됩니다.",
+      "action_items": [
+        "IFC 다운로드",
+        "수정 요청 입력",
+        "대지 정보 입력 후 법규 재검토"
+      ],
+      "rag_hits": [],
+      "warnings": [
+        "HF HTTP 403: Hugging Face 토큰에 Inference Providers 호출 권한이 없습니다. 새 User Access Token을 만들 때 'Make calls to Inference Providers' 권한을 켜야 합니다. 원문: {\"error\":\"This authentication method does not have sufficient permissions to call Inference Providers on behalf of user hantelligence\"}"
+      ],
+      "raw_model_output": null
+    }
+  ],
+  "ifc_path": "C:\\Users\\imw37\\OneDrive\\바탕 화면\\efinal\\neurobuild_real_v2\\outputs\\Neurobuild_Neurobuild_Co-living_One-story_Concept_20260603_013214.ifc",
+  "report_path": "C:\\Users\\imw37\\OneDrive\\바탕 화면\\efinal\\neurobuild_real_v2\\outputs\\Neurobuild_Neurobuild_Co-living_One-story_Concept_20260603_013214.report.json",
+  "created_at": "20260603_013214"
+}
