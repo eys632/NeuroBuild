@@ -1,6 +1,6 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 KST, 4B/v8 진단 결과 반영**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 07:51 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
@@ -8,11 +8,11 @@
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b`: Phase 5 commit/push 및 remote hash 일치 |
 | GitHub | 공통 `v2`, SSH push 정상. 최신 checkpoint `b766dec` |
 | 회귀 검증 | 전체 **253 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 16.900초 |
-| 현재 작업 | **4B Instruct + 기존 v3의 `legacy_greedy` 설정 비교 준비**. V8 진단은 gate 미충족으로 종료 |
+| 현재 작업 | **30B-A3B instruction AWQ 고정 파일 다운로드 및 실행 준비**. 4B v3 greedy도 36/40, raw FP1, 잘못 수용2로 실패하여 서버 정상 종료 |
 | 잠정 모델 | Phase 5 범위의 **Qwen3-14B-AWQ + v3**. 확대 평가 gate 통과 전 최종 채택으로 보지 않음 |
 | Hard blocker | 없음. GPU 3 가용량을 측정한 공존 실행 조건 통과 |
 | Backend | `.conda`: Python 3.12.14 / PostgreSQL 17.11 / psycopg 3.2.10 / IfcOpenShell 0.8.5 |
-| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. 현재 4B Instruct BF16 비교, TP 1 / context 4096 / sequence 1 |
+| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. 현재 모델 서버 종료 상태. 다음 MoE 비교도 TP 1 / context 4096 / sequence 1 |
 | 다음 검증 | 진단이 개선되면 같은 설정으로 development 40×3 평가. 이후 고정된 holdout 80×3 평가 |
 
 ## Phase 5.x 평가 상태
@@ -24,10 +24,11 @@
 | 4B Instruct + v3 | **37/40 (92.5%)** | 1/20 | 2/40 | 현재 최고 정확도이나 gate 미충족 |
 | 4B Instruct + v4 | 34/40 (85%) | 1/20 | 3/40 | gate 미충족 |
 | 4B Instruct + v8 | 36/40 (90%) | 1/20 | 2/40 | gate 미충족 |
+| 4B Instruct + v3 greedy | 36/40 (90%) | 1/20 | 2/40 | gate 미충족 |
 
 Raw READY 오판의 분모는 non-READY gold 20개이고, 잘못 수용된 출력의 분모는 전체 40개다. Backend가 수용한 결과에도 대상 범위 손실 등 의미 오류가 남아 있다. 40개 단회 진단은 정식 3회 평가를 대신하지 않는다. Gate는 **schema 100% / 의미 정확도 95% 이상 / raw READY 오판 0 / 잘못 수용된 출력 0**을 유지한다.
 
-V8 run `20260919T223831Z-af6ebcd137394488a0adc427bd63edcf`는 schema 40/40, parser 39/40, FN 1/20이다. 세 프롬프트 비교 후 추가 prompt 수정을 중단했다. 다음 진단은 기존 v3를 유지하고 기존 `legacy_greedy` profile의 temperature 0 / seed 42를 사용한다. 요청에서 생략한 항목은 서버 기본값을 상속함을 기록하며, 새 코드나 gold 변경 없이 설정 차이를 비교한다.
+V8 run `20260919T223831Z-af6ebcd137394488a0adc427bd63edcf`는 schema 40/40, parser 39/40, FN 1/20이다. 세 프롬프트 비교 후 추가 prompt 수정을 중단했다. 기존 v3의 `legacy_greedy` profile 비교도 실패했다. 새 MoE 후보는 정적 검토와 fresh GPU3 예산 검사를 통과했으며 다운로드 중이다. [후보 근거](moe_instruction_candidate.md)와 고정 v3/neutral 진단 기록을 사용한다. 채택 전 실제 runtime·품질 검증이 남아 있다.
 
 기존 14B의 prompt·sampling·thinking 실험과 4B 비교 결과는 실패를 포함해 보존했다. 상세 수치와 판단은 [Phase 5.x 보고서](reports/phase5x_report.md), [4B v3 독립 검토](reviews/phase5x_4b_v3_diagnostic_review.md), [v4 실패 및 v8 사전 검토](reviews/phase5x_4b_v4_v8_review.md)를 따른다.
 
@@ -40,9 +41,9 @@ V8 run `20260919T223831Z-af6ebcd137394488a0adc427bd63edcf`는 schema 40/40, pars
 
 ## 운영 상태
 
-**GPU 3만 사용한다.** 이전 14B 서버는 자신의 guard와 child만 정상 종료했고, 현재 `neurobuild-instruct` alias의 4B BF16 서버를 비교 중이다. 다른 사용자의 프로세스·파일·환경은 변경하지 않았으며 다른 GPU로 fallback하지 않는다.
+**GPU 3만 사용한다.** 이전 14B 서버는 자신의 guard와 child만 정상 종료했고, `neurobuild-instruct` alias의 4B BF16 서버도 자신의 guard를 통해 정상 종료했다. 현재 모델 서버는 실행하지 않는다. 다른 사용자의 프로세스·파일·환경은 변경하지 않았으며 다른 GPU로 fallback하지 않는다.
 
-4B 시작 전 GPU 3 free 36,373MiB / utilization 0%에서 예상 전체 peak 16,384MiB와 margin 7,275MiB가 들어감을 확인했다. Guard의 free 하한은 **7,275MiB**, 현재 구간의 관측 최소 free는 **26,864MiB**다. 이는 GPU 전체 관측값이며 전용 메모리 예약이나 정확한 process peak 보장이 아니다. 기동 시 실제 TCP listener 5개가 모두 `127.0.0.1`임을 확인했다.
+4B 시작 전 GPU 3 free 36,373MiB / utilization 0%에서 예상 전체 peak 16,384MiB와 margin 7,275MiB가 들어감을 확인했다. Guard의 free 하한은 **7,275MiB**, 현재 구간의 최종 관측 최소 free는 **26,530MiB**다. 종료 후 free 36,373MiB / utilization 0%로 복귀했다. 이는 GPU 전체 관측값이며 전용 메모리 예약이나 정확한 process peak 보장이 아니다. 기동 시 실제 TCP listener 5개가 모두 `127.0.0.1`임을 확인했다.
 
 Private PostgreSQL은 `var/postgres`에 있으며, `0700` 권한의 `var/run/postgresql` 디렉터리 내 Unix socket과 peer 인증만 사용한다. TCP는 비활성이다. 마지막 디스크 확인에서 root filesystem 여유는 약 **55GiB (사용률 97%)**다. 환경·weight·cache는 프로젝트 내부에 두고 Git에서 제외하며, 다운로드 시 **20GiB reserve**와 설치 전 디스크 확인을 유지한다.
 

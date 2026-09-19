@@ -296,3 +296,12 @@ V4 replaced many instructions and examples simultaneously and regressed relative
 Run20260919T223831Z-af6ebcd137394488a0adc427bd63edcf: development40×1/warmup5, schema40/parser39/semantic36(90%), rawFP1/20, unsafeaccepted2/40, FN1/20, mean2.57006s/p953.45012s. HD-B01 still guesses unsigned direction and is blocked; HD-D02 regresses to multiple-furniture refusal; HD-F01/02 retain wrong short targets despite full instructions. All failures retained. V8 is not selected and heldout remains uncalled.
 
 Three 4B prompt variants did not satisfy the unchanged gate. Stop expanding prompts. Compare the best existing v3 using existing legacy_greedy (temperature0/seed42) versus prior neutral sampling, all40 cases once. Other legacy sampling fields are omitted and inherit pinned server/model defaults; this is not an all-parameters-controlled ablation. Non-thinking greedy is an experiment, not an official quality guarantee. No source changes or validation weakening. If it fails, reconsider model/representation rather than repeat reminders.
+
+
+## 4B v3 greedy control failure and model reassessment
+
+Run20260919T224246Z-64a5648ea1b546c78b1f961bf3b6c094: schema40/parser38/semantic36(90%), rawFP1/20, unsafeaccepted2/40, FN1/20, mean2.57311s/p953.40377s. I01 changes750mm to-.75m and is rejected; HD-B01 guesses unsigned direction and is rejected; HD-F01/02 still drop location/exclusion in both target and instruction. Summary replay matches all recorded metrics. Changing decoding does not meet the gate. No holdout calls or IFC execution.
+
+Stop 4B prompt/decoding trials and reassess a distinct instruction MoE checkpoint. Own 4B guard was verified by UID, cmdline and starttime before SIGTERM; child exited normally and rendezvous was cleaned. An initial attempt to use os.pidfd_open stopped without signalling because this Python build lacks that API; the existing verified-own-guard procedure completed shutdown. Other processes were untouched. Candidate metadata/static reviews and new GPU3 preflight are required before any new launch.
+
+- 30B-A3B instruction AWQ comparison download: pinned third-party ELVISIO manifest32ff8e50,15files/16830441067bytes; fresh free58061914112bytes exceeds model+20GiBreserve. Source/config/kernel static reviews found no blocker; startup/quality remain unverified. Downloader verifies each size/SHA into project var/models; no new environment or package install.

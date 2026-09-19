@@ -80,3 +80,15 @@ Qwen3-14B-AWQ pinned31c69ef + promptv3를 내부 개발용으로 선정한다. 2
 ## D023 — 명시적 structured output protocol과 localhost rendezvous
 
 최신 vLLM은 legacyguidedfields를 무시할 수 있어 공통client에 explicit legacy_guided_json/structured_outputs dialect를 둔다. 실패시 자동전환하거나무제약retry하지않는다. 서버backendxgrammar설정은runtimeprofile의책임이고Backendparser/승인계약은공통이다. A100Torch TCPStore wildcard를 actualsocket검사로발견해FileStore world1와loopbackGloo/NCCL로수정했다. 자기child5listeners모두loopback을확인했다. RTX V1의process구조/loopback/parentdeath는별도검증대상이다.
+
+## D024 — 확대 평가와 모델 재선정 기준
+
+Phase5의 seed20 성공은 Phase5.x의 확대 평가 통과를 대신하지 않는다. Development40과 holdout80을 version/hash로 고정하고, schema100%·semantic95% 이상·raw READY 오판0·잘못 수용한 READY0을 유지한다. Parser가 차단한 raw 오판과 gold READY에서의 대상/축 오류도 각각 보존한다. 정식 평가는 case당3회이며 단회 진단은 후보를 좁히는 용도다.
+
+Holdout의 첫 warmup 이전에 최종 후보 조합을 고정하고 원격 checkpoint를 남긴다. Holdout 출력으로 조정한 뒤에는 같은 자료를 새로운 unseen 성공으로 부르지 않는다. Gold는 자동 생성·사람 미검수이고, AI가 사전 입력/gold 검토에 참여했으며 split이 좁은 문법을 공유한다. 상세 절차는 [사전 검토](reviews/phase5x_holdout_protocol_review.md)를 따른다.
+
+## D025 — 반복 prompt 수정 중단과 instruction checkpoint 비교
+
+14B hybrid AWQ에서 prompt·sampling·thinking 비교가 gate를 충족하지 못했다. 기존 cu118 환경에서 사용할 수 있는 4B-Instruct-2507 BF16을 비교했지만 v3/v4/v8 및 v3 greedy도 통과하지 못했다. 모든 실패를 보존하고 parser/gold를 완화하지 않는다. Prompt 길이·언어·명시 규칙 추가 또는 모델 크기 하나가 원인이라고 단정할 근거는 없다.
+
+다음 비교는 별도 instruction MoE인 제3자 `ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ` 고정 revision이다. [후보 검토](moe_instruction_candidate.md)는 출처·license provenance·설치 runtime 정적 호환성·전체 VRAM 추정·디스크 reserve를 구분한다. 기존 v3/neutral sampling과 동일한 gold/평가기를 사용하며, 실제 적재와 품질을 확인하기 전에는 채택하지 않는다. 단일 source tree, GPU3만 사용, 자신의 이전 서버 종료, fresh preflight와 runtime 감시는 유지한다. RTX 실측은 별도 미검증이다.
