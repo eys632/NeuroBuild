@@ -220,3 +220,12 @@ Could not open a connection to your authentication agent.
 - Phase5.x developmentv3 run20260919T205840Z-469fdecdb1fd476f82202df54a1808a7 completed120trials. schema120/parser111/semantic108;rawFP3/60acceptedFP0;wrongacceptedmove0/FN9/60;mean3.32248/p954.67003s. FourcasefailuresB01directionmissing,D02twoaxes,F01/F02modelunitconversion. Alloldseed60stillPASS,new20×3=48/60. GateFAILpreserved;heldoutnotcalled;v4development-onlypromptiterationauthorized.
 
 - V4development-onlyprompt개정: singleobjectXYcomponents≠multipleobjects, unsignedaxisCLARIFICATION, originalliteralunitcopy. 기존externalcondition거절예제유지,heldout출력미호출. SHA2fdd6a5a92860cde27d14adc10916a242b2221e1569015541ddf31581d1a14d8,7newexemplarsschema/parserPASS; maxv4chat+output3538/4096 CPU확인. RootindependentpromptreviewPASS;additionalresearcherreview는별도로이어진다. v3/code/goldhash모두보존,새v4freeze후동일dev120재평가.
+
+- V4freeze f154a7f2b1bc3b4728d9214778b2f85168e38c54 push/remotehash일치. 추가modelresearch독립promptreview7/7PASS회신은v4inference전도착. SameGPUserver/runtime/model/gold/parser/scorer로prompt만v4로바꾸어development40×3시작;warmup5제외.
+
+
+## 2026-09-20 — Development v4 실패와 전략 재검토
+
+Run20260919T211340Z-cebc5bbdaeea46b188caf6d27c4ff804: schema/parser120/120, semantic96/120(80%), raw/acceptedFP0/60, unsafeaccepted0/120, FN24/60, mean2.96099s/p955.05258s. 8case×3 모두불필요한거절: A01/A02/H01/HD-A02/B02/C02/H02는명시된방향이나미요청축을추가질문했고HD-D02는단일가구XY를미지원으로오인했다. 원문unit복사는개선됐지만전체gateFAIL. 결과/manifest/resources를development-v4에보존하며heldout은미호출이다.
+
+긴예제prompt보강반복을재검토하여V5는847token English policy로전환,한축/두축지원과미요청축null을명시한다. 같은T0/runtime/model/schema/parser/gold로40development×1진단을먼저실행한다. 이는최종3회gate가아니며,개선시동일설정정식평가가필요하다. Qwen공식decoding지침은별도로검토하며무조건T0가원인이라고단정하지않는다.

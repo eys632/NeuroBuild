@@ -17,3 +17,10 @@ Unicode분수·곱셈·특수공백·구분자·수치modifier및축부호잘림
 고정40개×3: schema120/120, parser111/120, 의미108/120(90%), rawREADY FP3/60, acceptedFP0/60, 지원gold잘못된수용이동0/60, 전체unsafeaccepted0/120, FN9/60. Mean3.3225s/p954.6700s. 실패4case는매회동일하다. HD-B01은부호가없는X축1m을양수로추측했다(Backend거절). HD-D02는한가구의XY두성분을복수대상으로오인해UNSUPPORTED했다. HD-F01/F02는올바른대상범위와물리적SI값을보존했지만,모델이16cm를-.16m로선변환하여원문literal보존계약을위반했고Backend가거절했다. 산술결과나이동값자체가틀린것으로집계하지않는다.
 
 기존seed20은60/60을유지했고새development20은48/60이므로작은seed성공을일반화하지않는다. [결과](../../evaluations/results/phase5x/development-v3/results.json)·동결manifest·VRAMsnapshot을보존했다. Holdout80은아직호출하지않았다. Promptv3/gold/parser를변경하지않고새v4의일반규칙/독립예제로development오류를개선한다. 같은오류가반복되면단순prompt추가를계속하지않고evidence-only추출등계약을재검토하며기존parser를완화하지않는다.
+
+
+## 2026-09-20 — Development v4 실패와 전략 재검토
+
+Run20260919T211340Z-cebc5bbdaeea46b188caf6d27c4ff804: schema/parser120/120, semantic96/120(80%), raw/acceptedFP0/60, unsafeaccepted0/120, FN24/60, mean2.96099s/p955.05258s. 8case×3 모두불필요한거절: A01/A02/H01/HD-A02/B02/C02/H02는명시된방향이나미요청축을추가질문했고HD-D02는단일가구XY를미지원으로오인했다. 원문unit복사는개선됐지만전체gateFAIL. 결과/manifest/resources를development-v4에보존하며heldout은미호출이다.
+
+긴예제prompt보강반복을재검토하여V5는847token English policy로전환,한축/두축지원과미요청축null을명시한다. 같은T0/runtime/model/schema/parser/gold로40development×1진단을먼저실행한다. 이는최종3회gate가아니며,개선시동일설정정식평가가필요하다. Qwen공식decoding지침은별도로검토하며무조건T0가원인이라고단정하지않는다.

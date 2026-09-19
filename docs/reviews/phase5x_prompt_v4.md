@@ -78,3 +78,5 @@ Token 한도 통과는 응답 완결성이나 의미 정확도를 보장하지 �
 승인 경계 유지, 새 hash 동결과 전후 결과 구분이 필요하다. 이번 작업에서 해당 재설계를
 구현하거나 현재 parser를 완화하지 않았다. V4는 development 결과를 먼저 확인하고,
 충족되지 않은 gate를 heldout 호출이나 다음 Phase 구현으로 우회하지 않는다.
+
+추가 model_research 독립검토도 v4freeze 직후,실제v4모델호출전에PASS했다. 동일SHA및7exemplars를직접schema/parser재검증했고규칙/예시모순이나변경필요gold를발견하지않았다. 이는모델품질평가통과가아니며development재평가를따른다. Freeze파일의pending표시는그파일작성시점기록으로보존한다.
