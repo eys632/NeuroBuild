@@ -210,12 +210,68 @@ class LocalModelClientTests(unittest.TestCase):
 
     def test_unknown_sampling_profile_fails_before_any_http_request(self):
         invalid = (None, True, False, 0, 0.7, float("nan"), [], {}, b"legacy_greedy", "auto", "",
-                   "QWEN3_NONTHINKING_AWQ", "qwen3_nonthinking_awq ", StructuredOutputProtocol.LEGACY_GUIDED_JSON)
+                   "QWEN3_NONTHINKING_AWQ", "qwen3_nonthinking_awq ", "QWEN3_NONTHINKING",
+                   "qwen3_nonthinking ", StructuredOutputProtocol.LEGACY_GUIDED_JSON)
         for profile in invalid:
             with self.subTest(profile=profile), self.assertRaises(DomainError) as caught:
                 LocalRequirementClient(self.base, "synthetic-test-model", sampling_profile=profile)
             self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
         self.assertEqual(self.server.requests, [])
+
+    def test_neutral_nonthinking_profile_sends_explicit_values_without_awq_penalty(self):
+        expected = {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
+                    "presence_penalty": 0.0, "frequency_penalty": 0.0,
+                    "repetition_penalty": 1.0, "seed": 42}
+        for protocol in StructuredOutputProtocol:
+            for profile in (SamplingProfile.QWEN3_NONTHINKING, "qwen3_nonthinking"):
+                with self.subTest(protocol=protocol, profile_type=type(profile).__name__):
+                    client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
+                                                    sampling_profile=profile)
+                    metadata = client.sampling_parameters
+                    self.assertEqual(metadata, expected)
+                    metadata["presence_penalty"] = 1.5
+                    with self.assertRaises(AttributeError):
+                        client.sampling_profile = SamplingProfile.QWEN3_NONTHINKING_AWQ
+                    with self.assertRaises(AttributeError):
+                        client.enable_thinking = True
+                    result = client.extract(SOURCE, axis_convention="project_xy", requirement_id=uuid4(),
+                                            project_id=uuid4(), base_revision_id=uuid4())
+                    self.assertEqual(result.operation.dx.metres, 1)
+                    self.assertIs(client.sampling_profile, SamplingProfile.QWEN3_NONTHINKING)
+                    self.assertIs(client.enable_thinking, False)
+                    request = self.server.requests[-1][2]
+                    self.assertEqual({key: request[key] for key in expected}, expected)
+                    self.assertEqual(client.sampling_parameters, expected)
+                    self.assertIsNot(client.sampling_parameters, client.sampling_parameters)
+                    self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
+                    self.assertEqual(request["max_tokens"], 768)
+                    self.assertEqual(client.timeout, 60)
+                    self.assertNotIn("reasoning_parser", request)
+                    self.assertIs(request["stream"], False)
+                    schema_field = ("guided_json" if protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON
+                                    else "structured_outputs")
+                    self.assertIn(schema_field, request)
+                    self.assertNotIn("structured_outputs" if schema_field == "guided_json" else "guided_json", request)
+
+    def test_model_name_never_selects_a_sampling_profile_and_neutral_failure_never_retries(self):
+        self.server.status = 400
+        self.server.body = b'{"error":"sampling rejected DO_NOT_ECHO_SECRET"}'
+        for model in ("Qwen/Qwen3-4B-Instruct-2507", "Qwen/Qwen3-14B-AWQ", "synthetic-test-model"):
+            for profile, expected_penalty in ((None, None), (SamplingProfile.QWEN3_NONTHINKING, 0.0),
+                                              (SamplingProfile.QWEN3_NONTHINKING_AWQ, 1.5)):
+                with self.subTest(model=model, profile=profile):
+                    kwargs = {} if profile is None else {"sampling_profile": profile}
+                    client = LocalRequirementClient(self.base, model, **kwargs)
+                    before = len(self.server.requests)
+                    self.reject("LOCAL_MODEL_HTTP_ERROR", client)
+                    self.assertEqual(len(self.server.requests), before + 1)
+                    request = self.server.requests[-1][2]
+                    self.assertEqual(request["model"], model)
+                    self.assertIs(client.sampling_profile, SamplingProfile.LEGACY_GREEDY if profile is None else profile)
+                    self.assertEqual(request.get("presence_penalty"), expected_penalty)
+                    self.assertEqual(request["temperature"], 0 if profile is None else 0.7)
+                    self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
+                    self.assertIn("guided_json", request)
 
     def test_thinking_profile_sets_explicit_request_mode_and_sampling_without_selecting_server_parser(self):
         expected = {"temperature": 0.6, "top_p": 0.95, "top_k": 20, "min_p": 0.0,

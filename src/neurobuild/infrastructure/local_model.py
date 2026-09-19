@@ -107,6 +107,7 @@ class StructuredOutputProtocol(StrEnum):
 
 class SamplingProfile(StrEnum):
     LEGACY_GREEDY = "legacy_greedy"
+    QWEN3_NONTHINKING = "qwen3_nonthinking"
     QWEN3_NONTHINKING_AWQ = "qwen3_nonthinking_awq"
     QWEN3_THINKING_AWQ = "qwen3_thinking_awq"
 
@@ -177,6 +178,10 @@ class LocalRequirementClient:
         """
         if self.sampling_profile is SamplingProfile.LEGACY_GREEDY:
             return {"temperature": 0, "seed": 42}
+        if self.sampling_profile is SamplingProfile.QWEN3_NONTHINKING:
+            return {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
+                    "presence_penalty": 0.0, "frequency_penalty": 0.0,
+                    "repetition_penalty": 1.0, "seed": 42}
         if self.sampling_profile is SamplingProfile.QWEN3_NONTHINKING_AWQ:
             return {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
                     "presence_penalty": 1.5, "frequency_penalty": 0.0,

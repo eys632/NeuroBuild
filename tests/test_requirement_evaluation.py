@@ -226,6 +226,14 @@ class RequirementEvaluationTests(unittest.TestCase):
             self.assertEqual(sampled_manifest["protocol"]["seed"], 42)
             sampled_manifest["protocol"]["sampling_request_parameters"]["temperature"] = 0
             self.assertEqual(build_manifest(sampled, **kwargs)["protocol"]["sampling_request_parameters"], expected_sampling)
+            neutral = LocalRequirementClient("http://127.0.0.1:8003", "synthetic-model",
+                                             sampling_profile="qwen3_nonthinking")
+            neutral_manifest = build_manifest(neutral, **kwargs)
+            self.assertEqual(neutral_manifest["protocol"]["sampling_profile"], "qwen3_nonthinking")
+            self.assertEqual(neutral_manifest["protocol"]["sampling_request_parameters"],
+                             dict(expected_sampling, presence_penalty=0))
+            self.assertIs(neutral_manifest["protocol"]["enable_thinking"], False)
+            self.assertIsNone(neutral_manifest["protocol"]["reasoning_parser"])
             modern = LocalRequirementClient("http://127.0.0.1:8003", "synthetic-model", protocol="structured_outputs")
             modern_manifest = build_manifest(modern, **dict(kwargs, split="heldout"))
             self.assertEqual(modern_manifest["split"], "heldout")

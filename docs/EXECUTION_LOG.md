@@ -258,3 +258,13 @@ Run20260919T213630Z-f42a9eb2a41d4368942b0575dda2893d:40×1,warmup5. Schema40/par
 Run20260919T214743Z-27a340f0e04343be8be10a062a6eb25d:40×1,warmup5. Schema40/parser20/semantic17,rawFP4/20,unsafeaccepted2/40,FN17/20,mean13.23336s/p9520.61753s. 전체stop종료이며truncation/timeout없음,completion243–971(mean462.275). 숫자원문표기변경(1→1.00)과target손실,외부조건판단오류가남았다. Acceptedunsafe2는F01대상span에조사추가와HD-I02충돌조건무시이며같은심각도라고단정하지않지만고정exacttarget/criticalgate에서둘다실패다. 실제IFC실행이나승인은수행하지않았다.
 
 추론모드자체가계약준수를보장하지않는다. 짧은영어policy는nonthinking/thinking모두실패했으며가장좋았던한국어v3지시/예제는유지한비교가필요하다. v7은v3출력형식문장하나만internalthinking/finalJSON구분으로명확히하고같은thinkingserver에서명시출력1280으로비교한다. Context4096CPU검증후40개진단하며gold/parser/게이트는유지한다.
+
+
+## V7 한국어정책복원+thinking 진단 실패 / 모델후보재검토
+
+Run20260919T220158Z-72efdc2dad274cb98b1d61b669597b75:40×1,warmup5,allstop. Schema40/parser35/semantic30(75%),rawFP0/20,unsafeaccepted0/40,FN8/20,mean14.55889s/p9528.66420s. HD-B01방향누락과HD-D02단일가구XY분류는개선됐으나5개수치lexical거절,3개불필요외부조건확인,2개조회분류오류가남았다. Thinking자체는최고nonthinkingv3의90%를넘지못했고고정gateFAIL이다. 결과/manifest/resource를보존하고자기모델guard만정상종료했다.
+
+프롬프트·샘플링·추론모드반복실패후instruction전용post-trainingcheckpoint로모델선정을재검토한다. Qwen3-4B-Instruct-2507공식cdbee75f17c01a7cc42f958dc650907174af0554/Apache2.0/BF16은공식최소버전및로컬소스검토상기존runtime에서시험근거가있다. 크기만으로채택하지않고동일dev40자료/기존최고v3prompt/고정schema-parser-gold로순차평가한다. Fullpeak16384MiB추정+freshmargin,각파일다운로드와20GiB디스크reserve를확인한다. BF16비교sampling은.7/.8/K20/min0/presence0/frequency0/repetition1/seed42로명시하고AWQpenalty를자동재사용하지않는다. 실제quality/startup은아직미검증이다.
+
+- Qwen3-4B-Instruct-2507 manifest:12files/8,060,915,998bytes/SHA70546521745f90e12e4fee0db9f73a7ec8a9296928b06b39d0f282cf1030c056. 공개 Apache2.0 후보로, weight3개 shard의 Hub LFS hash와 작은 파일 SHA를 확인했다. 다운로드 전 root free66,160,959,488bytes로 20GiB reserve를 포함한27.507GiB 필요량을 충족했다. 기존 download_model.py로 project var/models에 순차 다운로드/size+SHA검증 중이다. 이전 thinkingserver는 STOPPED/exit0/FileStorecleanup이며 GPU3used3965/free36373MiB/util0% 복귀를 확인했다.
+- Neutral nonthinking preset 추가 후 client30/client+harness44/전체253testsPASS, skip0,16.900s. 기본 legacy와 다른 preset, GPU/schema/parser/gold는 유지하고8개sampling값과manifest를 명시했다.
