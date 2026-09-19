@@ -1,8 +1,8 @@
 # NeuroBuild_v2
 
 A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의 greenfield rewrite.
-현재 **Phase 0 기반 구현 완료 / GitHub 인증 필요로 checkpoint 대기** 상태다.
-Application, DB, IFC Engine, model server, frontend는 아직 구현/설치하지 않았다.
+현재 **Phase 0 원격 checkpoint 완료 / Phase 1 Domain Contract 구현 및 29개 테스트 통과**이다.
+Domain 계약을 구현했다. DB, IFC Engine, model server, frontend는 다음 단계다.
 
 LLM은 요구사항을 구조화하고, 결정론적인 BIM Engine이 승인된 변경을 실행한다.
 첫 vertical slice는 IFC4의 단일 IfcFurniture를 같은 층에서 상대 XY 이동하는 `MOVE_FURNITURE`다.
@@ -77,7 +77,7 @@ NeuroBuild_v2/                 # 이 checkout root가 새 프로젝트
 - root disk는 조사 당시96% 사용, 약86G 남음. 대형 설치/모델 다운로드를 보류한다.
 - driver535.183.01에서 최신 후보의 검증된 vLLM build는 아직 없다.
 - RTX5090은 예상32GB/physicalGPU1 계획이며 실제 runtime/benchmark는 미검증이다.
-- Git 작성자는 설정됐고 Phase0 local commit은 `29d4774`다. GitHub 인증 부재로 push는 실패했다.
+- GitHub SSH 인증이 해결됐고 공통 `v2` push를 확인했다. Phase0 현재 이력은 `a2761eb`, 자율 실행 계획은 `f131644`다.
 
 **Phase별 승인 대기는 폐지했다.** Quality Gate와 commit/push를 통과하면 Phase11까지 자율 진행한다.
-현재는 GitHub 인증 hard blocker로 Phase1 시작 전 대기 중이다. 최신 상태는 STATUS를 따른다.
+최신 진행 상황과 검증 결과는 STATUS를 따른다.

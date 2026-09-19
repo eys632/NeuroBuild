@@ -77,3 +77,21 @@ Could not open a connection to your authentication agent.
 - 이 문서 변경은 별도 local checkpoint `Document autonomous MVP plan and authentication blocker`로 보존한다. 결과 hash는 `git log`가 기준이며 같은 commit 파일에 자기 hash를 미리 기록하지 않는다. 인증 상태가 바뀌지 않아 실패한 push를 반복하지 않는다. Phase1은 미시작이다.
 
 새 항목마다 날짜/시각, 목표/변경, 실제 command, test 결과와 실패/수정, Git commit/push 상태를 남긴다. benchmark에는 dataset/prompt/schema/model/runtime/config/환경 revision과 측정 결과 artifact의 위치를 기록한다. 미측정은 NOT_RUN/UNVERIFIED로 남기고 성공 수치로 채우지 않는다. 각 Phase 상세 결과는 `docs/reports/phaseX_report.md`, 현재 요약은 `STATUS.md`에 유지한다.
+
+## 2026-09-20 — 인증 해결과 Phase1 시작
+
+- git push -u origin v2 성공/Everything up-to-date. git ls-remote --heads origin main v2로 main0914597 보존, v2=f1316443c473884079fb47533de2cabfa16f270a 확인.
+- 현재 Foundation은 a2761ebb4ab89fe7b347b9855b80a1a46e6d7bef. 사용자 변경 상태를 수용했고 rewrite/force push를 하지 않았다. 사용자 GitHub noreply identity를 유지한다.
+- 전역/project 지침 및 상태4문서를 읽고 Phase0 remote gate 통과 후 Phase1 시작.
+- 설치 전 root/기존환경/Python/pip/CONDA_PREFIX/디스크 확인: Conda/환경 없음, system3.8.10/pip24.3.1, root96%/86G. Backend Python3.12 한 환경부터 계획했다.
+- 공식 https://repo.anaconda.com/miniconda/ index의 Miniconda3-py312_26.7.1-1-Linux-x86_64.sh 다운로드 후 SHA256 b27f60ab63e77eeab50a5417c989120f767e863df32400190d4c7262369f8695 검증 PASS. batch install ~/miniconda3, shell init 없이 base auto_activate=false 설정.
+- CONDA_PKGS_DIRS=<project>/var/cache/conda/pkgs conda create -y -p <project>/.conda --override-channels -c conda-forge python=3.12 pip 성공. 환경 활성화 후 Python3.12.14/pip26.2.1과 경로/CONDA_PREFIX 일치 확인.
+- 설치 후 df:96%/84G. du: Miniconda939M, .conda258M, var346M. Base 프로젝트 dependency/GPU 환경/model weight/system 변경 없음.
+- Phase1은 stdlib production + unittest로 단위/불변성/별도승인/stale/duplicate/거절 경로를 검증한다.
+
+## 2026-09-20 — Phase1 검증 완료
+
+- 대상 .conda를 activate하고 경로/버전/CONDA_PREFIX를 재확인한 뒤 python -m pip install --no-build-isolation --no-deps -e . 성공. python -m pip check 정상.
+- bash scripts/test_backend.sh: unittest29개 PASS(0.004s); independent agent의 동일29개 검증과 root 재실행 결과 일치. stdlib-only Domain이며 DB/IFC/모델 통합 테스트를 주장하지 않는다.
+- python -B scripts/show_runtime_info.py --profile a100 --json 회귀 확인. git diff --check 통과.
+- Phase1 report/domain contract/backend lock/재생성 방법을 기록했다. commit message: Implement NeuroBuild domain contract. Push와 원격 hash 확인을 다음 명령으로 수행한다.

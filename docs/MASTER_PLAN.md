@@ -23,11 +23,11 @@ Phase 11을 통과하면 `docs/FINAL_INTERNAL_MVP_REPORT.md`를 작성하고 최
 
 ## Phase 계획과 acceptance criteria
 
-이 표는 앞으로 수행할 계획이다. `STATUS.md`가 완료 사실을 구분한다. Phase 0 foundation의 local commit은 있으나 현재 원격 인증이 없어 checkpoint는 아직 완료되지 않았다.
+이 표는 앞으로 수행할 계획이다. `STATUS.md`가 완료 사실을 구분한다. 2026-09-20 SSH 인증 해결 후 원격v2와 local HEAD `f131644` 일치를 확인하여 Phase0 checkpoint를 완료했다.
 
 | Phase | 목표와 핵심 산출물 | Acceptance criteria | 선행 조건과 관계 |
 | --- | --- | --- | --- |
-| **0 Foundation checkpoint** | 기존 환경/Git/architecture/profile/model shortlist 결과를 검증하고 commit/push, 상태 문서 외부화 | 기존 staged 검증, 올바른 Git author, secret/환경/weight 제외, local commit 및 원격 `v2` push 확인 | Foundation 구현 완료; 현재 remote authentication 해결 필요. Phase 1 설치/구현 전에 remote checkpoint 완료 |
+| **0 Foundation checkpoint** | 기존 환경/Git/architecture/profile/model shortlist 결과를 검증하고 commit/push, 상태 문서 외부화 | 기존 staged 검증, 올바른 Git author, secret/환경/weight 제외, local commit 및 원격 `v2` push 확인 | 완료: remote/current HEAD f131644 |
 | **1 Domain Contract** | Requirement, Operation, Target, Proposal, Revision, Review, Execution 계약; 상태/오류/schema | metre의 명시적 변환 규칙, single XY scope, target 확인≠apply 승인, stale/unsupported/ambiguity 규칙의 deterministic unit tests | Phase 0 checkpoint; 필요한 Backend 최소 환경을 전역 정책에 따라 준비. GPU/모델은 불필요 |
 | **2 Project / Revision / Artifact Persistence** | PostgreSQL metadata/migration, local artifact storage, immutable full snapshots, commit/recovery | source overwrite 금지, head의 원자적 갱신, concurrent/stale Apply 차단, finalize/DB 실패의 안전한 recovery, idempotency 및 orphan 참조 보호 테스트 | Phase 1; 사용자 권한 범위의 PostgreSQL 제공 방식 및 디스크 검토 |
 | **3 IFC Engine + MOVE_FURNITURE** | IfcOpenShell Adapter, synthetic IFC4 fixture, inventory, 지원 placement의 XY 이동 | 실제 fixture에서 metre/IFC unit 변환, 대상 XY 변화, Z/rotation/scale/storey/GlobalId/비대상 보존, unsupported placement 무변경 거절 | Phase 1~2; 필요한 IfcOpenShell을 Backend 환경에 추가 |
@@ -84,7 +84,7 @@ Source V0 immutable, stale proposal 차단, duplicate Apply 차단, unsupported 
 12. RTX5090 실측 없이는 결정할 수 없는 필수 architecture 문제가 있음.
 13. 데이터 손실 가능성이 있는 destructive operation이 필요함.
 
-즉시 실행 지침의 Git author 부재 중단 조건은 사용자가 `eys632 <eys632@gmail.com>`을 제공하여 해결되었다. 현재 GitHub 쓰기 인증 부재는 6번에 해당한다. 승인 범위 내의 safe library/SQL/interface/naming/refactor/prompt/UI/API 설계는 자율 결정한다. 설치 전 디스크 부족 등 전역 운영 제한도 무시하지 않으며 안전한 범위의 대안을 먼저 검토한다.
+Git author와 GitHub 인증 blocker는 해결됐다. 사용자가 인증과 함께 정리한 현재 commit/remote 설정을 보존한다. 승인 범위 내의 safe library/SQL/interface/naming/refactor/prompt/UI/API 설계는 자율 결정한다. 설치 전 디스크 부족 등 전역 운영 제한도 무시하지 않으며 안전한 범위의 대안을 먼저 검토한다.
 
 ## 재개 절차
 

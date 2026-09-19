@@ -1,5 +1,7 @@
 # Git 조사 및 공통 v2 운영
 
+현재 상태(2026-09-20): 사용자가 SSH 인증을 구성한 뒤 `git push -u origin v2`가 성공했다. origin은 `git@github.com:eys632/NeuroBuild.git`, 당시 remote/current HEAD=f131644, Foundation=a2761eb다. 아래 인증 실패는 과거 기록이다. 사용자 변경 이력과 GitHub noreply 작성자 설정을 유지한다. 현재 checkpoint는 [STATUS](STATUS.md)를 따른다.
+
 2026-09-19 GitHub `https://github.com/eys632/NeuroBuild.git`를 읽기 전용으로 조사했다.
 `git ls-remote --symref ... HEAD 'refs/heads/*'` 결과 기본 branch와 유일한 remote branch는 `main`이었다.
 HEAD는 `09145974c17d1a09abdd2c48863e940fe68678b9`이며 기존 구현 정리 commit이다.

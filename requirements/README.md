@@ -1,10 +1,32 @@
-# Common Backend environment (계획)
+# Common Backend environment
 
-두 서버 공통 `.conda`, Python3.12. 환경은 아직 없다.
-Phase1의 domain/contract에 필요한 최소 dependency부터 선택하고, Phase2에서 psycopg,
-Phase3에서 IfcOpenShell, Phase5에서 공통 HTTP/validation 필요분을 추가한다.
-jsonschema 등 정확한 버전은 각 단계에서 공식 Python/platform 지원을 확인해 고정한다.
+2026-09-20 A100에 project `.conda`, Python3.12.14를 만들었다. Phase1 Domain은 표준 라이브러리만 사용한다.
+Conda는 Python/pip/build 도구를 공급하며 base에 프로젝트 dependency를 설치하지 않는다.
 
-향후 common source manifest와 lock/export를 여기에 둔다. torch/vLLM/Transformers/CUDA wheel은
-이 환경에 넣지 않는다. Python patch/직접·간접 dependency/환경 재생성 명령을 기록하고
-같은 lock를 두 서버에서 검증한다. 현재 설치용 requirements 파일은 없으며 설치하지 않았다.
+- `backend.environment.yml`: 이식 가능한 환경 의도. conda-forge만 사용한다.
+- `backend-linux-64.conda.lock`: Python과 모든 resolved Conda package URL/SHA256. Linux x86_64용이며 RTX5090 현장 검증은 아직 없다.
+- root `pyproject.toml`: Application metadata/build 정의. Domain의 외부 production dependency는 없다.
+
+환경이 없는 새 checkout에서 디스크/기존 환경을 먼저 확인한 다음 실행한다. 아래 명령은 기존 환경을 삭제하지 않는다.
+
+```sh
+source "$HOME/miniconda3/etc/profile.d/conda.sh"
+export CONDA_PKGS_DIRS="$PWD/var/cache/conda/pkgs"
+conda create -p "$PWD/.conda" --file requirements/backend-linux-64.conda.lock
+conda activate "$PWD/.conda"
+command -v python
+python --version
+python -m pip --version
+echo "$CONDA_PREFIX"
+python -m pip install --no-build-isolation --no-deps -e .
+bash scripts/test_backend.sh
+```
+
+Miniconda bootstrap는 [공식 index](https://repo.anaconda.com/miniconda/)의
+`Miniconda3-py312_26.7.1-1-Linux-x86_64.sh`, SHA256
+`b27f60ab63e77eeab50a5417c989120f767e863df32400190d4c7262369f8695`로 검증했다.
+설치 위치는 A100에서 `~/miniconda3`, base 자동 활성화는 false, shell init은 수행하지 않았다.
+다른 서버에서는 공식 host 지원과 hash를 확인한 뒤 동일 위치 정책을 적용한다.
+
+Phase2 psycopg/PostgreSQL, Phase3 IfcOpenShell 등은 해당 Phase에서 사유와 lock를 추가한다.
+torch/vLLM/Transformers/CUDA wheel은 `.conda-vllm`에만 둔다. 모델 환경은 현재 미생성이다.

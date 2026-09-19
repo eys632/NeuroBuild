@@ -28,3 +28,17 @@ Session advisory lock은 PostgreSQL **session**의 소유다. Phase 7에서 전�
 Gate 실패와 hard blocker는 다르다. 구현/test 오류는 같은 Phase에서 자율 수정한다. 필수 runtime benchmark를 수행하지 못한 상태를 mock 결과로 통과시키거나 인증 없는 push를 완료로 기록하지 않는다. 같은 실패 3회 이상이면 같은 조치를 반복하지 않고 접근을 재검토한다.
 
 Phase 0 당시 commit에 포함된 Phase 승인 대기와 Phase 10 이후 계획은 최신 사용자 지침으로 대체되었다. 현재 문서도 자율 실행 방향으로 갱신하며 실행 권한/완료 범위는 [MASTER_PLAN.md](MASTER_PLAN.md)와 최신 사용자 지침을 따른다. 기술 불변 조건은 계속 유지한다.
+
+## D015 — Phase1 Backend bootstrap (2026-09-20)
+
+- GitHub SSH push 및 remote/current HEAD f131644 일치로 Phase0 remote gate를 충족했다. 사용자 변경 commit ID 및 noreply identity를 보존한다.
+- Backend는 project `.conda` Python3.12.14. Miniconda 공식 installer SHA256 검증, conda-forge만 지정, base auto_activate=false. 모델 환경은 GPU runtime 요구사항이 확정될 때 만든다.
+- Phase1은 stdlib Domain + unittest, package metadata/build에만 이미 환경에 포함된 setuptools84 사용. 테스트용 pytest/agent framework를 추가하지 않는다.
+- 환경은 Git 제외하고 resolved Linux64 URL/SHA256 lock를 저장한다. RTX5090의 OS/ABI가 다르면 실제 환경 검증 후 공통 dependency 버전을 유지할 수 있는 lock 전략을 재검토한다.
+
+## D016 — Phase1 좌표/값/승인 계약
+
+- XY는 IFC project engineering/world frame으로 고정한다. 화면 오른쪽이나 객체 local axis는 의미가 확정되지 않으면 clarification한다.
+- 값은 finite Decimal로 받으며 coefficient/exponent 이동으로 m/cm/mm를 metre로 변환한다. Python의 ambient Decimal precision을 낮춰도 손실이 없어야 한다.
+- frozen records와 proposal fingerprint로 승인 대상을 결합한다. 동일 numeric 표기(1/1.0)는 정규화하고 원래 unit/content 변경은 새 승인을 요구한다.
+- Domain pure guard의 결과를 동시성 또는 실제 IFC 존재 검증으로 간주하지 않는다. Phase2 transaction/unique constraints, Phase3 inventory validation을 추가한다.

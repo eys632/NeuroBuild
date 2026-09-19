@@ -1,0 +1,7 @@
+# Portable intent; exact Linux x86_64 packages are recorded in the companion lock.
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12.14
+  - pip=26.2.1

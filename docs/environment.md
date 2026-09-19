@@ -1,5 +1,7 @@
 # A100 환경 조사와 환경 구성 계획
 
+후속 상태(2026-09-20): Phase1 진입 후 Miniconda26.7.1와 Backend `.conda` Python3.12.14를 설치했다. 설치 후 root96%/84G, base939M/Backend258M/var346M. 재현 정의는 [requirements](../requirements/README.md), 현재 상태는 [STATUS](STATUS.md)를 따른다. 아래 실측 표는 Phase0 당시 기록이다.
+
 조사: 2026-09-19 18:00 KST 전후. 전역 `/home/a202192020/.codex/AGENTS.md`를 먼저 읽었다.
 이번 Phase 0에서는 package, Miniconda, 환경, weight, PostgreSQL, frontend를 **설치하지 않았다**.
 
