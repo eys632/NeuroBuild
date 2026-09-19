@@ -1,6 +1,6 @@
 # Runtime compatibility matrix
 
-기준일 2026-09-19. **MEASURED는 그 행의 관측만 뜻하며 inference PASS가 아니다.**
+기준일 2026-09-20. **MEASURED는 그 행의 관측만 뜻하며 inference PASS가 아니다.**
 RTX5090에는 접속하지 않았다. 모든 RTX runtime/benchmark 항목은 PREDICTED 또는 UNVERIFIED다.
 
 | 항목 | A100: MEASURED / 계획 구분 | RTX5090: PREVIOUSLY KNOWN / PREDICTED / UNVERIFIED |
@@ -13,10 +13,10 @@ RTX5090에는 접속하지 않았다. 모든 RTX runtime/benchmark 항목은 PRE
 | CUDA compatibility | nvidia-smi12.2; CUDA12 minor/JIT 제한 별도 검증 | UNVERIFIED; CC12.0 지원 runtime/build 필요 |
 | System toolkit | MEASURED nvcc11.8 | UNVERIFIED |
 | System Python | MEASURED 3.8.10, 진단 전용 | UNVERIFIED |
-| Backend Python | PLANNED .conda Python3.12, 미생성 | 동일3.12 patch/lock 목표, 미생성/미검증 |
-| Backend dependency | NOT_INSTALLED; 공통 manifest 예정 | 동일 manifest 예정, UNVERIFIED |
+| Backend Python | MEASURED .conda Python3.12.14 | 동일3.12 patch/lock 목표, 미생성/미검증 |
+| Backend dependency | MEASURED psycopg3.2.10; pinned backend lock | 동일 manifest 예정, UNVERIFIED |
 | IfcOpenShell | NOT_INSTALLED; 버전 미정 | 동일 버전/IFC 결과 테스트 필요 |
-| PostgreSQL | PATH/일반 설치 경로/5432 listener에서 미발견 | UNVERIFIED; 공통 migration/major 목표 |
+| PostgreSQL | MEASURED project PostgreSQL17.11; private Unix socket; noTCP; restart PASS | UNVERIFIED; 공통 migration/major 목표 |
 | Model Python | PLANNED .conda-vllm, 3.12 우선 검토 | 선택 runtime 요구사항에 따라 별도 lock |
 | PyTorch | NOT_INSTALLED in project; build 미정 | UNVERIFIED; CC12.0 포함 build 필요 |
 | vLLM | NOT_INSTALLED; 모델별 지원 release/commit 및535 호환 조합 미확정 | UNVERIFIED; exact release/quant/parser 검증 필요 |

@@ -7,7 +7,7 @@ name = "neurobuild-v2"
 version = "0.1.0"
 description = "Common headless BIM application for A100 and RTX5090 profiles"
 requires-python = ">=3.12,<3.13"
-dependencies = []
+dependencies = ["psycopg==3.2.10"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -5,3 +5,5 @@ channels:
 dependencies:
   - python=3.12.14
   - pip=26.2.1
+  - postgresql=17.11
+  - psycopg=3.2.10

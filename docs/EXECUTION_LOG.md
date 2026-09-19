@@ -95,3 +95,20 @@ Could not open a connection to your authentication agent.
 - bash scripts/test_backend.sh: unittest29개 PASS(0.004s); independent agent의 동일29개 검증과 root 재실행 결과 일치. stdlib-only Domain이며 DB/IFC/모델 통합 테스트를 주장하지 않는다.
 - python -B scripts/show_runtime_info.py --profile a100 --json 회귀 확인. git diff --check 통과.
 - Phase1 report/domain contract/backend lock/재생성 방법을 기록했다. commit message: Implement NeuroBuild domain contract. Push와 원격 hash 확인을 다음 명령으로 수행한다.
+
+## 2026-09-20 — Phase1 remote checkpoint 완료 / Phase2 진입
+
+- Phase1 commit e68baa4a9d34efaed6956866c8857755b3fd6940 생성 및 git push origin v2 성공. git ls-remote 결과와 local HEAD 일치, worktree clean 확인.
+- Phase2 PostgreSQL/Artifact Persistence를 시작했다. 설치 전 Backend activate 후 Python/pip/CONDA_PREFIX/root84G 재확인.
+- conda install --dry-run --json으로 postgresql17.11/psycopg3.2.10 추가 계획(다운로드12.9MiB)을 확인한 뒤 project .conda에만 설치했다. 설치 후 postgres17.11/psycopg3.2.10 import 정상, Backend319M/root84G.
+- scripts/postgres.py init/start: var/postgres 사용자 소유 cluster, var/run/postgresql0700 Unix socket, auth-local peer/auth-host reject, TCP listen_addresses 비어 있음. current_user/current_database 확인. fsync/synchronous_commit on, data page checksum enabled.
+- PostgreSQL server가 현재 프로젝트 전용으로 실행 중이다. 다른 사용자/시스템 DB/프로세스는 조회·변경하지 않았다. 재현 lifecycle은 scripts/postgres.py에서 marker/경로 소유자를 확인한다.
+- Phase2는 runtime_skeleton(PG repository/migration), model_research(immutable artifact adapter/tests), architecture(독립 realPG integration tests)와 root(PG environment/lifecycle/review)로 파일 소유권을 나눴다. Product multi-agent 기능을 구현하는 것은 아니다.
+
+## 2026-09-20 — Phase2 gate
+
+- Independent real PostgreSQL13 tests PASS, root 전체62 tests PASS(3.271s, skip0). Domain29/Artifact20/Persistence13. Publication 이후 fsync 실패 recovery를 root review에서 발견해 verify(file+objects dir fsync)와 fault tests로 보강했다.
+- Root controlled PostgreSQL stop/start smoke PASS: head/revision/hash/COMMITTED intent/exact retry 유지. Test-owned schema만 정리하고 synthetic artifact는 ignored var/tests/restart에 보존했다. 강제 OS crash 검증은 아니다.
+- scripts/postgres.py start에 noTCP 옵션 강제 후 재시작/SHOW listen_addresses empty 확인. 현재 private PostgreSQL은 실행 중이다.
+- Backend activate/path/version/CONDA_PREFIX/disk84G 재확인 → editable reinstall/no-deps → pip check PASS. independent architecture/security/cross-server review 완료, RTX는 UNVERIFIED.
+- Phase2 report/requirements/README/compatibility 갱신, diff check PASS. Commit/push는 다음 checkpoint command 결과로 확정한다.
