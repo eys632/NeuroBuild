@@ -1,0 +1,12 @@
+{
+  "all_loopback": true,
+  "listener_addresses": [
+    "127.0.0.1",
+    "127.0.0.1",
+    "127.0.0.1",
+    "127.0.0.1",
+    "127.0.0.1"
+  ],
+  "startup_seconds_approx": 20.362,
+  "rendezvous": "FileStore"
+}

@@ -1,0 +1,315 @@
+{
+  "warmups": [],
+  "trials": [
+    {
+      "case_id": "A01",
+      "category": "korean_requirement",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실 책상을 X축 양의 방향으로 1m 옮겨줘.",
+          "dx": {
+            "value": "1",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로 1m"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": {
+        "dx": "1",
+        "dy": "0"
+      },
+      "usage": {
+        "prompt_tokens": 2410,
+        "completion_tokens": 95,
+        "total_tokens": 2505
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 3.5429567163810134,
+      "transport_latency_seconds": 3.541581436060369,
+      "expected_decision": "READY",
+      "accepted_decision": "READY",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 2,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "E02",
+      "category": "condition_negation",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "CLARIFICATION",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "CLARIFICATION",
+        "target_text": "회의실에 책상",
+        "operation": null,
+        "reason": "축과 거리는 명확하지만 해당 책상이 정확히 하나인지 먼저 확인해야 합니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 2416,
+        "completion_tokens": 53,
+        "total_tokens": 2469
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.273360732011497,
+      "transport_latency_seconds": 2.2727801827713847,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "decision_correct": true,
+      "target_slots_correct": 0,
+      "target_slots_total": 0,
+      "target_correct": null,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "F02",
+      "category": "target_preservation",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실 입구 쪽 책상 말고 창가 쪽 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실 입구 쪽 책상 말고 창가 쪽 책상을 Y축 양의 방향으로 30cm 옮겨줘.",
+          "dx": null,
+          "dy": {
+            "value": "30",
+            "unit": "cm",
+            "evidence": "Y축 양의 방향으로 30cm"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": {
+        "dx": "0",
+        "dy": "0.30"
+      },
+      "usage": {
+        "prompt_tokens": 2426,
+        "completion_tokens": 129,
+        "total_tokens": 2555
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 4.348265706561506,
+      "transport_latency_seconds": 4.347424739971757,
+      "expected_decision": "READY",
+      "accepted_decision": "READY",
+      "decision_correct": true,
+      "target_slots_correct": 3,
+      "target_slots_total": 3,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 2,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": true
+    }
+  ],
+  "metrics": {
+    "json_parse_valid": {
+      "numerator": 3,
+      "denominator": 3,
+      "rate": 1.0,
+      "wilson_95": [
+        0.4385029682449546,
+        1.0
+      ]
+    },
+    "schema_valid": {
+      "numerator": 3,
+      "denominator": 3,
+      "rate": 1.0,
+      "wilson_95": [
+        0.4385029682449546,
+        1.0
+      ]
+    },
+    "parser_accepted": {
+      "numerator": 3,
+      "denominator": 3,
+      "rate": 1.0,
+      "wilson_95": [
+        0.4385029682449546,
+        1.0
+      ]
+    },
+    "semantic_rubric_correct": {
+      "numerator": 3,
+      "denominator": 3,
+      "rate": 1.0,
+      "wilson_95": [
+        0.4385029682449546,
+        1.0
+      ]
+    },
+    "critical_fp_model_ready": {
+      "numerator": 0,
+      "denominator": 1,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.7934506856227626
+      ]
+    },
+    "critical_fp_accepted_ready": {
+      "numerator": 0,
+      "denominator": 1,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.7934506856227626
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 3,
+      "denominator": 3,
+      "rate": 1.0,
+      "wilson_95": [
+        0.4385029682449546,
+        1.0
+      ]
+    },
+    "nonready_gold_raw_decision_observed": {
+      "numerator": 1,
+      "denominator": 1,
+      "rate": 1.0,
+      "wilson_95": [
+        0.20654931437723745,
+        1.0
+      ]
+    },
+    "critical_fn_accepted_ready": {
+      "numerator": 0,
+      "denominator": 2,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.6576197724933469
+      ]
+    },
+    "target_preservation": {
+      "numerator": 4,
+      "denominator": 4,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5101091635454027,
+        1.0
+      ]
+    },
+    "unit_value_extraction": {
+      "numerator": 4,
+      "denominator": 4,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5101091635454027,
+        1.0
+      ]
+    },
+    "latency_all": {
+      "count": 3,
+      "mean_seconds": 3.388194384984672,
+      "p95_seconds": 4.348265706561506
+    },
+    "latency_parser_accepted": {
+      "count": 3,
+      "mean_seconds": 3.388194384984672,
+      "p95_seconds": 4.348265706561506
+    },
+    "errors": {},
+    "tool_execution": "NOT_PERFORMED",
+    "decode_tokens_per_second": null,
+    "ttft_seconds": null,
+    "clarification_detection": {
+      "precision": {
+        "numerator": 1,
+        "denominator": 1,
+        "rate": 1.0,
+        "wilson_95": [
+          0.20654931437723745,
+          1.0
+        ]
+      },
+      "recall": {
+        "numerator": 1,
+        "denominator": 1,
+        "rate": 1.0,
+        "wilson_95": [
+          0.20654931437723745,
+          1.0
+        ]
+      },
+      "f1": 1.0
+    },
+    "unsupported_detection": {
+      "precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "rate": null,
+        "wilson_95": null
+      },
+      "recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "rate": null,
+        "wilson_95": null
+      },
+      "f1": null
+    },
+    "completion_tokens_per_end_to_end_second": 27.25148643847689,
+    "token_timing_trial_count": 3,
+    "case_consistency": {
+      "A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      }
+    }
+  },
+  "protocol": "legacy_guided_json",
+  "prompt_sha256": "716137f3e275cb0030f1f497f8e23bbeeefd8a62eae757378231b7d910db3c3e",
+  "purpose": "Actual legacy regression after explicit protocol adapter change"
+}

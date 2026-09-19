@@ -60,6 +60,12 @@ Model/log/report 경로는 checkout 기준으로 해석하므로 다른 working 
 
 초기 옵션은 vLLM0.8.5 V0, TP1, `uni`, frontend multiprocessing off, eager, context4096, seq1, KV block256, swap0, prefix caching off, xgrammar다. `--max-model-len`은 256~4096으로 제한하고 block 수를 길이에 맞춘다. 서버는 `127.0.0.1`에만 bind하며 request/access log를 끈다. HF/Transformers offline과 프로젝트 HF/Torch/Triton/CUDA/vLLM/XDG/TMP cache를 명시한다. [옵션과 후보 근거](runtime_candidate_feasibility.md)
 
+API의 localhost bind만으로 내부 distributed rendezvous의 범위가 정해지지는 않는다. 초기 actual run에서 own model PID의 TCPStore wildcard listener가 확인되어 해당 모델 서버를 종료했다. 다음 launch부터는 allocator cap 적용 후, vLLM 시작 전에 unique `var/run/rendezvous/model-*/store`의 `torch.distributed.FileStore`로 NCCL world_size1/rank0을 초기화한다. vLLM0.8.5는 이미 초기화된 default group을 재사용하고 하위 group도 같은 store를 사용하므로 별도 TCPStore를 만들지 않는다. Runtime 버전 변경 시 이 조건을 다시 검증한다. [vLLM0.8.5 distributed source](https://github.com/vllm-project/vllm/blob/v0.8.5/vllm/distributed/parallel_state.py)
+
+Gloo는 `GLOO_SOCKET_IFNAME=lo`, NCCL은 exact selector `NCCL_SOCKET_IFNAME==lo`, `NCCL_IB_DISABLE=1`, vLLM은 `VLLM_HOST_IP=127.0.0.1`을 사용한다. 여기서 NCCL 변수의 **값**은 `=lo`다. `VLLM_DP_SIZE=1`, `VLLM_DP_RANK=0`, DP master localhost를 강제하고 상속된 MASTER_ADDR/PORT·RANK·LOCAL_RANK·WORLD_SIZE는 제거한다. `PYTHONNOUSERSITE=1`로 사용자 site-package 혼입을 차단한다. 이 설정을 API bind와 함께 적용하며 실제 GPU runtime listener는 해당 모델 자신의 socket만 확인해야 한다.
+
+FileStore directory는 launch별로 새0700 directory를 만들고 재사용하지 않는다. 자체 child 회수 후에만 해당 `store`와 그 directory를 정리하며 다른 run은 삭제하지 않는다. Guard 강제 종료 또는 reap 실패로 남은 directory는 자동 재사용하지 않는다. 프로젝트 `var/run/model-server.lock`에 `flock(LOCK_EX|LOCK_NB)`를 GPU query 전에 얻어 전체 child lifecycle 동안 유지한다. 이미 own guard가 있으면 `OWN_MODEL_ALREADY_RUNNING`으로 query/launch/report 덮어쓰기 전에 거절한다. Lock은 owned regular file만 허용하고 symlink를 따르지 않으며 파일 자체를 unlink하지 않는다. 이는 이 프로젝트의 중복 launch를 방지하며 타 사용자 GPU 예약을 의미하지 않는다.
+
 `--gpu-memory-utilization`과 `--torch-memory-fraction`은 기본0.50이며 둘 모두 `ceil(fraction × total_VRAM) <= measured_model_budget`이어야 한다. 후속 BF16 후보에0.60 등을 명시할 수 있으나 새 preflight를 통과해야 한다. Torch allocator cap은 같은 프로세스에서 vLLM을 시작하기 전에 설정한다. `--no-torch-cap`은 비교 실험에서 명시적으로만 사용하고 보고서에 null로 남긴다. 이 cap은 PyTorch allocator 대상이며 다른 native CUDA allocation 전체를 강제로 제한하지 않는다.
 
 Guard는 명목0.5초 간격으로 GPU3 aggregate memory를 읽는다(query timeout은5초). 다음 경우 **자기가 생성한 process group만** 종료한다.
@@ -75,4 +81,4 @@ JSON report에는 preflight, 적용 cap/여유/증가량 한계, 감시 sample �
 
 **Baseline 대비 aggregate 증가량은 개별 모델 프로세스의 peak 측정이나 보장된 상한이 아니다.** 다른 workload 증가가 포함될 수 있고 다른 workload의 해제가 모델의 증가를 가릴 수도 있다. Sample 사이의 순간 peak 역시 놓칠 수 있다. Report는 `per_process_measurement=false`, `memory_fit_guaranteed=false`를 명시한다. Free-floor 감시와 allocator cap을 함께 사용하되 안전한 startup/inference 실측을 별도로 확인해야 한다.
 
-`tests/test_model_server.py`는 fake GPU readings/child로 허용·거절·cap·query 오류·여유 침범·증가량 초과·자체 그룹 신호·report 실패를 검증한다. 추가 두 Linux CPU-only lifecycle test는 자신이 만든 작은 Python 프로세스만 사용해 parent-death SIGKILL과 TERM을 무시하는 자체 descendant 정리를 검증한다. Torch import, GPU 조회, 실제 모델 실행은 이 테스트에 없다.
+`tests/test_model_server.py`는 fake GPU readings/child로 허용·거절·cap·query 오류·여유 침범·증가량 초과·자체 그룹 신호·report 실패·FileStore 경로 재사용 방지·중복 guard lock을 검증한다. 두 Linux CPU-only lifecycle test는 자신이 만든 작은 Python 프로세스만 사용해 parent-death SIGKILL과 TERM을 무시하는 자체 descendant 정리를 검증한다. Model runtime이 설치돼 있으면 별도 `.conda-vllm` Python에서 CUDA 장치를 모두 숨긴 CPU Gloo FileStore+4개 subgroup probe를 수행한다. 이 probe는 `/proc/self/fd`로 자기 소켓 descriptor만 확인하며 모든 listener의 loopback 여부를 검사한다. Backend에 Torch를 설치하지 않으며 runtime 부재 시 해당 probe만 skip한다. GPU 조회·NCCL 실행·실제 모델 실행은 이 테스트에 없다.

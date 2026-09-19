@@ -73,5 +73,5 @@ thinking model은 reasoning/output token count를 구분하되 내용을 저장�
 - schema100%, semantic≥95%, ambiguity/unsupported recall≥95%를 초기 목표로 제안한다. 작은 표본에서0건이 위험0을 증명하지 않으므로 정확한 분모와 이항95% 신뢰구간을 보고한다.
 - 품질 gate를 통과한 후보에서 한국어 의미·target/단위·조건 보존을 먼저 비교하고 그 다음 latency/VRAM/startup/운영 안정성을 비교한다.
 - latency budget은 실측과 UX 요구를 보고 정한다. 공개 benchmark만으로 tokens/sec를 예측해 winner를 결정하지 않는다.
-- 최종 Primary Model은 아직 없다. 공통 checkpoint가 양쪽에서 가능한지 우선 검증하고 runtime/quant가 다르면 동일 held-out regression을 반복한다.
+- Phase5에서 실제 비교한 내부 개발 Primary는 Qwen3-14B-AWQ/promptv3다. 이 섹션은 초기계획이며 최종 실측은 Phase5report를 따른다. RTX runtime/quant가 달라지면 동일 held-out regression을 반복한다.
 - external API 비교는 별도 사용자 승인과 synthetic data에 한정한다. production 자동 fallback은 없다.

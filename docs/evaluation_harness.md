@@ -19,7 +19,7 @@ revision은 실제 서버의 launch 기록 및 검증된 weight manifest와 일�
 
 ```sh
 .conda/bin/python scripts/evaluate_requirements.py \
-  --base-url http://127.0.0.1:8000 \
+  --base-url http://127.0.0.1:8003 \
   --model Qwen/Qwen3-14B-AWQ \
   --model-revision 31c69efc29464b6bb0aee1398b5a7b50a99340c3 \
   --weight-manifest var/runtime/verified-model-manifest.json \
@@ -134,3 +134,5 @@ Case별 동일성은 reason 문구를 제외한 decision/target/SI/error signatu
 
 이 테스트는 fake client와 synthetic rubric만 사용하며 모델 품질·GPU fit·실제 HTTP
 성공을 입증하지 않는다.
+
+기본값은 선정promptv3/max_tokens768/port8003/legacy_guided_json이다. `--protocol structured_outputs`는 최신runtime용 명시적 선택이며 서버backendxgrammar검증이 별도로 필요하다. `--split development_seed|development|heldout`를 manifest에 기록한다. dialect자동추측/무제약fallback없음. Phase5 frozen비교5개는이옵션추가전commit51a07d5의client/evaluatorhash를보존하며, 변경후별도actualsmoke3건은 `evaluations/results/phase5/protocol_smoke.json`이다.

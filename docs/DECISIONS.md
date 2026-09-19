@@ -72,3 +72,11 @@ Phase 0 당시 commit에 포함된 Phase 승인 대기와 Phase 10 이후 계획
 2026-09-20 최신 사용자 지침이 D020의 점유 존재만으로 중단하는 규칙을 대체한다. 다른 process를 절대 종료/변경하지 않으며 GPU3만 사용한다. nvidia-smi free VRAM/utilization 반복 측정과 후보 전체 peak+안전 margin으로 실행 가능성을 판단한다. OOM 위험이나 타인 메모리 침범 가능성이 있는 후보는 실행하지 않는다.
 
 초기6회/10초 관측은 free36373MiB/util0%로 안정적이다. 초기예산은 margin=max(6144MiB,free×20%)를 남기며, TP1/context4096/concurrency1/eager를 우선한다. 전체디바이스90% 고정할당을 쓰지 않고 후보별 제한을 계산한다. Runtime은 공식 CUDA11.8 build부터 호환성을 실측하고 modelquality는 실제 평가로 결정한다.
+
+## D022 — Phase5 실측 모델 및 runtime 선택
+
+Qwen3-14B-AWQ pinned31c69ef + promptv3를 내부 개발용으로 선정한다. 20 development cases×3에서 자동의미60/60, READY오판0/33이며 같은prompt의8B-BF16은54/60이다. 실패v1/v2도 보존하고 auto-gold/small correlated seed의 한계를 기록한다. A100은driver535/glibc2.31 호환cu118 vLLM0.8.5/Torch2.6.0 환경, context4096/TP1/eager/seq1/반복VRAMguard를 사용한다. RTX5090은 동일checkpoint의공식SM120근거만검토했고실측은미검증이다.
+
+## D023 — 명시적 structured output protocol과 localhost rendezvous
+
+최신 vLLM은 legacyguidedfields를 무시할 수 있어 공통client에 explicit legacy_guided_json/structured_outputs dialect를 둔다. 실패시 자동전환하거나무제약retry하지않는다. 서버backendxgrammar설정은runtimeprofile의책임이고Backendparser/승인계약은공통이다. A100Torch TCPStore wildcard를 actualsocket검사로발견해FileStore world1와loopbackGloo/NCCL로수정했다. 자기child5listeners모두loopback을확인했다. RTX V1의process구조/loopback/parentdeath는별도검증대상이다.

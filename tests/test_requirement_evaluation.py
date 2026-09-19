@@ -187,7 +187,7 @@ class RequirementEvaluationTests(unittest.TestCase):
         self.assertIsNone(metrics["critical_fp_model_ready"]["rate"])
 
     def test_manifest_pins_exact_inputs_and_rejects_mismatches(self):
-        client = LocalRequirementClient("http://127.0.0.1:8000", "synthetic-model", max_tokens=1024)
+        client = LocalRequirementClient("http://127.0.0.1:8003", "synthetic-model", max_tokens=768)
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory)
             weight = base / "weights.json"
@@ -199,13 +199,23 @@ class RequirementEvaluationTests(unittest.TestCase):
                 "gpu": "NVIDIA A100-PCIE-40GB", "quantization": "awq", "dtype": "float16", "profile": "a100",
                 "physical_gpu": 3, "max_model_len": 4096, "tensor_parallel_size": 1,
                 "chat_template_sha256": "c" * 64, "launch_config_sha256": "d" * 64}))
-            kwargs = dict(dataset=ROOT / "evaluations/requirement_seed.jsonl", prompt=ROOT / "prompts/requirement_v1.txt",
+            kwargs = dict(dataset=ROOT / "evaluations/requirement_seed.jsonl", prompt=ROOT / "prompts/requirement_v3.txt",
                           schema=ROOT / "schemas/semantic_requirement.schema.json", weights=weight, runtime=runtime,
                           revision="a" * 40, tokenizer_revision="a" * 40, run_id="test", warmups=5, trials=3)
             manifest = build_manifest(client, **kwargs)
             self.assertEqual(manifest["model_revision"], "a" * 40)
             self.assertEqual(manifest["sha256"]["dataset"], sha256(kwargs["dataset"].read_bytes()).hexdigest())
-            self.assertEqual(manifest["protocol"]["max_tokens"], 1024)
+            self.assertEqual(manifest["protocol"]["max_tokens"], 768)
+            self.assertEqual(manifest["protocol"]["structured_output_protocol"], "legacy_guided_json")
+            self.assertEqual(manifest["protocol"]["guided_decoding_backend"], "xgrammar:no-fallback")
+            modern = LocalRequirementClient("http://127.0.0.1:8003", "synthetic-model", protocol="structured_outputs")
+            modern_manifest = build_manifest(modern, **dict(kwargs, split="heldout"))
+            self.assertEqual(modern_manifest["split"], "heldout")
+            self.assertEqual(modern_manifest["protocol"]["structured_output_protocol"], "structured_outputs")
+            self.assertIsNone(modern_manifest["protocol"]["guided_decoding_backend"])
+            self.assertEqual(modern_manifest["protocol"]["required_server_structured_backend"], "xgrammar")
+            with self.assertRaises(ValueError):
+                build_manifest(client, **dict(kwargs, split="human_verified"))
             self.assertEqual(manifest["gold_status"], GOLD_STATUS)
             self.assertIsNone(manifest["measurements_not_performed"]["gpu_peak_used_mib"])
             with self.assertRaises(ValueError):

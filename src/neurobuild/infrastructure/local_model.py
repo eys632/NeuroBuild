@@ -1,10 +1,11 @@
-"""Loopback-only, non-streaming vLLM 0.8.x final-completion transport.
+"""Loopback-only final-completion transport with explicit vLLM dialects.
 
 No external fallback, redirects, environment proxies, response logging or stored
 reasoning. This transport performs no IFC/approval operation.
 """
 
 from dataclasses import dataclass
+from enum import StrEnum
 from hashlib import sha256
 from http.client import HTTPException
 import ipaddress
@@ -99,12 +100,24 @@ class Completion:
     model: str
 
 
+class StructuredOutputProtocol(StrEnum):
+    LEGACY_GUIDED_JSON = "legacy_guided_json"
+    STRUCTURED_OUTPUTS = "structured_outputs"
+
+
 class LocalRequirementClient:
     def __init__(
         self, base_url: str, model: str, *, timeout: float = 60.0, max_tokens: int = 768,
         prompt_path: Path | None = None, schema_path: Path | None = None,
+        protocol: StructuredOutputProtocol | str = StructuredOutputProtocol.LEGACY_GUIDED_JSON,
     ) -> None:
         self.endpoint = _endpoint(base_url)
+        if type(protocol) not in (str, StructuredOutputProtocol):
+            _error("LOCAL_MODEL_CONFIG_INVALID")
+        try:
+            self._protocol = StructuredOutputProtocol(protocol)
+        except ValueError:
+            _error("LOCAL_MODEL_CONFIG_INVALID")
         if (not _clean_text(model, 256) or any(ord(char) < 32 for char in model)
                 or type(timeout) not in (int, float) or not math.isfinite(timeout) or not 0 < timeout <= 300
                 or type(max_tokens) is not int or not 1 <= max_tokens <= 2048):
@@ -113,7 +126,7 @@ class LocalRequirementClient:
         self.timeout = float(timeout)
         self.max_tokens = max_tokens
         try:
-            prompt_bytes = (prompt_path or _ROOT / "prompts/requirement_v1.txt").read_bytes()
+            prompt_bytes = (prompt_path or _ROOT / "prompts/requirement_v3.txt").read_bytes()
             schema_bytes = (schema_path or _ROOT / "schemas/semantic_requirement.schema.json").read_bytes()
             if not 0 < len(prompt_bytes) <= 65536 or not 0 < len(schema_bytes) <= 65536:
                 _error("LOCAL_MODEL_CONFIG_INVALID")
@@ -126,6 +139,11 @@ class LocalRequirementClient:
         self.prompt_sha256 = sha256(prompt_bytes).hexdigest()
         self.schema_sha256 = sha256(schema_bytes).hexdigest()
         self._opener = build_opener(ProxyHandler({}), _NoRedirect())
+
+    @property
+    def protocol(self) -> StructuredOutputProtocol:
+        """Configured dialect, not a claim about the server's grammar backend."""
+        return self._protocol
 
     def complete(self, source_text: str, *, axis_convention: str | None = None) -> Completion:
         """Return final content for synthetic evaluation, without semantic claims.
@@ -143,9 +161,16 @@ class LocalRequirementClient:
                 {"role": "user", "content": json.dumps({"source_text": source_text, "axis_convention": axis_convention}, ensure_ascii=False)},
             ],
             "temperature": 0, "seed": 42, "max_tokens": self.max_tokens, "stream": False,
-            "guided_json": self._schema, "guided_decoding_backend": "xgrammar:no-fallback",
             "chat_template_kwargs": {"enable_thinking": False},
         }
+        if self.protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON:
+            payload.update(guided_json=self._schema, guided_decoding_backend="xgrammar:no-fallback")
+        elif self.protocol is StructuredOutputProtocol.STRUCTURED_OUTPUTS:
+            # Modern backend selection belongs to pinned server launch config.
+            # Never add legacy fields, infer support, or retry without a schema.
+            payload["structured_outputs"] = {"json": self._schema}
+        else:
+            _error("LOCAL_MODEL_CONFIG_INVALID")
         request = Request(self.endpoint, data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
                           headers={"Content-Type": "application/json", "Accept": "application/json"}, method="POST")
         started = time.monotonic()

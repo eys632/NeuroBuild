@@ -192,3 +192,19 @@ Could not open a connection to your authentication agent.
 - Qwen3-8B pinnedrevision b968826d9c46dd6066d109eabc6255188de91218(전체16,397,459,696bytes)공식manifest검증후두번째후보다운로드시작. root62GiB여유에서20GiBreserve조건을통과했다. 두GPU모델동시실행은하지않는다.
 
 - 중간checkpoint 전 전체207tests PASS(14.755s,skip0), real PostgreSQL/IFC/HTTP·GPU guard fake/own CPU lifecycle 포함. GPU-model 품질 gate는 아직 미통과로 유지한다.
+
+- Runtime/contract/실패보존 중간checkpoint51a07d5131c5b4aa435787e13633f42ef7963451 push및remotehash일치확인. Phase5 최종gate는아님.
+- 14B promptv2 baseline실패를개선한별도버전으로실측: 60schema/parserPASS,semantic57/60(95%), BUT 조건부E02에서모든3trial이READY여서criticalFP3/33. 0건gate미충족으로채택하지않음. mean3.0032s/p954.2863s. 원본v1/gold/parser는바꾸지않았고v2전체결과도별도보존. 직접own guardPID SIGTERM으로정상종료STOP_REQUESTED/exit0.
+- 8B14개파일총16,397,459,696bytes직접SHA256검증완료,root약47GiBfree/cache5.3GiB/전체weights25GiB. 이전모델종료후8B BF16 estimatedpeak23552MiB/util0.60/allocator0.60으로다시GPU3preflight+단독launch. 동일v1/seed/schema/client로비교하며v3조건판단prompt는별도파일로준비한다.
+
+- 8B BF16 startup/inferencePASS: health약20.353s,model15.2683GiB,baseline대비관측peak증가17024MiB/minfree19350MiB(초기). 14B와동일v1/seed60실측: schema60/60,parser57/60,semantic45/60(75%),criticalFP6/33(복수가구D01,조건E02),criticalFN3/27,mean2.6570s/p953.6554s. F01모델단위변환은Backend가거절하고F02대상수식어손실/J01오분류도보존했다.
+- V3 prompt는 v1/v2/gold/parser를유지한새파일이며외부조건을이동값만으로참으로가정하지못하도록완전한이동값+미확인조건신규예제를보강했다. 6synthetic예시parser/schemaPASS,token최대2606+output768=3374/4096. 먼저이미로드된8B에동일seed60/5warmup으로v3평가중이며,이후14B와같은v3를비교한다. v2의criticalFP를숨기거나qualitygate를낮추지않는다.
+
+- 8B promptv3평가완료: schema60/60,parser/semantic54/60(90%),criticalFP0/33,지원누락6/27. A02음의부호누락/I01모델단위변환각3회는Backend에서거절했다. mean2.4280s/p953.6323s. 결과/manifest를별도보존했으며14B와v3비교는아직미실행.
+- Root가오직자신이시작한8B modelPID의socket FD/inode만대조한추가점검에서,API는127.0.0.1:8003/Gloo보조socket은127.0.1.1이나PyTorch rendezvous TCPStore한개가IPv6wildcard에listen함을확인했다. 다른사용자socket/process는출력/조사하지않았다. 60trial완료후자기guardPID SIGTERM→자기group종료/childexit0. 외부접속이있었다는증거는없으며이관측은bind주소에대한것이다.
+- 다음launch전단일rank NCCL FileStore를project var의고유경로에미리생성하고,Gloo/NCCLinterface를loopback으로고정하는개선중이다. vLLM의이미초기화된defaultprocessgroup재사용경로를공식설치source에서확인했다. 시스템/다른process는변경하지않는다.
+
+- FileStore/loopback/단일프로젝트실행lock개선20tests PASS(2.216s). 실제14B재launch/NCCL/vLLMstartup PASS(health약20.362s). own PID의socket FD로TCP listener5개모두127.0.0.1확인,IPv6wildcard TCPStore는없음. 실제launcher sourceSHA와runmetadata기록도일치했다. 이후v3/seed60평가진행중. CPUfake검증만으로네트워크범위를확정하지않고실제GPU서버로확인했다.
+
+- 05:40 KST Phase5 final actualcomparison:14B-AWQv3 run20260919T202351Z-12fdb88f79be4e96bda18cd4395b6d65,60/60schema/parser/semantic,FP0/33,FN0/27,mean3.0361/p954.2843s. All5run archives+failedprompts preserved. Selected14B-AWQv3internaldevelopment; nohumangoldclaim.
+- Explicitlegacy/modernstructuredprotocoladapter+manifestdialect/split,profilesmodelrevision/promptupdated. FakeHTTP20+parser27PASS. Actuallegacypost-changeA01/E02/F023/3PASS, noexternalcall. Fullbackend215testsPASS/skip0/15.671s(realPG/IFC,DISPLAYunset); independentreview5runmetrics+60outputreplay+launcher20PASS. Root47GiBfree, no systemchanges/foreignprocesssignals.

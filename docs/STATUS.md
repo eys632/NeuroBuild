@@ -1,40 +1,30 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 04:32 KST**. **Phase 0~4 원격 checkpoint 완료 / Phase5 가용량 기반 공존 실행 준비**.
+갱신: **2026-09-20 05:40 KST**. **Phase 0~4 원격 완료; Phase5 구현·실측·검토 완료, remote checkpoint 진행 중.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow |
-| 마지막 완료 Phase checkpoint | `dd58b596fab2aaa24c5aba4322d56bc5d127440c` — Phase4 commit/push, remote hash 일치 |
-| GitHub | 공통 `v2`, SSH push 정상. 이 상태 보고 자체의 최신 commit은 `git log -1` 참고 |
-| 검증 | 전체 **207 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell 포함, DISPLAY 없이 실행 |
-| 현재 Phase | 5: runtime/weight 및 GPU3 startup/첫JSON추론 PASS. 14B v1 seed60회 완료(schema60/60, 의미45/60, 비실행gold READY오판0/33). 8B순차비교 준비 |
-| Hard blocker | 점유 존재 자체의 blocker는 사용자 지침으로 해제. 자원/ABI gate 통과. 의미 품질 개선·후보 비교 진행 중 |
-| Backend | `.conda` Python3.12.14 / PostgreSQL17.11 / psycopg3.2.10 / IfcOpenShell0.8.5 Conda build |
-| Model Runtime | `.conda-vllm` Python3.12.14, cu118 vLLM0.8.5/Torch2.6.0 설치/pipcheck/nativeimport 및 GPU3 Torch FP16 smoke PASS. 14B-AWQ 11파일 SHA256 검증 완료; startup/첫JSON추론 PASS; benchmark/최종선정 미완료 |
-| 다음 단계 | 14B-AWQ seed평가완료 후 8B-BF16을 순차비교하고 Phase5 최종 gate |
+| 마지막 완료 Phase checkpoint | `dd58b596fab2aaa24c5aba4322d56bc5d127440c` Phase4; Phase5 중간 milestone `51a07d5` push 확인 |
+| GitHub | 공통 `v2`, SSH push 정상; 최신 checkpoint는 git log 참조 |
+| 검증 | 전체 **215 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이15.671s |
+| 현재 Phase | 5 최종 gate: Qwen3-14B-AWQ/promptv3 선정, development seed20×3 의미60/60, READY오판0/33. 8B 동일prompt54/60. 실패결과포함5 run보존 |
+| Hard blocker | 없음. GPU3 가용량 기반 공존 실행 실제 통과 |
+| Backend | `.conda` Python3.12.14 / PostgreSQL17.11 / psycopg3.2.10 / IfcOpenShell0.8.5 |
+| Model Runtime | `.conda-vllm` Python3.12.14, cu118 vLLM0.8.5/Torch2.6.0, 14B AWQMarlin FP16, TP1/context4096/seq1 |
+| 다음 단계 | Phase5 commit/push 확인 후 Phase5.x 120개 고정 synthetic 개발/heldout 평가 |
 
-## 완료 근거
+## 완료 근거와 실제 한계
 
-- Phase1 `e68baa4`: Domain29 tests.
-- Phase2 `18c7e21`: immutable artifacts/PostgreSQL intent·CAS·idempotency, 실제 프로젝트 PostgreSQL 종료·재시작 후 데이터 보존.
-- Phase3 `56926a0`: 실제 IFC4 m/cm/mm·회전 부모·headless mesh 이동, 비대상/원본/GlobalId/Z/rotation/storey 보존, 미지원·잘못된 입력·정밀도 손실 거절.
-- Phase4 `dd58b59`: 실제 inventory 대상 확인과 별도 제안 승인, Apply→V1, stale/duplicate/concurrency/실패·응답 유실 복구.
-- 최종 회귀: Domain29 + Artifact20 + IFC25 + Persistence13 + Workflow21 = **108 PASS**(12.378s). 독립 workflow21 및 추가 real-PG probe4/4 PASS.
-- 상세: [Phase4 보고](reports/phase4_report.md), [Phase5 blocker](reports/phase5_report.md).
+- Phase1 `e68baa4`: Domain29. Phase2 `18c7e21`: immutable artifact/PostgreSQL intent·CAS·idempotency·실제재시작. Phase3 `56926a0`: IFC4 m/cm/mm·회전부모·headlessmesh·불변조건. Phase4 `dd58b59`: 별도대상확인/승인·ApplyV1·stale/duplicate/recovery.
+- Phase5: 5 actual model runs의 결과/정확한manifest/VRAMsnapshot을 `evaluations/results/phase5/`에 보존. 독립 metric 재계산·14Bv3응답60개 재검증 PASS. Launcher20 tests 및 protocol변경후 실제추론3/3 PASS.
+- 자동gold는 **AUTO-GENERATED / NOT HUMAN VERIFIED**. 같은 개발20개를반복한60회결과는 unseen/human 품질보증이 아니다. 0/33위험오판도위험0증명이아니다.
+- [Phase5 report](reports/phase5_report.md), [독립 review](reviews/phase5_final_review.md), [runtime protocol/SM120](model_protocol_compatibility.md).
 
-## 중단 조건과 재개
+## 운영 상태
 
-GPU3: A100-PCIE-40GB, driver535.183.01, total40960/used3965/free36373MiB, utilization0%. Process3개는 현재 사용자 소유 PID 목록에 포함되지 않았다. 소유자 신원·파일·환경은 조회하지 않았고 종료/변경하지 않았다. Phase0에서도 process3개/3965MiB가 관측됐으며 이번 Phase5에서도 계속 남아 있다.
+GPU3만 사용하며 타인process를변경하지않는다. Baselinefree36373MiB/util0%,margin7275MiB,14B예상peak18432MiB로preflight통과. 실제14Bv3구간aggregatebaseline대비peak11684MiB,최소free24690MiB다. process전용peak/hardreservation이아니다. 자신의guard+child만운영하며GPU0/1/2fallback없음. FileStore rendezvous 및loopbackGloo/NCCL로actualTCP5개모두127.0.0.1검증. 모델server는후속평가를위해guard내실행중(max3600s)이다.
 
-2026-09-20 최신 사용자 지침에 따라 **점유 존재만으로 중단하지 않는다**. GPU3에서 free VRAM/utilization을 10초간6회 재확인했고 모두 free36373MiB/util0%였다. 후보 전체 startup/inference peak와 안전 margin을 비교하여 충분한 경우만 테스트한다. 타인 process/환경은 변경하지 않고 GPU0/1/2 fallback은 금지한다.
+Private PostgreSQL은 `var/postgres` +0700Unixsocket `var/run/postgresql`, noTCP/peerauth다. root disk약47GiB free(98%), Backend1.4GiB/modelenv7.4GiB/weights25GiB/cache5.3GiB. 모든환경/weight/cache는project내Git제외다. Modeldownload20GiB reserve 및설치전disk확인을유지한다.
 
-Backend는 재사용하고 Model Runtime만 별도 .conda-vllm에 둔다. 실제 startup/inference/평가를 통과하기 전 Phase5 gate나 모델 선정을 완료로 표시하지 않는다. 이전 중단 경위는 Phase5 report의 historical section에 보존했다.
-
-## 현재 운영 상태와 미완료 범위
-
-프로젝트 PostgreSQL은 실행 중이며 private Unix socket `var/run/postgresql`만 사용한다. TCP listener가 없고 peer auth다. lifecycle은 `scripts/postgres.py`, 종료는 `.conda/bin/python scripts/postgres.py stop`이다. Root disk97%/약62G free, Backend1.4G/modelenv7.4G/model9.4G/cache5.3G/PostgreSQL data82M.
-
-Phase4 Human Review는 **메모리 상태**다. 재시작 후 review 복구/job queue/worker는 Phase7 범위다. Requirement contract/loopback client는 구현했고 실제 LLM 의미 평가를 준비 중이다. 자연어 object resolution·API·브라우저는 아직 구현하지 않았다. **Internal Technical MVP 완료가 아니다.** Phase5.x~11은 미시작이며 막힌 Phase를 우회하지 않는다.
-
-RTX5090은 PREDICTED/UNVERIFIED, synthetic fixture/gold는 AUTO-GENERATED / NOT HUMAN VERIFIED다. Public exposure/pilot/민감 IFC/fine-tuning은 이번 자동 범위 밖이다.
+Phase4 human review는 아직in-memory이며durable review/queue/worker는Phase7이다. Object resolution/API/browser는아직구현전이므로 **Internal Technical MVP 완료가 아니다**. RTX5090은 **PREDICTED_UNVERIFIED**. Publicexposure/pilot/민감IFC/fine-tuning은자동범위밖이다.

@@ -24,7 +24,7 @@ from jsonschema import Draft202012Validator
 
 from neurobuild.application.requirements import MAX_RESPONSE_CHARS, parse_requirement
 from neurobuild.domain.errors import DomainError
-from neurobuild.infrastructure.local_model import LocalRequirementClient
+from neurobuild.infrastructure.local_model import LocalRequirementClient, StructuredOutputProtocol
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -295,7 +295,10 @@ def git_info():
     return {"commit": read("rev-parse", "HEAD"), "dirty": None if status is None else bool(status)}
 
 
-def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revision, tokenizer_revision, run_id, warmups, trials):
+def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revision, tokenizer_revision, run_id, warmups, trials,
+                   split="development_seed"):
+    if split not in {"development_seed", "development", "heldout"}:
+        raise ValueError("Unknown dataset split")
     if any(re.fullmatch(r"[a-f0-9]{40}", value) is None for value in (revision, tokenizer_revision)):
         raise ValueError("Pinned model and tokenizer commits are required")
     weight_data = strict_json(weights.read_text(encoding="utf-8"))
@@ -320,7 +323,7 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
     if hashes["prompt"] != client.prompt_sha256 or hashes["schema"] != client.schema_sha256:
         raise ValueError("Client prompt/schema differs from recorded files")
     return {"run_id": run_id, "created_at_utc": datetime.now(timezone.utc).isoformat(),
-            "gold_status": GOLD_STATUS, "split": "development_seed", "git": git_info(),
+            "gold_status": GOLD_STATUS, "split": split, "git": git_info(),
             "model_id": weight_data["model_id"], "served_model": client.model,
             "model_revision": revision, "tokenizer_revision": tokenizer_revision,
             "sha256": hashes, "runtime": runtime_metadata(runtime),
@@ -328,7 +331,10 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
             "weight_integrity_evidence": "PINNED_MANIFEST; downloader verifies files, evaluator does not reread weights",
             "protocol": {"warmups": warmups, "trials_per_case": trials, "order": "dataset order, case-major then trial-major",
                          "temperature": 0, "seed": 42, "max_tokens": client.max_tokens, "timeout_seconds": client.timeout,
-                         "concurrency": 1, "enable_thinking": False, "guided_decoding_backend": "xgrammar:no-fallback",
+                         "concurrency": 1, "enable_thinking": False,
+                         "structured_output_protocol": client.protocol.value,
+                         "guided_decoding_backend": ("xgrammar:no-fallback" if client.protocol == StructuredOutputProtocol.LEGACY_GUIDED_JSON else None),
+                         "required_server_structured_backend": ("xgrammar" if client.protocol == StructuredOutputProtocol.STRUCTURED_OUTPUTS else None),
                          "tool_parser": None, "reasoning_parser": None},
             "measurements_not_performed": {"startup_cold_seconds": None, "startup_warm_seconds": None,
                                            "gpu_baseline_used_mib": None, "gpu_peak_used_mib": None, "ttft_seconds": None}}
@@ -343,16 +349,18 @@ def save_json(path, value):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--base-url", default="http://127.0.0.1:8000")
+    parser.add_argument("--base-url", default="http://127.0.0.1:8003")
+    parser.add_argument("--protocol", choices=[p.value for p in StructuredOutputProtocol], default="legacy_guided_json")
     parser.add_argument("--model", required=True, help="Exact served model name")
     parser.add_argument("--model-revision", required=True)
     parser.add_argument("--tokenizer-revision")
     parser.add_argument("--weight-manifest", type=Path, required=True)
     parser.add_argument("--runtime-metadata", type=Path, required=True)
     parser.add_argument("--dataset", type=Path, default=ROOT / "evaluations/requirement_seed.jsonl")
-    parser.add_argument("--prompt", type=Path, default=ROOT / "prompts/requirement_v1.txt")
+    parser.add_argument("--split", choices=["development_seed", "development", "heldout"], default="development_seed")
+    parser.add_argument("--prompt", type=Path, default=ROOT / "prompts/requirement_v3.txt")
     parser.add_argument("--schema", type=Path, default=ROOT / "schemas/semantic_requirement.schema.json")
-    parser.add_argument("--max-tokens", type=int, default=1024)
+    parser.add_argument("--max-tokens", type=int, default=768)
     parser.add_argument("--timeout", type=float, default=60.0)
     parser.add_argument("--warmups", type=int, default=5)
     parser.add_argument("--trials", type=int, default=3)
@@ -362,12 +370,12 @@ def main(argv=None):
         schema = strict_json(args.schema.read_text(encoding="utf-8"))
         Draft202012Validator.check_schema(schema)
         client = LocalRequirementClient(args.base_url, args.model, timeout=args.timeout, max_tokens=args.max_tokens,
-                                        prompt_path=args.prompt, schema_path=args.schema)
+                                        prompt_path=args.prompt, schema_path=args.schema, protocol=args.protocol)
         run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ-") + uuid4().hex
         manifest = build_manifest(client, dataset=args.dataset, prompt=args.prompt, schema=args.schema,
                                   weights=args.weight_manifest, runtime=args.runtime_metadata,
                                   revision=args.model_revision, tokenizer_revision=args.tokenizer_revision or args.model_revision,
-                                  run_id=run_id, warmups=args.warmups, trials=args.trials)
+                                  run_id=run_id, warmups=args.warmups, trials=args.trials, split=args.split)
         manifest["case_order"] = [case["id"] for case in cases]
         destination = ROOT / "var/runs" / run_id
         if not destination.resolve().is_relative_to(ROOT / "var/runs"):

@@ -12,3 +12,5 @@
 
 접속 가능해지면 [compatibility gate](../../docs/runtime_compatibility.md)를 수행하고
 이 디렉터리에 별도 GPU dependency lock를 남긴다. Application은 공통 코드를 그대로 사용한다.
+
+공통 checkpoint는 Qwen/Qwen3-14B-AWQ pinned revision이다. 최신 vLLM0.29.0의 SM120 Marlin W4A16 source 및 wheel metadata를 조사했지만 설치/resolve/추론은 하지 않았다. `structured_outputs` request와 server `--structured-outputs-config.backend=xgrammar`가 필요하며 legacy guided_json을 그대로 보내지 않는다. `awq_marlin` 이름만으로 실제 kernel을 보장하지 않으므로 MarlinLinearKernel 로그/linear backend와 GPU1 메모리를 검증해야 한다. 자세한 근거와 미검증 항목은 [protocol compatibility](../../docs/model_protocol_compatibility.md)를 따른다. A100 model_server.py의 V0/uni/cu118/FileStore lifecycle은 RTX modern V1 launcher의 검증을 대신하지 않는다.

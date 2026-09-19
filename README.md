@@ -1,8 +1,8 @@
 # NeuroBuild_v2
 
 A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의 greenfield rewrite.
-현재 **Phase 0~4 구현·검증·원격 checkpoint 완료**, **Phase5는 GPU3에서 실제 모델 startup·추론·첫 평가를 수행하며 진행 중**이다.
-전체207 tests가 통과했다. 모델 품질 개선·비교는 계속 진행 중이며 현재 결과는 [STATUS](docs/STATUS.md)를 따른다. Durable review/job queue, API와 frontend는 후속 단계다.
+현재 **Phase 0~4 원격 checkpoint 완료**, **Phase5는 실제 모델 비교·선정과 검증을 마치고 checkpoint 중**이다.
+전체215 tests가 통과했다. Qwen3-14B-AWQ/promptv3의 development seed 의미60/60, READY오판0/33을 기록했다. 자동생성 gold이며 unseen/human 정확도가 아니다. 최신 상태는 [STATUS](docs/STATUS.md)를 따른다. Durable review/job queue, API와 frontend는 후속 단계다.
 
 LLM은 요구사항을 구조화하고, 결정론적인 BIM Engine이 승인된 변경을 실행한다.
 첫 vertical slice는 IFC4의 단일 IfcFurniture를 같은 층에서 상대 XY 이동하는 `MOVE_FURNITURE`다.
@@ -23,7 +23,7 @@ cd /home/a202192020/NeuroBuild_v2
 
 RTX5090 profile도 `--profile rtx5090`으로 열람할 수 있다. 이는 원격 서버 테스트가 아니다.
 Profile은 필수이며 shell에 다른 `CUDA_VISIBLE_DEVICES`가 설정돼 있으면 오류를 반환한다.
-URL은 localhost 예제, 최종 model은 미선정이다. A100 후보 inference는 실측했고 RTX runtime은 `NOT_TESTED`다. [설정 안내](configs/README.md)
+URL은 localhost 기본값이다. A100은14B-AWQ의 inference/seed평가를 실측했고 RTX runtime은 `PREDICTED_UNVERIFIED`다. [설정 안내](configs/README.md)
 
 ## 문서
 

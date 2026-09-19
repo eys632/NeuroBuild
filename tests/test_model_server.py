@@ -2,6 +2,7 @@
 
 from dataclasses import replace
 import json
+import fcntl
 import os
 from pathlib import Path
 import signal
@@ -111,6 +112,9 @@ class ModelServerTests(unittest.TestCase):
         self.assertEqual(kwargs["env"]["CUDA_DEVICE_ORDER"], "PCI_BUS_ID")
         self.assertEqual(json.loads((self.root / self.config.report_file).read_text()), report)
         self.assertEqual(command[0], str(self.root / ".conda-vllm/bin/python"))
+        self.assertEqual(report["rendezvous"]["kind"], "FILE_STORE")
+        self.assertTrue(report["rendezvous"]["cleaned"])
+        self.assertFalse(Path(report["rendezvous"]["path"]).parent.exists())
 
     def test_memory_floor_breach_stops_immediately_and_kills_stubborn_child(self):
         report, _, _, signals, child, _ = self.run_fake(rows=["40960, 7274, 33064, 50"], child=FakeChild(stubborn=True))
@@ -198,6 +202,44 @@ class ModelServerTests(unittest.TestCase):
         report, _, _, _, _, _ = self.run_fake(child=child)
         self.assertEqual(report["state"], "STOP_FAILED")
         self.assertFalse(report["shutdown"]["child_reaped"])
+        self.assertFalse(report["rendezvous"]["cleaned"])
+        self.assertTrue(Path(report["rendezvous"]["path"]).parent.is_dir())
+
+    def test_each_launch_has_fresh_rendezvous_and_does_not_delete_old_files(self):
+        old = self.root / "var/run/rendezvous/old-run/store"
+        old.parent.mkdir(parents=True)
+        old.write_text("unrelated prior run")
+        first, *_ = self.run_fake()
+        second, *_ = self.run_fake()
+        self.assertNotEqual(first["rendezvous"]["path"], second["rendezvous"]["path"])
+        self.assertEqual(old.read_text(), "unrelated prior run")
+
+    def test_project_lock_blocks_second_guard_before_gpu_query_or_spawn(self):
+        lock = self.root / "var/run/model-server.lock"
+        lock.parent.mkdir(parents=True)
+        active_report = self.root / self.config.report_file
+        active_report.parent.mkdir(parents=True)
+        active_report.write_text('existing active guard report')
+        with lock.open("w") as owned:
+            fcntl.flock(owned.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            report, queried, launched, signals, *_ = self.run_fake()
+            self.assertEqual(report["reason"], "OWN_MODEL_ALREADY_RUNNING")
+            self.assertEqual((queried, launched, signals), ([], [], []))
+            self.assertEqual(active_report.read_text(), 'existing active guard report')
+        report, *_ = self.run_fake()
+        self.assertEqual(report["reason"], "TIME_LIMIT")
+        self.assertTrue(lock.is_file())
+
+    def test_project_lock_refuses_symlink_without_touching_target(self):
+        target = self.root / "var/other-owned-file"
+        target.write_text("unchanged")
+        lock = self.root / "var/run/model-server.lock"
+        lock.parent.mkdir(parents=True)
+        lock.symlink_to(target)
+        report, queried, launched, *_ = self.run_fake()
+        self.assertEqual(report["reason"], "LAUNCH_OR_MONITOR_IO_FAILED")
+        self.assertEqual((queried, launched), ([], []))
+        self.assertEqual(target.read_text(), "unchanged")
 
     def test_outputs_cannot_escape_var_or_follow_external_directory(self):
         for config in (replace(self.config, log_file=Path("../outside.log")),
@@ -212,10 +254,13 @@ class ModelServerTests(unittest.TestCase):
 
     def test_command_uses_same_process_cap_and_known_pinned_flags(self):
         config = replace(self.config, served_model_name="neurobuild-candidate")
-        command = launch_command(config, self.root)
+        command = launch_command(config, self.root, rendezvous_file=self.root / "var/run/rendezvous/test/store")
         self.assertIn("torch.cuda.set_per_process_memory_fraction", command[2])
         self.assertLess(command[2].index("set_per_process_memory_fraction"), command[2].index("runpy.run_module"))
         self.assertIn("GPU_IDENTITY_MISMATCH", command[2])
+        self.assertIn("torch.distributed.FileStore(rendezvous_file, 1)", command[2])
+        self.assertLess(command[2].index("set_per_process_memory_fraction"), command[2].index("init_process_group"))
+        self.assertLess(command[2].index("init_process_group"), command[2].index("runpy.run_module"))
         self.assertLess(command[2].index("prctl("), command[2].index("import torch"))
         self.assertEqual(command[3], str(os.getpid()))
         self.assertIn("'-i', '3'", command[2])
@@ -225,10 +270,22 @@ class ModelServerTests(unittest.TestCase):
         for flag, value in (("--host", "127.0.0.1"), ("--distributed-executor-backend", "uni"),
                             ("--tensor-parallel-size", "1"), ("--served-model-name", "neurobuild-candidate")):
             self.assertEqual(command[command.index(flag) + 1], value)
-        env = child_environment(config, self.root, {"PYTHONPATH": "/other", "CUDA_VISIBLE_DEVICES": "3"})
+        env = child_environment(config, self.root, {"PYTHONPATH": "/other", "CUDA_VISIBLE_DEVICES": "3",
+                                                    "VLLM_DP_SIZE": "8", "RANK": "6", "MASTER_ADDR": "external"})
         self.assertNotIn("PYTHONPATH", env)
         self.assertEqual(env["VLLM_USE_V1"], "0")
         self.assertEqual(env["HF_HUB_OFFLINE"], "1")
+        self.assertEqual(env["GLOO_SOCKET_IFNAME"], "lo")
+        self.assertEqual(env["NCCL_SOCKET_IFNAME"], "=lo")
+        self.assertEqual(env["NCCL_IB_DISABLE"], "1")
+        self.assertEqual(env["VLLM_HOST_IP"], "127.0.0.1")
+        self.assertEqual(env["PYTHONNOUSERSITE"], "1")
+        self.assertEqual(env["VLLM_DP_SIZE"], "1")
+        self.assertEqual(env["VLLM_DP_RANK"], "0")
+        self.assertEqual(env["VLLM_DP_RANK_LOCAL"], "0")
+        self.assertEqual(env["VLLM_DP_MASTER_PORT"], "0")
+        self.assertNotIn("RANK", env)
+        self.assertNotIn("MASTER_ADDR", env)
         for key in ("HF_HOME", "TORCH_HOME", "TRITON_CACHE_DIR", "VLLM_CACHE_ROOT", "XDG_CACHE_HOME", "TMPDIR"):
             self.assertTrue(Path(env[key]).is_relative_to(self.root / "var"))
 
@@ -338,6 +395,58 @@ finally:
                                 capture_output=True, text=True, timeout=10)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertIn("OWN_GROUP_PASS", result.stdout)
+
+
+class CpuFileStoreTests(unittest.TestCase):
+    """Optional installed model-runtime probe, with every CUDA device hidden."""
+
+    def test_gloo_file_store_and_subgroups_listen_only_on_own_loopback_sockets(self):
+        root = Path(__file__).resolve().parents[1]
+        runtime = root / ".conda-vllm/bin/python"
+        if not runtime.is_file():
+            self.skipTest("Separate model runtime not installed; no backend torch dependency")
+        probe = """
+import errno, ipaddress, json, os, socket, sys
+from datetime import timedelta
+from pathlib import Path
+import torch.distributed as dist
+store = dist.FileStore(sys.argv[1], 1)
+dist.init_process_group('gloo', store=store, rank=0, world_size=1, timeout=timedelta(seconds=15))
+groups = [dist.new_group([0], backend='gloo', timeout=timedelta(seconds=15)) for _ in range(4)]
+listeners = []
+try:
+    # Inspect only descriptors owned by THIS probe, never a global socket table.
+    for entry in Path('/proc/self/fd').iterdir():
+        try:
+            if not os.readlink(entry).startswith('socket:['):
+                continue
+            with socket.socket(fileno=os.dup(int(entry.name))) as owned:
+                if owned.family not in (socket.AF_INET, socket.AF_INET6):
+                    continue
+                if owned.getsockopt(socket.SOL_SOCKET, socket.SO_ACCEPTCONN):
+                    address = owned.getsockname()[0]
+                    assert ipaddress.ip_address(address).is_loopback, address
+                    listeners.append(address)
+        except OSError as error:
+            if error.errno not in (errno.ENOENT, errno.EBADF, errno.ENOTSOCK):
+                raise
+    assert listeners, 'probe did not inspect any Gloo listeners'
+    print(json.dumps({'event':'CPU_FILESTORE_LOOPBACK_PASS', 'listeners':listeners, 'world_size':dist.get_world_size()}))
+finally:
+    for group in reversed(groups):
+        dist.destroy_process_group(group)
+    dist.destroy_process_group()
+"""
+        with tempfile.TemporaryDirectory(prefix="cpu-filestore-", dir=root / "var/run") as directory:
+            env = dict(os.environ, CUDA_VISIBLE_DEVICES="", GLOO_SOCKET_IFNAME="lo", NCCL_SOCKET_IFNAME="=lo",
+                       NCCL_IB_DISABLE="1", VLLM_HOST_IP="127.0.0.1", PYTHONNOUSERSITE="1")
+            result = subprocess.run([str(runtime), "-I", "-B", "-c", probe, str(Path(directory) / "store")],
+                                    cwd=root, env=env, capture_output=True, text=True, timeout=45)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads(result.stdout.strip().splitlines()[-1])
+        self.assertEqual(report["event"], "CPU_FILESTORE_LOOPBACK_PASS")
+        self.assertEqual(report["world_size"], 1)
+        self.assertTrue(set(report["listeners"]) <= {"127.0.0.1", "::1"})
 
 
 if __name__ == "__main__":

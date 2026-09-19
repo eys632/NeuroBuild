@@ -1,6 +1,6 @@
-# A100 model runtime — Phase5 검증 진행
+# A100 model runtime — Phase5 실제 검증
 
-프로젝트 `.conda-vllm` Python3.12.14와 공식 **vLLM0.8.5+cu118 / PyTorch2.6.0+cu118**를 설치했다. pip check 및 torch/vllm._C/번들 FlashAttention2/xgrammar import는 통과했다. GPU3 startup/JSON inference를 실제 통과했다. 14B-AWQ의 첫 seed 의미 rubric은45/60으로 부족하여 품질 개선·후보 비교를 진행 중이다. 시스템 driver535.183.01, CUDA11.8, glibc2.31을 변경하지 않았다. Backend `.conda`에는 GPU dependency를 설치하지 않는다.
+프로젝트 `.conda-vllm` Python3.12.14와 공식 **vLLM0.8.5+cu118 / PyTorch2.6.0+cu118**를 설치했다. pip check 및 torch/vllm._C/번들 FlashAttention2/xgrammar import는 통과했다. GPU3 startup/JSON inference를 실제 통과했다. 14B-AWQ promptv3를 내부 개발용으로 선정했다. 고정 development seed20×3에서 schema/parser/자동 의미60/60, READY오판0/33이다. 자동생성 gold이며 heldout/human 정확도가 아니다. 시스템 driver535.183.01, CUDA11.8, glibc2.31을 변경하지 않았다. Backend `.conda`에는 GPU dependency를 설치하지 않는다.
 
 재현 정의:
 

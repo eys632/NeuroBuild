@@ -10,7 +10,11 @@
     "evidence": "docs/environment.md"
   },
   "runtime": {
-    "status": "CANDIDATE_INFERENCE_VERIFIED",
-    "parameter_status": "A100_CANDIDATE_MEASURED_SELECTION_PENDING"
+    "status": "INFERENCE_VERIFIED_DEVELOPMENT_SEED",
+    "parameter_status": "A100_MEASURED",
+    "structured_output_protocol": "legacy_guided_json",
+    "runtime_build": "vllm0.8.5+cu118",
+    "quantization": "awq_marlin",
+    "estimated_peak_mib": 18432
   }
 }

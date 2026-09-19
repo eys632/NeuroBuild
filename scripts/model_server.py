@@ -4,12 +4,14 @@
 import argparse
 from dataclasses import dataclass
 from datetime import datetime, timezone
+import fcntl
 import json
 import math
 import os
 from pathlib import Path
 import re
 import signal
+import stat
 import subprocess
 import tempfile
 import threading
@@ -36,6 +38,7 @@ if os.getppid() != expected_parent:
 # The cap covers PyTorch allocator allocations, not every CUDA/native allocation.
 CHILD_BOOTSTRAP = PARENT_DEATH_BOOTSTRAP + """import json, runpy, subprocess, sys
 cap = sys.argv.pop(1)
+rendezvous_file = sys.argv.pop(1)
 import torch
 expected = subprocess.run(['nvidia-smi', '-i', '3', '--query-gpu=uuid', '--format=csv,noheader,nounits'],
                           check=True, capture_output=True, text=True, timeout=5).stdout.strip()
@@ -48,6 +51,15 @@ print(json.dumps({'event': 'GPU_IDENTITY_VERIFIED', 'physical_gpu_index': 3, 'lo
 if cap != 'none':
     torch.cuda.set_device(0)
     torch.cuda.set_per_process_memory_fraction(float(cap), 0)
+from datetime import timedelta
+if torch.distributed.is_initialized():
+    raise SystemExit('UNEXPECTED_DISTRIBUTED_GROUP')
+store = torch.distributed.FileStore(rendezvous_file, 1)
+torch.distributed.init_process_group(backend='nccl', store=store, rank=0, world_size=1,
+                                     timeout=timedelta(seconds=30))
+if torch.distributed.get_rank() != 0 or torch.distributed.get_world_size() != 1:
+    raise SystemExit('DISTRIBUTED_GROUP_MISMATCH')
+print(json.dumps({'event': 'LOCAL_FILE_RENDEZVOUS_READY', 'world_size': 1}), flush=True)
 sys.argv[0] = 'vllm.entrypoints.openai.api_server'
 runpy.run_module('vllm.entrypoints.openai.api_server', run_name='__main__')
 """
@@ -102,11 +114,12 @@ class LaunchConfig:
                 "INVALID_CONFIG", "Use a short explicit model alias without paths or whitespace")
 
 
-def launch_command(config, root=ROOT):
+def launch_command(config, root=ROOT, *, rendezvous_file):
     """Construct pinned vLLM 0.8.5 arguments without a shell or implicit download."""
     return [str(root / ".conda-vllm/bin/python"), "-c", CHILD_BOOTSTRAP,
             str(os.getpid()),
             "none" if config.torch_memory_fraction is None else str(config.torch_memory_fraction),
+            str(local_path(rendezvous_file, root, output=True)),
             "--model", str(local_path(config.model_path, root)),
             "--served-model-name", config.served_model_name, "--host", "127.0.0.1", "--port", str(config.port),
             "--tensor-parallel-size", "1", "--distributed-executor-backend", "uni",
@@ -123,9 +136,16 @@ def child_environment(config, root, environ):
     child = dict(environ)
     child.pop("PYTHONHOME", None)
     child.pop("PYTHONPATH", None)
+    for variable in ("MASTER_ADDR", "MASTER_PORT", "RANK", "LOCAL_RANK", "WORLD_SIZE"):
+        child.pop(variable, None)
     child.update(CUDA_VISIBLE_DEVICES="3", CUDA_DEVICE_ORDER="PCI_BUS_ID", VLLM_USE_V1="0", VLLM_ATTENTION_BACKEND="FLASH_ATTN",
                  VLLM_FLASH_ATTN_VERSION="2", HF_HUB_OFFLINE="1", TRANSFORMERS_OFFLINE="1",
                  DO_NOT_TRACK="1", VLLM_NO_USAGE_STATS="1", TOKENIZERS_PARALLELISM="false",
+                 GLOO_SOCKET_IFNAME="lo", NCCL_SOCKET_IFNAME="=lo", NCCL_IB_DISABLE="1",
+                 VLLM_HOST_IP="127.0.0.1", PYTHONNOUSERSITE="1",
+                 VLLM_DP_SIZE="1", VLLM_DP_RANK="0", VLLM_DP_RANK_LOCAL="0",
+                 VLLM_DP_MASTER_IP="127.0.0.1", VLLM_DP_MASTER_PORT="0",
+                 TORCH_NCCL_AVOID_RECORD_STREAMS="1",
                  CONDA_PREFIX=str(root / ".conda-vllm"))
     child["PATH"] = str(root / ".conda-vllm/bin") + os.pathsep + child.get("PATH", "")
     for variable, directory in {"HF_HOME": "huggingface", "TORCH_HOME": "torch",
@@ -135,6 +155,25 @@ def child_environment(config, root, environ):
         path.mkdir(parents=True, exist_ok=True)
         child[variable] = str(path)
     return child
+
+
+def acquire_project_lock(root):
+    """Serialize our project's model lifecycles before taking a GPU baseline."""
+    run_root = local_path(root / "var/run", root, output=True)
+    run_root.mkdir(parents=True, exist_ok=True)
+    descriptor = os.open(run_root / "model-server.lock", os.O_CREAT | os.O_RDWR | os.O_CLOEXEC | os.O_NOFOLLOW, 0o600)
+    try:
+        info = os.fstat(descriptor)
+        require(stat.S_ISREG(info.st_mode) and info.st_uid == os.getuid(),
+                "INVALID_GUARD_LOCK", "Guard lock must be an owned regular file")
+        try:
+            fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            raise PreflightError("OWN_MODEL_ALREADY_RUNNING", "This project's model guard is already active") from None
+        return descriptor
+    except BaseException:
+        os.close(descriptor)
+        raise
 
 
 def write_report(path, report):
@@ -205,6 +244,8 @@ def run_guard(config, *, root=ROOT, environ=None, query=None, popen=None, killpg
               "observed_baseline_relative_peak_mib": 0, "watchdog_sample_count": 0}
     child = None
     report_path = None
+    rendezvous_dir = None
+    lock_fd = None
     started = monotonic()
     try:
         require(config.profile == "a100", "RUNTIME_PROFILE_NOT_VALIDATED",
@@ -219,10 +260,10 @@ def run_guard(config, *, root=ROOT, environ=None, query=None, popen=None, killpg
         runtime = root / ".conda-vllm/bin/python"
         require(runtime.is_file() and runtime.resolve().is_relative_to((root / ".conda-vllm").resolve()),
                 "RUNTIME_NOT_LOCAL", "The project .conda-vllm Python is required")
+        lock_fd = acquire_project_lock(root)
         report_path = candidate_report
         log_path.parent.mkdir(parents=True, exist_ok=True)
         report_path.parent.mkdir(parents=True, exist_ok=True)
-        command = launch_command(config, root)
         child_env = child_environment(config, root, environ)
         report.update(log_file=str(log_path), model_path=str(model), dtype=config.dtype, served_model_name=config.served_model_name,
                       torch_allocator_fraction=config.torch_memory_fraction,
@@ -244,6 +285,13 @@ def run_guard(config, *, root=ROOT, environ=None, query=None, popen=None, killpg
         report.update(state="STARTING", baseline_used_mib=baseline,
                       required_free_floor_mib=margin, aggregate_increment_limit_mib=rise_limit,
                       minimum_observed_free_mib=preflight["measured"]["minimum_free_mib"])
+        rendezvous_root = local_path(root / "var/run/rendezvous", root, output=True)
+        rendezvous_root.mkdir(parents=True, exist_ok=True)
+        rendezvous_dir = Path(tempfile.mkdtemp(prefix="model-", dir=rendezvous_root))
+        rendezvous_file = rendezvous_dir / "store"
+        command = launch_command(config, root, rendezvous_file=rendezvous_file)
+        report.update(rendezvous={"kind": "FILE_STORE", "path": str(rendezvous_file), "world_size": 1,
+                                  "gloo_interface": "lo", "nccl_interface": "=lo", "cleaned": False})
         write_report(report_path, report)
         require(not stop_requested(), "STOP_REQUESTED", "Launch was cancelled before process creation")
         with log_path.open("ab", buffering=0) as log:
@@ -290,12 +338,22 @@ def run_guard(config, *, root=ROOT, environ=None, query=None, popen=None, killpg
                 report["shutdown"] = {"child_reaped": False, "error": "OWN_CHILD_SHUTDOWN_FAILED"}
             report["state"] = "STOPPED" if report["shutdown"]["child_reaped"] else "STOP_FAILED"
             report["elapsed_seconds"] = round(monotonic() - started, 3)
+        if rendezvous_dir is not None and (child is None or report["shutdown"]["child_reaped"]):
+            try:
+                # Only this guard's unique file/directory; no recursive cleanup.
+                (rendezvous_dir / "store").unlink(missing_ok=True)
+                rendezvous_dir.rmdir()
+                report["rendezvous"]["cleaned"] = True
+            except OSError:
+                report["rendezvous"]["cleanup_error"] = "RENDEZVOUS_CLEANUP_FAILED"
         report["completed_at_utc"] = datetime.now(timezone.utc).isoformat()
         if report_path is not None and report_path.parent.is_dir():
             try:
                 write_report(report_path, report)
             except OSError:
                 report["report_write_failed"] = True
+        if lock_fd is not None:
+            os.close(lock_fd)  # Keep the regular lock file; never unlink a held-lock identity.
     return report
 
 

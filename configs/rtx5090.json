@@ -8,5 +8,13 @@
     "vram_class_gb": 32,
     "hardware_status": "PREDICTED_UNVERIFIED",
     "evidence": "docs/runtime_compatibility.md"
+  },
+  "runtime": {
+    "status": "PREDICTED_UNVERIFIED",
+    "parameter_status": "PREDICTED_UNVERIFIED",
+    "structured_output_protocol": "structured_outputs",
+    "runtime_candidate": "vllm0.29.0-cu129-or-cu130-RESOLVER_UNVERIFIED",
+    "required_structured_backend": "xgrammar",
+    "linear_backend_candidate": "marlin"
   }
 }

@@ -16,7 +16,7 @@ from unittest.mock import patch
 from uuid import uuid4
 
 from neurobuild.domain.errors import DomainError
-from neurobuild.infrastructure.local_model import LocalRequirementClient, MAX_HTTP_RESPONSE_BYTES
+from neurobuild.infrastructure.local_model import LocalRequirementClient, MAX_HTTP_RESPONSE_BYTES, StructuredOutputProtocol
 
 
 SOURCE = "회의실 책상을 X축 양의 방향으로 1m 옮겨줘."
@@ -98,6 +98,8 @@ class LocalModelClientTests(unittest.TestCase):
         self.assertEqual(path, "/v1/chat/completions")
         self.assertEqual(headers["Content-Type"], "application/json")
         self.assertEqual(request["guided_decoding_backend"], "xgrammar:no-fallback")
+        self.assertNotIn("structured_outputs", request)
+        self.assertIs(self.client.protocol, StructuredOutputProtocol.LEGACY_GUIDED_JSON)
         self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
         self.assertEqual(request["temperature"], 0)
         self.assertEqual(request["seed"], 42)
@@ -105,11 +107,70 @@ class LocalModelClientTests(unittest.TestCase):
         self.assertIs(request["stream"], False)
         self.assertEqual(json.loads(request["messages"][1]["content"]), {"source_text": SOURCE, "axis_convention": "project_xy"})
         self.assertEqual(request["messages"][0]["role"], "system")
+        selected_prompt = (Path(__file__).resolve().parents[1] / "prompts/requirement_v3.txt").read_text()
+        self.assertEqual(request["messages"][0]["content"], selected_prompt)
         self.assertEqual(request["guided_json"]["properties"]["schema_version"]["enum"], ["1.0"])
         for forbidden in ("minLength", "maxLength", "pattern"):
             self.assertNotIn('"' + forbidden + '"', json.dumps(request["guided_json"]))
         self.assertEqual(len(self.client.prompt_sha256), 64)
         self.assertEqual(len(self.client.schema_sha256), 64)
+
+    def test_explicit_protocols_use_the_same_schema_and_domain_conversion(self):
+        ids = {"requirement_id": uuid4(), "project_id": uuid4(), "base_revision_id": uuid4()}
+        expected_schema = json.loads((Path(__file__).resolve().parents[1] / "schemas/semantic_requirement.schema.json").read_text())
+        results = []
+        for protocol in StructuredOutputProtocol:
+            for configured in (protocol, protocol.value):
+                with self.subTest(protocol=protocol, configured_type=type(configured).__name__):
+                    client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=configured)
+                    results.append(client.extract(SOURCE, axis_convention="project_xy", **ids))
+                    self.assertIs(client.protocol, protocol)
+                    request = self.server.requests[-1][2]
+                    if protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON:
+                        self.assertEqual(request["guided_json"], expected_schema)
+                        self.assertEqual(request["guided_decoding_backend"], "xgrammar:no-fallback")
+                        self.assertNotIn("structured_outputs", request)
+                    else:
+                        self.assertEqual(request["structured_outputs"], {"json": expected_schema})
+                        self.assertNotIn("guided_json", request)
+                        self.assertNotIn("guided_decoding_backend", request)
+                    self.assertNotIn("response_format", request)
+                    self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
+                    self.assertEqual(request["temperature"], 0)
+        self.assertEqual(len(self.server.requests), 4)
+        self.assertTrue(all(result == results[0] for result in results))
+
+    def test_unknown_protocol_never_reaches_http(self):
+        for protocol in (None, True, 0, [], {}, "auto", "json", "LEGACY_GUIDED_JSON", "structured_outputs "):
+            with self.subTest(protocol=protocol):
+                with self.assertRaises(DomainError) as caught:
+                    LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol)
+                self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
+        self.assertEqual(self.server.requests, [])
+
+    def test_protocol_rejection_never_retries_or_removes_grammar_constraints(self):
+        self.server.status = 400
+        self.server.body = b'{"error":"unsupported grammar field DO_NOT_ECHO_SECRET"}'
+        for protocol in StructuredOutputProtocol:
+            with self.subTest(protocol=protocol):
+                before = len(self.server.requests)
+                client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol)
+                self.reject("LOCAL_MODEL_HTTP_ERROR", client)
+                self.assertEqual(len(self.server.requests), before + 1)
+                self.assertIs(client.protocol, protocol)
+                request = self.server.requests[-1][2]
+                selected = "guided_json" if protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON else "structured_outputs"
+                self.assertIn(selected, request)
+
+    def test_invalid_success_response_does_not_trigger_dialect_detection_or_retry(self):
+        self.server.body = b'{"unexpected":"DO_NOT_ECHO_SECRET"}'
+        for protocol in StructuredOutputProtocol:
+            with self.subTest(protocol=protocol):
+                before = len(self.server.requests)
+                client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol)
+                self.reject("LOCAL_MODEL_RESPONSE_INVALID", client)
+                self.assertEqual(len(self.server.requests), before + 1)
+                self.assertIs(client.protocol, protocol)
 
     def test_extract_binds_application_ids_and_runs_grounding(self):
         ids = {"requirement_id": uuid4(), "project_id": uuid4(), "base_revision_id": uuid4()}

@@ -20,14 +20,14 @@ RTX5090에는 접속하지 않았다. 모든 RTX runtime/benchmark 항목은 PRE
 | Model Python | MEASURED .conda-vllm Python3.12.14 | 선택 runtime 요구사항에 따라 별도 lock |
 | PyTorch | MEASURED torch2.6.0+cu118; GPU3 FP16 smoke PASS | UNVERIFIED; CC12.0 포함 build 필요 |
 | vLLM | MEASURED vLLM0.8.5+cu118; Qwen3 startup/inference PASS | UNVERIFIED; exact release/quant/parser 검증 필요 |
-| Model | Qwen3-14B-AWQ 실측, 8B 비교 준비; 최종 미선정 | 같은 logical model 우선, 양자화 artifact 차이는 명시 |
-| dtype | 14B-AWQ FP16 activation; 8B BF16 비교 예정 | 미정; 32GB 전체 runtime fit 검증 필요 |
+| Model | Qwen3-14B-AWQ pinned31c69ef/promptv3 선정; 8B 실제 비교 완료 | 같은 logical model 우선, 양자화 artifact 차이는 명시 |
+| dtype | 14B-AWQ FP16 activation; 8B BF16 비교 완료 | 미정; 32GB 전체 runtime fit 검증 필요 |
 | quantization | 14B awq_marlin W4A16 actual PASS; FP8/NVFP4 미검증 | INT4/FP8/NVFP4는 모델/CC12.0 kernel별 검증 필요 |
 | context | 4096 tokens 실제 launch, concurrency1 | 같은 contract/평가 context 우선; fit UNVERIFIED |
 | tensor parallel | MEASURED1, GPU3 only | PLANNED1, 실행 없음 |
 | GPU memory fraction | 0.50 + KV256blocks, preflight/watchdog 실행 | config0.50 시작안; 실측 아님 |
-| Runtime status | CANDIDATE_INFERENCE_VERIFIED; peak+margin 공존 guard 사용 | UNVERIFIED / 서버 접근 불가 |
-| Benchmark status | 14Bv1 seed60: schema60/60, 의미45/60; 품질 개선·비교 중 | NOT_RUN / 어떠한 PASS도 없음 |
+| Runtime status | INFERENCE_VERIFIED_DEVELOPMENT_SEED; peak+margin 공존 guard 사용 | UNVERIFIED / 서버 접근 불가 |
+| Benchmark status | 14Bv3 seed60: schema/parser/의미60/60, READY FP0/33; auto-gold/development | NOT_RUN / 어떠한 PASS도 없음 |
 | Docker | CLI28.1.1만 확인; daemon/GPU toolkit 미확인 | UNVERIFIED |
 | Frontend runtime | system node10.19.0/npm6.14.4 관측; 프로젝트용 미선택 | UNVERIFIED; Phase9에서 공통 요구 버전 결정 |
 | Network | 모델127.0.0.1:8003 실제 실행/종료; Backend/Frontend 후속 | 같은 port 예제만; 실제 hostname/port 미확인 |
