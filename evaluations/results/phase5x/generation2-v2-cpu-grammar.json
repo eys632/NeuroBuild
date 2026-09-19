@@ -1,0 +1,245 @@
+{
+  "kind": "CPU_ONLY_GENERATION_2_DECISION_BRANCHES",
+  "status": "PASS",
+  "generation_contract": "2.0",
+  "model_id": "ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ",
+  "model_revision": "9f41ff709102dbe73e614f9365f8280170db268e",
+  "schema_sha256": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+  "prompt_sha256": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+  "adapter_sha256": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+  "legacy_parser_sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+  "previous_schema_sha256": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+  "vllm_utils_sha256": "6a5cd732b103eaf708930821f9bc96aad8423fd942e9da8503196e4bfcb3aa16",
+  "xgrammar": "0.1.18",
+  "vllm": "0.8.5+cu118",
+  "cuda_visible_devices": "",
+  "cuda_initialized": false,
+  "vllm_unsupported_features": false,
+  "vocab_size": 151936,
+  "compile_seconds": 2.0071007814258337,
+  "fixtures": [
+    {
+      "case": "ready_x_only",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "ready_y_only",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "ready_both_axes",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "ready_multiline_unicode_quotes",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "clarification",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "unsupported_empty_target",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "root_version_only",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "empty_object",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "ready_no_axis",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "ready_null_target",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "ready_null_instruction",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "ready_nonnull_reason",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "ready_nonstring_axis",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "wrong_version",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "extra_approval",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "missing_decision",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "unknown_decision",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "nonready_null_reason",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "clarification_nonnull_current_instruction_quote",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "clarification_nonnull_dx_evidence",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "clarification_nonnull_dy_evidence",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "unsupported_nonnull_current_instruction_quote",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "unsupported_nonnull_dx_evidence",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "unsupported_nonnull_dy_evidence",
+      "expected": false,
+      "jsonschema_valid": false,
+      "grammar_tokens_and_eos_accepted": false
+    },
+    {
+      "case": "prompt_example_1",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "prompt_example_2",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "prompt_example_3",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "prompt_example_4",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "prompt_example_5",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "prompt_example_6",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    },
+    {
+      "case": "prompt_example_7",
+      "expected": true,
+      "jsonschema_valid": true,
+      "grammar_tokens_and_eos_accepted": true
+    }
+  ],
+  "fixture_count": 31,
+  "accepted_count": 13,
+  "rejected_count": 18,
+  "backend_mandatory_controls": [
+    {
+      "case": "empty_target",
+      "shape_and_grammar_valid": true,
+      "backend_rejected": true,
+      "error_code": "INVALID_MODEL_OUTPUT"
+    },
+    {
+      "case": "whitespace_instruction",
+      "shape_and_grammar_valid": true,
+      "backend_rejected": true,
+      "error_code": "INVALID_MODEL_OUTPUT"
+    },
+    {
+      "case": "empty_axis",
+      "shape_and_grammar_valid": true,
+      "backend_rejected": true,
+      "error_code": "INVALID_MODEL_OUTPUT"
+    },
+    {
+      "case": "unsigned_axis",
+      "shape_and_grammar_valid": true,
+      "backend_rejected": true,
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "case": "empty_reason",
+      "shape_and_grammar_valid": true,
+      "backend_rejected": true,
+      "error_code": "INVALID_MODEL_OUTPUT"
+    }
+  ],
+  "pattern_draft": "var/research/generation2-branches-pattern-draft/result.json",
+  "scope": "CPU tokenizer/grammar only; no network, weights, inference or CUDA initialization. Branch shape does not prove decision or source-grounding correctness. New prompt and property order also change the experiment; no isolated causal claim."
+}

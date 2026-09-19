@@ -22,7 +22,7 @@ requirement = client.extract(
 )
 ```
 
-`complete(source_text, axis_convention=...)`는 synthetic 평가용 `Completion(content, usage, latency_seconds, model)`을 돌려준다. 이것은 parser 통과나 의미적 정확성을 뜻하지 않는다. malformed final JSON도 평가할 수 있지만 HTTP envelope 오류, 잘린 출력, tool call, `<think>`가 섞인 content는 거절한다. `extract()`는 `complete()` 결과를 `parse_requirement()`로 변환한다. ID는 모델 출력에서 받지 않는다.
+`complete(source_text, axis_convention=...)`는 synthetic 평가용 `Completion(content, usage, latency_seconds, model)`을 돌려준다. 이것은 parser 통과나 의미적 정확성을 뜻하지 않는다. malformed final JSON도 평가할 수 있지만 HTTP envelope 오류, 잘린 출력, tool call, `<think>`가 섞인 content는 거절한다. `extract()`는 명시된 generation 계약에 따라 `parse_generated_requirement()`를 호출하며, 최종 경계는 항상 기존 `parse_requirement()`다. ID는 모델 출력에서 받지 않는다.
 
 `usage`는 서버가 제공한 정수 token count만 보존한다. reasoning token **수**가 제공되면 `reasoning_tokens`로 표시하지만 reasoning 내용은 버린다. 누락 usage는 `None`이며 임의0으로 채우지 않는다. latency는 client 요청부터 final envelope 수신까지의 end-to-end 시간이다. TTFT나 decode-only tokens/sec로 표시하지 않는다. prompt/schema의 실제 bytes SHA256은 client의 `prompt_sha256`, `schema_sha256`에서 얻는다. 명시한 dialect는 `client.protocol.value`로 run manifest에 기록한다.
 
@@ -38,9 +38,27 @@ Backend 한도: source16000자, model final16384자, target1024자, current inst
 
 이 결정론적 검증은 숫자/원문 grounding을 검사한다. 조건/부정의 의미, 전체 target 수식어를 빠짐없이 선택했는지, 현재 지시 span의 완전성까지 증명하지는 않는다. 조건부/이동 금지/복수 작업/승인 우회가 READY로 분류되지 않는지는 별도 semantic evaluation의 필수 항목이다. 실패한 모델 출력을 정답으로 덮어쓰거나 키워드 parser로 LLM 정확도를 대체하지 않는다. `tests/test_requirements.py`의 seed20 변환은 **AUTO-GENERATED / NOT HUMAN VERIFIED** representability fixture이며 LLM accuracy 측정이 아니다.
 
+## 별도 generation2 실험
+
+기본 generation 계약은 여전히1.0이다. `LocalRequirementClient(...,
+generation_contract="2.0")`을 명시하면 별도 quote-only prompt/schema를 사용한다.
+`client.generation_contract`는 읽기 전용 enum이다. Custom schema의 version enum도
+선택한 계약과 같아야 하며, 응답을 보고 버전을 추측하거나 실패 후 자동 전환하지 않는다.
+
+Generation2는 `target_selection_quote`, `current_instruction_quote`, `dx_evidence`,
+`dy_evidence`와 version/decision/reason을 생성한다. 숫자·단위 중복 생성을 없애고,
+code가 원문 evidence의 lexical 숫자/단위/명시 부호를 기존 helper로 검증하여1.0으로
+투영한다. 그 뒤 같은 원문과 code-owned UUID/context로 기존 parser를 통과한다.
+조건·대상 범위·최신 지시의 의미를 자동 보완하지 않는다. Gold/gate와 대상 확인 및
+proposal 승인 요구는 동일하다. [설계와 경계](requirement_generation_v2_design.md),
+[원출력과 projection의 평가 기록](evaluation_harness.md)을 따른다.
+
+이 추가 계약은 Phase5.x 실험 기능이다. CPU/fake HTTP/실제 PostgreSQL·IFC 회귀 검증과
+실제 LLM 의미 정확도 gate를 구분하며, 새 계약을 최종 모델 구성으로 자동 채택하지 않는다.
+
 ## vLLM transport와 제한
 
-`/v1/chat/completions`에 temperature0, seed42, stream=false, 기본 max_tokens768과 `chat_template_kwargs={"enable_thinking": false}`를 보낸다. protocol은 `StructuredOutputProtocol` enum 또는 동일한 문자열을 명시한다. 기존 A100 호출의 기본값은 `legacy_guided_json`이며 모델명/GPU/응답으로 추측하지 않는다.
+기본 `legacy_greedy` sampling은 `/v1/chat/completions`에 temperature0, seed42, stream=false, 기본 max_tokens768과 `chat_template_kwargs={"enable_thinking": false}`를 보낸다. 다른 명시적 sampling profile과 thinking 설정은 [평가 도구](evaluation_harness.md)를 따른다. protocol은 `StructuredOutputProtocol` enum 또는 동일한 문자열을 명시한다. 기존 A100 호출의 기본값은 `legacy_guided_json`이며 모델명/GPU/응답으로 추측하지 않는다.
 
 | protocol | 요청 필드 | Grammar backend 설정 |
 |---|---|---|

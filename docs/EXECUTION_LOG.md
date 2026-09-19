@@ -331,3 +331,13 @@ Plan changed to separate quote-only generation2 adapter through unchanged1.0 par
 
 
 Generation2 implementation checks: explicit adapter/schema/client/harness, no canonical1.0 source change. Full `env -u DISPLAY -u WAYLAND_DISPLAY bash scripts/test_backend.sh` with private PostgreSQL DSN: **290 tests PASS, skip0,17.329s** (`var/phase5x-generation2-regression.log`). Added regression forces a schema-valid but ungrounded adapter projection and verifies the final1.0 parser rejects it; raw READY remains visible. Independent replay of all12 historical hardening archives (640 trials) matches parser/errors/SI/scorer and complete metrics. New model quality remains unmeasured.
+
+
+## 2026-09-20 08:44 KST — Generation2 actual diagnostic
+
+Pushed91b464eee1d19ede3708ebb4ae0772dee0d35244; clean manifest before first2.0model request. Explicit --generation-contract2.0, generation2/v1 prompt+schema, same running MoE/neutral/output768,40development/warmup5/trial1. Run20260919T233958Z-5e2143732d36479ab880ab2fc32dfbb3 completed40; request count90→135. Generation shape40,adapter/parser/semantic29, rawFP1,unsafe0,FN0; latencymean4.132092/p955.313616s. All20READY gold pass; ten nonREADY null-rule violations and unsigned direction1 are retained failures. Independent40trials+5warmups replay exactly matches stage flags/projections/metrics.
+
+Next: separate branch generation schema and generation2/v2 prompt, same frozen adapter/parser/gold/client/scorer. Null rules become generation constraints rather than posthoc stripping; generic unsigned-direction fewshot reflects existing policy. CPU grammar/token/context and independent review before committing/freeze/new run. No heldout inference or later Phase bypass.
+
+
+Decision-branch CPU check: draft regex compiled but rejected Korean token fixtures; draft/result preserved and not used for inference. Removed only generation regex, backend nonempty rules remain. Final schema36d42b9f accepts13 valid (including7prompt examples) and rejects18 invalid (including root-only, nonREADYnonnull,READYnoaxis,wrongversion/extraapproval). Five grammar-valid backend-invalid controls are still rejected. GPU hidden/CUDA not initialized. Prompt99d73712, exact7exampleadapter parity PASS, dev max3678/held INPUT LENGTH ONLY3683 includingoutput768of4096. Targeted proof sufficient for prompt/schema-only change; previously290PASS source bytes unchanged. New freeze and preserved13th failed diagnostic committed before nextcall.

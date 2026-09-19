@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NeuroBuild quote-only generation 2.0 with decision branches",
+  "description": "Same seven-field 2.0 contract with decision-first generation branches. READY requires target/current quotes, at least one axis quote and null reason; non-READY requires null current/axis quotes and a reason. Backend validation remains mandatory for whitespace, limits, source grounding, signs, numeric values, context and semantic safety.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "2.0"
+      ]
+    }
+  },
+  "anyOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "decision",
+        "target_selection_quote",
+        "current_instruction_quote",
+        "dx_evidence",
+        "dy_evidence",
+        "reason"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "2.0"
+          ]
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "READY"
+          ]
+        },
+        "target_selection_quote": {
+          "type": "string"
+        },
+        "current_instruction_quote": {
+          "type": "string"
+        },
+        "dx_evidence": {
+          "type": "string"
+        },
+        "dy_evidence": {
+          "type": "null"
+        },
+        "reason": {
+          "type": "null"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "decision",
+        "target_selection_quote",
+        "current_instruction_quote",
+        "dx_evidence",
+        "dy_evidence",
+        "reason"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "2.0"
+          ]
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "READY"
+          ]
+        },
+        "target_selection_quote": {
+          "type": "string"
+        },
+        "current_instruction_quote": {
+          "type": "string"
+        },
+        "dx_evidence": {
+          "type": "null"
+        },
+        "dy_evidence": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "null"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "decision",
+        "target_selection_quote",
+        "current_instruction_quote",
+        "dx_evidence",
+        "dy_evidence",
+        "reason"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "2.0"
+          ]
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "READY"
+          ]
+        },
+        "target_selection_quote": {
+          "type": "string"
+        },
+        "current_instruction_quote": {
+          "type": "string"
+        },
+        "dx_evidence": {
+          "type": "string"
+        },
+        "dy_evidence": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "null"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "decision",
+        "target_selection_quote",
+        "current_instruction_quote",
+        "dx_evidence",
+        "dy_evidence",
+        "reason"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "2.0"
+          ]
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "CLARIFICATION",
+            "UNSUPPORTED"
+          ]
+        },
+        "target_selection_quote": {
+          "type": "string"
+        },
+        "current_instruction_quote": {
+          "type": "null"
+        },
+        "dx_evidence": {
+          "type": "null"
+        },
+        "dy_evidence": {
+          "type": "null"
+        },
+        "reason": {
+          "type": "string"
+        }
+      }
+    }
+  ]
+}

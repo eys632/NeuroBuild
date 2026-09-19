@@ -217,3 +217,24 @@ PYTHONPATH=src .conda/bin/python -B -m unittest \
 20개 CPU boundary probe와 source review도 PASS이며 새로운 blocker는 보고되지 않았다.
 이 결과는 adapter와 frozen parser 경계만을 검증한다. Client/evaluator 통합, grammar,
 실제 모델 호출의 최종 증거는 각각 담당 검증과 run manifest를 따른다.
+
+## 첫 실제 실패 뒤 상태별 generation 제약
+
+Generation2/v1 진단은29/40으로 실패했다. READY 정답20개는 모두 정확했지만,
+올바른 non-READY decision을 낸10개 응답이 instruction/evidence를 non-null로 남겼다.
+방향을 명시하지 않은 요청의 raw READY1건도 남았다. 기존 결과를 수정하거나
+non-READY 필드를 코드가 지워 정답으로 바꾸지 않는다.
+
+별도 [decision-branch schema](../schemas/requirement_generation_v2_decision_branches.schema.json)는
+같은2.0 계약을 더 엄격하게 생성하도록 제한한다. READY의 X-only/Y-only/XY 세 형태와
+non-READY를 분리하며, decision은 quote보다 먼저 나온다. Non-READY instruction/axes는
+null, READY reason은 null이어야 한다. 빈 문자열·공백만 있는 값, 길이, 원문/수치
+grounding은 여전히 backend가 검사한다. 초안의 비어 있지 않은 문자열 regex는
+설치된 xgrammar에서 compile 후 실제 한국어 token 수용에 실패하여 제거했다.
+그 초안으로 모델을 호출하지 않았으며 compile 성공만을 호환성 증거로 사용하지 않는다.
+
+[Prompt v2](../prompts/requirement_generation_v2_v2.txt)는 기존 정책과6개 예시의 입력·값을
+보존하고 필드 순서를 맞췄으며, 기존 unsigned-direction 규칙에 대한 독립 예시1개를
+추가한다. Schema·순서·예시가 함께 변경되므로 개별 효과의 인과 비교로 해석하지 않는다.
+기존 adapter/parser/client/scorer/gold와 v1 prompt/schema는 변경하지 않는다.
+새 파일을 명시적으로 선택하는 별도 frozen diagnostic이 필요하며 기본 계약1.0은 유지한다.

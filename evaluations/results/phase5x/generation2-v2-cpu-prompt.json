@@ -1,0 +1,73 @@
+{
+  "kind": "CPU_ONLY_GENERATION_2_PROMPT_V2_PREFLIGHT",
+  "recorded_at_utc": "2026-09-19T23:48:45.104940+00:00",
+  "recording_method": "Final branch schema revalidated against all seven examples through JSONSchema, adapter and legacy parser. Prior measured context lengths reused because prompt/tokenizer/template/dataset bytes are unchanged.",
+  "generation_contract": "2.0",
+  "model_id": "ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ",
+  "model_revision": "9f41ff709102dbe73e614f9365f8280170db268e",
+  "sha256": {
+    "prompt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "previous_prompt": "ad3e1b1a44dc4373e511ad794814054313bdbafe6ddc66ea43ef253049b95431",
+    "branch_schema": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "adapter": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+    "legacy_parser": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "weight_manifest": "32ff8e507fb4b25f5e67da2d03ba898d52467d653eb55c4c1cc906ee2738939c",
+    "tokenizer": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "tokenizer_config": "355f2b4e5bad7b01f11ef6cb68ebc176f61b95c3276092ea225b1bea0e01e95c",
+    "chat_template": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541"
+  },
+  "transformers": "4.51.3",
+  "tokenizer_local_path": "var/models/ELVISIO--Qwen3-30B-A3B-Instruct-2507-AWQ/9f41ff709102dbe73e614f9365f8280170db268e",
+  "trust_remote_code": false,
+  "separate_chat_template_selected": true,
+  "cuda_visible_devices_during_measurement": "",
+  "torch_imported_during_tokenization": false,
+  "network_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "weights_read": false,
+  "prompt_system_tokens": 2499,
+  "context_limit": 4096,
+  "max_output_tokens": 768,
+  "splits": {
+    "development": {
+      "count": 40,
+      "dataset_sha256": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+      "max_input_tokens": 2910,
+      "max_input_plus_output": 3678,
+      "remaining_context": 418,
+      "scope": "INPUT_LENGTH_ONLY; no model outputs"
+    },
+    "holdout": {
+      "count": 80,
+      "dataset_sha256": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+      "max_input_tokens": 2915,
+      "max_input_plus_output": 3683,
+      "remaining_context": 413,
+      "scope": "INPUT_LENGTH_ONLY; no model outputs"
+    }
+  },
+  "examples": {
+    "count": 7,
+    "jsonschema_branch_validation_pass": 7,
+    "adapter_and_legacy_parser_pass": 7,
+    "original_six_inputs_decisions_and_field_values_unchanged": true,
+    "json_key_order_changed": true,
+    "new_unsigned_direction_example_count": 1,
+    "new_example_target_quantity_absent_from_development": true,
+    "inverse_to_previous_prompt_byte_identity": true
+  },
+  "xgrammar_validation": "Separate schema-owner proof; not performed or claimed by this record",
+  "changes_together": [
+    "Decision-dependent schema branches",
+    "Decision-before-quotes JSON layout",
+    "One independent unsigned-direction CLARIFICATION example"
+  ],
+  "interpretation": "CPU representability and input-length evidence only, not quality or isolated field-order efficacy. No heldout model outputs were accessed.",
+  "supersedes_draft_proof": {
+    "path": "var/research/generation2-prompt-v2-cpu-proof-1119776043854c53bef994c05b350917.json",
+    "sha256": "88c795c0d1a8d2d0013b068e62dc9f0750e7c78643988a1c5f2f6e640037a5d0",
+    "reason": "Draft string pattern removed after separate xgrammar token rejection; nonempty still enforced by unchanged backend."
+  },
+  "schema_nonempty_enforcement": "Backend adapter; grammar has no pattern. Decision branches/null rules/non-null axis presence retained."
+}
