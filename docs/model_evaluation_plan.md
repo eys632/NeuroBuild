@@ -1,6 +1,6 @@
 # NeuroBuild local model evaluation 계획
 
-Phase 0 설계 자료다. 모델을 호출하지 않았고 평가 runner/production schema를 구현하지 않았다.
+Phase 0에서 작성한 평가 계획이다. 당시 모델 호출/runner/schema는 미구현이었다. Phase5 구현은 [evaluation harness](evaluation_harness.md)와 [requirement pipeline](requirement_pipeline.md), 실제 결과는 [Phase5 보고](reports/phase5_report.md)를 따른다.
 `evaluations/requirement_seed.jsonl`은 민감한 BIM 자료를 사용하지 않은 synthetic 예제 20개다.
 Ground truth 상태: **AUTO-GENERATED / NOT HUMAN VERIFIED**. 사람 검수 전 결과를 human-verified accuracy로 표시하지 않는다. 내부 개발은 진행할 수 있으며 외부 pilot 전에는 별도 human 검수가 필요하다.
 아래 gold label은 평가자가 확인할 의미 기준이며 Phase1에서 확정할 Domain Contract가 아니다.

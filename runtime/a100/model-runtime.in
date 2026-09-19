@@ -1,0 +1,27 @@
+# Official CUDA 11.8 wheels for the measured A100 driver535/glibc2.31 host.
+# Resolve in .conda-vllm Python3.12 only; no backend/system installation.
+vllm @ https://github.com/vllm-project/vllm/releases/download/v0.8.5/vllm-0.8.5%2Bcu118-cp38-abi3-manylinux1_x86_64.whl
+torch @ https://download.pytorch.org/whl/cu118/torch-2.6.0%2Bcu118-cp312-cp312-linux_x86_64.whl#sha256=9f7d170d6c78726945d95fcc3a3d7601f36aed0e6e0dc9ca377a64d6a8fd7b3a
+torchvision @ https://download.pytorch.org/whl/cu118/torchvision-0.21.0%2Bcu118-cp312-cp312-linux_x86_64.whl#sha256=5d3679e0df9ab1725eaa7300d550cf8fe0a477119483bef12673957f30c768dc
+torchaudio @ https://download.pytorch.org/whl/cu118/torchaudio-2.6.0%2Bcu118-cp312-cp312-linux_x86_64.whl#sha256=e77fe770130b54fdbcecda829024fbd4235075e905f5c6019c19664577c70e1d
+xformers @ https://download.pytorch.org/whl/cu118/xformers-0.0.29.post2-cp312-cp312-manylinux_2_28_x86_64.whl#sha256=2072f98dbeea10aebbc69e0e4551a153961c20b544d2ef7e57800395095b8c91
+transformers==4.51.3
+tokenizers==0.21.2
+huggingface-hub==0.30.2
+xgrammar==0.1.18
+compressed-tensors==0.9.3
+outlines==0.1.11
+numba==0.61.2
+numpy==2.2.6
+pydantic==2.11.4
+ray==2.43.0
+cupy-cuda12x==13.4.1
+mistral_common==1.5.4
+opencv-python-headless==4.11.0.86
+outlines_core==0.1.26
+safetensors==0.5.3
+fastapi==0.115.12
+starlette==0.46.2
+openai==1.78.1
+gguf==0.14.0
+depyf==0.18.0

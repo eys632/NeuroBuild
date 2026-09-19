@@ -8,5 +8,9 @@
     "vram_class_gb": 40,
     "hardware_status": "MEASURED",
     "evidence": "docs/environment.md"
+  },
+  "runtime": {
+    "status": "CANDIDATE_INFERENCE_VERIFIED",
+    "parameter_status": "A100_CANDIDATE_MEASURED_SELECTION_PENDING"
   }
 }

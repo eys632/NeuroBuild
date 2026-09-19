@@ -172,3 +172,23 @@ Could not open a connection to your authentication agent.
 - Qwen3-14B-AWQ full revision31c69efc29464b6bb0aee1398b5a7b50a99340c3의 11파일/9,992,683,140bytes manifest를 고정했다. weights뿐 아니라 config/tokenizer/license도 pin한다. 다운로드는 20GiB 디스크 reserve와 파일별size/SHA256검증을 사용한다. root free81GiB에서 시작했으며 병행 설치 중75GiB를 재확인했다. 실제 GPU inference는 아직 실행하지 않았다.
 
 - GPU preflight 13개 fake측정 회귀 PASS. 실제GPU3 재측정5회도 free36373MiB/util0%로 동일하여 estimated18432+margin7275MiB 후보가 예산 안에 들어왔다. 이는 launch 성공이 아닌 사전예산 검사다. 변경 중간 Backend회귀145개 PASS(13.078s,skip0), 기존PG/IFC 포함.
+
+- 정책/사전측정 guard 중간checkpoint81b06054617295654c54130bfc615ae1bbbc4e9c를 commit/push하고 remote v2 hash 일치를 확인했다. Phase5 완료checkpoint는 아니다.
+- Runtime hash lock148개 설치 완료. pip check PASS; torch2.6.0+cu118/vllm0.8.5+cu118/transformers4.51.3/xgrammar0.1.18/xformers0.0.29.post2 및 vllm._C/번들FA2 nativeimport PASS. 해당 검사는 CUDA allocation을 수행하지 않았다. .conda-vllm7.6GiB/cache5.1GiB, root약67GiB free를 재확인했다.
+
+- 작은 CUDA smoke 전 GPU3를 estimatedpeak1024MiB로5회 재측정해허용. mask3/PCI_BUS_ID/devicecount1, cuda:0 UUID와물리GPU3 UUID일치를 확인했다. Torch FP16 128×128 matmul과결과비교PASS, Torchpeak allocated8,585,216/reserved23,068,672bytes. 이는 PyTorch allocator 측정이며 process전체VRAM이나모델peak가아니다. Smoke process는정상종료했다.
+
+- Qwen3-14B-AWQ pinned11파일총9,992,683,140bytes 다운로드및직접SHA256검증완료. 실제localtokenizer/nonthinking chattemplate에서 seed20 입력은1868–2075tokens, output768 reserve와합쳐context4096에모두fit함을CPU로확인했다.
+
+- 첫모델startup: GPU3만5회재검사후guardlaunch, mask/UUID검증PASS, Qwen3-14B-AWQ가 awq_marlin/FP16으로로드됐다. 모델로드9.3639GiB, firsthealth200 약20.666초(2초poll,최신watchdog0.5초표본기준;filesystemcache를flush한cold측정아님). 전체GPUbaseline대비관측peak증가10946MiB,최소free25428MiB. 256KVblocks/context4096/seq1/eager/TP1,loopback8003서버정상.
+- 독립검토가 guard강제소멸시child잔존가능성과 숫자suffix grounding결함을발견했다. 아직LLM평가를수행하지않고자신의guard에중단요청하여server를정상종료했다. 타인process를변경하지않았다. parentdeathsignal/안전한PG회수및numericboundary회귀를추가한뒤다시launch한다.
+
+- Guard修正을독립검토하고16tests(PDEATHSIG/own descendant 실제CPU-only2포함) PASS. Parentdeath SIGKILL은torchimport전에설정하며 WNOWAIT로자기leaderPID를유지한상태에서TERM/KILL후reap한다. 숫자suffix/exponent/comma/fraction/산술식/잘린unit 거절을추가했고 parser27+HTTP16+Domain29=72PASS. Downloader외부symlink/metadata no-clobber13테스트PASS.
+- 수정한guard로14B-AWQ재시작후한국어첫JSON추론PASS(회의실책상 +X1m). xgrammar:no-fallback/nonthinking, input1879/output95tokens,첫요청latency6.118초(워밍업성격,정규평가에서제외). 이후seed20×3+warmup5실측시작. Root회귀194PASS(13.242s,skip0); 후속다운로더13개도별도PASS.
+
+- 14B-AWQ promptv1 baseline완료: run20260919T195704Z-9b3cd95a46a646dbacebd0bc6eec40b5, warmup5제외60trials. JSON/schema60/60,parser51/60,semanticrubric45/60(75%),criticalFP모델/수용0/33,criticalFN6/27. mean2.9605s/p954.2152s,관측aggregatepeak증가11568MiB/minfree24806MiB. 실제단위/target실패를누락하지않고evaluations/results/phase5에보존했다.
+- 실패5cases: D01비연속target이어붙임,F01숫자철자0.5→0.50,I01X성분을dy배치(Backend거절),F02대상제외조건누락,J01범위밖설계제안을clarification분류. v1/source/gold는그대로고정해8B비교에사용하고v2prompt를별도로작성한다. 현재품질로최종모델/gate완료를선언하지않는다.
+- 완료후자신의guardCtrl-C중nvidia-smi子process가중단되어종료reason이GPU_QUERY_FAILED로남았다. 이미60trial완료후이며자기servergroup만TERM/KILL회수,childexit0/free36373MiB복귀확인. 이는추론실패/VRAM부족이아니다. 다음부터자기guardPID에직접SIGTERM하여조회중단과운영중단원인을구분한다.
+- Qwen3-8B pinnedrevision b968826d9c46dd6066d109eabc6255188de91218(전체16,397,459,696bytes)공식manifest검증후두번째후보다운로드시작. root62GiB여유에서20GiBreserve조건을통과했다. 두GPU모델동시실행은하지않는다.
+
+- 중간checkpoint 전 전체207tests PASS(14.755s,skip0), real PostgreSQL/IFC/HTTP·GPU guard fake/own CPU lifecycle 포함. GPU-model 품질 gate는 아직 미통과로 유지한다.

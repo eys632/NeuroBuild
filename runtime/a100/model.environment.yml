@@ -1,0 +1,9 @@
+# Backend stays separate. Exact resolved artifacts are in the companion locks.
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.12.14
+  - pip=26.2.1
+# Activate this project .conda-vllm, verify paths/disk, then:
+# python -m pip install --require-hashes --only-binary=:all: --no-deps -r runtime/a100/model-runtime.lock

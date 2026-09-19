@@ -7,12 +7,12 @@
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow |
 | 마지막 완료 Phase checkpoint | `dd58b596fab2aaa24c5aba4322d56bc5d127440c` — Phase4 commit/push, remote hash 일치 |
 | GitHub | 공통 `v2`, SSH push 정상. 이 상태 보고 자체의 최신 commit은 `git log -1` 참고 |
-| 검증 | 전체 **108 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell 포함, DISPLAY 없이 실행 |
-| 현재 Phase | 5: GPU 실행 전 조사 완료. runtime 설치/startup/inference/benchmark 미실행 |
-| Hard blocker | 점유 존재 자체의 blocker는 사용자 지침으로 해제. 후보 peak+margin/ABI 검증 중 |
+| 검증 | 전체 **207 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell 포함, DISPLAY 없이 실행 |
+| 현재 Phase | 5: runtime/weight 및 GPU3 startup/첫JSON추론 PASS. 14B v1 seed60회 완료(schema60/60, 의미45/60, 비실행gold READY오판0/33). 8B순차비교 준비 |
+| Hard blocker | 점유 존재 자체의 blocker는 사용자 지침으로 해제. 자원/ABI gate 통과. 의미 품질 개선·후보 비교 진행 중 |
 | Backend | `.conda` Python3.12.14 / PostgreSQL17.11 / psycopg3.2.10 / IfcOpenShell0.8.5 Conda build |
-| Model Runtime | `.conda-vllm` Python3.12.14 생성. cu118 vLLM0.8.5/Torch2.6.0 설치 및 Qwen3-14B-AWQ 다운로드 진행; startup/선정 미완료 |
-| 다음 단계 | 공식 cu118 runtime import/단일 GPU3 guard 검증, 14B-AWQ startup 및 한국어 평가 |
+| Model Runtime | `.conda-vllm` Python3.12.14, cu118 vLLM0.8.5/Torch2.6.0 설치/pipcheck/nativeimport 및 GPU3 Torch FP16 smoke PASS. 14B-AWQ 11파일 SHA256 검증 완료; startup/첫JSON추론 PASS; benchmark/최종선정 미완료 |
+| 다음 단계 | 14B-AWQ seed평가완료 후 8B-BF16을 순차비교하고 Phase5 최종 gate |
 
 ## 완료 근거
 
@@ -33,8 +33,8 @@ Backend는 재사용하고 Model Runtime만 별도 .conda-vllm에 둔다. 실제
 
 ## 현재 운영 상태와 미완료 범위
 
-프로젝트 PostgreSQL은 실행 중이며 private Unix socket `var/run/postgresql`만 사용한다. TCP listener가 없고 peer auth다. lifecycle은 `scripts/postgres.py`, 종료는 `.conda/bin/python scripts/postgres.py stop`이다. Root disk96%/약83G free, Backend1.4G/cache803M/PostgreSQL data82M.
+프로젝트 PostgreSQL은 실행 중이며 private Unix socket `var/run/postgresql`만 사용한다. TCP listener가 없고 peer auth다. lifecycle은 `scripts/postgres.py`, 종료는 `.conda/bin/python scripts/postgres.py stop`이다. Root disk97%/약62G free, Backend1.4G/modelenv7.4G/model9.4G/cache5.3G/PostgreSQL data82M.
 
-Phase4 Human Review는 **메모리 상태**다. 재시작 후 review 복구/job queue/worker는 Phase7 범위다. LLM 의미 해석·자연어 object resolution·API·브라우저는 아직 구현하지 않았다. **Internal Technical MVP 완료가 아니다.** Phase5.x~11은 미시작이며 막힌 Phase를 우회하지 않는다.
+Phase4 Human Review는 **메모리 상태**다. 재시작 후 review 복구/job queue/worker는 Phase7 범위다. Requirement contract/loopback client는 구현했고 실제 LLM 의미 평가를 준비 중이다. 자연어 object resolution·API·브라우저는 아직 구현하지 않았다. **Internal Technical MVP 완료가 아니다.** Phase5.x~11은 미시작이며 막힌 Phase를 우회하지 않는다.
 
 RTX5090은 PREDICTED/UNVERIFIED, synthetic fixture/gold는 AUTO-GENERATED / NOT HUMAN VERIFIED다. Public exposure/pilot/민감 IFC/fine-tuning은 이번 자동 범위 밖이다.

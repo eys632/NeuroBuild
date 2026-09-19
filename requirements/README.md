@@ -34,6 +34,6 @@ Miniconda bootstrap는 [공식 index](https://repo.anaconda.com/miniconda/)의
 PostgreSQL lifecycle과 실제 통합 테스트는 root README를 따른다. Phase3은 IFC4 parsing/placement/tessellation에 IfcOpenShell0.8.5 Conda build를 사용한다.
 PyPI0.8.5 wheel은 이 서버에서 GLIBC_2.32 오류가 났다. glibc2.31을 바꾸지 않고 conda-forge ABI build를 선택했다.
 Conda가 공급하는 OCCT/X/GL shared library는 headless CPU geometry dependency이며 X/display를 시작하거나 요구하지 않는다.
-torch/vLLM/Transformers/CUDA wheel은 `.conda-vllm`에만 둔다. 모델 환경은 현재 미생성이다.
+torch/vLLM/Transformers/CUDA wheel은 `.conda-vllm`에만 둔다. 모델 환경은 Python3.12.14로 생성했으며 Phase5 runtime 검증을 진행 중이다.
 
 IfcOpenShell Conda build에는 pip distribution metadata가 없다. 따라서 pyproject의 pip dependency로 중복 선언하지 않는다(ABI 오류의 PyPI wheel 재설치를 방지). 필수 native dependency는 Conda manifest/lock에서 고정하고 `python -c 'import ifcopenshell; print(ifcopenshell.version)'` 및 실제 IFC 테스트로 확인한다. `pip check`만으로 native dependency를 검증했다고 간주하지 않는다.

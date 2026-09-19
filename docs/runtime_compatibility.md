@@ -17,20 +17,20 @@ RTX5090에는 접속하지 않았다. 모든 RTX runtime/benchmark 항목은 PRE
 | Backend dependency | MEASURED psycopg3.2.10; pinned backend lock | 동일 manifest 예정, UNVERIFIED |
 | IfcOpenShell | MEASURED IfcOpenShell0.8.5 Conda py312hfac0a26_8; CPU/headless import+geometry PASS; PyPI wheel ABI 실패 | 동일 Conda 버전/IFC 결과 테스트 필요; UNVERIFIED |
 | PostgreSQL | MEASURED project PostgreSQL17.11; private Unix socket; noTCP; restart PASS | UNVERIFIED; 공통 migration/major 목표 |
-| Model Python | PLANNED .conda-vllm, 3.12 우선 검토 | 선택 runtime 요구사항에 따라 별도 lock |
-| PyTorch | NOT_INSTALLED in project; build 미정 | UNVERIFIED; CC12.0 포함 build 필요 |
-| vLLM | NOT_INSTALLED; 모델별 지원 release/commit 및535 호환 조합 미확정 | UNVERIFIED; exact release/quant/parser 검증 필요 |
-| Model | SHORTLIST_ONLY, 최종 선택 없음 | 같은 logical model 우선, 양자화 artifact 차이는 명시 |
-| dtype | 미정; BF16 activation + weight-only INT4 등 후보 | 미정; 32GB 전체 runtime fit 검증 필요 |
-| quantization | 모델별 W4A16 등 kernel 검증 필요; native FP8/NVFP4 지원으로 간주 금지 | INT4/FP8/NVFP4는 모델/CC12.0 kernel별 검증 필요 |
-| context | 초기 config8192 PLANNED; model의 advertised max와 다름 | 같은 contract/평가 context 우선; fit UNVERIFIED |
-| tensor parallel | PLANNED1, 실행 없음 | PLANNED1, 실행 없음 |
-| GPU memory fraction | config0.90 시작 후보; 점유/overhead 고려 재조정, 실측 아님 | config0.90 시작 후보; 실측 아님 |
-| Runtime status | PREFLIGHT (2026-09-20 정책 변경); free36373MiB/util0% 6회 관측, margin 기반 공존 검증 재개 | UNVERIFIED / 서버 접근 불가 |
-| Benchmark status | NOT_RUN | NOT_RUN / 어떠한 PASS도 없음 |
+| Model Python | MEASURED .conda-vllm Python3.12.14 | 선택 runtime 요구사항에 따라 별도 lock |
+| PyTorch | MEASURED torch2.6.0+cu118; GPU3 FP16 smoke PASS | UNVERIFIED; CC12.0 포함 build 필요 |
+| vLLM | MEASURED vLLM0.8.5+cu118; Qwen3 startup/inference PASS | UNVERIFIED; exact release/quant/parser 검증 필요 |
+| Model | Qwen3-14B-AWQ 실측, 8B 비교 준비; 최종 미선정 | 같은 logical model 우선, 양자화 artifact 차이는 명시 |
+| dtype | 14B-AWQ FP16 activation; 8B BF16 비교 예정 | 미정; 32GB 전체 runtime fit 검증 필요 |
+| quantization | 14B awq_marlin W4A16 actual PASS; FP8/NVFP4 미검증 | INT4/FP8/NVFP4는 모델/CC12.0 kernel별 검증 필요 |
+| context | 4096 tokens 실제 launch, concurrency1 | 같은 contract/평가 context 우선; fit UNVERIFIED |
+| tensor parallel | MEASURED1, GPU3 only | PLANNED1, 실행 없음 |
+| GPU memory fraction | 0.50 + KV256blocks, preflight/watchdog 실행 | config0.50 시작안; 실측 아님 |
+| Runtime status | CANDIDATE_INFERENCE_VERIFIED; peak+margin 공존 guard 사용 | UNVERIFIED / 서버 접근 불가 |
+| Benchmark status | 14Bv1 seed60: schema60/60, 의미45/60; 품질 개선·비교 중 | NOT_RUN / 어떠한 PASS도 없음 |
 | Docker | CLI28.1.1만 확인; daemon/GPU toolkit 미확인 | UNVERIFIED |
 | Frontend runtime | system node10.19.0/npm6.14.4 관측; 프로젝트용 미선택 | UNVERIFIED; Phase9에서 공통 요구 버전 결정 |
-| Network | localhost3000/8000/8003 후보; 당시 TCP listener 미관측 | 같은 port 예제만; 실제 hostname/port 미확인 |
+| Network | 모델127.0.0.1:8003 실제 실행/종료; Backend/Frontend 후속 | 같은 port 예제만; 실제 hostname/port 미확인 |
 
 공식 근거와 host 조사는 [environment.md](environment.md), 모델별 실제 weight 크기/라이선스/지원은 [model_selection_plan.md](model_selection_plan.md)에 기록한다. 행마다 설치/측정 일시, exact wheel/model revision, git commit, 검증 명령과 결과 artifact 경로를 추가해 갱신한다.
 
@@ -43,4 +43,4 @@ RTX5090에는 접속하지 않았다. 모든 RTX runtime/benchmark 항목은 PRE
 5. [evaluation plan](model_evaluation_plan.md)의 전체 metric과 OOM/restart 결과를 남긴다.
 6. RTX5090 접속 가능 시 위 절차를 현장에서 반복한다. 같은 commit과 공통 semantic regression set으로 비교한다.
 
-현재 driver535에서 최신 모델용 runtime 경로가 확정되지 않은 점은 미해결 과제다. A100에서 메모리에 들어갈 것으로 보이는 것과 현재 이 서버에서 실행 가능한 것은 별개다.
+현재 driver535에서 Qwen3용 cu118 경로를 실제 검증했다. 더 최신 architecture의 runtime 경로는 별도 과제다. A100에서 메모리에 들어갈 것으로 보이는 것과 현재 이 서버에서 실행 가능한 것은 별개다.
