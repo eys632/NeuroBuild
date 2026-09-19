@@ -26,7 +26,7 @@ RTX5090에는 접속하지 않았다. 모든 RTX runtime/benchmark 항목은 PRE
 | context | 초기 config8192 PLANNED; model의 advertised max와 다름 | 같은 contract/평가 context 우선; fit UNVERIFIED |
 | tensor parallel | PLANNED1, 실행 없음 | PLANNED1, 실행 없음 |
 | GPU memory fraction | config0.90 시작 후보; 점유/overhead 고려 재조정, 실측 아님 | config0.90 시작 후보; 실측 아님 |
-| Runtime status | NOT_TESTED; GPU3에 예상 밖 process3개, 설치 보류 | UNVERIFIED / 서버 접근 불가 |
+| Runtime status | BLOCKED_GPU_OCCUPIED (2026-09-20); process3개/3965MiB 지속, model 설치/실행 없음 | UNVERIFIED / 서버 접근 불가 |
 | Benchmark status | NOT_RUN | NOT_RUN / 어떠한 PASS도 없음 |
 | Docker | CLI28.1.1만 확인; daemon/GPU toolkit 미확인 | UNVERIFIED |
 | Frontend runtime | system node10.19.0/npm6.14.4 관측; 프로젝트용 미선택 | UNVERIFIED; Phase9에서 공통 요구 버전 결정 |

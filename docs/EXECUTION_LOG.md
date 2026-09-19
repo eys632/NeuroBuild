@@ -146,3 +146,16 @@ Could not open a connection to your authentication agent.
 
 - 최종 입력 UUID alias/deepcopy 회귀 추가 후 root 전체108 tests PASS(12.378s, skip0), independent Workflow21 PASS(8.640s). 추가 독립realPG probe4/4 PASS: 다른workflow의committed eid거절, 잘못된orphan거절, 동일eid동시요청의단일결과, committed artifact손상거절. 현재 material gate blocker 없음.
 - Phase4 source/docs/tests/report 최종diff check 후 commit/push를수행한다.
+
+## 2026-09-20 01:00 KST — Phase4 remote checkpoint / Phase5 blocker
+
+- Phase4 commit dd58b596fab2aaa24c5aba4322d56bc5d127440c push 성공, git ls-remote hash 일치 확인. Worktree clean 후 Phase5 GPU/environment preflight.
+- nvidia-smi -i 3 targeted query: A10040GB/driver535.183.01, total40960 used3965 free36373MiB, util0%; compute process3개(1746/1772/414MiB). Phase0 점유 상태가 유지됐다. GPU0/1/2는 조회/사용하지 않았다.
+- 현재 uid의 ps PID 목록만 대조하여 GPU process가 본인 소유가 아님(0/3)을 확인했다. 다른 사용자의 명령/파일/환경/소유자 신원은 조회하지 않았고 process를 변경하지 않았다.
+- root96%/83G, Backend1.4G/cache803M/PG82M, .conda-vllm 없음. Shell의 systemPython3.8.10은 기본 진단에만 사용했으며 model package/weight 설치 없음.
+- Root AGENTS 예상 밖 GPU process 중단 규칙에 따라 BLOCKED_GPU_OCCUPIED. 실제 OOM/모델 startup 실패로 기록하지 않는다. 필수 benchmark NOT_RUN, Phase5 gate 미통과. Phase5.x~11 우회 구현 없음.
+- 사용자에게 현재 점유와 정책 근거를 보고하고 GPU3 사용 가능 시점을 요청했다. STATUS/Phase5 report/runtime/README에 완료범위·제약·재개 절차를 기록한다. Private PostgreSQL은 계속 실행 중이며 관리/종료 명령은 STATUS에 있다.
+
+- 보고서 작성 뒤 GPU3만 다시 조회했으며 process3개/used3965/free36373MiB/util0%로 동일했다. 후속 변경은 상태 문서만이며 Application tests를 불필요하게 반복하지 않았다. Current-state Markdown25개 상대링크 및 git diff --check PASS. 독립 문서검토 후 blocker checkpoint를 push한다.
+
+- 독립 문서 검토 통과: Phase0~4 완료/108 PASS/Phase5 정책 blocker/후속 미진행/메모리 review 한계가 일관됨. README roadmap 설명의 범위를 Phase0~11로 맞췄다.

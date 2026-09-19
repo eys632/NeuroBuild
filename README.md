@@ -1,8 +1,8 @@
 # NeuroBuild_v2
 
 A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의 greenfield rewrite.
-현재 **Phase 4 Explicit Renovation Workflow 구현**까지 진행했다.
-현재 checkpoint와 검증 결과는 [STATUS](docs/STATUS.md)를 따른다. 모델 서버, durable review/job queue, API와 frontend는 후속 단계다.
+현재 **Phase 0~4 구현·검증·원격 checkpoint 완료**, **Phase5는 GPU3 점유로 중단** 상태다.
+전체108 tests가 통과했다. 현재 checkpoint와 재개 조건은 [STATUS](docs/STATUS.md)를 따른다. 모델 서버, durable review/job queue, API와 frontend는 후속 단계다.
 
 LLM은 요구사항을 구조화하고, 결정론적인 BIM Engine이 승인된 변경을 실행한다.
 첫 vertical slice는 IFC4의 단일 IfcFurniture를 같은 층에서 상대 XY 이동하는 `MOVE_FURNITURE`다.
@@ -41,7 +41,7 @@ URL은 localhost 예제, model은 미선정, runtime은 `NOT_TESTED`다. [설정
 | [모델 후보](docs/model_selection_plan.md) | 최신 공식 출처의 후보5개와 평가 우선순위 |
 | [평가 계획](docs/model_evaluation_plan.md) | 한국어/BIM 평가 metric과 재현 방법 |
 | [평가 seed](evaluations/requirement_seed.jsonl) | 10개 분류의 synthetic 사례20개 |
-| [Roadmap](docs/implementation_roadmap.md) | Phase0–10/5.x와 각 단계 완료 조건 |
+| [Roadmap](docs/implementation_roadmap.md) | Phase0–11/5.x와 각 단계 완료 조건 |
 | [Git 운영](docs/git_workflow.md) | 기존 이력 보존, 공통v2, commit/push 준비 |
 
 IFC 지원 범위는 [IFC Engine 계약](docs/ifc_engine.md), 별도 확인·승인·Apply 흐름은 [Workflow 계약](docs/workflow.md)을 따른다.

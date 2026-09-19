@@ -60,3 +60,9 @@ Phase 0 당시 commit에 포함된 Phase 승인 대기와 Phase 10 이후 계획
 - RenovationService가 SemanticRequirement → 실제 inventory → TargetConfirmation → Proposal → 별도 ProposalApproval → Apply를 연결한다. 메서드는 workflow ID를 받고 내부의 frozen authoritative state를 검증한다. 외부에서 바꾼 snapshot을 approval로 받아들이지 않는다.
 - Phase4는 LLM 없는 synthetic service E2E다. Human review는 in-process registry이며 재시작하면 사라진다. Durable review/job queue/session advisory lock은 Phase7에서 구현한다. Revision/artifact/execution intent의 Phase2 내구성은 계속 사용한다.
 - Prepare/finalize/commit 실패 후 같은 execution ID로 안전하게 재시도한다. PREPARED orphan의 예상 bytes/hash는 deterministic IFC Engine에서 다시 얻고 기존 파일을 검증한다. COMMITTED 재시도는 정확한 승인·intent binding을 검증한 뒤 기존 결과를 반환한다.
+
+## D020 — Phase5 GPU 실행 중단 (2026-09-20 01:00 KST)
+
+- Phase4 remote dd58b59 완료 후 GPU3만 재확인했다. Phase0부터 예상 밖 process3개/3965MiB 점유가 계속 남아 있으며 본인 소유 PID 목록에는 없다. 타인 신원/파일/명령은 조회하지 않았다.
+- AGENTS의 예상 밖 GPU process 실행 중단 규칙을 적용한다. 남은 VRAM 또는 utilization0%를 사용 허가로 간주하지 않는다. 이는 측정된 OOM/메모리부족 주장이 아닌 정책 blocker다.
+- GPU3 사용 가능 시 재확인하여 Phase5부터 재개한다. 모델 환경/weight를 선제 설치하거나 이후Phase를 우회 구현하지 않는다. 최종모델/benchmark/RTX는 미검증으로 유지한다.
