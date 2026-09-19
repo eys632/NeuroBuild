@@ -112,3 +112,22 @@ Could not open a connection to your authentication agent.
 - scripts/postgres.py start에 noTCP 옵션 강제 후 재시작/SHOW listen_addresses empty 확인. 현재 private PostgreSQL은 실행 중이다.
 - Backend activate/path/version/CONDA_PREFIX/disk84G 재확인 → editable reinstall/no-deps → pip check PASS. independent architecture/security/cross-server review 완료, RTX는 UNVERIFIED.
 - Phase2 report/requirements/README/compatibility 갱신, diff check PASS. Commit/push는 다음 checkpoint command 결과로 확정한다.
+
+## 2026-09-20 — Phase2 remote checkpoint / Phase3 환경
+
+- Phase2 commit18c7e21cc367cbf5e0f2c7b61c5981f30f476a98 push 성공 및 git ls-remote hash 일치 확인. 이후 Phase3 시작.
+- 기존 backend/Python3.12.14/pip/CONDA_PREFIX/disk84G 확인 후 IfcOpenShell0.8.5 PyPI manylinux_2_31 wheel와 dependency를 hash lock로 설치했다. pip check는 통과했으나 실제 import에서 GLIBC_2.32 부재 오류: wheel tag와 실제 ABI 요구가 다름. 성공으로 기록하지 않고 system glibc 변경 없이 호환되는 배포 build를 조사한다.
+- pip 설치 후 Backend590M/cache271M/root84G. 모델 환경/weight는 미생성.
+
+- IfcOpenShell 공식설치문서의 stable conda-forge 방식으로 전환. 초기0.8.3 dry-solver는 최신0.8.5의 glibc>=2.17 build 확인 후 본 작업의 process만 종료하고0.8.5로 바꿨다. 시스템/다른사용자 process 미변경.
+- Conda dryrun152.5MiB 확인 후 pip의 ifcopenshell/numpy/shapely만 uninstall하여 파일중복을 방지하고 Conda0.8.5 py312hfac0a26_8 설치. import IFC4 및 headless create_shape(8vertices) PASS. Conda manifest/URL-SHA256 lock 갱신. Backend1.4G/cache802M/root83G.
+- 해당 native Conda build에는 pip dist-info가 없어 pyproject pip dependency로 선언하면 pip check가 missing으로 나온다. Conda manifest를 필수native dependency의 source로 두고 pyproject 중복선언 제거; import/version/IFC tests로 실물검증한다.
+
+- Root actualIFC4→V0→worldXY 이동→V1 PostgreSQL/artifact smoke PASS: mm file+33도부모회전, 두fullsnapshots/head/원본hash/inventory 보존. Test-owned schema만 정리. 사용자승인 workflow검증은 Phase4이며 이저수준smoke에포함하지않음.
+- 독립 review에서 nativeparser의 잘못된DATA무시와 큰좌표·큰delta의relative-tolerance 손실허용을 실제재현. Gate완료로간주하지않고 SPF framing/record검사와 절대metre오차검증, regression을보강중.
+
+## 2026-09-20 — Phase3 gate
+
+- Root 전체87 tests PASS(3.728s, skip0), independent IFC25 PASS(0.501s). 수정 후 malformed scanner probe14개 중 invalid11개 모두거절/valid3개수용. 기존1m손실/Decimal0.25m손실/overflow/underflow/context누락 거절 및 subnormal정규화 확인. 알려진 gate blocker 없음.
+- Narrow SPF recordscanner, exactFraction 절대metre오차/Decimal변환오차, 필수singleidentitycontext를 최종계약에기록했다. Full EXPRESS/STEP grammar 검증으로과장하지않는다.
+- pip check/runtime-info 회귀/diff check PASS. 신규소스와syntheticgenerator/테스트/lock/report만checkpoint, 사용자IFC/native환경/artifact/cache는Git제외. Phase3commit/push를다음명령으로확정한다.

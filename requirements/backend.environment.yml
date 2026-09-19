@@ -7,3 +7,9 @@ dependencies:
   - pip=26.2.1
   - postgresql=17.11
   - psycopg=3.2.10
+  - ifcopenshell=0.8.5
+  - pip:
+      - isodate==0.7.2
+      - lark==1.3.1
+      - python-dateutil==2.9.0.post0
+      - six==1.17.0

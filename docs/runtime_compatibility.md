@@ -15,7 +15,7 @@ RTX5090에는 접속하지 않았다. 모든 RTX runtime/benchmark 항목은 PRE
 | System Python | MEASURED 3.8.10, 진단 전용 | UNVERIFIED |
 | Backend Python | MEASURED .conda Python3.12.14 | 동일3.12 patch/lock 목표, 미생성/미검증 |
 | Backend dependency | MEASURED psycopg3.2.10; pinned backend lock | 동일 manifest 예정, UNVERIFIED |
-| IfcOpenShell | NOT_INSTALLED; 버전 미정 | 동일 버전/IFC 결과 테스트 필요 |
+| IfcOpenShell | MEASURED IfcOpenShell0.8.5 Conda py312hfac0a26_8; CPU/headless import+geometry PASS; PyPI wheel ABI 실패 | 동일 Conda 버전/IFC 결과 테스트 필요; UNVERIFIED |
 | PostgreSQL | MEASURED project PostgreSQL17.11; private Unix socket; noTCP; restart PASS | UNVERIFIED; 공통 migration/major 목표 |
 | Model Python | PLANNED .conda-vllm, 3.12 우선 검토 | 선택 runtime 요구사항에 따라 별도 lock |
 | PyTorch | NOT_INSTALLED in project; build 미정 | UNVERIFIED; CC12.0 포함 build 필요 |

@@ -1,8 +1,8 @@
 # NeuroBuild_v2
 
 A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의 greenfield rewrite.
-현재 **Phase 2 PostgreSQL / immutable Artifact Persistence 구현**까지 진행했다.
-현재 checkpoint와 검증 결과는 [STATUS](docs/STATUS.md)를 따른다. IFC Engine, model server, frontend는 후속 단계다.
+현재 **Phase 3 IFC4 MOVE_FURNITURE Engine 구현**까지 진행했다.
+현재 checkpoint와 검증 결과는 [STATUS](docs/STATUS.md)를 따른다. 명시 workflow, model server, frontend는 후속 단계다.
 
 LLM은 요구사항을 구조화하고, 결정론적인 BIM Engine이 승인된 변경을 실행한다.
 첫 vertical slice는 IFC4의 단일 IfcFurniture를 같은 층에서 상대 XY 이동하는 `MOVE_FURNITURE`다.
@@ -43,6 +43,8 @@ URL은 localhost 예제, model은 미선정, runtime은 `NOT_TESTED`다. [설정
 | [평가 seed](evaluations/requirement_seed.jsonl) | 10개 분류의 synthetic 사례20개 |
 | [Roadmap](docs/implementation_roadmap.md) | Phase0–10/5.x와 각 단계 완료 조건 |
 | [Git 운영](docs/git_workflow.md) | 기존 이력 보존, 공통v2, commit/push 준비 |
+
+IFC 지원 범위와 거절 기준은 [IFC Engine 계약](docs/ifc_engine.md)을 따른다.
 
 ## 현재 디렉터리
 

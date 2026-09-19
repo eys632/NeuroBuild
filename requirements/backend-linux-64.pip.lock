@@ -1,0 +1,6 @@
+# Backend pip additions for CPython3.12 / Linux x86_64, resolved 2026-09-20.
+# Install after Conda lock; IfcOpenShell/numpy/shapely/typing-extensions are supplied by Conda.
+isodate==0.7.2 --hash=sha256:28009937d8031054830160fce6d409ed342816b543597cece116d966c6d99e15
+lark==1.3.1 --hash=sha256:c629b661023a014c37da873b4ff58a817398d12635d3bbb2c5a03be7fe5d1e12
+python-dateutil==2.9.0.post0 --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
+six==1.17.0 --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274

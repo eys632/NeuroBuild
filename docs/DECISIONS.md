@@ -48,3 +48,9 @@ Phase 0 당시 commit에 포함된 Phase 승인 대기와 Phase 10 이후 계획
 - 서버 PostgreSQL17.11을 project .conda로 제공하고 var/postgres 소유 cluster와 private socket만 사용한다. 시스템 service/sudo/공개 TCP를 요구하지 않는다. 공식 initdb/peer/transaction 근거: https://www.postgresql.org/docs/17/app-initdb.html , https://www.postgresql.org/docs/17/auth-peer.html , https://www.psycopg.org/psycopg3/docs/basic/transactions.html .
 - Artifact identity를 durable PREPARED intent로 먼저 예약한다. 검증/file+directory fsync 후 DB head를 publish한다. 실패 orphan은 보존하며 자동 삭제나 rebase를 하지 않는다.
 - Phase2 repository의 fingerprint binding은 실제 사용자 승인 검사를 대신하지 않는다. Phase4 Application에서 별도 approval guard와 actual IFC inventory를 결합한다.
+
+## D018 — Phase3 native IFC와 좁은 배치 변경
+
+- IfcOpenShell0.8.5 PyPI wheel의 실제 ABI가 host glibc2.31과 맞지 않아 공식 문서가 안내하는 conda-forge build로 전환했다. 시스템 glibc/driver를 바꾸거나 별도 환경을 추가하지 않았다. Native Conda lock가 필수 IFC dependency의 기준이며 pip metadata와 구분한다.
+- IFC4/단일project/SI m·cm·mm/upright3D LocalPlacement/identity WCS로 지원 경계를 명시했다. 부모 XY 회전은 지원하되 tilt/grid/cycle/assembly/map conversion/불명확한 단위는 거절한다. 일부지원객체만 골라 전체파일을 암묵수용하지 않는다.
+- 대상의 point/axis/localplacement3개만 새로 만들고 ObjectPlacement ref만 바꾼다. Generic geometry edit API가 재작성할 수 있는 자식/공유entity를 직접 수정하지 않는다. Serialize/reopen 후 전체원래entity와 모든product worldtransform을 재검증한다.
