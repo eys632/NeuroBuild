@@ -115,3 +115,14 @@ RTX5090 32GB에서도 같은 BF16 checkpoint의 weight+KV 산술은 작지만 **
 | Holdout 입력 길이만 | 80 | 2775 | **3543** | 553 |
 
 System v3 자체는2359 tokens다. V3 SHA는 `716137f3e275cb0030f1f497f8e23bbeeefd8a62eae757378231b7d910db3c3e`, template SHA는 `64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326`이다. Development/holdout 파일 SHA는 각각 `85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88`, `12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78`다. 모든120개 입력이 context 예산 안에 들었지만 출력768 이내 완결이나 의미 정확도를 보장하지 않는다. Prompt·schema·scorer·gold는 변경하지 않았다. 실제 모델 로딩과 품질 검증은 별도 실험 결과로 기록해야 한다.
+
+## 기존 v4 비교의 context 사전 검증
+
+기존 [v4 prompt](../prompts/requirement_v4.txt)를 수정 없이 같은4B 후보에 적용하는 비교를 위해, 다운로드가 완료된 고정 revision의 **실제 로컬 tokenizer**로 CPU/offline 길이를 검사했다. Prompt SHA는 `2fdd6a5a92860cde27d14adc10916a242b2221e1569015541ddf31581d1a14d8`, system 자체는2350 tokens다. `tokenizer.json`과 `tokenizer_config.json`의 bytes/SHA가 위 manifest와 일치했고 template SHA도 위 v3 검사와 같다.
+
+| 고정 입력 | 개수 | 최대 입력 tokens | 출력 cap768 포함 | 4096까지 여유 |
+|---|---:|---:|---:|---:|
+| Development | 40 | 2761 | **3529** | 567 |
+| Holdout 입력 길이만 | 80 | 2766 | **3534** | 562 |
+
+실제 client와 같은 system/user JSON, `add_generation_prompt=True`, `enable_thinking=False`, `trust_remote_code=False`를 사용했다. Torch 미import를 확인했으며 network/GPU/추론 호출은 없었다. 데이터 SHA는 앞선 v3 검사와 동일하다. 이 추가 기록은 context 예산 확인이며 품질 판정이 아니다. Holdout 출력은 조회하지 않았고 prompt·schema·scorer·gold를 변경하지 않았다.

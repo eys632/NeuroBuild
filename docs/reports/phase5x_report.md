@@ -52,3 +52,10 @@ Run20260919T214743Z-27a340f0e04343be8be10a062a6eb25d:40×1,warmup5. Schema40/par
 Run20260919T220158Z-72efdc2dad274cb98b1d61b669597b75:40×1,warmup5,allstop. Schema40/parser35/semantic30(75%),rawFP0/20,unsafeaccepted0/40,FN8/20,mean14.55889s/p9528.66420s. HD-B01방향누락과HD-D02단일가구XY분류는개선됐으나5개수치lexical거절,3개불필요외부조건확인,2개조회분류오류가남았다. Thinking자체는최고nonthinkingv3의90%를넘지못했고고정gateFAIL이다. 결과/manifest/resource를보존하고자기모델guard만정상종료했다.
 
 프롬프트·샘플링·추론모드반복실패후instruction전용post-trainingcheckpoint로모델선정을재검토한다. Qwen3-4B-Instruct-2507공식cdbee75f17c01a7cc42f958dc650907174af0554/Apache2.0/BF16은공식최소버전및로컬소스검토상기존runtime에서시험근거가있다. 크기만으로채택하지않고동일dev40자료/기존최고v3prompt/고정schema-parser-gold로순차평가한다. Fullpeak16384MiB추정+freshmargin,각파일다운로드와20GiB디스크reserve를확인한다. BF16비교sampling은.7/.8/K20/min0/presence0/frequency0/repetition1/seed42로명시하고AWQpenalty를자동재사용하지않는다. 실제quality/startup은아직미검증이다.
+
+
+## 4B Instruct v3 진단 — 개선됐으나 gate 미충족
+
+Run20260919T222220Z-6df72f2113474c108c488c98faefca20:40×1,warmup5. Schema40/parser39/semantic37(92.5%),rawFP1/20,unsafeaccepted2/40,FN0/20,mean2.81185s/p953.73833s. HD-B01은명시방향없이READY라Backend거절,HD-F01/F02는16cm원문단위를올바르게복사했으나target와instruction에서연구실scope/제외대상을잘라냈다. 모든지원gold가READY로수용되었다는것이대상보존성공을뜻하지않는다. 기존14B에서실패했던동일가구XY와단위변환은개선됐으나고정gate는FAIL이다.
+
+다음은이미고정된v4prompt를동일4B/runtime/neutral sampling/dev40×1에적용한다. 14B에서v4가과잉거절했던결과는보존하며새instructioncheckpoint에서도같을지실제로비교한다. 새prompt/gold/검증기준수정이나heldout호출은하지않는다.

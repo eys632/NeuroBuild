@@ -268,3 +268,17 @@ Run20260919T220158Z-72efdc2dad274cb98b1d61b669597b75:40×1,warmup5,allstop. Sche
 
 - Qwen3-4B-Instruct-2507 manifest:12files/8,060,915,998bytes/SHA70546521745f90e12e4fee0db9f73a7ec8a9296928b06b39d0f282cf1030c056. 공개 Apache2.0 후보로, weight3개 shard의 Hub LFS hash와 작은 파일 SHA를 확인했다. 다운로드 전 root free66,160,959,488bytes로 20GiB reserve를 포함한27.507GiB 필요량을 충족했다. 기존 download_model.py로 project var/models에 순차 다운로드/size+SHA검증 중이다. 이전 thinkingserver는 STOPPED/exit0/FileStorecleanup이며 GPU3used3965/free36373MiB/util0% 복귀를 확인했다.
 - Neutral nonthinking preset 추가 후 client30/client+harness44/전체253testsPASS, skip0,16.900s. 기본 legacy와 다른 preset, GPU/schema/parser/gold는 유지하고8개sampling값과manifest를 명시했다.
+
+- d05a000a7e19f2020c74b672f19dc3ba17ff6386 freeze commit/push remotehash일치. 4B12files size/SHA검증완료,실제tokenizer template SHA도계획과일치. Rootfree약55GiB,20GiBreserve유지. FreshGPU3preflight의free36373/util0%,16GiB추정+margin조건통과후BF16단독기동PASS. Health21.027s(별도probe기준/cacheunflushed),ownloopbackTCP5개PASS,기동중최소free27476MiB. V3/neutralpreset/dev40×1/warmup5 actual비교시작.
+
+
+## 4B Instruct v3 진단 — 개선됐으나 gate 미충족
+
+Run20260919T222220Z-6df72f2113474c108c488c98faefca20:40×1,warmup5. Schema40/parser39/semantic37(92.5%),rawFP1/20,unsafeaccepted2/40,FN0/20,mean2.81185s/p953.73833s. HD-B01은명시방향없이READY라Backend거절,HD-F01/F02는16cm원문단위를올바르게복사했으나target와instruction에서연구실scope/제외대상을잘라냈다. 모든지원gold가READY로수용되었다는것이대상보존성공을뜻하지않는다. 기존14B에서실패했던동일가구XY와단위변환은개선됐으나고정gate는FAIL이다.
+
+다음은이미고정된v4prompt를동일4B/runtime/neutral sampling/dev40×1에적용한다. 14B에서v4가과잉거절했던결과는보존하며새instructioncheckpoint에서도같을지실제로비교한다. 새prompt/gold/검증기준수정이나heldout호출은하지않는다.
+
+
+## 4B v3 failure review and v4 comparison freeze
+
+Independent replay confirmed schema40/parser39/semantic37, rawFP1 and unsafeaccepted2. All result/manifest bytes match archives. Existing v4 policy specifically covers unsigned direction and full target scope/exclusion; CPU context maxima3529/3534 including768 output cap fit4096. Freeze records same model/runtime/sampling and unchanged parser/schema/gold. Only development40×1 next; no heldout inference. Previous regression253 PASS remains applicable because no source changes.

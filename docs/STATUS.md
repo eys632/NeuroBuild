@@ -1,6 +1,6 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 07:01 KST**. **Phase 0~5 원격 checkpoint 완료; Phase5.x 평가 확대 진행 중.**
+갱신: **2026-09-20 07:32 KST**. **Phase 0~5 원격 checkpoint 완료; Phase5.x 평가 확대 진행 중.**
 
 | 항목 | 현재 상태 |
 |---|---|
@@ -8,10 +8,10 @@
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` Phase5 commit/push, remote hash 일치 |
 | GitHub | 공통 `v2`, SSH push 정상; 최신 checkpoint는 git log 참조 |
 | 검증 | 전체 **253 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이16.900s |
-| 현재 Phase | 5.x: 120개 자료·코드 freeze931c625 push확인, 개발v3 120회완료: 의미108/120,rawFP3/60(Backend차단),FN9/60. v4재평가의미96/120/FN24로FAIL;간결한영어v5도13/40으로FAIL. v3공식sampling도36/40동일오류로FAIL. v6thinking도17/40/unsafe2로FAIL. v7thinking도30/40으로FAIL. Instruction전용4B후보를같은자료로순차비교준비. holdout미호출. Phase5 Qwen3-14B-AWQ/promptv3 선정, development seed20×3 의미60/60, READY오판0/33. 8B 동일prompt54/60. 실패결과포함5 run보존 |
+| 현재 Phase | 5.x: 120개 자료·코드 freeze931c625 push확인, 개발v3 120회완료: 의미108/120,rawFP3/60(Backend차단),FN9/60. v4재평가의미96/120/FN24로FAIL;간결한영어v5도13/40으로FAIL. v3공식sampling도36/40동일오류로FAIL. v6thinking도17/40/unsafe2로FAIL. v7thinking도30/40으로FAIL. Instruction전용4B BF16 기동/loopback검증PASS, v3+neutral dev37/40/rawFP1/unsafe2로FAIL;같은4B에기존v4비교준비. holdout미호출. Phase5 Qwen3-14B-AWQ/promptv3 선정, development seed20×3 의미60/60, READY오판0/33. 8B 동일prompt54/60. 실패결과포함5 run보존 |
 | Hard blocker | 없음. GPU3 가용량 기반 공존 실행 실제 통과 |
 | Backend | `.conda` Python3.12.14 / PostgreSQL17.11 / psycopg3.2.10 / IfcOpenShell0.8.5 |
-| Model Runtime | `.conda-vllm` Python3.12.14, cu118 vLLM0.8.5/Torch2.6.0, 14B AWQMarlin FP16, TP1/context4096/seq1 |
+| Model Runtime | `.conda-vllm` Python3.12.14, cu118 vLLM0.8.5/Torch2.6.0, 현재4B-Instruct-2507 BF16 실험; 이전14B AWQMarlin 결과보존. TP1/context4096/seq1 |
 | 다음 단계 | Phase5.x versioned dataset40development/80heldout, model/scorer 고정 후 평가 |
 
 ## 완료 근거와 실제 한계
@@ -23,8 +23,8 @@
 
 ## 운영 상태
 
-GPU3만 사용하며 타인process를변경하지않는다. Baselinefree36373MiB/util0%,margin7275MiB,14B예상peak18432MiB로preflight통과. 실제14Bv3구간aggregatebaseline대비peak11684MiB,최소free24690MiB다. process전용peak/hardreservation이아니다. 자신의guard+child만운영하며GPU0/1/2fallback없음. FileStore rendezvous 및loopbackGloo/NCCL로actualTCP5개모두127.0.0.1검증. Phase5 모델server는STOP_REQUESTED/childexit0/자체rendezvous정리로정상종료했다. 종료후GPU3used3965/free36373MiB/util0%복귀. Phase5.x경계검토후freshpreflight재기동/5loopbacklisteners검증완료,V3/V4/V5평가후자기guard만정상종료하고free36373MiB복귀확인. 이후sampling서버도정상종료했고thinking서버를freshpreflight로재기동/loopback검증했다. 현재별도neurobuild-thinking alias로실험중이며기존선정설정을채택변경한것은아니다.
+GPU3만 사용하며 타인process를변경하지않는다. Baselinefree36373MiB/util0%,margin7275MiB,14B예상peak18432MiB로preflight통과. 실제14Bv3구간aggregatebaseline대비peak11684MiB,최소free24690MiB다. process전용peak/hardreservation이아니다. 자신의guard+child만운영하며GPU0/1/2fallback없음. FileStore rendezvous 및loopbackGloo/NCCL로actualTCP5개모두127.0.0.1검증. Phase5 모델server는STOP_REQUESTED/childexit0/자체rendezvous정리로정상종료했다. 종료후GPU3used3965/free36373MiB/util0%복귀. Phase5.x경계검토후freshpreflight재기동/5loopbacklisteners검증완료,V3/V4/V5평가후자기guard만정상종료하고free36373MiB복귀확인. 이후sampling서버도정상종료했고thinking서버를freshpreflight로재기동/loopback검증했다. Thinking epoch도정상종료했다. 현재4B-Instruct BF16을freshpreflight/localhost검증후neurobuild-instruct alias로실험중이며채택확정은아니다.
 
-Private PostgreSQL은 `var/postgres` +0700Unixsocket `var/run/postgresql`, noTCP/peerauth다. root disk약62GiB free(97%), Backend1.4GiB/modelenv7.4GiB/weights9.4GiB/cache5.3GiB. 미선정8B 다운로드16.4GB는manifest/결과보존후본인project의정확한14파일+manifest만검증해정리했다. 모든환경/weight/cache는project내Git제외다. Modeldownload20GiB reserve 및설치전disk확인을유지한다.
+Private PostgreSQL은 `var/postgres` +0700Unixsocket `var/run/postgresql`, noTCP/peerauth다. root disk약55GiB free(97%), Backend1.4GiB/modelenv7.4GiB/weights약17GiB(14B+비교중4B)/cache5.3GiB. 미선정8B 다운로드16.4GB는manifest/결과보존후본인project의정확한14파일+manifest만검증해정리했다. 모든환경/weight/cache는project내Git제외다. Modeldownload20GiB reserve 및설치전disk확인을유지한다.
 
 Phase4 human review는 아직in-memory이며durable review/queue/worker는Phase7이다. Object resolution/API/browser는아직구현전이므로 **Internal Technical MVP 완료가 아니다**. RTX5090은 **PREDICTED_UNVERIFIED**. Publicexposure/pilot/민감IFC/fine-tuning은자동범위밖이다.
