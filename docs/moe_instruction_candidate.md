@@ -178,6 +178,53 @@ RTX5090는 **PREDICTED_UNVERIFIED**다. A100 cu118/SM80의 소스·symbol 확인
 RTX SM120 실행 증거로 사용하지 않는다. 동일 business code를 유지하되 RTX의
 driver/CUDA/runtime/kernel, GPU1 가용량, peak와 종료·loopback 보호를 별도로 확인해야 한다.
 
+### RTX5090: vLLM0.29.0의 MoE 전용 소스 추가 검토
+
+2026-09-20 KST에 공식 **v0.29.0 태그**를 읽어 같은 ELVISIO INT4/group128/zero-point
+checkpoint의 MoE 경로를 추가 확인했다. Dense14B Marlin 조사와 별개의 근거이며
+설치·wheel 실행·GPU 접근은 하지 않았다. Qwen3MoeForCausalLM registry와 explicit
+head_dim128 전달이 유지된다. MoE shape 검사에서 hidden2048은128로 나누어지고,
+intermediate768은 group128 및 tile64로 나누어져 padding 없이 조건에 맞는다.
+[Registry](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/model_executor/models/registry.py#L201),
+[MoE shape 검사](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/model_executor/layers/quantization/utils/marlin_utils.py#L334).
+
+**MoE 전용** CMake는 CUDA13 이상에서 `MARLIN_MOE_ARCHS=8.0+PTX;12.0f`,
+그 아래에서는 `8.0+PTX;12.0a;12.1a`를 사용한다. MoE generator에는 AWQ-INT4/kU4와
+group128에 해당하는 group_blocks8이 있다. `MarlinExpertsBase`는 CUDA capability≥7.5와
+INT4 static scheme을 지원하므로 이 SM120·FP16·TP1 구성의 정적 거절 조건은 찾지 못했다.
+이 build 정의는 실제 RTX wheel의 해당 kernel load·정확도·속도를 증명하지 않는다.
+[MoE CMake](https://github.com/vllm-project/vllm/blob/v0.29.0/CMakeLists.txt#L1309),
+[MoE generator](https://github.com/vllm-project/vllm/blob/v0.29.0/csrc/libtorch_stable/moe/marlin_moe_wna16/generate_kernels.py#L65),
+[MarlinExperts 검사](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/model_executor/layers/fused_moe/experts/marlin_moe.py#L604).
+
+현대 AutoAWQ는 expert를 `AutoAWQMoEMethod`와 WNA16 backend selector에 연결한다.
+`--linear-backend marlin`은 일반 linear layer 선택이며 **expert backend를 고정하지
+않는다**. 향후 RTX 검증에서는 별도로 `--moe-backend marlin`을 명시하고 선택 log를
+확인해야 한다. 명시한 MoE backend가 지원되지 않으면 selector가 다른 경로를 시도하지
+않고 오류를 낸다. `--dtype half`와 FP16 activation을 유지하고 별도의
+`VLLM_MARLIN_INPUT_DTYPE` INT8/FP8 변환은 선택하지 않는다.
+[AutoAWQ MoE 연결](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/model_executor/layers/quantization/auto_awq.py#L522),
+[명시 backend 선택](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/model_executor/layers/fused_moe/oracle/int_wna16.py#L258),
+[별도 CLI 옵션](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/engine/arg_utils.py#L1680).
+
+이 구분은 메모리에도 중요하다. Auto selector의 FlashInfer TRTLLM 경로는 이번
+zero-point 설정을 거절하고, Triton은 AutoAWQ layout을 지원하지 않는다. 최종 대안인
+EMULATION은 expert weight를 BF16으로 풀므로 32GB 예산에 사용할 수 없다. 따라서
+unsupported Marlin을 자동 emulation으로 바꾸는 실행을 허용하지 않는다. 선택된 Marlin
+경로는 AWQ 전용 repack/zero-point 변환을 거치며, dense layer의 GPTQ형 변환과도
+다르다. 현대 runtime의 임시 변환·workspace peak를 A1000.8.5와 같다고 가정하지 않는다.
+[선택 순서와 format 제약](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/model_executor/layers/fused_moe/oracle/int_wna16.py#L108),
+[AWQ repack](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/model_executor/layers/fused_moe/oracle/int_wna16.py#L746),
+[BF16 emulation](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/model_executor/layers/fused_moe/oracle/int_wna16.py#L1360).
+
+**메모리 여유는 A100보다 좁다.** 같은24GiB 추정을 조건부로 사용할 때 기존 margin
+공식의 최소 free는30,720MiB다. 총32,768MiB가 전부 free라는 가정에서도 margin6,554MiB를
+빼면 추정 외 여유는1,638MiB뿐이다. 실제 GPU1 free가30GiB 미만이거나 현대 runtime의
+보수적 peak 추정이 커지면 실행 조건을 다시 판단해야 하며, 맞추려고 margin을 낮추지 않는다.
+RTX의 driver/OS, CUDA12.9 또는13.0 build와 dependency 정합성, modern V1의 프로세스·
+socket 보호 및 structured_outputs 계약은 [별도 조사](model_protocol_compatibility.md)를
+따른다. 결과는 **정적 지원 근거 있음 / 현장 실행·품질·peak 미검증**이다.
+
 이 준비는 기존 4B development 결과를 바꾸거나 미통과 gate를 완화하지 않는다.
 4B 종료 후 root가 다음 비교를 결정했으므로 다운로드·새 preflight·startup·structured
 output·고정 development 평가를 순서대로 진행할 수 있도록 준비했다. 이 문서의 검토자가

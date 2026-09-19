@@ -2,7 +2,11 @@
 
 A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의 greenfield rewrite.
 현재 **Phase 0~5 원격 checkpoint 완료**, **Phase5.x 요구사항 품질 평가 확대 진행 중**이다.
-전체215 tests가 통과했다. Qwen3-14B-AWQ/promptv3의 development seed 의미60/60, READY오판0/33을 기록했다. 자동생성 gold이며 unseen/human 정확도가 아니다. 최신 상태는 [STATUS](docs/STATUS.md)를 따른다. Durable review/job queue, API와 frontend는 후속 단계다.
+전체 253 tests가 통과했다. Phase5의 작은 개발 seed에서는 14B/v3가 60/60을 기록했지만,
+확대 평가의 10개 실험은 모두 품질 기준에 미달했다. 실패 결과를 보존하며 모델을 재검토 중이다.
+Gold는 자동 생성·사람 미검수이며 Internal Technical MVP는 아직 완료되지 않았다.
+최신 상태는 [STATUS](docs/STATUS.md), 비교 수치는 [실험 목록](docs/phase5x_experiment_register.md)을 따른다.
+Durable review/job queue, API와 frontend는 후속 단계다.
 
 LLM은 요구사항을 구조화하고, 결정론적인 BIM Engine이 승인된 변경을 실행한다.
 첫 vertical slice는 IFC4의 단일 IfcFurniture를 같은 층에서 상대 XY 이동하는 `MOVE_FURNITURE`다.
@@ -40,6 +44,7 @@ URL은 localhost 기본값이다. A100은14B-AWQ의 inference/seed평가를 실�
 | [호환성](docs/runtime_compatibility.md) | A100 측정과 RTX5090 미검증 구분 |
 | [모델 후보](docs/model_selection_plan.md) | 최신 공식 출처의 후보5개와 평가 우선순위 |
 | [평가 계획](docs/model_evaluation_plan.md) | 한국어/BIM 평가 metric과 재현 방법 |
+| [확대 평가 실험 목록](docs/phase5x_experiment_register.md) | 실패를 포함한 모든 Phase5.x 실행과 고정 gate |
 | [평가 seed](evaluations/requirement_seed.jsonl) | 10개 분류의 synthetic 사례20개 |
 | [Roadmap](docs/implementation_roadmap.md) | Phase0–11/5.x와 각 단계 완료 조건 |
 | [Git 운영](docs/git_workflow.md) | 기존 이력 보존, 공통v2, commit/push 준비 |
@@ -76,7 +81,7 @@ Backend `.conda`, local data `var/`, Application `src/`, `tests/`, `migrations/`
 
 ## 현재 제약과 다음 단계
 
-- A100은 40GB이며 허용 GPU3에 예상 밖 process3개가 있었다. 종료/변경하지 않았다.
+- A100은 physical GPU3만 사용한다. 가용 VRAM·utilization과 전체 peak 추정·안전 margin을 비교하며 다른 프로세스를 변경하지 않는다.
 - 모델 다운로드 전후 디스크를 측정하며 20GiB reserve를 유지한다.
 - driver535.183.01에서 cu118 vLLM0.8.5/Qwen3-14B-AWQ를 검증했다. 최신 architecture용 runtime은 별도 검증이 필요하다.
 - RTX5090은 예상32GB/physicalGPU1 계획이며 실제 runtime/benchmark는 미검증이다.
