@@ -1,7 +1,7 @@
 # NeuroBuild_v2
 
 A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의 greenfield rewrite.
-현재 **Phase 0~4 구현·검증·원격 checkpoint 완료**, **Phase5는 GPU3 점유로 중단** 상태다.
+현재 **Phase 0~4 구현·검증·원격 checkpoint 완료**, **Phase5는 GPU3 가용량·안전 margin을 검증하며 재개**했다.
 전체108 tests가 통과했다. 현재 checkpoint와 재개 조건은 [STATUS](docs/STATUS.md)를 따른다. 모델 서버, durable review/job queue, API와 frontend는 후속 단계다.
 
 LLM은 요구사항을 구조화하고, 결정론적인 BIM Engine이 승인된 변경을 실행한다.

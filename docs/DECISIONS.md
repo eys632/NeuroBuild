@@ -66,3 +66,9 @@ Phase 0 당시 commit에 포함된 Phase 승인 대기와 Phase 10 이후 계획
 - Phase4 remote dd58b59 완료 후 GPU3만 재확인했다. Phase0부터 예상 밖 process3개/3965MiB 점유가 계속 남아 있으며 본인 소유 PID 목록에는 없다. 타인 신원/파일/명령은 조회하지 않았다.
 - AGENTS의 예상 밖 GPU process 실행 중단 규칙을 적용한다. 남은 VRAM 또는 utilization0%를 사용 허가로 간주하지 않는다. 이는 측정된 OOM/메모리부족 주장이 아닌 정책 blocker다.
 - GPU3 사용 가능 시 재확인하여 Phase5부터 재개한다. 모델 환경/weight를 선제 설치하거나 이후Phase를 우회 구현하지 않는다. 최종모델/benchmark/RTX는 미검증으로 유지한다.
+
+## D021 — 사용자 변경: GPU3 가용량 기반 공존 실행
+
+2026-09-20 최신 사용자 지침이 D020의 점유 존재만으로 중단하는 규칙을 대체한다. 다른 process를 절대 종료/변경하지 않으며 GPU3만 사용한다. nvidia-smi free VRAM/utilization 반복 측정과 후보 전체 peak+안전 margin으로 실행 가능성을 판단한다. OOM 위험이나 타인 메모리 침범 가능성이 있는 후보는 실행하지 않는다.
+
+초기6회/10초 관측은 free36373MiB/util0%로 안정적이다. 초기예산은 margin=max(6144MiB,free×20%)를 남기며, TP1/context4096/concurrency1/eager를 우선한다. 전체디바이스90% 고정할당을 쓰지 않고 후보별 제한을 계산한다. Runtime은 공식 CUDA11.8 build부터 호환성을 실측하고 modelquality는 실제 평가로 결정한다.

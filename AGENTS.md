@@ -13,7 +13,7 @@
 - 차이는 `configs/common.json`, `configs/a100.json`, `configs/rtx5090.json`과 환경변수, 향후 `runtime/`의 dependency 정의로 격리한다.
 - Backend `.conda`는 Python 3.12를 계획한다. Model `.conda-vllm`은 선택한 runtime의 공식 요구사항에 맞춰 별도 계획한다. 대형 inference dependency를 Backend에 넣지 않는다.
 - A100: physical GPU **3**만, `CUDA_VISIBLE_DEVICES=3`. RTX5090: physical GPU **1**만, `CUDA_VISIBLE_DEVICES=1`. 프로세스 내부에는 `cuda:0`으로 보인다. TP=1. 다른 GPU로 fallback하지 않는다.
-- GPU를 실행하기 전 허용 GPU만 점유 확인한다. 예상 밖 프로세스가 있으면 실행을 중단하고 보고한다. 다른 사용자의 파일/프로세스/GPU에 접근하거나 프로세스를 종료하지 않는다.
+- 2026-09-20 사용자 지침: 다른 프로세스의 존재만으로 GPU 실행을 중단하지 않는다. 허용 GPU만 nvidia-smi로 free VRAM/utilization을 반복 측정하고, 후보의 startup/inference 예상 peak(전체 weight/KV/workspace 포함)+안전 margin이 가용량 안에 들어올 때만 실행한다. 타인 VRAM을 침범하거나 OOM 위험이 있는 후보는 실행하지 않는다. 실행 중 여유 감소 시 자신의 모델 작업만 안전하게 중단한다. 다른 사용자의 파일/프로세스/환경을 변경하거나 종료하지 않으며 GPU0/1/2로 fallback하지 않는다.
 - sudo, 시스템 Python/CUDA/Driver 변경, `pip --user`, base에 프로젝트 dependency 설치는 금지한다. 설치/다운로드 전후 root 디스크와 프로젝트 cache 크기를 확인한다.
 - A100 실측과 RTX5090 predicted/unverified를 구분한다. 설정 파일은 설치/실행/benchmark 성공의 증거가 아니다.
 - Headless 필수: GUI/X/monitor/interactive window를 요구하지 않는다. 결과는 artifact/API/브라우저로 제공한다.

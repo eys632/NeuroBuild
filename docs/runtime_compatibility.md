@@ -26,7 +26,7 @@ RTX5090에는 접속하지 않았다. 모든 RTX runtime/benchmark 항목은 PRE
 | context | 초기 config8192 PLANNED; model의 advertised max와 다름 | 같은 contract/평가 context 우선; fit UNVERIFIED |
 | tensor parallel | PLANNED1, 실행 없음 | PLANNED1, 실행 없음 |
 | GPU memory fraction | config0.90 시작 후보; 점유/overhead 고려 재조정, 실측 아님 | config0.90 시작 후보; 실측 아님 |
-| Runtime status | BLOCKED_GPU_OCCUPIED (2026-09-20); process3개/3965MiB 지속, model 설치/실행 없음 | UNVERIFIED / 서버 접근 불가 |
+| Runtime status | PREFLIGHT (2026-09-20 정책 변경); free36373MiB/util0% 6회 관측, margin 기반 공존 검증 재개 | UNVERIFIED / 서버 접근 불가 |
 | Benchmark status | NOT_RUN | NOT_RUN / 어떠한 PASS도 없음 |
 | Docker | CLI28.1.1만 확인; daemon/GPU toolkit 미확인 | UNVERIFIED |
 | Frontend runtime | system node10.19.0/npm6.14.4 관측; 프로젝트용 미선택 | UNVERIFIED; Phase9에서 공통 요구 버전 결정 |
@@ -36,7 +36,7 @@ RTX5090에는 접속하지 않았다. 모든 RTX runtime/benchmark 항목은 PRE
 
 ## 이후 validation gate
 
-1. 허용 physical GPU만 점유 재확인. 예상 밖 점유는 보고하고 중단한다.
+1. 허용 physical GPU만 free VRAM/utilization을 반복 측정하고 후보 peak+margin과 비교한다. 충분한 예산을 입증하지 못한 후보는 실행하지 않는다.
 2. 디스크 peak 계획과 여유 확인. GPU별 호환 wheel/tag/Python/Torch/vLLM/quant kernel을 고정한다.
 3. model revision/tokenizer/template/parser/schema의 hash를 기록한다. 가중치 다운로드는 1개씩 한다.
 4. 선택 GPU만 노출한 단일 장치 확인 후 startup/JSON/schema/tool parser/한국어 계약을 시험한다.

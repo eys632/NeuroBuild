@@ -1,4 +1,6 @@
-# Phase 5 — Local Model Runtime preflight / BLOCKED
+# Phase 5 — Local Model Runtime 진행 기록
+
+> 2026-09-20 04:32 KST 갱신: 사용자가 VRAM 예산과 안전 margin 기반 공존 실행을 허용했다. 아래 01:00 중단은 당시 기록이며 현재는 Phase5를 재개했다. 최신 상태는 ../STATUS.md 및 EXECUTION_LOG.md를 따른다.
 
 2026-09-20 01:00 KST. **Phase5는 완료하지 않았다.** Phase4 remote checkpoint `dd58b596fab2aaa24c5aba4322d56bc5d127440c` 확인 후 허용 GPU와 환경을 조사했다. 현재 중단 조건은 **BLOCKED_GPU_OCCUPIED**다.
 

@@ -34,7 +34,7 @@ D/J는 향후 확장 평가다. 현재 vertical slice의 실행 허용률을 높
 
 ## 재현 프로토콜
 
-1. 현재 profile의 허용 GPU(A100=3, RTX5090=1) 점유 확인, 디스크 peak 예산, 정확한 runtime build/model license gate를 먼저 통과한다. 현재 A100 GPU3의 예상 밖 점유가 해소되기 전에는 실행하지 않는다. 이번 Phase0에는 실행하지 않는다.
+1. 현재 profile의 허용 GPU(A100=3, RTX5090=1) 점유 확인, 디스크 peak 예산, 정확한 runtime build/model license gate를 먼저 통과한다. 2026-09-20 공존 실행 지침에 따라 반복 측정한 free VRAM 안에 후보 전체 peak+안전 margin이 들어올 때만 실행한다. 다른 작업의 점유 자체는 중단 조건이 아니다.
 2. 하나의 후보만 다운로드하고 모델/tokenizer/quant checkpoint commit SHA와 파일 manifest hash를 기록한다. 같은 모델이라고 다른 quant artifact를 합치지 않는다.
 3. Git commit, dataset hash/split, prompt/schema hash, chat template, tool/reasoning parser, vLLM/Torch/CUDA/Python, driver/GPU를 기록한다.
 4. 초기 text-only, TP1, context8192, concurrency1, temperature0, seed42, output token ceiling1024를 **평가 시작안**으로 한다. 모델별 지원 여부를 확인하고 다르면 run manifest에 명시한다.
@@ -60,7 +60,7 @@ D/J는 향후 확장 평가다. 현재 vertical slice의 실행 허용률을 높
 | Tool selection accuracy | 필요한 분류/MOVE_FURNITURE/조회/clarification/거절 판단이 맞은 trial / 해당 trial; 실제 tool 실행 없음 |
 | Latency mean/p95 | client monotonic request→final response까지; 성공 latency와 timeout 포함 전체 상태를 함께 보고. p95 nearest-rank |
 | tokens/sec | output tokens / 생성 시간(streaming TTFT 후 기준); decode time 없으면 output/end-to-end를 별도 이름으로 보고 |
-| VRAM | startup와 평가 중 현재 profile의 허용 GPU만 peak used MiB 및 baseline, sampling interval 기록; 예상 밖 process 점유 시 측정 중단 |
+| VRAM | startup와 평가 중 현재 profile의 허용 GPU만 peak used MiB 및 baseline, sampling interval 기록; 안전 margin 부족/급격한 점유 증가 시 자신의 평가 프로세스만 중단 |
 | Startup time | launch→health/model-ready; cold/warm 각각, 실패/timeout 별도 |
 
 Schema 실패 trial은 semantic도 실패다. 유효 output만으로 accuracy 분모를 줄이지 않는다.

@@ -12,7 +12,7 @@ RTX5090은 사용자 제공 과거 정보에 근거한 **PREDICTED / UNVERIFIED*
 - A100은 physical GPU3 하나, RTX5090은 physical GPU1 하나만 사용한다. TP=1이며 다른 GPU로 fallback하지 않는다.
 - A100 실측: A100-PCIE-40GB, 40960MiB, compute capability 8.0, driver 535.183.01, glibc 2.31.
 - `nvidia-smi`의 CUDA 12.2 표시는 driver의 CUDA 호환성 정보이고, 설치 toolkit은 nvcc 11.8이다. 둘을 PyTorch wheel의 CUDA runtime과 구분한다.
-- 조사 시 GPU3에 예상 밖 프로세스 3개와 약 3965MiB 점유가 관찰되었다. 이를 종료하거나 피해서 모델을 실행하지 않는다.
+- 조사 시 GPU3에 예상 밖 프로세스 3개와 약 3965MiB 점유가 관찰되었다. 이를 종료/변경하지 않는다. 2026-09-20 사용자 지침에 따라 free VRAM과 utilization, 후보 peak+margin을 비교하여 안전하게 공존할 수 있는 후보만 실행한다.
 - root filesystem 사용률 96%, 가용 약 86GB였다. 숫자만 보고 다운로드를 허용하지 않고 필요한 cache/환경/weight/임시공간과 서버 여유 정책을 먼저 검토한다.
 - 최신 vLLM의 model registry 등재는 현재 driver/glibc에서 배포 wheel이 실행된다는 증거가 아니다. **현재 서버에서 확인된 실행 가능 build는 없다.**
 - driver, 시스템 CUDA, OS를 변경하여 맞추지 않는다. 실제 설치 조합은 [runtime_compatibility.md](runtime_compatibility.md)의 검토를 통과한 뒤 고정한다.
@@ -47,7 +47,7 @@ Qwen3-4B-Instruct-2507의 과거 실험은 historical baseline이며 새 환경�
 Qwen3.6 MoE는 이후 latency/처리량 비교 후보다. Gemma12는 메모리 부담이 작은 비교군으로 남기되 vLLM release/context 불일치를 해소한다.
 EXAONE은 비상업 연구 목적과 라이선스 조건에 부합하는 경우에만 후순위로 검토한다.
 이 순서는 조사자의 조건부 제안이며 benchmark 순위나 최종 Primary Model 선정이 아니다.
-현재 GPU 점유·디스크·runtime build 미확인 상태에서는 위 순서로도 다운로드나 실행을 시작하지 않는다.
+실제 다운로드/실행은 가용 GPU 예산·디스크·runtime build 검증 후에만 시작한다. 이전 점유 존재 자체의 중단 조건은 최신 공존 실행 지침으로 대체됐다.
 
 ## 4. Weight 하한, 실제 artifact, VRAM
 

@@ -26,7 +26,7 @@ Phase 4~6은 Phase 7의 durable 실행을 미리 production 수준으로 구현�
 
 - 설치 전 project root, 기존 환경, Python 버전, 환경 개수/목적, 설치 위치, root disk를 확인한다. 설치할 때는 실제 활성화한 환경의 Python/pip 경로를 재확인한다.
 - Backend는 `.conda`/Python 3.12를 기본으로 계획하고 Model Runtime은 `.conda-vllm`에서 별도 지원 버전을 확인한다. 환경 자체는 Git에서 제외하고 검증된 재현 정의를 남긴다.
-- A100 physical GPU 3 또는 RTX 5090 physical GPU 1만 사용한다. 예상 밖 점유가 있으면 실행하지 않고 보고한다. 다른 사용자 프로세스 종료나 다른 GPU fallback은 하지 않는다.
+- A100 physical GPU 3 또는 RTX 5090 physical GPU 1만 사용한다. 다른 점유가 있더라도 free VRAM/utilization과 후보 peak+안전 margin을 검증하여 충분한 경우만 실행한다. 다른 사용자 프로세스 종료나 다른 GPU fallback은 하지 않는다.
 - 대형 dependency/model 다운로드 전에 디스크의 peak 사용량을 계산한다. 현재 A100 root 사용률이 높으므로 다운로드 크기만 보고 설치 가능 여부를 판단하지 않는다. 사용자 cache를 자동 삭제하지 않는다.
 - Runtime build/version/dtype/quantization/context/동시성 설정은 공식 자료와 실제 테스트로 고정한다. 설정 예제가 호환성 보증이 되지 않는다.
 - milestone마다 `git status`, diff, tests/review/문서를 확인하고 의미 있는 commit과 GitHub push를 수행한다. push 성공까지 checkpoint 미완료다. secret/환경/모델/DB/사용자 IFC/cache/runtime artifact는 push하지 않는다.

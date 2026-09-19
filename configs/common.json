@@ -10,8 +10,8 @@
     "model_id": null,
     "status": "NOT_TESTED",
     "tensor_parallel_size": 1,
-    "gpu_memory_utilization": 0.9,
-    "max_model_len": 8192,
+    "gpu_memory_utilization": 0.5,
+    "max_model_len": 4096,
     "parameter_status": "PLANNED_NOT_VALIDATED",
     "dtype": null,
     "quantization": null

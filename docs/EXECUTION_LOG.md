@@ -159,3 +159,16 @@ Could not open a connection to your authentication agent.
 - 보고서 작성 뒤 GPU3만 다시 조회했으며 process3개/used3965/free36373MiB/util0%로 동일했다. 후속 변경은 상태 문서만이며 Application tests를 불필요하게 반복하지 않았다. Current-state Markdown25개 상대링크 및 git diff --check PASS. 독립 문서검토 후 blocker checkpoint를 push한다.
 
 - 독립 문서 검토 통과: Phase0~4 완료/108 PASS/Phase5 정책 blocker/후속 미진행/메모리 review 한계가 일관됨. README roadmap 설명의 범위를 Phase0~11로 맞췄다.
+
+## 2026-09-20 04:32 KST — 사용자 GPU 정책 변경 / Phase5 재개
+
+- 사용자가 GPU3의 다른 process 존재만으로 중단하는 규칙을 대체했다. 타인 process/환경 변경 금지 및 GPU3 only는 유지하며 free VRAM/utilization, 후보peak+margin으로 판단한다. 관련 현재정책/상태문서를갱신하고 과거중단기록은 historical로보존했다.
+- 전역/프로젝트 AGENTS와 계획/상태/결정/실행기록, git status/log를 읽었다. Remote checkpoint6b3dfd2, worktree clean에서 재개.
+- 설치 전 root/기존환경/Python/pip/CONDA_PREFIX/disk 확인: Backend .conda1.4G, modelenv없음, 기본shellsystem3.8.10, conda미활성, root83G/free96%, cache803M. 두환경 목적은 Backend 유지 + model-only .conda-vllm Python3.12.
+- GPU3 only6samples/2s간격(10초): 모두 total40960/used3965/free36373MiB, util0%, driver535.183.01. 초기 safety margin20%free=7275MiB, 후보예산29098MiB. 실제fit보장은 아니며 launch직전/실행중재검증한다.
+
+- .conda-vllm Python3.12.14/pip26.2.1을 conda-forge로 생성했다. 활성화 후 python/python3/pip/CONDA_PREFIX가 모두 프로젝트 model 환경임을 확인했다. Backend는 jsonschema4.26.0과 4개 dependency를 SHA256 고정하여 추가하고 editable reinstall/pip check를 통과했다.
+- 공식 vLLM0.8.5+cu118/Torch2.6.0+cu118 wheel과 호환 핵심 dependency를 제한한 resolver 결과148개를 SHA256 lock으로 저장했다. --require-hashes --only-binary --no-deps 설치 진행. ray[cgraph]가 요구하는 cupy-cuda12x13.4.1도 lock에 기록하지만 V0/uni에서는 해당 cgraph 경로를 사용하지 않는다.
+- Qwen3-14B-AWQ full revision31c69efc29464b6bb0aee1398b5a7b50a99340c3의 11파일/9,992,683,140bytes manifest를 고정했다. weights뿐 아니라 config/tokenizer/license도 pin한다. 다운로드는 20GiB 디스크 reserve와 파일별size/SHA256검증을 사용한다. root free81GiB에서 시작했으며 병행 설치 중75GiB를 재확인했다. 실제 GPU inference는 아직 실행하지 않았다.
+
+- GPU preflight 13개 fake측정 회귀 PASS. 실제GPU3 재측정5회도 free36373MiB/util0%로 동일하여 estimated18432+margin7275MiB 후보가 예산 안에 들어왔다. 이는 launch 성공이 아닌 사전예산 검사다. 변경 중간 Backend회귀145개 PASS(13.078s,skip0), 기존PG/IFC 포함.
