@@ -229,3 +229,8 @@ socket 보호 및 structured_outputs 계약은 [별도 조사](model_protocol_co
 4B 종료 후 root가 다음 비교를 결정했으므로 다운로드·새 preflight·startup·structured
 output·고정 development 평가를 순서대로 진행할 수 있도록 준비했다. 이 문서의 검토자가
 직접 수행한 결과는 **manifest와 정적 검토 준비 완료**이며 실제 실행 결과는 별도 증거다.
+
+
+## V4 comparison context check
+
+After the preserved v3 diagnostic failed, the actual downloaded tokenizer was checked with existing v4 (SHA2fdd6a5a92860cde27d14adc10916a242b2221e1569015541ddf31581d1a14d8). System2350 tokens; development40 maximum2761+768=3529/4096, holdout80 input-length-only maximum2766+768=3534/4096. All11 small metadata files matched manifest bytes/SHA, separate template40c21f34…7b541 was selected automatically. No Torch/GPU/network/model calls or prompt/gold changes were made by this CPU check. Quality remains unverified for v4.

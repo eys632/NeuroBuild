@@ -1,0 +1,5 @@
+{
+  "health": "PASS",
+  "observed_seconds_since_separate_probe": 42.037,
+  "scope": "Probe begins after launcher invocation; not exact startup/cold timing; caches not flushed"
+}

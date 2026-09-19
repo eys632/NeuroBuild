@@ -1,0 +1,77 @@
+{
+  "lifecycle": "FROZEN_BEFORE_30B_A3B_INSTRUCT_V4_DIAGNOSTIC",
+  "frozen_at_utc": "2026-09-19T23:18:43.480236+00:00",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "source_ancestor_commit": "28cfcab9655ca37547886aa986efc80d473b6328",
+  "model_id": "ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ",
+  "model_revision": "9f41ff709102dbe73e614f9365f8280170db268e",
+  "protocol": "legacy_guided_json",
+  "prompt": "prompts/requirement_v4.txt",
+  "temperature": 0.7,
+  "seed": 42,
+  "warmups_per_run": 5,
+  "trials_per_case": 1,
+  "max_tokens": 768,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "sha256": {
+    "evaluations/hardening_v1_manifest.json": "959d3340e4ba095ca2f54d29f55dd4b2f151df00a2a92a619dcc3bf8baa56605",
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+    "evaluations/generate_requirement_hardening_v1.py": "f2908f7557df098690ea9933cd7a210e4510b03ecb7c9e6601b0daff0f4b2019",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "798446a141fe9395dacba1d6c84c60e33af0d1ea50b75aafffb9113b721bcf69",
+    "scripts/evaluate_requirements.py": "eff1da86d84775f6bb394b7c4ebbae104a91196a41f6dcac01c145ef0c67a1cc",
+    "scripts/model_server.py": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab",
+    "runtime/models/qwen3-30b-a3b-instruct-2507-awq.json": "32ff8e507fb4b25f5e67da2d03ba898d52467d653eb55c4c1cc906ee2738939c",
+    "prompts/requirement_v4.txt": "2fdd6a5a92860cde27d14adc10916a242b2221e1569015541ddf31581d1a14d8"
+  },
+  "review_evidence": [
+    "docs/reviews/phase5x_plan_review.md",
+    "docs/reviews/phase5x_numeric_review.md",
+    "docs/moe_instruction_candidate.md",
+    "docs/reviews/phase5x_moe_runtime_review.md",
+    "docs/reviews/phase5x_moe_v3_diagnostic_review.md"
+  ],
+  "independent_review": "AI agent review, not human verification; heldout source/gold inspected before inference, no prompt tuning from outputs",
+  "policy": "Preserve all results. Never modify heldout gold silently or tune this prompt from heldout outputs. New prompts/configuration require separate version/freeze and results.",
+  "gate_targets": {
+    "schema_rate": 1.0,
+    "semantic_rate_minimum": 0.95,
+    "critical_model_ready_fp_count": 0,
+    "unsafe_accepted_ready_total_count": 0
+  },
+  "purpose": "All 40 development x1 diagnostic; existing v4 versus v3 on same MoE model/runtime/neutral profile. One controlled existing-prompt comparison before considering representation change; no heldout outputs.",
+  "served_model": "neurobuild-moe",
+  "sampling_profile": "qwen3_nonthinking",
+  "sampling_request_parameters": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 42
+  },
+  "enable_thinking": false,
+  "reasoning_parser": null,
+  "timeout_seconds": 60,
+  "cpu_context_bound": {
+    "development_max_input_plus_output": 3529,
+    "holdout_max_input_plus_output": 3534,
+    "limit": 4096,
+    "torch_imported": false
+  },
+  "implementation_change": "No application/client/schema/parser/scorer/gold changes. Existing neutral nonthinking profile with existing v4 prompt; same pinned MoE checkpoint and running launch epoch.",
+  "launch_config_sha256": "8137d448f6dc6ac9c07f8bbe31bafa6d0627e81bcccad3d680a0a7517796296b",
+  "holdout_outputs_seen_before_freeze": false,
+  "preflight_budget": {
+    "estimated_peak_mib": 24576,
+    "minimum_free_mib": 36373,
+    "required_safety_margin_mib": 7275,
+    "fresh_recheck_in_launcher_required": true,
+    "measured_process_peak": false
+  }
+}

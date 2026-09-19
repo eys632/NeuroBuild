@@ -1,0 +1,86 @@
+{
+  "audit": "CPU_HEADER_ONLY_NOT_KERNEL_OR_WEIGHT_HASH_VERIFICATION",
+  "status": "PASS",
+  "utc": "2026-09-19T23:10:16.621792+00:00",
+  "model_id": "ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ",
+  "revision": "9f41ff709102dbe73e614f9365f8280170db268e",
+  "config_sha256": "efb6d69fb62380d96f24c170ff0cc1ea57f1d168c19d73e42874a2432c83380c",
+  "index_sha256": "f5b4f889fe28ee7965333f4d8a14a357b81b9a0b7b3331217061342a791844d2",
+  "expected_tensor_count": 56115,
+  "actual_tensor_count": 56115,
+  "index_tensor_count": 56115,
+  "expected_tensor_data_bytes": 16802672640,
+  "observed_tensor_data_bytes": 16802672640,
+  "total_header_bytes_read": 6795184,
+  "checks": {
+    "missing_expected_names": [],
+    "unexpected_names": [],
+    "index_missing": [],
+    "index_extra": [],
+    "assignment_mismatches": [],
+    "other_errors": []
+  },
+  "shards": {
+    "model-00001-of-00004.safetensors": {
+      "tensor_count": 15777,
+      "file_bytes": 5001815024,
+      "header_bytes": 1902568,
+      "header_sha256": "fcfa7f8bf92772530dd1f646924460633a61cc21319ca34d8924feda8f295632",
+      "tensor_data_bytes": 4999912448,
+      "shape_dtype_offset_errors": [],
+      "stat_identity": [
+        66306,
+        35423433,
+        5001815024,
+        1789858459119134237
+      ]
+    },
+    "model-00002-of-00004.safetensors": {
+      "tensor_count": 18042,
+      "file_bytes": 5002166720,
+      "header_bytes": 2190264,
+      "header_sha256": "60a1372145596092677a88b1f40b86338e75938f660da379400bcab8664f88e0",
+      "tensor_data_bytes": 4999976448,
+      "shape_dtype_offset_errors": [],
+      "stat_identity": [
+        66306,
+        35423434,
+        5002166720,
+        1789858842770395012
+      ]
+    },
+    "model-00003-of-00004.safetensors": {
+      "tensor_count": 18020,
+      "file_bytes": 5001879600,
+      "header_bytes": 2187304,
+      "header_sha256": "05e51fe7cf639b7257edad30e48d15e65670b4d6896ab2593a763eb7e94ef94c",
+      "tensor_data_bytes": 4999692288,
+      "shape_dtype_offset_errors": [],
+      "stat_identity": [
+        66306,
+        35423435,
+        5001879600,
+        1789859242742256101
+      ]
+    },
+    "model-00004-of-00004.safetensors": {
+      "tensor_count": 4276,
+      "file_bytes": 1803606480,
+      "header_bytes": 515016,
+      "header_sha256": "1a5fdf0c34891797ce0d625e16fed843419f6cb72822a270a4152bf20181f433",
+      "tensor_data_bytes": 1803091456,
+      "shape_dtype_offset_errors": [],
+      "stat_identity": [
+        66306,
+        35423436,
+        1803606480,
+        1789859394184254715
+      ]
+    }
+  },
+  "limitations": [
+    "Only 8-byte lengths and bounded JSON headers were read from completed safetensors files; no .part file or tensor data was read.",
+    "Config-derived shape/dtype/key coverage and pinned-index shard assignments do not prove checkpoint numerical correctness, cryptographic weight integrity, or CUDA kernel execution.",
+    "Tensor names and on-disk dimensions follow Qwen3Moe standard AWQ checkpoint layout; vLLM performs subsequent packing/transpose/repack internally."
+  ]
+}

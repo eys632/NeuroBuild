@@ -80,3 +80,10 @@ Three 4B prompt variants did not satisfy the unchanged gate. Stop expanding prom
 Run20260919T224246Z-64a5648ea1b546c78b1f961bf3b6c094: schema40/parser38/semantic36(90%), rawFP1/20, unsafeaccepted2/40, FN1/20, mean2.57311s/p953.40377s. I01 changes750mm to-.75m and is rejected; HD-B01 guesses unsigned direction and is rejected; HD-F01/02 still drop location/exclusion in both target and instruction. Summary replay matches all recorded metrics. Changing decoding does not meet the gate. No holdout calls or IFC execution.
 
 Stop 4B prompt/decoding trials and reassess a distinct instruction MoE checkpoint. Own 4B guard was verified by UID, cmdline and starttime before SIGTERM; child exited normally and rendezvous was cleaned. An initial attempt to use os.pidfd_open stopped without signalling because this Python build lacks that API; the existing verified-own-guard procedure completed shutdown. Other processes were untouched. Candidate metadata/static reviews and new GPU3 preflight are required before any new launch.
+
+
+## MoE v3 diagnostic failure
+
+Run20260919T231243Z-194bbb3212944ebcb8e0e54bfa1b28b5, development40×1/warmup5: schema40/parser36/semantic34(85%), rawFP1/20, unsafeaccepted1/40, FN4/20; mean4.24096s/p956.07952s. F02 changes a source character, I02 fails source grounding, HD-A02 loses the negative sign, HD-B01 guesses unsigned direction, HD-D02 misclassifies one furniture's XY as multiple furniture, HD-F02 loses the scope/excluded target. Startup success does not satisfy semantic gate. Full results/resource/manifest preserved.
+
+Next: reuse existing v4 with identical checkpoint/runtime/neutral sampling, all40 development once. If copying/interpretation failure persists, revisit the redundant generation representation rather than download more models or weaken gold/parser/gates. Existing1.0 parser/domain remains frozen throughout this comparison. Holdout still uncalled.

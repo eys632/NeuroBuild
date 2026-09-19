@@ -305,3 +305,19 @@ Run20260919T224246Z-64a5648ea1b546c78b1f961bf3b6c094: schema40/parser38/semantic
 Stop 4B prompt/decoding trials and reassess a distinct instruction MoE checkpoint. Own 4B guard was verified by UID, cmdline and starttime before SIGTERM; child exited normally and rendezvous was cleaned. An initial attempt to use os.pidfd_open stopped without signalling because this Python build lacks that API; the existing verified-own-guard procedure completed shutdown. Other processes were untouched. Candidate metadata/static reviews and new GPU3 preflight are required before any new launch.
 
 - 30B-A3B instruction AWQ comparison download: pinned third-party ELVISIO manifest32ff8e50,15files/16830441067bytes; fresh free58061914112bytes exceeds model+20GiBreserve. Source/config/kernel static reviews found no blocker; startup/quality remain unverified. Downloader verifies each size/SHA into project var/models; no new environment or package install.
+
+
+## MoE candidate download and guarded startup
+
+Pinned15files/16,830,441,067bytes completed size+SHA verification. Independent CPU header audit checked all56,115 names/shapes/F16-I32 dtypes/offsets/shard assignments, no mismatches; this is separate from semantic/kernel validation. Actual downloaded tokenizer/template SHA and v3 context maxima3538/3543 including768 output also matched the frozen preparation. Disk remained39G free.
+
+Fresh GPU3 launcher preflight measured five stable samples free36373MiB/util0%; estimated fullpeak24576 plusmargin7275 fit. Own child3409891 started with FP16/autoawq_marlin/TP1/context4096/seq1/eager/KV256blocks/.60runtime+.60allocator/noCPUoffload. Health probe observed42.037s from its separate start, caches unflushed; not exact cold startup. Independent current-UID TCP inspection found five listeners all127.0.0.1. Initial observed aggregate baseline rise17126MiB/minfree19248MiB remained within guard limits. VLLM reports weights15.7406GiB, actual CUDA total39.39GiB*.60=23.64GiB budget (nominal board40GiB differs due reserved VRAM), and KV override uses256blocks rather than its larger computed available pool.
+
+Startup log warnings about missing packed_modules_mapping and default MoE tuning were reviewed against this config and source; no incompatible mapping/kernel or OOM was observed. Weight header integrity and engine health do not establish Korean semantic quality. Root starts frozen v3/neutral/all40development×1/warmup5 next, with no heldout inference. Source/schema/parser/gold unchanged; original freeze0302507 and later documentation checkpoint28cfcab are pushed and verified.
+
+
+## MoE v3 diagnostic failure
+
+Run20260919T231243Z-194bbb3212944ebcb8e0e54bfa1b28b5, development40×1/warmup5: schema40/parser36/semantic34(85%), rawFP1/20, unsafeaccepted1/40, FN4/20; mean4.24096s/p956.07952s. F02 changes a source character, I02 fails source grounding, HD-A02 loses the negative sign, HD-B01 guesses unsigned direction, HD-D02 misclassifies one furniture's XY as multiple furniture, HD-F02 loses the scope/excluded target. Startup success does not satisfy semantic gate. Full results/resource/manifest preserved.
+
+Next: reuse existing v4 with identical checkpoint/runtime/neutral sampling, all40 development once. If copying/interpretation failure persists, revisit the redundant generation representation rather than download more models or weaken gold/parser/gates. Existing1.0 parser/domain remains frozen throughout this comparison. Holdout still uncalled.

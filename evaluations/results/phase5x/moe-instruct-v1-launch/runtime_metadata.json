@@ -1,0 +1,20 @@
+{
+  "python": "3.12.14",
+  "vllm": "0.8.5+cu118",
+  "torch": "2.6.0+cu118",
+  "cuda": "11.8",
+  "transformers": "4.51.3",
+  "xgrammar": "0.1.18",
+  "driver": "535.183.01",
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "quantization": "awq_marlin",
+  "dtype": "float16",
+  "physical_gpu": 3,
+  "max_model_len": 4096,
+  "tensor_parallel_size": 1,
+  "profile": "a100",
+  "chat_template_sha256": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541",
+  "launch_config_sha256": "8137d448f6dc6ac9c07f8bbe31bafa6d0627e81bcccad3d680a0a7517796296b",
+  "enable_reasoning": false,
+  "reasoning_parser": null
+}

@@ -1,0 +1,18 @@
+{
+  "template_sha256": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541",
+  "prompt_sha256": "716137f3e275cb0030f1f497f8e23bbeeefd8a62eae757378231b7d910db3c3e",
+  "verification": "actual downloaded metadata bytes/SHA; weight size and completed downloader manifest only; no tensor access",
+  "development": {
+    "cases": 40,
+    "max_input": 2770,
+    "with_output768": 3538,
+    "length_only": true
+  },
+  "holdout": {
+    "cases": 80,
+    "max_input": 2775,
+    "with_output768": 3543,
+    "length_only": true
+  },
+  "torch_imported": false
+}
