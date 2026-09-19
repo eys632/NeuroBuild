@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "network": {
+    "public_base_url": "http://localhost:3000",
+    "frontend_base_url": "http://localhost:3000",
+    "api_base_url": "http://localhost:8000",
+    "model_server_url": "http://localhost:8003"
+  },
+  "runtime": {
+    "model_id": null,
+    "status": "NOT_TESTED",
+    "tensor_parallel_size": 1,
+    "gpu_memory_utilization": 0.9,
+    "max_model_len": 8192,
+    "parameter_status": "PLANNED_NOT_VALIDATED",
+    "dtype": null,
+    "quantization": null
+  },
+  "paths": {
+    "backend_environment": ".conda",
+    "model_environment": ".conda-vllm",
+    "model_storage": "var/models",
+    "cache": "var/cache",
+    "artifacts": "var/artifacts"
+  }
+}

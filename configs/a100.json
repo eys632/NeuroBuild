@@ -1,0 +1,12 @@
+{
+  "profile": "a100",
+  "gpu": {
+    "name": "NVIDIA A100-PCIE-40GB",
+    "physical_index": 3,
+    "cuda_visible_devices": "3",
+    "process_device": "cuda:0",
+    "vram_class_gb": 40,
+    "hardware_status": "MEASURED",
+    "evidence": "docs/environment.md"
+  }
+}

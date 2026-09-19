@@ -1,0 +1,12 @@
+{
+  "profile": "rtx5090",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 5090",
+    "physical_index": 1,
+    "cuda_visible_devices": "1",
+    "process_device": "cuda:0",
+    "vram_class_gb": 32,
+    "hardware_status": "PREDICTED_UNVERIFIED",
+    "evidence": "docs/runtime_compatibility.md"
+  }
+}

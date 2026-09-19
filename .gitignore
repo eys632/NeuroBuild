@@ -1,0 +1,52 @@
+# Environments and Python build output
+.conda/
+.conda-vllm/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+.coverage
+htmlcov/
+
+# Secrets and local settings; tracked templates must use *.example
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.env.local
+*.pem
+*.key
+credentials*.json
+
+# Project runtime storage (models, caches, IFC snapshots, DB data, reports)
+/var/
+/.cache/
+/models/
+/artifacts/
+/data/
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.ifc
+*.ifczip
+*.glb
+*.gltf
+*.log
+*.pid
+*.sqlite*
+*.dump
+
+# Frontend/editor local state
+node_modules/
+.next/
+.vscode/
+.idea/
+.DS_Store
