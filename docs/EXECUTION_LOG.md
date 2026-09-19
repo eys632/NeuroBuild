@@ -216,3 +216,7 @@ Could not open a connection to your authentication agent.
 
 - Phase5.xfinalpre-inference: parsera940f395...fb4a,236testsPASS/skip0/16.056s, independent19maliciousreject+4normalcontrols, 120handreferencePASS. Datasetdev85734d7c...ff88/hold12c08e85...4d78, manifest959d3340...6605。Promptv3anddatasetgoldunchanged. FormalfiniteboundaryfixincludesUnicodeMarks/unknownpunctuation, whitespacepreserved; NLPmeaningstillLLMresponsibility. FreezeJSONtimestamps/hashpinsrecordedbeforefirstmodelcalls.
 - GPU3freshguardpreflightpassed; 14BhardeningserverstartuphealthPASS24.057s wrapperobserved(includespreflight,filesystemcachenotflushed),5actualTCPlistenersall127.0.0.1; noforeignprocesschanges.
+
+- Phase5.x developmentv3 run20260919T205840Z-469fdecdb1fd476f82202df54a1808a7 completed120trials. schema120/parser111/semantic108;rawFP3/60acceptedFP0;wrongacceptedmove0/FN9/60;mean3.32248/p954.67003s. FourcasefailuresB01directionmissing,D02twoaxes,F01/F02modelunitconversion. Alloldseed60stillPASS,new20×3=48/60. GateFAILpreserved;heldoutnotcalled;v4development-onlypromptiterationauthorized.
+
+- V4development-onlyprompt개정: singleobjectXYcomponents≠multipleobjects, unsignedaxisCLARIFICATION, originalliteralunitcopy. 기존externalcondition거절예제유지,heldout출력미호출. SHA2fdd6a5a92860cde27d14adc10916a242b2221e1569015541ddf31581d1a14d8,7newexemplarsschema/parserPASS; maxv4chat+output3538/4096 CPU확인. RootindependentpromptreviewPASS;additionalresearcherreview는별도로이어진다. v3/code/goldhash모두보존,새v4freeze후동일dev120재평가.

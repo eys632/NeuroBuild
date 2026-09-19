@@ -16,39 +16,56 @@ Gold 상태는 **AUTO-GENERATED / NOT HUMAN VERIFIED**다. seed20은 공개 deve
 Backend `.conda`에서 실행한다. GPU dependency는 필요하지 않다. 아래 명령의 모델과
 revision은 실제 서버의 launch 기록 및 검증된 weight manifest와 일치해야 한다.
 실제 모델 평가를 하지 않은 unit test 결과를 모델 성능으로 표시하지 않는다.
+서버의 `--served-model-name`과 아래 `--model`은 `neurobuild-local`로 맞춘다.
+Hugging Face checkpoint ID `Qwen/Qwen3-14B-AWQ`는 weight manifest에서 읽으며
+HTTP model alias를 대신하지 않는다.
+
+다음은 [보존된 Phase5.x runtime metadata](../evaluations/results/phase5x/runtime_metadata.json)를
+사용하는 명령 예시다. 이 파일은 당시 실제 측정한 환경과 launch를 기록한 것으로,
+현재 접속한 서버의 자동 attestation이 아니다. 같은 launch와 runtime identity임을
+확인한 경우에만 사용하고, 서버를 다시 시작하거나 설정을 변경했다면 새 launch
+정의와 metadata를 작성하여 `--runtime-metadata` 경로를 바꾼다.
 
 ```sh
+cd /home/a202192020/NeuroBuild_v2
 .conda/bin/python scripts/evaluate_requirements.py \
   --base-url http://127.0.0.1:8003 \
-  --model Qwen/Qwen3-14B-AWQ \
+  --protocol legacy_guided_json \
+  --model neurobuild-local \
   --model-revision 31c69efc29464b6bb0aee1398b5a7b50a99340c3 \
-  --weight-manifest var/runtime/verified-model-manifest.json \
-  --runtime-metadata var/runtime/evaluation-runtime.json
+  --weight-manifest var/models/Qwen--Qwen3-14B-AWQ/31c69efc29464b6bb0aee1398b5a7b50a99340c3/neurobuild-manifest.json \
+  --runtime-metadata evaluations/results/phase5x/runtime_metadata.json \
+  --dataset evaluations/requirement_seed.jsonl \
+  --split development_seed \
+  --prompt prompts/requirement_v3.txt \
+  --max-tokens 768 \
+  --timeout 60 \
+  --warmups 5 \
+  --trials 3
 ```
 
 `--tokenizer-revision` 생략 시 model revision과 같다고 명시적으로 기록한다. 다른
-tokenizer를 사용한다면 정확한 commit을 지정한다. 위 경로는 예시이며 자동 생성하지
-않는다. `--max-tokens 1024`, `--timeout 60`, `--warmups 5`, `--trials 3`이 기본이다.
+tokenizer를 사용한다면 정확한 commit을 지정한다. Model manifest는 downloader가
+파일 검증 후 생성하며 evaluator가 다운로드하거나 자동 생성하지 않는다.
+`--max-tokens 768`, `--timeout 60`, `--warmups 5`, `--trials 3`이 기본이다.
 4096 context 등 서버 한도는 runtime metadata에 별도로 기록한다. max_tokens와 prompt가
 context에 맞지 않아 서버가 거절하면 실패 trial이다. client는 temperature0, seed42,
 thinking off, `xgrammar:no-fallback`, 동시 요청1을 사용한다.
 
 Runtime metadata는 다음 **정확한 key 집합**을 가진 JSON이다. 버전은 설치된 runtime에서
-확인하고 예시를 추측으로 복사하지 않는다. `chat_template_sha256`는 실제 사용 template
+확인하고 예시를 추측으로 복사하지 않는다. 실제 예시는 위에 연결한 보존 metadata를
+참조한다. `chat_template_sha256`는 실제 사용 template
 파일의 SHA256, `launch_config_sha256`는 환경/명령 인자를 보존한 secret 없는 launch
-정의 파일의 SHA256이다. 아래 placeholder hash는 실제 값으로 바꿔야 한다.
+정의 파일의 SHA256이다. 보존된 Phase5.x metadata는 해당
+[launch_config.json](../evaluations/results/phase5x/launch_config.json)의 SHA256과
+연결된다. Log/report 경로 또는 실행 인자가 달라진 새 launch는 새 hash가 필요하다.
 
-```json
-{
-  "python": "3.12.14", "vllm": "0.8.5+cu118", "torch": "2.6.0+cu118",
-  "cuda": "11.8", "transformers": "4.51.3", "xgrammar": "0.1.18",
-  "driver": "535.183.01", "gpu": "NVIDIA A100-PCIE-40GB",
-  "profile": "a100", "physical_gpu": 3, "max_model_len": 4096,
-  "tensor_parallel_size": 1, "quantization": "awq", "dtype": "float16",
-  "chat_template_sha256": "REPLACE_WITH_ACTUAL_64_LOWERCASE_HEX",
-  "launch_config_sha256": "REPLACE_WITH_ACTUAL_64_LOWERCASE_HEX"
-}
-```
+| 필드 | 값의 근거 |
+|---|---|
+| `python`, `vllm`, `torch`, `cuda`, `transformers`, `xgrammar` | 설치된 model runtime 버전 |
+| `driver`, `gpu`, `physical_gpu`, `profile` | 허용 장치의 측정·실행 기록 |
+| `quantization`, `dtype`, `max_model_len`, `tensor_parallel_size` | 실제 엔진 설정·로그 |
+| `chat_template_sha256`, `launch_config_sha256` | 실제 사용 template와 launch 정의의 64자리 SHA256 |
 
 Weight manifest는 downloader의 `model_id`, 정확한 `revision`, 각 파일의
 `name`/`bytes`/`sha256` 목록을 사용한다. 평가 도구는 manifest를 검사하고 해시를

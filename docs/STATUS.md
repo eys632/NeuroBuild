@@ -8,7 +8,7 @@
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` Phase5 commit/push, remote hash 일치 |
 | GitHub | 공통 `v2`, SSH push 정상; 최신 checkpoint는 git log 참조 |
 | 검증 | 전체 **236 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이16.056s |
-| 현재 Phase | 5.x: 120개 합성 자료 작성·독립 gold 검토 준비. Phase5 Qwen3-14B-AWQ/promptv3 선정, development seed20×3 의미60/60, READY오판0/33. 8B 동일prompt54/60. 실패결과포함5 run보존 |
+| 현재 Phase | 5.x: 120개 자료·코드 freeze931c625 push확인, 개발v3 120회완료: 의미108/120,rawFP3/60(Backend차단),FN9/60. 미통과원인수정중;holdout미호출. Phase5 Qwen3-14B-AWQ/promptv3 선정, development seed20×3 의미60/60, READY오판0/33. 8B 동일prompt54/60. 실패결과포함5 run보존 |
 | Hard blocker | 없음. GPU3 가용량 기반 공존 실행 실제 통과 |
 | Backend | `.conda` Python3.12.14 / PostgreSQL17.11 / psycopg3.2.10 / IfcOpenShell0.8.5 |
 | Model Runtime | `.conda-vllm` Python3.12.14, cu118 vLLM0.8.5/Torch2.6.0, 14B AWQMarlin FP16, TP1/context4096/seq1 |

@@ -1,0 +1,53 @@
+{
+  "lifecycle": "FROZEN_BEFORE_PROMPT_V4_INFERENCE",
+  "frozen_at_utc": "2026-09-19T21:13:12.115177+00:00",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "source_ancestor_commit": "931c6258f0f9471fdac9ff1ee3b29cbb23308e2d",
+  "model_id": "Qwen/Qwen3-14B-AWQ",
+  "model_revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+  "protocol": "legacy_guided_json",
+  "prompt": "prompts/requirement_v4.txt",
+  "temperature": 0,
+  "seed": 42,
+  "warmups_per_run": 5,
+  "trials_per_case": 3,
+  "max_tokens": 768,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "sha256": {
+    "evaluations/hardening_v1_manifest.json": "959d3340e4ba095ca2f54d29f55dd4b2f151df00a2a92a619dcc3bf8baa56605",
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+    "evaluations/generate_requirement_hardening_v1.py": "f2908f7557df098690ea9933cd7a210e4510b03ecb7c9e6601b0daff0f4b2019",
+    "prompts/requirement_v3.txt": "716137f3e275cb0030f1f497f8e23bbeeefd8a62eae757378231b7d910db3c3e",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "4ca084db4e0f009679a1bc105d48f7863e86d8e6301028182f3a85ba64b248f0",
+    "scripts/evaluate_requirements.py": "eafab91bd72839469ba515216550463ab2e50c130d2a8d05ebc88d902ad965cb",
+    "runtime/models/qwen3-14b-awq.json": "208ed94ea360b214612d53f8002b69830670c3269246cef28a329c6ab3b41011",
+    "prompts/requirement_v4.txt": "2fdd6a5a92860cde27d14adc10916a242b2221e1569015541ddf31581d1a14d8"
+  },
+  "review_evidence": [
+    "docs/reviews/phase5x_plan_review.md",
+    "docs/reviews/phase5x_numeric_review.md",
+    "docs/reviews/phase5x_prompt_v4.md"
+  ],
+  "independent_review": "AI agent review, not human verification; heldout source/gold inspected before inference, no prompt tuning from outputs",
+  "policy": "Preserve all results. Never modify heldout gold silently or tune this prompt from heldout outputs. New prompts/configuration require separate version/freeze and results.",
+  "gate_targets": {
+    "schema_rate": 1.0,
+    "semantic_rate_minimum": 0.95,
+    "critical_model_ready_fp_count": 0,
+    "unsafe_accepted_ready_total_count": 0
+  },
+  "previous_freeze_sha256": "aba3938185f212b745f2ac4cc83f94bc4e5662b8ec79119bc663d7f99f1de669",
+  "development_feedback_run": "20260919T205840Z-469fdecdb1fd476f82202df54a1808a7",
+  "holdout_outputs_seen_before_freeze": false,
+  "prompt_review": "Author CPU exemplar validation7/7, root independent prompt review; additional researcher review pending",
+  "cpu_context_bound": {
+    "development_max_input_plus_output": 3533,
+    "holdout_max_input_plus_output": 3538,
+    "limit": 4096,
+    "torch_imported": false
+  }
+}

@@ -14,6 +14,7 @@
 기존 환경과 디스크를 먼저 확인한다. 없는 환경을 생성할 때만 다음을 사용한다. 환경 생성 후 python/pip/CONDA_PREFIX가 해당 프로젝트를 가리키는지 확인하고 설치한다.
 
 ```sh
+cd /home/a202192020/NeuroBuild_v2
 source "$HOME/miniconda3/etc/profile.d/conda.sh"
 export CONDA_PKGS_DIRS="$PWD/var/cache/conda/pkgs"
 conda create -p "$PWD/.conda-vllm" --file runtime/a100/python-linux-64.conda.lock
@@ -35,5 +36,43 @@ python -m pip check
 GPU3 only, mask3, logical cuda:0, TP1이다. 시작 직전 [GPU budget guard](../../docs/gpu_budget.md)가 측정 free VRAM과 peak+margin을 비교한다. 현재 다른 process 점유 자체는 blocker가 아니며 다른 GPU fallback이나 타인 process 변경은 금지한다. initial context4096/seq1/eager/gpu utilization0.50/KV256 blocks를 사용한다.0.50은 모든 allocation을 제한하는 hard GPU isolation이 아니다.
 
 모델 다운로드는 `.conda/bin/python scripts/download_model.py runtime/models/qwen3-14b-awq.json`으로 프로젝트 var 아래에 저장한다. 파일별 size/SHA256검증과 20GiB root disk reserve를 적용하며 모델 remote code를 사용하지 않는다.
+
+선정한 모델을 다시 시작할 때는 검증된 local weight와 위 환경을 사용한다. 다음은
+현재 A100의 명시적 launch 설정이다. `configs/*.json`을 변경해도 이 CLI의 인자가
+자동으로 바뀌지는 않는다. 실행기는 **매번 새 preflight**에서 GPU3의 현재 free/utilization을
+측정하고 예상 peak18432MiB와 안전 여유를 비교한다. 과거의 여유7275MiB나 fit 결과를
+새 실행의 허가로 재사용하지 않는다. 이미 이 프로젝트 guard가 실행 중이면 lock 때문에
+두 번째 실행은 거절된다.
+
+```sh
+cd /home/a202192020/NeuroBuild_v2
+nb_run_id="$(date -u +%Y%m%dT%H%M%SZ)-$$"
+CUDA_VISIBLE_DEVICES=3 .conda/bin/python scripts/model_server.py \
+  --profile a100 \
+  --model-path var/models/Qwen--Qwen3-14B-AWQ/31c69efc29464b6bb0aee1398b5a7b50a99340c3 \
+  --dtype half \
+  --estimated-peak-mib 18432 \
+  --gpu-memory-utilization 0.50 \
+  --torch-memory-fraction 0.50 \
+  --max-model-len 4096 \
+  --served-model-name neurobuild-local \
+  --port 8003 \
+  --log-file "var/logs/qwen3-14b-awq-${nb_run_id}.log" \
+  --report-file "var/reports/qwen3-14b-awq-${nb_run_id}.json" \
+  --max-seconds 3600
+```
+
+Guard는 foreground에서 자식을 감시한다. 정상 중단은 해당 guard terminal의 Ctrl-C를
+사용하며 다른 프로세스를 찾거나 종료하지 않는다. 매번 새 log/report 이름을 사용한다.
+Guard report는 현재 상태를 갱신하는 파일이고, 평가 run 및 listener proof는 별도의
+새 파일로 보존한다. `RUNNING`은 HTTP health/추론 성공의 증거가 아니다. 시작 후
+[자체 PID listener 검사](../../docs/model_listener_check.md)로 report의 `child_pid`만
+검사하고, [평가 명령](../../docs/evaluation_harness.md)의 `--model`도 반드시
+`neurobuild-local`과 맞춘다.
+
+[Phase5.x launch 기록](../../evaluations/results/phase5x/launch_config.json)과
+[runtime metadata](../../evaluations/results/phase5x/runtime_metadata.json)는 측정한
+한 실행의 보존 예시다. 새 실행의 버전·template·launch 정의를 확인해 해당 metadata와
+hash를 새로 기록한다. 보관된 metadata를 새 서버의 자동 attestation으로 사용하지 않는다.
 
 실제 실행/평가 결과는 [Phase5 보고](../../docs/reports/phase5_report.md)에 기록한다. Import 성공이나 구성 파일의 존재를 startup/품질 성공으로 간주하지 않는다.
