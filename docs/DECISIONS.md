@@ -54,3 +54,9 @@ Phase 0 당시 commit에 포함된 Phase 승인 대기와 Phase 10 이후 계획
 - IfcOpenShell0.8.5 PyPI wheel의 실제 ABI가 host glibc2.31과 맞지 않아 공식 문서가 안내하는 conda-forge build로 전환했다. 시스템 glibc/driver를 바꾸거나 별도 환경을 추가하지 않았다. Native Conda lock가 필수 IFC dependency의 기준이며 pip metadata와 구분한다.
 - IFC4/단일project/SI m·cm·mm/upright3D LocalPlacement/identity WCS로 지원 경계를 명시했다. 부모 XY 회전은 지원하되 tilt/grid/cycle/assembly/map conversion/불명확한 단위는 거절한다. 일부지원객체만 골라 전체파일을 암묵수용하지 않는다.
 - 대상의 point/axis/localplacement3개만 새로 만들고 ObjectPlacement ref만 바꾼다. Generic geometry edit API가 재작성할 수 있는 자식/공유entity를 직접 수정하지 않는다. Serialize/reopen 후 전체원래entity와 모든product worldtransform을 재검증한다.
+
+## D019 — Phase4 명시 서비스와 review 수명
+
+- RenovationService가 SemanticRequirement → 실제 inventory → TargetConfirmation → Proposal → 별도 ProposalApproval → Apply를 연결한다. 메서드는 workflow ID를 받고 내부의 frozen authoritative state를 검증한다. 외부에서 바꾼 snapshot을 approval로 받아들이지 않는다.
+- Phase4는 LLM 없는 synthetic service E2E다. Human review는 in-process registry이며 재시작하면 사라진다. Durable review/job queue/session advisory lock은 Phase7에서 구현한다. Revision/artifact/execution intent의 Phase2 내구성은 계속 사용한다.
+- Prepare/finalize/commit 실패 후 같은 execution ID로 안전하게 재시도한다. PREPARED orphan의 예상 bytes/hash는 deterministic IFC Engine에서 다시 얻고 기존 파일을 검증한다. COMMITTED 재시도는 정확한 승인·intent binding을 검증한 뒤 기존 결과를 반환한다.

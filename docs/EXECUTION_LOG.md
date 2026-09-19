@@ -131,3 +131,18 @@ Could not open a connection to your authentication agent.
 - Root 전체87 tests PASS(3.728s, skip0), independent IFC25 PASS(0.501s). 수정 후 malformed scanner probe14개 중 invalid11개 모두거절/valid3개수용. 기존1m손실/Decimal0.25m손실/overflow/underflow/context누락 거절 및 subnormal정규화 확인. 알려진 gate blocker 없음.
 - Narrow SPF recordscanner, exactFraction 절대metre오차/Decimal변환오차, 필수singleidentitycontext를 최종계약에기록했다. Full EXPRESS/STEP grammar 검증으로과장하지않는다.
 - pip check/runtime-info 회귀/diff check PASS. 신규소스와syntheticgenerator/테스트/lock/report만checkpoint, 사용자IFC/native환경/artifact/cache는Git제외. Phase3commit/push를다음명령으로확정한다.
+
+## 2026-09-20 — Phase3 remote checkpoint / Phase4 진입
+
+- Phase3 commit56926a0a8fe1d67587e1997f30b4347380375927 push 성공, 원격v2 hash 일치 확인.
+- Phase4 Explicit Renovation Workflow 시작. 기존 Backend/PG/IFC 환경을 재사용하며 추가설치가필요하지않다.
+- Application Service가 자신의 frozen review state를 소유하고 실제inventory의targetconfirmation과 정확한proposalcontent승인을 분리한다. PG/IFC를결합한합성E2E와failure/stale/duplicate/동시성 검증을구현한다. Durable humanreview/queue는계획된Phase7 범위이며 Phase4메모리review를재시작내구성으로과장하지않는다.
+
+## 2026-09-20 — Phase4 검증
+
+- Root DISPLAY/WAYLAND_DISPLAY 제거 환경에서 실제 private PG DSN과 bash scripts/test_backend.sh: 전체106 tests PASS(11.806s), skip0. Independent Workflow19 PASS(7.756s).
+- 실제 IFC+PG end-to-end, 별도 승인, forged snapshot/원래input 변경 거절, stale/duplicate/concurrency, invalidimport, engine/DB실패+orphanretry 확인. Commit응답유실 후 다른workflow의V2/engine장애 상황에서 기존execution이V1만반환하고headV2보존 확인.
+- In-memory review는 재시작하면 소실되는 것을 테스트했으며 durable humanreview 성공으로 주장하지 않는다. 새 dependency 없이 common service 경계를 유지했다. pip check/diff check PASS. 최종 독립 review 후 commit/push한다.
+
+- 최종 입력 UUID alias/deepcopy 회귀 추가 후 root 전체108 tests PASS(12.378s, skip0), independent Workflow21 PASS(8.640s). 추가 독립realPG probe4/4 PASS: 다른workflow의committed eid거절, 잘못된orphan거절, 동일eid동시요청의단일결과, committed artifact손상거절. 현재 material gate blocker 없음.
+- Phase4 source/docs/tests/report 최종diff check 후 commit/push를수행한다.

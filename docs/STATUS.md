@@ -1,16 +1,16 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: 2026-09-20 KST. **Phase0 checkpoint 완료 / Phase1 checkpoint 완료 / Phase2 checkpoint 완료 / Phase3 IFC Engine 진행 중**.
+갱신: 2026-09-20 KST. **Phase0 checkpoint 완료 / Phase1 checkpoint 완료 / Phase3 checkpoint 완료 / Phase4 Explicit Workflow 진행 중**.
 
 | 항목 | 현재 상태 |
 |---|---|
-| 완료 Phase | 0 Foundation + 1 Domain + 2 Persistence, 전체62 tests PASS와 원격v2 확인 |
-| 마지막 성공 checkpoint | 18c7e21cc367cbf5e0f2c7b61c5981f30f476a98 (Phase2 commit/push 성공) |
+| 완료 Phase | 0 Foundation + 1 Domain + 2 Persistence + 3 IFC Engine; 전체87 tests PASS, 원격v2 확인 |
+| 마지막 성공 checkpoint | 56926a0a8fe1d67587e1997f30b4347380375927 (Phase3 commit/push 성공) |
 | GitHub | SSH origin, push 성공/Everything up-to-date, remote hash 일치 |
-| 현재 Phase | 3: IFC4 engine 구현/독립 review 완료, 전체87 tests PASS; commit/push 준비 |
+| 현재 Phase | 4: explicit review/approval/Apply 구현, 전체108 tests PASS; 독립 review 완료, commit/push 준비 |
 | Backend 환경 | Miniconda26.7.1, project .conda Python3.12.14 생성/경로확인 완료; GPU 환경 미생성 |
 | 현재 Hard Blocker | 없음. Git 인증 해결. Phase5 GPU/driver/disk 제약은 해당 단계 전에 재확인 |
-| 다음 단계 | Phase3 IFC 이동/거절/보존 검증 gate 후 Phase4 |
+| 다음 단계 | Phase4 gate/remote checkpoint 후 Phase5 local model/GPU preflight |
 
 사용자가 인증 설정 과정에서 기존 local commit ID를 갱신했다. 29d4774/ee6848d는 이전 기록이다. 이 작업에서 이력을 다시 쓰거나 force push하지 않았다. 최신 HEAD는 git log -1로 확인한다.
 
@@ -26,7 +26,7 @@
 - A100 GPU3 마지막 관측은 process3개/약4GB 점유. 필수 benchmark 전에 재확인하고 타인 process를 건드리지 않는다.
 - Driver535.183.01의 최신 모델 runtime 조합은 미확정이다.
 - RTX5090은 PREDICTED/UNVERIFIED. 생성 gold는 AUTO-GENERATED / NOT HUMAN VERIFIED.
-- Phase4~11 미시작. public exposure/pilot/실데이터/fine-tuning은 범위 밖이다.
+- Phase5~11 미시작. public exposure/pilot/실데이터/fine-tuning은 범위 밖이다.
 
 계획은 [MASTER_PLAN](MASTER_PLAN.md), 결정은 [DECISIONS](DECISIONS.md), 실행 근거는 [EXECUTION_LOG](EXECUTION_LOG.md)를 따른다.
 
