@@ -1,0 +1,71 @@
+{
+  "lifecycle": "FROZEN_BEFORE_PROMPT_V7_KOREAN_THINKING_DIAGNOSTIC",
+  "frozen_at_utc": "2026-09-19T22:00:33.891754+00:00",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "source_ancestor_commit": "af2e0e201becce9483007d7ff122acac2cc7883b",
+  "model_id": "Qwen/Qwen3-14B-AWQ",
+  "model_revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+  "protocol": "legacy_guided_json",
+  "prompt": "prompts/requirement_v7.txt",
+  "temperature": 0.6,
+  "seed": 42,
+  "warmups_per_run": 5,
+  "trials_per_case": 1,
+  "max_tokens": 1280,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "sha256": {
+    "evaluations/hardening_v1_manifest.json": "959d3340e4ba095ca2f54d29f55dd4b2f151df00a2a92a619dcc3bf8baa56605",
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+    "evaluations/generate_requirement_hardening_v1.py": "f2908f7557df098690ea9933cd7a210e4510b03ecb7c9e6601b0daff0f4b2019",
+    "prompts/requirement_v3.txt": "716137f3e275cb0030f1f497f8e23bbeeefd8a62eae757378231b7d910db3c3e",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "b408740783ed326fe26de0f4d60085c130b7667c54f1fea34abceb1b3d775931",
+    "scripts/evaluate_requirements.py": "eff1da86d84775f6bb394b7c4ebbae104a91196a41f6dcac01c145ef0c67a1cc",
+    "runtime/models/qwen3-14b-awq.json": "208ed94ea360b214612d53f8002b69830670c3269246cef28a329c6ab3b41011",
+    "scripts/model_server.py": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab",
+    "prompts/requirement_v6.txt": "c16d5949ee0a0da59b36a72f639b265a74164659d6927dc48d6a560ab6336023",
+    "prompts/requirement_v7.txt": "83fd605035d867e604115d25cce28971121895bb155dd2ac648056bd9c53c89b"
+  },
+  "review_evidence": [
+    "docs/reviews/phase5x_plan_review.md",
+    "docs/reviews/phase5x_numeric_review.md",
+    "docs/reviews/phase5x_thinking_experiment_plan.md",
+    "docs/reviews/phase5x_korean_thinking_plan.md"
+  ],
+  "independent_review": "AI agent review, not human verification; heldout source/gold inspected before inference, no prompt tuning from outputs",
+  "policy": "Preserve all results. Never modify heldout gold silently or tune this prompt from heldout outputs. New prompts/configuration require separate version/freeze and results.",
+  "gate_targets": {
+    "schema_rate": 1.0,
+    "semantic_rate_minimum": 0.95,
+    "critical_model_ready_fp_count": 0,
+    "unsafe_accepted_ready_total_count": 0
+  },
+  "purpose": "All40 development x1 diagnostic. Restore best Koreanv3 policy/examples with single finalformat clarification. Thinking enabled,1280output,120timeout; not finalgate or singlevariablecausalproof.",
+  "sampling_profile": "qwen3_thinking_awq",
+  "sampling_request_parameters": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "frequency_penalty": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 42
+  },
+  "holdout_outputs_seen_before_freeze": false,
+  "implementation_change": "No code/schema/parser/gold change. V7 differs from v3 by one finalformat sentence; runtimeepoch unchanged fromv6.",
+  "launch_config_sha256": "c164bef7dae09ffa751ec954f0a16d87ccc96c273c5e84e151f58d06a30dad26",
+  "enable_thinking": true,
+  "reasoning_parser": "deepseek_r1",
+  "timeout_seconds": 120,
+  "cpu_context_bound": {
+    "development_max_input_plus_output": 4069,
+    "holdout_max_input_plus_output": 4074,
+    "limit": 4096,
+    "torch_imported": false
+  },
+  "previous_freeze_sha256": "e146350d5ff85377a497cfb773fa2cdbf23a4b548e53a4fa492bd5e6592bb62c"
+}

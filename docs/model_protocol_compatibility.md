@@ -128,3 +128,67 @@ dependency 정합성을 별도로 검증한다. A100의 cu118 환경을 대체�
 RTX32GB에서 모델 전체 BF16을 기본 대안으로 잡지 않고 W4A16과 실제 free VRAM 및
 안전 margin을 검증한다. A100 peak를 RTX peak로 복사하거나 최신 wheel의 존재를
 공통 모델 최종 선정/RTX gate 통과로 표시하지 않는다.
+
+## 부록: thinking 선택 시 modern V1 경로 — PREDICTED_UNVERIFIED
+
+2026-09-20 KST에 **v0.29.0 태그의 공식 문서·소스만** 추가 조사했다. 설치,
+GPU 접근, RTX5090 실행은 하지 않았다. 아래는 A100 thinking 실험이 최종 선택될
+경우의 호환성 근거이며 모델 품질 gate 통과나 RTX runtime 선정 결과가 아니다.
+
+| 항목 | A100 v0.8.5 실험 설정 | RTX v0.29.0 조사 후보 |
+|---|---|---|
+| Engine | V0 | V1 |
+| Server reasoning 옵션 | `--enable-reasoning --reasoning-parser deepseek_r1` | `--reasoning-parser qwen3` |
+| JSON grammar | 요청 `guided_json` + `xgrammar:no-fallback` | 요청 `structured_outputs.json` + server `--structured-outputs-config.backend=xgrammar` |
+| 요청 모드 | `chat_template_kwargs.enable_thinking=true` | 같은 공통 필드에 명시적 `true` |
+| 응답에서 폐기할 reasoning 필드 | `reasoning_content` | `reasoning` |
+| 실행 근거 | A100 실험 결과를 별도로 평가 | **PREDICTED_UNVERIFIED** |
+
+v0.29.0의 engine/launcher CLI에는 구형 `--enable-reasoning` 등록이 없다.
+`--reasoning-parser qwen3`가 parser를 선택하므로 A100 명령 전체를 복사하지 않는다.
+이는 해당 태그의 CLI 정의를 읽은 결과이며 RTX에서 CLI를 실행한 검증은 아니다.
+[Engine argument 정의](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/engine/arg_utils.py),
+[Server argument 정의](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/entrypoints/launchers/cli_args.py)
+
+공식 지원 표는 Qwen3의 `qwen3` parser와 JSON/regex 구조화 출력을 함께 명시한다.
+V1 `StructuredOutputManager`는 요청의 template kwargs를 반영한 parser를 만들고,
+reasoning 종료 전에는 grammar mask 적용과 grammar 상태 진행을 보류한다. 종료가
+확인되면 최종 출력에 제약을 적용한다. 따라서 **V0 전용이라는 v0.8.5 제한을
+v0.29.0에 그대로 적용할 근거는 없다**. 이 연결은 소스 수준 근거이며 해당
+checkpoint·tokenizer·schema 조합의 실제 성공은 별도 확인해야 한다.
+[Qwen3 지원 표](https://docs.vllm.ai/en/v0.29.0/features/reasoning_outputs/#supported-models),
+[V1 reasoning/grammar 전환](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/v1/structured_output/__init__.py)
+
+`structured_outputs_config.enable_in_reasoning`은 **false 기본값을 유지**한다.
+이 값을 true로 바꾸면 reasoning 중에도 grammar가 적용되므로, 내부 thinking 후
+최종 semantic JSON을 만드는 목적과 다르다. 공식 structured-output 문서의
+Qwen3 **Coder** 예외를 현재 일반 Qwen3-14B-AWQ에 옮겨 적용하지 않는다.
+[Config 기본값](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/config/structured_outputs.py),
+[Structured output의 reasoning 안내](https://docs.vllm.ai/en/v0.29.0/features/structured_outputs/#reasoning-outputs)
+
+Modern `qwen3` parser는 `enable_thinking=false`를 읽고 reasoning 없이 전체 출력을
+최종 content로 처리하는 경로와 공식 회귀 테스트가 있다. 따라서 0.8.5의
+deepseek_r1 + false 비호환을 modern Qwen3에도 적용하지 않는다. 다만 현재
+NeuroBuild 평가 harness의 client/server mode 일치 요구는 **보수적인 실험 정책**으로
+유지한다. 향후 한 modern 서버에서 두 모드를 섞으려면 server parser 활성화와
+요청 thinking 여부를 별도로 기록하고 그 조합을 검증해야 한다. 지금은 이 정책이나
+코드를 변경하지 않았다.
+[Qwen3 parser](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/parser/qwen3.py),
+[Non-thinking 공식 테스트](https://github.com/vllm-project/vllm/blob/v0.29.0/tests/reasoning/test_qwen3_reasoning_parser.py)
+
+응답 필드가 modern에서는 `reasoning`으로 바뀌지만 공통 client는 `message.content`만
+선택하므로 reasoning 필드명에 따른 business logic 분기가 필요하지 않다. 두 필드의
+원문을 로그·artifact·exception에 보존하지 않고 최종 content의 finish reason,
+크기, think tag, schema, grounding 검증을 유지한다. Modern의 별도
+`thinking_token_budget`/`include_reasoning` 옵션은 이 조사로 자동 도입하지 않는다.
+이를 추가하면 별도 설정·manifest·회귀 검증이 필요하다.
+[Modern 요청·응답 계약](https://github.com/vllm-project/vllm/blob/v0.29.0/vllm/entrypoints/openai/chat_completion/protocol.py)
+
+SM120 Marlin 지원 근거는 앞 절의 weight/kernel 조사와 별개로 결합해야 한다.
+Reasoning/parser의 존재는 RTX5090의 driver/ABI, attention·quantization kernel,
+startup/inference peak 또는 한국어 의미 정확도를 보장하지 않는다. RTX에서는
+physical GPU1만 예산 검증 후 사용하고, V1 프로세스·socket·종료 보호도 현장에서
+검증한다. 공통 client의 `enable_thinking`·schema·parser·승인 경계는 유지하고
+`qwen3` parser 이름은 runtime 설정/metadata에만 둔다. 실제 통합에서는 final-only
+반환과 reasoning 미보존, reasoning 종료 후 JSON 제약, truncation/미완료 거절,
+동일 synthetic 의미 회귀를 확인해야 하며 A100 실측 수치를 대입하지 않는다.

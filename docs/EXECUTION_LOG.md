@@ -249,3 +249,12 @@ Run20260919T213630Z-f42a9eb2a41d4368942b0575dda2893d:40×1,warmup5. Schema40/par
 다음실험은짧은policy와명시적thinking/deepseek_r1/V0/xgrammar의문서화된경로를검증한다. Reasoning은일시메모리만경유하고finalJSON만평가/보존한다. Context4096/전체출력2048/timeout120을미리검증하고기존parser/gold/승인계약은변경하지않는다. v3는긴입력으로동일출력2048이4096을초과하므로그대로사용하지않는다.
 
 - Thinking명시설정후전체251testsPASS/skip0/16.683s, client+harness42PASS. Source/gold검증기준미변경;finalJSON만노출하고reasoning누출/미완료/overlimit거절. Runtime metadata는실제launchmode와clientmode의선언일치를확인하며HTTP상태만으로모드를증명하지않는다. V6는v5의출력형식문장하나만수정,CPUoffline dev최대3322/4096(전체출력2048포함),heldout길이만3327/4096검증. 새freeze후actualthinking구성실험예정.
+
+- af2e0e201becce9483007d7ff122acac2cc7883b freeze commit/push remote일치, root독립agent구현검토후dev40×1 thinking진단시작. 추가architecture독립harness/launcher/v6검토도PASS. FreshGPU3preflight/health/ownloopbacklistenersPASS; tokenizer출력창한도검증과actual품질은분리한다.
+
+
+## V6 짧은영어policy+thinking 진단 실패
+
+Run20260919T214743Z-27a340f0e04343be8be10a062a6eb25d:40×1,warmup5. Schema40/parser20/semantic17,rawFP4/20,unsafeaccepted2/40,FN17/20,mean13.23336s/p9520.61753s. 전체stop종료이며truncation/timeout없음,completion243–971(mean462.275). 숫자원문표기변경(1→1.00)과target손실,외부조건판단오류가남았다. Acceptedunsafe2는F01대상span에조사추가와HD-I02충돌조건무시이며같은심각도라고단정하지않지만고정exacttarget/criticalgate에서둘다실패다. 실제IFC실행이나승인은수행하지않았다.
+
+추론모드자체가계약준수를보장하지않는다. 짧은영어policy는nonthinking/thinking모두실패했으며가장좋았던한국어v3지시/예제는유지한비교가필요하다. v7은v3출력형식문장하나만internalthinking/finalJSON구분으로명확히하고같은thinkingserver에서명시출력1280으로비교한다. Context4096CPU검증후40개진단하며gold/parser/게이트는유지한다.
