@@ -79,6 +79,24 @@ def local_path(value, root, *, output=False):
     return path
 
 
+def runtime_output_path(value, root, directory):
+    """Keep mutable guard output separate from model and immutable artifact data."""
+    root = root.resolve()
+    boundary = root / "var" / directory
+    path = Path(value)
+    path = root / path if not path.is_absolute() else path
+    require(boundary.resolve() == boundary and not path.is_symlink(),
+            "INVALID_PATH", "Runtime output directories and files must not alias other storage")
+    path = path.resolve()
+    require(path.is_relative_to(boundary) and path != boundary,
+            "INVALID_PATH", "Logs require var/logs and reports require var/reports")
+    if path.exists():
+        info = path.stat()
+        require(stat.S_ISREG(info.st_mode) and info.st_uid == os.getuid() and info.st_nlink == 1,
+                "INVALID_PATH", "Existing runtime output must be an owned regular file without hardlink aliases")
+    return path
+
+
 @dataclass(frozen=True)
 class LaunchConfig:
     profile: str
@@ -251,8 +269,8 @@ def run_guard(config, *, root=ROOT, environ=None, query=None, popen=None, killpg
         require(config.profile == "a100", "RUNTIME_PROFILE_NOT_VALIDATED",
                 "The current cu118 runtime is validated for the A100 launch path only; RTX5090 requires its own runtime validation")
         model = local_path(config.model_path, root)
-        log_path = local_path(config.log_file, root, output=True)
-        candidate_report = local_path(config.report_file, root, output=True)
+        log_path = runtime_output_path(config.log_file, root, "logs")
+        candidate_report = runtime_output_path(config.report_file, root, "reports")
         require(log_path != candidate_report and not log_path.is_relative_to(model)
                 and not candidate_report.is_relative_to(model), "INVALID_PATH", "Log/report paths must differ and must not overwrite model files")
         require(model.is_dir() and (model / "config.json").is_file(),

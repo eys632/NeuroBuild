@@ -105,17 +105,29 @@ class StructuredOutputProtocol(StrEnum):
     STRUCTURED_OUTPUTS = "structured_outputs"
 
 
+class SamplingProfile(StrEnum):
+    LEGACY_GREEDY = "legacy_greedy"
+    QWEN3_NONTHINKING_AWQ = "qwen3_nonthinking_awq"
+
+
 class LocalRequirementClient:
     def __init__(
         self, base_url: str, model: str, *, timeout: float = 60.0, max_tokens: int = 768,
         prompt_path: Path | None = None, schema_path: Path | None = None,
         protocol: StructuredOutputProtocol | str = StructuredOutputProtocol.LEGACY_GUIDED_JSON,
+        sampling_profile: SamplingProfile | str = SamplingProfile.LEGACY_GREEDY,
     ) -> None:
         self.endpoint = _endpoint(base_url)
         if type(protocol) not in (str, StructuredOutputProtocol):
             _error("LOCAL_MODEL_CONFIG_INVALID")
         try:
             self._protocol = StructuredOutputProtocol(protocol)
+        except ValueError:
+            _error("LOCAL_MODEL_CONFIG_INVALID")
+        if type(sampling_profile) not in (str, SamplingProfile):
+            _error("LOCAL_MODEL_CONFIG_INVALID")
+        try:
+            self._sampling_profile = SamplingProfile(sampling_profile)
         except ValueError:
             _error("LOCAL_MODEL_CONFIG_INVALID")
         if (not _clean_text(model, 256) or any(ord(char) < 32 for char in model)
@@ -145,6 +157,26 @@ class LocalRequirementClient:
         """Configured dialect, not a claim about the server's grammar backend."""
         return self._protocol
 
+    @property
+    def sampling_profile(self) -> SamplingProfile:
+        """Explicit fixed recipe; never inferred from model name or response."""
+        return self._sampling_profile
+
+    @property
+    def sampling_parameters(self) -> dict[str, int | float]:
+        """Fresh copy of exactly the sampling fields sent, also for manifests.
+
+        Legacy omitted fields remain omitted; their server defaults are not
+        represented as measured values. Neither profile enables thinking.
+        """
+        if self.sampling_profile is SamplingProfile.LEGACY_GREEDY:
+            return {"temperature": 0, "seed": 42}
+        if self.sampling_profile is SamplingProfile.QWEN3_NONTHINKING_AWQ:
+            return {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
+                    "presence_penalty": 1.5, "frequency_penalty": 0.0,
+                    "repetition_penalty": 1.0, "seed": 42}
+        _error("LOCAL_MODEL_CONFIG_INVALID")
+
     def complete(self, source_text: str, *, axis_convention: str | None = None) -> Completion:
         """Return final content for synthetic evaluation, without semantic claims.
 
@@ -160,7 +192,7 @@ class LocalRequirementClient:
                 {"role": "system", "content": self._prompt},
                 {"role": "user", "content": json.dumps({"source_text": source_text, "axis_convention": axis_convention}, ensure_ascii=False)},
             ],
-            "temperature": 0, "seed": 42, "max_tokens": self.max_tokens, "stream": False,
+            **self.sampling_parameters, "max_tokens": self.max_tokens, "stream": False,
             "chat_template_kwargs": {"enable_thinking": False},
         }
         if self.protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON:

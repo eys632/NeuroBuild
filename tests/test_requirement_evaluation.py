@@ -212,6 +212,20 @@ class RequirementEvaluationTests(unittest.TestCase):
             self.assertEqual(manifest["protocol"]["max_tokens"], 768)
             self.assertEqual(manifest["protocol"]["structured_output_protocol"], "legacy_guided_json")
             self.assertEqual(manifest["protocol"]["guided_decoding_backend"], "xgrammar:no-fallback")
+            self.assertEqual(manifest["protocol"]["sampling_profile"], "legacy_greedy")
+            self.assertEqual(manifest["protocol"]["sampling_request_parameters"], {"temperature": 0, "seed": 42})
+            sampled = LocalRequirementClient("http://127.0.0.1:8003", "synthetic-model",
+                                             sampling_profile="qwen3_nonthinking_awq")
+            sampled_manifest = build_manifest(sampled, **kwargs)
+            self.assertEqual(sampled_manifest["protocol"]["sampling_profile"], "qwen3_nonthinking_awq")
+            expected_sampling = {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0,
+                                 "presence_penalty": 1.5, "frequency_penalty": 0,
+                                 "repetition_penalty": 1, "seed": 42}
+            self.assertEqual(sampled_manifest["protocol"]["sampling_request_parameters"], expected_sampling)
+            self.assertEqual(sampled_manifest["protocol"]["temperature"], 0.7)
+            self.assertEqual(sampled_manifest["protocol"]["seed"], 42)
+            sampled_manifest["protocol"]["sampling_request_parameters"]["temperature"] = 0
+            self.assertEqual(build_manifest(sampled, **kwargs)["protocol"]["sampling_request_parameters"], expected_sampling)
             modern = LocalRequirementClient("http://127.0.0.1:8003", "synthetic-model", protocol="structured_outputs")
             modern_manifest = build_manifest(modern, **dict(kwargs, split="heldout"))
             self.assertEqual(modern_manifest["split"], "heldout")

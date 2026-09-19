@@ -252,6 +252,75 @@ class ModelServerTests(unittest.TestCase):
         self.assertEqual(report["reason"], "INVALID_PATH")
         self.assertEqual((queried, launches), ([], []))
 
+    def test_output_namespaces_reject_artifacts_models_and_crossed_directories_before_query(self):
+        paths = ("var/artifacts/objects/original.ifc", "var/models/other/config.json",
+                 "var/runtime/metadata.json", "var/run/postgresql/data", "var/cache/file")
+        for relative in paths:
+            protected = self.root / relative
+            protected.parent.mkdir(parents=True, exist_ok=True)
+            protected.write_bytes(b"immutable original")
+            for field in ("log_file", "report_file"):
+                with self.subTest(path=relative, field=field):
+                    report, queried, launched, signals, *_ = self.run_fake(
+                        config=replace(self.config, **{field: Path(relative)}))
+                    self.assertEqual(report["reason"], "INVALID_PATH")
+                    self.assertEqual((queried, launched, signals), ([], [], []))
+                    self.assertEqual(protected.read_bytes(), b"immutable original")
+        for field, path in (("log_file", "var/reports/wrong.log"),
+                            ("report_file", "var/logs/wrong.json"),
+                            ("log_file", "var/logs"), ("report_file", "var/reports")):
+            with self.subTest(field=field, path=path):
+                report, queried, launched, *_ = self.run_fake(config=replace(self.config, **{field: Path(path)}))
+                self.assertEqual(report["reason"], "INVALID_PATH")
+                self.assertEqual((queried, launched), ([], []))
+
+    def test_output_symlink_and_hardlink_aliases_preserve_protected_files(self):
+        protected = self.root / "var/artifacts/original.ifc"
+        protected.parent.mkdir(parents=True)
+        protected.write_bytes(b"immutable original")
+        for field, directory in (("log_file", "logs"), ("report_file", "reports")):
+            output_root = self.root / "var" / directory
+            output_root.mkdir(parents=True, exist_ok=True)
+            for kind in ("file_symlink", "directory_symlink", "hardlink"):
+                with self.subTest(field=field, kind=kind):
+                    alias = output_root / kind
+                    if kind == "file_symlink":
+                        alias.symlink_to(protected)
+                    elif kind == "directory_symlink":
+                        alias.symlink_to(protected.parent, target_is_directory=True)
+                    else:
+                        os.link(protected, alias)
+                    path = alias / protected.name if kind == "directory_symlink" else alias
+                    report, queried, launched, signals, *_ = self.run_fake(config=replace(self.config, **{field: path}))
+                    self.assertEqual(report["reason"], "INVALID_PATH")
+                    self.assertEqual((queried, launched, signals), ([], [], []))
+                    self.assertEqual(protected.read_bytes(), b"immutable original")
+                    alias.unlink()
+
+    def test_output_directory_itself_cannot_alias_model_or_artifact_storage(self):
+        for directory in ("logs", "reports"):
+            with self.subTest(directory=directory):
+                alias = self.root / "var" / directory
+                alias.symlink_to(self.root / "var/models", target_is_directory=True)
+                report, queried, launched, *_ = self.run_fake()
+                self.assertEqual(report["reason"], "INVALID_PATH")
+                self.assertEqual((queried, launched), ([], []))
+                self.assertEqual((self.root / "var/models/synthetic/config.json").read_text(), "{}")
+                alias.unlink()
+
+    def test_valid_existing_live_report_is_updated_and_log_preserved(self):
+        log = self.root / self.config.log_file
+        report_path = self.root / self.config.report_file
+        log.parent.mkdir(parents=True)
+        report_path.parent.mkdir(parents=True)
+        log.write_bytes(b"previous log\n")
+        report_path.write_text('{"state":"PREVIOUS_RUN"}')
+        report, queried, launched, *_ = self.run_fake()
+        self.assertEqual(report["reason"], "TIME_LIMIT")
+        self.assertTrue(queried and launched)
+        self.assertEqual(json.loads(report_path.read_text()), report)
+        self.assertEqual(log.read_bytes(), b"previous log\n")
+
     def test_command_uses_same_process_cap_and_known_pinned_flags(self):
         config = replace(self.config, served_model_name="neurobuild-candidate")
         command = launch_command(config, self.root, rendezvous_file=self.root / "var/run/rendezvous/test/store")

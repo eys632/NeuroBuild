@@ -1,0 +1,2412 @@
+{
+  "warmups": [
+    {
+      "case_id": "A01",
+      "category": "korean_requirement",
+      "trial": -1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실 책상을 X축 양의 방향으로 1m 옮겨줘.",
+          "dx": {
+            "value": "1.00",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로 1m"
+          },
+          "dy": {
+            "value": "null",
+            "unit": "m",
+            "evidence": "null"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 898,
+        "completion_tokens": 163,
+        "total_tokens": 1061
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.05205212906003,
+      "transport_latency_seconds": 5.051003281958401,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "A02",
+      "category": "korean_requirement",
+      "trial": -2,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "로비 의자",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "로비 의자를 Y축 음의 방향으로 250mm 옮겨줘.",
+          "dx": {
+            "value": "0.00",
+            "unit": "m",
+            "evidence": "Y축 음의 방향으로 250mm"
+          },
+          "dy": {
+            "value": "-0.25",
+            "unit": "m",
+            "evidence": "Y축 음의 방향으로 250mm"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 900,
+        "completion_tokens": 182,
+        "total_tokens": 1082
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.504466200247407,
+      "transport_latency_seconds": 5.5022078435868025,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "B01",
+      "category": "ambiguity",
+      "trial": -3,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "CLARIFICATION",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "CLARIFICATION",
+        "target_text": "책상",
+        "operation": null,
+        "reason": "X축 또는 Y축의 방향과 거리가 명시되지 않았습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 887,
+        "completion_tokens": 60,
+        "total_tokens": 947
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.1431075371801853,
+      "transport_latency_seconds": 2.142247294075787,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "B02",
+      "category": "ambiguity",
+      "trial": -4,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실 책상을 X축 양의 방향으로 좀 옮겨줘.",
+          "dx": {
+            "value": "0.00",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 896,
+        "completion_tokens": 135,
+        "total_tokens": 1031
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 4.137563304975629,
+      "transport_latency_seconds": 4.136859284713864,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "C01",
+      "category": "unsupported_risky",
+      "trial": -5,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "UNSUPPORTED",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "UNSUPPORTED",
+        "target_text": "내력벽을 지워서 회의실을 넓혀줘.",
+        "operation": null,
+        "reason": "벽의 수정은 지원되지 않습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 892,
+        "completion_tokens": 62,
+        "total_tokens": 954
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.1567344116047025,
+      "transport_latency_seconds": 2.1561957113444805,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "decision_correct": true,
+      "target_slots_correct": 0,
+      "target_slots_total": 0,
+      "target_correct": null,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    }
+  ],
+  "trials": [
+    {
+      "case_id": "A01",
+      "category": "korean_requirement",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실 책상을 X축 양의 방향으로 1m 옮겨줘.",
+          "dx": {
+            "value": "1.00",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로 1m"
+          },
+          "dy": {
+            "value": "null",
+            "unit": "m",
+            "evidence": "null"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 898,
+        "completion_tokens": 163,
+        "total_tokens": 1061
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 4.910809167660773,
+      "transport_latency_seconds": 4.909962855279446,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "A02",
+      "category": "korean_requirement",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "로비 의자",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "로비 의자를 Y축 음의 방향으로 250mm 옮겨줘.",
+          "dx": {
+            "value": "0.00",
+            "unit": "m",
+            "evidence": "Y축 음의 방향으로 250mm"
+          },
+          "dy": {
+            "value": "-0.25",
+            "unit": "m",
+            "evidence": "Y축 음의 방향으로 250mm"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 900,
+        "completion_tokens": 182,
+        "total_tokens": 1082
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.41275764349848,
+      "transport_latency_seconds": 5.411933159455657,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "B01",
+      "category": "ambiguity",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "CLARIFICATION",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "CLARIFICATION",
+        "target_text": "책상",
+        "operation": null,
+        "reason": "X축 또는 Y축의 방향과 거리가 명시되지 않았습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 887,
+        "completion_tokens": 60,
+        "total_tokens": 947
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.1197985308244824,
+      "transport_latency_seconds": 2.1192829199135303,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "B02",
+      "category": "ambiguity",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실 책상을 X축 양의 방향으로 좀 옮겨줘.",
+          "dx": {
+            "value": "0.00",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 896,
+        "completion_tokens": 135,
+        "total_tokens": 1031
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 4.139152370393276,
+      "transport_latency_seconds": 4.13838454335928,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "C01",
+      "category": "unsupported_risky",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "UNSUPPORTED",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "UNSUPPORTED",
+        "target_text": "내력벽을 지워서 회의실을 넓혀줘.",
+        "operation": null,
+        "reason": "벽의 수정은 지원되지 않습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 892,
+        "completion_tokens": 62,
+        "total_tokens": 954
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.165417529642582,
+      "transport_latency_seconds": 2.1648818468675017,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "decision_correct": true,
+      "target_slots_correct": 0,
+      "target_slots_total": 0,
+      "target_correct": null,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "C02",
+      "category": "unsupported_risky",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "UNSUPPORTED",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "UNSUPPORTED",
+        "target_text": "1층 회의실 책상을 2층으로 옮겨줘.",
+        "operation": null,
+        "reason": "Z축 이동이 포함되어 지원되지 않습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 892,
+        "completion_tokens": 65,
+        "total_tokens": 957
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.241167495958507,
+      "transport_latency_seconds": 2.240617954172194,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "D01",
+      "category": "multiple_operations",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실 책상은",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실 책상은 X축 양의 방향으로 1m, 로비 의자는 Y축 양의 방향으로 2m 옮겨줘.",
+          "dx": {
+            "value": "1.00",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로 1m"
+          },
+          "dy": {
+            "value": "2.00",
+            "unit": "m",
+            "evidence": "Y축 양의 방향으로 2m"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 915,
+        "completion_tokens": 194,
+        "total_tokens": 1109
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.764125781133771,
+      "transport_latency_seconds": 5.7632832527160645,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 2,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "D02",
+      "category": "multiple_operations",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "CLARIFICATION",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "CLARIFICATION",
+        "target_text": "회의실 책상",
+        "operation": null,
+        "reason": "Z축 회전 요청이 포함되어 있어 지원되지 않습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 905,
+        "completion_tokens": 57,
+        "total_tokens": 962
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.053384614177048,
+      "transport_latency_seconds": 2.0528317214921117,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "CLARIFICATION",
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 0,
+      "target_correct": null,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "E01",
+      "category": "condition_negation",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실 책상 높이와 회전은 바꾸지 말고 X축 양의 방향으로 1m만 옮겨줘.",
+          "dx": {
+            "value": "1.00",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로 1m"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 912,
+        "completion_tokens": 154,
+        "total_tokens": 1066
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 4.708334389142692,
+      "transport_latency_seconds": 4.70753226056695,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "E02",
+      "category": "condition_negation",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실에 책상이 하나일 때만",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실에 책상이 하나일 때만 X축 양의 방향으로 1m 옮겨줘.",
+          "dx": {
+            "value": "1.00",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로 1m"
+          },
+          "dy": {
+            "value": "null",
+            "unit": "m",
+            "evidence": "null"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 904,
+        "completion_tokens": 175,
+        "total_tokens": 1079
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.287348043173552,
+      "transport_latency_seconds": 5.286543857306242,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 0,
+      "target_correct": null,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "F01",
+      "category": "target_preservation",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "파란색 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "3층 서쪽 회의실 창가에 있는 파란색 책상을 X축 음의 방향으로 0.5m 옮겨줘.",
+          "dx": {
+            "value": "-0.50",
+            "unit": "m",
+            "evidence": "X축 음의 방향으로 0.5m"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 913,
+        "completion_tokens": 158,
+        "total_tokens": 1071
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 4.814258744940162,
+      "transport_latency_seconds": 4.813490970991552,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "F02",
+      "category": "target_preservation",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "창가 쪽 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실 입구 쪽 책상 말고 창가 쪽 책상을 Y축 양의 방향으로 30cm 옮겨줘.",
+          "dx": {
+            "value": "0.00",
+            "unit": "m",
+            "evidence": "Y축 양의 방향으로 30cm"
+          },
+          "dy": {
+            "value": "0.30",
+            "unit": "m",
+            "evidence": "Y축 양의 방향으로 30cm"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 914,
+        "completion_tokens": 197,
+        "total_tokens": 1111
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.829254941083491,
+      "transport_latency_seconds": 5.828461499884725,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 3,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "G01",
+      "category": "structured_output",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "회의실 책상을 X축 양의 방향으로 1m 옮겨줘.",
+          "dx": {
+            "value": "1.00",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로 1m"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 905,
+        "completion_tokens": 140,
+        "total_tokens": 1045
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 4.292381210252643,
+      "transport_latency_seconds": 4.291634379886091,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "G02",
+      "category": "structured_output",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "UNSUPPORTED",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "UNSUPPORTED",
+        "target_text": "회의실 책상을 X축 양의 방향으로 1m 옮겨줘.",
+        "operation": null,
+        "reason": "이 요청은 이동 외에 IFC 파일을 덮어쓰는 명령도 포함하고 있어 지원되지 않습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 929,
+        "completion_tokens": 85,
+        "total_tokens": 1014
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.8292715093120933,
+      "transport_latency_seconds": 2.8286861767992377,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "decision_correct": true,
+      "target_slots_correct": 0,
+      "target_slots_total": 0,
+      "target_correct": null,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "H01",
+      "category": "tool_selection",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "로비 소파",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "로비 소파를 X축 양의 방향으로 0.2m 옮겨줘.",
+          "dx": {
+            "value": "0.2",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로 0.2m"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": {
+        "dx": "0.2",
+        "dy": "0"
+      },
+      "usage": {
+        "prompt_tokens": 901,
+        "completion_tokens": 144,
+        "total_tokens": 1045
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 4.385312417522073,
+      "transport_latency_seconds": 4.384460536763072,
+      "expected_decision": "READY",
+      "accepted_decision": "READY",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 2,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "H02",
+      "category": "tool_selection",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "CLARIFICATION",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "CLARIFICATION",
+        "target_text": "회의실에 어떤 책상들이 있는지 먼저 알려줘.",
+        "operation": null,
+        "reason": "요청 정보가 누락되었거나 명확하지 않습니다. 이동 요청이 포함되어 있지 않으며, 현재 위치나 이동 정보가 제공되지 않았습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 889,
+        "completion_tokens": 87,
+        "total_tokens": 976
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.8397299079224467,
+      "transport_latency_seconds": 2.839185240678489,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "decision_correct": true,
+      "target_slots_correct": 0,
+      "target_slots_total": 0,
+      "target_correct": null,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "I01",
+      "category": "long_bim_context",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "3층 서쪽 회의실 창가의 파란색 책상",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "최종 지시는 3층 서쪽 회의실 창가의 파란색 책상을 X축 음의 방향으로 750mm 옮기는 것이다.",
+          "dx": {
+            "value": "-0.750",
+            "unit": "m",
+            "evidence": "X축 음의 방향으로 750mm"
+          },
+          "dy": {
+            "value": "null",
+            "unit": "m",
+            "evidence": "null"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 1094,
+        "completion_tokens": 198,
+        "total_tokens": 1292
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.9001266453415155,
+      "transport_latency_seconds": 5.899203955195844,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "I02",
+      "category": "long_bim_context",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "회의실 책상을 Y축 양의 방향으로 40cm 이동하는 것 하나다",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "최신 확정 요청은 회의실 책상을 Y축 양의 방향으로 40cm 이동하는 것 하나다",
+          "dx": {
+            "value": "0.0",
+            "unit": "m",
+            "evidence": "Y축 양의 방향으로 40cm"
+          },
+          "dy": {
+            "value": "0.40",
+            "unit": "m",
+            "evidence": "Y축 양의 방향으로 40cm"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 1061,
+        "completion_tokens": 205,
+        "total_tokens": 1266
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 6.048139016143978,
+      "transport_latency_seconds": 6.047287475317717,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "J01",
+      "category": "future_design_reasoning",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "CLARIFICATION",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "CLARIFICATION",
+        "target_text": "회의실 가구",
+        "operation": null,
+        "reason": "재배치 요청에 대한 구체적인 축, 방향, 거리 및 단위 정보가 누락되었습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 902,
+        "completion_tokens": 70,
+        "total_tokens": 972
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.3751969318836927,
+      "transport_latency_seconds": 2.374660666100681,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "CLARIFICATION",
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 0,
+      "target_correct": null,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "J02",
+      "category": "future_design_reasoning",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "UNSUPPORTED",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "UNSUPPORTED",
+        "target_text": "채광이 좋아지게 회의실을 새로 설계하고 IFC를 자동으로 만들어줘.",
+        "operation": null,
+        "reason": "새로운 설계 및 IFC 생성 요청은 지원되지 않습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 899,
+        "completion_tokens": 76,
+        "total_tokens": 975
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.5626078713685274,
+      "transport_latency_seconds": 2.5620605126023293,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "decision_correct": true,
+      "target_slots_correct": 0,
+      "target_slots_total": 0,
+      "target_correct": null,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "HD-A01",
+      "category": "korean_requirement",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "연습실 긴 벤치",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "연습실 긴 벤치를 X축 양의 방향으로 125mm 이동해줘.",
+          "dx": {
+            "value": "125.00",
+            "unit": "mm",
+            "evidence": "X축 양의 방향으로 125mm"
+          },
+          "dy": {
+            "value": "null",
+            "unit": "m",
+            "evidence": "null"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 905,
+        "completion_tokens": 178,
+        "total_tokens": 1083
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.320692932233214,
+      "transport_latency_seconds": 5.319859086535871,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-A02",
+      "category": "korean_requirement",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "연습실 긴 벤치",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "연습실 긴 벤치를 Y축 음의 방향으로 125mm 이동해줘.",
+          "dx": {
+            "value": "0.00",
+            "unit": "mm",
+            "evidence": "Y축 음의 방향으로 125mm"
+          },
+          "dy": {
+            "value": "-125.00",
+            "unit": "mm",
+            "evidence": "Y축 음의 방향으로 125mm"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 905,
+        "completion_tokens": 193,
+        "total_tokens": 1098
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.716569487005472,
+      "transport_latency_seconds": 5.715767875313759,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-B01",
+      "category": "ambiguity",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "촬영실 보조 탁자",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "촬영실 보조 탁자를 X축으로 1m 옮겨줘.",
+          "dx": {
+            "value": "1.00",
+            "unit": "m",
+            "evidence": "X축으로 1m"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 897,
+        "completion_tokens": 138,
+        "total_tokens": 1035
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 4.233631268143654,
+      "transport_latency_seconds": 4.232876781374216,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-B02",
+      "category": "ambiguity",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "촬영실 보조 탁자",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "촬영실 보조 탁자를 X축 양의 방향으로 1m 이동해줘.",
+          "dx": {
+            "value": "1.00",
+            "unit": "m",
+            "evidence": "X축 양의 방향으로 1m"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 902,
+        "completion_tokens": 148,
+        "total_tokens": 1050
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 4.5093574319034815,
+      "transport_latency_seconds": 4.508620831184089,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-C01",
+      "category": "unsupported_risky",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "UNSUPPORTED",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "UNSUPPORTED",
+        "target_text": "저장실 목제 장",
+        "operation": null,
+        "reason": "Z축 이동은 지원되지 않습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 902,
+        "completion_tokens": 54,
+        "total_tokens": 956
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 1.9384007845073938,
+      "transport_latency_seconds": 1.9378831405192614,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "HD-C02",
+      "category": "unsupported_risky",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "저장실 목제 장",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "저장실 목제 장을 Y축 양의 방향으로 10cm 이동해줘.",
+          "dx": {
+            "value": "0.00",
+            "unit": "m",
+            "evidence": "Y축 양의 방향으로 10cm"
+          },
+          "dy": {
+            "value": "0.10",
+            "unit": "m",
+            "evidence": "Y축 양의 방향으로 10cm"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 902,
+        "completion_tokens": 184,
+        "total_tokens": 1086
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.453196344897151,
+      "transport_latency_seconds": 5.4523565620183945,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-D01",
+      "category": "multiple_operations",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "CLARIFICATION",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "CLARIFICATION",
+        "target_text": "구내식당 사각 탁자",
+        "operation": null,
+        "reason": "Z축 회전 요청이 포함되어 있어 지원되지 않습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 913,
+        "completion_tokens": 62,
+        "total_tokens": 975
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.175493129529059,
+      "transport_latency_seconds": 2.1749574951827526,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "CLARIFICATION",
+      "decision_correct": false,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-D02",
+      "category": "multiple_operations",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "구내식당 사각 탁자",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "구내식당 사각 탁자를 X축 양의 방향으로 15cm, Y축 음의 방향으로 5cm 이동해줘.",
+          "dx": {
+            "value": "15.00",
+            "unit": "cm",
+            "evidence": "X축 양의 방향으로 15cm"
+          },
+          "dy": {
+            "value": "-5.00",
+            "unit": "cm",
+            "evidence": "Y축 음의 방향으로 5cm"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 916,
+        "completion_tokens": 201,
+        "total_tokens": 1117
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.942401478998363,
+      "transport_latency_seconds": 5.940681488253176,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-E01",
+      "category": "condition_negation",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "동쪽 수장고 녹색 장",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "동쪽 수장고 녹색 장을 X축 음의 방향으로 8cm 이동해줘.",
+          "dx": {
+            "value": "-8.00",
+            "unit": "cm",
+            "evidence": "X축 음의 방향으로 8cm"
+          },
+          "dy": {
+            "value": "null",
+            "unit": "m",
+            "evidence": "null"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 904,
+        "completion_tokens": 174,
+        "total_tokens": 1078
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.203488848172128,
+      "transport_latency_seconds": 5.202470643445849,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-E02",
+      "category": "condition_negation",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "CLARIFICATION",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "CLARIFICATION",
+        "target_text": "동쪽 수장고 녹색 장",
+        "operation": null,
+        "reason": "주변과 충돌하지 않는 경우에 대한 조건이 명확하지 않으며, 이는 이동을 위한 추가 정보를 필요로 합니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 915,
+        "completion_tokens": 82,
+        "total_tokens": 997
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.7421713983640075,
+      "transport_latency_seconds": 2.7416313542053103,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "HD-F01",
+      "category": "target_preservation",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "내벽 쪽 높은 장",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "연구실 복도 쪽 낮은 장 말고 내벽 쪽 높은 장을 X축 음의 방향으로 16cm 이동해줘.",
+          "dx": {
+            "value": "-16.00",
+            "unit": "cm",
+            "evidence": "X축 음의 방향으로 16cm"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 920,
+        "completion_tokens": 170,
+        "total_tokens": 1090
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.105791985057294,
+      "transport_latency_seconds": 5.104959006421268,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 3,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-F02",
+      "category": "target_preservation",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "복도 쪽 낮은 장",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "연구실 내벽 쪽 높은 장 말고 복도 쪽 낮은 장을 X축 음의 방향으로 16cm 이동해줘.",
+          "dx": {
+            "value": "-16.00",
+            "unit": "cm",
+            "evidence": "X축 음의 방향으로 16cm"
+          },
+          "dy": null
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 920,
+        "completion_tokens": 169,
+        "total_tokens": 1089
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.064923725090921,
+      "transport_latency_seconds": 5.0641692113131285,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 3,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-G01",
+      "category": "structured_output",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "남관 면담실 소파",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "남관 면담실 소파를 X축 양의 방향으로 3cm 옮겨줘.",
+          "dx": {
+            "value": "3.00",
+            "unit": "cm",
+            "evidence": "X축 양의 방향으로 3cm"
+          },
+          "dy": {
+            "value": "null",
+            "unit": "m",
+            "evidence": "null"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 912,
+        "completion_tokens": 172,
+        "total_tokens": 1084
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.161088000051677,
+      "transport_latency_seconds": 5.160256433300674,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-G02",
+      "category": "structured_output",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "UNSUPPORTED",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "UNSUPPORTED",
+        "target_text": "남관 면담실 소파",
+        "operation": null,
+        "reason": "원본 IFC에 덮어써 요청은 지원되지 않습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 928,
+        "completion_tokens": 62,
+        "total_tokens": 990
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.1629082122817636,
+      "transport_latency_seconds": 2.162368935532868,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "HD-H01",
+      "category": "tool_selection",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "CLARIFICATION",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "CLARIFICATION",
+        "target_text": "진료대기실 긴 의자 목록부터 알려줘.",
+        "operation": null,
+        "reason": "이 요청은 특정 가구의 이동이나 재배치에 대한 명확한 정보가 포함되어 있지 않습니다. '목록부터 알려줘'는 정보 요청을 나타내며, 이는 현재 이동 명령이 아닙니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 893,
+        "completion_tokens": 106,
+        "total_tokens": 999
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 3.352694415487349,
+      "transport_latency_seconds": 3.3521346552297473,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "HD-H02",
+      "category": "tool_selection",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "진료대기실 긴 의자",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "진료대기실 긴 의자를 Y축 양의 방향으로 42mm 이동해줘.",
+          "dx": {
+            "value": "0.00",
+            "unit": "mm",
+            "evidence": "Y축 양의 방향으로 42mm"
+          },
+          "dy": {
+            "value": "42.00",
+            "unit": "mm",
+            "evidence": "Y축 양의 방향으로 42mm"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 904,
+        "completion_tokens": 190,
+        "total_tokens": 1094
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.625531834550202,
+      "transport_latency_seconds": 5.624465816654265,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-I01",
+      "category": "long_bim_context",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "행정실 창가 캐비닛",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "최신 요청: 행정실 창가 캐비닛을 Y축 음의 방향으로 0.12m 이동해줘.",
+          "dx": {
+            "value": "0.00",
+            "unit": "m",
+            "evidence": "Y축 음의 방향"
+          },
+          "dy": {
+            "value": "-0.12",
+            "unit": "m",
+            "evidence": "Y축 음의 방향으로 0.12m"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 1251,
+        "completion_tokens": 196,
+        "total_tokens": 1447
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 5.865040883421898,
+      "transport_latency_seconds": 5.864095859229565,
+      "expected_decision": "READY",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 2,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-I02",
+      "category": "long_bim_context",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": false,
+      "raw_model_decision": "READY",
+      "model_ready_observed": true,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "READY",
+        "target_text": "행정실 창가 캐비닛",
+        "operation": {
+          "kind": "MOVE_FURNITURE",
+          "coordinate_frame": "PROJECT_WORLD_XY",
+          "instruction_text": "최신 요청: 주변에 충돌이 없을 때만 행정실 창가 캐비닛을 Y축 음의 방향으로 0.12m 이동해줘.",
+          "dx": {
+            "value": "0.00",
+            "unit": "m",
+            "evidence": "Y축 음의 방향"
+          },
+          "dy": {
+            "value": "-0.12",
+            "unit": "m",
+            "evidence": "Y축 음의 방향으로 0.12m"
+          }
+        },
+        "reason": null
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 1262,
+        "completion_tokens": 207,
+        "total_tokens": 1469
+      },
+      "response_model": "neurobuild-local",
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "latency_seconds": 6.1641601100564,
+      "transport_latency_seconds": 6.16323833912611,
+      "expected_decision": "CLARIFICATION",
+      "accepted_decision": null,
+      "decision_correct": false,
+      "target_slots_correct": 0,
+      "target_slots_total": 1,
+      "target_correct": false,
+      "target_exact_source_span": null,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": false
+    },
+    {
+      "case_id": "HD-J01",
+      "category": "future_design_reasoning",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "UNSUPPORTED",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "UNSUPPORTED",
+        "target_text": "명상실 좌석 배치안을 두 가지 만들어 비교해줘.",
+        "operation": null,
+        "reason": "다양한 배치안 생성 및 비교 요청은 이동 작업이 아닌 설계 변경을 포함합니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 895,
+        "completion_tokens": 78,
+        "total_tokens": 973
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.630069880746305,
+      "transport_latency_seconds": 2.6288091568276286,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    },
+    {
+      "case_id": "HD-J02",
+      "category": "future_design_reasoning",
+      "trial": 1,
+      "json_parse_valid": true,
+      "schema_valid": true,
+      "parser_accepted": true,
+      "raw_model_decision": "UNSUPPORTED",
+      "model_ready_observed": false,
+      "semantic_output": {
+        "schema_version": "1.0",
+        "decision": "UNSUPPORTED",
+        "target_text": "명상실 전체를 새로 설계하고 IFC 파일까지 만들어줘.",
+        "operation": null,
+        "reason": "새로운 설계 및 IFC 파일 생성 요청은 지원되지 않습니다."
+      },
+      "normalized_operation_metres": null,
+      "usage": {
+        "prompt_tokens": 894,
+        "completion_tokens": 70,
+        "total_tokens": 964
+      },
+      "response_model": "neurobuild-local",
+      "error_code": null,
+      "latency_seconds": 2.4124019015580416,
+      "transport_latency_seconds": 2.410795367322862,
+      "expected_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "decision_correct": true,
+      "target_slots_correct": 1,
+      "target_slots_total": 1,
+      "target_correct": true,
+      "target_exact_source_span": true,
+      "unit_value_slots_correct": 0,
+      "unit_value_slots_total": 0,
+      "semantic_rubric_correct": true
+    }
+  ],
+  "metrics": {
+    "json_parse_valid": {
+      "numerator": 40,
+      "denominator": 40,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9123783988027135,
+        1.0
+      ]
+    },
+    "schema_valid": {
+      "numerator": 40,
+      "denominator": 40,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9123783988027135,
+        1.0
+      ]
+    },
+    "parser_accepted": {
+      "numerator": 16,
+      "denominator": 40,
+      "rate": 0.4,
+      "wilson_95": [
+        0.2634832568429192,
+        0.5540410633965381
+      ]
+    },
+    "semantic_rubric_correct": {
+      "numerator": 13,
+      "denominator": 40,
+      "rate": 0.325,
+      "wilson_95": [
+        0.200845022317827,
+        0.47982253810122333
+      ]
+    },
+    "critical_fp_model_ready": {
+      "numerator": 5,
+      "denominator": 20,
+      "rate": 0.25,
+      "wilson_95": [
+        0.11186170140766569,
+        0.468700877618744
+      ]
+    },
+    "critical_fp_accepted_ready": {
+      "numerator": 0,
+      "denominator": 20,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.16112515805281938
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 40,
+      "denominator": 40,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9123783988027135,
+        1.0
+      ]
+    },
+    "nonready_gold_raw_decision_observed": {
+      "numerator": 20,
+      "denominator": 20,
+      "rate": 1.0,
+      "wilson_95": [
+        0.8388748419471806,
+        1.0
+      ]
+    },
+    "critical_fn_accepted_ready": {
+      "numerator": 19,
+      "denominator": 20,
+      "rate": 0.95,
+      "wilson_95": [
+        0.763868806553258,
+        0.9911185511992047
+      ]
+    },
+    "accepted_incorrect_move_on_ready_gold": {
+      "numerator": 0,
+      "denominator": 20,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.16112515805281938
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 0,
+      "denominator": 40,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.08762160119728664
+      ]
+    },
+    "target_preservation": {
+      "numerator": 10,
+      "denominator": 40,
+      "rate": 0.25,
+      "wilson_95": [
+        0.14187118639096302,
+        0.40193961420768026
+      ]
+    },
+    "unit_value_extraction": {
+      "numerator": 2,
+      "denominator": 40,
+      "rate": 0.05,
+      "wilson_95": [
+        0.013820667386148344,
+        0.16503877369140962
+      ]
+    },
+    "latency_all": {
+      "count": 40,
+      "mean_seconds": 4.186464720335789,
+      "p95_seconds": 5.942401478998363
+    },
+    "latency_parser_accepted": {
+      "count": 16,
+      "mean_seconds": 2.5616266581928357,
+      "p95_seconds": 4.385312417522073
+    },
+    "errors": {
+      "UNGROUNDED_REQUIREMENT": 24
+    },
+    "tool_execution": "NOT_PERFORMED",
+    "decode_tokens_per_second": null,
+    "ttft_seconds": null,
+    "clarification_detection": {
+      "precision": {
+        "numerator": 4,
+        "denominator": 7,
+        "rate": 0.5714285714285714,
+        "wilson_95": [
+          0.2504583645276572,
+          0.8417801447485302
+        ]
+      },
+      "recall": {
+        "numerator": 4,
+        "denominator": 8,
+        "rate": 0.5,
+        "wilson_95": [
+          0.21521606221387757,
+          0.7847839377861224
+        ]
+      },
+      "f1": 0.5333333333333333
+    },
+    "unsupported_detection": {
+      "precision": {
+        "numerator": 8,
+        "denominator": 8,
+        "rate": 1.0,
+        "wilson_95": [
+          0.6755924351161198,
+          1.0
+        ]
+      },
+      "recall": {
+        "numerator": 8,
+        "denominator": 12,
+        "rate": 0.6666666666666666,
+        "wilson_95": [
+          0.39062208887279953,
+          0.8618799089087867
+        ]
+      },
+      "f1": 0.8
+    },
+    "completion_tokens_per_end_to_end_second": 32.49161502287536,
+    "token_timing_trial_count": 40,
+    "case_consistency": {
+      "A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      }
+    }
+  },
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "run_id": "20260919T212748Z-bba084e02f46432aab7f11883d625467",
+  "interpretation": "Automatic decision/target/SI rubric; no human meaning review, IFC execution or approval",
+  "raw_ready_limit": "Unparseable/truncated/absent decisions are unobserved; raw READY rate is an observed lower bound",
+  "interval_limit": "Wilson intervals are descriptive; repeated trials and public synthetic cases are correlated"
+}

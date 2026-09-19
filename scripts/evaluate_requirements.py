@@ -24,7 +24,7 @@ from jsonschema import Draft202012Validator
 
 from neurobuild.application.requirements import MAX_RESPONSE_CHARS, parse_requirement
 from neurobuild.domain.errors import DomainError
-from neurobuild.infrastructure.local_model import LocalRequirementClient, StructuredOutputProtocol
+from neurobuild.infrastructure.local_model import LocalRequirementClient, SamplingProfile, StructuredOutputProtocol
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -327,6 +327,7 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
               "client": file_sha(ROOT / "src/neurobuild/infrastructure/local_model.py")}
     if hashes["prompt"] != client.prompt_sha256 or hashes["schema"] != client.schema_sha256:
         raise ValueError("Client prompt/schema differs from recorded files")
+    sampling = client.sampling_parameters
     return {"run_id": run_id, "created_at_utc": datetime.now(timezone.utc).isoformat(),
             "gold_status": GOLD_STATUS, "split": split, "git": git_info(),
             "model_id": weight_data["model_id"], "served_model": client.model,
@@ -335,7 +336,12 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
             "runtime_identity_evidence": "OPERATOR_SUPPLIED; HTTP model name checked, loaded weight revision not remotely attested",
             "weight_integrity_evidence": "PINNED_MANIFEST; downloader verifies files, evaluator does not reread weights",
             "protocol": {"warmups": warmups, "trials_per_case": trials, "order": "dataset order, case-major then trial-major",
-                         "temperature": 0, "seed": 42, "max_tokens": client.max_tokens, "timeout_seconds": client.timeout,
+                         "sampling_profile": client.sampling_profile.value,
+                         "sampling_request_parameters": sampling,
+                         "unspecified_sampling_parameters": "Server/model defaults; not claimed explicitly controlled",
+                         "temperature": sampling["temperature"], "seed": sampling["seed"],
+                         "seed_policy": "Same fixed seed for every request; repetitions are not independent samples",
+                         "max_tokens": client.max_tokens, "timeout_seconds": client.timeout,
                          "concurrency": 1, "enable_thinking": False,
                          "structured_output_protocol": client.protocol.value,
                          "guided_decoding_backend": ("xgrammar:no-fallback" if client.protocol == StructuredOutputProtocol.LEGACY_GUIDED_JSON else None),
@@ -356,6 +362,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--base-url", default="http://127.0.0.1:8003")
     parser.add_argument("--protocol", choices=[p.value for p in StructuredOutputProtocol], default="legacy_guided_json")
+    parser.add_argument("--sampling-profile", choices=[p.value for p in SamplingProfile], default="legacy_greedy")
     parser.add_argument("--model", required=True, help="Exact served model name")
     parser.add_argument("--model-revision", required=True)
     parser.add_argument("--tokenizer-revision")
@@ -375,7 +382,8 @@ def main(argv=None):
         schema = strict_json(args.schema.read_text(encoding="utf-8"))
         Draft202012Validator.check_schema(schema)
         client = LocalRequirementClient(args.base_url, args.model, timeout=args.timeout, max_tokens=args.max_tokens,
-                                        prompt_path=args.prompt, schema_path=args.schema, protocol=args.protocol)
+                                        prompt_path=args.prompt, schema_path=args.schema, protocol=args.protocol,
+                                        sampling_profile=args.sampling_profile)
         run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ-") + uuid4().hex
         manifest = build_manifest(client, dataset=args.dataset, prompt=args.prompt, schema=args.schema,
                                   weights=args.weight_manifest, runtime=args.runtime_metadata,

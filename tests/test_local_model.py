@@ -16,7 +16,9 @@ from unittest.mock import patch
 from uuid import uuid4
 
 from neurobuild.domain.errors import DomainError
-from neurobuild.infrastructure.local_model import LocalRequirementClient, MAX_HTTP_RESPONSE_BYTES, StructuredOutputProtocol
+from neurobuild.infrastructure.local_model import (
+    LocalRequirementClient, MAX_HTTP_RESPONSE_BYTES, SamplingProfile, StructuredOutputProtocol,
+)
 
 
 SOURCE = "회의실 책상을 X축 양의 방향으로 1m 옮겨줘."
@@ -40,7 +42,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         size = int(self.headers.get("Content-Length", 0))
-        self.server.requests.append((self.path, dict(self.headers), json.loads(self.rfile.read(size))))
+        body = self.rfile.read(size)
+        self.server.request_bodies.append(body)
+        self.server.requests.append((self.path, dict(self.headers), json.loads(body)))
         try:
             if self.server.delay:
                 time.sleep(self.server.delay)
@@ -64,6 +68,7 @@ class LocalModelClientTests(unittest.TestCase):
         self.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
         self.server.daemon_threads = True
         self.server.requests = []
+        self.server.request_bodies = []
         self.server.status = 200
         self.server.headers = {"Content-Type": "application/json"}
         self.server.delay = 0
@@ -147,6 +152,101 @@ class LocalModelClientTests(unittest.TestCase):
                     LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol)
                 self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
         self.assertEqual(self.server.requests, [])
+
+    def test_default_and_explicit_legacy_sampling_preserve_the_original_request_bytes(self):
+        root = Path(__file__).resolve().parents[1]
+        expected = {
+            "model": "synthetic-test-model",
+            "messages": [{"role": "system", "content": (root / "prompts/requirement_v3.txt").read_text()},
+                         {"role": "user", "content": json.dumps({"source_text": SOURCE, "axis_convention": "project_xy"},
+                                                                ensure_ascii=False)}],
+            "temperature": 0, "seed": 42, "max_tokens": 768, "stream": False,
+            "chat_template_kwargs": {"enable_thinking": False},
+            "guided_json": json.loads((root / "schemas/semantic_requirement.schema.json").read_text()),
+            "guided_decoding_backend": "xgrammar:no-fallback",
+        }
+        clients = [self.client] + [LocalRequirementClient(self.base, "synthetic-test-model", sampling_profile=value)
+                                  for value in (SamplingProfile.LEGACY_GREEDY, "legacy_greedy")]
+        for client in clients:
+            with self.subTest(profile=client.sampling_profile):
+                client.complete(SOURCE, axis_convention="project_xy")
+                self.assertIs(client.sampling_profile, SamplingProfile.LEGACY_GREEDY)
+                self.assertEqual(client.sampling_parameters, {"temperature": 0, "seed": 42})
+                self.assertEqual(self.server.request_bodies[-1], json.dumps(expected, ensure_ascii=False).encode("utf-8"))
+        self.assertEqual(len(self.server.requests), 3)
+
+    def test_qwen_sampling_sends_all_eight_values_with_each_explicit_schema_protocol(self):
+        expected = {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
+                    "presence_penalty": 1.5, "frequency_penalty": 0.0,
+                    "repetition_penalty": 1.0, "seed": 42}
+        schema = json.loads((Path(__file__).resolve().parents[1] / "schemas/semantic_requirement.schema.json").read_text())
+        for protocol in StructuredOutputProtocol:
+            for profile in (SamplingProfile.QWEN3_NONTHINKING_AWQ, "qwen3_nonthinking_awq"):
+                with self.subTest(protocol=protocol, profile_type=type(profile).__name__):
+                    client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
+                                                    sampling_profile=profile)
+                    result = client.extract(SOURCE, axis_convention="project_xy", requirement_id=uuid4(),
+                                            project_id=uuid4(), base_revision_id=uuid4())
+                    self.assertEqual(result.operation.dx.metres, 1)
+                    self.assertIs(client.sampling_profile, SamplingProfile.QWEN3_NONTHINKING_AWQ)
+                    self.assertEqual(client.sampling_parameters, expected)
+                    request = self.server.requests[-1][2]
+                    self.assertEqual({key: request[key] for key in expected}, expected)
+                    self.assertIs(type(request["top_k"]), int)
+                    self.assertIs(type(request["seed"]), int)
+                    self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
+                    self.assertEqual(request["max_tokens"], 768)
+                    self.assertIs(request["stream"], False)
+                    if protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON:
+                        self.assertEqual(request["guided_json"], schema)
+                        self.assertEqual(request["guided_decoding_backend"], "xgrammar:no-fallback")
+                        self.assertNotIn("structured_outputs", request)
+                    else:
+                        self.assertEqual(request["structured_outputs"], {"json": schema})
+                        self.assertNotIn("guided_json", request)
+                        self.assertNotIn("guided_decoding_backend", request)
+
+    def test_unknown_sampling_profile_fails_before_any_http_request(self):
+        invalid = (None, True, False, 0, 0.7, float("nan"), [], {}, b"legacy_greedy", "auto", "",
+                   "QWEN3_NONTHINKING_AWQ", "qwen3_nonthinking_awq ", StructuredOutputProtocol.LEGACY_GUIDED_JSON)
+        for profile in invalid:
+            with self.subTest(profile=profile), self.assertRaises(DomainError) as caught:
+                LocalRequirementClient(self.base, "synthetic-test-model", sampling_profile=profile)
+            self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
+        self.assertEqual(self.server.requests, [])
+
+    def test_sampling_metadata_copies_cannot_change_requests_or_the_selected_profile(self):
+        client = LocalRequirementClient(self.base, "synthetic-test-model", sampling_profile="qwen3_nonthinking_awq")
+        saved = client.sampling_parameters
+        saved["temperature"] = 0
+        saved["approval"] = True
+        with self.assertRaises(AttributeError):
+            client.sampling_profile = SamplingProfile.LEGACY_GREEDY
+        with self.assertRaises(AttributeError):
+            client.sampling_parameters = saved
+        client.complete(SOURCE, axis_convention="project_xy")
+        request = self.server.requests[-1][2]
+        self.assertEqual(request["temperature"], 0.7)
+        self.assertNotIn("approval", request)
+        self.assertEqual(client.sampling_parameters["temperature"], 0.7)
+        self.assertIsNot(client.sampling_parameters, client.sampling_parameters)
+
+    def test_rejected_sampling_never_retries_with_greedy_or_without_schema(self):
+        for status, error in ((400, "LOCAL_MODEL_HTTP_ERROR"), (200, "LOCAL_MODEL_RESPONSE_INVALID")):
+            self.server.status = status
+            self.server.body = b'{"error":"sampling rejected DO_NOT_ECHO_SECRET"}'
+            for protocol in StructuredOutputProtocol:
+                with self.subTest(status=status, protocol=protocol):
+                    before = len(self.server.requests)
+                    client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
+                                                    sampling_profile="qwen3_nonthinking_awq")
+                    self.reject(error, client)
+                    self.assertEqual(len(self.server.requests), before + 1)
+                    self.assertIs(client.sampling_profile, SamplingProfile.QWEN3_NONTHINKING_AWQ)
+                    request = self.server.requests[-1][2]
+                    self.assertEqual(request["temperature"], 0.7)
+                    self.assertIn("guided_json" if protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON
+                                  else "structured_outputs", request)
 
     def test_protocol_rejection_never_retries_or_removes_grammar_constraints(self):
         self.server.status = 400

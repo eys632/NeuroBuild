@@ -229,3 +229,14 @@ Could not open a connection to your authentication agent.
 Run20260919T211340Z-cebc5bbdaeea46b188caf6d27c4ff804: schema/parser120/120, semantic96/120(80%), raw/acceptedFP0/60, unsafeaccepted0/120, FN24/60, mean2.96099s/p955.05258s. 8case×3 모두불필요한거절: A01/A02/H01/HD-A02/B02/C02/H02는명시된방향이나미요청축을추가질문했고HD-D02는단일가구XY를미지원으로오인했다. 원문unit복사는개선됐지만전체gateFAIL. 결과/manifest/resources를development-v4에보존하며heldout은미호출이다.
 
 긴예제prompt보강반복을재검토하여V5는847token English policy로전환,한축/두축지원과미요청축null을명시한다. 같은T0/runtime/model/schema/parser/gold로40development×1진단을먼저실행한다. 이는최종3회gate가아니며,개선시동일설정정식평가가필요하다. Qwen공식decoding지침은별도로검토하며무조건T0가원인이라고단정하지않는다.
+
+- V4실패보존/V5진단freeze중간checkpoint db32f6e8c0a124a998500c7f1b2a8186a618ef29 push와remotehash일치확인. Runtime담당의추가V5read-review도중대모순없음으로회신. 이는실제품질통과가아니다.
+
+
+## V5 간결한 영어 prompt 진단 실패
+
+Run20260919T212748Z-bba084e02f46432aab7f11883d625467, development40×1/warmup5: schema40/40, parser16/40, semantic13/40, rawFP5/20, acceptedFP0/20, unsafeaccepted0/40, FN19/20. Mean4.18646s/p955.94240s. 지원gold20개는모두rawREADY였으나19개는숫자원문표기변경(1→1.00),단위선변환,미요청축의0/fake-null삽입등으로거절됐다. 단순길이축소/영어화는품질개선으로이어지지않았다. 이진단을3회반복gate로표시하지않으며모든실패결과를보존한다.
+
+다음실험은기존development최고성능v3prompt를고정하고공식Qwen AWQ nonthinking sampling profile만변경한다(T.7/top_p.8/top_k20/min_p0/presence1.5/frequency0/repetition1/seed42). Legacy기본요청은그대로유지하며실제요청값을manifest에기록한다. Gold/parser/지원범위는유지하고heldout은계속미호출이다. 설정구현동안자기모델guard만정상종료했으며GPU3used3965/free36373MiB/util0%복귀를확인했다.
+
+- Samplingpreset/manifest연동과guardoutputnamespace수정후전체245testsPASS/skip0/16.377s(realPG/IFC,DISPLAYunset). 기존legacywire동일/양쪽protocol/invalidconfig/변조된snapshot/재시도금지/실제samplingmanifest일치를검증했다. Log는var/logs,report는var/reports로한정하여artifact/model경로·symlink·hardlinkalias덮어쓰기거절. 수치parser/gold/scoringlogic미변경.

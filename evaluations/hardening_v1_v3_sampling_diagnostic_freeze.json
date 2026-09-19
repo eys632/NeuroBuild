@@ -1,0 +1,57 @@
+{
+  "lifecycle": "FROZEN_BEFORE_PROMPT_V3_SAMPLING_DIAGNOSTIC",
+  "frozen_at_utc": "2026-09-19T21:34:59.901694+00:00",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "source_ancestor_commit": "db32f6e8c0a124a998500c7f1b2a8186a618ef29",
+  "model_id": "Qwen/Qwen3-14B-AWQ",
+  "model_revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+  "protocol": "legacy_guided_json",
+  "prompt": "prompts/requirement_v3.txt",
+  "temperature": 0.7,
+  "seed": 42,
+  "warmups_per_run": 5,
+  "trials_per_case": 1,
+  "max_tokens": 768,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "sha256": {
+    "evaluations/hardening_v1_manifest.json": "959d3340e4ba095ca2f54d29f55dd4b2f151df00a2a92a619dcc3bf8baa56605",
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+    "evaluations/generate_requirement_hardening_v1.py": "f2908f7557df098690ea9933cd7a210e4510b03ecb7c9e6601b0daff0f4b2019",
+    "prompts/requirement_v3.txt": "716137f3e275cb0030f1f497f8e23bbeeefd8a62eae757378231b7d910db3c3e",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "24d77f9abb95665fcb4f6421f7b801571cd64dba249c4094a3c6c5f84641c755",
+    "scripts/evaluate_requirements.py": "64147814e91938173bd37659b8a9f73b130ba76046ff586392064b50e01bece2",
+    "runtime/models/qwen3-14b-awq.json": "208ed94ea360b214612d53f8002b69830670c3269246cef28a329c6ab3b41011",
+    "scripts/model_server.py": "c6fa21854b855a9e97e2b0da3d59e7f104dfdca1b89f245bdf6ef8b86ff8ecd6"
+  },
+  "review_evidence": [
+    "docs/reviews/phase5x_plan_review.md",
+    "docs/reviews/phase5x_numeric_review.md"
+  ],
+  "independent_review": "AI agent review, not human verification; heldout source/gold inspected before inference, no prompt tuning from outputs",
+  "policy": "Preserve all results. Never modify heldout gold silently or tune this prompt from heldout outputs. New prompts/configuration require separate version/freeze and results.",
+  "gate_targets": {
+    "schema_rate": 1.0,
+    "semantic_rate_minimum": 0.95,
+    "critical_model_ready_fp_count": 0,
+    "unsafe_accepted_ready_total_count": 0
+  },
+  "purpose": "Development40x1 diagnostic; compare bestdevv3 at officialnonthinkingAWQsampling. Not final3trialgate.",
+  "sampling_profile": "qwen3_nonthinking_awq",
+  "sampling_request_parameters": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "frequency_penalty": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 42
+  },
+  "holdout_outputs_seen_before_freeze": false,
+  "implementation_change": "Explicit samplingprofiles and manifestvalues only; scorerlogic/parser/schema/gold unchanged. Guardoutputpaths confined; runtimeflagsunchanged.",
+  "launch_config_sha256": "25f2d519c180438e99609248fb1768dd3adc416a6e22b9d7737847a0c7c17de5"
+}
