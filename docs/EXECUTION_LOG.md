@@ -282,3 +282,10 @@ Run20260919T222220Z-6df72f2113474c108c488c98faefca20:40×1,warmup5. Schema40/par
 ## 4B v3 failure review and v4 comparison freeze
 
 Independent replay confirmed schema40/parser39/semantic37, rawFP1 and unsafeaccepted2. All result/manifest bytes match archives. Existing v4 policy specifically covers unsigned direction and full target scope/exclusion; CPU context maxima3529/3534 including768 output cap fit4096. Freeze records same model/runtime/sampling and unchanged parser/schema/gold. Only development40×1 next; no heldout inference. Previous regression253 PASS remains applicable because no source changes.
+
+
+## 4B Instruct v4 diagnostic failure
+
+Run20260919T223253Z-6038073ec36044adb6251920c5d6b285, development40×1/warmup5: schema/parser40, semantic34/40(85%), rawFP1/20, acceptedFP1/20, wrongacceptedtarget2/20, unsafeaccepted3/40, FN3/20. Mean2.35471s/p953.56743s. HD-B01 unsigned direction is fixed, but E01 preservation clauses and HD-F02 exclusion cause incorrect UNSUPPORTED, HD-A02 explicit negative direction causes CLARIFICATION, F02/HD-F01 lose target scope, and HD-I02 ignores an unverified collision condition. All responses completed without transport/parser errors. This does not pass the fixed gate; all outputs/resources are retained.
+
+V4 replaced many instructions and examples simultaneously and regressed relative to 4B/v3. The next bounded experiment will retain v3 in full and clarify only direction/extraction reminders after examples, using general rules and unrelated sample nouns/numbers. No gold/parser/schema/scoring change or heldout inference. This is a development-driven prompt revision, not blind selection.

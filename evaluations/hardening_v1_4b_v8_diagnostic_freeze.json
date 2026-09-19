@@ -1,0 +1,70 @@
+{
+  "lifecycle": "FROZEN_BEFORE_4B_INSTRUCT_V8_DIAGNOSTIC",
+  "frozen_at_utc": "2026-09-19T22:38:21.194389+00:00",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "source_ancestor_commit": "5b7499d480a403bfc8650ecbb11165d7854e1801",
+  "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+  "model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "protocol": "legacy_guided_json",
+  "prompt": "prompts/requirement_v8.txt",
+  "temperature": 0.7,
+  "seed": 42,
+  "warmups_per_run": 5,
+  "trials_per_case": 1,
+  "max_tokens": 768,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "sha256": {
+    "evaluations/hardening_v1_manifest.json": "959d3340e4ba095ca2f54d29f55dd4b2f151df00a2a92a619dcc3bf8baa56605",
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+    "evaluations/generate_requirement_hardening_v1.py": "f2908f7557df098690ea9933cd7a210e4510b03ecb7c9e6601b0daff0f4b2019",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "798446a141fe9395dacba1d6c84c60e33af0d1ea50b75aafffb9113b721bcf69",
+    "scripts/evaluate_requirements.py": "eff1da86d84775f6bb394b7c4ebbae104a91196a41f6dcac01c145ef0c67a1cc",
+    "scripts/model_server.py": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab",
+    "runtime/models/qwen3-4b-instruct-2507.json": "70546521745f90e12e4fee0db9f73a7ec8a9296928b06b39d0f282cf1030c056",
+    "prompts/requirement_v8.txt": "57534a4182a6af34c0b4a423f7690d55cd9bb9ea313797ace3fb3bd24878700d"
+  },
+  "review_evidence": [
+    "docs/reviews/phase5x_plan_review.md",
+    "docs/reviews/phase5x_numeric_review.md",
+    "docs/instruction_model_reassessment.md",
+    "docs/reviews/phase5x_4b_v3_diagnostic_review.md",
+    "docs/reviews/phase5x_4b_v4_v8_review.md"
+  ],
+  "independent_review": "AI agent review, not human verification; heldout source/gold inspected before inference, no prompt tuning from outputs",
+  "policy": "Preserve all results. Never modify heldout gold silently or tune this prompt from heldout outputs. New prompts/configuration require separate version/freeze and results.",
+  "gate_targets": {
+    "schema_rate": 1.0,
+    "semantic_rate_minimum": 0.95,
+    "critical_model_ready_fp_count": 0,
+    "unsafe_accepted_ready_total_count": 0
+  },
+  "purpose": "All 40 development cases x1 diagnostic. Restore v3 exact prefix and append two final extraction/direction reminders. Same 4B BF16 model, runtime epoch, sampling and gates. Development-driven revision; no heldout inference.",
+  "served_model": "neurobuild-instruct",
+  "sampling_profile": "qwen3_nonthinking",
+  "sampling_request_parameters": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 42
+  },
+  "enable_thinking": false,
+  "reasoning_parser": null,
+  "timeout_seconds": 60,
+  "cpu_context_bound": {
+    "development_max_input_plus_output": 3794,
+    "holdout_max_input_plus_output": 3799,
+    "limit": 4096,
+    "torch_imported": false
+  },
+  "implementation_change": "Prompt-only new version; original v3/v4 and all failures retained. Source/schema/parser/scoring/gold unchanged.",
+  "launch_config_sha256": "4ad605900c6d7a419bcc7fbe52849fa02d47000ad5d83a403b8796d0629b60fb",
+  "holdout_outputs_seen_before_freeze": false
+}

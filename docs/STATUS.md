@@ -8,7 +8,7 @@
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` Phase5 commit/push, remote hash 일치 |
 | GitHub | 공통 `v2`, SSH push 정상; 최신 checkpoint는 git log 참조 |
 | 검증 | 전체 **253 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이16.900s |
-| 현재 Phase | 5.x: 120개 자료·코드 freeze931c625 push확인, 개발v3 120회완료: 의미108/120,rawFP3/60(Backend차단),FN9/60. v4재평가의미96/120/FN24로FAIL;간결한영어v5도13/40으로FAIL. v3공식sampling도36/40동일오류로FAIL. v6thinking도17/40/unsafe2로FAIL. v7thinking도30/40으로FAIL. Instruction전용4B BF16 기동/loopback검증PASS, v3+neutral dev37/40/rawFP1/unsafe2로FAIL;같은4B에기존v4비교준비. holdout미호출. Phase5 Qwen3-14B-AWQ/promptv3 선정, development seed20×3 의미60/60, READY오판0/33. 8B 동일prompt54/60. 실패결과포함5 run보존 |
+| 현재 Phase | 5.x: 120개 자료·코드 freeze931c625 push확인, 개발v3 120회완료: 의미108/120,rawFP3/60(Backend차단),FN9/60. v4재평가의미96/120/FN24로FAIL;간결한영어v5도13/40으로FAIL. v3공식sampling도36/40동일오류로FAIL. v6thinking도17/40/unsafe2로FAIL. v7thinking도30/40으로FAIL. Instruction전용4B BF16 기동/loopback검증PASS, v3+neutral dev37/40/rawFP1/unsafe2로FAIL;같은4Bv4도34/40/rawFP1/unsafe3로FAIL. v3원문+2항목v8사전freeze,dev40진단예정. holdout미호출. Phase5 Qwen3-14B-AWQ/promptv3 선정, development seed20×3 의미60/60, READY오판0/33. 8B 동일prompt54/60. 실패결과포함5 run보존 |
 | Hard blocker | 없음. GPU3 가용량 기반 공존 실행 실제 통과 |
 | Backend | `.conda` Python3.12.14 / PostgreSQL17.11 / psycopg3.2.10 / IfcOpenShell0.8.5 |
 | Model Runtime | `.conda-vllm` Python3.12.14, cu118 vLLM0.8.5/Torch2.6.0, 현재4B-Instruct-2507 BF16 실험; 이전14B AWQMarlin 결과보존. TP1/context4096/seq1 |

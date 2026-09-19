@@ -126,3 +126,14 @@ System v3 자체는2359 tokens다. V3 SHA는 `716137f3e275cb0030f1f497f8e23bbeee
 | Holdout 입력 길이만 | 80 | 2766 | **3534** | 562 |
 
 실제 client와 같은 system/user JSON, `add_generation_prompt=True`, `enable_thinking=False`, `trust_remote_code=False`를 사용했다. Torch 미import를 확인했으며 network/GPU/추론 호출은 없었다. 데이터 SHA는 앞선 v3 검사와 동일하다. 이 추가 기록은 context 예산 확인이며 품질 판정이 아니다. Holdout 출력은 조회하지 않았고 prompt·schema·scorer·gold를 변경하지 않았다.
+
+## V8 context 사전 검증
+
+[V8 prompt](../prompts/requirement_v8.txt)의 최종 SHA는 `57534a4182a6af34c0b4a423f7690d55cd9bb9ea313797ace3fb3bd24878700d`다. 마지막 문장의 한 축 완결 조건을 명확히 한 뒤 다시 검사했다. V3 전체가 정확한 byte prefix이고, 마지막 점검 두 항목895bytes만 추가되었음을 확인했다. System 자체는2615 tokens다. 위와 동일한 실제4B tokenizer/client JSON/false mode를 사용한 CPU/offline 검사 결과는 다음과 같다.
+
+| 고정 입력 | 개수 | 최대 입력 tokens | 출력 cap768 포함 | 4096까지 여유 |
+|---|---:|---:|---:|---:|
+| Development | 40 | 3026 | **3794** | 302 |
+| Holdout 입력 길이만 | 80 | 3031 | **3799** | 297 |
+
+Tokenizer 파일과 template hash는 앞선 검사와 동일하다. Parser SHA `a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a`, schema SHA `dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94` 및 두 dataset SHA도 동결본과 같았고 parser/schema에 작업 diff는 없었다. Torch import, network, GPU, 모델 호출 없이 입력 길이만 검사했다. 이 기록은 품질 통과나 출력 완결 보장이 아니며 holdout 출력은 조회하지 않았다.
