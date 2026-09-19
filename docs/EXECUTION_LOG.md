@@ -240,3 +240,12 @@ Run20260919T212748Z-bba084e02f46432aab7f11883d625467, development40×1/warmup5: 
 다음실험은기존development최고성능v3prompt를고정하고공식Qwen AWQ nonthinking sampling profile만변경한다(T.7/top_p.8/top_k20/min_p0/presence1.5/frequency0/repetition1/seed42). Legacy기본요청은그대로유지하며실제요청값을manifest에기록한다. Gold/parser/지원범위는유지하고heldout은계속미호출이다. 설정구현동안자기모델guard만정상종료했으며GPU3used3965/free36373MiB/util0%복귀를확인했다.
 
 - Samplingpreset/manifest연동과guardoutputnamespace수정후전체245testsPASS/skip0/16.377s(realPG/IFC,DISPLAYunset). 기존legacywire동일/양쪽protocol/invalidconfig/변조된snapshot/재시도금지/실제samplingmanifest일치를검증했다. Log는var/logs,report는var/reports로한정하여artifact/model경로·symlink·hardlinkalias덮어쓰기거절. 수치parser/gold/scoringlogic미변경.
+
+
+## V3 공식 non-thinking sampling 진단
+
+Run20260919T213630Z-f42a9eb2a41d4368942b0575dda2893d:40×1,warmup5. Schema40/parser37/semantic36(90%),rawFP1/20,acceptedunsafe0/40,FN3/20,mean3.19669s/p954.46478s. V3/T0와같은4case오류(HD-B01방향추정,D02단일가구XY복수오인,F01/F02모델단위선변환)가남아gateFAIL. 공식권고만으로품질이해결된다는가정은성립하지않았으며기존실패를보존했다.
+
+다음실험은짧은policy와명시적thinking/deepseek_r1/V0/xgrammar의문서화된경로를검증한다. Reasoning은일시메모리만경유하고finalJSON만평가/보존한다. Context4096/전체출력2048/timeout120을미리검증하고기존parser/gold/승인계약은변경하지않는다. v3는긴입력으로동일출력2048이4096을초과하므로그대로사용하지않는다.
+
+- Thinking명시설정후전체251testsPASS/skip0/16.683s, client+harness42PASS. Source/gold검증기준미변경;finalJSON만노출하고reasoning누출/미완료/overlimit거절. Runtime metadata는실제launchmode와clientmode의선언일치를확인하며HTTP상태만으로모드를증명하지않는다. V6는v5의출력형식문장하나만수정,CPUoffline dev최대3322/4096(전체출력2048포함),heldout길이만3327/4096검증. 새freeze후actualthinking구성실험예정.

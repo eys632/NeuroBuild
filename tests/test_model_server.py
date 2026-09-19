@@ -1,6 +1,8 @@
 """Launcher watchdog tests with fake children and fake permitted-GPU readings only."""
 
+from contextlib import redirect_stdout
 from dataclasses import replace
+from io import StringIO
 import json
 import fcntl
 import os
@@ -14,7 +16,7 @@ from unittest.mock import patch
 
 from scripts.gpu_preflight import PreflightError
 from scripts.model_server import (
-    LaunchConfig, PARENT_DEATH_BOOTSTRAP, child_environment, launch_command, run_guard,
+    LaunchConfig, PARENT_DEATH_BOOTSTRAP, child_environment, launch_command, main, run_guard,
 )
 
 
@@ -357,6 +359,49 @@ class ModelServerTests(unittest.TestCase):
         self.assertNotIn("MASTER_ADDR", env)
         for key in ("HF_HOME", "TORCH_HOME", "TRITON_CACHE_DIR", "VLLM_CACHE_ROOT", "XDG_CACHE_HOME", "TMPDIR"):
             self.assertTrue(Path(env[key]).is_relative_to(self.root / "var"))
+
+    def test_reasoning_is_opt_in_and_only_adds_the_pinned_parser_flags(self):
+        path = self.root / "var/run/rendezvous/test/store"
+        default = launch_command(self.config, self.root, rendezvous_file=path)
+        explicit_false = launch_command(replace(self.config, enable_reasoning=False), self.root, rendezvous_file=path)
+        thinking = launch_command(replace(self.config, enable_reasoning=True), self.root, rendezvous_file=path)
+        self.assertFalse(self.config.enable_reasoning)
+        self.assertEqual(default, explicit_false)
+        self.assertNotIn("--enable-reasoning", default)
+        self.assertNotIn("--reasoning-parser", default)
+        self.assertEqual(thinking, default + ["--enable-reasoning", "--reasoning-parser", "deepseek_r1"])
+        self.assertEqual(thinking.count("--enable-reasoning"), 1)
+        self.assertEqual(thinking.count("--reasoning-parser"), 1)
+        self.assertEqual(thinking.count("deepseek_r1"), 1)
+        for enabled in (False, True):
+            with self.subTest(enabled=enabled):
+                report, queried, launched, *_ = self.run_fake(config=replace(self.config, enable_reasoning=enabled))
+                self.assertEqual(report["reason"], "TIME_LIMIT")
+                self.assertIs(report["enable_reasoning"], enabled)
+                self.assertEqual(report["reasoning_parser"], "deepseek_r1" if enabled else None)
+                self.assertEqual(set(queried), {3})
+                self.assertEqual(launched[0][1]["env"]["VLLM_USE_V1"], "0")
+                self.assertIn("--disable-log-requests", launched[0][0])
+
+    def test_reasoning_requires_strict_boolean_before_query_or_launch(self):
+        for value in (None, 0, 1, "true", "false", [], {}, 0.0, 1.0):
+            with self.subTest(value=value), self.assertRaises(PreflightError) as caught:
+                replace(self.config, enable_reasoning=value)
+            self.assertEqual(caught.exception.code, "INVALID_CONFIG")
+        report, queried, launched, *_ = self.run_fake(config=replace(self.config, profile="rtx5090", enable_reasoning=True))
+        self.assertEqual(report["reason"], "RUNTIME_PROFILE_NOT_VALIDATED")
+        self.assertEqual((queried, launched), ([], []))
+
+    def test_reasoning_cli_flag_maps_to_boolean_without_real_launch(self):
+        arguments = ["--profile", "a100", "--model-path", str(self.config.model_path), "--dtype", "half",
+                     "--estimated-peak-mib", "18432", "--log-file", str(self.config.log_file),
+                     "--report-file", str(self.config.report_file)]
+        for extra, expected in (([], False), (["--enable-reasoning"], True)):
+            with self.subTest(extra=extra), patch("scripts.model_server.run_guard") as run, \
+                 patch("scripts.model_server.signal.signal"), redirect_stdout(StringIO()):
+                run.return_value = {"reason": "TIME_LIMIT", "shutdown": {"child_reaped": True}}
+                self.assertEqual(main(arguments + extra), 0)
+                self.assertIs(run.call_args.args[0].enable_reasoning, expected)
 
     def test_invalid_configs_fail_before_io(self):
         for changes in ({"max_seconds": float("inf")}, {"dtype": "auto"}, {"estimated_peak_mib": True},

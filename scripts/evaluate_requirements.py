@@ -275,10 +275,22 @@ def runtime_metadata(path):
     strings = {"python", "vllm", "torch", "cuda", "transformers", "xgrammar", "driver", "gpu", "quantization", "dtype"}
     integers = {"physical_gpu", "max_model_len", "tensor_parallel_size"}
     hashes = {"chat_template_sha256", "launch_config_sha256"}
-    if type(data) is not dict or set(data) != strings | integers | hashes | {"profile"}:
+    required = strings | integers | hashes | {"profile"}
+    mode_fields = {"enable_reasoning", "reasoning_parser"}
+    if type(data) is not dict or set(data) not in (required, required | mode_fields):
         raise ValueError("Runtime metadata fields do not match the documented contract")
+    # Historical non-thinking metadata predates these two explicit fields.
+    # Omission never authorizes a thinking request to that server.
+    data.setdefault("enable_reasoning", False)
+    data.setdefault("reasoning_parser", None)
+    if (type(data["enable_reasoning"]) is not bool
+            or (data["enable_reasoning"] and data["reasoning_parser"] not in ("deepseek_r1", "qwen3"))
+            or (not data["enable_reasoning"] and data["reasoning_parser"] is not None)):
+        raise ValueError("Explicit supported reasoning mode/parser required")
     if any(type(data[key]) is not str or re.fullmatch(r"[A-Za-z0-9_ .+:/-]{1,128}", data[key]) is None for key in strings):
         raise ValueError("Invalid runtime metadata")
+    if data["vllm"].split("+")[0] == "0.8.5" and data["enable_reasoning"] and data["reasoning_parser"] != "deepseek_r1":
+        raise ValueError("vLLM 0.8.5 requires the documented deepseek_r1 parser")
     if any(type(data[key]) is not int or data[key] < 0 for key in integers):
         raise ValueError("Invalid runtime counts")
     if any(type(data[key]) is not str or re.fullmatch(r"[a-f0-9]{64}", data[key]) is None for key in hashes):
@@ -328,11 +340,14 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
     if hashes["prompt"] != client.prompt_sha256 or hashes["schema"] != client.schema_sha256:
         raise ValueError("Client prompt/schema differs from recorded files")
     sampling = client.sampling_parameters
+    runtime_info = runtime_metadata(runtime)
+    if runtime_info["enable_reasoning"] != client.enable_thinking:
+        raise ValueError("Client thinking mode and declared server reasoning mode must match")
     return {"run_id": run_id, "created_at_utc": datetime.now(timezone.utc).isoformat(),
             "gold_status": GOLD_STATUS, "split": split, "git": git_info(),
             "model_id": weight_data["model_id"], "served_model": client.model,
             "model_revision": revision, "tokenizer_revision": tokenizer_revision,
-            "sha256": hashes, "runtime": runtime_metadata(runtime),
+            "sha256": hashes, "runtime": runtime_info,
             "runtime_identity_evidence": "OPERATOR_SUPPLIED; HTTP model name checked, loaded weight revision not remotely attested",
             "weight_integrity_evidence": "PINNED_MANIFEST; downloader verifies files, evaluator does not reread weights",
             "protocol": {"warmups": warmups, "trials_per_case": trials, "order": "dataset order, case-major then trial-major",
@@ -342,11 +357,11 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
                          "temperature": sampling["temperature"], "seed": sampling["seed"],
                          "seed_policy": "Same fixed seed for every request; repetitions are not independent samples",
                          "max_tokens": client.max_tokens, "timeout_seconds": client.timeout,
-                         "concurrency": 1, "enable_thinking": False,
+                         "concurrency": 1, "enable_thinking": client.enable_thinking,
                          "structured_output_protocol": client.protocol.value,
                          "guided_decoding_backend": ("xgrammar:no-fallback" if client.protocol == StructuredOutputProtocol.LEGACY_GUIDED_JSON else None),
                          "required_server_structured_backend": ("xgrammar" if client.protocol == StructuredOutputProtocol.STRUCTURED_OUTPUTS else None),
-                         "tool_parser": None, "reasoning_parser": None},
+                         "tool_parser": None, "reasoning_parser": runtime_info["reasoning_parser"]},
             "measurements_not_performed": {"startup_cold_seconds": None, "startup_warm_seconds": None,
                                            "gpu_baseline_used_mib": None, "gpu_peak_used_mib": None, "ttft_seconds": None}}
 

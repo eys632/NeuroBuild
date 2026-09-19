@@ -31,3 +31,10 @@ Run20260919T211340Z-cebc5bbdaeea46b188caf6d27c4ff804: schema/parser120/120, sema
 Run20260919T212748Z-bba084e02f46432aab7f11883d625467, development40×1/warmup5: schema40/40, parser16/40, semantic13/40, rawFP5/20, acceptedFP0/20, unsafeaccepted0/40, FN19/20. Mean4.18646s/p955.94240s. 지원gold20개는모두rawREADY였으나19개는숫자원문표기변경(1→1.00),단위선변환,미요청축의0/fake-null삽입등으로거절됐다. 단순길이축소/영어화는품질개선으로이어지지않았다. 이진단을3회반복gate로표시하지않으며모든실패결과를보존한다.
 
 다음실험은기존development최고성능v3prompt를고정하고공식Qwen AWQ nonthinking sampling profile만변경한다(T.7/top_p.8/top_k20/min_p0/presence1.5/frequency0/repetition1/seed42). Legacy기본요청은그대로유지하며실제요청값을manifest에기록한다. Gold/parser/지원범위는유지하고heldout은계속미호출이다. 설정구현동안자기모델guard만정상종료했으며GPU3used3965/free36373MiB/util0%복귀를확인했다.
+
+
+## V3 공식 non-thinking sampling 진단
+
+Run20260919T213630Z-f42a9eb2a41d4368942b0575dda2893d:40×1,warmup5. Schema40/parser37/semantic36(90%),rawFP1/20,acceptedunsafe0/40,FN3/20,mean3.19669s/p954.46478s. V3/T0와같은4case오류(HD-B01방향추정,D02단일가구XY복수오인,F01/F02모델단위선변환)가남아gateFAIL. 공식권고만으로품질이해결된다는가정은성립하지않았으며기존실패를보존했다.
+
+다음실험은짧은policy와명시적thinking/deepseek_r1/V0/xgrammar의문서화된경로를검증한다. Reasoning은일시메모리만경유하고finalJSON만평가/보존한다. Context4096/전체출력2048/timeout120을미리검증하고기존parser/gold/승인계약은변경하지않는다. v3는긴입력으로동일출력2048이4096을초과하므로그대로사용하지않는다.

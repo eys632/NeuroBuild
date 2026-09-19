@@ -108,6 +108,7 @@ class StructuredOutputProtocol(StrEnum):
 class SamplingProfile(StrEnum):
     LEGACY_GREEDY = "legacy_greedy"
     QWEN3_NONTHINKING_AWQ = "qwen3_nonthinking_awq"
+    QWEN3_THINKING_AWQ = "qwen3_thinking_awq"
 
 
 class LocalRequirementClient:
@@ -163,16 +164,25 @@ class LocalRequirementClient:
         return self._sampling_profile
 
     @property
+    def enable_thinking(self) -> bool:
+        """Request mode only; matching server parser configuration is separate."""
+        return self.sampling_profile is SamplingProfile.QWEN3_THINKING_AWQ
+
+    @property
     def sampling_parameters(self) -> dict[str, int | float]:
         """Fresh copy of exactly the sampling fields sent, also for manifests.
 
         Legacy omitted fields remain omitted; their server defaults are not
-        represented as measured values. Neither profile enables thinking.
+        represented as measured values. A profile does not select a server parser.
         """
         if self.sampling_profile is SamplingProfile.LEGACY_GREEDY:
             return {"temperature": 0, "seed": 42}
         if self.sampling_profile is SamplingProfile.QWEN3_NONTHINKING_AWQ:
             return {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
+                    "presence_penalty": 1.5, "frequency_penalty": 0.0,
+                    "repetition_penalty": 1.0, "seed": 42}
+        if self.sampling_profile is SamplingProfile.QWEN3_THINKING_AWQ:
+            return {"temperature": 0.6, "top_p": 0.95, "top_k": 20, "min_p": 0.0,
                     "presence_penalty": 1.5, "frequency_penalty": 0.0,
                     "repetition_penalty": 1.0, "seed": 42}
         _error("LOCAL_MODEL_CONFIG_INVALID")
@@ -193,7 +203,7 @@ class LocalRequirementClient:
                 {"role": "user", "content": json.dumps({"source_text": source_text, "axis_convention": axis_convention}, ensure_ascii=False)},
             ],
             **self.sampling_parameters, "max_tokens": self.max_tokens, "stream": False,
-            "chat_template_kwargs": {"enable_thinking": False},
+            "chat_template_kwargs": {"enable_thinking": self.enable_thinking},
         }
         if self.protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON:
             payload.update(guided_json=self._schema, guided_decoding_backend="xgrammar:no-fallback")

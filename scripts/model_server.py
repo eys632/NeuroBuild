@@ -112,9 +112,11 @@ class LaunchConfig:
     torch_memory_fraction: float | None = 0.50
     peak_allowance_mib: int = 1024
     served_model_name: str = "neurobuild-local"
+    enable_reasoning: bool = False
 
     def __post_init__(self):
         Policy(self.profile, self.estimated_peak_mib)
+        require(type(self.enable_reasoning) is bool, "INVALID_CONFIG", "Reasoning mode must be an explicit boolean")
         require(self.dtype in ("half", "bfloat16"), "INVALID_CONFIG", "Choose explicit half or bfloat16 precision")
         require(type(self.port) is int and 1024 <= self.port <= 65535,
                 "INVALID_CONFIG", "Use an unprivileged localhost port")
@@ -134,7 +136,7 @@ class LaunchConfig:
 
 def launch_command(config, root=ROOT, *, rendezvous_file):
     """Construct pinned vLLM 0.8.5 arguments without a shell or implicit download."""
-    return [str(root / ".conda-vllm/bin/python"), "-c", CHILD_BOOTSTRAP,
+    command = [str(root / ".conda-vllm/bin/python"), "-c", CHILD_BOOTSTRAP,
             str(os.getpid()),
             "none" if config.torch_memory_fraction is None else str(config.torch_memory_fraction),
             str(local_path(rendezvous_file, root, output=True)),
@@ -148,6 +150,9 @@ def launch_command(config, root=ROOT, *, rendezvous_file):
             "--gpu-memory-utilization", str(config.gpu_memory_utilization), "--swap-space", "0",
             "--no-enable-prefix-caching", "--guided-decoding-backend", "xgrammar",
             "--disable-log-requests", "--disable-uvicorn-access-log"]
+    if config.enable_reasoning:
+        command.extend(["--enable-reasoning", "--reasoning-parser", "deepseek_r1"])
+    return command
 
 
 def child_environment(config, root, environ):
@@ -254,6 +259,8 @@ def run_guard(config, *, root=ROOT, environ=None, query=None, popen=None, killpg
     peek_exit = peek_child_exit if peek_exit is None else peek_exit
     stop_requested = (lambda: False) if stop_requested is None else stop_requested
     report = {"schema_version": 1, "profile": config.profile, "state": "BLOCKED",
+              "enable_reasoning": config.enable_reasoning,
+              "reasoning_parser": "deepseek_r1" if config.enable_reasoning else None,
               "started_at_utc": datetime.now(timezone.utc).isoformat(), "reason": None,
               "memory_fit_guaranteed": False, "inference_validation": "NOT_ESTABLISHED",
               "measurement_scope": "permitted_GPU_aggregate_only", "per_process_measurement": False,
@@ -391,6 +398,8 @@ def main(argv=None):
     parser.add_argument("--no-torch-cap", action="store_true")
     parser.add_argument("--peak-allowance-mib", type=int, default=1024)
     parser.add_argument("--served-model-name", default="neurobuild-local")
+    parser.add_argument("--enable-reasoning", action="store_true",
+                        help="Explicit A100 V0 experiment using deepseek_r1; requests must enable thinking")
     arguments = vars(parser.parse_args(argv))
     if arguments.pop("no_torch_cap"):
         arguments["torch_memory_fraction"] = None

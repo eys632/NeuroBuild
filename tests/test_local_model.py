@@ -105,6 +105,7 @@ class LocalModelClientTests(unittest.TestCase):
         self.assertEqual(request["guided_decoding_backend"], "xgrammar:no-fallback")
         self.assertNotIn("structured_outputs", request)
         self.assertIs(self.client.protocol, StructuredOutputProtocol.LEGACY_GUIDED_JSON)
+        self.assertIs(self.client.enable_thinking, False)
         self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
         self.assertEqual(request["temperature"], 0)
         self.assertEqual(request["seed"], 42)
@@ -189,6 +190,7 @@ class LocalModelClientTests(unittest.TestCase):
                                             project_id=uuid4(), base_revision_id=uuid4())
                     self.assertEqual(result.operation.dx.metres, 1)
                     self.assertIs(client.sampling_profile, SamplingProfile.QWEN3_NONTHINKING_AWQ)
+                    self.assertIs(client.enable_thinking, False)
                     self.assertEqual(client.sampling_parameters, expected)
                     request = self.server.requests[-1][2]
                     self.assertEqual({key: request[key] for key in expected}, expected)
@@ -214,6 +216,81 @@ class LocalModelClientTests(unittest.TestCase):
                 LocalRequirementClient(self.base, "synthetic-test-model", sampling_profile=profile)
             self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
         self.assertEqual(self.server.requests, [])
+
+    def test_thinking_profile_sets_explicit_request_mode_and_sampling_without_selecting_server_parser(self):
+        expected = {"temperature": 0.6, "top_p": 0.95, "top_k": 20, "min_p": 0.0,
+                    "presence_penalty": 1.5, "frequency_penalty": 0.0,
+                    "repetition_penalty": 1.0, "seed": 42}
+        for protocol in StructuredOutputProtocol:
+            for profile in (SamplingProfile.QWEN3_THINKING_AWQ, "qwen3_thinking_awq"):
+                with self.subTest(protocol=protocol, profile_type=type(profile).__name__):
+                    client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
+                                                    sampling_profile=profile, max_tokens=2048, timeout=120)
+                    self.assertIs(client.enable_thinking, True)
+                    self.assertEqual(client.sampling_parameters, expected)
+                    with self.assertRaises(AttributeError):
+                        client.enable_thinking = False
+                    client.complete(SOURCE, axis_convention="project_xy")
+                    request = self.server.requests[-1][2]
+                    self.assertEqual({key: request[key] for key in expected}, expected)
+                    self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": True})
+                    self.assertEqual(request["max_tokens"], 2048)
+                    self.assertEqual(client.timeout, 120)
+                    self.assertNotIn("reasoning_parser", request)
+                    self.assertNotIn("enable_reasoning", request)
+                    self.assertNotIn("thinking_budget", request)
+                    self.assertIs(request["stream"], False)
+                    if protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON:
+                        self.assertEqual(request["guided_decoding_backend"], "xgrammar:no-fallback")
+                        self.assertIn("guided_json", request)
+                        self.assertNotIn("structured_outputs", request)
+                    else:
+                        self.assertIn("structured_outputs", request)
+                        self.assertNotIn("guided_decoding_backend", request)
+                        self.assertNotIn("guided_json", request)
+
+    def test_thinking_success_returns_only_final_content_and_numeric_usage(self):
+        response = envelope()
+        response["choices"][0]["message"]["reasoning_content"] = "DO_NOT_ECHO_SECRET_REASONING"
+        response["usage"]["completion_tokens_details"] = {"reasoning_tokens": 7}
+        self.respond(response)
+        client = LocalRequirementClient(self.base, "synthetic-test-model", sampling_profile="qwen3_thinking_awq",
+                                        max_tokens=2048, timeout=120)
+        out, err = StringIO(), StringIO()
+        with redirect_stdout(out), redirect_stderr(err):
+            completion = client.complete(SOURCE, axis_convention="project_xy")
+            requirement = client.extract(SOURCE, axis_convention="project_xy", requirement_id=uuid4(),
+                                         project_id=uuid4(), base_revision_id=uuid4())
+        self.assertEqual(json.loads(completion.content), FINAL)
+        self.assertEqual(completion.usage["reasoning_tokens"], 7)
+        self.assertEqual(requirement.operation.dx.metres, 1)
+        self.assertFalse(hasattr(completion, "reasoning_content"))
+        self.assertNotIn("DO_NOT_ECHO_SECRET", repr(completion) + repr(requirement))
+        self.assertEqual(out.getvalue() + err.getvalue(), "")
+
+    def test_thinking_truncation_absent_final_leak_and_oversized_body_fail_without_retry(self):
+        cases = []
+        response = envelope()
+        response["choices"][0]["finish_reason"] = "length"
+        cases.append((response, "LOCAL_MODEL_TRUNCATED"))
+        for final in (None, ""):
+            response = envelope()
+            response["choices"][0]["message"].update(content=final, reasoning_content="DO_NOT_ECHO_SECRET_REASONING")
+            cases.append((response, "LOCAL_MODEL_RESPONSE_INVALID"))
+        cases.append((envelope("<think>DO_NOT_ECHO_SECRET</think>" + json.dumps(FINAL)), "LOCAL_MODEL_REASONING_CONTENT"))
+        response = envelope()
+        response["choices"][0]["message"]["reasoning_content"] = "x" * MAX_HTTP_RESPONSE_BYTES
+        cases.append((response, "LOCAL_MODEL_RESPONSE_TOO_LARGE"))
+        for protocol in StructuredOutputProtocol:
+            client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
+                                            sampling_profile="qwen3_thinking_awq", max_tokens=2048, timeout=120)
+            for response, code in cases:
+                with self.subTest(protocol=protocol, error=code):
+                    before = len(self.server.requests)
+                    self.respond(response)
+                    self.reject(code, client)
+                    self.assertEqual(len(self.server.requests), before + 1)
+                    self.assertEqual(self.server.requests[-1][2]["chat_template_kwargs"], {"enable_thinking": True})
 
     def test_sampling_metadata_copies_cannot_change_requests_or_the_selected_profile(self):
         client = LocalRequirementClient(self.base, "synthetic-test-model", sampling_profile="qwen3_nonthinking_awq")

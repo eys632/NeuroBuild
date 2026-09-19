@@ -240,6 +240,39 @@ class RequirementEvaluationTests(unittest.TestCase):
                 build_manifest(client, **dict(kwargs, revision="main"))
             with self.assertRaises(ValueError):
                 build_manifest(client, **dict(kwargs, revision="f" * 40))
+            legacy_runtime = json.loads(runtime.read_text())
+            thinking = LocalRequirementClient("http://127.0.0.1:8003", "synthetic-model",
+                                              sampling_profile="qwen3_thinking_awq", max_tokens=2048, timeout=120)
+            # A healthy HTTP endpoint alone cannot prove that its reasoning
+            # parser matches the request; declared modes must agree first.
+            with patch.object(thinking, "complete") as transport:
+                with self.assertRaises(ValueError):
+                    build_manifest(thinking, **kwargs)
+                transport.assert_not_called()
+            thinking_runtime = dict(legacy_runtime, enable_reasoning=True, reasoning_parser="deepseek_r1")
+            runtime.write_text(json.dumps(thinking_runtime))
+            with self.assertRaises(ValueError):
+                build_manifest(client, **kwargs)
+            thinking_manifest = build_manifest(thinking, **kwargs)
+            self.assertIs(thinking_manifest["protocol"]["enable_thinking"], True)
+            self.assertEqual(thinking_manifest["protocol"]["reasoning_parser"], "deepseek_r1")
+            self.assertEqual(thinking_manifest["protocol"]["sampling_request_parameters"], thinking.sampling_parameters)
+            self.assertEqual(thinking_manifest["protocol"]["max_tokens"], 2048)
+            self.assertEqual(thinking_manifest["protocol"]["timeout_seconds"], 120)
+            self.assertEqual(thinking_manifest["sha256"]["runtime_metadata"], sha256(runtime.read_bytes()).hexdigest())
+            for invalid_mode in (
+                {"enable_reasoning": True}, {"reasoning_parser": "deepseek_r1"},
+                {"enable_reasoning": 1, "reasoning_parser": "deepseek_r1"},
+                {"enable_reasoning": True, "reasoning_parser": None},
+                {"enable_reasoning": False, "reasoning_parser": "deepseek_r1"},
+                {"enable_reasoning": True, "reasoning_parser": "auto"},
+                {"enable_reasoning": True, "reasoning_parser": "qwen3"},
+            ):
+                with self.subTest(invalid_mode=invalid_mode):
+                    runtime.write_text(json.dumps(dict(legacy_runtime, **invalid_mode)))
+                    with self.assertRaises(ValueError):
+                        runtime_metadata(runtime)
+            runtime.write_text(json.dumps(legacy_runtime))
             bad = json.loads(runtime.read_text())
             bad["api_key"] = "DO_NOT_SAVE"
             runtime.write_text(json.dumps(bad))
