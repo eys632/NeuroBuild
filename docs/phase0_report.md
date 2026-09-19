@@ -3,6 +3,8 @@
 작성일: 2026-09-19. 작업 root: `/home/a202192020/NeuroBuild_v2`.
 이 보고서의 완료 범위는 Foundation이며 Application 실행 가능 상태를 뜻하지 않는다.
 
+후속 갱신(2026-09-19): 아래는 최초 Phase0 보고 당시 기록이다. 이후 사용자가 Phase별 승인 대기를 폐지하고 Phase11까지 자율 개발을 지시했다. Git 작성자는 제공됐고 local Phase0 commit `29d4774`가 생성됐지만 GitHub 인증 부재로 push는 실패했다. 현재 지침/진행은 [AGENTS.md](../AGENTS.md), [MASTER_PLAN.md](MASTER_PLAN.md), [STATUS.md](STATUS.md)를 따른다. 아래 과거 승인/작성자 미설정 문구는 현재 blocker를 뜻하지 않는다.
+
 ## 1. Phase 0 결과 요약
 
 전역 지침을 읽고 read-only 환경/Git 조사를 수행했다. 공통v2 branch, 프로젝트 지침,

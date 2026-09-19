@@ -2,6 +2,7 @@
 
 Phase 0 설계 자료다. 모델을 호출하지 않았고 평가 runner/production schema를 구현하지 않았다.
 `evaluations/requirement_seed.jsonl`은 민감한 BIM 자료를 사용하지 않은 synthetic 예제 20개다.
+Ground truth 상태: **AUTO-GENERATED / NOT HUMAN VERIFIED**. 사람 검수 전 결과를 human-verified accuracy로 표시하지 않는다. 내부 개발은 진행할 수 있으며 외부 pilot 전에는 별도 human 검수가 필요하다.
 아래 gold label은 평가자가 확인할 의미 기준이며 Phase1에서 확정할 Domain Contract가 아니다.
 
 ## Dataset과 범위

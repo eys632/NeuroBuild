@@ -1,6 +1,6 @@
 # NeuroBuild_v2 구현 로드맵
 
-기준일: 2026-09-19. **이번 작업의 범위는 Phase 0까지다. Phase 1은 사용자 승인 후 시작한다.** 아래 단계는 계획이며 완료 선언이 아니다. Phase 0 결과와 환경 제약은 [project_context.md](project_context.md), 제품/데이터 불변 조건은 [architecture_blueprint.md](architecture_blueprint.md)를 따른다.
+기준일: 2026-09-19. 사용자 지침 변경으로 **Phase별 승인 없이 Phase11 Internal Technical MVP까지 자율 진행**한다. 아래 단계는 계획이며 완료 선언이 아니다. 전체 acceptance/dependency/gate는 [MASTER_PLAN.md](MASTER_PLAN.md), 진행 상태는 [STATUS.md](STATUS.md)가 기준이다. 제품/데이터 불변 조건은 [architecture_blueprint.md](architecture_blueprint.md)를 따른다.
 
 ## 단계와 완료 기준
 
@@ -18,6 +18,7 @@
 | **8 — API** | 공통 service를 HTTP interface로 노출, project/revision/review/job/artifact 접근, 오류 계약 | 장기 요청은 job ID 반환; 승인/프로젝트 접근 검증; 내부 trace 비노출; API integration test; network 설정으로 서버 전환 |
 | **9 — Frontend + Viewer** | React/TypeScript 및 Next.js 검토, review UI, IFC→GLB+metadata, 브라우저 viewer | 서버 GUI 없이 동작; object selection와 GlobalId mapping; target 확인/proposal 승인 UI 분리; revision별 파생 artifact 일관성 |
 | **10 — Admin / Observability** | runtime/server/URL/GPU/model health, worker/job/storage/revision/error 관리 | trace/project/job/proposal/revision/execution 연결; secret/chain-of-thought 비저장; 실패·용량·복구 상태 확인 |
+| **11 — Internal Technical MVP Stabilization** | Browser 전체 흐름과 실패/재시작 복구 검증, 내부 사용 runbook | upload→V0→자연어→target 확인→proposal 승인→job→V1→viewer/download; source 불변/stale/duplicate/unsupported/ambiguity/failure/restart 검증; 최종 보고 후 사용자 검토 |
 
 Phase 4~6은 Phase 7의 durable 실행을 미리 production 수준으로 구현하지 않는다. 대신 Application service, 별도 human review, 명시 상태를 유지하여 Phase 7에서 queue/recovery를 붙일 수 있게 한다. Phase 2의 Apply/Artifact idempotency와 Phase 7의 job delivery idempotency는 서로 다른 실패 경계를 다룬다.
 
@@ -28,11 +29,11 @@ Phase 4~6은 Phase 7의 durable 실행을 미리 production 수준으로 구현�
 - A100 physical GPU 3 또는 RTX 5090 physical GPU 1만 사용한다. 예상 밖 점유가 있으면 실행하지 않고 보고한다. 다른 사용자 프로세스 종료나 다른 GPU fallback은 하지 않는다.
 - 대형 dependency/model 다운로드 전에 디스크의 peak 사용량을 계산한다. 현재 A100 root 사용률이 높으므로 다운로드 크기만 보고 설치 가능 여부를 판단하지 않는다. 사용자 cache를 자동 삭제하지 않는다.
 - Runtime build/version/dtype/quantization/context/동시성 설정은 공식 자료와 실제 테스트로 고정한다. 설정 예제가 호환성 보증이 되지 않는다.
-- milestone마다 `git status`, diff, Git 제외 항목을 확인하고 의미 있는 commit과 GitHub push를 준비한다. 공통 소스는 한 서버에만 남기지 않는다. secret/환경/모델/DB/사용자 IFC/cache/runtime artifact는 push하지 않는다.
+- milestone마다 `git status`, diff, tests/review/문서를 확인하고 의미 있는 commit과 GitHub push를 수행한다. push 성공까지 checkpoint 미완료다. secret/환경/모델/DB/사용자 IFC/cache/runtime artifact는 push하지 않는다.
 
 ## A100 모델 평가 단계의 진입 조건
 
-Phase 0에서는 shortlist까지만 작성한다. 실제 다운로드와 GPU 실행은 후속 작업 범위가 승인되고 다음 조건이 확인되었을 때 진행한다.
+Phase0에서는 shortlist까지만 작성했다. Phase5의 실제 다운로드와 GPU 실행은 이전 gate/checkpoint를 통과하고 다음 조건이 확인되었을 때 진행한다. 일반 Phase 승인 절차를 추가하지 않는다.
 
 1. GPU 3의 기존 점유가 해소되었거나 사용자에게 해당 실행이 허용된 상황이 명확해져야 한다. 알 수 없는 process를 종료하여 자리를 만들지 않는다.
 2. root 여유 공간을 다시 측정하고 runtime 설치, model download/cache, 평가 artifact, 임시 공간을 포함한 용량 계획이 있어야 한다.
@@ -53,11 +54,11 @@ Phase 0에서는 shortlist까지만 작성한다. 실제 다운로드와 GPU 실
 
 ## Phase 1 시작 전에 확인할 결정
 
-**필수 사용자 결정은 Phase 0 결과 검토 후 Phase 1 진행 승인이다.** 이번 작업에서 자동으로 다음 단계를 시작하지 않는다. 다음은 계약을 작성하며 확정할 기술 항목이며 모두를 이유로 불필요한 별도 승인 절차를 만들지는 않는다.
+이전 Phase의 Quality Gate와 commit/push 성공이 선행조건이다. **Phase1 착수 승인은 별도로 요청하지 않는다.** 다음 기술 항목은 계약을 작성하며 기존 Architecture 안에서 자율적으로 결정하고 근거를 기록한다.
 
 | 항목 | 현재 방향 | 확정할 시점 |
 | --- | --- | --- |
-| 최초 XY 좌표계/길이 단위/Placement 범위 | 상대 XY, 동일 Storey, 미지원은 거절 | Phase 1 계약 및 Phase 3 fixture 검증 |
+| 최초 XY 좌표계/길이 단위/Placement 범위 | 상대 XY, 내부metre, 동일 Storey, 미지원은 거절 | Phase 1 계약 및 Phase 3 fixture 검증 |
 | Domain 상태/오류/schema version | 문서의 명시 상태 초안에서 시작 | Phase 1 |
 | PostgreSQL 제공 방식/접속/저장 위치 | 시스템 변경 없는 사용자 권한 범위; provisioning 미수행 | Phase 2 설치·운영 계획 전 |
 | Artifact durability/보존/백업 | finalize 후 DB commit, immutable full snapshot | Phase 2 |
@@ -65,8 +66,8 @@ Phase 0에서는 shortlist까지만 작성한다. 실제 다운로드와 GPU 실
 | 모델/runtime/quantization/context | shortlist만; 최종 모델 미선정 | Phase 5 평가 후 |
 | URL/domain/gateway | 설정 분리, 실제 외부 배포 미수행 | API/배포 작업 시 |
 
-GPU 점유와 디스크 문제는 먼저 보고하고 설치·평가를 보류해야 하는 실제 환경 제약이다. 이 문제가 해결되지 않았더라도 사용자 승인을 받은 Domain 계약 설계 자체는 GPU/DB/model 설치 없이 진행할 수 있다.
+GPU 점유와 디스크 문제는 먼저 보고하고 관련 설치·평가를 보류해야 하는 실제 환경 제약이다. 이 문제가 해결되지 않았더라도 이전 gate/checkpoint를 통과한 Domain 계약 설계 자체는 GPU/DB/model 설치 없이 진행할 수 있다.
 
 ## 이후 확장
 
-Phase 10 이후에는 **Operation Expansion → New Build → RAG → Jeonju Local Plugin → Fine-tuning** 순서를 기준으로 필요성과 평가 근거를 검토한다. 현재의 MOVE_FURNITURE 계약을 일반 geometry 생성 권한으로 넓히거나, RAG/fine-tuning/framework 도입을 미리 구현하지 않는다. 각 확장에서도 LLM 판단과 결정론적 실행, target 확인과 proposal 승인, immutable revision을 유지한다.
+**Phase11 완료 후 자동 실행을 중단하고 최종 사용자 검토를 요청한다.** Operation Expansion/New Build/RAG/Jeonju Local Plugin/Fine-tuning 및 public production/실제 고객 pilot은 이번 자동 범위에 포함하지 않는다.

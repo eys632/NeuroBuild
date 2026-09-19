@@ -86,4 +86,4 @@ Phase 0은 공식 model card, repository, vLLM support, license 기반 **shortli
 
 Domain, Database, IFC, LLM production, Frontend 구현은 시작하지 않는다. PyTorch, vLLM, model weight, PostgreSQL, IfcOpenShell, Node, frontend package를 설치하지 않는다. Runtime info나 설정 검증 결과를 Application 실행 성공으로 기록하지 않는다.
 
-이후 순서와 완료 기준은 [implementation_roadmap.md](implementation_roadmap.md)에 따른다. **Phase 0 결과를 검토한 사용자의 승인 전에는 Phase 1을 시작하지 않는다.** GPU 점유나 디스크 문제는 GPU/설치 단계의 선행 조건이며 문서와 Domain 계약 설계의 성격을 혼동하지 않는다.
+이후 사용자 지침 변경(2026-09-19)에 따라 **Phase별 승인 대기는 폐지**했다. Phase11 Internal Technical MVP까지 Quality Gate와 commit/push를 통과한 뒤 자동 진행한다. 최신 계획/상태는 [MASTER_PLAN.md](MASTER_PLAN.md), [STATUS.md](STATUS.md)를 따른다. GPU 점유나 디스크 문제는 관련 GPU/설치 단계의 선행 조건이며 문서와 Domain 계약 설계의 성격을 혼동하지 않는다.

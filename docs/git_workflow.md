@@ -14,7 +14,7 @@ HEAD는 `09145974c17d1a09abdd2c48863e940fe68678b9`이며 기존 구현 정리 co
 
 기존 tree는 `NeuroBuild_v1/`과 `NeuroBuild_v2/readme.md`(2 bytes)로 구성됐다.
 완전한 기존 v2 복구자료가 있다고 가정하지 않는다. source는 참고자료로만 보존하고 실행/import하지 않는다.
-현재 clone의 `origin` fetch/push URL은 동일 HTTPS 주소다. remote write 인증/권한은 검증하지 않았다.
+현재 clone의 `origin` fetch/push URL은 동일 HTTPS 주소다. 이후 실제 push를 시도했으나 HTTPS 인증 정보 부재로 실패했다.
 
 ## 결정
 
@@ -29,13 +29,15 @@ orphan branch, history rewrite, 기존 데이터 삭제, force push를 사용하
 
 ## 이번 milestone 상태
 
-Phase0 문서·설정·진단 도구·synthetic seed를 검토하고 stage한다.
-조사 시 `git config --get user.name`, `git config --get user.email`은 모두 비어 있었다.
-사용자의 작성자 정보를 추측하거나 기존 commit 작성자로 가장하지 않는다.
-정보가 제공되면 이 repository에만 작성자를 설정하고 의미 있는 milestone commit을 만들 수 있다.
-현재 원격v2 생성/push는 수행하지 않았으므로 **이번 기반 파일은 아직 GitHub 백업 완료가 아니다**.
+Phase0 문서·설정·진단 도구·synthetic seed22개를 검토하고 local commit `29d47748035647d9ef16d5b44d47fd94106b3e8c`를 생성했다.
+Commit message: `Establish cross-server NeuroBuild v2 phase 0 foundation`.
+사용자가 제공한 `eys632 <eys632@gmail.com>`을 이 repository의 Git 설정에만 적용했다.
+`git push -u origin v2`는 `could not read Username for 'https://github.com'` 인증 오류로 실패했다.
+SSH 대체 경로도 현재 host key 미등록으로 실패했고, 기본 SSH key/인증 agent가 확인되지 않았다.
+host 검증을 끄거나 인증자료를 만들어 우회하지 않았다. **이번 기반 파일은 아직 GitHub 백업 완료가 아니다.**
+사용자가 이 서버에서 GitHub 인증을 준비하면 push를 재시도한다. 토큰/private key를 채팅이나 문서에 남기지 않는다.
+이후 정확한 local commit과 push 상태는 [STATUS](STATUS.md), [EXECUTION_LOG](EXECUTION_LOG.md)로 관리한다.
 
-권장 commit message: `chore: establish cross-server NeuroBuild v2 phase 0 foundation`.
 검토 명령:
 
 ```sh
@@ -45,8 +47,8 @@ git diff --cached --stat
 git diff --cached --name-status
 ```
 
-작성자 설정과 검토가 완료된 다음 local commit, 이후 인증된 사용자가 공통 branch를 push하는 순서다.
-사용할 push 명령은 `git push -u origin v2`이며 force 옵션을 붙이지 않는다. 이번 작업에서는 실행하지 않았다.
+local commit을 보존한 상태에서 인증이 준비되면 `git push -u origin v2`를 재시도한다. force 옵션을 붙이지 않는다.
+2026-09-19 새 지침에 따라 push 성공 전에는 Phase checkpoint가 완료되지 않는다.
 remote가 바뀌었다면 fetch/차이를 먼저 확인하고 기존 작업을 덮어쓰지 않는다.
 
 다른 서버의 **새 clone**은 remotev2 push 후 `git clone --branch v2 https://github.com/eys632/NeuroBuild.git`로 준비할 수 있다.

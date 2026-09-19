@@ -4,7 +4,7 @@
 
 - A100 작업 root: `/home/a202192020/NeuroBuild_v2`. RTX5090에서는 checkout root를 기준으로 상대 경로를 사용한다.
 - 서버 환경 관리는 해당 서버의 전역 정책이 담당한다. A100에서는 먼저 `/home/a202192020/.codex/AGENTS.md`를 읽는다. 이 파일은 제품/저장소 지침이며 전역 정책을 대체하지 않는다.
-- 현재 Phase 0: 문서, 설정 예제, runtime info 기반만. 사용자 승인 없이 Phase 1 또는 Domain/DB/IFC/LLM production 구현을 시작하지 않는다.
+- 2026-09-19 사용자 지침 변경: Phase 0 기반부터 Phase 11 Internal Technical MVP까지 자율 개발한다. Phase별 사용자 승인 대기는 폐지했다. 현재 단계와 blocker는 `docs/STATUS.md`를 기준으로 한다.
 - 과거 코드는 참고 자료다. Git에 보존된 `NeuroBuild_v1/`, 기존 `NeuroBuild_v2/` placeholder를 새 Application에 import하거나 검증 없이 복사하지 않는다.
 
 ## 공통 코드와 실행 환경
@@ -21,11 +21,11 @@
 ## 제품과 데이터 불변 조건
 
 - LLM은 판단하고 BIM Engine은 실행한다. LLM은 raw IFC/geometry를 직접 수정하거나 GlobalId를 생성하지 않는다.
-- 초기 scope는 IFC4의 단일 IfcFurniture, 같은 Storey, 상대 XY 이동만. Z/회전/scale/층 변경은 거절한다. 지원 placement가 불명확하면 변경하지 않는다.
+- 초기 scope는 IFC4의 단일 IfcFurniture, 같은 Storey, 상대 XY 이동만. 내부 길이 단위는 metre, 단위 변환/산술은 코드로 처리한다. Z/회전/scale/층 변경은 거절한다. 지원 placement가 불명확하면 변경하지 않는다.
 - Modular Monolith와 명시적인 Application Service를 사용한다. LangChain/LangGraph, Redis/Celery, 불필요한 framework를 먼저 도입하지 않는다.
 - Revision/full IFC snapshot/finalized artifact는 immutable. DB는 metadata, 파일은 artifact storage. 기존 IFC overwrite 금지.
 - Proposal은 base revision에 묶고 Apply 직전 head와 비교한다. target confirmation과 proposal approval은 별도 상태/행위로 관리한다.
-- 상태 전이는 명시적이다. Worker는 human review 대기 중 점유하지 않는다. DB/파일 간 commit protocol, retry/idempotency/recovery를 설계한다.
+- 상태 전이는 명시적이다. PostgreSQL queue, Single Workflow Worker, Session Advisory Lock을 우선한다. Worker는 human review 대기 중 점유하지 않는다. DB/파일 간 commit protocol, retry/idempotency/recovery를 검증한다.
 - Viewer는 IFC Engine에서 분리하고 GLB + GlobalId metadata를 브라우저에서 표시하는 방향을 따른다.
 
 ## 검증, 기록, Git
@@ -33,6 +33,20 @@
 - 변경에 맞는 검증을 수행한다. 이후 실제 기능에는 contract/거절 경로/승인 분리/stale revision/중복 실행/IFC 불변 조건 테스트를 둔다. 실행하지 않은 테스트를 PASS라고 쓰지 않는다.
 - 로그는 trace_id/project_id/job_id/proposal_id/revision_id/execution_id로 연결한다. chain-of-thought와 secret은 저장하지 않는다. 사용자에게 stack trace를 노출하지 않는다.
 - 외부 LLM API production fallback 금지. synthetic 비교도 사용자 승인 없이 API key/외부 전송을 설정하지 않는다.
-- GitHub `https://github.com/eys632/NeuroBuild`가 source of truth. milestone에서 status/diff/secret 제외를 확인하고 의미 있는 commit과 push 준비를 한다.
+- GitHub `https://github.com/eys632/NeuroBuild`가 source of truth. milestone에서 status/diff/secret 제외를 확인하고 의미 있는 commit과 push를 수행한다. push 성공까지 Phase checkpoint가 완료된 것이 아니다.
 - force push/history rewrite/기존 branch 삭제/remote data 삭제 금지. 기존 main 이력을 보존한다. 환경·weight·cache·DB data·IFC 사용자 파일·runtime artifact·local secret은 commit하지 않는다.
 - Git에 저장할 것은 재현 정의, schema/prompt, synthetic evaluation, 테스트, 문서다. 실제 dependency 버전은 설치를 검증하는 단계에서 고정한다.
+
+## 자율 실행과 재개
+
+- 재개 시 전역 지침, 이 파일, `docs/MASTER_PLAN.md`, `docs/STATUS.md`, `docs/DECISIONS.md`, `docs/EXECUTION_LOG.md`를 읽고 `git status`, `git log --oneline --decorate -n 10`을 확인한다. 완료된 Phase를 다시 구현하지 않는다.
+- 각 Phase는 PLAN → IMPLEMENT → TEST → REVIEW → DOCUMENT → COMMIT → PUSH → NEXT PHASE 순서다. acceptance/unit/integration(가능한 경우)/regression/architecture/security-safety/cross-server review를 통과해야 다음 단계로 간다.
+- 실패하면 코드·로그·dependency·가정을 확인해 수정한다. 유사 실패3회면 접근을 재검토한다. 미실행 검증으로 gate를 통과시키거나 요구사항을 약화하지 않는다.
+- `docs/reports/phaseX_report.md`에 목표/구현/테스트/문제/architecture/cross-server/다음 판단을 남긴다. STATUS는 현재 요약, EXECUTION_LOG는 command와 관측 결과를 기록한다. chain-of-thought는 기록하지 않는다.
+- 사람 검수 전 evaluation gold는 **AUTO-GENERATED / NOT HUMAN VERIFIED**로 표시한다. 내부 개발은 계속할 수 있지만 외부 pilot 전 사람이 검수해야 한다.
+- hard blocker: sudo 또는 system driver/CUDA 변경, 다른 사용자 GPU/process 변경, 장기간 GPU3 점유로 필수 benchmark 불가, force push/history rewrite, secret/API key, 민감 IFC, public exposure/pilot, 사용자 product/business 결정, 유료 외부 API, 필수 RTX5090 현장 검증 없이는 결정 불가한 architecture, 데이터 손실 가능 destructive operation. 해당 조건에서는 사용자 결정 전 의존 작업을 중단한다.
+- Git author가 없으면 추측하지 말고 사용자에게 요청한다. 인증 부재로 push 불가하면 local commit을 보존하고 기록하며 checkpoint를 통과했다고 표시하지 않는다.
+- 세부 naming/module/test/SQL/repository/library/prompt/UI/API/refactor 결정은 기존 원칙 안에서 자율적으로 한다. 환경 설치 전 전역 정책의 조사/계획/경로/디스크 확인은 유지한다.
+- Phase11에서 Browser upload→V0→자연어→대상 확인→별도 proposal 승인→job→MOVE_FURNITURE→V1→viewer/download와 불변성·stale/duplicate/unsupported/ambiguity/failure/restart를 검증한다.
+- Public production, 고객 pilot, New Build 전체, 벽/문/창 변경, 구조/법규 보장, Jeonju RAG, fine-tuning/LoRA, swarm, microservices/Kubernetes는 자동 범위 밖이다.
+- Phase11을 통과하면 `docs/FINAL_INTERNAL_MVP_REPORT.md`를 작성하고 최종 사용자 검토를 요청한 뒤 멈춘다.

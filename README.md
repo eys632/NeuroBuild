@@ -1,7 +1,7 @@
 # NeuroBuild_v2
 
 A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의 greenfield rewrite.
-현재 **Phase 0: Cross-Server Environment & Architecture Foundation**이다.
+현재 **Phase 0 기반 구현 완료 / GitHub 인증 필요로 checkpoint 대기** 상태다.
 Application, DB, IFC Engine, model server, frontend는 아직 구현/설치하지 않았다.
 
 LLM은 요구사항을 구조화하고, 결정론적인 BIM Engine이 승인된 변경을 실행한다.
@@ -29,6 +29,10 @@ URL은 localhost 예제, model은 미선정, runtime은 `NOT_TESTED`다. [설정
 
 | 문서 | 내용 |
 |---|---|
+| [MASTER PLAN](docs/MASTER_PLAN.md) | Phase11 Internal Technical MVP까지의 자율 개발 목표/완료 조건 |
+| [STATUS](docs/STATUS.md) | 재개 시 확인할 현재 단계와 blocker |
+| [DECISIONS](docs/DECISIONS.md) | 결정/대안/재검토 조건 |
+| [EXECUTION LOG](docs/EXECUTION_LOG.md) | command, 검증 결과, 실패와 수정 기록 |
 | [Phase 0 보고서](docs/phase0_report.md) | 요청한 24개 항목과 검증/남은 결정 |
 | [프로젝트 맥락](docs/project_context.md) | Greenfield 범위와 계승할 원칙 |
 | [아키텍처](docs/architecture_blueprint.md) | 공통 코드, 승인/Revision/Artifact/Worker/Viewer 설계 |
@@ -73,6 +77,7 @@ NeuroBuild_v2/                 # 이 checkout root가 새 프로젝트
 - root disk는 조사 당시96% 사용, 약86G 남음. 대형 설치/모델 다운로드를 보류한다.
 - driver535.183.01에서 최신 후보의 검증된 vLLM build는 아직 없다.
 - RTX5090은 예상32GB/physicalGPU1 계획이며 실제 runtime/benchmark는 미검증이다.
-- 현재 Git 작성자 미설정으로 milestone commit/push는 아직 없다. 상세 상태는 보고서를 따른다.
+- Git 작성자는 설정됐고 Phase0 local commit은 `29d4774`다. GitHub 인증 부재로 push는 실패했다.
 
-**Phase1은 사용자 승인 후에만 시작한다.** 환경/모델 설치 없이 Domain 계약 설계를 먼저 진행할 수 있다.
+**Phase별 승인 대기는 폐지했다.** Quality Gate와 commit/push를 통과하면 Phase11까지 자율 진행한다.
+현재는 GitHub 인증 hard blocker로 Phase1 시작 전 대기 중이다. 최신 상태는 STATUS를 따른다.
