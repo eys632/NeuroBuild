@@ -2,6 +2,7 @@
 
 from contextlib import redirect_stderr, redirect_stdout
 from copy import deepcopy
+from hashlib import sha256
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from io import StringIO
 import json
@@ -15,6 +16,7 @@ import unittest
 from unittest.mock import patch
 from uuid import uuid4
 
+from neurobuild.application.requirement_generation import GenerationContract
 from neurobuild.domain.errors import DomainError
 from neurobuild.infrastructure.local_model import (
     LocalRequirementClient, MAX_HTTP_RESPONSE_BYTES, SamplingProfile, StructuredOutputProtocol,
@@ -27,6 +29,11 @@ FINAL = {
     "operation": {"kind": "MOVE_FURNITURE", "coordinate_frame": "PROJECT_WORLD_XY", "instruction_text": SOURCE,
                   "dx": {"value": "1", "unit": "m", "evidence": "X축 양의 방향으로 1m"}, "dy": None},
     "reason": None,
+}
+QUOTE_FINAL = {
+    "schema_version": "2.0", "target_selection_quote": "회의실 책상",
+    "current_instruction_quote": SOURCE, "dx_evidence": "X축 양의 방향으로 1m",
+    "dy_evidence": None, "decision": "READY", "reason": None,
 }
 
 
@@ -168,13 +175,133 @@ class LocalModelClientTests(unittest.TestCase):
         }
         clients = [self.client] + [LocalRequirementClient(self.base, "synthetic-test-model", sampling_profile=value)
                                   for value in (SamplingProfile.LEGACY_GREEDY, "legacy_greedy")]
+        clients.extend(LocalRequirementClient(self.base, "synthetic-test-model", generation_contract=value)
+                       for value in (GenerationContract.LEGACY, "1.0"))
         for client in clients:
             with self.subTest(profile=client.sampling_profile):
                 client.complete(SOURCE, axis_convention="project_xy")
                 self.assertIs(client.sampling_profile, SamplingProfile.LEGACY_GREEDY)
+                self.assertIs(client.generation_contract, GenerationContract.LEGACY)
                 self.assertEqual(client.sampling_parameters, {"temperature": 0, "seed": 42})
                 self.assertEqual(self.server.request_bodies[-1], json.dumps(expected, ensure_ascii=False).encode("utf-8"))
-        self.assertEqual(len(self.server.requests), 3)
+        self.assertEqual(len(self.server.requests), 5)
+
+    def test_generation_contract_defaults_and_domain_conversion_are_explicit_in_both_protocols(self):
+        root = Path(__file__).resolve().parents[1]
+        ids = {"requirement_id": uuid4(), "project_id": uuid4(), "base_revision_id": uuid4()}
+        results = []
+        configurations = (
+            (GenerationContract.LEGACY, FINAL, "requirement_v3.txt", "semantic_requirement.schema.json"),
+            (GenerationContract.QUOTES, QUOTE_FINAL, "requirement_generation_v2_v1.txt",
+             "requirement_generation_v2.schema.json"),
+        )
+        for contract, output, prompt_name, schema_name in configurations:
+            prompt_bytes = (root / "prompts" / prompt_name).read_bytes()
+            schema_bytes = (root / "schemas" / schema_name).read_bytes()
+            for protocol in StructuredOutputProtocol:
+                for configured in (contract, contract.value):
+                    with self.subTest(contract=contract, protocol=protocol, configured_type=type(configured).__name__):
+                        self.respond(envelope(json.dumps(output, ensure_ascii=False)))
+                        client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
+                                                        generation_contract=configured)
+                        with self.assertRaises(AttributeError):
+                            client.generation_contract = GenerationContract.LEGACY
+                        results.append(client.extract(SOURCE, axis_convention="project_xy", **ids))
+                        self.assertIs(client.generation_contract, contract)
+                        self.assertEqual(client.prompt_sha256, sha256(prompt_bytes).hexdigest())
+                        self.assertEqual(client.schema_sha256, sha256(schema_bytes).hexdigest())
+                        request = self.server.requests[-1][2]
+                        self.assertEqual(request["messages"][0]["content"], prompt_bytes.decode())
+                        sent_schema = (request["guided_json"] if protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON
+                                       else request["structured_outputs"]["json"])
+                        self.assertEqual(sent_schema, json.loads(schema_bytes))
+                        self.assertNotIn("generation_contract", request)
+                        self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
+        self.assertEqual(len(self.server.requests), 8)
+        self.assertTrue(all(result == results[0] for result in results))
+        self.assertEqual(results[0].base_revision_id, ids["base_revision_id"])
+        self.assertEqual(results[0].operation.dx.metres, 1)
+
+    def test_unknown_generation_contract_never_reaches_http(self):
+        for contract in (None, True, 1, 2.0, [], {}, "auto", "2", "QUOTES", "2.0 "):
+            with self.subTest(contract=contract):
+                with self.assertRaises(DomainError) as caught:
+                    LocalRequirementClient(self.base, "synthetic-test-model", generation_contract=contract)
+                self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
+        self.assertEqual(self.server.requests, [])
+
+    def test_custom_schema_must_bind_the_explicit_generation_before_http(self):
+        root = Path(__file__).resolve().parents[1]
+        schemas = {
+            GenerationContract.LEGACY: root / "schemas/semantic_requirement.schema.json",
+            GenerationContract.QUOTES: root / "schemas/requirement_generation_v2.schema.json",
+        }
+        for contract, other in ((GenerationContract.LEGACY, GenerationContract.QUOTES),
+                                (GenerationContract.QUOTES, GenerationContract.LEGACY)):
+            with self.subTest(contract=contract):
+                client = LocalRequirementClient(self.base, "synthetic-test-model", generation_contract=contract,
+                                                schema_path=schemas[contract])
+                self.assertIs(client.generation_contract, contract)
+                with self.assertRaises(DomainError) as caught:
+                    LocalRequirementClient(self.base, "synthetic-test-model", generation_contract=contract,
+                                           schema_path=schemas[other])
+                self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
+        with TemporaryDirectory(prefix="nb_model_version_") as directory:
+            path = Path(directory) / "schema.json"
+            for invalid in ({"type": "object"}, {"properties": None},
+                            {"properties": {"schema_version": {"enum": ["1.0", "2.0"]}}}):
+                path.write_text(json.dumps(invalid))
+                with self.subTest(schema=invalid), self.assertRaises(DomainError) as caught:
+                    LocalRequirementClient(self.base, "synthetic-test-model", generation_contract="2.0",
+                                           schema_path=path)
+                self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
+        self.assertEqual(self.server.requests, [])
+
+    def test_wrong_generation_contract_response_is_not_detected_or_retried(self):
+        ids = {"requirement_id": uuid4(), "project_id": uuid4(), "base_revision_id": uuid4()}
+        for contract, wrong_output in ((GenerationContract.LEGACY, QUOTE_FINAL),
+                                       (GenerationContract.QUOTES, FINAL)):
+            for protocol in StructuredOutputProtocol:
+                with self.subTest(contract=contract, protocol=protocol):
+                    self.respond(envelope(json.dumps(wrong_output, ensure_ascii=False)))
+                    client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
+                                                    generation_contract=contract)
+                    before = len(self.server.requests)
+                    with self.assertRaises(DomainError) as caught:
+                        client.extract(SOURCE, axis_convention="project_xy", **ids)
+                    self.assertEqual(caught.exception.code, "INVALID_MODEL_OUTPUT")
+                    self.assertEqual(len(self.server.requests), before + 1)
+                    self.assertIs(client.generation_contract, contract)
+
+    def test_quote_generation_keeps_ungrounded_and_unsigned_ready_out_of_domain(self):
+        ids = {"requirement_id": uuid4(), "project_id": uuid4(), "base_revision_id": uuid4()}
+        client = LocalRequirementClient(self.base, "synthetic-test-model", generation_contract="2.0")
+        invalid = deepcopy(QUOTE_FINAL)
+        invalid["dx_evidence"] = "X축 양의 방향으로 2m"
+        unsigned_source = "회의실 책상을 X축으로 1m 옮겨줘."
+        unsigned = dict(QUOTE_FINAL, current_instruction_quote=unsigned_source, dx_evidence="X축으로 1m")
+        for source, output in ((SOURCE, invalid), (unsigned_source, unsigned)):
+            with self.subTest(source=source):
+                self.respond(envelope(json.dumps(output, ensure_ascii=False)))
+                before = len(self.server.requests)
+                with self.assertRaises(DomainError) as caught:
+                    client.extract(source, axis_convention="project_xy", **ids)
+                self.assertEqual(caught.exception.code, "UNGROUNDED_REQUIREMENT")
+                self.assertEqual(len(self.server.requests), before + 1)
+
+    def test_quote_nonready_keeps_null_motion_and_code_owned_identity(self):
+        output = dict(QUOTE_FINAL, decision="CLARIFICATION", current_instruction_quote=None,
+                      dx_evidence=None, dy_evidence=None, reason="이동 방향을 확인해야 합니다.")
+        self.respond(envelope(json.dumps(output, ensure_ascii=False)))
+        ids = {"requirement_id": uuid4(), "project_id": uuid4(), "base_revision_id": uuid4()}
+        client = LocalRequirementClient(self.base, "synthetic-test-model", generation_contract="2.0")
+        result = client.extract("회의실 책상을 X축으로 1m 옮겨줘.", axis_convention="project_xy", **ids)
+        self.assertEqual(result.status.value, "CLARIFICATION")
+        self.assertEqual(result.target_description, "회의실 책상")
+        self.assertIsNone(result.operation)
+        self.assertEqual(result.requirement_id, ids["requirement_id"])
+        self.assertEqual(result.project_id, ids["project_id"])
+        self.assertEqual(result.base_revision_id, ids["base_revision_id"])
 
     def test_qwen_sampling_sends_all_eight_values_with_each_explicit_schema_protocol(self):
         expected = {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,

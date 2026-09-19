@@ -19,7 +19,8 @@ from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
 from uuid import UUID
 
-from neurobuild.application.requirements import MAX_RESPONSE_CHARS, MAX_SOURCE_CHARS, parse_requirement
+from neurobuild.application.requirement_generation import GenerationContract, parse_generated_requirement
+from neurobuild.application.requirements import MAX_RESPONSE_CHARS, MAX_SOURCE_CHARS
 from neurobuild.domain.contracts import SemanticRequirement
 from neurobuild.domain.errors import DomainError
 
@@ -118,6 +119,7 @@ class LocalRequirementClient:
         prompt_path: Path | None = None, schema_path: Path | None = None,
         protocol: StructuredOutputProtocol | str = StructuredOutputProtocol.LEGACY_GUIDED_JSON,
         sampling_profile: SamplingProfile | str = SamplingProfile.LEGACY_GREEDY,
+        generation_contract: GenerationContract | str = GenerationContract.LEGACY,
     ) -> None:
         self.endpoint = _endpoint(base_url)
         if type(protocol) not in (str, StructuredOutputProtocol):
@@ -132,6 +134,12 @@ class LocalRequirementClient:
             self._sampling_profile = SamplingProfile(sampling_profile)
         except ValueError:
             _error("LOCAL_MODEL_CONFIG_INVALID")
+        if type(generation_contract) not in (str, GenerationContract):
+            _error("LOCAL_MODEL_CONFIG_INVALID")
+        try:
+            self._generation_contract = GenerationContract(generation_contract)
+        except ValueError:
+            _error("LOCAL_MODEL_CONFIG_INVALID")
         if (not _clean_text(model, 256) or any(ord(char) < 32 for char in model)
                 or type(timeout) not in (int, float) or not math.isfinite(timeout) or not 0 < timeout <= 300
                 or type(max_tokens) is not int or not 1 <= max_tokens <= 2048):
@@ -139,14 +147,27 @@ class LocalRequirementClient:
         self.model = model
         self.timeout = float(timeout)
         self.max_tokens = max_tokens
+        if self.generation_contract is GenerationContract.LEGACY:
+            default_prompt = _ROOT / "prompts/requirement_v3.txt"
+            default_schema = _ROOT / "schemas/semantic_requirement.schema.json"
+        else:
+            default_prompt = _ROOT / "prompts/requirement_generation_v2_v1.txt"
+            default_schema = _ROOT / "schemas/requirement_generation_v2.schema.json"
         try:
-            prompt_bytes = (prompt_path or _ROOT / "prompts/requirement_v3.txt").read_bytes()
-            schema_bytes = (schema_path or _ROOT / "schemas/semantic_requirement.schema.json").read_bytes()
+            prompt_bytes = (prompt_path or default_prompt).read_bytes()
+            schema_bytes = (schema_path or default_schema).read_bytes()
             if not 0 < len(prompt_bytes) <= 65536 or not 0 < len(schema_bytes) <= 65536:
                 _error("LOCAL_MODEL_CONFIG_INVALID")
             self._prompt = prompt_bytes.decode("utf-8")
             self._schema = json.loads(schema_bytes.decode("utf-8"))
             if not self._prompt.strip() or type(self._schema) is not dict:
+                _error("LOCAL_MODEL_CONFIG_INVALID")
+            # Explicit custom paths cannot silently select a different output
+            # contract. Both generations require the same version-enum binding.
+            properties = self._schema.get("properties")
+            version = properties.get("schema_version") if type(properties) is dict else None
+            if (type(version) is not dict
+                    or version.get("enum") != [self.generation_contract.value]):
                 _error("LOCAL_MODEL_CONFIG_INVALID")
         except (OSError, UnicodeError, ValueError, AttributeError):
             _error("LOCAL_MODEL_CONFIG_INVALID")
@@ -163,6 +184,11 @@ class LocalRequirementClient:
     def sampling_profile(self) -> SamplingProfile:
         """Explicit fixed recipe; never inferred from model name or response."""
         return self._sampling_profile
+
+    @property
+    def generation_contract(self) -> GenerationContract:
+        """Explicit output contract; never detected from model output or files."""
+        return self._generation_contract
 
     @property
     def enable_thinking(self) -> bool:
@@ -315,5 +341,8 @@ class LocalRequirementClient:
         if not all(type(value) is UUID for value in (requirement_id, project_id, base_revision_id)):
             _error("LOCAL_MODEL_INPUT_INVALID")
         result = self.complete(source_text, axis_convention=axis_convention)
-        return parse_requirement(result.content, source_text=source_text, requirement_id=requirement_id,
-                                 project_id=project_id, base_revision_id=base_revision_id, axis_convention=axis_convention)
+        return parse_generated_requirement(
+            result.content, generation_contract=self.generation_contract,
+            source_text=source_text, requirement_id=requirement_id,
+            project_id=project_id, base_revision_id=base_revision_id, axis_convention=axis_convention,
+        )

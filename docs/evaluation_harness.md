@@ -50,10 +50,40 @@ cd /home/a202192020/NeuroBuild_v2
 `--tokenizer-revision` 생략 시 model revision과 같다고 명시적으로 기록한다. 다른
 tokenizer를 사용한다면 정확한 commit을 지정한다. Model manifest는 downloader가
 파일 검증 후 생성하며 evaluator가 다운로드하거나 자동 생성하지 않는다.
-현재 기본값은 prompt v3, `legacy_greedy`, `legacy_guided_json`, localhost8003,
+현재 기본값은 generation contract1.0, prompt v3, `legacy_greedy`, `legacy_guided_json`, localhost8003,
 output768, timeout60초, warmup5, trial3, seed dataset/`development_seed`다.
 Phase5의14B-AWQ/v3는 공개 seed에서의 기존 선정 기록이며 Phase5.x 최종 검증을
 대신하지 않는다. 4B-Instruct와 새 prompt/profile은 별도 실험이며 이 문서에서 채택하지 않는다.
+
+### 별도 generation2 실험
+
+`--generation-contract 2.0`을 명시하면 별도
+[quote-only schema](../schemas/requirement_generation_v2.schema.json)와
+[generation2/v1 prompt](../prompts/requirement_generation_v2_v1.txt)가 기본 경로가 된다.
+`--prompt`/`--schema`를 지정하면 그 파일을 사용한다. Contract1.0의 기본 경로와
+기존 canonical schema/parser는 유지한다. 응답의 version을 보고 계약을 전환하거나
+실패 후 다른 계약으로 재시도하지 않는다. 상세 경계는
+[generation2 설계](requirement_generation_v2_design.md)를 따른다.
+
+Generation2에서는 모델이 원문 선택 구절·현재 지시·축 근거를 인용하고,
+adapter가 기존 수치 검증 규칙으로 숫자 철자·단위·명시 부호를 읽어1.0 JSON으로
+투영한다. 전체 source, target, instruction을 자동 보완하지 않는다. 평가의
+`raw_model_decision`은 **schema/adapter 이전** 모델 응답에서 관측하므로
+adapter가 거절한 READY도 기존 raw FP에 남는다. 최종 의미와 unsafe 판정은 동일하다.
+
+| Generation2 기록 | 의미 |
+|---|---|
+| `generation_output` | generation schema를 통과한 모델의 원래7필드 JSON |
+| `schema_valid`, `generation_schema_valid` | 생성 JSON의2.0 shape 검증; backend 교차 제약 검증과 별도 |
+| `adapter_accepted` | 원문/수치/교차 제약 검사 후1.0 projection 생성 |
+| `legacy_schema_valid` | 생성된 projection의 canonical1.0 schema 검증 |
+| `semantic_output` | canonical schema를 통과한1.0 projection; 모델 원본과 구분 |
+| `parser_accepted` | 원래 source/서버 생성 UUID/context를 사용한 기존1.0 parser의 최종 수용 |
+
+Manifest에는 명시적인 generation contract와 adapter/canonical schema SHA를 추가한다.
+기존1.0 run의 trial 형식과 집계 결과는 유지하며, timeout/truncation/변환 실패도 모든
+분모에 남긴다. 새 schema의 인용→decision 순서는 이번 표현 변경에 포함되므로
+순서만의 효과를 분리해서 주장하지 않는다. 모델 품질은 별도 실제 평가 전 미검증이다.
 
 ### 명시적인 sampling·protocol 선택
 

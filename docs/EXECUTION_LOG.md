@@ -321,3 +321,13 @@ Startup log warnings about missing packed_modules_mapping and default MoE tuning
 Run20260919T231243Z-194bbb3212944ebcb8e0e54bfa1b28b5, development40×1/warmup5: schema40/parser36/semantic34(85%), rawFP1/20, unsafeaccepted1/40, FN4/20; mean4.24096s/p956.07952s. F02 changes a source character, I02 fails source grounding, HD-A02 loses the negative sign, HD-B01 guesses unsigned direction, HD-D02 misclassifies one furniture's XY as multiple furniture, HD-F02 loses the scope/excluded target. Startup success does not satisfy semantic gate. Full results/resource/manifest preserved.
 
 Next: reuse existing v4 with identical checkpoint/runtime/neutral sampling, all40 development once. If copying/interpretation failure persists, revisit the redundant generation representation rather than download more models or weaken gold/parser/gates. Existing1.0 parser/domain remains frozen throughout this comparison. Holdout still uncalled.
+
+
+## 2026-09-20 08:31 KST — MoE v4 failure and next plan
+
+Pushed3a13b240e4d1273db79947cf5d11c8becc9230f0 before v4 call. Evaluator: same explicit MoE revision/manifest/runtime, existing v4, neutral qwen3_nonthinking, output768/timeout60, all40development/warmup5/trial1. Run20260919T232550Z-fb632f6b5f1d405f9618dfe892b0f42a completed40 responses; server request count45→90. Schema40/parser37/semantic34/rawFP1/unsafe2/FN2, mean3.995633s/p955.909745s. Results/manifest/resource snapshot archived without edits.
+
+Plan changed to separate quote-only generation2 adapter through unchanged1.0 parser, with explicit client mode and evaluator accounting. No new model/runtime install. Independent adapter boundary, prompt/client, and evaluator implementation/review work is separated by owned files. Holdout remains uncalled; no later Phase implementation.
+
+
+Generation2 implementation checks: explicit adapter/schema/client/harness, no canonical1.0 source change. Full `env -u DISPLAY -u WAYLAND_DISPLAY bash scripts/test_backend.sh` with private PostgreSQL DSN: **290 tests PASS, skip0,17.329s** (`var/phase5x-generation2-regression.log`). Added regression forces a schema-valid but ungrounded adapter projection and verifies the final1.0 parser rejects it; raw READY remains visible. Independent replay of all12 historical hardening archives (640 trials) matches parser/errors/SI/scorer and complete metrics. New model quality remains unmeasured.

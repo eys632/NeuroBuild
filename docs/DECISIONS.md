@@ -92,3 +92,10 @@ Holdout의 첫 warmup 이전에 최종 후보 조합을 고정하고 원격 chec
 14B hybrid AWQ에서 prompt·sampling·thinking 비교가 gate를 충족하지 못했다. 기존 cu118 환경에서 사용할 수 있는 4B-Instruct-2507 BF16을 비교했지만 v3/v4/v8 및 v3 greedy도 통과하지 못했다. 모든 실패를 보존하고 parser/gold를 완화하지 않는다. Prompt 길이·언어·명시 규칙 추가 또는 모델 크기 하나가 원인이라고 단정할 근거는 없다.
 
 다음 비교는 별도 instruction MoE인 제3자 `ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ` 고정 revision이다. [후보 검토](moe_instruction_candidate.md)는 출처·license provenance·설치 runtime 정적 호환성·전체 VRAM 추정·디스크 reserve를 구분한다. 기존 v3/neutral sampling과 동일한 gold/평가기를 사용하며, 실제 적재와 품질을 확인하기 전에는 채택하지 않는다. 단일 source tree, GPU3만 사용, 자신의 이전 서버 종료, fresh preflight와 runtime 감시는 유지한다. RTX 실측은 별도 미검증이다.
+
+
+## D026 — 별도 quote-only generation 계약, canonical 검증 유지
+
+MoE의 기존 v3/v4 비교도 모두 semantic34/40으로 실패했다. 더 많은 모델 다운로드나 비슷한 prompt 수정을 반복하기 전에 생성 표현을 재검토한다. Generation2는 판단과 원문 target/current instruction/axis evidence만 생성하고, 코드가 evidence의 원래 숫자 철자·단위·명시 부호를 읽는다. 새 adapter는 기존 수치/경계 helper와 변경 없는1.0 parser를 통과시킨다. 모델이 누락한 대상 범위·조건을 코드가 추측해 보충하지 않는다.
+
+Legacy1.0은 기본값과 과거 결과를 보존한다. 계약은 caller가 명시적으로 선택하며 응답 버전으로 자동 전환하지 않는다. 평가기는 adapter보다 먼저 raw READY를 기록하고 원래 model JSON, projection, generation schema, adapter, canonical parser 판정을 구분한다. 같은 gold와 strict semantic/raw FP/unsafe gate를 유지하며 실제 품질 개선 전에는 채택하지 않는다.

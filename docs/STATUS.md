@@ -1,14 +1,14 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 08:25 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 08:31 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b`: Phase 5 commit/push 및 remote hash 일치 |
-| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `28cfcab` |
-| 회귀 검증 | 전체 **253 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 16.900초 |
-| 현재 작업 | **30B-A3B instruction AWQ 기동·loopback 검증 통과, v3/neutral 진단34/40으로 실패; 기존 v4 비교 준비**. 4B v3 greedy도 36/40, raw FP1, 잘못 수용2로 실패하여 서버 정상 종료 |
+| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `3a13b24` |
+| 회귀 검증 | 전체 **290 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 17.329초 |
+| 현재 작업 | **MoE v4도34/40, raw FP1, 잘못 수용2로 실패. 별도 quote-only generation2 구현 및 전체 회귀290개 통과, 모델 진단 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
 | 잠정 모델 | Phase 5 범위의 **Qwen3-14B-AWQ + v3**. 확대 평가 gate 통과 전 최종 채택으로 보지 않음 |
 | Hard blocker | 없음. GPU 3 가용량을 측정한 공존 실행 조건 통과 |
 | Backend | `.conda`: Python 3.12.14 / PostgreSQL 17.11 / psycopg 3.2.10 / IfcOpenShell 0.8.5 |
@@ -26,6 +26,7 @@
 | 4B Instruct + v8 | 36/40 (90%) | 1/20 | 2/40 | gate 미충족 |
 | 4B Instruct + v3 greedy | 36/40 (90%) | 1/20 | 2/40 | gate 미충족 |
 | 30B-A3B Instruct AWQ + v3 | 34/40 (85%) | 1/20 | 1/40 | gate 미충족 |
+| 30B-A3B Instruct AWQ + v4 | 34/40 (85%) | 1/20 | 2/40 | gate 미충족 |
 
 Raw READY 오판의 분모는 non-READY gold 20개이고, 잘못 수용된 출력의 분모는 전체 40개다. Backend가 수용한 결과에도 대상 범위 손실 등 의미 오류가 남아 있다. 40개 단회 진단은 정식 3회 평가를 대신하지 않는다. Gate는 **schema 100% / 의미 정확도 95% 이상 / raw READY 오판 0 / 잘못 수용된 출력 0**을 유지한다.
 

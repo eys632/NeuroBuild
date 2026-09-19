@@ -23,6 +23,7 @@ from uuid import UUID, uuid4, uuid5
 from jsonschema import Draft202012Validator
 
 from neurobuild.application.requirements import MAX_RESPONSE_CHARS, parse_requirement
+from neurobuild.application.requirement_generation import GenerationContract, adapt_generation_v2
 from neurobuild.domain.errors import DomainError
 from neurobuild.infrastructure.local_model import LocalRequirementClient, SamplingProfile, StructuredOutputProtocol
 
@@ -145,6 +146,10 @@ def evaluate_trial(client, case, validator, trial, *, run_id, clock=time.monoton
     requirement = output = None
     started = clock()
     try:
+        contract = GenerationContract(getattr(client, "generation_contract", GenerationContract.LEGACY))
+        if contract is GenerationContract.QUOTES:
+            row.update(generation_contract=contract.value, generation_output=None,
+                       generation_schema_valid=False, adapter_accepted=False, legacy_schema_valid=False)
         completion = client.complete(case["input"], axis_convention=case["context"].get("axis_convention"))
         row["response_model"] = completion.model
         row["transport_latency_seconds"] = completion.latency_seconds
@@ -164,14 +169,28 @@ def evaluate_trial(client, case, validator, trial, *, run_id, clock=time.monoton
                 row["raw_model_decision"] = decision
                 row["model_ready_observed"] = decision == "READY"
             row["schema_valid"] = validator.is_valid(output)
+            if contract is GenerationContract.QUOTES:
+                row["generation_schema_valid"] = row["schema_valid"]
             if not row["schema_valid"]:
                 row["error_code"] = "JSON_SCHEMA_FAILED"
             else:
                 # Schema-valid final semantic content only. Never save malformed
                 # raw text, unknown fields, HTTP envelopes or reasoning content.
+                canonical_text = completion.content
+                if contract is GenerationContract.QUOTES:
+                    # Observe and retain the model's decision BEFORE adaptation.
+                    # Projection failure cannot erase a raw READY false positive.
+                    row["generation_output"] = output
+                    canonical_text = adapt_generation_v2(completion.content, source_text=case["input"])
+                    row["adapter_accepted"] = True
+                    output = strict_json(canonical_text)
+                    canonical_schema = strict_json((ROOT / "schemas/semantic_requirement.schema.json").read_text(encoding="utf-8"))
+                    row["legacy_schema_valid"] = Draft202012Validator(canonical_schema).is_valid(output)
+                    if not row["legacy_schema_valid"]:
+                        raise DomainError("INVALID_MODEL_OUTPUT", "Projection does not satisfy the canonical schema")
                 row["semantic_output"] = output
                 requirement = parse_requirement(
-                    completion.content, source_text=case["input"],
+                    canonical_text, source_text=case["input"],
                     requirement_id=uuid5(NAMESPACE, f"{run_id}/{case['id']}/{trial}"),
                     project_id=uuid5(NAMESPACE, run_id + "/project"),
                     base_revision_id=uuid5(NAMESPACE, run_id + "/base"),
@@ -219,6 +238,9 @@ def summarize(rows):
                          and not row["semantic_rubric_correct"]]
     result = {key: rate(sum(bool(row[key]) for row in rows), total)
               for key in ("json_parse_valid", "schema_valid", "parser_accepted", "semantic_rubric_correct")}
+    if rows and all(row.get("generation_contract") == GenerationContract.QUOTES.value for row in rows):
+        result.update({key: rate(sum(bool(row[key]) for row in rows), total)
+                       for key in ("generation_schema_valid", "adapter_accepted", "legacy_schema_valid")})
     result.update(
         critical_fp_model_ready=rate(sum(row["model_ready_observed"] is True for row in unsafe), len(unsafe)),
         critical_fp_accepted_ready=rate(sum(row["accepted_decision"] == "READY" for row in unsafe), len(unsafe)),
@@ -337,6 +359,9 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
               "scorer": file_sha(Path(__file__)),
               "parser": file_sha(ROOT / "src/neurobuild/application/requirements.py"),
               "client": file_sha(ROOT / "src/neurobuild/infrastructure/local_model.py")}
+    if client.generation_contract is GenerationContract.QUOTES:
+        hashes.update(generation_adapter=file_sha(ROOT / "src/neurobuild/application/requirement_generation.py"),
+                      canonical_schema=file_sha(ROOT / "schemas/semantic_requirement.schema.json"))
     if hashes["prompt"] != client.prompt_sha256 or hashes["schema"] != client.schema_sha256:
         raise ValueError("Client prompt/schema differs from recorded files")
     sampling = client.sampling_parameters
@@ -351,6 +376,7 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
             "runtime_identity_evidence": "OPERATOR_SUPPLIED; HTTP model name checked, loaded weight revision not remotely attested",
             "weight_integrity_evidence": "PINNED_MANIFEST; downloader verifies files, evaluator does not reread weights",
             "protocol": {"warmups": warmups, "trials_per_case": trials, "order": "dataset order, case-major then trial-major",
+                         "generation_contract": client.generation_contract.value,
                          "sampling_profile": client.sampling_profile.value,
                          "sampling_request_parameters": sampling,
                          "unspecified_sampling_parameters": "Server/model defaults; not claimed explicitly controlled",
@@ -378,6 +404,7 @@ def main(argv=None):
     parser.add_argument("--base-url", default="http://127.0.0.1:8003")
     parser.add_argument("--protocol", choices=[p.value for p in StructuredOutputProtocol], default="legacy_guided_json")
     parser.add_argument("--sampling-profile", choices=[p.value for p in SamplingProfile], default="legacy_greedy")
+    parser.add_argument("--generation-contract", choices=[c.value for c in GenerationContract], default="1.0")
     parser.add_argument("--model", required=True, help="Exact served model name")
     parser.add_argument("--model-revision", required=True)
     parser.add_argument("--tokenizer-revision")
@@ -385,20 +412,23 @@ def main(argv=None):
     parser.add_argument("--runtime-metadata", type=Path, required=True)
     parser.add_argument("--dataset", type=Path, default=ROOT / "evaluations/requirement_seed.jsonl")
     parser.add_argument("--split", choices=["development_seed", "development", "heldout"], default="development_seed")
-    parser.add_argument("--prompt", type=Path, default=ROOT / "prompts/requirement_v3.txt")
-    parser.add_argument("--schema", type=Path, default=ROOT / "schemas/semantic_requirement.schema.json")
+    parser.add_argument("--prompt", type=Path)
+    parser.add_argument("--schema", type=Path)
     parser.add_argument("--max-tokens", type=int, default=768)
     parser.add_argument("--timeout", type=float, default=60.0)
     parser.add_argument("--warmups", type=int, default=5)
     parser.add_argument("--trials", type=int, default=3)
     args = parser.parse_args(argv)
     try:
+        contract = GenerationContract(args.generation_contract)
+        args.prompt = args.prompt or ROOT / ("prompts/requirement_generation_v2_v1.txt" if contract is GenerationContract.QUOTES else "prompts/requirement_v3.txt")
+        args.schema = args.schema or ROOT / ("schemas/requirement_generation_v2.schema.json" if contract is GenerationContract.QUOTES else "schemas/semantic_requirement.schema.json")
         cases = load_cases(args.dataset)
         schema = strict_json(args.schema.read_text(encoding="utf-8"))
         Draft202012Validator.check_schema(schema)
         client = LocalRequirementClient(args.base_url, args.model, timeout=args.timeout, max_tokens=args.max_tokens,
                                         prompt_path=args.prompt, schema_path=args.schema, protocol=args.protocol,
-                                        sampling_profile=args.sampling_profile)
+                                        sampling_profile=args.sampling_profile, generation_contract=contract)
         run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ-") + uuid4().hex
         manifest = build_manifest(client, dataset=args.dataset, prompt=args.prompt, schema=args.schema,
                                   weights=args.weight_manifest, runtime=args.runtime_metadata,

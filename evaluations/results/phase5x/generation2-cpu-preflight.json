@@ -1,0 +1,54 @@
+{
+  "kind": "CPU_ONLY_GENERATION_2_PREFLIGHT",
+  "generation_contract": "2.0",
+  "model_id": "ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ",
+  "model_revision": "9f41ff709102dbe73e614f9365f8280170db268e",
+  "cuda_visible_devices": "",
+  "prompt_sha256": "ad3e1b1a44dc4373e511ad794814054313bdbafe6ddc66ea43ef253049b95431",
+  "schema_sha256": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+  "client_sha256": "89c02812a454c292eb906e71cf2d2c487d29ba1e1e96e8bccd87a32468d294b8",
+  "adapter_sha256": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+  "legacy_parser_sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+  "weight_manifest_sha256": "32ff8e507fb4b25f5e67da2d03ba898d52467d653eb55c4c1cc906ee2738939c",
+  "chat_template_sha256": "40c21f34cf67d8c760ef72f8ad3ae5afad514299d4b06e91dd9a8d705af7b541",
+  "system_tokens": 2392,
+  "context": 4096,
+  "output_cap": 768,
+  "splits": {
+    "development": {
+      "count": 40,
+      "dataset_sha256": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+      "min_input": 2428,
+      "max_input": 2803,
+      "max_with_output": 3571,
+      "remaining": 525,
+      "inspection": "INPUT_LENGTH_ONLY"
+    },
+    "holdout": {
+      "count": 80,
+      "dataset_sha256": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+      "min_input": 2434,
+      "max_input": 2808,
+      "max_with_output": 3576,
+      "remaining": 520,
+      "inspection": "INPUT_LENGTH_ONLY"
+    }
+  },
+  "examples": {
+    "count": 6,
+    "schema_adapter_legacy_parser_pass": 6,
+    "equivalent_to_legacy_v3_examples": 6
+  },
+  "torch_imported_before_grammar": false,
+  "grammar": {
+    "xgrammar": "0.1.18",
+    "vllm_unsupported_features": false,
+    "vocab_size": 151936,
+    "compile_seconds": 1.1759152887389064,
+    "example_token_and_eos_pass": 6,
+    "extra_approval_rejected": true,
+    "cuda_initialized": false,
+    "torch_imported_for_cpu_xgrammar": true
+  },
+  "scope": "No model inference, GPU initialization, network or weight read. Holdout inputs only for token lengths."
+}
