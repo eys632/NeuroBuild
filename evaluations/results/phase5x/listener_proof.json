@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "pid": 3375412,
+  "checked_at_utc": "2026-09-19T20:56:49.639401+00:00",
+  "scope": "OWN_UID_PID_TCP_LISTENERS",
+  "verdict": "PASS",
+  "all_loopback": true,
+  "snapshot_complete": true,
+  "listeners": [
+    {
+      "family": "IPv4",
+      "address": "127.0.0.1",
+      "port": 8003,
+      "loopback": true
+    },
+    {
+      "family": "IPv4",
+      "address": "127.0.0.1",
+      "port": 38589,
+      "loopback": true
+    },
+    {
+      "family": "IPv4",
+      "address": "127.0.0.1",
+      "port": 38619,
+      "loopback": true
+    },
+    {
+      "family": "IPv4",
+      "address": "127.0.0.1",
+      "port": 39149,
+      "loopback": true
+    },
+    {
+      "family": "IPv4",
+      "address": "127.0.0.1",
+      "port": 40021,
+      "loopback": true
+    }
+  ],
+  "reason_codes": [],
+  "notice": "One process and one snapshot only; no descendant, UDP exposure, firewall or future-listener guarantee.",
+  "process_start_ticks": 473497281,
+  "uid": 1003,
+  "socket_inode_count": 8,
+  "non_tcp_socket_count": 3
+}

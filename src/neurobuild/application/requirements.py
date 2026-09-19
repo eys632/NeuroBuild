@@ -9,6 +9,7 @@ additional mandatory checks. No model response or reasoning is logged.
 from decimal import Decimal
 import json
 import re
+import unicodedata
 from uuid import UUID
 
 from neurobuild.domain.contracts import (
@@ -70,30 +71,90 @@ def _constant(_: str) -> None:
     _fail()
 
 
-def _whole_source_quantity(evidence: str, match: re.Match, instruction: str, source: str) -> bool:
-    """Evidence must not start/end inside an original quantity or expression."""
+def _numeric_component(char: str) -> bool:
+    # Recognize unsupported typography as a boundary, never normalize it into
+    # the supported ASCII decimal grammar. Marks/control characters cannot
+    # split a numeric expression into apparently independent ASCII numbers.
+    category = unicodedata.category(char)
+    return (char.isnumeric() or char.isspace() or char in "+-/*^eE"
+            or category[0] in "PSMC")
+
+
+def _punctuation_delimiter(char: str) -> bool:
+    # Punctuation is scanned generically but only known harmless delimiters
+    # are allowed outside a numeric token. Po includes modifiers such as %.
+    return (char in ".,:;!?\"'、。"
+            or unicodedata.category(char) in ("Ps", "Pe", "Pi", "Pf"))
+
+
+def _quantity_boundary(source: str, start: int, end: int) -> bool:
+    left, right = start, end
+    while left > 0 and _numeric_component(source[left - 1]):
+        left -= 1
+    while right < len(source) and _numeric_component(source[right]):
+        right += 1
+    outside = source[left:start] + source[end:right]
+    # Commas/periods/whitespace can delimit clauses, but a second number,
+    # arithmetic operator or unsupported sign cannot be silently discarded.
+    # A terminal e/E can be the end of an ordinary word such as 'positive'.
+    # An exponent's coefficient or sign is still rejected by this same scan.
+    return all(char.isspace() or char in "eE" or _punctuation_delimiter(char)
+               for char in outside)
+
+
+def _axis_boundary(source: str, start: int, end: int, quantity_start: int) -> bool:
+    # Walk wrappers and whitespace too: cutting '-(X축)' down to 'X축' must
+    # not discard the sign. Ordinary quote/parenthesis delimiters are allowed.
+    left = start
+    while left > 0:
+        previous = source[left - 1]
+        if previous.isspace():
+            left -= 1
+            continue
+        category = unicodedata.category(previous)
+        if (previous in "+-/*^" or category[0] in "SMC"
+                or (category[0] == "P" and not _punctuation_delimiter(previous))
+                or (left == start and previous.isnumeric())):
+            return False
+        if not (previous.isspace() or category[0] == "P"):
+            break
+        left -= 1
+    # A non-ASCII sign after the axis is unsupported too. An ASCII sign may
+    # legitimately begin the following complete quantity (e.g. X축 +1m).
+    right = end
+    while right < len(source) and right != quantity_start:
+        following = source[right]
+        if following.isspace():
+            right += 1
+            continue
+        category = unicodedata.category(following)
+        if (following in "+-/*^" or category[0] in "SMC"
+                or (category[0] == "P" and not _punctuation_delimiter(following))):
+            return False
+        if not (following.isspace() or category[0] == "P"):
+            break
+        right += 1
+    return True
+
+
+def _whole_source_tokens(evidence: str, quantity: re.Match, axis: re.Match,
+                         instruction: str, source: str) -> bool:
+    """The same original evidence occurrence must contain whole axis/quantity tokens."""
     source_quantities = {candidate.span() for candidate in _QUANTITY.finditer(source)}
-    offsets = []
+    source_axes = {candidate.span() for candidate in _AXIS.finditer(source)}
     instruction_offset = source.find(instruction)
     while instruction_offset >= 0:
         evidence_offset = instruction.find(evidence)
         while evidence_offset >= 0:
-            offsets.append(instruction_offset + evidence_offset)
+            offset = instruction_offset + evidence_offset
+            quantity_span = offset + quantity.start(), offset + quantity.end()
+            axis_span = offset + axis.start(), offset + axis.end()
+            if (quantity_span in source_quantities and axis_span in source_axes
+                    and _quantity_boundary(source, *quantity_span)
+                    and _axis_boundary(source, *axis_span, quantity_span[0])):
+                return True
             evidence_offset = instruction.find(evidence, evidence_offset + 1)
         instruction_offset = source.find(instruction, instruction_offset + 1)
-    for offset in offsets:
-        start, end = offset + match.start(), offset + match.end()
-        if (start, end) in source_quantities:
-            # A spaced arithmetic expression is also not a decimal literal:
-            # '1 + 2m X축' cannot be grounded by selecting only '2m X축'.
-            left, right = start, end
-            numeric_chars = " .,+-/*^eE\t\r\n"
-            while left > 0 and (source[left - 1].isdigit() or source[left - 1] in numeric_chars):
-                left -= 1
-            while right < len(source) and (source[right].isdigit() or source[right] in numeric_chars):
-                right += 1
-            if not any(char.isdigit() for char in source[left:start] + source[end:right]):
-                return True
     return False
 
 
@@ -110,8 +171,8 @@ def _axis_length(value: object, axis: str, source: str, original_source: str) ->
     if len(axes) != 1 or axes[0][2].lower() != axis or len(quantities) != 1:
         _fail("UNGROUNDED_REQUIREMENT")
     quantity = quantities[0]
-    if (any(char.isdigit() for char in evidence[:quantity.start()] + evidence[quantity.end():])
-            or not _whole_source_quantity(evidence, quantity, source, original_source)):
+    if (any(char.isnumeric() for char in evidence[:quantity.start()] + evidence[quantity.end():])
+            or not _whole_source_tokens(evidence, quantity, axes[0], source, original_source)):
         _fail("UNGROUNDED_REQUIREMENT")
     original, source_unit = quantity.groups()
     # A sign may be expressed in words. The original numeric spelling and unit

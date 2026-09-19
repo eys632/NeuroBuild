@@ -208,3 +208,11 @@ Could not open a connection to your authentication agent.
 
 - 05:40 KST Phase5 final actualcomparison:14B-AWQv3 run20260919T202351Z-12fdb88f79be4e96bda18cd4395b6d65,60/60schema/parser/semantic,FP0/33,FN0/27,mean3.0361/p954.2843s. All5run archives+failedprompts preserved. Selected14B-AWQv3internaldevelopment; nohumangoldclaim.
 - Explicitlegacy/modernstructuredprotocoladapter+manifestdialect/split,profilesmodelrevision/promptupdated. FakeHTTP20+parser27PASS. Actuallegacypost-changeA01/E02/F023/3PASS, noexternalcall. Fullbackend215testsPASS/skip0/15.671s(realPG/IFC,DISPLAYunset); independentreview5runmetrics+60outputreplay+launcher20PASS. Root47GiBfree, no systemchanges/foreignprocesssignals.
+
+- Phase5remotecheckpoint d6e39c89658c552c59a8049d7198da051290bd3b exacthash확인후Phase5.x시작. 비교완료미선정8B캐시는본인project아래manifestidentity/정확한파일set/size/UID/regular/no-symlink/currentactivepath배제확인후정리(16,397,462,179B). 공식downloadmanifest와평가결과는Git보존,재다운로드가능. rootfree47→62GiB; cache전체삭제없음.
+
+- Phase5.x사전검토에서Unicode분수/곱셈·축부호잘림,특수공백/구분자suffix를발견했다. 같은경계누락반복에따라개별기호목록이아닌Unicode숫자/공백/기호·문장부호경계순회와원문quantity+axis동일occurrence대조로접근수정중. frozenprompt/gold미변경, 실제hardeningmodel호출전이다.
+- 중간전체회귀233PASS16.139s, listener불변reportfix후234PASS16.064s. 이는최종Unicode추가수정전중간기록이다. ActualownchildTCP5개loopback/3nonTCP확인. CPU검토기간GPUrelease를위해자기Phase5guard3363488에만SIGTERM;STOP_REQUESTED/childexit0/FileStorecleanup확인,used3965/free36373MiB/util0%복귀. Snapshot과shutdownreport모두보존.
+
+- Phase5.xfinalpre-inference: parsera940f395...fb4a,236testsPASS/skip0/16.056s, independent19maliciousreject+4normalcontrols, 120handreferencePASS. Datasetdev85734d7c...ff88/hold12c08e85...4d78, manifest959d3340...6605。Promptv3anddatasetgoldunchanged. FormalfiniteboundaryfixincludesUnicodeMarks/unknownpunctuation, whitespacepreserved; NLPmeaningstillLLMresponsibility. FreezeJSONtimestamps/hashpinsrecordedbeforefirstmodelcalls.
+- GPU3freshguardpreflightpassed; 14BhardeningserverstartuphealthPASS24.057s wrapperobserved(includespreflight,filesystemcachenotflushed),5actualTCPlistenersall127.0.0.1; noforeignprocesschanges.

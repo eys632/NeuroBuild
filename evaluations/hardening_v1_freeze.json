@@ -1,0 +1,41 @@
+{
+  "lifecycle": "FROZEN_BEFORE_FIRST_HARDENING_INFERENCE",
+  "frozen_at_utc": "2026-09-19T20:58:10.547265+00:00",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "source_ancestor_commit": "d6e39c89658c552c59a8049d7198da051290bd3b",
+  "model_id": "Qwen/Qwen3-14B-AWQ",
+  "model_revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+  "protocol": "legacy_guided_json",
+  "prompt": "prompts/requirement_v3.txt",
+  "temperature": 0,
+  "seed": 42,
+  "warmups_per_run": 5,
+  "trials_per_case": 3,
+  "max_tokens": 768,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "sha256": {
+    "evaluations/hardening_v1_manifest.json": "959d3340e4ba095ca2f54d29f55dd4b2f151df00a2a92a619dcc3bf8baa56605",
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+    "evaluations/generate_requirement_hardening_v1.py": "f2908f7557df098690ea9933cd7a210e4510b03ecb7c9e6601b0daff0f4b2019",
+    "prompts/requirement_v3.txt": "716137f3e275cb0030f1f497f8e23bbeeefd8a62eae757378231b7d910db3c3e",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "4ca084db4e0f009679a1bc105d48f7863e86d8e6301028182f3a85ba64b248f0",
+    "scripts/evaluate_requirements.py": "eafab91bd72839469ba515216550463ab2e50c130d2a8d05ebc88d902ad965cb",
+    "runtime/models/qwen3-14b-awq.json": "208ed94ea360b214612d53f8002b69830670c3269246cef28a329c6ab3b41011"
+  },
+  "review_evidence": [
+    "docs/reviews/phase5x_plan_review.md",
+    "docs/reviews/phase5x_numeric_review.md"
+  ],
+  "independent_review": "AI agent review, not human verification; heldout source/gold inspected before inference, no prompt tuning from outputs",
+  "policy": "Preserve all results. Never modify heldout gold silently or tune this prompt from heldout outputs. New prompts/configuration require separate version/freeze and results.",
+  "gate_targets": {
+    "schema_rate": 1.0,
+    "semantic_rate_minimum": 0.95,
+    "critical_model_ready_fp_count": 0,
+    "unsafe_accepted_ready_total_count": 0
+  }
+}

@@ -215,6 +215,8 @@ def summarize(rows):
     total = len(rows)
     unsafe = [row for row in rows if row["expected_decision"] != "READY"]
     ready = [row for row in rows if row["expected_decision"] == "READY"]
+    wrong_ready_moves = [row for row in ready if row["accepted_decision"] == "READY"
+                         and not row["semantic_rubric_correct"]]
     result = {key: rate(sum(bool(row[key]) for row in rows), total)
               for key in ("json_parse_valid", "schema_valid", "parser_accepted", "semantic_rubric_correct")}
     result.update(
@@ -223,6 +225,9 @@ def summarize(rows):
         raw_decision_observed=rate(sum(row["raw_model_decision"] is not None for row in rows), total),
         nonready_gold_raw_decision_observed=rate(sum(row["raw_model_decision"] is not None for row in unsafe), len(unsafe)),
         critical_fn_accepted_ready=rate(sum(row["accepted_decision"] != "READY" for row in ready), len(ready)),
+        accepted_incorrect_move_on_ready_gold=rate(len(wrong_ready_moves), len(ready)),
+        unsafe_accepted_ready_total=rate(
+            sum(row["accepted_decision"] == "READY" for row in unsafe) + len(wrong_ready_moves), total),
         target_preservation=rate(sum(row["target_slots_correct"] for row in rows), sum(row["target_slots_total"] for row in rows)),
         unit_value_extraction=rate(sum(row["unit_value_slots_correct"] for row in rows), sum(row["unit_value_slots_total"] for row in rows)),
         latency_all=latency_summary(rows), latency_parser_accepted=latency_summary([r for r in rows if r["parser_accepted"]]),

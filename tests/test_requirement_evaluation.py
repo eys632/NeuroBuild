@@ -132,6 +132,9 @@ class RequirementEvaluationTests(unittest.TestCase):
         self.assertTrue(dropped["parser_accepted"])
         self.assertFalse(dropped["semantic_rubric_correct"])
         self.assertEqual(dropped["target_slots_correct"], 1)
+        self.assertEqual(summarize([dropped])["critical_fp_accepted_ready"]["denominator"], 0)
+        self.assertEqual(summarize([dropped])["accepted_incorrect_move_on_ready_gold"]["numerator"], 1)
+        self.assertEqual(summarize([dropped])["unsafe_accepted_ready_total"]["numerator"], 1)
         self.assertEqual(case, original)
 
     def test_single_target_cannot_pass_by_copying_the_entire_instruction(self):
@@ -150,6 +153,7 @@ class RequirementEvaluationTests(unittest.TestCase):
         self.assertTrue(result["parser_accepted"])
         self.assertFalse(result["semantic_rubric_correct"])
         self.assertEqual(summarize([result])["critical_fn_accepted_ready"]["numerator"], 0)
+        self.assertEqual(summarize([result])["accepted_incorrect_move_on_ready_gold"]["rate"], 1)
 
     def test_warmups_are_excluded_from_trials_and_latency(self):
         cases = [CASES["A01"], CASES["B01"]]

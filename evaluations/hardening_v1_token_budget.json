@@ -1,0 +1,31 @@
+{
+  "kind": "CPU_ONLY_LOCAL_TOKENIZER_NO_INFERENCE",
+  "model_revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+  "prompt_sha256": "716137f3e275cb0030f1f497f8e23bbeeefd8a62eae757378231b7d910db3c3e",
+  "generation_tokens": 768,
+  "max_model_len": 4096,
+  "enable_thinking": false,
+  "splits": {
+    "development": {
+      "sha256": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+      "cases": 40,
+      "min_input_tokens": 2399,
+      "max_input_tokens": 2774,
+      "max_total_tokens": 3542,
+      "new_long_context_cases": 2,
+      "new_long_context_chars_min": 585,
+      "new_long_context_chars_max": 599
+    },
+    "holdout": {
+      "sha256": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+      "cases": 80,
+      "min_input_tokens": 2405,
+      "max_input_tokens": 2779,
+      "max_total_tokens": 3547,
+      "new_long_context_cases": 8,
+      "new_long_context_chars_min": 553,
+      "new_long_context_chars_max": 594
+    }
+  },
+  "torch_imported": false
+}

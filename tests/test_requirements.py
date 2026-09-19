@@ -250,6 +250,95 @@ class RequirementContractTests(unittest.TestCase):
             with self.subTest(source=source):
                 self.rejected(output, source=source, code="UNGROUNDED_REQUIREMENT")
 
+    def test_unicode_numeric_expressions_cannot_be_trimmed_into_ascii_quantities(self):
+        cases = [
+            ("1⁄2m", "2m X축 양의 방향", "2"),
+            ("1×2m", "2m X축 양의 방향", "2"),
+            ("1 ÷ 2m", "2m X축 양의 방향", "2"),
+            ("1−2m", "2m X축 양의 방향", "2"),
+            ("1e−3m", "3m X축 양의 방향", "3"),
+            ("1٫2m", "2m X축 양의 방향", "2"),
+            ("1，2m", "2m X축 양의 방향", "2"),
+            ("½2m", "2m X축 양의 방향", "2"),
+            ("1\u200b2m", "2m X축 양의 방향", "2"),
+            ("1\u03382m", "2m X축 양의 방향", "2"),
+            ("1\u03012m", "2m X축 양의 방향", "2"),
+            ("1\x082m", "2m X축 양의 방향", "2"),
+            ("−1m", "1m X축 양의 방향", "1"),
+            ("－1m", "1m X축 양의 방향", "1"),
+            ("＋1m", "1m X축 양의 방향", "1"),
+            ("- 1m", "1m X축 양의 방향", "1"),
+        ]
+        for notation, evidence, value in cases:
+            source = "회의실 책상을 " + notation + " X축 양의 방향으로 옮겨줘."
+            with self.subTest(notation=notation):
+                self.rejected(ready(dx=axis(value, "m", evidence), instruction=source),
+                              source=source, code="UNGROUNDED_REQUIREMENT")
+
+    def test_unsupported_numeric_suffixes_fail_even_when_instruction_is_clipped(self):
+        instruction = "회의실 책상을 X축 +1m"
+        output = ready(dx=axis("1", "m", "X축 +1m"), instruction=instruction)
+        for suffix in ("⁴", "½", "×2", " ÷ 2", "−2", "\u200b2", "%", "％", "‰", "‱", "٪", "﹪"):
+            with self.subTest(suffix=suffix):
+                self.rejected(output, source=instruction + suffix + " 옮겨줘.",
+                              code="UNGROUNDED_REQUIREMENT")
+
+    def test_unicode_whitespace_and_punctuation_cannot_split_numeric_expressions(self):
+        for separator in ("\u00a0", "\u2009", "\u202f", "\u2028", "·", ":", "'", "’", "／", "•"):
+            source = "회의실 책상을 1" + separator + "250mm X축 양의 방향으로 옮겨줘."
+            with self.subTest(separator=repr(separator)):
+                self.rejected(ready(dx=axis("250", "mm", "250mm X축 양의 방향"), instruction=source),
+                              source=source, code="UNGROUNDED_REQUIREMENT")
+        source = "회의실 책상을 1/(2m) X축 양의 방향으로 옮겨줘."
+        self.rejected(ready(dx=axis("2", "m", "2m) X축 양의 방향"), instruction=source),
+                      source=source, code="UNGROUNDED_REQUIREMENT")
+
+    def test_whitespace_and_punctuation_delimiters_remain_valid_without_other_numbers(self):
+        for evidence in ("X축 양의 방향으로\u00a01m", "X축 양의 방향: 1m", "X축 양의 방향으로 '1m'",
+                         "\n+X축\n1m"):
+            source = "회의실 책상을 " + evidence + " 옮겨줘."
+            with self.subTest(evidence=evidence):
+                result = self.parse(ready(dx=axis("1", "m", evidence)), source=source)
+                self.assertEqual(result.operation.dx.metres, Decimal("1"))
+
+    def test_source_axis_sign_cannot_be_cut_or_hidden_by_unsupported_typography(self):
+        cases = [
+            ("-X축으로 +1m", "X축으로 +1m", "1"),
+            ("+X축으로 -1m", "X축으로 -1m", "-1"),
+            ("−X축으로 +1m", "X축으로 +1m", "1"),
+            ("－X축으로 +1m", "－X축으로 +1m", "1"),
+            ("＋X축으로 -1m", "X축으로 -1m", "-1"),
+            ("- X축으로 +1m", "X축으로 +1m", "1"),
+            ("+ X축으로 -1m", "X축으로 -1m", "-1"),
+            ("− X축으로 +1m", "X축으로 +1m", "1"),
+            ("X축− 방향으로 +1m", "X축− 방향으로 +1m", "1"),
+            ("X축- 방향으로 +1m", "X축- 방향으로 +1m", "1"),
+            ("X축 - 방향으로 +1m", "X축 - 방향으로 +1m", "1"),
+            ("X- 방향으로 +1m", "X- 방향으로 +1m", "1"),
+            ("X축+ 방향으로 -1m", "X축+ 방향으로 -1m", "-1"),
+            ("-(X축)으로 +1m", "X축)으로 +1m", "1"),
+            ("＋『X축』으로 -1m", "X축』으로 -1m", "-1"),
+            ("(X축)- 방향으로 +1m", "X축)- 방향으로 +1m", "1"),
+        ]
+        for phrase, evidence, value in cases:
+            source = "회의실 책상을 " + phrase + " 옮겨줘."
+            with self.subTest(phrase=phrase, evidence=evidence):
+                self.rejected(ready(dx=axis(value, "m", evidence), instruction=source),
+                              source=source, code="UNGROUNDED_REQUIREMENT")
+
+    def test_complete_ascii_signed_axes_and_quantities_remain_supported(self):
+        for evidence, expected in (("-X축으로 12mm", Decimal("-0.012")),
+                                   ("+X축으로 12mm", Decimal("0.012")),
+                                   ("X축 -12mm", Decimal("-0.012")),
+                                   ("X축 +12mm", Decimal("0.012")),
+                                   ("(-X축)으로 12mm", Decimal("-0.012")),
+                                   ("'X축' +12mm", Decimal("0.012"))):
+            value = "-12" if expected < 0 else "12"
+            source = "회의실 책상을 " + evidence + " 옮겨줘."
+            with self.subTest(evidence=evidence):
+                result = self.parse(ready(dx=axis(value, "mm", evidence)), source=source)
+                self.assertEqual(result.operation.dx.metres, expected)
+
     def test_direction_and_axis_are_grounded_without_implicit_positive_default(self):
         cases = [
             ("1", "Y축 양의 방향으로 1m"), ("1", "X축으로 1m"),

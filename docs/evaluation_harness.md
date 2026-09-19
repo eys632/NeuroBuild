@@ -136,3 +136,5 @@ Case별 동일성은 reason 문구를 제외한 decision/target/SI/error signatu
 성공을 입증하지 않는다.
 
 기본값은 선정promptv3/max_tokens768/port8003/legacy_guided_json이다. `--protocol structured_outputs`는 최신runtime용 명시적 선택이며 서버backendxgrammar검증이 별도로 필요하다. `--split development_seed|development|heldout`를 manifest에 기록한다. dialect자동추측/무제약fallback없음. Phase5 frozen비교5개는이옵션추가전commit51a07d5의client/evaluatorhash를보존하며, 변경후별도actualsmoke3건은 `evaluations/results/phase5/protocol_smoke.json`이다.
+
+Phase5.x부터 두 지표를 추가하며 기존FP/FN분모와동결결과는변경하지않는다. `accepted_incorrect_move_on_ready_gold`는 goldREADY 중 Backend가READY로수용했지만target/축/값rubric이틀린건수/goldREADY수다. `unsafe_accepted_ready_total`은 비실행gold의수용READY와그잘못된이동을합산한건수/전체trial이다. Parser가거절한지원요청은FN으로계속보고하며잘못된실행가능변경과구별한다. 이들은실제IFC실행이아닌요구사항단계의지표다.

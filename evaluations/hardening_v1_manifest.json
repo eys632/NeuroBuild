@@ -1,0 +1,627 @@
+{
+  "dataset_version": "requirement_hardening_v1",
+  "lifecycle": "AUTHORING_COMPLETE_PENDING_REVIEW",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "human_verified": false,
+  "model_inference_performed": false,
+  "authored_at_utc": "2026-09-19T20:39:58Z",
+  "intended_prompt": {
+    "file": "prompts/requirement_v3.txt",
+    "sha256": "716137f3e275cb0030f1f497f8e23bbeeefd8a62eae757378231b7d910db3c3e"
+  },
+  "authoring_basis": "Independent synthetic rubric written after seed20 development; no hardening model outputs exist or were inspected",
+  "promotion_required": "Phase5 checkpoint d6e39c89658c552c59a8049d7198da051290bd3b is complete; root review and hash freeze must precede holdout inference",
+  "split_policy": "Public seed20 only development; each newly authored scenario pair belongs to exactly one split",
+  "holdout_policy": "Procedural seal by reviewed hashes before inference; plaintext is not access control; never tune prompt on holdout outputs",
+  "seed": {
+    "file": "evaluations/requirement_seed.jsonl",
+    "sha256": "ae0adad9b8113397fb7559969b3f12070d806982fb2d71b4ea024504d73af648",
+    "included_unchanged_cases": 20
+  },
+  "generator": {
+    "file": "generate_requirement_hardening_v1.py",
+    "sha256": "f2908f7557df098690ea9933cd7a210e4510b03ecb7c9e6601b0daff0f4b2019",
+    "randomness": "none"
+  },
+  "validation": {
+    "exact_and_whitespace_normalized_duplicates": 0,
+    "schema_reference_pass": 120,
+    "backend_reference_pass": 120,
+    "scorer_reference_pass": 120,
+    "ready_reference_count": 62,
+    "note": "Representability checks use handwritten synthetic reference outputs; not model results or human gold review",
+    "schema_sha256": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "parser_sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "scorer_sha256": "eafab91bd72839469ba515216550463ab2e50c130d2a8d05ebc88d902ad965cb"
+  },
+  "files": {
+    "development": {
+      "file": "requirement_hardening_v1_development.jsonl",
+      "sha256": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+      "bytes": 20016,
+      "cases": 40,
+      "categories": {
+        "korean_requirement": 4,
+        "ambiguity": 4,
+        "unsupported_risky": 4,
+        "multiple_operations": 4,
+        "condition_negation": 4,
+        "target_preservation": 4,
+        "structured_output": 4,
+        "tool_selection": 4,
+        "long_bim_context": 4,
+        "future_design_reasoning": 4
+      },
+      "decisions": {
+        "READY": 20,
+        "CLARIFICATION": 8,
+        "UNSUPPORTED": 12
+      }
+    },
+    "holdout": {
+      "file": "requirement_hardening_v1_holdout.jsonl",
+      "sha256": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+      "bytes": 49872,
+      "cases": 80,
+      "categories": {
+        "korean_requirement": 8,
+        "ambiguity": 8,
+        "unsupported_risky": 8,
+        "multiple_operations": 8,
+        "condition_negation": 8,
+        "target_preservation": 8,
+        "structured_output": 8,
+        "tool_selection": 8,
+        "long_bim_context": 8,
+        "future_design_reasoning": 8
+      },
+      "decisions": {
+        "READY": 42,
+        "CLARIFICATION": 15,
+        "UNSUPPORTED": 23
+      }
+    }
+  },
+  "groups": [
+    {
+      "group_id": "PUBLIC-SEED-A",
+      "split": "development",
+      "case_ids": [
+        "A01",
+        "A02"
+      ],
+      "relationship": "previously evaluated public seed; never held out"
+    },
+    {
+      "group_id": "PUBLIC-SEED-B",
+      "split": "development",
+      "case_ids": [
+        "B01",
+        "B02"
+      ],
+      "relationship": "previously evaluated public seed; never held out"
+    },
+    {
+      "group_id": "PUBLIC-SEED-C",
+      "split": "development",
+      "case_ids": [
+        "C01",
+        "C02"
+      ],
+      "relationship": "previously evaluated public seed; never held out"
+    },
+    {
+      "group_id": "PUBLIC-SEED-D",
+      "split": "development",
+      "case_ids": [
+        "D01",
+        "D02"
+      ],
+      "relationship": "previously evaluated public seed; never held out"
+    },
+    {
+      "group_id": "PUBLIC-SEED-E",
+      "split": "development",
+      "case_ids": [
+        "E01",
+        "E02"
+      ],
+      "relationship": "previously evaluated public seed; never held out"
+    },
+    {
+      "group_id": "PUBLIC-SEED-F",
+      "split": "development",
+      "case_ids": [
+        "F01",
+        "F02"
+      ],
+      "relationship": "previously evaluated public seed; never held out"
+    },
+    {
+      "group_id": "PUBLIC-SEED-G",
+      "split": "development",
+      "case_ids": [
+        "G01",
+        "G02"
+      ],
+      "relationship": "previously evaluated public seed; never held out"
+    },
+    {
+      "group_id": "PUBLIC-SEED-H",
+      "split": "development",
+      "case_ids": [
+        "H01",
+        "H02"
+      ],
+      "relationship": "previously evaluated public seed; never held out"
+    },
+    {
+      "group_id": "PUBLIC-SEED-I",
+      "split": "development",
+      "case_ids": [
+        "I01",
+        "I02"
+      ],
+      "relationship": "previously evaluated public seed; never held out"
+    },
+    {
+      "group_id": "PUBLIC-SEED-J",
+      "split": "development",
+      "case_ids": [
+        "J01",
+        "J02"
+      ],
+      "relationship": "previously evaluated public seed; never held out"
+    },
+    {
+      "group_id": "HD-A-axis",
+      "split": "development",
+      "case_ids": [
+        "HD-A01",
+        "HD-A02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-A-sign",
+      "split": "holdout",
+      "case_ids": [
+        "HH-A01",
+        "HH-A02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-A-decimal",
+      "split": "holdout",
+      "case_ids": [
+        "HH-A03",
+        "HH-A04"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-A-two_axes",
+      "split": "holdout",
+      "case_ids": [
+        "HH-A05",
+        "HH-A06"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-A-korean_units",
+      "split": "holdout",
+      "case_ids": [
+        "HH-A07",
+        "HH-A08"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HD-B-unsigned",
+      "split": "development",
+      "case_ids": [
+        "HD-B01",
+        "HD-B02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-B-viewer_direction",
+      "split": "holdout",
+      "case_ids": [
+        "HH-B01",
+        "HH-B02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-B-unit",
+      "split": "holdout",
+      "case_ids": [
+        "HH-B03",
+        "HH-B04"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-B-axis_context",
+      "split": "holdout",
+      "case_ids": [
+        "HH-B05",
+        "HH-B06"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-B-fraction_literal",
+      "split": "holdout",
+      "case_ids": [
+        "HH-B07",
+        "HH-B08"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HD-C-vertical",
+      "split": "development",
+      "case_ids": [
+        "HD-C01",
+        "HD-C02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-C-rotation",
+      "split": "holdout",
+      "case_ids": [
+        "HH-C01",
+        "HH-C02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-C-scale",
+      "split": "holdout",
+      "case_ids": [
+        "HH-C03",
+        "HH-C04"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-C-storey",
+      "split": "holdout",
+      "case_ids": [
+        "HH-C05",
+        "HH-C06"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-C-non_furniture",
+      "split": "holdout",
+      "case_ids": [
+        "HH-C07",
+        "HH-C08"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HD-D-operation_count",
+      "split": "development",
+      "case_ids": [
+        "HD-D01",
+        "HD-D02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-D-two_targets",
+      "split": "holdout",
+      "case_ids": [
+        "HH-D01",
+        "HH-D02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-D-delete_subset",
+      "split": "holdout",
+      "case_ids": [
+        "HH-D03",
+        "HH-D04"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-D-sequential_addition",
+      "split": "holdout",
+      "case_ids": [
+        "HH-D05",
+        "HH-D06"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-D-plural",
+      "split": "holdout",
+      "case_ids": [
+        "HH-D07",
+        "HH-D08"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HD-E-collision",
+      "split": "development",
+      "case_ids": [
+        "HD-E01",
+        "HD-E02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-E-object_count",
+      "split": "holdout",
+      "case_ids": [
+        "HH-E01",
+        "HH-E02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-E-aisle",
+      "split": "holdout",
+      "case_ids": [
+        "HH-E03",
+        "HH-E04"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-E-negation_scope",
+      "split": "holdout",
+      "case_ids": [
+        "HH-E05",
+        "HH-E06"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-E-cancel_or_replace",
+      "split": "holdout",
+      "case_ids": [
+        "HH-E07",
+        "HH-E08"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HD-F-exclusion",
+      "split": "development",
+      "case_ids": [
+        "HD-F01",
+        "HD-F02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-F-modifiers",
+      "split": "holdout",
+      "case_ids": [
+        "HH-F01",
+        "HH-F02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-F-exclusion",
+      "split": "holdout",
+      "case_ids": [
+        "HH-F03",
+        "HH-F04"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-F-quoted_labels",
+      "split": "holdout",
+      "case_ids": [
+        "HH-F05",
+        "HH-F06"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-F-storey_modifier",
+      "split": "holdout",
+      "case_ids": [
+        "HH-F07",
+        "HH-F08"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HD-G-json_or_bypass",
+      "split": "development",
+      "case_ids": [
+        "HD-G01",
+        "HD-G02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-G-approval_field",
+      "split": "holdout",
+      "case_ids": [
+        "HH-G01",
+        "HH-G02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-G-instructions_as_data",
+      "split": "holdout",
+      "case_ids": [
+        "HH-G03",
+        "HH-G04"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-G-forged_identifier",
+      "split": "holdout",
+      "case_ids": [
+        "HH-G05",
+        "HH-G06"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-G-fake_system",
+      "split": "holdout",
+      "case_ids": [
+        "HH-G07",
+        "HH-G08"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HD-H-lookup_or_move",
+      "split": "development",
+      "case_ids": [
+        "HD-H01",
+        "HD-H02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-H-location",
+      "split": "holdout",
+      "case_ids": [
+        "HH-H01",
+        "HH-H02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-H-count",
+      "split": "holdout",
+      "case_ids": [
+        "HH-H03",
+        "HH-H04"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-H-measure_before_action",
+      "split": "holdout",
+      "case_ids": [
+        "HH-H05",
+        "HH-H06"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-H-missing_history",
+      "split": "holdout",
+      "case_ids": [
+        "HH-H07",
+        "HH-H08"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HD-I-current_condition",
+      "split": "development",
+      "case_ids": [
+        "HD-I01",
+        "HD-I02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-I-axis_after_history",
+      "split": "holdout",
+      "case_ids": [
+        "HH-I01",
+        "HH-I02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-I-quoted_rejected_bypass",
+      "split": "holdout",
+      "case_ids": [
+        "HH-I03",
+        "HH-I04"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-I-condition_after_context",
+      "split": "holdout",
+      "case_ids": [
+        "HH-I05",
+        "HH-I06"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-I-cancel_all_or_new",
+      "split": "holdout",
+      "case_ids": [
+        "HH-I07",
+        "HH-I08"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HD-J-layout_generation",
+      "split": "development",
+      "case_ids": [
+        "HD-J01",
+        "HD-J02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-J-accessibility",
+      "split": "holdout",
+      "case_ids": [
+        "HH-J01",
+        "HH-J02"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-J-new_build",
+      "split": "holdout",
+      "case_ids": [
+        "HH-J03",
+        "HH-J04"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-J-compliance_claims",
+      "split": "holdout",
+      "case_ids": [
+        "HH-J05",
+        "HH-J06"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    },
+    {
+      "group_id": "HH-J-optimization",
+      "split": "holdout",
+      "case_ids": [
+        "HH-J07",
+        "HH-J08"
+      ],
+      "relationship": "paired scenario; minimal contrast or paraphrase kept together"
+    }
+  ]
+}
