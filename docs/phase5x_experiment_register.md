@@ -1,8 +1,8 @@
 # Phase 5.x 실제 평가 실행 목록
 
-2026-09-20 KST 작성. **AUTO-GENERATED / NOT HUMAN VERIFIED**. 작성 시 보존된 development 실행 **13개, 평가 응답 680개**를 모두 정리했다. Launch/runtime/shutdown 기록과 protocol smoke는 평가 run에서 제외했다. 각 run의 warmup 5개, 총65개도 아래 분모에 포함하지 않는다.
+2026-09-20 KST 작성. **AUTO-GENERATED / NOT HUMAN VERIFIED**. 작성 시 보존된 development 실행 **14개, 평가 응답 720개**를 모두 정리했다. Launch/runtime/shutdown 기록과 protocol smoke는 평가 run에서 제외했다. 각 run의 warmup 5개, 총70개도 아래 분모에 포함하지 않는다.
 
-**모든 run이 품질 gate를 충족하지 못했다.** 최고 의미 정확도는 4B Instruct/v3/N의 **37/40 (92.5%)**이며 raw FP1건과 unsafe accepted2건이 남았다. 고정 gate는 schema100%, 의미 정확도95% 이상, raw FP0, unsafe accepted0이다. 단회 진단40개는 정식 development40×3 평가나 holdout80×3 평가를 대신하지 않는다. **Holdout 추론은 아직 수행하지 않았다.**
+**MoE generation2/분기 schema/v2가 단회 진단40/40, raw FP0, unsafe0으로 처음 기준을 충족했다.** 이전13개 실패는 모두 보존했다. 정식 development와 holdout을 통과하기 전에는 Phase5.x 완료나 최종 모델 채택을 선언하지 않는다. 고정 gate는 schema100%, 의미 정확도95% 이상, raw FP0, unsafe accepted0이다. 단회 진단40개는 정식 development40×3 평가나 holdout80×3 평가를 대신하지 않는다. **Holdout 추론은 아직 수행하지 않았다.**
 
 ## 완료된 실행
 
@@ -23,6 +23,7 @@
 | 30B-A3B Instruct AWQ | v3 | N | 꺼짐 | 진단 40×1=40 | 40/40 | 36/40 | 34/40 | 1/20 | 1/40 | 4/20 | 4.2410 | 6.0795 | [20260919T231243Z-194bbb3212944ebcb8e0e54bfa1b28b5](../evaluations/results/phase5x/development-moe-v3-diagnostic/results.json) · [manifest](../evaluations/results/phase5x/development-moe-v3-diagnostic/manifest.json) |
 | 30B-A3B Instruct AWQ | v4 | N | 꺼짐 | 진단 40×1=40 | 40/40 | 37/40 | 34/40 | 1/20 | 2/40 | 2/20 | 3.9956 | 5.9097 | [20260919T232550Z-fb632f6b5f1d405f9618dfe892b0f42a](../evaluations/results/phase5x/development-moe-v4-diagnostic/results.json) · [manifest](../evaluations/results/phase5x/development-moe-v4-diagnostic/manifest.json) |
 | 30B-A3B Instruct AWQ | generation2/v1 | N | 꺼짐 | 진단 40×1=40 | 40/40 | 29/40 | 29/40 | 1/20 | 0/40 | 0/20 | 4.1321 | 5.3136 | [20260919T233958Z-5e2143732d36479ab880ab2fc32dfbb3](../evaluations/results/phase5x/development-generation2-moe-diagnostic/results.json) · [manifest](../evaluations/results/phase5x/development-generation2-moe-diagnostic/manifest.json) |
+| 30B-A3B Instruct AWQ | generation2/v2 + branches | N | 꺼짐 | 진단 40×1=40 | 40/40 | 40/40 | 40/40 | 0/20 | 0/40 | 0/20 | 3.8990 | 5.1256 | [20260919T235318Z-504ae53e55864b4fba35c6bb108c8c05](../evaluations/results/phase5x/development-generation2-branches-moe-diagnostic/results.json) · [manifest](../evaluations/results/phase5x/development-generation2-branches-moe-diagnostic/manifest.json) |
 
 ## 설정 해석
 
@@ -45,13 +46,13 @@ G*인 최초3개 manifest에는 profile 이름 필드가 없으며 기록된 tem
 
 각 run의 `results.json` 평가 trial을 등록 당시 `summarize`로 CPU 재집계했고, **전체 metrics 객체가 원본과 정확히 일치**했다. Manifest/result run ID, development split,40개×반복 횟수, warmup5개, dataset hash와 보존된 prompt hash도 대조했다. 처음12개 재집계에 사용한 scorer SHA는 `eff1da86d84775f6bb394b7c4ebbae104a91196a41f6dcac01c145ef0c67a1cc`다. 이는 저장된 trial 판정의 집계 재검증이며 모든 응답을 새로 추론하거나 parser로 재판정한 검증, 사람의 의미 검수는 아니다. 원본 파일은 수정하지 않았다.
 
-같은40개와 고정 seed를 반복했으므로680회를 독립 표본으로 해석하지 않는다. Development 결과로 prompt와 모델을 선택했으며, synthetic gold와 좁은 작업 문법의 한계가 있다. Holdout 입력·gold의 사전 AI 검토도 맹검이나 사람 검수가 아니다. Raw READY 관측이 불가능한 응답은 오판0의 증거가 아니며 원본의 관측률/오류 지표를 함께 봐야 한다.
+같은40개와 고정 seed를 반복했으므로720회를 독립 표본으로 해석하지 않는다. Development 결과로 prompt와 모델을 선택했으며, synthetic gold와 좁은 작업 문법의 한계가 있다. Holdout 입력·gold의 사전 AI 검토도 맹검이나 사람 검수가 아니다. Raw READY 관측이 불가능한 응답은 오판0의 증거가 아니며 원본의 관측률/오류 지표를 함께 봐야 한다.
 
 이 평가는 semantic JSON 추출만 수행했다. **실제 IFC 변경·GlobalId 확정·대상 확인·proposal 승인은 수행하지 않았다.** 평균/p95는 저장된 HTTP end-to-end 측정의 재집계이며 TTFT나 순수 decode 시간이 아니다. Resource report는 GPU 전체 사용량 관측으로, 정확한 process별 VRAM peak를 측정한 것이 아니다. RTX5090 실행 검증도 없다.
 
 ## 다음 비교 — 평가 결과 아님
 
-MoE/v3와 v4 진단은 모두 실패했으며 위 완료 표에 포함했다. Generation2/v1도29/40으로 실패했다. READY20개는 모두 정확했으나 non-READY null 규칙 위반10건과 unsigned 방향 raw READY1건이 남았다. 같은 계약에 상태별 branch generation schema를 적용할 준비 중이다. 기존 canonical1.0 parser와 gold/gate는 그대로 유지한다. [후보 및 runtime 근거](moe_instruction_candidate.md), [고정 manifest](../runtime/models/qwen3-30b-a3b-instruct-2507-awq.json).
+MoE/v3와 v4 진단은 모두 실패했으며 위 완료 표에 포함했다. Generation2/v1도29/40으로 실패했다. READY20개는 모두 정확했으나 non-READY null 규칙 위반10건과 unsigned 방향 raw READY1건이 남았다. 같은 계약의 decision-first branch schema + promptv2 진단은40/40으로 통과했다. 다음은 같은 설정의 정식 development40×3이다. 기존 canonical1.0 parser와 gold/gate는 그대로 유지한다. [후보 및 runtime 근거](moe_instruction_candidate.md), [고정 manifest](../runtime/models/qwen3-30b-a3b-instruct-2507-awq.json).
 
 실패 원인과 다음 판단의 상세 근거는 [Phase 5.x 보고서](reports/phase5x_report.md)를 따른다. 이 목록은 Phase 5.x 완료나 최종 모델 채택을 선언하지 않는다.
 

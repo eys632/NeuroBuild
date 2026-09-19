@@ -1,14 +1,14 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 08:44 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 08:57 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b`: Phase 5 commit/push 및 remote hash 일치 |
-| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `91b464e` |
+| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `29a6c77` |
 | 회귀 검증 | 전체 **290 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 17.329초 |
-| 현재 작업 | **Generation2/v1 진단29/40 실패. READY20개 정확/잘못 수용0이나 non-READY null 위반10건 및 raw FP1건. 상태별 branch schema 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
+| 현재 작업 | **MoE + generation2/branch schema/promptv2 단회 진단40/40 PASS, raw FP0·잘못 수용0. 같은 설정의 정식 development40×3 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
 | 잠정 모델 | Phase 5 범위의 **Qwen3-14B-AWQ + v3**. 확대 평가 gate 통과 전 최종 채택으로 보지 않음 |
 | Hard blocker | 없음. GPU 3 가용량을 측정한 공존 실행 조건 통과 |
 | Backend | `.conda`: Python 3.12.14 / PostgreSQL 17.11 / psycopg 3.2.10 / IfcOpenShell 0.8.5 |
@@ -17,17 +17,18 @@
 
 ## Phase 5.x 평가 상태
 
-120개 자료를 development 40개와 holdout 80개로 고정했다. **Holdout은 아직 한 번도 모델에 호출하지 않았다.** 현재까지 확대 평가 gate를 통과한 후보는 없다.
+120개 자료를 development 40개와 holdout 80개로 고정했다. **Holdout은 아직 한 번도 모델에 호출하지 않았다.** 단회 진단을 통과한 첫 후보가 나왔으나 정식 development/holdout gate는 아직 통과하지 않았다.
 
 | 최근 development 진단 | 의미 정확도 | Raw READY 오판 | 잘못 수용된 출력 | 판단 |
 |---|---:|---:|---:|---|
-| 4B Instruct + v3 | **37/40 (92.5%)** | 1/20 | 2/40 | 현재 최고 정확도이나 gate 미충족 |
+| 4B Instruct + v3 | **37/40 (92.5%)** | 1/20 | 2/40 | 이전 후보, gate 미충족 |
 | 4B Instruct + v4 | 34/40 (85%) | 1/20 | 3/40 | gate 미충족 |
 | 4B Instruct + v8 | 36/40 (90%) | 1/20 | 2/40 | gate 미충족 |
 | 4B Instruct + v3 greedy | 36/40 (90%) | 1/20 | 2/40 | gate 미충족 |
 | 30B-A3B Instruct AWQ + v3 | 34/40 (85%) | 1/20 | 1/40 | gate 미충족 |
 | 30B-A3B Instruct AWQ + v4 | 34/40 (85%) | 1/20 | 2/40 | gate 미충족 |
 | MoE + generation2/v1 | 29/40 (72.5%) | 1/20 | 0/40 | gate 미충족 |
+| MoE + generation2/branch/v2 | 40/40 (100%) | 0/20 | 0/40 | 단회 진단 PASS, 정식 평가 필요 |
 
 Raw READY 오판의 분모는 non-READY gold 20개이고, 잘못 수용된 출력의 분모는 전체 40개다. Backend가 수용한 결과에도 대상 범위 손실 등 의미 오류가 남아 있다. 40개 단회 진단은 정식 3회 평가를 대신하지 않는다. Gate는 **schema 100% / 의미 정확도 95% 이상 / raw READY 오판 0 / 잘못 수용된 출력 0**을 유지한다.
 

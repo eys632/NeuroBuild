@@ -341,3 +341,8 @@ Next: separate branch generation schema and generation2/v2 prompt, same frozen a
 
 
 Decision-branch CPU check: draft regex compiled but rejected Korean token fixtures; draft/result preserved and not used for inference. Removed only generation regex, backend nonempty rules remain. Final schema36d42b9f accepts13 valid (including7prompt examples) and rejects18 invalid (including root-only, nonREADYnonnull,READYnoaxis,wrongversion/extraapproval). Five grammar-valid backend-invalid controls are still rejected. GPU hidden/CUDA not initialized. Prompt99d73712, exact7exampleadapter parity PASS, dev max3678/held INPUT LENGTH ONLY3683 includingoutput768of4096. Targeted proof sufficient for prompt/schema-only change; previously290PASS source bytes unchanged. New freeze and preserved13th failed diagnostic committed before nextcall.
+
+
+## 2026-09-20 08:57 KST — First expanded diagnostic PASS
+
+Pushed29a6c7760423f8af79502ddc70fa1ba603b79a1c, hashesverified/currentguardRUNNING. All40development/warmup5/trial1 using generation2/v2 prompt +decisionbranches schema, sameMoE/neutral/max768/timeout60. Run20260919T235318Z-504ae53e55864b4fba35c6bb108c8c05 completed40; cumulative serverrequests135→180. Allschema/adapter/parser/semantic40/40,rawFP0/20,unsafe0/40,FN0/20; mean3.899002,p955.125593s. Results/resource/manifest archived unchanged, independentreplay requested. Formal40×3 freeze follows with same configuration. Holdout uncalled.
