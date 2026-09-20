@@ -265,3 +265,21 @@ Epoch5의 formal 품질 호출0을 확인하고 own guard만 pidfd SIGTERM으로
 현재free/util·ownprocess·device·loopback 등 실제 안전 실행에 필요한 확인만 수행하고 검증된
 source/config/resource 증거를 연결한다. Batch/flash/graphs/cache/throughput tuning은future optimization이며
 Phase 완료를 막지 않는다. 1차PASS만으로 Phase6/모델최종채택을 선언하지 않고V2 품질결과를 확인한다.
+
+
+## D037 — V2 첫 단회 실패 보존과 다음 모델 비교
+
+1차 진단 PASS 뒤 별도 동결한 V2 80×1+warmup5가 schema80/parser79/semantic73/rawFP1/unsafe1로 실패했다.
+독립85개 CPU 재생은 원본 집계와 일치했다. 저장 응답 재생 PASS를 모델 품질 PASS로 해석하지 않는다.
+실제 출입문을 가구 이동으로 READY 수용한1건이 rawFP/unsafe를 동시에 위반한다. Non-READY target rubric
+3건을 가정상 모두 인정해도 이 실패는 남는다. 실제 IFC 실행은 없었다. Gold/parser/출력을 보정하지 않는다.
+
+최신 사용자 지시에 따라 명백한 실패 후보는 반복하지 않는다. 현재 Qwen3.8-27B raw GGUF 후보를 채택하지 않고
+다른 모델 후보 비교를 진행한다. Phase5.x는 미완료이며 Phase6은 시작하지 않는다. 새 후보는 공식 자료와
+기존 runtime의 지원 범위, 전체 VRAM+margin, 디스크 reserve를 먼저 비교한다. 같은 모델의 sampling/prompt
+조정을 다른 모델 비교로 대신하지 않는다. 향후 다른 접근이 필요하면 그 근거를 별도로 기록한다.
+
+원래125개 진단과 독립 재생은 보존만 하고 재실행하지 않았다. Epoch6 own guard를 검증해 종료하고
+GPU3 시작 전 free36,373MiB/used3,965MiB/util0% 복귀를 확인했다. 다른 사용자 process 신호는 없다.
+V2는 MODEL_OUTPUT_SEEN / EXPOSED로 새 record를 추가하며 원래9파일 freeze와 addenda는 수정하지 않는다.
+미래 조정 뒤 같은 V2를 새 unseen 결과로 부르지 않는다. 비필수 runtime 최적화는 future optimization이다.

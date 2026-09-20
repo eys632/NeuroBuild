@@ -1,8 +1,10 @@
 # 현대 모델의 별도 local runtime 후보 검증 계획
 
-최신 checkpoint: 단회120개 진단은117/120·rawFP0·unsafe0으로1차 gate PASS이고125개 독립 재생을 완료했다.
-모델 서버는 사용자 지시로 종료했고 GPU3 VRAM 반환을 확인했다. 자동전체3회 평가를 취소했으며
-현재 판단은 [단회 진단 보고서](reports/phase5x_native_qwen38_diagnostic_report.md)와 D036을 따른다. 아래 사전 검증 기록은 당시 상태를 보존한다.
+최신 결과: 단회120개 진단117/120·rawFP0·unsafe0과125개 독립 재생 PASS를 보존했다.
+이후 V2 80×1은73/80·rawFP1·unsafe1로 FAIL이다. 모델 서버 epoch6을 종료했고 GPU3 VRAM 반환을 확인했다.
+같은 후보를 반복·채택하지 않으며 다른 후보 비교로 넘어간다. 현재 판단은
+[V2 보고서](reports/phase5x_native_qwen38_v2_minimal_report.md)와 D037을 따른다.
+**아래는 사전 검증 당시의 역사적 기록이다. NOT_RUN과 자동3회 계획은 현재 상태가 아니며 최신 사용자 지시로 대체됐다.**
 
 
 2026-09-20. **Qwen3.8-27B GGUF + llama.cpp는 실행 경로를 검증 중인 후보이며 아직 채택하지 않았다.** HOME 안의 CUDA11.8/SM80 source build와 후속 정적 검증을 통과했다. GPU startup, inference, 품질 평가는 아직 **NOT_RUN**이다. Phase5.x gate를 통과하지 않았으며 Phase6도 시작하지 않는다.

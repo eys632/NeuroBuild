@@ -723,3 +723,37 @@ SHAe09a143794d7c9ddaae6215502ba85314222c6b9a184bee09b417ab0e4cd5976,121개hash,
 80×1+warmup5/40READY40nonREADY/gate80·76·raw0of40·unsafe0of80·raw관측80,
 85×30+600=3150초예산과새epoch의currentproof/source/carry/addendum를동결했다.
 Main동결때liveguard와잔여≥3150확인PASS. 아직V2모델호출0이며push후첫warmup직전에다시확인한다.
+
+
+### 2026-09-20 — V2 첫 최소 평가 시작
+
+동결checkpoint `1571d327d78207017277d96bce7d2c822dc4d41b` commit/push와remote일치·cleanworktree를확인했다.
+새사전준비26파일270,419B,whitespace0/환경·weight·binary·secret제외. 독립검토에서실제freeze121SHA와
+currentminimal/carryforward증거연결PASS. 첫호출직전동일121hash/ownPID3567367/startticks477435209/
+argv·loopback·guard와잔여3400.967초≥3150을확인하고preflight receipt를보존했다.
+Run `20260920T075607Z-1c4b930f002d484f962d4f4458b44cdb`의manifest는clean1571d32/heldout/warmup5/trials1이다.
+V2처음5개warmup부터노출시작했으며원래순서80개를1회실행한다. 추가preview나기존125개재평가는없다.
+이기록은실행시작이며V2 PASS/모델채택/Phase6시작을뜻하지않는다.
+
+
+### 2026-09-20 — V2 최소 평가 FAIL 보존과 자체 서버 종료
+
+Run20260920T075607Z-1c4b930f002d484f962d4f4458b44cdb exit0,80trial+5warmup 완료.
+Schema80/parser79/semantic73/rawFP1of40/unsafe1of80/FN3of40/raw관측80, UNGROUNDED1.
+Mean5.490056751971133s/p956.278982890769839s. Warmup4/5는 별도다.
+85개 저장 final JSON의 고정1571d32 source 독립 replay PASS; proofSHA75427d0859babd41242b6243a0d1856687128771745648c789e3ac8b90d2bf80.
+이전125개 모델평가·replay는 재실행하지 않았다. 원본 결과SHA db15a165b4448dc1ceb4ba4709f6b016df9e4b83b1e11355756a1528379d1ef9.
+3개 gate FAIL이므로 같은 후보 반복·채택·Phase6 진행 없이 다른 모델 비교로 전환했다(D037).
+
+전후121freezehash/ownPID·argv·loopback·guard 일치. 완료 후 guard3566951/startticks477429662와
+child3567367/startticks477435209의 ownUID1003/exec/argv/부모를 검증해 해당guard에만 pidfd SIGTERM.
+Guard의 own child group TERM/잔여KILL 정리 후 STOPPED/exit0/reaped.
+최종lifetime762.113s/1349samples/aggregatepeak18344/minfree18030이며 종료 전 임시18342값을 최종peak로 쓰지 않는다.
+종료 뒤 nvidia-smi --id=3의5×1초 sample 모두 free36373/used3965/util0, 시작 전 수준으로 복귀했다.
+다른 사용자 신호0/killall·광범위pkill0/GPU0·1·2사용0. Guard의 own group KILL을 TERM만 있었다고 생략하지 않았다.
+
+새 archive evaluations/results/phase5x/v2-native-qwen38-minimal/에 original3개,freeze/addendum,
+source_snapshot29개와record,독립replay/helper/A02격리대조,전후proof,최종resource/stop/VRAM반환을 보존했다.
+V2 output exposure는 별도record로 추가하고 원래datasetfreeze9개와 기존진단freeze81개를 유지한다.
+Production src/scripts/tests 변경0이므로 checkpoint의386 PASS/20.430s를 승계한다.
+새 inference/runtime suite나125replay를 반복하지 않고 새archive 원본/hash/링크와 문서 일관성을 검증한다.

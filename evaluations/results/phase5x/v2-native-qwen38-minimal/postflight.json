@@ -1,0 +1,14 @@
+{
+  "kind": "V2_MINIMAL_POST_EXECUTION",
+  "status": "PASS",
+  "verified_at_utc": "2026-09-20T08:04:21.356217+00:00",
+  "frozen_files_verified": 121,
+  "epoch": {
+    "pid": 3567367,
+    "start_ticks": 477435209,
+    "guard_started_at_utc": "2026-09-20T07:51:52.672873+00:00"
+  },
+  "guard_elapsed_seconds": 692.822,
+  "minimum_observed_free_mib": 18030,
+  "observed_baseline_relative_peak_mib": 18344
+}

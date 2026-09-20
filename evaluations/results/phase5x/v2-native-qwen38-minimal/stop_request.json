@@ -1,0 +1,12 @@
+{
+  "kind": "OWN_NATIVE_EPOCH_STOP_REQUEST",
+  "guard_pid": 3566951,
+  "guard_start_ticks": 477429662,
+  "child_pid": 3567367,
+  "child_start_ticks": 477435209,
+  "uid": 1003,
+  "pidfd_signal": "SIGTERM",
+  "reason": "Completed one-pass V2 evaluation; preserve failed gate and release ownmodel VRAM; no candidate repetition",
+  "foreign_process_signals": 0,
+  "broad_process_matching_used": false
+}

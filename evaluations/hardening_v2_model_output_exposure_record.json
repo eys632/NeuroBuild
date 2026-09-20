@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "kind": "V2_MODEL_OUTPUT_EXPOSURE_RECORD",
+  "dataset": "evaluations/requirement_hardening_v2_holdout.jsonl",
+  "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+  "first_model_run": "20260920T075607Z-1c4b930f002d484f962d4f4458b44cdb",
+  "source_commit": "1571d327d78207017277d96bce7d2c822dc4d41b",
+  "source_was_clean": true,
+  "trials": 80,
+  "trials_per_case": 1,
+  "warmups": 5,
+  "quality_gate": "FAIL",
+  "status": "MODEL_OUTPUT_SEEN_EXPOSED",
+  "source_result_sha256": "db15a165b4448dc1ceb4ba4709f6b016df9e4b83b1e11355756a1528379d1ef9",
+  "archive": "evaluations/results/phase5x/v2-native-qwen38-minimal",
+  "candidate_freeze_sha256": "e09a143794d7c9ddaae6215502ba85314222c6b9a184bee09b417ab0e4cd5976",
+  "prior_input_exposure_addendum": "evaluations/hardening_v2_input_exposure_addendum.json",
+  "future_use": "Exposed regression/development; never relabel as unseen after adaptation on these results.",
+  "original_dataset_freeze_modified": false,
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED"
+}

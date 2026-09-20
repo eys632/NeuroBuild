@@ -1,0 +1,19 @@
+{
+  "kind": "V2_MINIMAL_POST_PUSH_PRE_EXECUTION",
+  "status": "PASS",
+  "verified_at_utc": "2026-09-20T07:56:07.703662+00:00",
+  "source_commit": "1571d327d78207017277d96bce7d2c822dc4d41b",
+  "remote_commit_verified": "1571d327d78207017277d96bce7d2c822dc4d41b",
+  "freeze_sha256": "e09a143794d7c9ddaae6215502ba85314222c6b9a184bee09b417ab0e4cd5976",
+  "frozen_files_verified": 121,
+  "epoch": {
+    "pid": 3567367,
+    "start_ticks": 477435209,
+    "guard_started_at_utc": "2026-09-20T07:51:52.672873+00:00"
+  },
+  "guard_elapsed_seconds": 199.033,
+  "guard_remaining_seconds": 3400.967,
+  "required_remaining_seconds": 3150,
+  "planned_model_http_calls": 85,
+  "actual_model_calls_before_this_receipt": 0
+}

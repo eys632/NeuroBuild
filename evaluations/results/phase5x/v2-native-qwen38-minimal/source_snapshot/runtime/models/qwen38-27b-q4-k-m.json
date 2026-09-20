@@ -1,0 +1,23 @@
+{
+  "model_id": "ggml-org/Qwen3.8-27B-GGUF",
+  "revision": "efbb3b1f70a21d97fd4495240648405f7228554f",
+  "license": "apache-2.0",
+  "source": "https://huggingface.co/api/models/ggml-org/Qwen3.8-27B-GGUF/revision/efbb3b1f70a21d97fd4495240648405f7228554f?blobs=true",
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 397,
+      "sha256": "8e73fa58675415e431f4f1016df397750907829827fc23c0245808642cecedb9"
+    },
+    {
+      "name": "convert.log",
+      "bytes": 539017,
+      "sha256": "32e08befefcb1ad819a4fae187412f26973acc8f7c657bc3fd404e18980994f7"
+    },
+    {
+      "name": "Qwen3.8-27B-Q4_K_M.gguf",
+      "bytes": 18973870528,
+      "sha256": "c600de0300ae8a0eb3a6c0b8b5561b8b96f16bd2c863c2a66c42de29d391a747"
+    }
+  ]
+}

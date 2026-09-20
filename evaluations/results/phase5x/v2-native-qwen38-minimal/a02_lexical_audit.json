@@ -1,0 +1,19 @@
+{
+  "kind": "ISOLATED_LEXICAL_COUNTERFACTUAL_NO_METRIC_CHANGE",
+  "status": "PASS",
+  "case_id": "H2-A02",
+  "original_error": "UNGROUNDED_REQUIREMENT",
+  "actual_evidence_is_source_substring": false,
+  "only_changed_field": "dy_evidence",
+  "replacement_kind": "Frozen gold exact contiguous source evidence",
+  "replacement_is_source_substring": true,
+  "corrected_adapter_and_canonical_parser": "PASS",
+  "corrected_semantic_rubric": true,
+  "dx_metres": "0",
+  "dy_metres": "-0.065",
+  "interpretation": "Evidence word order was rewritten by the model. Frozen parser can represent the original request; this synthetic counterfactual does not alter recorded outputs, gold, parser or official metrics.",
+  "helper_sha256": "9bc2ec91b085d680f20cd3c2663e599e8cb1a446e376c40c546c4e9808125866",
+  "model_calls": 0,
+  "http_calls": 0,
+  "gpu_calls": 0
+}

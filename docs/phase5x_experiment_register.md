@@ -149,3 +149,23 @@ Warmup5/5는분모제외.125개 retained final JSON의고정source독립재생�
 사용자checkpoint지시로전체120×3을취소했고같은자료추가반복0회로판단했다. Epoch5는startup·공개응답1회만
 수행후자체종료했으며formal품질호출0/resourceprobe0이다. 다음V280×1+5는별도사전동결예정이고현재모델호출0.
 1차gatePASS를Phase5.x완료·모델최종채택·RTX실측·사람검수로확대하지않는다.
+
+
+## Native Qwen3.8 V2 첫80개 단회 — FAIL
+
+Run `20260920T075607Z-1c4b930f002d484f962d4f4458b44cdb`, clean pushed `1571d327d78207017277d96bce7d2c822dc4d41b`.
+1차 gate PASS 후 사전 동결한80×1+warmup5다. Schema80/parser79/semantic73(91.25%), raw+acceptedFP1/40,
+unsafe1/80/FN3/40/raw관측80/80, UNGROUNDED1. Mean5.490056752s/p956.278982891s.
+Warmup4/5는 분모에서 제외했다.85개 final JSON의 고정source 독립 재생과 모든 집계가 일치했다.
+[원본](../evaluations/results/phase5x/v2-native-qwen38-minimal/results.json),
+[보고서](reports/phase5x_native_qwen38_v2_minimal_report.md), [독립 검토](reviews/phase5x_native_qwen38_v2_minimal_review.md).
+Results SHA `db15a165b4448dc1ceb4ba4709f6b016df9e4b83b1e11355756a1528379d1ef9`.
+
+오류7건은 인용 재배열1/실제 출입문 READY1/과잉 거절2/non-READY 대상 범위3이다.
+대상 rubric3건의 해석 차이와 무관하게 출입문 READY가 안전 gate를 위반한다. 실제 IFC 실행은 없었다.
+Epoch6 lifetime GPU3 aggregate 증가18344MiB/minfree18030MiB. Own server STOPPED/exit0/reaped,
+반환 뒤5회 free36373/used3965/util0. 품질 후보 추가 반복0회, 미채택, Phase6 미시작이다.
+
+완료 누적은 **24 run/2000 formal 또는 diagnostic trial/120 warmup 사례**다. 합산 정확도는 만들지 않는다.
+기존125개 진단·재생을 반복하지 않았으며, V2는 이제 MODEL_OUTPUT_SEEN / EXPOSED다.
+원래 freeze/AI gold/실패를 보존하고 다른 모델 후보 비교로 넘어간다.

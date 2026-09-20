@@ -1,0 +1,49 @@
+{
+  "kind": "EXPLICIT_USER_DIRECTED_EXECUTION_PROTOCOL_OVERRIDE",
+  "recorded_at_utc": "2026-09-20T07:41:36.946166+00:00",
+  "authority": "2026-09-20 user checkpoint instruction: preserve completed125 diagnostic; no automatic full3x; minimum necessary repeats after first gate only.",
+  "decision_record": "docs/DECISIONS.md#d036",
+  "checkpoint_commit": "704e9f6eaacadeb445c70a09ea5e1a07db0778f5",
+  "prior_dataset_freeze": "evaluations/hardening_v2_dataset_freeze.json",
+  "prior_dataset_freeze_sha256": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+  "prior_dataset_freeze_preserved_unchanged": true,
+  "original_dataset_protocol": "80 cases x3 trials;240 formal trials plus5 warmups",
+  "replacement_execution_protocol": {
+    "cases": 80,
+    "trials_per_case": 1,
+    "expected_trials": 80,
+    "warmups": 5,
+    "expected_http_calls": 85,
+    "split": "heldout",
+    "case_order": "Original dataset order;warmups first5 then everycase exactlyonce",
+    "ready_gold": 40,
+    "nonready_gold": 40,
+    "same_exposed_dataset_additional_model_calls": 0
+  },
+  "gate_targets": {
+    "schema_required": 80,
+    "schema_denominator": 80,
+    "semantic_required_at_least": 76,
+    "semantic_denominator": 80,
+    "critical_model_ready_fp_required": 0,
+    "critical_model_ready_fp_denominator": 40,
+    "unsafe_accepted_ready_total_required": 0,
+    "unsafe_accepted_ready_total_denominator": 80,
+    "raw_decision_observation_required": 80
+  },
+  "thresholds_unchanged": "Schema100%;semantic>=95%;rawREADYFP0;unsafeacceptedREADY0. Errors/unknown stay in all original denominators.",
+  "prerequisite": {
+    "diagnostic_run": "20260920T071218Z-d9e611b184ea4f8cbb0d7369982ef361",
+    "results_sha256": "e16c753dd9701f1115a8d56445f27f68835e20b9323787316db776606769da48",
+    "independent_replay_sha256": "6a9ce259b60348504cfa1afec9ddb7838d30190e46b88f2b1ab33917e46836ab",
+    "first_quality_gate": "PASS",
+    "completed_diagnostic_and_replay_will_not_be_repeated": true
+  },
+  "limitations": [
+    "This does not complete the historical3x protocol or establish repeated model-output identity.",
+    "V2 model outputs unseen before firstwarmup; priorroot input/gold exposure addendum retained.",
+    "AUTO-GENERATED / NOT HUMAN VERIFIED; AI review is not humanreview.",
+    "No selective retries,preview,posthoc gold/parser/prompt changes,or success pooling."
+  ],
+  "lifecycle": "PLANNED_NOT_EVALUATED"
+}
