@@ -35,7 +35,7 @@
 - **4B Instruct BF16**: `Qwen/Qwen3-4B-Instruct-2507`, revision `cdbee75f17c01a7cc42f958dc650907174af0554`.
 - **30B-A3B Instruct AWQ**: 제3자 `ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ`, revision `9f41ff709102dbe73e614f9365f8280170db268e`.
 - 공통: A100 GPU3, vLLM0.8.5+cu118, context4096, TP1, concurrency1, `legacy_guided_json`/`xgrammar:no-fallback`, 요청마다 seed42. Thinking run만 `deepseek_r1` parser를 사용했다.
-- 출력 상한/timeout: v6는2048/120초, v7은1280/120초, 나머지는768/60초다. Thinking 출력 상한에는 내부 reasoning과 final을 모두 포함하며, reasoning 본문은 보존하지 않는다.
+- 위 초기16개 표의 출력 상한/timeout: v6는2048/120초, v7은1280/120초, 나머지는768/60초다. 이후 추가 실행의 값은 각 절의 manifest와 설명을 따른다. Thinking 출력 상한에는 내부 reasoning과 final을 모두 포함하며, reasoning 본문은 보존하지 않는다.
 
 | 표기 | 요청 sampling profile | T | top_p | top_k | min_p | presence | frequency | repetition |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
@@ -108,3 +108,22 @@ Mean7.859892285s/p959.356667161s이며 warmup은 semantic4/5로 본 집계에서
 원래120개 gold와 gate를 유지하며 formal 반복·모델 채택·Phase6 진행은 하지 않는다.
 Facts 검사 거절을 없애는 방식은 실제 제외 대상을 놓친 출력까지 수용하므로 선택하지 않는다.
 다음 접근은 실패 원인과 기존 비교를 재검토한 뒤 한 번의 제한 실험으로 고정한다.
+
+## 32B thinking2.0 전체120개 진단 — FAIL
+
+Run `20260920T034014Z-0e8af7789bbe419db3f717de65242735`, clean pushed `59e9b64312e32582371553a3a243bd566a72c845`.
+기존2.0 branch schema, thinking-v1 prompt, qwen3_thinking_awq, 총completion1024/timeout120,
+120×1+warmup5를 완료했다. Schema117/parser116/semantic109(90.83%), rawFP2/58,
+acceptedFP1/58/unsafe1/120/FN0/62, TRUNCATED3/UNGROUNDED1이다.
+Mean19.93557890569015s/p9529.995699994266033s. 보존된117trial+5warmup을 독립 재생했고
+전체 metrics가 일치했다. 잘린3trial의 body는 없어 원문 재생이 불가능하며 raw decision unknown으로 보존한다.
+관측률은117/120, non-READY55/58이고 원래 FP 분모58을 유지한다.
+[원본 결과](../evaluations/results/phase5x/exposed-generation2-32b-thinking-diagnostic/results.json),
+[독립 검토](reviews/phase5x_generation2_32b_thinking_exposed_review.md).
+
+READY gold62개는 모두 맞았지만 lookup 분류4건, non-READY 대상 누락2건, 분수 rawREADY1건,
+방화문 이동 rawREADY 수용1건이 남았다. Truncation3건만 고쳐도 최대112/120이라
+출력 cap 증액만으로 gate를 해결할 수 없다. 해당 계산은 원본 재채점이 아닌 제한적 반사실 상한이다.
+현재 후보를 채택하거나 formal 반복으로 확대하지 않는다. Source/prompt/gold/gate는 실행 중 고정했다.
+완료 누적은 **22run/1800 formal 또는 diagnostic trial/110 warmup 사례**다.
+Results SHA `959202b4690d96856ffc95a50caa49e29e1579d479f41b8811d6f583bd559009`.

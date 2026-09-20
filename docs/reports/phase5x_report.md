@@ -202,3 +202,27 @@ reasoning/final 분리를 확인했다. 최대 입력+총completion1024는 expos
 새 GPU3 epoch는 true/deepseek_r1/FP16/AWQMarlin과 자체5개 loopback listener를 확인했다.
 관측 startup aggregate20314MiB/minfree16060MiB로 floor7275/limit25600을 지켰다.
 이것은 품질 결과가 아니며 사전 동결·원격 checkpoint 뒤120×1+warmup5 한 번을 실행한다.
+
+## 같은32B thinking 제한 진단 — FAIL 및 다음 전략
+
+Clean pushed59e9b64에서 run20260920T034014Z-0e8af7789bbe419db3f717de65242735를 완료했다.
+Schema117/parser116/semantic109/120, rawFP2/58, unsafe1/120, FN0/62,
+truncation3/grounding1, mean19.935579s/p9529.995700s다. 보존된117trial+5warmup의
+독립2→1 재생과 평가 집계가 일치했다. Truncation3건은 body가 없으므로 재생 범위에서 구분하고,
+raw 관측117/120·non-READY55/58과 원래 분모를 보존한다.
+[검토](../reviews/phase5x_generation2_32b_thinking_exposed_review.md).
+
+READY gold62개는 모두 정확했으나 방화문 이동을 READY로 수용했다. 분수1/2m의 READY는
+parser가 거절했지만 raw 오판에는 남는다. Lookup4건의 분류 오류와 non-READY target 누락2건도 있다.
+잘린3건을 모두 정답으로 가정해도112/120이므로 한도 확대만으로 통과를 기대하는 후속 실험은 선택하지 않는다.
+Prompt 예시 추가·gold 수정·parser 완화 없이 더 새로운 instruction 모델과 local runtime 호환성을 검토한다.
+
+자체 서버는 RUNNING snapshot 보존 후 신원 재확인하여 종료했다. STOPPED/child exit0/reaped/
+FileStore cleaned, epoch3144.173초/minfree13832MiB/aggregatepeak22542MiB다.
+종료 뒤GPU3free36373/used3965/util0이며 다른process/GPU는 변경하지 않았다.
+현재346개 회귀의 마지막 PASS를 유지하나 이번 기록 변경에서 새로 실행했다고 주장하지 않는다.
+
+다음 [Qwen3.8-27B/llama.cpp 후보 계획](../modern_local_runtime_candidate.md)은 source build,
+GGUF/header/grammar, 전체 peak와 native guard, 명시 transport를 각각 검증한다.
+HOME 내 기존 toolkit을 사용하며 시스템 CUDA/driver나 두 기존 Python 환경을 바꾸지 않는다.
+GPU 실행·모델 채택은 아직 판단할 근거가 없고 Phase6는 계속 보류한다.

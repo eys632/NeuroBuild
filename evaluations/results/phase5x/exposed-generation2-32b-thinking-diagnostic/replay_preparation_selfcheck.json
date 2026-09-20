@@ -1,0 +1,114 @@
+{
+  "status": "PASS_PREPARATION_SYNTHETIC_ONLY",
+  "helper_sha256": "da8dcc99f1e1bbdd1d0454f744c44dea3662af6d7e359a843bd313ae23152f8d",
+  "selfcheck_sha256": "db908a4f3055d9025f71b46099cd400bab140eb48aa996b3ddba6a5811db3f26",
+  "snapshot_commit": "59e9b64312e32582371553a3a243bd566a72c845",
+  "snapshot_sha256": "3d73a64ce97ef67149e03add34faf2497cbe05e26c315de4d6e73a77fc41c8b5",
+  "fixture_count": 10,
+  "fixtures": [
+    {
+      "fixture": "retained_ready_on_nonready_gold",
+      "retained": true,
+      "raw_decision": "READY",
+      "error_code": null
+    },
+    {
+      "fixture": "retained_unsigned_axis_ready",
+      "retained": true,
+      "raw_decision": "READY",
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "fixture": "retained_ungrounded_target_ready",
+      "retained": true,
+      "raw_decision": "READY",
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "fixture": "schema_rejected_raw_ready_unretained",
+      "retained": false,
+      "raw_decision": "READY",
+      "error_code": "JSON_SCHEMA_FAILED"
+    },
+    {
+      "fixture": "malformed_unknown_unretained",
+      "retained": false,
+      "raw_decision": null,
+      "error_code": "JSON_PARSE_FAILED"
+    },
+    {
+      "fixture": "array_unknown_unretained",
+      "retained": false,
+      "raw_decision": null,
+      "error_code": "JSON_SCHEMA_FAILED"
+    },
+    {
+      "fixture": "timeout_unknown_unretained",
+      "retained": false,
+      "raw_decision": null,
+      "error_code": "LOCAL_MODEL_TIMEOUT"
+    },
+    {
+      "fixture": "truncated_unknown_unretained",
+      "retained": false,
+      "raw_decision": null,
+      "error_code": "LOCAL_MODEL_TRUNCATED"
+    },
+    {
+      "fixture": "no_final_unknown_unretained",
+      "retained": false,
+      "raw_decision": null,
+      "error_code": "LOCAL_MODEL_RESPONSE_INVALID"
+    },
+    {
+      "fixture": "retained_nonready",
+      "retained": true,
+      "raw_decision": "CLARIFICATION",
+      "error_code": null
+    }
+  ],
+  "tampered_rows_rejected": [
+    "erase_raw_ready",
+    "erase_observed_ready",
+    "invent_truncated_ready",
+    "unknown_as_safe_false",
+    "false_adapter_success",
+    "erase_canonical_projection",
+    "inflate_semantic",
+    "wrong_contract"
+  ],
+  "counts": {
+    "critical_fp_model_ready": {
+      "numerator": 4,
+      "denominator": 10,
+      "rate": 0.4,
+      "wilson_95": [
+        0.16818032970623614,
+        0.6873262302663417
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 5,
+      "denominator": 10,
+      "rate": 0.5,
+      "wilson_95": [
+        0.236593090512564,
+        0.7634069094874361
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 1,
+      "denominator": 10,
+      "rate": 0.1,
+      "wilson_95": [
+        0.017876213095072896,
+        0.4041500267952385
+      ]
+    }
+  },
+  "actual_run_results_read": false,
+  "actual_reasoning_body_reads": 0,
+  "network_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0
+}

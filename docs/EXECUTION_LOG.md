@@ -506,3 +506,30 @@ CPU proof SHA2b40e70de79b7f0224f7afd80079246c9cb2c4f34286ab89a405290915d2002c.
 새 runtime five JSON은 own guard3483689/child3483717와 실제 true/deepseek_r1/5loopback에 연결했다.
 Thinking freeze e0bf7d237fdbfa61d3e4fe09aefa6d706872a4a3db100fec5541ec0eebc0c19d의41파일 hash를 독립 재검증했다.
 V2 보존9개/weight4stat/기존346회귀log도 확인했고 모델 호출은 아직0이다. 정식 품질 성공이나 완결성 보장이 아니다.
+
+## 32B thinking 제한 진단 완료 — FAIL
+
+Pushed59e9b64312e32582371553a3a243bd566a72c845/clean 및 freeze41개 hash 확인 후
+2026-09-20T03:40:14Z부터 run20260920T034014Z-0e8af7789bbe419db3f717de65242735를 실행했다.
+Single2.0/branch/thinking-v1/qwen3_thinking_awq, 총completion1024/timeout120,
+exposed120×1+warmup5다. Session69648 exit0은 저장 완료를 뜻하며 품질 gate는 FAIL이다.
+Schema117/parser116/semantic109, rawFP2/58/acceptedFP1/58/unsafe1/120/FN0/62,
+TRUNCATED3/UNGROUNDED1, mean19.93557890569015s/p9529.995699994266033s다.
+Results SHA959202b4690d96856ffc95a50caa49e29e1579d479f41b8811d6f583bd559009.
+보존된117trial+5warmup의 독립 frozen 재생과 전체 metrics가 일치했다.
+잘린3응답의 body/decision은 보존되지 않아 raw unknown이며 전체 관측117/120,
+non-READY 관측55/58을 함께 기록한다. 원래 분모에서 제외하거나 non-READY 정답으로 바꾸지 않았다.
+
+실패11개는 truncation3, lookup→unsupported4, non-READY target 누락2,
+분수1/2m의 raw READY1(parser 거절), 방화문 이동 raw READY1(parser 수용)이다.
+Raw label 정답111/120, READY gold62개는 모두 semantic 정답이다. Reasoning 본문은 열람·보존하지 않았다.
+완료된 Phase5.x 누적은22run/1800평가trial/110warmup사례이며 합산 정확도로 해석하지 않는다.
+
+독립 RUNNING resource snapshot 보존 후 own guard3483689/child3483717의 UID/startticks/
+PPID/model/report 인자를 재확인하고 guard에SIGTERM을 보냈다. Session93856 exit0,
+STOPPED/STOP_REQUESTED/child exit0/reaped/FileStore cleaned, TERM+KILL 기록을 확인했다.
+Epoch3144.173초/minfree13832MiB/aggregatepeak22542MiB, shutdown SHA
+16fc05d924f0584eeb8d0b42a806ebfb830a7aace6dae668cec0a0a1958136c8.
+2026-09-20T04:23:30Z 종료 뒤 GPU3 used3965/free36373/util0이었다. 다른process/GPU 변경은 없다.
+Formal 반복과 Phase6는 시작하지 않는다. 다음은 pinned llama.cpp/Qwen3.8-27B의
+HOME 내 CPU source-build 가능성과 별도 안전 경계를 먼저 검증하는 계획이다.

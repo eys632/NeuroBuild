@@ -1,0 +1,135 @@
+{
+  "created_at_utc": "2026-09-20T04:27:09.962399+00:00",
+  "scope": "All archive files except this integrity.json; external source/runtime/freeze hashes additionally bound by replay.json",
+  "run_id": "20260920T034014Z-0e8af7789bbe419db3f717de65242735",
+  "files": {
+    "README.md": {
+      "bytes": 4358,
+      "sha256": "f882f876a081419c1ef336d86bb7f93a83c9568470f8bc2e5f8899718c48d9f2"
+    },
+    "check_generation2_thinking_replay_synthetic.py": {
+      "bytes": 5867,
+      "sha256": "db908a4f3055d9025f71b46099cd400bab140eb48aa996b3ddba6a5811db3f26"
+    },
+    "dataset.json": {
+      "bytes": 92253,
+      "sha256": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc"
+    },
+    "failure_classification.json": {
+      "bytes": 1121,
+      "sha256": "5d3a1aac78572c4a87cbe3338fd47be00399a7dced306316e58c9291cbd25a44"
+    },
+    "freeze.json": {
+      "bytes": 11300,
+      "sha256": "e0bf7d237fdbfa61d3e4fe09aefa6d706872a4a3db100fec5541ec0eebc0c19d"
+    },
+    "manifest.json": {
+      "bytes": 5132,
+      "sha256": "25bf3edc782688b8bccc1a031fe7a059513505a901a659cf7dd9cc4b77779710"
+    },
+    "original_copy_provenance.json": {
+      "bytes": 8446,
+      "sha256": "b52023bb0746e517d05749e5a90065023c1851e66a04336a1cfe73c1e938de24"
+    },
+    "replay.json": {
+      "bytes": 30169,
+      "sha256": "cd7810bef6352a0bafb44e52499e616e2d22bdee698fb4fa8f69ff47c51efbb1"
+    },
+    "replay_generation2_32b_thinking_exposed.py": {
+      "bytes": 24196,
+      "sha256": "da8dcc99f1e1bbdd1d0454f744c44dea3662af6d7e359a843bd313ae23152f8d"
+    },
+    "replay_preparation_selfcheck.json": {
+      "bytes": 2966,
+      "sha256": "3da561ef9db198ad91038d2a819e15b8ce0e00808cb8f3b0e19ec1d3031b5dbd"
+    },
+    "resource_report.json": {
+      "bytes": 4027,
+      "sha256": "db26887cb4d06703286b8e7f67adb920959db30a791155842d072fdb96154b1e"
+    },
+    "results.json": {
+      "bytes": 263636,
+      "sha256": "959202b4690d96856ffc95a50caa49e29e1579d479f41b8811d6f583bd559009"
+    },
+    "source_snapshot/evaluations/requirement_hardening_v1_exposed_regression.jsonl": {
+      "bytes": 69888,
+      "sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b"
+    },
+    "source_snapshot/prompts/requirement_generation_v2_thinking_v1.txt": {
+      "bytes": 9013,
+      "sha256": "db1880ecebf697a215d4f3fedb970e0cdb1668837d0b121c92276cda8f6870e2"
+    },
+    "source_snapshot/runtime/a100/model-runtime.lock": {
+      "bytes": 15310,
+      "sha256": "0a2dde41e8dda948f70d87bd776315611d4d516a9075725cb3a1a9e564c575ae"
+    },
+    "source_snapshot/runtime/models/qwen3-32b-awq.json": {
+      "bytes": 2321,
+      "sha256": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03"
+    },
+    "source_snapshot/schemas/requirement_generation_v2.schema.json": {
+      "bytes": 1057,
+      "sha256": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c"
+    },
+    "source_snapshot/schemas/requirement_generation_v2_decision_branches.schema.json": {
+      "bytes": 4176,
+      "sha256": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+    },
+    "source_snapshot/schemas/semantic_requirement.schema.json": {
+      "bytes": 1703,
+      "sha256": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94"
+    },
+    "source_snapshot/scripts/evaluate_requirements.py": {
+      "bytes": 38209,
+      "sha256": "b6d7068af5916c0f23f10068485affbce792a234891cb9f28aaeae10f587b5aa"
+    },
+    "source_snapshot/scripts/model_server.py": {
+      "bytes": 23133,
+      "sha256": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab"
+    },
+    "source_snapshot/snapshot.json": {
+      "bytes": 2490,
+      "sha256": "3d73a64ce97ef67149e03add34faf2497cbe05e26c315de4d6e73a77fc41c8b5"
+    },
+    "source_snapshot/src/neurobuild/__init__.py": {
+      "bytes": 84,
+      "sha256": "43ba9f0b620ffa4f960f4d83a7ce7fd9fbae9b8de96d71535926f8a48dbc8461"
+    },
+    "source_snapshot/src/neurobuild/application/__init__.py": {
+      "bytes": 85,
+      "sha256": "d393a04c8462e6e1a2bdc6e012639716d4b30aa18a15ec6fddf169aaedcbd359"
+    },
+    "source_snapshot/src/neurobuild/application/requirement_facts.py": {
+      "bytes": 4976,
+      "sha256": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5"
+    },
+    "source_snapshot/src/neurobuild/application/requirement_generation.py": {
+      "bytes": 7055,
+      "sha256": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198"
+    },
+    "source_snapshot/src/neurobuild/application/requirements.py": {
+      "bytes": 12385,
+      "sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a"
+    },
+    "source_snapshot/src/neurobuild/domain/__init__.py": {
+      "bytes": 86,
+      "sha256": "152b0592fd08f164e27f99228c033cf131916ddb7bd2b2124fba24511e19be75"
+    },
+    "source_snapshot/src/neurobuild/domain/contracts.py": {
+      "bytes": 13912,
+      "sha256": "107edcaec115d7dbada810ed83398a114b1958b8658bc704bf3e9f7ff6b8e458"
+    },
+    "source_snapshot/src/neurobuild/domain/errors.py": {
+      "bytes": 310,
+      "sha256": "32bb3ba6da83a35706759fe288e41bd490b5c1d56c071b4ec3de67207848b8aa"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/__init__.py": {
+      "bytes": 79,
+      "sha256": "a7cfa5c500a5a587d0fd48bdae32bb951769d7ca525b4b36b1dce6cc0f516739"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/local_model.py": {
+      "bytes": 20261,
+      "sha256": "9bdb19a65ba79e253afe262a72e2dc4ecfcaacbc33ca9588c940f553be58123f"
+    }
+  }
+}

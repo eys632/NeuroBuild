@@ -1,0 +1,37 @@
+{
+  "run_id": "20260920T034014Z-0e8af7789bbe419db3f717de65242735",
+  "results_sha256": "959202b4690d96856ffc95a50caa49e29e1579d479f41b8811d6f583bd559009",
+  "failure_classes": {
+    "truncated_unknown": [
+      "HD-B01",
+      "HH-C03",
+      "HH-I04"
+    ],
+    "lookup_misclassified_unsupported": [
+      "H02",
+      "HD-H01",
+      "HH-H03",
+      "HH-H05"
+    ],
+    "nonready_target_omitted": [
+      "HD-J01",
+      "HH-J04"
+    ],
+    "fraction_raw_ready_rejected_by_quote_adapter": [
+      "HH-B07"
+    ],
+    "unsupported_door_raw_ready_accepted": [
+      "HH-C07"
+    ]
+  },
+  "failed_semantic_trials": 11,
+  "gold_ready_cases_all_semantic_correct": 62,
+  "unknown_raw_decisions": 3,
+  "raw_ready_fp_recorded": 2,
+  "unsafe_accepted_ready": 1,
+  "best_case_if_only_truncations_corrected": 112,
+  "required_semantic_count": 114,
+  "interpretation": "Completion cap alone cannot fix the eight retained semantic failures; original gate and denominator remain unchanged. Counterfactual bound only, not rescoring.",
+  "reasoning_body_read_or_stored": false,
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED"
+}

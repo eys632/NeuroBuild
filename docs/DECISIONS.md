@@ -136,3 +136,24 @@ Context4096/seq1/KV256을 유지하며 총completion1024/timeout120으로 제한
 기존 명시 thinking sampling/parser를 사용하며 reasoning 원문은 저장하지 않는다.
 잘림과 no-final도 실패 분모에 남고 retry/cap증액/decision 보정은 없다.
 [고정할 조건과 한계](requirement_thinking_control_plan.md)를 실제 호출 전에 검증·동결한다.
+
+## D031 — Thinking 실패 보존과 현대 모델의 별도 local runtime 검증
+
+같은32B/기존2.0/thinking은 semantic109/120, rawFP2/58, unsafe1/120으로 실패했다.
+READY gold62개는 모두 맞았지만 lookup 분류4건, non-READY 대상 누락2건, 분수 표현의
+raw READY1건과 방화문 이동 READY 수용1건이 남았다. Truncation3건은 unknown과 원래
+분모에 보존한다. 이3건을 전부 정답으로 가정해도112/120이므로 cap 증액만으로 gate를
+고칠 수 있다는 근거가 없다. 같은 prompt 문구를 반복 수정하거나 parser/gold를 완화하지 않는다.
+
+다음은 최신 Qwen3.8-27B의 ggml-org Q4_K_M 변환물과 pinned llama.cpp를 검토한다.
+현재 cu118 vLLM의 architecture 제약을 application 복제나 system driver/CUDA 변경 없이
+해결할 수 있는지 먼저 HOME 안의 제한된 source build로 확인한다. CMake3.23.5와
+명시SM80만 사용하며 automatic dependency fetch와 GPU 탐색/실행을 빌드 단계에서 배제한다.
+기존 Backend와 vLLM 환경은 보존한다. Build 성공은 모델 품질 또는 GPU 실행 허가가 아니다.
+
+실제 weight/header, native allocator의 전체 peak, 공통 guard와 별도 HTTP grammar protocol을
+검증한 뒤에만 fresh GPU3 예산에 맞는 제한 실행을 진행할 수 있다. Native runtime에 Torch
+allocator cap이 없다는 차이를 숨기지 않는다. Disk20GiB reserve도 유지하며 필요한 경우
+검증된 비활성·재다운로드 가능한 weight만 정리한다. 아직 설치·정리·다운로드·native GPU
+실행은 하지 않았다. [후보와 검증 순서](modern_local_runtime_candidate.md)를 따른다.
+이는 Phase5.x 안의 전략 변경이며 최종 모델 채택이나 Phase6 시작이 아니다.
