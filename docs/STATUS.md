@@ -7,16 +7,16 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`; 단회 결과 `704e9f6`, V2 실행 동결 `1571d327d78207017277d96bce7d2c822dc4d41b` push·원격 일치 확인 |
-| 현재 작업 | **V2 실패 증거 보존과 다음 모델 후보 비교** |
+| GitHub | 공통 `v2`; 단회 결과 `704e9f6`, V2 실패 보존 `3a89af9ebab50058529405e38af0fa398d71d783` push·원격 일치 확인 |
+| 현재 작업 | **V2 실패 checkpoint 완료, Gemma4-31B QAT 사전 검증** |
 | 현재 후보 | Qwen3.8-27B Q4_K_M / pinned llama.cpp / raw-Unicode variant: V2 FAIL, 미채택 |
 | 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS |
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
-| 회귀 검증 | **386 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless20.430초. 이후 production 변경0 |
+| 회귀 검증 | **395 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless19.339초. Gemma 명시profile 추가 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
 | 모델 실행 | Epoch4·5·6 모두 STOPPED/exit0/reaped, GPU3 메모리 반환 확인 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | 다른 후보의 공식 자료·runtime·VRAM·디스크 조건 비교. 동일 후보 반복0회 |
+| 다음 검증 | Gemma4-31B QAT 공식 metadata·출력 계약·전체 VRAM 검증. 동일 실패 후보 반복0회 |
 
 ## 보존한 단회 결과와 오류3건
 
@@ -74,7 +74,13 @@ Phase를 막지 않는 batch/flash/graphs/cache/throughput 튜닝은 future opti
 Gold는 **AUTO-GENERATED / NOT HUMAN VERIFIED**다. Root의 일부 입력 노출도 보존하며 완전 맹검이라고 부르지 않는다.
 공식 HF tokenizer19/20 FAIL과 별도 raw reference20/20을 구분하고 입력·출력 NFC 보정은 하지 않는다.
 Private PostgreSQL은 project0700 Unix socket/peer 인증/TCP OFF다. 환경·weight·cache·binary는 Git에서 제외한다.
-디스크 약24.65GiB free로20GiB+512MiB reserve를 유지한다. 새 다운로드는 별도 용량 계획이 필요하다.
+비활성 Qwen3-32B 가중치4개19,325,481,744B를 SHA/소유·사용 검사 후 회수했고 디스크 약42.8GiB free다.
+Manifest/평가/복원 정보는 보존했다. 새 다운로드에도20GiB+512MiB reserve를 유지한다.
 Phase4 human review는 아직 메모리 보존이며 Object resolution/API/browser는 미구현이다.
 영속 review/queue/worker는 Phase7 예정이다. **RTX5090은 PREDICTED_UNVERIFIED**다.
 Public exposure/pilot/민감 IFC/fine-tuning은 자동 범위 밖이다.
+
+다음 후보는 [공식 후보 비교](next_model_candidate_comparison.md)의 Gemma4-31B QAT Q4_0다.
+아직 품질·GPU 실행 미검증이며 기존 CUDA11.8/SM80 binary를 재사용할 수 있는지 모델별 계약을 확인한다.
+공식 GGUF 다운로드는 고정SHA/디스크floor guard 아래 진행 중이다. GPU 모델 기동·품질 호출은 아직0이다.
+새 후보의 준비를 기존 Qwen3.8 실패 수정이나 Phase5.x 완료로 표시하지 않는다.

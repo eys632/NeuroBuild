@@ -1,0 +1,15 @@
+{
+  "kind": "GEMMA4_NATIVE_PROFILE_PREPARATION",
+  "sha256": {
+    "APACHE-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "README.md": "96939afa9f047651967daa688177875a470edefba11119f1b311b4f2cb9ed8d9",
+    "cleanup_unused_32b_cache.py": "fc9f1bcd181c5db24bef722164b2243344bcc4622edd0e5206656c2e45b96f68",
+    "download_gemma4_guarded.py": "b8305b0c32534c867972ae760ce0b86248ded8350c5a88288ffb09e4eaa9d782",
+    "qat_reference/chat_template.jinja": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+    "qat_reference/config.json": "95b105ad23b315067985415e721ab9c19cfcf90918b34ea0fa479a08489d86b7",
+    "qat_reference/generation_config.json": "b69207f9be617e982d13cc273cce6fd88c98dda99a4bdc5e2d52ffe0a0d9f0a9",
+    "qat_reference/model.safetensors.index.json": "d4aff3b976d69c123a29d1c085d7ba4de1ac3f4ca1726a7f81e1b11462a64ea2",
+    "qat_reference/tokenizer_config.json": "3ab5c7b94dc97d65ca7064496fa69b88ff875378e1cb7ee3e43070c3a8170999",
+    "regression.json": "dd685fcccd979e73500d9d25f09fff5dfea67c7dca8de26009d9637c7b8ce7fd"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+  "revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+  "license": "apache-2.0",
+  "source": "https://huggingface.co/api/models/google/gemma-4-31B-it-qat-q4_0-gguf/revision/59dde24573e7e61570dba08b18a2e1fe246955ed?blobs=true",
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 29268,
+      "sha256": "7acf2548ee8ef633d95ed4544160f6e33e5fc79bace0c6a2e250c5eb34d5d0cc"
+    },
+    {
+      "name": "gemma-4-31B_q4_0-it.gguf",
+      "bytes": 17651001568,
+      "sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b"
+    }
+  ]
+}

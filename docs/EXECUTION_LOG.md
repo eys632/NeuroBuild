@@ -757,3 +757,35 @@ source_snapshot29개와record,독립replay/helper/A02격리대조,전후proof,�
 V2 output exposure는 별도record로 추가하고 원래datasetfreeze9개와 기존진단freeze81개를 유지한다.
 Production src/scripts/tests 변경0이므로 checkpoint의386 PASS/20.430s를 승계한다.
 새 inference/runtime suite나125replay를 반복하지 않고 새archive 원본/hash/링크와 문서 일관성을 검증한다.
+
+
+### 2026-09-20 — V2 실패 checkpoint 원격 완료와 다음 후보 준비
+
+`3a89af9ebab50058529405e38af0fa398d71d783`을 v2에 commit/push하고 ls-remote 일치를 확인했다.
+59파일938,353B, 원래진단freeze81/V2datasetfreeze9/candidatefreeze121/새archive49 SHA 일치,
+원본3파일 exact bytes/문서링크누락0/환경·weights·binary·tokenpattern 제외. 독립 검토 정정0.
+Source snapshot model_guard.py EOF blank1은 원본bytes 보존으로 유지했다. 이 checkpoint까지 production변경0.
+
+공식 후보3개를 비교해 Gemma4-31B QAT Q4_0를 다음 사전 검증 대상으로 선택했다. 미채택/품질미실행이다.
+기존 Qwen3-32B 실패 후보의 비활성·재다운로드 가능한4개 safetensors만 전체SHA/ownUID/regularfile/
+singlelink/동일inode와 ownprocess 사용 여부를 검사한뒤 제거했다. Shared model lock을 유지했고 다른 사용자파일은보지않았다.
+40ownprocess의 maps/FD검사, nondumpable ownsession3개는 comm/cmdline확인 한계를 별도기록했다.
+Removed19,325,481,744B, free26,614,751,232→45,939,245,056B. Manifest/metadata/evaluation/복원명령은보존했다.
+[정리 증거](../evaluations/results/phase5x/unused_32b_weight_cache_cleanup.json).
+실행중report의완료field를조기읽은집계시도는KeyError로중단됐고원본복사/변경없이완료후정상archive했다.
+새가중치다운로드·GPU기동은아직없고기존modelserver는꺼져있다.
+
+
+### 2026-09-20 — Gemma 명시 profile 회귀와 다운로드 시작
+
+Client/evaluator와대응test4파일에Gemma nonthinking nativeprofile/T1.0/P.95/K64 및모델ID/Q4_0조합을명시했다.
+Inline thought/channelmarker는안전거절하며후단parser/adapter/gold/semantic scorer와기존Qwen wire는유지했다.
+FocusedCPU/fake17PASS0.375s, root검토뒤actualPostgreSQL/IfcOpenShell headless395PASS/skip0/19.339s.
+LogSHA724865dd1d4dfae92c1e7a5860895317eebc675a39bbec894af3d002f65728d0.
+
+OfficialmanifestSHA16d471fc5bb8ae266015d73b0a648e2b576dab6e6e453de8c28fdc0f1a8a6e3c,
+GGUF+README총17,651,030,836B, fixed59dde24573e7e61570dba08b18a2e1fe246955ed.
+새guardhelper는기존검증된downloadsupervisor를재사용하고후보/manifest/cleanup pin과출력경로만분리했다.
+사전free45,900,111,872B, 완료후예상28,249,081,036B>floor22,011,707,392B.
+CUDA_VISIBLE_DEVICESempty/자체lock·childcleanup/2초diskguard하에다운로드를시작했다. 이항목은시작기록이며완료/GPU/PASS가아니다.
+공식QATmetadata 총32,948,600B 확보, 변환exactsource revision미공개/실제embedded검증대기를provenance에표시했다.

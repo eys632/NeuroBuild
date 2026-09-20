@@ -182,6 +182,45 @@ class NativeRequirementEvaluationTests(unittest.TestCase):
                 build_manifest(control, **self.kwargs)
         transport.assert_not_called()
 
+    def gemma_client(self):
+        return LocalRequirementClient(
+            "http://127.0.0.1:8003", "synthetic-native", generation_contract=GenerationContract.QUOTES,
+            prompt_path=self.kwargs["prompt"], schema_path=self.kwargs["schema"],
+            protocol="llama_cpp_json_schema", sampling_profile="gemma4_nonthinking_llama_cpp")
+
+    def test_gemma_manifest_records_explicit_model_quantization_and_sampling(self):
+        weights = deepcopy(self.weight_data)
+        weights["model_id"] = "google/gemma-4-31B-it-qat-q4_0-gguf"
+        weights["files"][0]["name"] = "gemma-4-31B_q4_0-it.gguf"
+        self.weights.write_text(json.dumps(weights))
+        self.write_runtime(dict(native_metadata(), quantization="Q4_0"))
+        client = self.gemma_client()
+        with patch.object(client, "complete") as transport:
+            manifest = build_manifest(client, **self.kwargs)
+        transport.assert_not_called()
+        self.assertEqual(manifest["model_id"], weights["model_id"])
+        self.assertEqual(manifest["runtime"]["quantization"], "Q4_0")
+        self.assertEqual(manifest["protocol"]["sampling_profile"], "gemma4_nonthinking_llama_cpp")
+        self.assertEqual(manifest["protocol"]["sampling_request_parameters"], client.sampling_parameters)
+        self.assertFalse(manifest["protocol"]["enable_thinking"])
+
+    def test_native_profile_model_and_quantization_cannot_be_cross_paired(self):
+        gemma = "google/gemma-4-31B-it-qat-q4_0-gguf"
+        qwen = self.weight_data["model_id"]
+        for client, model_id, quantization in (
+            (self.client, qwen, "Q4_0"), (self.client, gemma, "Q4_K_M"),
+            (self.gemma_client(), gemma, "Q4_K_M"), (self.gemma_client(), qwen, "Q4_0"),
+            (self.gemma_client(), "other/gemma-4-31B-it-qat-q4_0-gguf", "Q4_0"),
+            (self.gemma_client(), "google/gemma-4-31B-it-qat-q4_0-gguf-copy", "Q4_0"),
+        ):
+            with self.subTest(model_id=model_id, quantization=quantization):
+                self.weights.write_text(json.dumps(dict(self.weight_data, model_id=model_id)))
+                self.write_runtime(dict(native_metadata(), quantization=quantization))
+                with patch.object(client, "complete") as transport:
+                    with self.assertRaisesRegex(ValueError, "exact model ID and quantization"):
+                        build_manifest(client, **self.kwargs)
+                transport.assert_not_called()
+
     def test_duplicate_native_fields_are_not_silently_repaired(self):
         encoded = json.dumps(native_metadata())
         self.runtime.write_text(encoded[:-1] + ',"runtime_kind":"llama_cpp"}')

@@ -283,3 +283,20 @@ Phase 완료를 막지 않는다. 1차PASS만으로 Phase6/모델최종채택을
 GPU3 시작 전 free36,373MiB/used3,965MiB/util0% 복귀를 확인했다. 다른 사용자 process 신호는 없다.
 V2는 MODEL_OUTPUT_SEEN / EXPOSED로 새 record를 추가하며 원래9파일 freeze와 addenda는 수정하지 않는다.
 미래 조정 뒤 같은 V2를 새 unseen 결과로 부르지 않는다. 비필수 runtime 최적화는 future optimization이다.
+
+
+## D038 — 다른 공식 모델 Gemma4-31B QAT의 제한 사전 검증
+
+보존한 Qwen3.8 V2 실패 이후 공식 후보3개를 비교하고 Gemma4-31B QAT Q4_0를 다음 사전 검증 대상으로 정했다.
+한국어 품질 우위나 gate 통과를 예상한 선택이 아니라 다른 학습 계열·공식QAT·기존native지원 가능성에 근거한다.
+동일 CUDA11.8/SM80 binary와 shared lifecycle은 재사용한다. 모델별 header/tokenizer/template/grammar/전체peak는
+새 증거가 필요하며 이미 완료한 공통runtime검사는 반복하지 않는다. 새 환경이나 시스템변경은 없다.
+
+공식temperature1.0/top_p.95/top_k64와 프로젝트neutralpenalty/seed42를 명시profile로 추가했다.
+Native모델ID/Q4_0/profile 조합을 검증하고 final content의Gemmathoughtmarker는거절한다.
+기존Qwenwire는byte동일, scorer/gold/canonicalparser/업무계약은변경하지 않는다.
+샘플링·형식·모델을 구분해 기록하며 기존Qwen raw-Unicode 참조를 Gemma의동등성으로승계하지 않는다.
+
+다음1차진단은 사전runtime/model검증·epoch동결·commit/push후 exposed120×1+warmup5다.
+명백한실패는반복0회, 통과/경계선만필요한최소추가검증으로간다. 이미본V2를새unseen으로쓰지않는다.
+세부 조건은 docs/gemma4_31b_diagnostic_plan.md에 기록했다. 아직runtime기동·품질통과·모델채택은없다.

@@ -430,7 +430,7 @@ def native_runtime_metadata(data):
     if (type(data["profile"]) is not str or data["profile"] not in profiles
             or (data["physical_gpu"], data["cuda_architecture"]) != profiles[data["profile"]]
             or data["logical_gpu"] != 0 or data["max_sequences"] != 1
-            or data["max_model_len"] != 4096 or data["quantization"] != "Q4_K_M"):
+            or data["max_model_len"] != 4096 or data["quantization"] not in ("Q4_K_M", "Q4_0")):
         raise ValueError("Native runtime profile or fixed single GPU configuration mismatch")
     # Parsing a possible reasoning field is distinct from enabling generation
     # of reasoning. This bounded native candidate is explicitly non-thinking.
@@ -523,8 +523,14 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
     if native != native_protocol:
         raise ValueError("Native runtime metadata and native JSON protocol must be selected together")
     if native:
-        if client.sampling_profile is not SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP:
+        native_candidates = {
+            SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP: ("ggml-org/Qwen3.8-27B-GGUF", "Q4_K_M"),
+            SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP: ("google/gemma-4-31B-it-qat-q4_0-gguf", "Q4_0"),
+        }
+        if client.sampling_profile not in native_candidates:
             raise ValueError("Native evaluation requires the explicitly planned native sampling profile")
+        if (weight_data["model_id"], runtime_info["quantization"]) != native_candidates[client.sampling_profile]:
+            raise ValueError("Native sampling profile, exact model ID and quantization must match")
         gguf_files = [entry for entry in weight_data["files"] if entry["name"].endswith(".gguf")]
         if (len(gguf_files) != 1 or gguf_files[0]["sha256"] != runtime_info["gguf_sha256"]
                 or tokenizer_revision != revision):

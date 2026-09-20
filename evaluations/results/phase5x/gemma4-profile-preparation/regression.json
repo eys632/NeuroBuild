@@ -1,0 +1,19 @@
+{
+  "kind": "GEMMA_NATIVE_PROFILE_REGRESSION",
+  "status": "PASS",
+  "tests": 395,
+  "skipped": 0,
+  "seconds": 19.339,
+  "headless": true,
+  "actual_postgresql_ifcopenshell": true,
+  "log_path": "var/phase5x-gemma4-profile-regression.log",
+  "log_sha256": "724865dd1d4dfae92c1e7a5860895317eebc675a39bbec894af3d002f65728d0",
+  "source_sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "68c086f08bf2c3f5d6464f689baa8e628c8c33664397db06868c26cb6dd0d763",
+    "scripts/evaluate_requirements.py": "4f9da8c7cd430625fbe0226ae8201d7bcb934834cef435740822b2df948c69e7",
+    "tests/test_local_model.py": "e772fe6180bad9f4f16ba2fbdf4a9b6c5d7815a44aa41998550638785ddb0ab5",
+    "tests/test_native_requirement_evaluation.py": "7ddd039a3f4d62ea36e574402464e313005eec3ae72628910c0d934fbc76fb90"
+  },
+  "model_gpu_calls": 0,
+  "prior_125_diagnostic_repeated": false
+}

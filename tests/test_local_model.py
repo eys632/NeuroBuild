@@ -2,9 +2,10 @@
 
 from contextlib import redirect_stderr, redirect_stdout
 from copy import deepcopy
+from email.message import Message
 from hashlib import sha256
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from io import StringIO
+from io import BytesIO, StringIO
 import json
 import os
 from pathlib import Path
@@ -13,7 +14,7 @@ from tempfile import TemporaryDirectory
 from threading import Thread
 import time
 import unittest
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 from uuid import uuid4
 
 from neurobuild.application.requirement_generation import GenerationContract
@@ -388,9 +389,11 @@ class LocalModelClientTests(unittest.TestCase):
             for profile in SamplingProfile:
                 invalid = ((protocol is StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA
                             and profile not in (SamplingProfile.LEGACY_GREEDY,
-                                                SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP))
+                                                SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP,
+                                                SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP))
                            or (protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA
-                               and profile is SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP))
+                               and profile in (SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP,
+                                               SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP)))
                 if invalid:
                     with self.subTest(protocol=protocol, profile=profile), self.assertRaises(DomainError) as caught:
                         LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
@@ -804,6 +807,131 @@ class LocalModelClientTests(unittest.TestCase):
             self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
             self.assertNotIn("DO_NOT_ECHO_SECRET", str(caught.exception))
         self.assertEqual(self.server.requests, [])
+
+
+class GemmaNativeProfileTests(unittest.TestCase):
+    """Fake opener only: no server, sockets, GPU or model calls."""
+    root = Path(__file__).resolve().parents[1]
+    sampling = {
+        "temperature": 1.0, "top_p": 0.95, "top_k": 64, "min_p": 0.0,
+        "presence_penalty": 0.0, "frequency_penalty": 0.0,
+        "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
+        "samplers": ["temperature", "top_k", "top_p", "min_p"],
+    }
+
+    def client(self, profile=SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP):
+        return LocalRequirementClient(
+            "http://127.0.0.1:8003", "synthetic-test-model", protocol="llama_cpp_json_schema",
+            sampling_profile=profile, generation_contract="2.0",
+            prompt_path=self.root / "prompts/requirement_generation_v2_v2.txt",
+            schema_path=self.root / "schemas/requirement_generation_v2_decision_branches.schema.json")
+
+    def fake_response(self, client, response=None, status=200):
+        value = envelope(json.dumps(QUOTE_FINAL, ensure_ascii=False)) if response is None else response
+        body = json.dumps(value, ensure_ascii=False).encode()
+        stream = BytesIO(body)
+        stream.status = status
+        stream.headers = Message()
+        stream.headers["Content-Type"] = "application/json"
+        stream.headers["Content-Length"] = str(len(body))
+        client._opener = Mock()
+        client._opener.open.return_value = stream
+        return client._opener.open
+
+    def test_gemma_wire_recipe_and_domain_extraction_are_explicit(self):
+        for profile in (SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP, "gemma4_nonthinking_llama_cpp"):
+            with self.subTest(profile=profile):
+                client = self.client(profile)
+                transport = self.fake_response(client)
+                result = client.extract(SOURCE, axis_convention="project_xy", requirement_id=uuid4(),
+                                        project_id=uuid4(), base_revision_id=uuid4())
+                transport.assert_called_once()
+                request = json.loads(transport.call_args.args[0].data)
+                self.assertEqual({key: request[key] for key in self.sampling}, self.sampling)
+                self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
+                self.assertEqual(request["response_format"]["json_schema"]["schema"], client.schema)
+                self.assertEqual(request["max_tokens"], 768)
+                self.assertFalse(client.enable_thinking)
+                self.assertEqual(result.operation.dx.metres, 1)
+                self.assertEqual(result.target_description, "회의실 책상")
+                for absent in ("guided_json", "structured_outputs", "repetition_penalty", "reasoning_parser"):
+                    self.assertNotIn(absent, request)
+
+    def test_gemma_profile_is_native_only_and_never_selected_by_model_name(self):
+        with patch("neurobuild.infrastructure.local_model.build_opener") as opener:
+            for protocol in ("legacy_guided_json", "structured_outputs"):
+                with self.subTest(protocol=protocol), self.assertRaises(DomainError):
+                    LocalRequirementClient("http://127.0.0.1:8003", "model", protocol=protocol,
+                                           sampling_profile="gemma4_nonthinking_llama_cpp")
+            for profile in ("GEMMA4_NONTHINKING_LLAMA_CPP", "gemma4_nonthinking_llama_cpp ", True):
+                with self.subTest(profile=profile), self.assertRaises(DomainError):
+                    self.client(profile)
+            opener.assert_not_called()
+        default = LocalRequirementClient("http://127.0.0.1:8003", "google/gemma-4-31B-it-qat-q4_0-gguf")
+        self.assertIs(default.sampling_profile, SamplingProfile.LEGACY_GREEDY)
+
+    def test_gemma_sampler_copy_cannot_change_next_request(self):
+        client = self.client()
+        copied = client.sampling_parameters
+        copied["samplers"].clear()
+        copied["temperature"] = 0
+        transport = self.fake_response(client)
+        client.complete(SOURCE)
+        request = json.loads(transport.call_args.args[0].data)
+        self.assertEqual({key: request[key] for key in self.sampling}, self.sampling)
+
+    def test_gemma_separate_reasoning_is_discarded_without_logging(self):
+        client = self.client()
+        response = envelope(json.dumps(QUOTE_FINAL))
+        response["choices"][0]["message"]["reasoning_content"] = "<|channel>thought DO_NOT_ECHO_SECRET"
+        self.fake_response(client, response)
+        out, err = StringIO(), StringIO()
+        with redirect_stdout(out), redirect_stderr(err):
+            completion = client.complete(SOURCE)
+        self.assertEqual(json.loads(completion.content), QUOTE_FINAL)
+        self.assertNotIn("DO_NOT_ECHO_SECRET", repr(completion))
+        self.assertEqual(out.getvalue() + err.getvalue(), "")
+
+    def test_inline_thought_or_channel_markers_are_rejected_without_retry(self):
+        for marker in ("<|channel>thought", "<|channel>final", "<channel|>", "<|think|>",
+                       "<|CHANNEL>thought", "<think>"):
+            with self.subTest(marker=marker):
+                client = self.client()
+                transport = self.fake_response(client, envelope(marker + "DO_NOT_ECHO_SECRET" + json.dumps(QUOTE_FINAL)))
+                with self.assertRaises(DomainError) as caught:
+                    client.complete(SOURCE)
+                self.assertEqual(caught.exception.code, "LOCAL_MODEL_REASONING_CONTENT")
+                self.assertNotIn("DO_NOT_ECHO_SECRET", str(caught.exception))
+                transport.assert_called_once()
+
+    def test_http_rejection_truncation_and_fenced_content_are_not_repaired(self):
+        truncated = envelope(json.dumps(QUOTE_FINAL))
+        truncated["choices"][0]["finish_reason"] = "length"
+        for response, status in (({"error": "DO_NOT_ECHO_SECRET"}, 400), (truncated, 200),
+                                 (envelope('```json\n' + json.dumps(QUOTE_FINAL) + '\n```'), 200)):
+            with self.subTest(status=status):
+                client = self.client()
+                transport = self.fake_response(client, response, status)
+                with self.assertRaises(DomainError):
+                    client.extract(SOURCE, requirement_id=uuid4(), project_id=uuid4(), base_revision_id=uuid4())
+                transport.assert_called_once()
+
+    def test_existing_qwen_native_wire_remains_byte_exact(self):
+        client = self.client(SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP)
+        transport = self.fake_response(client)
+        client.complete(SOURCE, axis_convention="project_xy")
+        old_sampling = dict(self.sampling, temperature=0.7, top_p=0.8, top_k=20)
+        expected = {
+            "model": "synthetic-test-model",
+            "messages": [
+                {"role": "system", "content": (self.root / "prompts/requirement_generation_v2_v2.txt").read_text()},
+                {"role": "user", "content": json.dumps({"source_text": SOURCE, "axis_convention": "project_xy"}, ensure_ascii=False)},
+            ],
+            **old_sampling, "max_tokens": 768, "stream": False,
+            "chat_template_kwargs": {"enable_thinking": False},
+            "response_format": {"type": "json_schema", "json_schema": {"schema": client.schema}},
+        }
+        self.assertEqual(transport.call_args.args[0].data, json.dumps(expected, ensure_ascii=False).encode())
 
 
 if __name__ == "__main__":

@@ -1,0 +1,59 @@
+{
+  "kind": "REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_32B_WEIGHT_CACHE",
+  "state": "COMPLETE",
+  "started_at_utc": "2026-09-20T08:23:06.709134+00:00",
+  "model_id": "Qwen/Qwen3-32B-AWQ",
+  "revision": "0499c3ac83fdef8810b907a23894ba91e95eddd8",
+  "manifest_sha256": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03",
+  "shutdown_report_sha256": "16fc05d924f0584eeb8d0b42a806ebfb830a7aace6dae668cec0a0a1958136c8",
+  "native_build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "own_process_inspection": {
+    "maps_and_descriptors_checked": 40,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3313268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3543803,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "free_before_bytes": 26614751232,
+  "removed_files": [
+    {
+      "name": "model-00001-of-00004.safetensors",
+      "bytes": 4966384688,
+      "sha256": "ab7988215e3b087c884e0c14ce1994a64aac31dc9a37a4bcf29f5b45f3506e2e"
+    },
+    {
+      "name": "model-00002-of-00004.safetensors",
+      "bytes": 4998723112,
+      "sha256": "46faff349f1dd18ffe76993edd3d9fd32941d042331dc590525409bbe3d37edf"
+    },
+    {
+      "name": "model-00003-of-00004.safetensors",
+      "bytes": 4949671152,
+      "sha256": "6e9f763d8c31ad19f1cd67b0b599a38edffd76a4465a22ff5f7fcac46d820e63"
+    },
+    {
+      "name": "model-00004-of-00004.safetensors",
+      "bytes": 4410702792,
+      "sha256": "87f180889fead12b00b1bdf4dca3a3a14e4510e1e200bf56e31898e120b993d8"
+    }
+  ],
+  "restore_command": ".conda/bin/python scripts/download_model.py runtime/models/qwen3-32b-awq.json",
+  "scope": "Four same-UID regular single-link cache shards only; all metadata, manifests and evaluation results retained",
+  "foreign_processes_or_files_changed": false,
+  "removed_bytes": 19325481744,
+  "free_after_bytes": 45939245056,
+  "finished_at_utc": "2026-09-20T08:24:01.609942+00:00"
+}

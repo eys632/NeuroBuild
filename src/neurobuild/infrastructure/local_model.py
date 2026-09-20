@@ -114,6 +114,7 @@ class SamplingProfile(StrEnum):
     QWEN3_NONTHINKING_AWQ = "qwen3_nonthinking_awq"
     QWEN3_THINKING_AWQ = "qwen3_thinking_awq"
     QWEN38_NONTHINKING_LLAMA_CPP = "qwen38_nonthinking_llama_cpp"
+    GEMMA4_NONTHINKING_LLAMA_CPP = "gemma4_nonthinking_llama_cpp"
 
 
 class LocalJSONCompletionClient:
@@ -138,12 +139,13 @@ class LocalJSONCompletionClient:
             self._sampling_profile = SamplingProfile(sampling_profile)
         except ValueError:
             _error("LOCAL_MODEL_CONFIG_INVALID")
-        if (self._sampling_profile is SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP
+        native_profiles = (SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP,
+                           SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP)
+        if (self._sampling_profile in native_profiles
                 and self._protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA):
             _error("LOCAL_MODEL_CONFIG_INVALID")
         if (self._protocol is StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA
-                and self._sampling_profile not in (SamplingProfile.LEGACY_GREEDY,
-                                                   SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP)):
+                and self._sampling_profile not in (SamplingProfile.LEGACY_GREEDY, *native_profiles)):
             _error("LOCAL_MODEL_CONFIG_INVALID")
         if not _clean_text(expected_schema_version, 64):
             _error("LOCAL_MODEL_CONFIG_INVALID")
@@ -223,6 +225,13 @@ class LocalJSONCompletionClient:
             # exact quote extraction; this is an explicit experimental recipe,
             # not the model card's presence-penalty recommendation.
             return {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
+                    "presence_penalty": 0.0, "frequency_penalty": 0.0,
+                    "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
+                    "samplers": ["temperature", "top_k", "top_p", "min_p"]}
+        if self.sampling_profile is SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP:
+            # Official Gemma4 recommendation: temperature/top_p/top_k. The
+            # disabled penalties, seed and sampler order are our explicit recipe.
+            return {"temperature": 1.0, "top_p": 0.95, "top_k": 64, "min_p": 0.0,
                     "presence_penalty": 0.0, "frequency_penalty": 0.0,
                     "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
                     "samplers": ["temperature", "top_k", "top_p", "min_p"]}
@@ -351,6 +360,9 @@ class LocalJSONCompletionClient:
             _error("LOCAL_MODEL_RESPONSE_INVALID")
         content = message["content"]
         if "<think" in content.lower() or "</think" in content.lower():
+            _error("LOCAL_MODEL_REASONING_CONTENT")
+        if (self.sampling_profile is SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP
+                and any(marker in content.lower() for marker in ("<|channel>", "<channel|>", "<|think|>"))):
             _error("LOCAL_MODEL_REASONING_CONTENT")
         usage = envelope.get("usage")
         safe_usage = {}
