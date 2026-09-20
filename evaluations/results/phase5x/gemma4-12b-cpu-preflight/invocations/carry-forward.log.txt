@@ -1,0 +1,1 @@
+{"status": "CARRIED_FORWARD_BY_EXACT_INPUT_EQUIVALENCE", "path": "var/research/native-gemma4-12b-contract/cpu-carry-forward.json", "sha256": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f"}

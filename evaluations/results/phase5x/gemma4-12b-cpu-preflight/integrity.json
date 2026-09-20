@@ -1,0 +1,101 @@
+{
+  "kind": "GEMMA12_CPU_CARRY_FORWARD_ARCHIVE_INTEGRITY",
+  "status": "HEADER_PASS_AND_HISTORICAL_CPU_CARRIED_FORWARD_RUNTIME_QUALITY_NOT_RUN",
+  "files": {
+    "header.json": {
+      "original_path": "var/reports/gemma4-12b-gguf-header.json",
+      "bytes": 218503,
+      "sha256": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0"
+    },
+    "tokenizer-comparison.json": {
+      "original_path": "var/reports/gemma4-12b-saved-tokenizer-comparison.json",
+      "bytes": 2790,
+      "sha256": "a6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481"
+    },
+    "definitions/inspect_gemma4_12b_gguf.py": {
+      "original_path": "var/research/inspect_gemma4_12b_gguf.py",
+      "bytes": 29389,
+      "sha256": "5b2bb2b55578841cf31071a1bde46920962d55a0145664f4d6051c291fab338b"
+    },
+    "definitions/compare_gemma4_12b_tokenizer_headers.py": {
+      "original_path": "var/research/compare_gemma4_12b_tokenizer_headers.py",
+      "bytes": 6742,
+      "sha256": "e40b90bc4c5c67c3bd3218f1ef3abc690bcc2e883234a6fdb2144fba063df2c3"
+    },
+    "controls/test_inspect_gemma4_12b_gguf.py": {
+      "original_path": "var/research/test_inspect_gemma4_12b_gguf.py",
+      "bytes": 8420,
+      "sha256": "94d89604c087a1aa3cb196e4c853f29f26a9034567869786b0f2a7109655cd83"
+    },
+    "controls/header-preparation-proof.json": {
+      "original_path": "var/research/gemma12-header-preparation-cpu-proof.json",
+      "bytes": 2081,
+      "sha256": "b289bf2f70e6cc566ed5bfaf60d62b5750e9b8d896e6b46959b88d772d51a9a5"
+    },
+    "controls/header-boundaries.log.txt": {
+      "original_path": "var/research/gemma12-header-new-boundaries.log.txt",
+      "bytes": 1434,
+      "sha256": "b443878127097b5740f1f90fe2db851b0c2c19eef4d150e7361486cd1726db7e"
+    },
+    "invocations/header.log.txt": {
+      "original_path": "var/research/gemma12-header-cli.log",
+      "bytes": 207,
+      "sha256": "9f4959152f343eae97ee119637101c2a77f256287ccae0d46a5947e3275f592b"
+    },
+    "invocations/header.stderr.txt": {
+      "original_path": "var/research/gemma12-header-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "invocations/comparison.log.txt": {
+      "original_path": "var/research/gemma12-tokenizer-comparison-cli.log",
+      "bytes": 231,
+      "sha256": "d3452ba495c21779a5b8981db7ec4289d08afc7cdca21d15b329fcd1f664d995"
+    },
+    "invocations/comparison.stderr.txt": {
+      "original_path": "var/research/gemma12-tokenizer-comparison-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "contract/cpu-carry-forward.json": {
+      "original_path": "var/research/native-gemma4-12b-contract/cpu-carry-forward.json",
+      "bytes": 8744,
+      "sha256": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f"
+    },
+    "definitions/produce_gemma12_cpu_carry_forward.py": {
+      "original_path": "var/research/produce_gemma12_cpu_carry_forward.py",
+      "bytes": 17628,
+      "sha256": "4653f4e09a6d52bb9d04a6d3d2579bdd6d3d12c1588289d0465e7717ad227281"
+    },
+    "controls/test_gemma12_cpu_carry_forward.py": {
+      "original_path": "var/research/test_gemma12_cpu_carry_forward.py",
+      "bytes": 2714,
+      "sha256": "ab43782366a695233f8de05c7bc01405f2a0ce8716337e4a746532d9af0dee5b"
+    },
+    "controls/carry-forward.log.txt": {
+      "original_path": "var/research/gemma12-cpu-carry-forward-controls.log",
+      "bytes": 748,
+      "sha256": "9d284400c60aa0640f1d1c9ee556229d44fffce9faa6dc93e6abc95582ae0032"
+    },
+    "controls/carry-forward.json": {
+      "original_path": "var/research/gemma12-cpu-carry-forward-controls.json",
+      "bytes": 1190,
+      "sha256": "f88a0683dd138479051cf9d3f5bc7b2c85503641ce7c53f79237c409ebace6fb"
+    },
+    "invocations/carry-forward.log.txt": {
+      "original_path": "var/research/gemma12-cpu-carry-forward-cli.log",
+      "bytes": 209,
+      "sha256": "eacf7a57da26f26bc886e460757e6016909e82d58be54595a010ab2df3288a10"
+    },
+    "invocations/carry-forward.stderr.txt": {
+      "original_path": "var/research/gemma12-cpu-carry-forward-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "README.md": {
+      "original_path": null,
+      "bytes": 1134,
+      "sha256": "5b402e5a884bed61810527da39752bb51c240c0f56c1efc6af32a0775386045d"
+    }
+  }
+}

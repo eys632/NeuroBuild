@@ -1,0 +1,62 @@
+{
+  "kind": "GEMMA12_GEMMA31_SAVED_TOKENIZER_METADATA_COMPARISON",
+  "status": "PASS_EXACT_TYPED_TOKENIZER_METADATA_EXCEPT_DECLARED_SUPPRESSION",
+  "old_model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+  "new_model_id": "google/gemma-4-12B-it-qat-q4_0-gguf",
+  "same_runtime_source_revision": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "same_original_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+  "same_official_tokenizer_sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+  "old_tokenizer_metadata_key_count": 13,
+  "new_tokenizer_metadata_key_count": 14,
+  "exact_shared_tokenizer_metadata_keys": [
+    "tokenizer.chat_template",
+    "tokenizer.ggml.add_bos_token",
+    "tokenizer.ggml.add_space_prefix",
+    "tokenizer.ggml.bos_token_id",
+    "tokenizer.ggml.eos_token_id",
+    "tokenizer.ggml.mask_token_id",
+    "tokenizer.ggml.merges",
+    "tokenizer.ggml.model",
+    "tokenizer.ggml.padding_token_id",
+    "tokenizer.ggml.scores",
+    "tokenizer.ggml.token_type",
+    "tokenizer.ggml.tokens",
+    "tokenizer.ggml.unknown_token_id"
+  ],
+  "shared_typed_metadata_sha256": "ff4703bc3cf3f022ae00adf1d83b4e725ad7afdab26021a4587ac239f29f656b",
+  "allowed_added_metadata": {
+    "tokenizer.ggml.suppress_tokens": {
+      "type": 9,
+      "element_type": 5,
+      "count": 2,
+      "elements_wire_sha256": "88d929b6f984eeb3d4d540fc83fa559fb7401272d0bf5e8bf6b5e959b9c134a3",
+      "wire_bytes": 20
+    }
+  },
+  "sampling_difference": {
+    "model_suppress_tokens": [
+      258883,
+      258882
+    ],
+    "wire_type": "INT32",
+    "native_effect": "Negative-infinity logit bias before the sampling recipe",
+    "complete_effective_sampling_equivalent": false
+  },
+  "new_native_public_or_vocab_or_context_executions": 0,
+  "model_inference_calls": 0,
+  "gpu_calls": 0,
+  "http_calls": 0,
+  "scope": "Saved full-audit header metadata comparison; no model payload access.",
+  "carry_forward_status": "INPUT_METADATA_PREREQUISITE_ONLY; source/request/proof closure is separate",
+  "limitations": [
+    "No new candidate quality, runtime, VRAM or sampling-equivalence PASS.",
+    "Prior public20/context200 observations remain historical and their Unicode limitations remain."
+  ],
+  "created_utc": "2026-09-20T15:32:13.810057+00:00",
+  "old_header_report": "var/reports/gemma4-gguf-header-v2.json",
+  "old_header_sha256": "d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756",
+  "new_header_report": "var/reports/gemma4-12b-gguf-header.json",
+  "new_header_sha256": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0",
+  "auditor_sha256": "5b2bb2b55578841cf31071a1bde46920962d55a0145664f4d6051c291fab338b",
+  "helper_sha256": "e40b90bc4c5c67c3bd3218f1ef3abc690bcc2e883234a6fdb2144fba063df2c3"
+}

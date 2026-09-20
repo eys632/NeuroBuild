@@ -1,0 +1,49 @@
+{
+  "kind": "GEMMA12_HEADER_AUDITOR_PREPARATION_CPU_CONTROL_PROOF",
+  "status": "PASS_NEW_SYNTHETIC_BOUNDARIES_ONLY",
+  "command": ".conda/bin/python var/research/test_inspect_gemma4_12b_gguf.py -v",
+  "tests_run": 8,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 0.183,
+  "raw_log_path": "var/research/gemma12-header-new-boundaries.log.txt",
+  "sha256": {
+    "var/research/inspect_gemma4_12b_gguf.py": "5b2bb2b55578841cf31071a1bde46920962d55a0145664f4d6051c291fab338b",
+    "var/research/compare_gemma4_12b_tokenizer_headers.py": "e40b90bc4c5c67c3bd3218f1ef3abc690bcc2e883234a6fdb2144fba063df2c3",
+    "var/research/test_inspect_gemma4_12b_gguf.py": "94d89604c087a1aa3cb196e4c853f29f26a9034567869786b0f2a7109655cd83",
+    "var/research/gemma12-header-new-boundaries.log.txt": "b443878127097b5740f1f90fe2db851b0c2c19eef4d150e7361486cd1726db7e"
+  },
+  "base_auditor_path": "var/research/inspect_gemma4_gguf_v2.py",
+  "base_auditor_sha256": "eec3e66ef68e6d09a1c8f9c85247d149ffe4b66d57383ca29468d9af2c384ef5",
+  "unchanged_generic_ast": {
+    "AuditError": true,
+    "require": true,
+    "safe_open": true,
+    "read_bound": true,
+    "stat_key": true,
+    "Reader": true,
+    "parse_header": true,
+    "finish_hash": true,
+    "strings_wire_sha": true,
+    "tokenizer_bindings": true
+  },
+  "candidate_header_status": "NOT_RUN",
+  "candidate_gguf_accesses": 0,
+  "native_executions": 0,
+  "gpu_calls": 0,
+  "http_calls": 0,
+  "model_inference_calls": 0,
+  "prior_public_vocab_context_suite_executions": 0,
+  "predeclared_quant_policy": {
+    "token_embd.weight": "Q6_K",
+    "other_matrices": "Q4_0",
+    "vectors_and_rope": "F32",
+    "observed_actual_candidate_types": false,
+    "mismatch_action": "FAIL_WITHOUT_POLICY_WIDENING"
+  },
+  "source_index": "NOT_PUBLISHED_SINGLE_SAFETENSORS; config and pinned converter/loader expected roles only",
+  "limitations": [
+    "Synthetic controls do not establish actual header/full-file identity or carry-forward eligibility.",
+    "Unpublished official per-tensor quantization recipe may differ; no actual header observed."
+  ]
+}

@@ -482,3 +482,12 @@ Actualheader+CPU연결을 마친 뒤 freshGPU3 free/util+margin으로 admission�
 GLM종료cache한파일만 검증후회수했고 평가/manifest는유지했다. 다른사용자/GPU/시스템변경없다.
 1차120×1+warmup5는이후별도동결이며 현재품질호출0. FAIL후동일후보반복/V2/unused80금지와기존gate유지.
 12B도실패하면다음GPU실험의새가설/비용을먼저등록하고후보비교를계속한다.
+
+D046 실제 CPU 후속: header97a9bd3c… PASS, 저장 tokenizer 비교a6d70d93… PASS다.
+추가 suppression2개와 모든 기존13키 typed 동등성을 확인했다. 승계cb2370d7…는
+과거31B public30/vocab20/context200을 그대로 연결하며 새 native corpus 실행은0회다.
+최종 freeze의 dataset SHA 연결 의무와 U+2581 한계는 유지한다.
+새 합성 header8개와 metadata5개만 검사했고 변경 없는418회귀는 반복하지 않았다.
+현재 검증된 batch64 공통 정책을 유지해 운영 admission 예산은28,672MiB로 둔다.
+조건부 모델 추정18,432MiB와 추가10,240MiB 여유를 구분한다. 예산 하향 조정은
+현재 admission을 막지 않는 한 future optimization이며 새로운 Phase gate를 만들지 않는다.

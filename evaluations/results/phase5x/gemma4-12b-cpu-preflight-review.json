@@ -1,0 +1,113 @@
+{
+  "kind": "GEMMA12_CPU_PREFLIGHT_ARCHIVE_INDEPENDENT_READ_REVIEW",
+  "status": "PASS_NO_MATERIAL_FINDINGS",
+  "created_at_utc": "2026-09-20T15:44:38.259070+00:00",
+  "archive_path": "evaluations/results/phase5x/gemma4-12b-cpu-preflight",
+  "archive_integrity_sha256": "f33fa11f659eb0238ae3af330aab8f847bb2f060e4e09411dfb90446bb649d56",
+  "archive_entry_count": 19,
+  "original_exact_copy_count": 18,
+  "unexpected_missing_files": 0,
+  "carry_sha256": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f",
+  "reference_closure_count": 12,
+  "references": {
+    "old_header": {
+      "path": "evaluations/results/phase5x/gemma4-cpu-preflight/header-v2.json",
+      "sha256": "d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756"
+    },
+    "new_header": {
+      "path": "var/reports/gemma4-12b-gguf-header.json",
+      "sha256": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0"
+    },
+    "tokenizer_comparison": {
+      "path": "var/reports/gemma4-12b-saved-tokenizer-comparison.json",
+      "sha256": "a6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481"
+    },
+    "source_equivalence": {
+      "path": "var/research/gemma12-gemma-branch-source-equivalence.json",
+      "sha256": "c21cbd6102933e1511f51625a88471b85caf8d9192dd3fe01fcd4ac644a37f20"
+    },
+    "historical_aggregate": {
+      "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/final-cpu-proof.json",
+      "sha256": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d"
+    },
+    "public_contract": {
+      "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-proof.json",
+      "sha256": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334"
+    },
+    "vocab": {
+      "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-vocab-v2-proof.json",
+      "sha256": "70886f2ad74ef3758fe839f13b4b6740e22cb749f8f0989a98ea376382cc09c6"
+    },
+    "vocab_context": {
+      "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/vocab-context-v2-proof.json",
+      "sha256": "06ef550b4ea48b3c3c65d631dafca06c85bd3d350311888b9bc5c86630caf64a"
+    },
+    "tokenizer_fixture": {
+      "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/tokenizer-fixture.json",
+      "sha256": "42b2a10fdc4ebc066acb878a5a9e0c9e407affe0b91bc7d32145d8d360dc13e5"
+    },
+    "normalization_witness": {
+      "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/normalization-witness-proof.json",
+      "sha256": "bbb9ed28cdae06bb07a3f66949c2e23e59728324f74440be82b567f0a8662e73"
+    },
+    "historical_cpu_build": {
+      "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/build-v2.json",
+      "sha256": "1b6dce0e85790b267ec2514da8c81158c76b9d01a27aa6c2e584787a160e67ee"
+    },
+    "historical_cpp": {
+      "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/validator_v2.cpp",
+      "sha256": "fecf647d431a3af0137f5e9459ddd8afece4e571d4a6a240dc2f4929acf9f20d"
+    }
+  },
+  "observations": {
+    "new_actual_header_status": "PASS",
+    "new_actual_tensor_count": 667,
+    "new_actual_dtype_counts": {
+      "f32": 338,
+      "q6_K": 1,
+      "q4_0": 328
+    },
+    "saved_shared_typed_tokenizer_keys_equal": 13,
+    "only_added_tokenizer_metadata": "INT32 suppress_tokens[258883,258882]",
+    "carry_label": "CARRIED_FORWARD_BY_EXACT_INPUT_EQUIVALENCE",
+    "historical_measurement_model": "google/gemma-4-31B-it-qat-q4_0-gguf",
+    "historical_public_schema_counts": [
+      10,
+      20
+    ],
+    "historical_tokenizer_parity_count": 20,
+    "historical_context_counts": [
+      120,
+      80
+    ],
+    "new_native_public_vocab_context_calls": 0,
+    "whole_effective_sampling_equivalent": false,
+    "literal_U2581_failure_retained": true,
+    "source_equivalence_archive_link_verified": true,
+    "current_five_sources_match_carry_pins": true,
+    "future_dataset_hash_binding_remains_required": true,
+    "new_runtime_quality_status": "NOT_RUN",
+    "saved_new_control_counts": [
+      8,
+      5
+    ],
+    "invocation_stderr_bytes": [
+      0,
+      0,
+      0
+    ]
+  },
+  "limitations": [
+    "This read-review verifies saved receipt/reference closure; it does not re-read weights, execute old proof functions, or establish new runtime or model quality.",
+    "Counts remain historical31B; source and typed metadata equivalence support carry-forward, not a claim of newly executed12B public/vocab/context tests."
+  ],
+  "material_findings": [],
+  "review_execution_bounds": {
+    "tests_or_helpers_main": 0,
+    "native_GPU_HTTP_or_model_calls": 0,
+    "weight_payload_reads": 0,
+    "dataset_body_reads": 0,
+    "old_evaluations_or_replays": 0,
+    "tracked_edits": 0
+  }
+}

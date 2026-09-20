@@ -1,0 +1,28 @@
+{
+  "kind": "GEMMA12_NEW_SAVED_METADATA_CONTROLS",
+  "status": "PASS",
+  "started_at_utc": "2026-09-20T15:41:23.151404+00:00",
+  "elapsed_wall_seconds": 0.14029493369162083,
+  "test_path": "var/research/test_gemma12_cpu_carry_forward.py",
+  "test_sha256": "ab43782366a695233f8de05c7bc01405f2a0ce8716337e4a746532d9af0dee5b",
+  "producer_path": "var/research/produce_gemma12_cpu_carry_forward.py",
+  "producer_sha256": "4653f4e09a6d52bb9d04a6d3d2579bdd6d3d12c1588289d0465e7717ad227281",
+  "log_path": "var/research/gemma12-cpu-carry-forward-controls.log",
+  "log_sha256": "9d284400c60aa0640f1d1c9ee556229d44fffce9faa6dc93e6abc95582ae0032",
+  "exit_code": 0,
+  "new_control_count": 5,
+  "controls": [
+    "pinned saved metadata baseline",
+    "new header/comparison hash linkage",
+    "hidden typed tokenizer change",
+    "false complete sampling equivalence",
+    "historical count tamper in both linked receipts"
+  ],
+  "run_count": 1,
+  "producer_main_calls": 0,
+  "producer_produce_calls": 0,
+  "producer_output_exists": false,
+  "old_public_vocab_context_or_evaluation_replays": 0,
+  "dataset_weight_native_GPU_HTTP_or_network_calls": 0,
+  "source_or_original_receipts_modified": false
+}

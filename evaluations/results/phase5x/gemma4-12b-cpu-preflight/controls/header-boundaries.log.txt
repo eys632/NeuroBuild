@@ -1,0 +1,13 @@
+test_config48_geometry_strict_and_source_inventory_not_claimed (__main__.NewGemma12Boundaries.test_config48_geometry_strict_and_source_inventory_not_claimed) ... ok
+test_new_role_policy_rejects_embedding_or_matrix_vector_changes (__main__.NewGemma12Boundaries.test_new_role_policy_rejects_embedding_or_matrix_vector_changes) ... ok
+test_saved_metadata_exact_except_suppression_not_full_sampling_equivalence (__main__.NewGemma12Boundaries.test_saved_metadata_exact_except_suppression_not_full_sampling_equivalence) ... ok
+test_saved_metadata_rejects_any_tokenizer_value_type_hash_or_presence_delta (__main__.NewGemma12Boundaries.test_saved_metadata_rejects_any_tokenizer_value_type_hash_or_presence_delta) ... ok
+test_saved_metadata_requires_real_full_audit_identity_and_exact_suppression_hash (__main__.NewGemma12Boundaries.test_saved_metadata_requires_real_full_audit_identity_and_exact_suppression_hash) ... ok
+test_softcap30_and_kv48_wire_types_required (__main__.NewGemma12Boundaries.test_softcap30_and_kv48_wire_types_required) ... ok
+test_suppression_signed_array_exact_and_valid_ids (__main__.NewGemma12Boundaries.test_suppression_signed_array_exact_and_valid_ids) ... ok
+test_suppression_source_and_header_eog_collisions_rejected (__main__.NewGemma12Boundaries.test_suppression_source_and_header_eog_collisions_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.183s
+
+OK

@@ -1264,3 +1264,23 @@ Large tokenizer/weight/env/binary는Git제외. Header감사와증거승계를진
 
 준비자료 독립 검토 PASS/material0: 43항목/42원본·명시제외·download/cleanup시점·418회귀·resource산술일치.
 Receipt30c06089950f82cbd198e4dfdfe10ae05856195c2a643c0888226a88daf56875, 기존검사/평가재실행0.
+### 2026-09-21 KST — Gemma12 실제 header와 CPU 입력 동등성 승계
+
+준비 checkpoint00c5a2fb593fff30fe5239781200a9b135fa94ab의 원격v2 일치와 clean 상태를 확인했다.
+재개 확인에서 own 모델 서버 없음, physicalGPU3 free36373/used3965/util0이었다.
+다른 사용자 process 열람·변경·종료는 없었다.
+
+새 `inspect_gemma4_12b_gguf.py` actual audit 한 번 exit0,
+header97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0.
+FullSHA/667 tensors/48층/typed tokenizer 및 suppression2 검증 PASS.
+`compare_gemma4_12b_tokenizer_headers.py` 저장 proof 비교 한 번 exit0,
+SHAa6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481.
+새 auditor 합성8개 PASS0.183초, generic10 AST unchanged 증거 보존.
+
+`produce_gemma12_cpu_carry_forward.py --write`를 빈 CUDA visibility에서 한 번 실행했다.
+Producer4653f4e09a6d52bb9d04a6d3d2579bdd6d3d12c1588289d0465e7717ad227281,
+receiptcb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f.
+기존31B identity/count/한계와 새12B header/source 동등성만 연결했으며 native public/vocab/context0회다.
+새 savedmetadata 합성 경계5개 PASS0.062초, receiptf88a0683dd138479051cf9d3f5bc7b2c85503641ce7c53f79237c409ebace6fb.
+Archive19entry/18exactcopies/302164B, integrityf33fa11f659eb0238ae3af330aab8f847bb2f060e4e09411dfb90446bb649d56.
+기존125 평가·재생/완료 runtime 검사/변경 없는418회귀 재실행0, 새GPU·모델·품질 호출0이다.

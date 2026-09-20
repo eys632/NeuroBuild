@@ -8,7 +8,7 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
 | GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 진단동결 `c466013439e6d202e627ed48c7a4ed1e45cf82c0` push·원격 일치 확인; EXAONE 실패·종료 `daeccacee7bb1912e03c8be696572b80b12c9f4c` push·원격 일치 확인 |
-| 현재 작업 | **Gemma4-12B QAT의 actual header 감사와 기존 CPU 증거 승계 조건 확인** |
+| 현재 작업 | **Gemma4-12B QAT의 header·CPU 승계 완료, 첫 runtime과 단회 평가 정의 준비** |
 | 최근 후보 | GLM4.7-Flash 첫 의미·안전 gate FAIL. EXAONE4.5 첫 의미 gate FAIL, Gemma4 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
@@ -19,7 +19,7 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
 | 모델 실행 | **NeuroBuild 모델 서버 STOPPED**. GLM epoch2 child exit0/reaped, GPU3 free36373/used3965/util0으로 반환 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | Gemma12 actual header/tokenizer metadata/suppression2 검증. 아직 GPU/runtime/품질 호출0 |
+| 다음 검증 | 새12B의 첫 GPU runtime. 아직 GPU/runtime/품질 호출0 |
 
 ## 다음 후보 준비 — Gemma4-12B QAT
 
@@ -30,13 +30,21 @@ size/fullSHA 검증과 disk watcher 아래 완료했다. Receipt eebba0743c8304a
 디스크 reserve 확보를 위해 종료·미사용·소유·전체SHA를 확인한 GLM cache한파일18,244,193,920B만 회수했고
 평가/metadata/복원 manifest는 보존했다. 다운로드 중 최소 free36,766,171,136B로 floor22,011,707,392B를 유지했다.
 
-공식 tokenizer/template는31B와 byte-identical이나 새 GGUF 실제 header는 아직 미검증이다.
-48층/hidden3840 구조와 새로운 suppressed token2개를 후보별로 감사한다.
+새 GGUF의 전체 SHA,48층/hidden3840 및667개 tensor 구조 감사가 PASS했다.
+13개 기존 tokenizer metadata는31B와 typed value/wire hash가 같고 suppression258883/258882만 추가됐다.
+Header SHA97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0,
+비교 SHAa6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481.
 동일 함수 입력을 입증하는 범위에서 기존 public/vocab/context 증거를 승계하며 재실행하지 않는다.
-예상 whole peak18,432MiB는 조건부 계획이며 실측이나 하드 상한이 아니다. 기동 직전 GPU3 예산 검사가 별도로 필요하다.
+승계 receipt cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f를 한 번 발행했다.
+과거31B의 public30/vocab20/context200과 새 실행0회를 구분한다. 새 metadata 거절 경계5개 PASS다.
+Suppression 차이 때문에 전체 sampling 동작이 같다고 주장하지 않는다.
+조건부 모델 예상 peak18,432MiB와 실제 admission에 쓸 보수적 예산28,672MiB를 구분한다.
+기존 검증된 runtime 정책을 유지하며 추가10,240MiB 여유를 둔다. 이 값은 실측이나 하드 상한이 아니다.
+기동 직전 GPU3 free/utilization과 별도 safety margin으로 실행 가능성을 확인한다.
 Evaluator의 공식12B/Q4_0 exact pair 허용 추가와 새test2개 뒤 **418회귀 PASS**를 확인했다.
 GPU 모델 서버·새 품질 호출은0, Phase5.x 미완료·미채택·Phase6 미시작이다.
-[후보 계획](gemma4_12b_candidate.md), [준비 보고서](reports/phase5x_gemma4_12b_preparation_report.md).
+[후보 계획](gemma4_12b_candidate.md), [준비 보고서](reports/phase5x_gemma4_12b_preparation_report.md),
+[실제 header·CPU 승계 보고서](reports/phase5x_gemma4_12b_cpu_report.md).
 
 ## GLM 첫 단회 결과와 종료
 

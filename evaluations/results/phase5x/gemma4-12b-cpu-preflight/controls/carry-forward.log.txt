@@ -1,0 +1,10 @@
+test_01_pinned_saved_metadata_baseline (__main__.SavedMetadataControls.test_01_pinned_saved_metadata_baseline) ... ok
+test_02_new_header_comparison_link_tamper (__main__.SavedMetadataControls.test_02_new_header_comparison_link_tamper) ... ok
+test_03_hidden_typed_tokenizer_difference (__main__.SavedMetadataControls.test_03_hidden_typed_tokenizer_difference) ... ok
+test_04_false_complete_sampling_equivalence (__main__.SavedMetadataControls.test_04_false_complete_sampling_equivalence) ... ok
+test_05_historical_counts_tampered_in_both_linked_records (__main__.SavedMetadataControls.test_05_historical_counts_tampered_in_both_linked_records) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.062s
+
+OK
