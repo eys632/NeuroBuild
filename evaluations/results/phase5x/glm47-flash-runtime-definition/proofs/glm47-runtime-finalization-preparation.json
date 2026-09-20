@@ -1,0 +1,24 @@
+{
+  "kind": "GLM47_RUNTIME_FINALIZATION_PREPARATION_RECEIPT",
+  "status": "PREPARED_FOR_ROOT_FINAL_DIFF_REVIEW",
+  "before_final_sha256": {
+    "var/research/glm47_flash_runtime_probe_v2.py": "70855edf63454dd99a91117cbe5bf774a423a9091505d941813dd56eecf618d7",
+    "var/research/run_native_glm47_epoch1_probe_v2.py": "4c5f2670d511004a26b2aec5ef30e72c30ab52349cc4654353e9d3e1d7615b63",
+    "var/research/test_glm47_runtime_probe_v2.py": "e1c9ca981ab4d7e6e6c2ad9a6b3cff2a6b36a656b601eaa7e79ab64e62ebac1f"
+  },
+  "preserved_directory": "var/research/glm47-runtime-before-final-review",
+  "changed_after_six_controls": "Fixed root-reviewed aggregate readiness gate and startup internal warmup scope; one readiness test updated to remove fixed aggregate pin explicitly",
+  "original_preparation_sha256": {
+    "var/research/glm47_flash_runtime_probe.py": "1a744590b130c4a728b9d9398ce397cf6da0003042e41c4c5981ce9f1ddc8ca6",
+    "var/research/glm47-flash-native-launch-epoch1.template.json": "0f03e9203f30a7e881d2ae262fbc59356ee693803d72436d82914f165202993b",
+    "var/research/run_native_glm47_epoch1_probe.py": "93f43877a6d0f95bbddc79959b29da3a7e204c8173eb80d810e68f264b3f857c"
+  },
+  "final_sha256": {
+    "var/research/glm47_flash_runtime_probe_v2.py": "4399c90d32e0e472455bae5e907c8a479fdac550fed46978d8001c6d894d69ea",
+    "var/research/run_native_glm47_epoch1_probe_v2.py": "065f41afb9b5d55297f4e5114fba3642eeb3adaab18fcf21e6e0c5f42aeaba37",
+    "var/research/test_glm47_runtime_probe_v2.py": "f8b595869bd3f4b0cf4794357ed7f4ef05f03448aed571940b397bc8c6fa20a9"
+  },
+  "cpu_aggregate_sha256": "54ab0062c5d22112ed3349e0021391a4dd17f6d5f8698ac8a02cc096b08a1847",
+  "model_gpu_native_http_calls_by_this_agent": 0,
+  "production_edits": 0
+}

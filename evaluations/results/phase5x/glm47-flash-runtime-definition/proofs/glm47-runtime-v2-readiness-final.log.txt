@@ -1,0 +1,6 @@
+test_live_entrypoint_stays_blocked_before_epoch_and_http (__main__.GlmReceiptControls.test_live_entrypoint_stays_blocked_before_epoch_and_http) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+OK

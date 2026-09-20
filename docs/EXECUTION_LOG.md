@@ -1145,3 +1145,23 @@ actual context PASS66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb
 전체 system/user·공식 template·raw roundtrip·sampling·fixed grammar가 일치했다.
 공개20개 재실행0, scoring0, 미사용80개 접근0, 모델 context/tensor/backend/GPU/inference0이다.
 Production 변경 없어416 regression을 반복하지 않았다. 실제 runtime 연결은 다음 검토 범위다.
+
+
+### 2026-09-20 — GLM CPU 원격 보존과 최초 GPU3 실행
+
+CPU checkpoint0ffb1e24c86aeb016cb585b2b9abd66d6cabe910 push·원격일치, index23files 및
+archive19hash/17exactcopy 확인. 저장된 proof5+source5만 연결한 aggregate54ab0062c5d22112ed3349e0021391a4dd17f6d5f8698ac8a02cc096b08a1847 PASS.
+Runtime 변경 CPU controls6/0.028s 및 최종 readiness1/0.001s PASS receipt0690eee68f5479927fb174243b4073cf26af433f8449a3ce9be124cbab15ac22.
+실제 native public/vocab/context·기존 평가·416regression은 재실행하지 않았다.
+
+`CUDA_VISIBLE_DEVICES=3 .conda/bin/python scripts/llama_server.py --config var/research/glm47-flash-native-launch-epoch1.json`
+첫기동. Config4824463fcabca13c2eaa07a9774c324b7980a2383915868f4f493b149dc245c4,
+기동전5표본free36373/used3965/util0, margin7275/modelbudget29098/wholeestimate28672로 허용했다.
+Own guard3646979/start479057809, child3647152/start479062142, identity7ef9e56d1e794ff44531a7565aaae215f2cdaabe42c8b7d14c457706ebff5833.
+Controller run_native_glm47_epoch1_probe_v2.py의 startup/public/resource 각1회 PASS.
+Startup2a19dde7fd90416638137a370cf68ed0b08ce66d7be277c32a4bbba27b10aaa0,
+public0b68dc9e0fad949f0bfac740354bb5ec89b7405f5634ccc1224392f5ad035b26/5.146885855s,
+resourcea4a4ce4a0e5615704cc4fdf9ff391d1ad4ca90dbfacc8dd5e1d0a55b1d35b68b/17.257125599s.
+3328uncached+768/cached4095/limit, epochaggregatepeak17960/minfree18414/floor7275를 유지했다.
+Startup HTTP생성0과 내부 native기본warmup을 구분해 기록했다. 품질호출0/미사용80접근0.
+Guard는 현재 같은 epoch로 감시 중이며 첫120×1+warmup5 동결·push를 준비한다.

@@ -1,0 +1,52 @@
+{
+  "kind": "GLM47_RUNTIME_CHANGED_RECEIPT_CPU_CONTROLS",
+  "status": "PASS",
+  "unique_test_methods": 6,
+  "executions": [
+    {
+      "command": "CUDA_VISIBLE_DEVICES='' PYTHONPATH=src .conda/bin/python var/research/test_glm47_runtime_probe_v2.py",
+      "tests": 6,
+      "seconds": 0.028,
+      "exit_code": 0,
+      "helper_sha256": "70855edf63454dd99a91117cbe5bf774a423a9091505d941813dd56eecf618d7",
+      "test_source_path": "var/research/glm47-runtime-before-final-review/test_glm47_runtime_probe_v2.py",
+      "test_source_sha256": "e1c9ca981ab4d7e6e6c2ad9a6b3cff2a6b36a656b601eaa7e79ab64e62ebac1f",
+      "log_path": "var/research/glm47-runtime-v2-focused.log",
+      "log_sha256": "872e9fa84994434ee7d67ad36ec51f2e17ae8bed60f72862475e12cd83741bb6"
+    },
+    {
+      "command": "CUDA_VISIBLE_DEVICES='' PYTHONPATH=src .conda/bin/python var/research/test_glm47_runtime_probe_v2.py GlmReceiptControls.test_live_entrypoint_stays_blocked_before_epoch_and_http",
+      "tests": 1,
+      "seconds": 0.001,
+      "exit_code": 0,
+      "helper_sha256": "4399c90d32e0e472455bae5e907c8a479fdac550fed46978d8001c6d894d69ea",
+      "test_source_sha256": "f8b595869bd3f4b0cf4794357ed7f4ef05f03448aed571940b397bc8c6fa20a9",
+      "log_path": "var/research/glm47-runtime-v2-readiness-final.log",
+      "log_sha256": "186a3ca7977ac4e6eb369ef818cba5e94f4189f6700cd2e98317949995a71178"
+    }
+  ],
+  "final_function_changes_after_first_execution": [
+    "require_ready",
+    "capture_startup"
+  ],
+  "unchanged_tested_cpu_provenance_ast": true,
+  "finalization_scope": "Exact root-reviewed aggregate pin replaces unconditional readiness block; added native startup warmup scope metadata only; final missing-pin readiness boundary checked once",
+  "final_source_sha256": {
+    "var/research/glm47_flash_runtime_probe_v2.py": "4399c90d32e0e472455bae5e907c8a479fdac550fed46978d8001c6d894d69ea",
+    "var/research/run_native_glm47_epoch1_probe_v2.py": "065f41afb9b5d55297f4e5114fba3642eeb3adaab18fcf21e6e0c5f42aeaba37",
+    "var/research/glm47-flash-native-launch-epoch1.json": "4824463fcabca13c2eaa07a9774c324b7980a2383915868f4f493b149dc245c4",
+    "var/research/native-glm47-contract/aggregate_cpu_proof.py": "75d34c32914d4b19dd0eb24003386c1abbdff4d27634d21ad12502a14a5b3556"
+  },
+  "original_preparation_files_unchanged": {
+    "var/research/glm47_flash_runtime_probe.py": "1a744590b130c4a728b9d9398ce397cf6da0003042e41c4c5981ce9f1ddc8ca6",
+    "var/research/glm47-flash-native-launch-epoch1.template.json": "0f03e9203f30a7e881d2ae262fbc59356ee693803d72436d82914f165202993b",
+    "var/research/run_native_glm47_epoch1_probe.py": "93f43877a6d0f95bbddc79959b29da3a7e204c8173eb80d810e68f264b3f857c"
+  },
+  "cpu_aggregate_sha256": "54ab0062c5d22112ed3349e0021391a4dd17f6d5f8698ac8a02cc096b08a1847",
+  "model_calls": 0,
+  "native_calls": 0,
+  "gpu_calls": 0,
+  "http_calls": 0,
+  "dataset_bodies_read": 0,
+  "production_edits": 0
+}

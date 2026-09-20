@@ -1,0 +1,81 @@
+{
+  "application_input_output_nfc_repair": false,
+  "candidate_variant": "glm47-flash-gguf-nonthinking-v1",
+  "chat_template_sha256": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+  "cpu_checks_rerun": false,
+  "cpu_proof_kind": "GLM47_FLASH_NATIVE_CONTRACT_CPU_PROOF",
+  "cpu_proof_refs": {
+    "header": {
+      "path": "var/reports/glm47-flash-gguf-header.json",
+      "sha256": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef"
+    },
+    "public_contract": {
+      "path": "var/research/native-glm47-contract/public-proof-v3.json",
+      "sha256": "d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c"
+    },
+    "public_vocab": {
+      "path": "var/research/native-glm47-contract/public-vocab-proof.json",
+      "sha256": "f3e31a724dcec94f6d3b285a9dd793d6a8b6c91c3c8c475a63c25709c94d6cf7"
+    },
+    "tokenizer_fixture": {
+      "path": "var/research/native-glm47-contract/official-tokenizer-fixture.json",
+      "sha256": "e67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3"
+    },
+    "vocab_context": {
+      "path": "var/research/native-glm47-contract/vocab-context-proof.json",
+      "sha256": "66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb607"
+    }
+  },
+  "cpu_proof_sha256": "54ab0062c5d22112ed3349e0021391a4dd17f6d5f8698ac8a02cc096b08a1847",
+  "cpu_source_sha256": {
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780"
+  },
+  "elapsed_seconds": 17.257125599309802,
+  "generated_body_retained": false,
+  "grammar_enabled": false,
+  "guard_after_sha256": "7df732d3c9bc2ac5479caf7b14f049302ff8e524c2489034c51c1ec3f8f14809",
+  "guard_aggregate_increment_limit_mib": 28672,
+  "guard_aggregate_peak_mib": 17960,
+  "guard_before_sha256": "94d09cc0a8c519e3b2d80e4f5823ebb93f183edff7046e50f7a9ea0dc9bf9d84",
+  "guard_minimum_observed_free_mib": 18414,
+  "guard_required_free_floor_mib": 7275,
+  "guard_started_at_utc": "2026-09-20T12:23:14.135579+00:00",
+  "http_post_calls": 1,
+  "kind": "GLM47_FLASH_NATIVE_PUBLIC_CONTEXT_RESOURCE_PROBE",
+  "launch_config_sha256": "4824463fcabca13c2eaa07a9774c324b7980a2383915868f4f493b149dc245c4",
+  "lifetime_aggregate_values_not_probe_isolated": true,
+  "listener_report_sha256": "48a3a0871ea4ea84f140f7402b7e110ed26cae9bdb3575ae86812813ba1c95b0",
+  "model_id": "ggml-org/GLM-4.7-Flash-GGUF",
+  "model_revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+  "normalization_limitation": "Official/native ID and raw roundtrip parity proved for public20 and these200 prompts; not a guarantee for all Unicode",
+  "not_a_per_process_peak_measurement": true,
+  "official_tokenizer_parity": {
+    "case_count": 20,
+    "id_match_count": 20,
+    "native_original_roundtrip_count": 20,
+    "status": "PASS"
+  },
+  "pid": 3647152,
+  "probe_scope": "3328 uncached prompt tokens + 768 sampled tokens; 4095 cached positions",
+  "process_start_ticks": 479062142,
+  "quality_evaluation": false,
+  "reasoning_boundary": "Pinned native grammar permits optional complete reasoning under the configured nonthinking prefix. Synthetic parse must keep final JSON exact and reasoning separate. This is not observed model reasoning generation; no body is retained.",
+  "request_sha256": "2f936236e3650c9d250c075d40a42aa83b89aa05138d34f3cadb6834c6156688",
+  "status": "PASS",
+  "stop": true,
+  "stop_type": "limit",
+  "timings/predicted_ms": 15239.893,
+  "timings/predicted_n": 768,
+  "timings/prompt_ms": 2007.962,
+  "timings/prompt_n": 3328,
+  "tokenizer_contract": "official_glm_metadata_native_public_parity_20_of_20",
+  "tokenizer_json_sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+  "tokens_cached": 4095,
+  "tokens_evaluated": 3328,
+  "tokens_predicted": 768,
+  "truncated": true
+}

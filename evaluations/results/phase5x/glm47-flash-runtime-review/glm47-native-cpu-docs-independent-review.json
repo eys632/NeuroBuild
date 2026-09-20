@@ -1,0 +1,24 @@
+{
+  "kind": "GLM47_FLASH_NATIVE_CPU_DOCUMENT_REVIEW",
+  "status": "PASS_NO_MATERIAL_BLOCKER",
+  "at_utc": "2026-09-20T12:17:28.922787+00:00",
+  "documents_sha256": {
+    "docs/STATUS.md": "9da8e8c7e523674df2e0cf8fe608fb3cf7cb0eeddf949af2270600086dc99a8d",
+    "docs/EXECUTION_LOG.md": "9abfef601de1f14e6c4771b001f168574dcecbe48e05e84ed60ede4cb7587620",
+    "docs/reports/phase5x_glm47_flash_native_cpu_report.md": "d83da8250ab9a68de7a60d9bd862d2d8e73fe7787d5d9089cd38c1e721b73dec"
+  },
+  "context_proof_sha256": "66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb607",
+  "vocab_proof_sha256": "f3e31a724dcec94f6d3b285a9dd793d6a8b6c91c3c8c475a63c25709c94d6cf7",
+  "archive_integrity_sha256": "a13577bc11c450ad4abfc2ee6d674cec507a239f5f183f230f25fef49c8ff996",
+  "saved_numeric_and_scope_claims_match": true,
+  "current_cpu_source5_hashes_match_actual_proof": true,
+  "no_phase_completion_or_model_adoption_claim": true,
+  "nonblocking_note": "Resolved by root before commit: three direct archive/vocabulary/context links added and targets exist.",
+  "tests_native_model_http_gpu_dataset_calls": 0,
+  "scope": "Staged docs additions and saved CPU scalar proofs only; no replay or rerun.",
+  "pre_link_report_sha256": "d83da8250ab9a68de7a60d9bd862d2d8e73fe7787d5d9089cd38c1e721b73dec",
+  "regression_receipt_sha256": "293bfc5b4f94e728af5eeb021a3aae2230376a74dae6e631d0c70a1c4e513fac",
+  "regression_source7_current_hashes_match": true,
+  "regression_tests_recorded": 416,
+  "regression_rerun": false
+}

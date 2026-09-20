@@ -1,0 +1,87 @@
+{
+  "kind": "GLM47_NATIVE_EPOCH1_OBSERVATION_COPY_MANIFEST",
+  "status": "PASS_EXACT_ORIGINAL_COPIES",
+  "primary_count": 7,
+  "supplementary_count": 7,
+  "original_copies": {
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/launch_config.json": {
+      "source_path": "var/reports/glm47-flash-native-startup-epoch1/launch_config.json",
+      "bytes": 1372,
+      "sha256": "4824463fcabca13c2eaa07a9774c324b7980a2383915868f4f493b149dc245c4"
+    },
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/resource_report.json": {
+      "source_path": "var/reports/glm47-flash-native-startup-epoch1/resource_report.json",
+      "bytes": 5176,
+      "sha256": "8c3c1e1a1f86453c0c4dcdca21f0fcd6011382a2c4994758a7b8f43847432c63"
+    },
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/startup.json": {
+      "source_path": "var/reports/glm47-flash-native-startup-epoch1/startup.json",
+      "bytes": 5010,
+      "sha256": "2a19dde7fd90416638137a370cf68ed0b08ce66d7be277c32a4bbba27b10aaa0"
+    },
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/runtime_metadata.json": {
+      "source_path": "var/reports/glm47-flash-native-startup-epoch1/runtime_metadata.json",
+      "bytes": 1359,
+      "sha256": "abf2fe43d2f01dee1bf18819aa7890088eb5e02b6a41f03d56322f2236e80b41"
+    },
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/listeners.json": {
+      "source_path": "var/reports/glm47-flash-native-startup-epoch1/listeners.json",
+      "bytes": 592,
+      "sha256": "ac5e11c6c34368f0163e944354b270068fa01a077314a10adb78e239f90dc772"
+    },
+    "evaluations/results/phase5x/glm47-flash-native-public-smoke-epoch1/report.json": {
+      "source_path": "var/reports/glm47-flash-native-public-smoke-epoch1/report.json",
+      "bytes": 3664,
+      "sha256": "0b68dc9e0fad949f0bfac740354bb5ec89b7405f5634ccc1224392f5ad035b26"
+    },
+    "evaluations/results/phase5x/glm47-flash-native-resource-epoch1/report.json": {
+      "source_path": "var/reports/glm47-flash-native-resource-epoch1/report.json",
+      "bytes": 4291,
+      "sha256": "a4a4ce4a0e5615704cc4fdf9ff391d1ad4ca90dbfacc8dd5e1d0a55b1d35b68b"
+    },
+    "evaluations/results/phase5x/glm47-flash-runtime-observation-epoch1/own-epoch-identity.json": {
+      "source_path": "var/research/glm47-native-own-epoch-identity.json",
+      "bytes": 2128,
+      "sha256": "7ef9e56d1e794ff44531a7565aaae215f2cdaabe42c8b7d14c457706ebff5833"
+    },
+    "evaluations/results/phase5x/glm47-flash-runtime-observation-epoch1/startup-cli.log.txt": {
+      "source_path": "var/research/glm47-native-startup-cli.log",
+      "bytes": 560,
+      "sha256": "5c7ad4ac6c6254baebc209cc4738f66d732ae6165d85ef7d93cfb9f9abd795b0"
+    },
+    "evaluations/results/phase5x/glm47-flash-runtime-observation-epoch1/startup-cli.stderr.txt": {
+      "source_path": "var/research/glm47-native-startup-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evaluations/results/phase5x/glm47-flash-runtime-observation-epoch1/public-cli.log.txt": {
+      "source_path": "var/research/glm47-native-public-cli.log",
+      "bytes": 202,
+      "sha256": "4f842b1c0a639a78f17b98efdf9d779a807d0eb8e1c8a6b48f8623b9114fae98"
+    },
+    "evaluations/results/phase5x/glm47-flash-runtime-observation-epoch1/public-cli.stderr.txt": {
+      "source_path": "var/research/glm47-native-public-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evaluations/results/phase5x/glm47-flash-runtime-observation-epoch1/resource-cli.log.txt": {
+      "source_path": "var/research/glm47-native-resource-cli.log",
+      "bytes": 200,
+      "sha256": "c1d6328612089dc3b56617ae3e43025f206bcbb9c380a6a8c4a0ddcab3c6746f"
+    },
+    "evaluations/results/phase5x/glm47-flash-runtime-observation-epoch1/resource-cli.stderr.txt": {
+      "source_path": "var/research/glm47-native-resource-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "same_saved_epoch": {
+    "launch_config_sha256": "4824463fcabca13c2eaa07a9774c324b7980a2383915868f4f493b149dc245c4",
+    "pid": 3647152,
+    "process_start_ticks": 479062142,
+    "guard_started_at_utc": "2026-09-20T12:23:14.135579+00:00"
+  },
+  "archiver_gpu_http_model_native_calls": 0,
+  "live_guard_report_copied": false,
+  "prior_runtime_definition_archive_modified": false
+}

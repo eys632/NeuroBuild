@@ -1,0 +1,1 @@
+{"action": "resource", "report_dir": "var/reports/glm47-flash-native-resource-epoch1", "sha256": {"report.json": "a4a4ce4a0e5615704cc4fdf9ff391d1ad4ca90dbfacc8dd5e1d0a55b1d35b68b"}, "status": "PASS"}

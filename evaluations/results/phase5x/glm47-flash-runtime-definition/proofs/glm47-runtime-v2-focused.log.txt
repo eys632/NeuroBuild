@@ -1,0 +1,11 @@
+test_actual_parity_token_and_linked_receipt_required (__main__.GlmReceiptControls.test_actual_parity_token_and_linked_receipt_required) ... ok
+test_actual_saved_aggregate_matches (__main__.GlmReceiptControls.test_actual_saved_aggregate_matches) ... ok
+test_full_cap_and_frozen_split_controls (__main__.GlmReceiptControls.test_full_cap_and_frozen_split_controls) ... ok
+test_live_entrypoint_stays_blocked_before_epoch_and_http (__main__.GlmReceiptControls.test_live_entrypoint_stays_blocked_before_epoch_and_http) ... ok
+test_profile_model_and_reference_mismatch (__main__.GlmReceiptControls.test_profile_model_and_reference_mismatch) ... ok
+test_wrong_receipt_hash_is_rejected (__main__.GlmReceiptControls.test_wrong_receipt_hash_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.028s
+
+OK

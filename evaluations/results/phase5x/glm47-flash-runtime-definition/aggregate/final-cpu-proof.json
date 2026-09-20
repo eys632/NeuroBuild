@@ -1,0 +1,108 @@
+{
+  "aggregate_execution": {
+    "dataset_file_opens": 0,
+    "model_file_opens": 0,
+    "native_calls": 0
+  },
+  "aggregation_scope": "Saved receipt hashes and structural cross-bindings only; source5 rehashed; no CPU checks rerun",
+  "application_input_output_nfc_repair": false,
+  "candidate_variant": "glm47-flash-gguf-nonthinking-v1",
+  "gguf_sha256": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2",
+  "gpu_calls": 0,
+  "header_sha256": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef",
+  "http_calls": 0,
+  "kind": "GLM47_FLASH_NATIVE_CONTRACT_CPU_PROOF",
+  "max_context_tokens": 4096,
+  "max_output_tokens": 768,
+  "model_id": "ggml-org/GLM-4.7-Flash-GGUF",
+  "model_inference_calls": 0,
+  "normalization_limitation": "Official/native ID and raw roundtrip parity proved for public20 and these200 prompts; not a guarantee for all Unicode",
+  "official_tokenizer_normalizer": null,
+  "official_tokenizer_parity": {
+    "case_count": 20,
+    "id_match_count": 20,
+    "native_original_roundtrip_count": 20,
+    "status": "PASS"
+  },
+  "proof_refs": {
+    "header": {
+      "path": "var/reports/glm47-flash-gguf-header.json",
+      "sha256": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef"
+    },
+    "public_contract": {
+      "path": "var/research/native-glm47-contract/public-proof-v3.json",
+      "sha256": "d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c"
+    },
+    "public_vocab": {
+      "path": "var/research/native-glm47-contract/public-vocab-proof.json",
+      "sha256": "f3e31a724dcec94f6d3b285a9dd793d6a8b6c91c3c8c475a63c25709c94d6cf7"
+    },
+    "tokenizer_fixture": {
+      "path": "var/research/native-glm47-contract/official-tokenizer-fixture.json",
+      "sha256": "e67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3"
+    },
+    "vocab_context": {
+      "path": "var/research/native-glm47-contract/vocab-context-proof.json",
+      "sha256": "66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb607"
+    }
+  },
+  "protocol": "llama_cpp_json_schema",
+  "quality_status": "NOT_MEASURED",
+  "reasoning_boundary": "Pinned native grammar permits optional complete reasoning under the configured nonthinking prefix. Synthetic parse must keep final JSON exact and reasoning separate. This is not observed model reasoning generation; no body is retained.",
+  "resource_probe_token": {
+    "native_roundtrip": true,
+    "native_token_count": 1,
+    "text": " ",
+    "token_id": 220
+  },
+  "revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+  "runtime_status": "NOT_RUN",
+  "sampling_profile": "glm47_flash_nonthinking_llama_cpp",
+  "sampling_request_parameters": {
+    "frequency_penalty": 0.0,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "repeat_last_n": 0,
+    "repeat_penalty": 1.0,
+    "samplers": [
+      "temperature",
+      "top_k",
+      "top_p",
+      "min_p"
+    ],
+    "seed": 42,
+    "temperature": 1.0,
+    "top_k": 0,
+    "top_p": 0.95
+  },
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "source_sha256": {
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780"
+  },
+  "splits": {
+    "exposed120": {
+      "bundle_sha256": "af22ebf795c999fd2ffa8a91404f984ceb861101153c9bdd4ae770094bdbcc4b",
+      "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+      "input_count": 120,
+      "max_input_plus_output": 4025,
+      "max_input_tokens": 3257,
+      "min_input_tokens": 2811
+    },
+    "v2_length80": {
+      "bundle_sha256": "9c1f1b900b1870220f3499f83697b1336f830690ee73796db8373915a56b17b6",
+      "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+      "input_count": 80,
+      "max_input_plus_output": 3932,
+      "max_input_tokens": 3164,
+      "min_input_tokens": 2833
+    }
+  },
+  "status": "PASS",
+  "template_override_used": false,
+  "template_sha256": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+  "tokenizer_json_sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d"
+}

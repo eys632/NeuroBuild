@@ -1,6 +1,6 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 KST — GLM 준비 checkpoint 원격 보존, 실제 vocabulary·입력 길이 PASS**.
+갱신: **2026-09-20 KST — GLM 실제 CPU·GPU 실행 PASS, 첫 단회 평가 동결 준비**.
 Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 미채택, Phase6 미시작**이다.
 
 | 항목 | 현재 상태 |
@@ -8,7 +8,7 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
 | GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 진단동결 `c466013439e6d202e627ed48c7a4ed1e45cf82c0` push·원격 일치 확인; EXAONE 실패·종료 `daeccacee7bb1912e03c8be696572b80b12c9f4c` push·원격 일치 확인 |
-| 현재 작업 | **GLM 실제 header·공개 CPU 계약·공식 vocabulary·입력 길이 PASS 보존, runtime 증거 연결 준비** |
+| 현재 작업 | **GLM startup·공개입력·최대문맥 자원 검사 PASS 보존, 첫120×1+warmup5 동결 준비** |
 | 최근 후보 | EXAONE4.5-33B Q4_K_M: 첫 의미 정확도 gate FAIL. Gemma4-31B 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
@@ -16,9 +16,9 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
 | 회귀 검증 | **416 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless19.398초. GLM 명시 profile·실제 metadata의 정확한 모델/type 연결 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
-| 모델 실행 | Qwen/Gemma/EXAONE 자체 서버 모두 STOPPED·exit0/reaped. EXAONE 종료 후5회 GPU3 free36,373MiB/used3,965MiB/util0% |
+| 모델 실행 | Qwen/Gemma/EXAONE 서버 STOPPED. 새 GLM own guard3646979/child3647152, GPU3만 사용하며 자원 감시 중 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | 실제 CPU proof와 GLM runtime 설정 연결 검토 후 GPU3 자원 여유 확인. GPU 실행·품질 평가 전이며 이전 실패 후보 반복0회 |
+| 다음 검증 | 새 GLM 첫120×1+warmup5 사전동결·commit/push 후 품질 평가. 현재 품질 호출0, 이전 실패 후보 반복0회 |
 
 GLM은 고정 다운로드와 실제47층/no-MTP/Q4_K_M/Q8 output·K_B 구조 감사, 공개 CPU 계약을 통과했다.
 Header SHA `595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef`,
@@ -32,9 +32,19 @@ Vocab proof SHA `f3e31a724dcec94f6d3b285a9dd793d6a8b6c91c3c8c475a63c25709c94d6cf
 공개 입력2827+출력768=3595/4096토큰이다. 기존 노출120개는 최대3257+768=4025,
 기존 V2 80개는 최대3164+768=3932로 문맥 한도4096 안에 들어간다.
 길이 proof SHA `66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb607`.
-이 검사는 채점·추론이 아니며 공개20개 재실행도 없다. 아직 GPU/model 품질 호출0이고
-미사용80개도 접근하지 않았다. [준비 보고서](reports/phase5x_glm47_flash_preparation_report.md),
+이 검사는 채점·추론이 아니며 공개20개 재실행도 없다. CPU checkpoint
+`0ffb1e24c86aeb016cb585b2b9abd66d6cabe910`도 GitHub `v2` push·원격 일치를 확인했다.
+[준비 보고서](reports/phase5x_glm47_flash_preparation_report.md),
 [실제 CPU 보고서](reports/phase5x_glm47_flash_native_cpu_report.md).
+
+저장된 CPU 증거의 aggregate `54ab0062c5d22112ed3349e0021391a4dd17f6d5f8698ac8a02cc096b08a1847`와
+실제 config의 연결 검토, 신규 CPU controls6개 및 변경한 readiness 경계1회가 통과했다.
+새 GLM 최초 startup/public1/resource1 모두 PASS: 공개5.146885855초,
+문맥3328+768 경계17.257125599초, epoch aggregate peak17960/minfree18414MiB다.
+기동 직전5회 free36373/util0에서 예상28672+margin7275가 들어갔고 안전 floor를 유지했다.
+이후 guard가 자체 서버만 감시한다. 아직 품질 호출0이며 미사용80개는 접근하지 않았다.
+[실행 보고서](reports/phase5x_glm47_flash_runtime_preflight_report.md),
+[첫 단회 계획](glm47_flash_diagnostic_plan.md). 비필수 최적화는 future optimization이다.
 
 ## 보존한 단회 결과와 오류3건
 

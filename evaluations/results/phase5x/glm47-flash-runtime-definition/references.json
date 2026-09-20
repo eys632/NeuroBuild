@@ -1,0 +1,35 @@
+{
+  "kind": "GLM47_RUNTIME_REPRODUCTION_REFERENCES",
+  "source_commit": "0ffb1e24c86aeb016cb585b2b9abd66d6cabe910",
+  "source5_sha256": {
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780"
+  },
+  "saved_cpu_receipt_archives": {
+    "public_contract": {
+      "path": "evaluations/results/phase5x/glm47-flash-preparation/public_cpu/public-proof-v3.json",
+      "sha256": "d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c"
+    },
+    "public_vocab": {
+      "path": "evaluations/results/phase5x/glm47-flash-native-cpu/vocabulary/public-vocab-proof.json",
+      "sha256": "f3e31a724dcec94f6d3b285a9dd793d6a8b6c91c3c8c475a63c25709c94d6cf7"
+    },
+    "vocab_context": {
+      "path": "evaluations/results/phase5x/glm47-flash-native-cpu/context/vocab-context-proof.json",
+      "sha256": "66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb607"
+    },
+    "tokenizer_fixture": {
+      "path": "evaluations/results/phase5x/glm47-flash-preparation/public_cpu/official-tokenizer-fixture.json",
+      "sha256": "e67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3"
+    },
+    "header": {
+      "path": "evaluations/results/phase5x/glm47-flash-preparation/header/glm47-flash-gguf-header.json",
+      "sha256": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef"
+    }
+  },
+  "regression_report": "evaluations/results/phase5x/glm47-flash-preparation/regression/regression.json",
+  "scope": "All copied files exact bytes. Current model/native binaries/environments, live guard snapshots and datasets are excluded. Original helper relative paths remain for project-root reproduction; archives are evidence, not altered executable paths."
+}
