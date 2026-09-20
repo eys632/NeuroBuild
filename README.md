@@ -3,7 +3,7 @@
 A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의 greenfield rewrite.
 현재 **Phase 0~5 원격 checkpoint 완료**, **Phase5.x 요구사항 품질 평가 확대 진행 중**이다.
 전체 290 tests가 통과했다. Phase5의 작은 개발 seed에서는 14B/v3가 60/60을 기록했지만,
-확대 development에서 MoE/분기 schema/greedy가 120/120, 위험한 수용0건으로 통과했다. 독립 검토와 첫 holdout 평가가 남아 있다.
+확대 development는120/120이었지만 첫 holdout211/240, raw READY오판9건·잘못 수용12건으로 실패했다. 모델·표현 조합을 재검토 중이다.
 Gold는 자동 생성·사람 미검수이며 Internal Technical MVP는 아직 완료되지 않았다.
 최신 상태는 [STATUS](docs/STATUS.md), 비교 수치는 [실험 목록](docs/phase5x_experiment_register.md)을 따른다.
 Durable review/job queue, API와 frontend는 후속 단계다.

@@ -2,7 +2,7 @@
 
 2026-09-20 KST 작성. **AUTO-GENERATED / NOT HUMAN VERIFIED**. 작성 시 보존된 development 실행 **16개, 평가 응답 960개**를 모두 정리했다. Launch/runtime/shutdown 기록과 protocol smoke는 평가 run에서 제외했다. 각 run의 warmup 5개, 총80개도 아래 분모에 포함하지 않는다.
 
-**MoE generation2/분기 schema/v2의 greedy 정식 development120/120, raw FP0/60, unsafe0/120으로 정식 gate를 통과했다.** 이전 neutral 정식119/120/unsafe1 등 모든 실패를 보존했다. 정식 development와 holdout을 통과하기 전에는 Phase5.x 완료나 최종 모델 채택을 선언하지 않는다. 고정 gate는 schema100%, 의미 정확도95% 이상, raw FP0, unsafe accepted0이다. 단회 진단40개는 정식 development40×3 평가나 holdout80×3 평가를 대신하지 않는다. **Holdout 추론은 아직 수행하지 않았다.**
+**MoE generation2/분기 schema/v2의 greedy 정식 development120/120, raw FP0/60, unsafe0/120으로 정식 gate를 통과했다.** 이전 neutral 정식119/120/unsafe1 등 모든 실패를 보존했다. 정식 development와 holdout을 통과하기 전에는 Phase5.x 완료나 최종 모델 채택을 선언하지 않는다. 고정 gate는 schema100%, 의미 정확도95% 이상, raw FP0, unsafe accepted0이다. 단회 진단40개는 정식 development40×3 평가나 holdout80×3 평가를 대신하지 않는다. **첫 holdout80×3은 완료했으나211/240,raw9/114,unsafe12/240으로 FAIL이다. 아래 별도 기록하며 이후 같은80개는 exposed regression 자료다.**
 
 ## 완료된 실행
 
@@ -56,8 +56,15 @@ G*인 최초3개 manifest에는 profile 이름 필드가 없으며 기록된 tem
 
 ## 다음 비교 — 평가 결과 아님
 
-MoE/v3와 v4 진단은 모두 실패했으며 위 완료 표에 포함했다. Generation2/v1도29/40으로 실패했다. READY20개는 모두 정확했으나 non-READY null 규칙 위반10건과 unsigned 방향 raw READY1건이 남았다. 같은 계약의 decision-first branch schema + promptv2 진단은40/40으로 통과했다. 정식 development는119/120이지만 HD-F02의 세 번째 응답이 공간 범위와 제외 대상을 빠뜨려 unsafe1로 실패했다. 같은 prompt/schema/runtime의 기존 legacy_greedy(T0/seed42) 전체40×3은120/120,raw0,unsafe0으로 통과했다. 독립 검토 후 첫 holdout80×3 설정을 동결한다. 생략된 sampling 항목은 고정 서버 기본값이며 greedy가 결정론을 보장한다고 주장하지 않는다. 기존 canonical1.0 parser와 gold/gate는 그대로 유지한다. [후보 및 runtime 근거](moe_instruction_candidate.md), [고정 manifest](../runtime/models/qwen3-30b-a3b-instruct-2507-awq.json).
+MoE/v3와 v4 진단은 모두 실패했으며 위 완료 표에 포함했다. Generation2/v1도29/40으로 실패했다. READY20개는 모두 정확했으나 non-READY null 규칙 위반10건과 unsigned 방향 raw READY1건이 남았다. 같은 계약의 decision-first branch schema + promptv2 진단은40/40으로 통과했다. 정식 development는119/120이지만 HD-F02의 세 번째 응답이 공간 범위와 제외 대상을 빠뜨려 unsafe1로 실패했다. 같은 prompt/schema/runtime의 기존 legacy_greedy(T0/seed42) 전체40×3은120/120,raw0,unsafe0으로 통과했다. 독립 검토·동결 후 첫 holdout80×3을 수행했으나 아래와 같이 실패했다. 생략된 sampling 항목은 고정 서버 기본값이며 greedy가 결정론을 보장한다고 주장하지 않는다. 기존 canonical1.0 parser와 gold/gate는 그대로 유지한다. [후보 및 runtime 근거](moe_instruction_candidate.md), [고정 manifest](../runtime/models/qwen3-30b-a3b-instruct-2507-awq.json).
 
 실패 원인과 다음 판단의 상세 근거는 [Phase 5.x 보고서](reports/phase5x_report.md)를 따른다. 이 목록은 Phase 5.x 완료나 최종 모델 채택을 선언하지 않는다.
 
 Generation2 구현 뒤에도12개/640개 trial 전체를 새 평가기로 재생하여 parser/오류/SI/semantic 필드와 집계가 같음을 독립 확인했다. 상세 source snapshot은 [generation2 검토](reviews/phase5x_generation2_review.md)에 기록한다.
+
+
+## 첫 holdout 결과 — gate FAIL
+
+고정 commit64040de에서 최초 모델 노출을 시작했다. Run20260920T002629Z-6742bb1a50b44acd9e02228d83e2747d:80×3=240,warmup5별도, schema240/parser231/semantic211, rawFP9/114, unsafe12/240,FN6/126,mean4.2157s/p955.3083s. [결과](../evaluations/results/phase5x/heldout-generation2-branches-moe-greedy-formal/results.json)·[manifest](../evaluations/results/phase5x/heldout-generation2-branches-moe-greedy-formal/manifest.json)·[독립 검토](reviews/phase5x_generation2_first_holdout_review.md).
+
+위 development16run/960trial와 합치면 총17개 평가run/1200formal또는diagnostictrial,85warmup이다. 서로 다른 split/평가용도를 혼합해 단일 정확도를 만들지 않는다. Firstholdout의FAIL은 그대로 남긴다. 앞으로 기존80개로 튜닝하거나 비교한 결과는 regression/development이며 새로운 unseen 성공으로 표시하지 않는다. 현재 후보는 미채택이고 다음Phase로 진행하지 않는다.

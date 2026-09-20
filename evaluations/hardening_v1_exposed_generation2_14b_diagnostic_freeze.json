@@ -1,0 +1,109 @@
+{
+  "lifecycle": "FROZEN_BEFORE_14B_GENERATION2_EXPOSED_REGRESSION_DIAGNOSTIC",
+  "frozen_at_utc": "2026-09-20T00:54:40.686268+00:00",
+  "source_ancestor_commit": "64040dee5e83a2966d7f4fff7de558e64fdc902c",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "purpose": "Bounded existing14B control with identicalgeneration2branch/promptv2/greedy tofailedMoE. All120alreadyexposedinputs, NOT anunseenholdout. No newdownloads/prompt/parser/goldchanges. Diagnostic120x1; successrequireslaterformal120x3 andnewunusedv2holdout.",
+  "model_id": "Qwen/Qwen3-14B-AWQ",
+  "model_revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+  "served_model": "neurobuild-local",
+  "dataset": "evaluations/requirement_hardening_v1_exposed_regression.jsonl",
+  "split": "development",
+  "cases": 120,
+  "ready_gold": 62,
+  "nonready_gold": 58,
+  "warmups_per_run": 5,
+  "trials_per_case": 1,
+  "generation_contract": "2.0",
+  "prompt": "prompts/requirement_generation_v2_v2.txt",
+  "generation_schema": "schemas/requirement_generation_v2_decision_branches.schema.json",
+  "canonical_schema": "schemas/semantic_requirement.schema.json",
+  "protocol": "legacy_guided_json",
+  "guided_decoding_backend": "xgrammar:no-fallback",
+  "sampling_profile": "legacy_greedy",
+  "sampling_request_parameters": {
+    "temperature": 0,
+    "seed": 42
+  },
+  "unspecified_sampling_parameters": "Server/modeldefaults; pinnedmodel defaultT.6/top_p.95/top_k20, explicitT0overridesT; installedvLLMgreedysetsfilters1/-1/0, defaultpenalties0/0/1. Not allwireparameters controlled.",
+  "enable_thinking": false,
+  "reasoning_parser": null,
+  "max_tokens": 768,
+  "timeout_seconds": 60,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "gate_targets": {
+    "schema_rate": 1.0,
+    "semantic_rate_minimum": 0.95,
+    "critical_model_ready_fp_count": 0,
+    "unsafe_accepted_ready_total_count": 0
+  },
+  "sha256": {
+    "evaluations/requirement_hardening_v1_exposed_regression.jsonl": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "evaluations/hardening_v1_exposed_regression_manifest.json": "5e10605f49d7c452dac4804bde5d83f9558966b992c835a71dc3eb9ab1d85e05",
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/requirement_generation.py": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+    "src/neurobuild/infrastructure/local_model.py": "89c02812a454c292eb906e71cf2d2c487d29ba1e1e96e8bccd87a32468d294b8",
+    "scripts/evaluate_requirements.py": "938dfa586c5d23f7d92b7634f19ea1202c547780201f381bcaab086ea4fba210",
+    "scripts/model_server.py": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "runtime/models/qwen3-14b-awq.json": "208ed94ea360b214612d53f8002b69830670c3269246cef28a329c6ab3b41011",
+    "runtime/a100/model-runtime.lock": "0a2dde41e8dda948f70d87bd776315611d4d516a9075725cb3a1a9e564c575ae",
+    "evaluations/results/phase5x/generation2-14b-cpu-preflight.json": "d609be2f31396c57ac0dc6ea940a4462d713505c266a099f62c766c3c11fd54a",
+    "evaluations/results/phase5x/14b-generation2-v2-launch/launch_config.json": "e34887fa0896b8e8950be91a326f66b3a0f6799ccf96d1f08253ad2f76f6d4a4",
+    "evaluations/results/phase5x/14b-generation2-v2-launch/runtime_metadata.json": "2f814cf45f2c1d61c04dbef17699f63569f8fab194cdf799986081a326970b8a"
+  },
+  "template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+  "cpu_preflight": {
+    "max_input_plus_output": 3687,
+    "limit": 4096,
+    "valid_grammar": 8,
+    "invalid_grammar": 14,
+    "prompt_examples": 7,
+    "cuda_initialized": false
+  },
+  "runtime_reuse": {
+    "new_14b_epoch": true,
+    "started_at_utc": "2026-09-20T00:51:41.884065+00:00",
+    "child_pid": 3446165,
+    "state": "RUNNING",
+    "elapsed_seconds": 174.219,
+    "maximum_seconds": 7200,
+    "minimum_observed_free_mib": 25428,
+    "required_free_floor_mib": 7275,
+    "aggregate_baseline_relative_peak_mib": 10946,
+    "memory_fit_guaranteed": false
+  },
+  "preflight_budget": {
+    "estimated_startup_or_inference_peak_mib": 18432,
+    "estimate_must_include": [
+      "weights",
+      "KV_cache",
+      "workspace",
+      "CUDA_context",
+      "allocator_overhead"
+    ],
+    "required_safety_margin_mib": 7275,
+    "available_model_budget_mib": 29098,
+    "unallocated_budget_after_estimated_peak_mib": 10666,
+    "estimate_is_measured_peak": false
+  },
+  "review_evidence": [
+    "docs/reviews/phase5x_generation2_first_holdout_review.md",
+    "docs/reviews/phase5x_first_holdout_failure_analysis.md",
+    "docs/reviews/phase5x_generation2_14b_preflight_review.md",
+    "docs/reviews/phase5x_generation2_application_review.md"
+  ],
+  "regression": {
+    "whole_backend_passed": 290,
+    "skip": 0,
+    "generation2_application_probes_passed": 4,
+    "generation2_application_rejections": 18,
+    "source_change_since_full_regression": false
+  },
+  "future_holdout": "v2underindependentpre-inferenceauthoring/review; root/promptauthornotreadinginputs/gold; no v2modeloutputs exist. v1firstholdoutFAILremains."
+}

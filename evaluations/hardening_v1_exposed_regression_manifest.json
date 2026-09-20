@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "lifecycle": "EXPOSED_REGRESSION_NOT_UNSEEN_HOLDOUT",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "path": "evaluations/requirement_hardening_v1_exposed_regression.jsonl",
+  "sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+  "construction": "Exact byte concatenation of originaldevelopment40 then originalholdout80, preserving every source/context/gold/ID and fileorder.",
+  "source_files": {
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78"
+  },
+  "cases": 120,
+  "decisions": {
+    "READY": 62,
+    "CLARIFICATION": 23,
+    "UNSUPPORTED": 35
+  },
+  "first_v1_holdout_exposure_run": "20260920T002629Z-6742bb1a50b44acd9e02228d83e2747d",
+  "policy": "Never call this unseen evaluation. All outputs/gold known for selection and regression. Originalfailedfirstholdout preserved. Generalization requiresnewprefrozenunuseddata."
+}

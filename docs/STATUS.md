@@ -1,23 +1,23 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 09:23 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 09:49 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b`: Phase 5 commit/push 및 remote hash 일치 |
-| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `468f6f0` |
+| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `64040de` |
 | 회귀 검증 | 전체 **290 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 17.329초 |
-| 현재 작업 | **MoE + generation2/branch schema/promptv2 greedy 정식 development120/120 PASS, raw FP0/60·unsafe0/120. 독립 검토와 첫 holdout 설정 동결**. 기존1.0 parser/domain 및 gold/gate는 유지 |
+| 현재 작업 | **첫 holdout211/240(87.92%),rawFP9/114,unsafe12/240로 FAIL. 최종 채택 보류. 기존14B에 동일generation2 계약을 적용하는 비교 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
 | 잠정 모델 | Phase 5 범위의 **Qwen3-14B-AWQ + v3**. 확대 평가 gate 통과 전 최종 채택으로 보지 않음 |
 | Hard blocker | 없음. GPU 3 가용량을 측정한 공존 실행 조건 통과 |
 | Backend | `.conda`: Python 3.12.14 / PostgreSQL 17.11 / psycopg 3.2.10 / IfcOpenShell 0.8.5 |
-| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. 현재 MoE 후보 서버 가동. TP 1 / context 4096 / sequence 1 |
-| 다음 검증 | Development 통과의 독립 검토·동결·원격 checkpoint 뒤 첫 holdout 80×3 |
+| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. MoE 후보 서버 정상 종료 후 기존14B의 새 epoch 가동. 새 generation2 품질은 아직 미검증. TP 1 / context 4096 / sequence 1 |
+| 다음 검증 | 기존120개는 노출된 regression 자료. 기존14B/동일새계약 비교와 별도 미사용 holdout v2 작성·사전 동결 |
 
 ## Phase 5.x 평가 상태
 
-120개 자료를 development 40개와 holdout 80개로 고정했다. **Holdout은 아직 한 번도 모델에 호출하지 않았다.** Neutral 단회40/40 후 정식119/120에서 잘못 수용한 대상1건이 발견됐다. 같은 구성의 greedy 정식development는120/120으로 통과했다. Holdout gate는 아직 평가 전이다.
+120개 자료를 development 40개와 holdout 80개로 고정했다. **첫 holdout80×3을 완료했으며 gate FAIL이다. 이후 같은80개는 노출된 regression/development 자료로 취급한다.** Neutral 단회40/40 후 정식119/120에서 잘못 수용한 대상1건이 발견됐다. 같은 구성의 greedy 정식development는120/120으로 통과했다. 첫 holdout은211/240,raw9/114,unsafe12/240로 실패했다. Development 성공을 일반화할 수 없다.
 
 | 최근 development 진단 | 의미 정확도 | Raw READY 오판 | 잘못 수용된 출력 | 판단 |
 |---|---:|---:|---:|---|
@@ -47,7 +47,7 @@ V8 run `20260919T223831Z-af6ebcd137394488a0adc427bd63edcf`는 schema 40/40, pars
 
 ## 운영 상태
 
-**GPU 3만 사용한다.** 이전 14B 서버는 자신의 guard와 child만 정상 종료했고, `neurobuild-instruct` alias의 4B BF16 서버도 자신의 guard를 통해 정상 종료했다. 현재 `neurobuild-moe` 후보 서버만 GPU3에서 실행한다. 예상 peak24,576MiB와 안전 여유7,275MiB로 재검사했고 v3 진단을 포함한 관측 최소 free는18,642MiB다. 다른 사용자의 프로세스·파일·환경은 변경하지 않았으며 다른 GPU로 fallback하지 않는다.
+**GPU 3만 사용한다.** 이전 14B 서버는 자신의 guard와 child만 정상 종료했고, `neurobuild-instruct` alias의 4B BF16 서버도 자신의 guard를 통해 정상 종료했다. `neurobuild-moe` 후보도 자체 guard를 통해 정상 종료했다(exit0/FileStore 정리). 이후 기존14B를 fresh preflight로 다시 시작했다. MoE 종료 후 GPU3 free36,373MiB/used3,965MiB/util0%로 복귀했다. 예상 peak24,576MiB와 안전 여유7,275MiB로 재검사했고 v3 진단을 포함한 관측 최소 free는18,642MiB다. 다른 사용자의 프로세스·파일·환경은 변경하지 않았으며 다른 GPU로 fallback하지 않는다.
 
 4B 시작 전 GPU 3 free 36,373MiB / utilization 0%에서 예상 전체 peak 16,384MiB와 margin 7,275MiB가 들어감을 확인했다. Guard의 free 하한은 **7,275MiB**, 현재 구간의 최종 관측 최소 free는 **26,530MiB**다. 종료 후 free 36,373MiB / utilization 0%로 복귀했다. 이는 GPU 전체 관측값이며 전용 메모리 예약이나 정확한 process peak 보장이 아니다. 기동 시 실제 TCP listener 5개가 모두 `127.0.0.1`임을 확인했다.
 

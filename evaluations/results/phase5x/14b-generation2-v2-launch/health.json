@@ -1,0 +1,35 @@
+{
+  "checked_at_utc": "2026-09-20T00:53:02.571408+00:00",
+  "health_status": 200,
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "neurobuild-local",
+        "object": "model",
+        "created": 1789865582,
+        "owned_by": "vllm",
+        "root": "/home/a202192020/NeuroBuild_v2/var/models/Qwen--Qwen3-14B-AWQ/31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+        "parent": null,
+        "max_model_len": 4096,
+        "permission": [
+          {
+            "id": "modelperm-239c0e25d50a41d4b0b9360480493c52",
+            "object": "model_permission",
+            "created": 1789865582,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "timing": "No coldstartup/TTFT measured by this alreadyreadyprobe."
+}

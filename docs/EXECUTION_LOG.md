@@ -360,3 +360,26 @@ Run20260919T235909Z-741a32ddc5394455943e3b480f8863c3,40×3/warmup5: schema/adapt
 Pushed468f6f0e3b6ba83053c34292c8d9e506b0dfafb9 뒤 clean manifest로 시작했다. Run20260920T001240Z-7daf0ae403de40cfa9043c628abf9d8d:40×3/warmup5, schema/adapter/canonical/parser/semantic120/120,rawFP0/60,unsafe0/120,FN0/60,error0,mean4.394291s/p955.910858s. Server cumulative success305→430. 결과SHA b47a63f0927e90290e334b3a81e15b5fff71b25f49d2f88f84a0a4560d748d99. 모든 원본/manifest/resource를 보존했으며 독립120+5replay를 수행한다.
 
 고정된 기존 heldout80을 처음으로 모델에 노출하기 전에 같은 모델·2.0branch·promptv2·greedy와 전체 source/runtime/data hash를 별도 freeze한다. 계획5warmups+240formal; schema240/240,semantic≥228/240,rawFP0/114,unsafe0/240를 유지한다. 첫 warmup부터 노출로 보며, 이후 튜닝하면 같은80개를 새 unseen 성공으로 부르지 않는다. 현 guard 잔여시간과245회×development평균/p95로 예산을 점검하되 timeout 최악시간까지 보장하지 않는다. 중단되면 INCOMPLETE/미통과다. 사람 미검수/입력·gold 사전AI검토/공유문법/반복상관 한계는 유지한다.
+
+
+## 첫 holdout 실행 시작 및 generation2 Application 경계
+
+첫 warmup 전에64040dee5e83a2966d7f4fff7de558e64fdc902c commit/push와remotehash일치를 확인했다. Frozen21개 파일·launch/runtime hash 및 clean Git을 다시 확인하고, guard 잔여2677.129초에서 같은MoE/2.0branch/promptv2/legacy_greedy/output768/timeout60으로 heldout80×3/warmup5를 시작했다. Run20260920T002629Z-6742bb1a50b44acd9e02228d83e2747d, manifestdirtyfalse, 시작servercounter430. 첫노출뒤 candidate/source/gold/gate 변경 없음.
+
+동시에 별도의 고정 합성 generation2 JSON→canonical parser→RenovationService를 실제 privatePG/IfcOpenShell로 검증했다. 최종4probesPASS/skip0/1.250초,18개거절, 각headV0/revision1/importintent1/artifact1/sourcebytes불변. 최초probe의list/tuple비교오류만고친후재실행했고 Application 수정없음. 테스트가만든schema/artifact8개모두정리, 관련15개source/data해시전후동일. 이는 모델품질이아닌 승인경계검증이며 heldout출력은읽지않았다.
+
+
+## 첫 holdout FAIL 및 자체 MoE 정상 종료
+
+Run20260920T002629Z-6742bb1a50b44acd9e02228d83e2747d completed240+5; servercounter430→675. Schema240/parser231/semantic211,raw+acceptedFP9/114,wrongacceptedtarget3/126,unsafe12/240,FN6/126,UNGROUNDED9,mean4.215746s/p955.308297s. Original results SHA848827007c5381d3ca6ce67856822951f71154e1c499f33220975e34880588b3,240+5independentreplayexact. Sourcefreeze21hash/archivebytes/protocol/runtimeidentities일치. NoPhase5.xcompletion/noPhase6/no finalconfigadoption. Existing80becomesexposedregressionforfuturecomparisons; source/goldunchanged.
+
+Verifiedownchild3409891 UID/startticks andparent3409876 expectedlauncher/reportarguments+unchangedstarttimebeforeSIGTERMguard. GuardSTOPPED/STOP_REQUESTED/childexit0/FileStorecleaned,elapsed5719.653s, aggregateincrementmax17732/minfree18642. Archivedshutdown_moe_instruct_epoch1.json. GPU3onlyfreshqueryafterexit:total40960/free36373/used3965/util0;rootdisk39Gfree/98%. Otherusersuntouched. Next bounded control: retained14Bwithidenticalnewgeneration2representation, GPU3freshbudget andCPUtemplate/grammar proofbeforelaunch. Newunusedholdoutv2preparedseparately.
+
+
+## 14B + 동일generation2 CPU 검증과 새 launch
+
+새 다운로드 없이 기존Qwen3-14B-AWQ31c69ef를 재사용한다. 실제tokenizer metadata9files size/SHA일치, embeddedtemplateSHAa55ee1b1…74d8, nonthinking빈thinkprefix는inputtemplate이며generatedreasoning아님. Dev40max3682/exposed80max3687including768 capof4096. CPUxgrammar8validEOS/14invalid/7promptadaptercanonicalPASS,CUDAnotinitialized. PreservedCPUproofSHAd609be2f…fd54a.
+
+GPU3fresh5samplesfree36373/util0,peak18432+margin7275fitsbudget29098; FP16/autoawq_marlin/context4096/TP1/eager/seq1/KV256/fraction.50/allocator.50,새 child3446165. Health200/aliasneurobuild-local/ownTCP5loopbackPASS;초기 aggregatepeak10946/minfree25428. Logweights9.36GiB/CPUoffload0. 새 launchSHAe34887fa0896b8e8950be91a326f66b3a0f6799ccf96d1f08253ad2f76f6d4a4,metadataSHA2f814cf45f2c1d61c04dbef17699f63569f8fab194cdf799986081a326970b8a. 이번 cold startup 시간은 측정하지 않았다.
+
+기존 dev40 bytes와 oldhold80 bytes를 변경 없이 결합한 exposed regression120의 SHA는7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b이며 READY62/CLF23/UNSUP35다. 전체120×1/warmup5의 동일2.0branch/promptv2/legacygreedy 진단을 별도 동결하며 과거 holdout 성공으로 취급하지 않는다.

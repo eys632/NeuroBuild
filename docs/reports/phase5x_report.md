@@ -1,135 +1,101 @@
-# Phase5.x — Requirement Quality Hardening
+# Phase 5.x — Requirement Quality Hardening
 
-현재 **정식 development gate 통과 / holdout 평가 전 / Phase5.x 진행 중**이다.
-MoE generation2/decision-branch schema/promptv2의 greedy 정식120/120,
-raw READY FP0/60, unsafe accepted0/120이다. 이전 neutral 정식119/120/unsafe1은 실패로 보존한다.
-현재 공통 소스 회귀는 실제 PostgreSQL/IfcOpenShell을 포함한 **290 tests PASS, skip0**다.
-아래 과거 단계의 test 수와 후보 선택은 당시 checkpoint의 기록이며 현재 최종 선택이 아니다.
-모든 run은 [실험 목록](../phase5x_experiment_register.md)에 실패를 포함해 보존한다.
+**현재 상태: 정식 development는 통과했지만 첫 holdout gate FAIL. 후보 미채택이며 Phase 5.x는 완료되지 않았다.**
 
-IN PROGRESS. Phase5remote d6e39c8 gate후진행한다. 120 synthetic examples를40development/80heldout로고정하고gold는AUTO-GENERATED / NOT HUMAN VERIFIED로표시한다. 첫development전에v3/modelrevision/contract를freeze했고,새prompt는각실험전별도로version/hash고정한다. 공개seed20은development에만둔다. source의조건/부정/targetexclusion/숫자/장문/미지원subset을검증하며결과를본뒤gold를조용히수정하지않는다.
+현재 검증 후보는 `ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ`와 generation 2, decision-branch schema, prompt v2, `legacy_greedy` 조합이다. Development 40개 × 3회에서 schema/parser/semantic **120/120**, raw READY false positive **0/60**, unsafe accepted **0/120**을 기록했다. 직전 neutral sampling의 정식 평가는 119/120이었지만 unsafe 1건으로 실패했으며, 그 결과도 보존했다. 아직 최종 모델을 채택하지 않았다.
 
-기존criticalFP(비실행gold→READY)와지원gold의잘못된target/axis이동을분리해보고한다. Dataset/prompt최적화의영향과동일case3회의상관을명시하고사람검수표를별도로제공한다. GPU3만현재guard예산으로사용하며listenercheck/원격checkpoint와선행236regression을유지한다.
+공통 코드 회귀는 실제 PostgreSQL·IfcOpenShell을 포함한 **290 tests PASS, skip 0**이다. 첫 holdout은 설정을 동결하고 commit `64040dee5e83a2966d7f4fff7de558e64fdc902c`를 push한 뒤 시작했다. 첫 holdout은240회 모두 완료했으나 semantic211/240, raw FP9/114, unsafe12/240으로 실패했다. 아래에 전체 결과를 보존한다.
 
-## 평가 전 검증과 재현
+## 목표와 고정된 평가 범위
 
-Freeze checkpoint `931c6258f0f9471fdac9ff1ee3b29cbb23308e2d`는push와remotehash를확인했다. [freeze](../../evaluations/hardening_v1_freeze.json)는모델호출전에dataset/prompt/schema/client/parser/scorer/weightmanifest를고정한다. 기존seed20+새100개로구성된120개는두AI검토자와참조출력schema/parser/scorer검증을통과했으나human검수가아니다. Wholebackend236PASS/skip0,independent수치경계악성19거절/정상4controls와listener15tests도PASS다.
+Phase 5의 작은 seed 평가 성공이 한국어 요구사항 추출 전반에 적용되는지 확인하고, 반복 실패의 원인을 prompt·decoding·모델·출력 표현으로 나누어 검토한다. 지원 범위는 단일 가구의 상대 XY 이동이다. 명시되지 않은 방향, 미확인 조건, 복수 대상·작업, 지원 밖 변경을 실행 가능한 요구사항으로 추측해서는 안 된다.
 
-Unicode분수·곱셈·특수공백·구분자·수치modifier및축부호잘림을발견했고,개별기호보강반복후접근을재검토했다. 최종검사는원문의동일evidence위치에서숫자/축의전체token을함께비교하고Unicode숫자·공백·문장부호·기호·결합기호·control인접영역을검사한다. 유한한구분자만허용하며지원표현을암묵정규화하지않는다. 이는숫자/축lexical검증이며조건/부정/대상의자연어의미를입증하지않는다.
+평가 자료는 synthetic 120개이며 development 40개와 holdout 80개로 분리했다. 공개 seed 20개는 development에만 포함했다. 대상 범위와 제외 조건, 과거 지시와 현재 지시, 방향·거리·단위, 단일 대상의 두 축 이동, 부정·조건·장문·미지원 요청을 다룬다. 모든 gold는 **AUTO-GENERATED / NOT HUMAN VERIFIED**이다. 원본 hash와 참조 출력 검증은 [dataset 문서](../hardening_dataset.md), [최초 freeze](../../evaluations/hardening_v1_freeze.json), [사람 검수표](../../evaluations/hardening_v1_human_review.csv)에 남겼다.
 
-초기서버를자기guard만정상종료해GPU3baselineused3965/free36373MiB/util0%복귀후freshpreflight로재기동했다. 새서버도actualTCP5개모두127.0.0.1이며원격/public노출없도록확인했다(onePIDsnapshot한계). 관측로그는정확한perprocesspeak보장이아니다. Development v3/v4의실제실패결과는아래에보존한다.
+평가 기준은 schema 100%, semantic rubric 95% 이상, raw READY false positive 0건, unsafe accepted 0건이다. Raw READY는 adapter/parser가 거절하기 **전** 모델 출력을 기준으로 집계한다. Unsafe accepted에는 비실행 gold의 잘못된 READY 수용과, 실행 gold에서 대상 또는 이동값이 틀린 READY 수용을 포함한다. Backend가 위험한 raw 출력을 차단해도 모델의 false positive를 지우지 않는다. 오류·거절·실패 trial은 분모에서 제외하지 않는다.
 
-## Development v3 — gate 미충족
+## 구현과 architecture 판단
 
-고정40개×3: schema120/120, parser111/120, 의미108/120(90%), rawREADY FP3/60, acceptedFP0/60, 지원gold잘못된수용이동0/60, 전체unsafeaccepted0/120, FN9/60. Mean3.3225s/p954.6700s. 실패4case는매회동일하다. HD-B01은부호가없는X축1m을양수로추측했다(Backend거절). HD-D02는한가구의XY두성분을복수대상으로오인해UNSUPPORTED했다. HD-F01/F02는올바른대상범위와물리적SI값을보존했지만,모델이16cm를-.16m로선변환하여원문literal보존계약을위반했고Backend가거절했다. 산술결과나이동값자체가틀린것으로집계하지않는다.
+기존 generation 1은 모델이 숫자·단위와 그 근거 문구를 중복 생성했다. 반복 실험에서 원문 단위를 미리 환산하거나 숫자 표기를 바꾸는 계약 위반, 대상의 공간 범위·제외 조건 누락, 조건 무시, 불필요한 clarification이 관측됐다. 예를 들어 16 cm를 0.16 m로 바꾼 출력은 물리적으로 같은 거리라도 원문 literal 보존 계약을 위반한다. 이를 잘못된 기하 계산과 혼동하지 않았다.
 
-기존seed20은60/60을유지했고새development20은48/60이므로작은seed성공을일반화하지않는다. [결과](../../evaluations/results/phase5x/development-v3/results.json)·동결manifest·VRAMsnapshot을보존했다. Holdout80은아직호출하지않았다. Promptv3/gold/parser를변경하지않고새v4의일반규칙/독립예제로development오류개선을시도했으나아래와같이실패했다. 같은오류가반복되면단순prompt추가를계속하지않고evidence-only추출등계약을재검토하며기존parser를완화하지않는다.
+Generation 2는 모델의 출력 표현을 원문 인용 중심으로 바꾸고, 숫자·단위·부호의 추출을 코드에 맡긴다. 공통 Application으로 전달하는 canonical 1.0 계약과 동결된 parser, gold, semantic rubric 및 gate는 유지했다.
 
+```text
+원문 + 코드가 제공한 문맥
+  → LLM generation 2 JSON (raw decision 먼저 기록)
+  → generation schema 검증
+  → 원문 quote 검증 + literal 추출 adapter
+  → canonical 1.0 schema/parser
+  → SemanticRequirement
+  → 후속 workflow의 대상 확인 → 별도 proposal 승인 → IFC Engine
+```
 
-## 2026-09-20 — Development v4 실패와 전략 재검토
+Generation 2의 필드는 `schema_version`, `decision`, `target_selection_quote`, `current_instruction_quote`, `dx_evidence`, `dy_evidence`, `reason`이다. READY는 전체 대상 선택 범위와 현재 지시를 원문에서 인용하고, 적어도 한 축의 명시적 방향·거리·단위 evidence를 제공한다. Non-READY는 현재 지시와 축 evidence를 null로 두며 이유를 제공한다. Adapter는 누락된 대상을 확장하거나 전체 원문으로 대체하지 않고, 의미를 추측하거나 잘못된 출력을 자동 보정하지 않는다.
 
-Run20260919T211340Z-cebc5bbdaeea46b188caf6d27c4ff804: schema/parser120/120, semantic96/120(80%), raw/acceptedFP0/60, unsafeaccepted0/120, FN24/60, mean2.96099s/p955.05258s. 8case×3 모두불필요한거절: A01/A02/H01/HD-A02/B02/C02/H02는명시된방향이나미요청축을추가질문했고HD-D02는단일가구XY를미지원으로오인했다. 원문unit복사는개선됐지만전체gateFAIL. 결과/manifest/resources를development-v4에보존하며heldout은미호출이다.
+Client는 generation contract `1.0` 또는 `2.0`을 명시적으로 선택하고, 설정한 schema version이 다르면 HTTP 요청 전에 거절한다. 응답 내용으로 계약을 자동 감지하거나 다른 계약으로 fallback하지 않는다. Legacy contract의 기본 prompt/schema는 유지했다. 대상·조건의 의미적 완전성은 여전히 모델과 평가의 책임이며, 원문 인용 검증만으로 입증되지 않는다. LLM은 GlobalId·승인·IFC 변경을 만들지 않는다. 설계와 경계는 [generation 2 설계](../requirement_generation_v2_design.md)와 [독립 검토](../reviews/phase5x_generation2_review.md)를 따른다.
 
-긴예제prompt보강반복을재검토하여V5는847token English policy로전환,한축/두축지원과미요청축null을명시한다. 같은T0/runtime/model/schema/parser/gold로40development×1진단을먼저실행한다. 이는최종3회gate가아니며,개선시동일설정정식평가가필요하다. Qwen공식decoding지침은별도로검토하며무조건T0가원인이라고단정하지않는다.
+첫 generation 2 진단에서는 실행 gold 20개가 모두 정확했지만, non-READY 출력의 null 규칙 위반이 남았다. 새 decision-branch schema는 READY의 X만/Y만/XY와 non-READY를 네 분기로 제한한다. Prompt v2는 decision을 quote보다 먼저 배치하고 독립적인 방향 누락 예제 하나를 추가했다. 표현·schema·순서·예제가 함께 바뀌었으므로 개선을 한 요인의 효과로 단정하지 않는다. 초안의 nonempty 정규식은 xgrammar가 유효한 한국어 토큰을 거절하여 제거했고, nonempty 검사는 Backend에 유지했다.
 
+## Development 결과와 실패 보존
 
-## V5 간결한 영어 prompt 진단 실패
+완료된 development 실험은 **16개 run, 평가 960 trial, warmup 80회**다. 정식 40개 × 3회와 진단 40개 × 1회를 구분한다. 960회를 독립 표본으로 해석하지 않는다. 모든 실패 출력, manifest, 자원 관측과 run ID는 [전체 실험 목록](../phase5x_experiment_register.md)에 연결되어 있고, 명령·판단·변경 이력은 [EXECUTION_LOG](../EXECUTION_LOG.md)에 보존되어 있다.
 
-Run20260919T212748Z-bba084e02f46432aab7f11883d625467, development40×1/warmup5: schema40/40, parser16/40, semantic13/40, rawFP5/20, acceptedFP0/20, unsafeaccepted0/40, FN19/20. Mean4.18646s/p955.94240s. 지원gold20개는모두rawREADY였으나19개는숫자원문표기변경(1→1.00),단위선변환,미요청축의0/fake-null삽입등으로거절됐다. 단순길이축소/영어화는품질개선으로이어지지않았다. 이진단을3회반복gate로표시하지않으며모든실패결과를보존한다.
+| 주요 비교 | 평가 수 | Semantic | Raw READY FP | Unsafe accepted | 판단 |
+|---|---:|---:|---:|---:|---|
+| 14B AWQ / v3 / greedy | 120 | 108/120 | 3/60 | 0/120 | 실패 |
+| 4B Instruct BF16 / v3 / neutral | 40 | 37/40 | 1/20 | 2/40 | 진단 실패 |
+| 30B-A3B AWQ / v3, v4 / neutral | 각 40 | 각각 34/40 | 각각 1/20 | 각각 1/40, 2/40 | 두 진단 모두 실패 |
+| Generation 2 / v1 / neutral | 40 | 29/40 | 1/20 | 0/40 | 진단 실패 |
+| Generation 2 / v2 + branches / neutral | 40 | 40/40 | 0/20 | 0/40 | 진단 통과, 정식 검증 필요 |
+| 동일 계약 / neutral 정식 | 120 | 119/120 | 0/60 | 1/120 | 안전 gate 실패 |
+| 동일 계약 / greedy 정식 | 120 | 120/120 | 0/60 | 0/120 | Development gate 통과 |
 
-다음실험은기존development최고성능v3prompt를고정하고공식Qwen AWQ nonthinking sampling profile만변경한다(T.7/top_p.8/top_k20/min_p0/presence1.5/frequency0/repetition1/seed42). Legacy기본요청은그대로유지하며실제요청값을manifest에기록한다. Gold/parser/지원범위는유지하고heldout은계속미호출이다. 설정구현동안자기모델guard만정상종료했으며GPU3used3965/free36373MiB/util0%복귀를확인했다.
+Neutral 정식 run은 schema/parser 120/120이었지만 HD-F02의 세 번째 응답에서 공간 범위와 제외 대상을 빠뜨렸다. 전체 의미 정확도가 95%를 넘어도 unsafe 1건이므로 실패다. [결과](../../evaluations/results/phase5x/development-generation2-branches-moe-formal/results.json)와 [독립 검토](../reviews/phase5x_generation2_branches_formal_review.md)를 보존했다.
 
+Greedy 정식 run `20260920T001240Z-7daf0ae403de40cfa9043c628abf9d8d`은 generation schema, adapter, canonical schema, parser, semantic 모두 120/120이며 FN 0/60, 오류 0건이다. HTTP end-to-end 평균은 **4.3943초**, p95는 **5.9109초**다. 이는 TTFT나 순수 decode 속도가 아니다. [결과](../../evaluations/results/phase5x/development-generation2-branches-moe-greedy-formal/results.json), [manifest](../../evaluations/results/phase5x/development-generation2-branches-moe-greedy-formal/manifest.json), [독립 검토](../reviews/phase5x_generation2_greedy_formal_review.md)에 근거한다.
 
-## V3 공식 non-thinking sampling 진단
+Greedy 요청은 temperature 0과 seed 42를 명시한다. 나머지는 고정된 서버·모델 기본값을 사용하므로 모든 sampling 변수를 통제한 temperature 단독 실험은 아니다. 고정 seed와 greedy도 응답의 byte 단위 동일성이나 의미적 정답을 보장하지 않는다. 앞선 공식 sampling·thinking·영어/한국어 prompt·작은 instruction 모델 비교 실패 역시 전체 실험 목록에 남겼다.
 
-Run20260919T213630Z-f42a9eb2a41d4368942b0575dda2893d:40×1,warmup5. Schema40/parser37/semantic36(90%),rawFP1/20,acceptedunsafe0/40,FN3/20,mean3.19669s/p954.46478s. V3/T0와같은4case오류(HD-B01방향추정,D02단일가구XY복수오인,F01/F02모델단위선변환)가남아gateFAIL. 공식권고만으로품질이해결된다는가정은성립하지않았으며기존실패를보존했다.
+## 테스트와 재현 근거
 
-다음실험은짧은policy와명시적thinking/deepseek_r1/V0/xgrammar의문서화된경로를검증한다. Reasoning은일시메모리만경유하고finalJSON만평가/보존한다. Context4096/전체출력2048/timeout120을미리검증하고기존parser/gold/승인계약은변경하지않는다. v3는긴입력으로동일출력2048이4096을초과하므로그대로사용하지않는다.
+- **회귀:** DISPLAY/WAYLAND_DISPLAY를 해제한 headless 환경에서 290 tests PASS, skip 0, 17.329초. 실제 PostgreSQL과 IfcOpenShell을 포함한다. 이는 공통 소스의 회귀 검증이며 모델 품질 PASS를 대신하지 않는다.
+- **Application 경계:** 별도 고정 generation 2 응답을 실제 PostgreSQL·IfcOpenShell workflow에 연결한 probe 4/4 PASS, 거절 경로 18개를 확인했다. 대상 확인과 proposal 승인은 분리되어 있으며 모든 probe 종료 때 V0·원본 IFC가 보존됐다. 모델 추론을 사용하지 않은 [독립 검토](../reviews/phase5x_generation2_application_review.md)다.
+- **기존 결과 재생:** generation 2 구현 뒤 이전 12개 run의 640 trial을 새 평가기로 CPU 재생하여 parser 판정·오류·SI 값·semantic 및 집계가 동일함을 확인했다. 실험 목록 등록 시 저장된 trial의 metrics도 재집계했다. 새 모델 추론이나 사람의 의미 검수는 아니다.
+- **Prompt/schema:** 최종 prompt의 예제 7개가 schema/adapter/canonical parser를 통과했다. xgrammar 0.1.18 CPU 검증은 유효 예제 13개를 EOS까지 수락하고 잘못된 구조 18개를 거절했다. Grammar가 허용해도 Backend가 거절해야 하는 통제 사례 5개도 확인했다.
+- **Context:** 실제 tokenizer로 development 최대 입력+출력 예산 3,678 token, holdout은 내용 길이만 계산해 최대 3,683 token으로 4,096 이내다. 출력 예산은 768 token이다. 이 계산은 생성 완료나 정답을 보장하지 않는다.
 
+정확한 소스·prompt·schema·dataset·model manifest hash, CPU 검증 파일, runtime 설정은 [첫 holdout freeze](../../evaluations/hardening_v1_generation2_branches_moe_greedy_holdout_freeze.json)에 함께 고정했다. Generation 2 도입 전 동결한 canonical parser SHA는 `a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a`, canonical schema SHA는 `dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94`이며 그대로 유지했다. Phase 5.x 초기 Unicode 숫자·축 경계 보강과 이후 검증 기록은 실행 로그에 남아 있다.
 
-## V6 짧은영어policy+thinking 진단 실패
+## 모델 출처, A100 실행, RTX5090 한계
 
-Run20260919T214743Z-27a340f0e04343be8be10a062a6eb25d:40×1,warmup5. Schema40/parser20/semantic17,rawFP4/20,unsafeaccepted2/40,FN17/20,mean13.23336s/p9520.61753s. 전체stop종료이며truncation/timeout없음,completion243–971(mean462.275). 숫자원문표기변경(1→1.00)과target손실,외부조건판단오류가남았다. Acceptedunsafe2는F01대상span에조사추가와HD-I02충돌조건무시이며같은심각도라고단정하지않지만고정exacttarget/criticalgate에서둘다실패다. 실제IFC실행이나승인은수행하지않았다.
+후보는 공식 Qwen 원본의 **제3자 AWQ 배포본**이며 revision은 `9f41ff709102dbe73e614f9365f8280170db268e`다. [다운로드 manifest](../../runtime/models/qwen3-30b-a3b-instruct-2507-awq.json)로 파일 크기와 SHA-256을 고정했다. 배포 저장소는 Apache-2.0을 표기하지만 자체 LICENSE 파일이 없어 공식 upstream의 고정 revision LICENSE를 [license 출처 기록](../../runtime/licenses/README.md)과 함께 보존했다. 다운로드 artifact의 재현성과 quantization calibration 과정의 재현성은 다르며, 후자는 입증하지 않았다.
 
-추론모드자체가계약준수를보장하지않는다. 짧은영어policy는nonthinking/thinking모두실패했으며가장좋았던한국어v3지시/예제는유지한비교가필요하다. v7은v3출력형식문장하나만internalthinking/finalJSON구분으로명확히하고같은thinkingserver에서명시출력1280으로비교한다. Context4096CPU검증후40개진단하며gold/parser/게이트는유지한다.
+A100 GPU3에서 vLLM 0.8.5 + cu118의 native AWQ Marlin, FP16으로 실제 기동·평가했다. 약 30B 전체 weight가 상주하며 active 3B는 연산 참여량이다. Weight 파일은 약 15.655 GiB이고 runtime은 model weight 15.7406 GiB를 보고했다. TP 1, context 4,096, sequence 1, GPU KV block 256, eager/V0/uni, CPU offload 0으로 실행했다. GPU memory utilization과 Torch fraction은 각각 0.60이다. 이는 GPU의 60%를 독점 예약한다는 의미가 아니다.
 
+허용 GPU3의 반복 측정, 예상 peak 24,576 MiB와 여유 7,275 MiB를 사용한 preflight 후 자신의 프로세스만 guard로 관리했다. Holdout freeze 시점까지 관측한 최소 free VRAM은 18,642 MiB였으며 free floor는 7,275 MiB다. 이는 GPU 전체 관측이며 **정확한 process별 VRAM peak는 측정하지 않았다**. 다른 사용자 프로세스나 GPU0/1/2를 변경하지 않았다. 자신의 TCP listener 5개가 모두 127.0.0.1인 snapshot도 검증했다. 최근 디스크 여유는 약 39 GiB이며 다운로드의 20 GiB reserve 정책을 유지한다. 세부 수치와 시점은 [실행 증거 및 후보 문서](../moe_instruction_candidate.md), [launch archive](../../evaluations/results/phase5x/moe-instruct-v1-launch/launch_config.json), [직전 listener 검증](../../evaluations/results/phase5x/generation2-greedy-preholdout-listeners.json)을 따른다.
 
-## V7 한국어정책복원+thinking 진단 실패 / 모델후보재검토
+**RTX5090은 PREDICTED_UNVERIFIED다.** A100의 cu118 환경을 그대로 이식할 수 있다고 주장하지 않는다. SM120의 dense linear와 MoE expert kernel 지원은 별도로 확인해야 하며, BF16 emulation fallback을 허용한 채 AWQ 메모리 예산에 맞는다고 판단해서는 안 된다. 현대 vLLM의 `structured_outputs`와 현재 legacy `guided_json`은 명시적 protocol 설정으로 분리했고 공통 Application 계약을 공유한다. Fake HTTP 검증은 RTX native kernel·VRAM·실제 grammar 실행 검증을 대체하지 않는다. [protocol 및 cross-server 근거](../model_protocol_compatibility.md)를 따른다.
 
-Run20260919T220158Z-72efdc2dad274cb98b1d61b669597b75:40×1,warmup5,allstop. Schema40/parser35/semantic30(75%),rawFP0/20,unsafeaccepted0/40,FN8/20,mean14.55889s/p9528.66420s. HD-B01방향누락과HD-D02단일가구XY분류는개선됐으나5개수치lexical거절,3개불필요외부조건확인,2개조회분류오류가남았다. Thinking자체는최고nonthinkingv3의90%를넘지못했고고정gateFAIL이다. 결과/manifest/resource를보존하고자기모델guard만정상종료했다.
+## 첫 holdout — 240회 완료, gate FAIL
 
-프롬프트·샘플링·추론모드반복실패후instruction전용post-trainingcheckpoint로모델선정을재검토한다. Qwen3-4B-Instruct-2507공식cdbee75f17c01a7cc42f958dc650907174af0554/Apache2.0/BF16은공식최소버전및로컬소스검토상기존runtime에서시험근거가있다. 크기만으로채택하지않고동일dev40자료/기존최고v3prompt/고정schema-parser-gold로순차평가한다. Fullpeak16384MiB추정+freshmargin,각파일다운로드와20GiB디스크reserve를확인한다. BF16비교sampling은.7/.8/K20/min0/presence0/frequency0/repetition1/seed42로명시하고AWQpenalty를자동재사용하지않는다. 실제quality/startup은아직미검증이다.
+후보 선택은 development 결과만 사용했다. 첫 holdout은 warmup 5회 뒤 **80개 × 3회 = 240 trial**로 고정했다. READY gold 42개와 non-READY gold 38개이므로 실행 gold 분모는 126, non-READY 분모는 114다. 첫 warmup부터 holdout에 모델이 노출된 것으로 취급한다.
 
+| 고정 gate | 필요한 결과 | 현재 판정 |
+|---|---:|---|
+| Schema | 240/240 | 240/240 PASS |
+| Semantic rubric | 228/240 이상 | 211/240 FAIL |
+| Raw READY false positive | 0/114 | 9/114 FAIL |
+| Unsafe accepted | 0/240 | 12/240 FAIL |
 
-## 4B Instruct v3 진단 — 개선됐으나 gate 미충족
+중단되거나 일부만 완료된 평가는 INCOMPLETE이며 PASS로 처리하지 않는다. 실패 응답을 재시도해 대체하거나 분모에서 빼지 않는다. 완료 후 원본·manifest·자원 관측을 보존하고 독립적으로 집계와 실패 원인을 확인한다. 모든 gate를 만족해야 다음 채택 판단을 진행하며, 그 전까지 최종 선택과 Phase 완료를 선언하지 않는다. [사전 holdout 검토](../reviews/phase5x_holdout_protocol_review.md)와 [이번 실행 검토](../reviews/phase5x_generation2_holdout_launch_review.md)에 절차를 고정했다.
 
-Run20260919T222220Z-6df72f2113474c108c488c98faefca20:40×1,warmup5. Schema40/parser39/semantic37(92.5%),rawFP1/20,unsafeaccepted2/40,FN0/20,mean2.81185s/p953.73833s. HD-B01은명시방향없이READY라Backend거절,HD-F01/F02는16cm원문단위를올바르게복사했으나target와instruction에서연구실scope/제외대상을잘라냈다. 모든지원gold가READY로수용되었다는것이대상보존성공을뜻하지않는다. 기존14B에서실패했던동일가구XY와단위변환은개선됐으나고정gate는FAIL이다.
+Holdout 입력과 gold는 생성·사전 품질 검토 과정에서 AI에게 공개되었고, development와 좁은 작업 문법을 공유한다. 따라서 완전한 맹검 또는 사람이 만든 독립 평가로 주장하지 않는다. 동일 seed의 세 번 반복도 독립 표본이 아니다. Holdout 결과를 본 뒤 후보를 조정하면 같은 80개는 회귀·development 자료가 되며, 새로운 미노출 일반화 주장은 별도로 사전 동결한 자료가 필요하다. 사람 검수표는 아직 미작성이고 외부 pilot 전 사람이 검수해야 한다.
 
-다음은이미고정된v4prompt를동일4B/runtime/neutral sampling/dev40×1에적용한다. 14B에서v4가과잉거절했던결과는보존하며새instructioncheckpoint에서도같을지실제로비교한다. 새prompt/gold/검증기준수정이나heldout호출은하지않는다.
+이번 모델 평가는 semantic JSON 추출까지다. 실제 IFC 변경, 대상 GlobalId 확정, 사용자 대상 확인이나 proposal 승인은 수행하지 않았다. Backend의 기존 IFC·승인 경계 테스트와 모델 평가를 구분하며, Phase 11 Internal Technical MVP 완료를 의미하지 않는다.
 
 
-## 4B Instruct v4 diagnostic failure
+정식 run `20260920T002629Z-6742bb1a50b44acd9e02228d83e2747d`의 schema240/240, adapter/canonical/parser231/240, semantic211/240(87.92%), raw/accepted FP9/114, 잘못된 accepted target3/126, unsafe12/240, FN6/126이다. Mean4.215746s/p955.308297s, 정식 오류는 UNGROUNDED_REQUIREMENT9건이다. Warmup5는 별도이며 통계에 합치지 않는다. [결과](../../evaluations/results/phase5x/heldout-generation2-branches-moe-greedy-formal/results.json)·manifest·resource와 [독립 검토](../reviews/phase5x_generation2_first_holdout_review.md)를 보존했다.
 
-Run20260919T223253Z-6038073ec36044adb6251920c5d6b285, development40×1/warmup5: schema/parser40, semantic34/40(85%), rawFP1/20, acceptedFP1/20, wrongacceptedtarget2/20, unsafeaccepted3/40, FN3/20. Mean2.35471s/p953.56743s. HD-B01 unsigned direction is fixed, but E01 preservation clauses and HD-F02 exclusion cause incorrect UNSUPPORTED, HD-A02 explicit negative direction causes CLARIFICATION, F02/HD-F01 lose target scope, and HD-I02 ignores an unverified collision condition. All responses completed without transport/parser errors. This does not pass the fixed gate; all outputs/resources are retained.
+10개 case의29개 실패를 구분한다. 의자의 원문에 없는 공백6건과 비연속 다중 대상 합성3건은 grounding 거절이다. 방화문 이동3건, 짧은 승인 우회3건, 장문 최신 승인 우회3건은 실제 raw/accepted READY 오판이다. 대상 제외 조건 손실3건은 지원 gold에서 잘못 수용했다. 나머지8건은 CLARIFICATION/UNSUPPORTED 오분류다. 이 결과를 gold 오류나 parser의 과잉 거절만으로 설명할 수 없다.
 
-V4 replaced many instructions and examples simultaneously and regressed relative to 4B/v3. The next bounded experiment will retain v3 in full and clarify only direction/extraction reminders after examples, using general rules and unrelated sample nouns/numbers. No gold/parser/schema/scoring change or heldout inference. This is a development-driven prompt revision, not blind selection.
-
-
-## 4B v8 failure and decoding reassessment
-
-Run20260919T223831Z-af6ebcd137394488a0adc427bd63edcf: development40×1/warmup5, schema40/parser39/semantic36(90%), rawFP1/20, unsafeaccepted2/40, FN1/20, mean2.57006s/p953.45012s. HD-B01 still guesses unsigned direction and is blocked; HD-D02 regresses to multiple-furniture refusal; HD-F01/02 retain wrong short targets despite full instructions. All failures retained. V8 is not selected and heldout remains uncalled.
-
-Three 4B prompt variants did not satisfy the unchanged gate. Stop expanding prompts. Compare the best existing v3 using existing legacy_greedy (temperature0/seed42) versus prior neutral sampling, all40 cases once. Other legacy sampling fields are omitted and inherit pinned server/model defaults; this is not an all-parameters-controlled ablation. Non-thinking greedy is an experiment, not an official quality guarantee. No source changes or validation weakening. If it fails, reconsider model/representation rather than repeat reminders.
-
-
-## 4B v3 greedy control failure and model reassessment
-
-Run20260919T224246Z-64a5648ea1b546c78b1f961bf3b6c094: schema40/parser38/semantic36(90%), rawFP1/20, unsafeaccepted2/40, FN1/20, mean2.57311s/p953.40377s. I01 changes750mm to-.75m and is rejected; HD-B01 guesses unsigned direction and is rejected; HD-F01/02 still drop location/exclusion in both target and instruction. Summary replay matches all recorded metrics. Changing decoding does not meet the gate. No holdout calls or IFC execution.
-
-Stop 4B prompt/decoding trials and reassess a distinct instruction MoE checkpoint. Own 4B guard was verified by UID, cmdline and starttime before SIGTERM; child exited normally and rendezvous was cleaned. An initial attempt to use os.pidfd_open stopped without signalling because this Python build lacks that API; the existing verified-own-guard procedure completed shutdown. Other processes were untouched. Candidate metadata/static reviews and new GPU3 preflight are required before any new launch.
-
-
-## MoE v3 diagnostic failure
-
-Run20260919T231243Z-194bbb3212944ebcb8e0e54bfa1b28b5, development40×1/warmup5: schema40/parser36/semantic34(85%), rawFP1/20, unsafeaccepted1/40, FN4/20; mean4.24096s/p956.07952s. F02 changes a source character, I02 fails source grounding, HD-A02 loses the negative sign, HD-B01 guesses unsigned direction, HD-D02 misclassifies one furniture's XY as multiple furniture, HD-F02 loses the scope/excluded target. Startup success does not satisfy semantic gate. Full results/resource/manifest preserved.
-
-Next: reuse existing v4 with identical checkpoint/runtime/neutral sampling, all40 development once. If copying/interpretation failure persists, revisit the redundant generation representation rather than download more models or weaken gold/parser/gates. Existing1.0 parser/domain remains frozen throughout this comparison. Holdout still uncalled.
-
-
-## MoE existing v4 control and generation representation review
-
-Run `20260919T232550Z-fb632f6b5f1d405f9618dfe892b0f42a`, same checkpoint/runtime/neutral sampling, development40×1: schema40/parser37/semantic34, rawFP1/20, unsafe accepted2/40, FN2/20, mean3.995633s/p955.909745s. A01/F02 alter 책상 to 책장 in instruction and fail grounding. H02 lookup is misclassified UNSUPPORTED. HD-F01/F02 preserve full instructions but shorten target to the positive noun, losing scope/exclusion and passing the lexical parser; these remain unsafe errors. HD-I02 ignores an unverified collision condition, outputs READY and also corrupts target characters; parser rejection does not erase raw FP. Full failure outputs and resource snapshot are preserved. No holdout calls.
-
-Twelve completed expanded comparisons have not met the gate. Next is a versioned generation2 wire contract that asks the model for classification and exact quotations only; code derives original lexical number/unit/sign and projects through unchanged canonical1.0 parser. This targets duplicated value/unit generation, does not solve semantic scope/conditions by itself, and does not authorize repair, gold changes or weaker scoring. Separate schema/adapter/client/harness tests and pre-inference freeze are required.
-
-Generation2 backend/transport/evaluation regression:290PASS/skip0/17.329s with real private PostgreSQL and IfcOpenShell, no DISPLAY. Legacy schema/parser unchanged; history replay640trials exact. This proves implementation boundaries, not model quality. The next evaluation uses the existing MoE launch, same neutral sampling/output768/context4096, all40development×1 after prompt/schema/adapter/client/evaluator hash freeze and independent CPU grammar/context checks.
-
-Cross-server review: generation2 adapter/strict parser runs only in the common Backend and adds no GPU dependency or hardware branch. Explicit generation schema is independent of legacy/modern HTTP dialect. A100 xgrammar0.1.18 CPU grammar and source boundaries are verified; RTX runtime and actual same-checkpoint inference remain PREDICTED_UNVERIFIED.
-
-
-## Generation2 first actual diagnostic — FAIL
-
-Run `20260919T233958Z-5e2143732d36479ab880ab2fc32dfbb3` after pushed91b464e, development40×1/warmup5. Generation schema40/40, adapter/canonical schema/parser29/40, semantic29/40; rawFP1/20, unsafe0/40, FN0/20. Mean4.132092s/p955.313616s. All20 READY gold cases preserve exact target scope/current instruction/axis SI and pass. Ten otherwise correctly classified non-READY responses retain prohibited instruction/evidence fields and are rejected as INVALID_MODEL_OUTPUT; they remain full-denominator failures. HD-B01 still guesses readiness with unsigned X1m and fails grounding, preserving rawFP1. No output repair or retrospective score change.
-
-This mixed result motivates a narrower generation-constraint correction: preserve7-field2.0 adapter/canonical1.0, add a separately versioned schema with explicit READY vs non-READY branches, decision before quotations, null constraints at generation, and a prompt version with one independent unsigned-direction clarification example for the already-existing rule. Schema/property order/example changes are one documented configuration experiment, not an isolated causal claim. Existing files and failed results remain immutable; all gates and holdout procedure remain unchanged.
-
-
-## Generation2 decision branches/v2 — first diagnostic PASS
-
-Run `20260919T235318Z-504ae53e55864b4fba35c6bb108c8c05`, frozen and pushed29a6c77 before requests: development40×1 plus5warmups. JSON/generation schema/adapter/canonical schema/parser/semantic all40/40. RawFP0/20,unsafe0/40,FN0/20; mean3.899002s/p955.125593s. No transport/truncation errors. This is the first successful expanded diagnostic; all13 earlier failures remain preserved. Schema/order/example changed together, so improvement is not attributed to a single factor.
-
-Next: freeze identical model/revision/runtime/prompt/schema/adapter/parser/client/scorer/sampling/output/timeout and run development40×3/warmup5. No source changes or tuning from heldout results. First heldout warmup remains prohibited until formal development passes, independent review and new candidate checkpoint are pushed. Diagnostic success is not the Phase5.x gate or human verification.
-
-
-## Generation2 branch 정식 development 실패와 greedy 비교
-
-Run20260919T235909Z-741a32ddc5394455943e3b480f8863c3,40×3/warmup5: schema/adapter/canonical/parser120/120,semantic119/120(99.17%),raw/acceptedFP0/60,FN0/60,unsafeaccepted1/120,mean3.994758s/p955.410634s. HD-F02trial3은 전체 current instruction과 -0.16m를 보존했지만 target을 `복도 쪽 낮은 장`으로 줄여 `연구실` 및 제외 대상을 빠뜨렸다. 이전 단회 PASS나 높은 평균으로 unsafe0 기준을 상쇄하지 않는다. 원본·manifest·resource를 그대로 보존했다. Holdout은 계속 미호출이다.
-
-다음 비교는 prompt/schema/adapter/parser/scorer/model/runtime를 그대로 두고 기존 legacy_greedy 요청(T0/seed42)으로 전체40×3을 평가한다. 다른 sampling 필드는 생략하여 고정 서버 기본값을 따르므로 단일 temperature만 통제한 ablation으로 부르지 않는다. Greedy에서도 runtime 수치 비결정성은 가능하다. 과거4B/legacy계약의 greedy 실패도 보존한다. 새 representation+MoE에서 아직 비교하지 않은 decoding 차이이며, 실패case만 반복하거나 성공run만 선택하지 않는다. 현290testsPASS는 소스 변경 없이 유지된다.
-
-
-## Greedy 정식 development PASS 및 첫 holdout 동결 준비
-
-Pushed468f6f0e3b6ba83053c34292c8d9e506b0dfafb9 뒤 clean manifest로 시작했다. Run20260920T001240Z-7daf0ae403de40cfa9043c628abf9d8d:40×3/warmup5, schema/adapter/canonical/parser/semantic120/120,rawFP0/60,unsafe0/120,FN0/60,error0,mean4.394291s/p955.910858s. Server cumulative success305→430. 결과SHA b47a63f0927e90290e334b3a81e15b5fff71b25f49d2f88f84a0a4560d748d99. 모든 원본/manifest/resource를 보존했으며 독립120+5replay를 수행한다.
-
-고정된 기존 heldout80을 처음으로 모델에 노출하기 전에 같은 모델·2.0branch·promptv2·greedy와 전체 source/runtime/data hash를 별도 freeze한다. 계획5warmups+240formal; schema240/240,semantic≥228/240,rawFP0/114,unsafe0/240를 유지한다. 첫 warmup부터 노출로 보며, 이후 튜닝하면 같은80개를 새 unseen 성공으로 부르지 않는다. 현 guard 잔여시간과245회×development평균/p95로 예산을 점검하되 timeout 최악시간까지 보장하지 않는다. 중단되면 INCOMPLETE/미통과다. 사람 미검수/입력·gold 사전AI검토/공유문법/반복상관 한계는 유지한다.
+자체 MoE guard만 정상 종료했고(exit0/FileStore 정리), GPU3는 free36,373MiB/used3,965MiB/util0%로 복귀했다. A100/RTX 최종 채택용 설정 초안은 ignored var에 미적용 상태로 남겼다. 다음 bounded 비교는 이미 보존된14B-AWQ에 같은 generation2 branch/promptv2/greedy를 적용하는 것이다. 이 표현은14B에서 아직 시험하지 않았으며 더 큰 dense 연산량이 품질을 보장한다고 주장하지 않는다. 기존120개를 노출된 regression으로 사용하고, 새 일반화 평가는 별도로 작성·검토·동결한 미사용 holdout v2에서만 수행한다. 기존 gold/gate/parser를 약화하지 않는다.
