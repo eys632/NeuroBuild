@@ -1,6 +1,6 @@
 # Phase 5.x — Requirement Quality Hardening
 
-**현재 상태: 정식 development는 통과했지만 첫 holdout gate FAIL. 후보 미채택이며 Phase 5.x는 완료되지 않았다.**
+**현재 상태: 첫 holdout과 후속14B single/staged 진단 모두 FAIL. 후보 미채택이며 Phase5.x는 완료되지 않았다.**
 
 첫 holdout에서 실패한 후보는 `ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ`와 generation 2, decision-branch schema, prompt v2, `legacy_greedy` 조합이다. Development 40개 × 3회에서 schema/parser/semantic **120/120**, raw READY false positive **0/60**, unsafe accepted **0/120**을 기록했다. 직전 neutral sampling의 정식 평가는 119/120이었지만 unsafe 1건으로 실패했으며, 그 결과도 보존했다. 아직 최종 모델을 채택하지 않았다.
 
@@ -114,3 +114,10 @@ Holdout 입력과 gold는 생성·사전 품질 검토 과정에서 AI에게 공
 
 
 후보 파일 동결 뒤 Git staged whitespace 검사에서 CRLF CSV 행이 출력되어 root/prompt 작성자에게 일부 v2 입력·gold가 노출됐다. [별도 이력](../../evaluations/hardening_v2_input_exposure_addendum.json)에 기록했고, 이후 후보31개 파일 hash는 모두 같았다. CSV와 기존 dataset freeze9개 파일은 변경하지 않았다. V2 모델 호출은0이며 model-output-unseen 상태지만 root의 입력 맹검은 해당 시점에 종료됐다. 이후 설명에서 완전 맹검 또는 계속된 root 입력 분리를 주장하지 않는다.
+
+
+## 두 단계 후보의 실제 실패
+
+Staged14B 진단은120×1+warmup5를 완료했지만 semantic93/120,rawFP11/58,unsafe6/120으로 실패했다. 양쪽 schema는120/120, canonical parser는103/120이었다. 첫 분류 오판은 후단이 거절한6건까지 모두 보존했다. Null을 문자열로 만든 인용 오류 등이17건의 grounding 거절을 유발했으며, 전체 정확도는 같은14B의 single113/120보다 낮았다. Mean4.6910초/p955.5816초다. [독립 재생과 실패 분석](../reviews/phase5x_staged_14b_exposed_review.md)은125개 전부의 판정과 집계가 같음을 확인했다.
+
+새 분리 구조를 채택하지 않는다. 다음 비교는 기존 single2.0 branch/promptv2/greedy를 유지한 공식32B AWQ 후보의 자원 적합성 검토다. 후보 변경은 품질 향상의 보장이 아니며, 같은 gate와 공개된 holdout 노출 이력을 유지한다.32B 실행/품질/RTX 실측은 아직 없다.

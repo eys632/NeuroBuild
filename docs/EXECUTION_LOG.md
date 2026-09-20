@@ -415,3 +415,17 @@ V2 unused holdout은80개이며 A–J 각8개, READY40/CLARIFICATION20/UNSUPPORT
 `git diff --cached --check`가 검수 CSV의 CRLF를 trailing whitespace로 표시하면서 일부 v2 입력/gold를 root tool output에 노출했다. 직전 후보31개 파일 동결 뒤의 사건이며, 후속 hash 검증에서 prompt/code 포함31개 모두 동일했다. 이 시점에 root 입력 맹검은 종료됐고 앞의 미열람 문장은 과거 시점의 사실로만 해석한다. 모델은 아직 v2에 호출하지 않았다. 별도 hardening_v2_input_exposure_addendum.json과 현재 STATUS/report에 공개했다.
 
 Freeze의 CSV bytes를 바꾸지 않고 `git -c core.whitespace=trailing-space,space-before-tab,cr-at-eol diff --cached --check`를 로그 파일로 redirect하여 재검사했고 PASS다. 초기 검사 실패 뒤에는 commit/추론을 실행하지 않았다. CRLF-aware 검사는 CSV 형식의 줄 끝만 허용하며 다른 trailing whitespace 검사를 유지한다. 향후 후보 변경 시 입력 노출을 다시 명시하고 독립 holdout 필요성을 재검토한다.
+
+
+## Staged14B 진단 FAIL 및 모델 서버 종료
+
+Pushed45858d6da4aba547be657812663e382eff717dda/clean 상태와 후보31hash·v2dataset9hash를 확인한 뒤 기존14B epoch에서 실행했다. Run20260920T013141Z-f3266f57faac473ebd0b9df66cb3cd75,120×1+warmup5, servercounter125→375. Schema120/parser103/semantic93,rawFP11/58,acceptedFP5/58,unsafe6/120,FN11/62,UNGROUNDED17,mean4.691022s,p955.581566s. 독립125개 재생에서 판정/SI/rubric/전체metrics가 같았다. 후보28hash를 독립 확인했고 미래v2관련3개는 해당 검토자가 읽지 않았다. 원본/manifest/dataset/replay/resource/integrity를 보존했다. ResultsSHAe1a7735a277ebd56dbbd6e8fc4bbb400f59b7eeab333a427f6f3b81870bbc905.
+
+Own guard3446143/child3446165의 UID/startticks/model/report arguments를 확인하고 guard에SIGTERM을 보냈다. Guard는 STOP_REQUESTED/STOPPED, child_exit_code0, reaped, FileStorecleaned다. Shutdown에는 TERM과KILL escalation이 모두 기록됐다. Wrapper84605는exit0이었다. 종료 시 xgrammar/nanobind binding 정리 경고가 있었고 GPU자원은 반환됐다. Epoch elapsed3147.173s, minfree24460MiB, aggregate increment11914MiB. 종료 뒤 GPU3 free36373/used3965/util0. 다른 사용자의 process나 다른GPU는 변경하지 않았다.
+
+디스크는 usable 약38.10GiB로32B 모델18.013GiB를 받을 경우20GiB reserve 위 약92MiB만 남으므로 충분한 운영 여유로 보지 않았다. 사용을 마친4B cache의3개 safetensors에 대해 즉시전체SHA/UID/regular-file/single-link/inode검증 후8,044,982,000 bytes를 제거했다. 기존 manifest/metadata/평가 결과는 그대로다. Free40909565952→48954236928 bytes(df46G). 정리기록과 복원명령을 evaluations/results/phase5x/unused_4b_weight_cache_cleanup.json에 보존했다.32B weight는 아직 다운로드하지 않았다.
+
+
+## 공식32B 다운로드 전 checkpoint 준비
+
+2026-09-20 11:02 KST. 공식Qwen/Qwen3-32B-AWQ rev0499c3ac83fdef8810b907a23894ba91e95eddd8의13파일manifest와 Apache2 LICENSE, 정적 호환성, provenance 및 메모리 계획을 보존했다. 총19,341,523,989bytes이며 manifestSHAfbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03. GPU3free36373/util0, wholepeak25600+margin7275 뒤3498MiB잔여다. 최종fraction.60/.60과allowance0을 명시한다. 실제CUDA가보고하는총량과non-Torch 때문에 fraction을 wholecap으로 해석하지 않는다. 현재45.59GiBfree에서 다운로드후27.58GiB를 예상하고 downloader의20GiB reserve를 유지한다. 새dependency/GPU모델호출/weightdownload는 이 checkpoint 전에 없었다.

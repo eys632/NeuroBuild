@@ -1,0 +1,161 @@
+{
+  "status": "PREDICTED_UNVERIFIED_NO_32B_RUNTIME",
+  "created_at_utc": "2026-09-20T01:50:13.227875+00:00",
+  "model_id": "Qwen/Qwen3-32B-AWQ",
+  "revision": "0499c3ac83fdef8810b907a23894ba91e95eddd8",
+  "manifest_sha256": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03",
+  "configuration": {
+    "architectures": [
+      "Qwen3ForCausalLM"
+    ],
+    "attention_bias": false,
+    "attention_dropout": 0.0,
+    "bos_token_id": 151643,
+    "eos_token_id": 151645,
+    "head_dim": 128,
+    "hidden_act": "silu",
+    "hidden_size": 5120,
+    "initializer_range": 0.02,
+    "intermediate_size": 25600,
+    "max_position_embeddings": 40960,
+    "max_window_layers": 64,
+    "model_type": "qwen3",
+    "num_attention_heads": 64,
+    "num_hidden_layers": 64,
+    "num_key_value_heads": 8,
+    "quantization_config": {
+      "bits": 4,
+      "group_size": 128,
+      "modules_to_not_convert": null,
+      "quant_method": "awq",
+      "version": "gemm",
+      "zero_point": true
+    },
+    "rms_norm_eps": 1e-06,
+    "rope_scaling": null,
+    "rope_theta": 1000000,
+    "sliding_window": null,
+    "tie_word_embeddings": false,
+    "torch_dtype": "float16",
+    "transformers_version": "4.51.3",
+    "use_cache": true,
+    "use_sliding_window": false,
+    "vocab_size": 151936
+  },
+  "fixed_runtime_assumptions": {
+    "vllm": "0.8.5+cu118",
+    "transformers": "4.51.3",
+    "tp": 1,
+    "dtype": "half",
+    "max_model_len": 4096,
+    "max_num_batched_tokens": 4096,
+    "max_num_seqs": 1,
+    "kv_blocks": 256,
+    "block_size": 16,
+    "enforce_eager": true,
+    "attention": "FLASH_ATTN v2",
+    "quantization_runtime": "awq_marlin required; static compatibility only",
+    "cpu_offload_gb": 0,
+    "swap_space": 0,
+    "cuda_graphs": false,
+    "lora": false,
+    "prompt_logprobs": false,
+    "gpu_memory_utilization": 0.6,
+    "torch_memory_fraction": 0.6,
+    "estimated_peak_mib": 25600,
+    "peak_allowance_mib": 0,
+    "aggregate_increment_stop_limit_mib": 25600
+  },
+  "tensor_size_arithmetic_bytes": {
+    "weights_file_bytes": 19325481744,
+    "kv_bytes": 1073741824,
+    "largest_gate_up_qweight_bytes": 131072000,
+    "largest_gate_up_scale_bytes": 4096000,
+    "largest_gate_up_unpacked_zero_tensor_bytes": 8192000,
+    "largest_gate_up_output_bytes": 419430400,
+    "largest_gate_up_fp32_reduction_bytes": 209715200,
+    "largest_silu_output_bytes": 209715200,
+    "one_hidden_tensor_bytes": 41943040,
+    "qkv_packed_output_bytes": 83886080,
+    "persistent_marlin_workspace_all_layers_bytes": 4587520
+  },
+  "planning_budget_mib": {
+    "resident_weights_scales_zeros_embeddings_and_workspace": 18560,
+    "kv_fp16_4096_seq1": 1024,
+    "prefill_activations_and_kernel_scratch": 2048,
+    "additional_repack_temporaries_budget": 512,
+    "cuda_context_and_non_torch_libraries_budget": 1024,
+    "allocator_fragmentation_and_rounding_budget": 1408,
+    "additional_whole_peak_uncertainty_budget": 1024
+  },
+  "estimated_whole_startup_or_inference_peak_mib": 25600,
+  "estimated_peak_is_measured_or_hard_bound": false,
+  "baseline_parent_provided_not_remeasured": {
+    "a100_free_mib": 36373,
+    "safety_margin_mib": 7275,
+    "estimate_plus_margin_mib": 32875,
+    "remaining_mib": 3498,
+    "utilization_percent": 0,
+    "existing_14b_stopped": true
+  },
+  "rtx": {
+    "status": "PREDICTED_UNVERIFIED",
+    "margin_at_that_free_mib": 6400,
+    "requires_sm120_native_runtime_not_current_cu118": true,
+    "modern_dense_marlin_no_moe_backend": true,
+    "measured_memory_quality": false,
+    "minimum_fresh_free_mib_for_same_25600mib_estimate": 32000,
+    "a100_fraction_not_portable": "0.60 is an A100-specific proposal; RTX needs its own allocator/cache settings and native SM120 runtime."
+  },
+  "allocator_cap_notice": "A100 CUDA-reported total is approximately39.39GiB, provided by root, not independently measured here. Fraction0.60 permits approximately23.63GiB Torch, not a hard whole-process cap. The prior0.575 cap permits approximately22.65GiB, below the23GiB detailed Torch planning sum before extra whole-peak uncertainty; allocator fragmentation can cause avoidable self-cap OOM. Final proposal: both fractions0.60, estimated whole peak25600MiB, allowance0, aggregate increment stop threshold25600MiB. vLLM utilization is cache planning, not device isolation; the watchdog is polling, not hard isolation. No runtime settings changed by this review.",
+  "source_hashes": {
+    "vllm/model_executor/model_loader/loader.py": "c589396d8b537d4d3409fe098da551a453e5c6081ad9d34470f0e5df8dddb505",
+    "vllm/model_executor/model_loader/weight_utils.py": "269dad7ba0c9d14cc920d0e76c0d265016c8ea72d3372927580b7927865c7f98",
+    "vllm/model_executor/layers/quantization/awq_marlin.py": "ced3d7507dae3d06edb35438f8f15843dcedc17577016af7c30c4a0972f6c6b8",
+    "vllm/model_executor/layers/quantization/utils/marlin_utils.py": "23db33d9a8cc27b74086cc9034f50fc4de59b0fb48ae6ca9f3332d110e66fd10",
+    "vllm/model_executor/layers/logits_processor.py": "e1c9a6fbf3c43db5abc1d7e1f4c0b9303c1d5e46e6986ad0a06c1fb6dc5dbc2a",
+    "vllm/worker/model_runner.py": "4471a48fba8505e88f23dfc01d746b0b0239c867921c5ffc3115a7ccf4ad2b4c",
+    "vllm/worker/worker.py": "225fca5782027e4ab5b4f7351fef19650e1de4622e581842bfc5fac63582af5b"
+  },
+  "official_small_source_snapshots": [
+    {
+      "path": "gptq_marlin.cu",
+      "source": "https://raw.githubusercontent.com/vllm-project/vllm/v0.8.5/csrc/quantization/gptq_marlin/gptq_marlin.cu",
+      "bytes": 96981,
+      "sha256": "ac292497f4353ff02ccb35ab29ca4b09d7b3e151915d7710c74abe909b571531"
+    },
+    {
+      "path": "marlin.cuh",
+      "source": "https://raw.githubusercontent.com/vllm-project/vllm/v0.8.5/csrc/quantization/gptq_marlin/marlin.cuh",
+      "bytes": 2420,
+      "sha256": "02a71b863311e47461eb50d6d12036c8a7b0a44e2f2c48862f743ea63575531e"
+    }
+  ],
+  "prior_14b_evidence": {
+    "report": "var/reports/qwen3-14b-generation2-v2-server.json",
+    "report_sha256": "cde9a481a291da752cb8c2529a7cb95c911835ef2ede503f56012013f72b6a55",
+    "observed_aggregate_increment_mib": 11914,
+    "log": "var/logs/qwen3-14b-generation2-v2-server.log",
+    "profile_weights_GiB": 9.36,
+    "profile_activation_peak_GiB": 0.57,
+    "profile_non_torch_increase_GiB": 0.09,
+    "not_32b_measurement": true,
+    "not_per_process_peak_measurement": true
+  },
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "weights_downloaded": false,
+  "torch_imported": false,
+  "updated_at_utc": "2026-09-20T02:00:03.961608+00:00",
+  "disk_parent_provided_not_remeasured": {
+    "available_bytes": 48954236928,
+    "download_bytes": 19341523989,
+    "after_download_bytes": 29612712939,
+    "after_download_GiB": 27.578988055698574,
+    "reserve_bytes": 21474836480,
+    "after_download_surplus_above_reserve_bytes": 8137876459,
+    "after_download_surplus_above_reserve_GiB": 7.578988055698574,
+    "parent_reported_verified_unused_4b_weights_cleanup": true,
+    "reviewer_deleted_or_downloaded_weights": false
+  }
+}

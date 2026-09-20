@@ -1,0 +1,60 @@
+{
+  "manifest_sha256": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03",
+  "file_count": 13,
+  "total_bytes": 19341523989,
+  "evidence": [
+    {
+      "name": "LICENSE",
+      "method": "official pinned bytes retained"
+    },
+    {
+      "name": "README.md",
+      "method": "official pinned bytes retained"
+    },
+    {
+      "name": "config.json",
+      "method": "official pinned bytes retained"
+    },
+    {
+      "name": "generation_config.json",
+      "method": "official pinned bytes retained"
+    },
+    {
+      "name": "merges.txt",
+      "method": "existing 14B bytes match official 32B size and LFS SHA256 / Git blob SHA1"
+    },
+    {
+      "name": "model-00001-of-00004.safetensors",
+      "method": "official pinned Hub LFS SHA256; weight bytes not downloaded"
+    },
+    {
+      "name": "model-00002-of-00004.safetensors",
+      "method": "official pinned Hub LFS SHA256; weight bytes not downloaded"
+    },
+    {
+      "name": "model-00003-of-00004.safetensors",
+      "method": "official pinned Hub LFS SHA256; weight bytes not downloaded"
+    },
+    {
+      "name": "model-00004-of-00004.safetensors",
+      "method": "official pinned Hub LFS SHA256; weight bytes not downloaded"
+    },
+    {
+      "name": "model.safetensors.index.json",
+      "method": "official pinned bytes retained"
+    },
+    {
+      "name": "tokenizer.json",
+      "method": "existing 14B bytes match official 32B size and LFS SHA256 / Git blob SHA1"
+    },
+    {
+      "name": "tokenizer_config.json",
+      "method": "official pinned bytes retained"
+    },
+    {
+      "name": "vocab.json",
+      "method": "existing 14B bytes match official 32B size and LFS SHA256 / Git blob SHA1"
+    }
+  ],
+  "weights_downloaded": false
+}

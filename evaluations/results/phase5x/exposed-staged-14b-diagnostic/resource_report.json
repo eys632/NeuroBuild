@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "profile": "a100",
+  "state": "RUNNING",
+  "enable_reasoning": false,
+  "reasoning_parser": null,
+  "started_at_utc": "2026-09-20T00:51:41.884065+00:00",
+  "reason": null,
+  "memory_fit_guaranteed": false,
+  "inference_validation": "NOT_ESTABLISHED",
+  "measurement_scope": "permitted_GPU_aggregate_only",
+  "per_process_measurement": false,
+  "peak_attribution_notice": "Aggregate baseline-relative increase is not a guaranteed per-process upper bound: other workloads may release memory between samples.",
+  "poll_interval_seconds": 0.5,
+  "elapsed_seconds": 3119.328,
+  "observed_baseline_relative_peak_mib": 11914,
+  "watchdog_sample_count": 5638,
+  "log_file": "/home/a202192020/NeuroBuild_v2/var/logs/qwen3-14b-generation2-v2-server.log",
+  "model_path": "/home/a202192020/NeuroBuild_v2/var/models/Qwen--Qwen3-14B-AWQ/31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+  "dtype": "half",
+  "served_model_name": "neurobuild-local",
+  "torch_allocator_fraction": 0.5,
+  "gpu_memory_utilization": 0.5,
+  "max_model_len": 4096,
+  "physical_gpu_index": 3,
+  "required_cuda_visible_devices": "3",
+  "peak_allowance_mib": 1024,
+  "preflight": {
+    "schema_version": 1,
+    "profile": "a100",
+    "physical_gpu_index": 3,
+    "required_cuda_visible_devices": "3",
+    "generated_at_utc": "2026-09-20T00:51:41.885478+00:00",
+    "policy": {
+      "profile": "a100",
+      "estimated_peak_mib": 18432,
+      "samples": 5,
+      "interval_seconds": 1.0,
+      "safety_margin_mib": 6144,
+      "safety_margin_fraction": 0.2,
+      "max_utilization_percent": 10,
+      "max_free_change_mib": 256
+    },
+    "samples": [
+      {
+        "total_mib": 40960,
+        "free_mib": 36373,
+        "used_mib": 3965,
+        "utilization_percent": 0
+      },
+      {
+        "total_mib": 40960,
+        "free_mib": 36373,
+        "used_mib": 3965,
+        "utilization_percent": 0
+      },
+      {
+        "total_mib": 40960,
+        "free_mib": 36373,
+        "used_mib": 3965,
+        "utilization_percent": 0
+      },
+      {
+        "total_mib": 40960,
+        "free_mib": 36373,
+        "used_mib": 3965,
+        "utilization_percent": 0
+      },
+      {
+        "total_mib": 40960,
+        "free_mib": 36373,
+        "used_mib": 3965,
+        "utilization_percent": 0
+      }
+    ],
+    "runtime_validation": "NOT_TESTED",
+    "memory_fit_guaranteed": false,
+    "notice": "Read-only measurement and estimate; no reservation, runtime launch, process query or termination.",
+    "allowed": true,
+    "decision": "BUDGET_FITS_ESTIMATE",
+    "reason_codes": [],
+    "measured": {
+      "total_mib": 40960,
+      "minimum_free_mib": 36373,
+      "maximum_used_mib": 3965,
+      "maximum_utilization_percent": 0,
+      "free_memory_swing_mib": 0,
+      "sample_count": 5
+    },
+    "budget": {
+      "estimated_startup_or_inference_peak_mib": 18432,
+      "estimate_must_include": [
+        "weights",
+        "KV_cache",
+        "workspace",
+        "CUDA_context",
+        "allocator_overhead"
+      ],
+      "required_safety_margin_mib": 7275,
+      "available_model_budget_mib": 29098,
+      "unallocated_budget_after_estimated_peak_mib": 10666,
+      "estimate_is_measured_peak": false
+    },
+    "required_launch_limit": {
+      "maximum_total_runtime_peak_mib": 29098,
+      "maximum_fraction_of_total_vram": 0.7104,
+      "tensor_parallel_size": 1,
+      "process_device": "cuda:0",
+      "recheck_immediately_before_launch": true,
+      "runtime_must_enforce_its_own_memory_settings": true,
+      "hard_gpu_isolation": false
+    },
+    "completed_at_utc": "2026-09-20T00:51:46.203540+00:00"
+  },
+  "baseline_used_mib": 3965,
+  "required_free_floor_mib": 7275,
+  "aggregate_increment_limit_mib": 19456,
+  "minimum_observed_free_mib": 24460,
+  "rendezvous": {
+    "kind": "FILE_STORE",
+    "path": "/home/a202192020/NeuroBuild_v2/var/run/rendezvous/model-jjwc8yxy/store",
+    "world_size": 1,
+    "gloo_interface": "lo",
+    "nccl_interface": "=lo",
+    "cleaned": false
+  },
+  "child_pid": 3446165
+}

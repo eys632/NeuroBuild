@@ -1,0 +1,11 @@
+{
+  "captured_at_utc": "2026-09-20T01:43:45.693947+00:00",
+  "files_sha256": {
+    "manifest.json": "d292bbc8a745f5f46dd7dfcdb354b703ff32ad79407e455847e4ac985cb07818",
+    "results.json": "e1a7735a277ebd56dbbd6e8fc4bbb400f59b7eeab333a427f6f3b81870bbc905",
+    "dataset.json": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc",
+    "replay.json": "e6cd71888f2dc48cc0f5efcf50dad9311f7100e0b35ccebcff7412c18f2deba0",
+    "resource_report.json": "74b947a7f658dbda8a4b6437a844ad94fa8a6515e66f228810e9ebb3aacc13f4"
+  },
+  "resource_scope": "Existing same-epoch GPU3 aggregate guard report snapshot, not an isolated staged-run or per-process peak. No new GPU/process/network query."
+}

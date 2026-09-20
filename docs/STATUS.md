@@ -1,19 +1,19 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 10:29 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 11:02 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b`: Phase 5 commit/push 및 remote hash 일치 |
-| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `007d893` |
+| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `45858d6` |
 | 회귀 검증 | 전체 **314 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 16.945초 |
-| 현재 작업 | **첫 holdout FAIL을 보존했고, 기존14B/동일generation2 노출120개 진단도113/120,rawFP2,unsafe3으로 FAIL. 분류→원문 추출의 두 단계 구현·314개 회귀·독립 검토 완료, 120×1 진단 사전 동결**. 기존1.0 parser/domain 및 gold/gate는 유지 |
+| 현재 작업 | **두 단계14B 진단도93/120,rawFP11/58,unsafe6/120으로 FAIL. 기존 단일 호출113/120보다 악화되어 채택하지 않음. 공식32B AWQ의 단일 호출 비교 계획과 whole25GiB 예산 검토 완료, 다운로드 전 checkpoint 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
 | 잠정 모델 | Phase 5 범위의 **Qwen3-14B-AWQ + v3**. 확대 평가 gate 통과 전 최종 채택으로 보지 않음 |
 | Hard blocker | 없음. GPU 3 가용량을 측정한 공존 실행 조건 통과 |
 | Backend | `.conda`: Python 3.12.14 / PostgreSQL 17.11 / psycopg 3.2.10 / IfcOpenShell 0.8.5 |
-| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. MoE 후보 서버 정상 종료 후 기존14B의 새 epoch 가동. 같은 generation2 진단은 품질 gate 실패. TP 1 / context 4096 / sequence 1 |
-| 다음 검증 | 기존120개는 노출된 regression 자료. 같은14B의 두 단계 비교와 별도 미사용 holdout v2 데이터80개 동결 완료; 후보 동결은 진단/정식회귀 이후 |
+| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. MoE와14B의 자체 모델 서버 모두 종료. 14B의 single/staged 진단은 모두 품질 gate 실패. TP 1 / context 4096 / sequence 1 |
+| 다음 검증 | 기존120개는 노출된 regression 자료. 기존 single2.0/branch/promptv2를 유지한32B의 파일 다운로드·CPU 검증·GPU3 기동. 자원 계획은 [후보 문서](dense_32b_candidate.md). V2 데이터80개 동결/모델 미호출 |
 
 ## Phase 5.x 평가 상태
 
@@ -49,10 +49,10 @@ V2는 아직 모델 출력 미노출 상태다. 다만 후보 파일 동결 뒤 
 
 ## 운영 상태
 
-**GPU 3만 사용한다.** 이전 14B 서버는 자신의 guard와 child만 정상 종료했고, `neurobuild-instruct` alias의 4B BF16 서버도 자신의 guard를 통해 정상 종료했다. `neurobuild-moe` 후보도 자체 guard를 통해 정상 종료했다(exit0/FileStore 정리). 이후 기존14B를 fresh preflight로 다시 시작했다. MoE 종료 후 GPU3 free36,373MiB/used3,965MiB/util0%로 복귀했다. 예상 peak24,576MiB와 안전 여유7,275MiB로 재검사했고 v3 진단을 포함한 관측 최소 free는18,642MiB다. 다른 사용자의 프로세스·파일·환경은 변경하지 않았으며 다른 GPU로 fallback하지 않는다.
+**GPU3만 사용한다.** 마지막14B epoch는 자신의 guard/child 소유권·시작 시각·실행 인자를 확인한 뒤 종료했다. STOPPED/child exit0/reaped/FileStore 정리를 확인했고, guard의 TERM→KILL escalation도 기록에 남겼다. 관측 최소 free24,460MiB, GPU 전체의 baseline 대비 증가 최대11,914MiB였으며 정확한 process별 peak로 해석하지 않는다. 종료 후 GPU3 free36,373MiB/used3,965MiB/util0%로 돌아왔다. 다른 사용자의 프로세스나 GPU0/1/2는 변경하지 않았다.
 
-4B 시작 전 GPU 3 free 36,373MiB / utilization 0%에서 예상 전체 peak 16,384MiB와 margin 7,275MiB가 들어감을 확인했다. Guard의 free 하한은 **7,275MiB**, 현재 구간의 최종 관측 최소 free는 **26,530MiB**다. 종료 후 free 36,373MiB / utilization 0%로 복귀했다. 이는 GPU 전체 관측값이며 전용 메모리 예약이나 정확한 process peak 보장이 아니다. 기동 시 실제 TCP listener 5개가 모두 `127.0.0.1`임을 확인했다.
+다음 모델 다운로드를 검토하기 위해, 평가를 마친4B의 재다운로드 가능한 weight3개를 전체 SHA/소유권/regular-file/single-link 검증 뒤 정리했다. 8,044,982,000 bytes를 확보했고 manifest/metadata/평가 결과는 보존했다. [정리 기록](../evaluations/results/phase5x/unused_4b_weight_cache_cleanup.json)으로 같은 checkpoint를 다시 받을 수 있다. 14B와 MoE weight는 아직 보존한다.
 
-Private PostgreSQL은 `var/postgres`에 있으며, `0700` 권한의 `var/run/postgresql` 디렉터리 내 Unix socket과 peer 인증만 사용한다. TCP는 비활성이다. 마지막 디스크 확인에서 root filesystem 여유는 약 **39GiB (사용률 98%)**다. 환경·weight·cache는 프로젝트 내부에 두고 Git에서 제외하며, 다운로드 시 **20GiB reserve**와 설치 전 디스크 확인을 유지한다.
+Private PostgreSQL은 `var/postgres`에 있으며, `0700` 권한의 `var/run/postgresql` 디렉터리 내 Unix socket과 peer 인증만 사용한다. TCP는 비활성이다. 마지막 디스크 확인에서 root filesystem 여유는 약 **45.6GiB (df 표시46G, 사용률98%)**다. 환경·weight·cache는 프로젝트 내부에 두고 Git에서 제외하며, 다운로드 시 **20GiB reserve**와 설치 전 디스크 확인을 유지한다.
 
 Phase 4의 human review 상태는 아직 메모리에만 보존한다. 영속 review/queue/worker는 Phase 7 예정이며 object resolution/API/browser도 아직 구현 전이다. **RTX5090은 PREDICTED_UNVERIFIED**이며 현장 검증이 필요하다. [Runtime protocol 및 SM120 검토](model_protocol_compatibility.md). Public exposure/pilot/민감 IFC/fine-tuning은 자동 범위 밖이다.

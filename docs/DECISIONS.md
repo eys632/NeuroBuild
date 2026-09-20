@@ -106,3 +106,12 @@ Legacy1.0은 기본값과 과거 결과를 보존한다. 계약은 caller가 명
 MoE/2.0branch/v2/greedy의 development120/120은 첫 holdout211/240,rawFP9/114,unsafe12/240으로 일반화되지 않았다. 원본80개와 gold는 그대로 보존하고 이후 비교에서는 노출된 regression 자료로 표시한다. 별도 unused v2 80개는 prompt 작성자와 분리하여 작성·사전검토하며 사람 검수로 간주하지 않는다.
 
 기존14B에 같은 generation2 표현을 적용한 전체120개 진단도113/120,rawFP2/58,unsafe3/120으로 실패했다. 원문 인용은 통과했지만 부정/승인우회 분류와 제외대상 보존이 실패했다. 다음 비교는 전체요청 분류 → 분류로 고정된 schema의 원문 추출이며 동일 canonical parser와 gate를 유지한다. 뒤 단계 거절로 첫 분류의 raw READY 오판을 감추지 않는다. [설계와 사전 계획](requirement_staged_pipeline_design.md)을 따른다. 최종 config 채택/Phase6 진행은 보류한다.
+
+
+## D028 — 분리 호출 실패 후 공식32B 단일 호출 비교
+
+분리14B 후보가 exposed120에서93/120,raw11/58,unsafe6/120으로 실패했다. 모든 실패와 독립 재생을 보존하고 채택하지 않는다. 기존 단일2.0/branch/promptv2/greedy를 유지하여 공식 Qwen3-32B-AWQ 모델만 바꾸는 제한된 비교를 수행한다. Canonical parser/adapter와 gold/gate는 그대로다. 모델이 더 크다는 이유로 품질을 가정하지 않는다.
+
+공식manifest13파일18.0132GiB, 정적Qwen3/SM80Marlin 호환성, whole peak25GiB와 freshfree의20% 이상 margin을 검토했다. Torch/vLLM fraction.60은 wholecap이 아니며 peak allowance0의 GPU3 전용 guard를 사용한다. 기존4B의 복원 가능한 inactive weight만 검증 후 정리하여 disk20GiB reserve 외 여유를 확보했다. 다운로드 후 CPU/header/grammar와 actual guarded runtime 검증이 필요하다. [후보 계획](dense_32b_candidate.md)을 따른다.
+
+V2는 model-output-unseen이지만 root 입력 노출 이력이 있다. 이 사건 뒤 모델 변경을 명시하며 완전 맹검이라고 부르지 않는다. 현재 단일prompt는 v2 작성 전부터 고정돼 있고 노출 후 source/prompt/gold는 변경하지 않았다.

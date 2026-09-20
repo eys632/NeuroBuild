@@ -75,3 +75,12 @@ Generation2 구현 뒤에도12개/640개 trial 전체를 새 평가기로 재생
 Run `20260920T005540Z-1f4757de74ec4e75adcc48e3c31c148d`, clean007d893에서 기존14B-AWQ/2.0branch/promptv2/greedy로120×1+warmup5를 완료했다. Schema/adapter/canonical/parser120/120, semantic113/120(94.17%),raw+acceptedFP2/58,unsafe3/120,FN4/62. Mean3.074856s,p953.777019s. 단일가구 두 축 이동을 복수 요청으로 거절3건, 불필요확인1건, 제외대상누락1건, 이동부정/현재승인우회 READY2건이다. [결과](../evaluations/results/phase5x/exposed-generation2-14b-diagnostic/results.json), [독립검토](reviews/phase5x_generation2_14b_exposed_review.md).
 
 기존17개에 이어18번째 완료run이며, 누적1320개의formal/diagnostictrial와90warmup이다. Split과 용도가 다르므로 합산 정확도를 만들지 않는다. 결과SHA `e160815a082b46d3055ec8cbf63b09f847d8e277e04ff7cdfbeb09a11e1154f9`. Formal 확대를 시작하지 않고 분류/추출 분리 실험을 준비한다.
+
+
+## 두 단계14B 전체120개 진단 — FAIL
+
+Run `20260920T013141Z-f3266f57faac473ebd0b9df66cb3cd75`, clean pushed45858d6에서 staged_v1/2.0/greedy로120×1+warmup5를 완료했다. 두 단계 schema120/120, parser103/120, semantic93/120(77.5%), rawFP11/58, acceptedFP5/58, unsafe6/120,FN11/62. Mean4.691022s/p955.581566s. 정상경로2호출이므로 실제HTTP는250회였고 warmup5사례는 평가분모에서 제외했다. [결과](../evaluations/results/phase5x/exposed-staged-14b-diagnostic/results.json), [독립125개 재생](reviews/phase5x_staged_14b_exposed_review.md).
+
+Classifier decision 자체는108/120이며 rawFP11건 중6건은 후단이 거절하고5건은 수용했다. 17개 grounding 오류 중12개는 JSON null 대신 문자열 "null"을 evidence로 생성한 오류다. 이를 수작업 보정해 재채점하지 않는다. Parser 수용 뒤의 제외대상 손실1건을 더하면 unsafe6이다. 이전 single 실패7개 중6개를 해결했지만 신규 실패26개가 늘어 전체 의미 정확도는 악화했다. 분리 여부뿐 아니라 prompt/schema 제약 조합도 달라 단일 원인으로 단정하지 않는다. 이 후보는 채택하지 않고 formal 반복도 실행하지 않는다.
+
+완료된 Phase5.x 평가는19run,1440 formal/diagnostictrial,95warmup사례다. 두 단계는 사례당 호출 수가 달라 HTTP 호출 수와 구분하며, 서로 다른 split을 합쳐 하나의 정확도를 만들지 않는다. Results SHA `e1a7735a277ebd56dbbd6e8fc4bbb400f59b7eeab333a427f6f3b81870bbc905`.

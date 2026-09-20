@@ -27,3 +27,12 @@ Qwen LICENSE 링크를 표기하지만 후보 repository 자체에는 LICENSE �
 다르다. 배포자가 설명한 ms-swift/calibration 설정을 독립 실행하지 않았으며,
 도구·calibration 자료의 revision과 전체 환경을 고정해 같은 weight를 재생성한 검증도
 없다. 이 license 보존을 그러한 검증이나 품질 통과로 해석하지 않는다.
+
+## Qwen3-32B-AWQ 공식 배포본
+
+[qwen3-32b-awq.LICENSE](qwen3-32b-awq.LICENSE)는 공식 후보 revision
+`0499c3ac83fdef8810b907a23894ba91e95eddd8`의
+[원문](https://huggingface.co/Qwen/Qwen3-32B-AWQ/resolve/0499c3ac83fdef8810b907a23894ba91e95eddd8/LICENSE)이다.
+11,544bytes, SHA256 `5de36594c10839788a8c589443a8ef9d8b8d17c65a1b5807206ae037fc36c6bd`.
+연구 시 검증한 파일을 byte 변경 없이 보존했고 downloader13파일에도 포함한다.
+이는 양자화 재생성 또는 모델 품질 검증을 의미하지 않는다.

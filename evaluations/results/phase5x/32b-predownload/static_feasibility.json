@@ -1,0 +1,99 @@
+{
+  "status": "STATIC_CONFIG_AND_SOURCE_COMPATIBLE_RUNTIME_UNVERIFIED",
+  "model_type": "qwen3",
+  "architecture": "Qwen3ForCausalLM",
+  "quantization": {
+    "bits": 4,
+    "group_size": 128,
+    "modules_to_not_convert": null,
+    "quant_method": "awq",
+    "version": "gemm",
+    "zero_point": true
+  },
+  "tp": 1,
+  "sm80_capability_assumption": 80,
+  "marlin_static_matrix_shapes_k_n": {
+    "q_proj": [
+      5120,
+      8192
+    ],
+    "k_proj": [
+      5120,
+      1024
+    ],
+    "v_proj": [
+      5120,
+      1024
+    ],
+    "qkv_packed": [
+      5120,
+      10240
+    ],
+    "o_proj": [
+      8192,
+      5120
+    ],
+    "gate_up_packed": [
+      5120,
+      51200
+    ],
+    "down_proj": [
+      25600,
+      5120
+    ]
+  },
+  "marlin_shape_moduli_pass": true,
+  "index_quantized_tensor_suffix_counts": {
+    "qweight": 448,
+    "qzeros": 448,
+    "scales": 448
+  },
+  "lm_head_and_embedding_unquantized_weight_entries": true,
+  "index_metadata_total_size": 19338405888,
+  "actual_shard_file_size_sum": 19325481744,
+  "note_index_metadata_size": "Index metadata.total_size differs from summed shard bytes; use pinned actual API/LFS file sizes for download budget. No shard headers or tensor bytes read.",
+  "installed_source_sha256": {
+    "vllm/model_executor/models/registry.py": "2b488c6c7e3b5d2ab0fb1913f6126e0df0b2266dada1576514092369037c3ebc",
+    "vllm/model_executor/models/qwen3.py": "ea3e92488559751220ac88f0c589453691df3dbd76a259d276fd63296ea0c9a4",
+    "vllm/model_executor/layers/quantization/awq.py": "376e4d4d68d82412a0e78d2c12e07a49c6983b1424564fd047fe8df9dfd195bb",
+    "vllm/model_executor/layers/quantization/awq_marlin.py": "ced3d7507dae3d06edb35438f8f15843dcedc17577016af7c30c4a0972f6c6b8",
+    "vllm/model_executor/layers/quantization/utils/marlin_utils.py": "23db33d9a8cc27b74086cc9034f50fc4de59b0fb48ae6ca9f3332d110e66fd10",
+    "transformers/models/qwen3/configuration_qwen3.py": "87f0d17326c44f2dfe1bfc329faf9201ab4b19a89ad555da085b4cc81461b201",
+    "vllm/_version.py": "dd9e1e00fc91905f766ad9fc0fc62a867a6df5b3779cd9e3d3bb9496da2b7ecd"
+  },
+  "tokenizer_reuse_metadata_comparison": {
+    "tokenizer.json": {
+      "matches_official_32B_bytes_by_metadata": true,
+      "local_14B_sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "tokenizer_config.json": {
+      "matches_official_32B_bytes_by_metadata": true,
+      "local_14B_sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    },
+    "vocab.json": {
+      "matches_official_32B_bytes_by_metadata": true,
+      "local_14B_sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "merges.txt": {
+      "matches_official_32B_bytes_by_metadata": true,
+      "local_14B_sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    }
+  },
+  "license_bytes": 11544,
+  "license_sha256": "5de36594c10839788a8c589443a8ef9d8b8d17c65a1b5807206ae037fc36c6bd",
+  "gpu_budget": {
+    "baseline_free_mib_provided_by_parent_not_remeasured": 36373,
+    "margin_mib": 7275,
+    "max_allowed_estimated_peak_mib_at_baseline": 29098,
+    "fp16_kv_4096_seq1_mib": 1024,
+    "weight_file_mib": 18430.215591430664,
+    "peak_scenarios_not_measurements_mib": [
+      24576,
+      28672
+    ],
+    "rtx_theoretical_free32GiB_max_peak_after_20pct_margin_mib": 26214
+  },
+  "new_model_downloaded": false,
+  "gpu_runtime_imported": false,
+  "model_calls": 0
+}
