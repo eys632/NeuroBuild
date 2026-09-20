@@ -1,0 +1,18 @@
+{
+  "kind": "GEMMA12_EXACT_NATIVE_IDENTITY_REGRESSION",
+  "exit_code": 0,
+  "started_at_utc": "2026-09-20T15:20:49.142879+00:00",
+  "elapsed_wall_seconds": 22.006879932247102,
+  "log_path": "var/phase5x-gemma12-binding-regression.log",
+  "log_sha256": "2652a0b4cc990b9e97cfbe1a9840c00232b2c5036e1c1783a964d209b6d73916",
+  "real_postgresql": true,
+  "real_ifcopenshell": true,
+  "headless": true,
+  "cuda_visible_devices": "",
+  "source_sha256": {
+    "scripts/evaluate_requirements.py": "48b919e8ef9ec41ee2765c66fd5d752202248f53502616ec01d687be87f42f24",
+    "tests/test_native_requirement_evaluation.py": "1bb28fd6cc1b208e21a2693933febd337958055dc90d5d566c91dbdefb470fe7",
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780"
+  },
+  "reason": "New exact Gemma12/Q4_0 allowlist binding and rejection coverage; first regression after this production change."
+}

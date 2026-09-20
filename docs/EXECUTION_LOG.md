@@ -1234,3 +1234,33 @@ proof883854e2afa30a7c0c068ea24f3ec6e513eaaa5731963a8e1bb84a709754a34d.
 receipt f8ce55d5bdda7c3c1c7f1a0ae702926312640dcf990112b3e533c30665d61380.
 새 문서 링크·diff whitespace 확인. Snapshot model_guard.py EOF빈줄1개는원본Gitblob과exact이므로보존했다.
 Production/scripts/tests/configs/prompts/schemas/runtime의추가변경0.
+
+
+### 2026-09-21 KST — GLM checkpoint 이후 공식 Gemma12 준비
+
+95ebee297ab4e5a50d2a2c702b6e78be17b3fb0f GitHubv2 push·ls-remote exact/clean확인.
+공식Gemma12 pinnedAPI/card/config/tokenizer/template/license metadata32,651,983B를bounded보존했다.
+Source metadata26-file closure8efe81c627cbc421e5386443c59306012d2722d7c051bea9c108156518e7f919.
+QAT원본index없음, tokenizer/template31B bytes동일, suppressedID2개/new48layer구조를분리했다.
+
+검토한cleanup_unused_glm47_cache.py d4bc9908196db16c8b97c32835c3b6f89840762d1527c87e0044abcf5598af8c로
+pushed실패증거/STOPPED/ownlock/UID/미사용FD·maps/fullSHA/inode/nlink를확인한후
+GLM재다운로드가능weight한파일18,244,193,920B만회수했다. Receiptf8f255e09d1b33fe9641beeda8d90069b8dd1f6d78d5013563e06527c2f60d88.
+로그인infra2건permission한계는기록했으며다른사용자프로세스내용/파일/신호는접근·변경하지않았다.
+
+새manifest7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990과guardhelper
+dc46839113a3317ba9af6eaefbd3f591b151d03a738aeac9910ac701586eb637을고정해Gemma12 README+weight다운로드.
+Exit0/stderr0/files2/fullSHA PASS; report eebba0743c8304a7670c66b5905e8b34b40946d6e0cfb507c0aece79645a379f.
+최소free36,766,171,136B/floor22,011,707,392B, 실제native/GPU/모델호출0.
+
+build_manifest의model/type exactpair만공식12B/Q4_0로추가, 새test2개/잘못된조합6개.
+실제PostgreSQL/IfcOpenShell/headless/emptyCUDA 전체418PASS skip0/21.412s,
+log2652a0b4cc990b9e97cfbe1a9840c00232b2c5036e1c1783a964d209b6d73916.
+새코드변경뒤첫회귀이며완료된모델평가/public/vocab/context검사는반복하지않았다.
+Gemma client분기/transport/prompt/schema/scorer동등성읽기검토c21cbd6102933e1511f51625a88471b85caf8d9192dd3fe01fcd4ac644a37f20.
+Actualheader토큰동등성은미확정, suppression의새sampling효과는별도다.
+준비archive43hash/42exactcopies/675987B, integrity34629b1b438de33a143370ac28cb1c2acc851663cc804c49f1128a1ec9bf9fc6.
+Large tokenizer/weight/env/binary는Git제외. Header감사와증거승계를진행하며GPU서버는종료상태다.
+
+준비자료 독립 검토 PASS/material0: 43항목/42원본·명시제외·download/cleanup시점·418회귀·resource산술일치.
+Receipt30c06089950f82cbd198e4dfdfe10ae05856195c2a643c0888226a88daf56875, 기존검사/평가재실행0.

@@ -1,6 +1,6 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-21 KST — GLM 첫 단회 Quality Gate FAIL, own server 종료·GPU3 반환 확인**.
+갱신: **2026-09-21 KST — GLM 실패 checkpoint push 완료, Gemma4-12B 후보 준비·다운로드·418회귀 PASS**.
 Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 미채택, Phase6 미시작**이다.
 
 | 항목 | 현재 상태 |
@@ -8,18 +8,35 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
 | GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 진단동결 `c466013439e6d202e627ed48c7a4ed1e45cf82c0` push·원격 일치 확인; EXAONE 실패·종료 `daeccacee7bb1912e03c8be696572b80b12c9f4c` push·원격 일치 확인 |
-| 현재 작업 | **GLM 첫120×1+warmup5 실패·재검산·종료 증거 checkpoint, 다음 후보 비교 및 접근 재검토** |
+| 현재 작업 | **Gemma4-12B QAT의 actual header 감사와 기존 CPU 증거 승계 조건 확인** |
 | 최근 후보 | GLM4.7-Flash 첫 의미·안전 gate FAIL. EXAONE4.5 첫 의미 gate FAIL, Gemma4 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
 | EXAONE 1차 품질 결과 | 노출120×1: schema120, parser119, semantic106, rawFP0/58, unsafe0/120 — **FAIL** |
 | GLM 1차 품질 결과 | 노출120×1: schema120, parser118, semantic104, rawFP1/58, unsafe1/120 — **FAIL** |
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
-| 회귀 검증 | **416 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless19.398초. GLM 명시 profile·실제 metadata의 정확한 모델/type 연결 검증 |
+| 회귀 검증 | **418 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless21.412초. 새 공식Gemma12/Q4_0 exact identity binding 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
 | 모델 실행 | **NeuroBuild 모델 서버 STOPPED**. GLM epoch2 child exit0/reaped, GPU3 free36373/used3965/util0으로 반환 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | GLM 추가 반복·V2·미사용80개 접근0. 결과 checkpoint 후 다른 후보의 정보가치·자원을 비교 |
+| 다음 검증 | Gemma12 actual header/tokenizer metadata/suppression2 검증. 아직 GPU/runtime/품질 호출0 |
+
+## 다음 후보 준비 — Gemma4-12B QAT
+
+GLM 실패·종료 checkpoint **95ebee297ab4e5a50d2a2c702b6e78be17b3fb0f**의 GitHub v2 push·원격 일치를 확인했다.
+다음 가설은 공식12B QAT가 같은 계약을 더 적은 자원으로 만족하는지다. 크기·공식 benchmark·31B 점수로 통과를 추정하지 않는다.
+고정 GGUF29d097773436b69ff9feafd636ab4cf873786537의 README+weight6,975,908,556B 다운로드는
+size/fullSHA 검증과 disk watcher 아래 완료했다. Receipt eebba0743c8304a7670c66b5905e8b34b40946d6e0cfb507c0aece79645a379f.
+디스크 reserve 확보를 위해 종료·미사용·소유·전체SHA를 확인한 GLM cache한파일18,244,193,920B만 회수했고
+평가/metadata/복원 manifest는 보존했다. 다운로드 중 최소 free36,766,171,136B로 floor22,011,707,392B를 유지했다.
+
+공식 tokenizer/template는31B와 byte-identical이나 새 GGUF 실제 header는 아직 미검증이다.
+48층/hidden3840 구조와 새로운 suppressed token2개를 후보별로 감사한다.
+동일 함수 입력을 입증하는 범위에서 기존 public/vocab/context 증거를 승계하며 재실행하지 않는다.
+예상 whole peak18,432MiB는 조건부 계획이며 실측이나 하드 상한이 아니다. 기동 직전 GPU3 예산 검사가 별도로 필요하다.
+Evaluator의 공식12B/Q4_0 exact pair 허용 추가와 새test2개 뒤 **418회귀 PASS**를 확인했다.
+GPU 모델 서버·새 품질 호출은0, Phase5.x 미완료·미채택·Phase6 미시작이다.
+[후보 계획](gemma4_12b_candidate.md), [준비 보고서](reports/phase5x_gemma4_12b_preparation_report.md).
 
 ## GLM 첫 단회 결과와 종료
 

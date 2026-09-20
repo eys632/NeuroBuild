@@ -1,0 +1,69 @@
+--- f961fb512f75b98ca2fdb5de4c2d0b946fdf40e4/src/neurobuild/infrastructure/local_model.py
++++ working-tree/src/neurobuild/infrastructure/local_model.py
+@@ -115,6 +115,8 @@
+     QWEN3_THINKING_AWQ = "qwen3_thinking_awq"
+     QWEN38_NONTHINKING_LLAMA_CPP = "qwen38_nonthinking_llama_cpp"
+     GEMMA4_NONTHINKING_LLAMA_CPP = "gemma4_nonthinking_llama_cpp"
++    EXAONE45_NONTHINKING_LLAMA_CPP = "exaone45_nonthinking_llama_cpp"
++    GLM47_FLASH_NONTHINKING_LLAMA_CPP = "glm47_flash_nonthinking_llama_cpp"
+ 
+ 
+ class LocalJSONCompletionClient:
+@@ -140,7 +142,9 @@
+         except ValueError:
+             _error("LOCAL_MODEL_CONFIG_INVALID")
+         native_profiles = (SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP,
+-                           SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP)
++                           SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP,
++                           SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP,
++                           SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP)
+         if (self._sampling_profile in native_profiles
+                 and self._protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA):
+             _error("LOCAL_MODEL_CONFIG_INVALID")
+@@ -232,6 +236,23 @@
+             # Official Gemma4 recommendation: temperature/top_p/top_k. The
+             # disabled penalties, seed and sampler order are our explicit recipe.
+             return {"temperature": 1.0, "top_p": 0.95, "top_k": 64, "min_p": 0.0,
++                    "presence_penalty": 0.0, "frequency_penalty": 0.0,
++                    "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
++                    "samplers": ["temperature", "top_k", "top_p", "min_p"]}
++        if self.sampling_profile is SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP:
++            # Official Korean recipe: temperature/top_p/top_k/presence penalty.
++            # Window 64 and active sampler order follow pinned native defaults;
++            # penalties see both prompt and generated tokens. Other fields are
++            # our explicit settings, not additional model-card recommendations.
++            return {"temperature": 0.6, "top_p": 0.95, "top_k": 20, "min_p": 0.0,
++                    "presence_penalty": 1.5, "frequency_penalty": 0.0,
++                    "repeat_penalty": 1.0, "repeat_last_n": 64, "seed": 42,
++                    "samplers": ["penalties", "top_k", "top_p", "min_p", "temperature"]}
++        if self.sampling_profile is SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP:
++            # Official most-task evaluation settings: temperature/top_p. The
++            # disabled top-k/min-p/penalties, seed and order are our recipe;
++            # these are not Korean or non-thinking-specific recommendations.
++            return {"temperature": 1.0, "top_p": 0.95, "top_k": 0, "min_p": 0.0,
+                     "presence_penalty": 0.0, "frequency_penalty": 0.0,
+                     "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
+                     "samplers": ["temperature", "top_k", "top_p", "min_p"]}
+--- f961fb512f75b98ca2fdb5de4c2d0b946fdf40e4/scripts/evaluate_requirements.py
++++ working-tree/scripts/evaluate_requirements.py
+@@ -524,12 +524,17 @@
+         raise ValueError("Native runtime metadata and native JSON protocol must be selected together")
+     if native:
+         native_candidates = {
+-            SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP: ("ggml-org/Qwen3.8-27B-GGUF", "Q4_K_M"),
+-            SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP: ("google/gemma-4-31B-it-qat-q4_0-gguf", "Q4_0"),
++            SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP: {("ggml-org/Qwen3.8-27B-GGUF", "Q4_K_M")},
++            SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP: {
++                ("google/gemma-4-31B-it-qat-q4_0-gguf", "Q4_0"),
++                ("google/gemma-4-12B-it-qat-q4_0-gguf", "Q4_0"),
++            },
++            SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP: {("LGAI-EXAONE/EXAONE-4.5-33B-GGUF", "Q4_K_M")},
++            SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP: {("ggml-org/GLM-4.7-Flash-GGUF", "Q4_K_M")},
+         }
+         if client.sampling_profile not in native_candidates:
+             raise ValueError("Native evaluation requires the explicitly planned native sampling profile")
+-        if (weight_data["model_id"], runtime_info["quantization"]) != native_candidates[client.sampling_profile]:
++        if (weight_data["model_id"], runtime_info["quantization"]) not in native_candidates[client.sampling_profile]:
+             raise ValueError("Native sampling profile, exact model ID and quantization must match")
+         gguf_files = [entry for entry in weight_data["files"] if entry["name"].endswith(".gguf")]
+         if (len(gguf_files) != 1 or gguf_files[0]["sha256"] != runtime_info["gguf_sha256"]

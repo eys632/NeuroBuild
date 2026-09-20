@@ -1,0 +1,115 @@
+{
+  "kind": "GEMMA4_12B_METADATA_CLOSURE",
+  "status": "METADATA_ONLY",
+  "files": {
+    "README.md": {
+      "bytes": 8387,
+      "sha256": "4a78218ea5e09fb2e10629f111ab94c798172e6c53a54f8f0a5db80fad9f12e8"
+    },
+    "candidate_download_manifest_draft.json": {
+      "bytes": 618,
+      "sha256": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990"
+    },
+    "download_ledger.json": {
+      "bytes": 11614,
+      "sha256": "425b0757239540b60bd32da2cacd6ed7db2dce5983807a5d4cbf1473083c41c5"
+    },
+    "fetch_metadata.py": {
+      "bytes": 5482,
+      "sha256": "9f37fe0b62e2b64a7d146e7103a406739ffd4b201f20cb08578a3c96fcde023b"
+    },
+    "gguf/README.md": {
+      "bytes": 29260,
+      "sha256": "eb6a50bb1c78dcbf501b039a9b0793f732909bc7a093d9812ff03f5be2da84ce"
+    },
+    "gguf-api.json": {
+      "bytes": 20997,
+      "sha256": "959c3a66804b5c833cdcd95efd7f9214ab6f7ab02c9d44337ffb9fbbe593da5d"
+    },
+    "gguf-commits.json": {
+      "bytes": 2563,
+      "sha256": "9badb68d95261327238b954047e82dbf3ae02fc404d09c573575136fdb229634"
+    },
+    "official-license/APACHE-2.0.txt": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "official-license/gemma4-license.html": {
+      "bytes": 259101,
+      "sha256": "632821edc219599aa7e587e37744d264f2516888d422319c6866a3214034fa79"
+    },
+    "original-it/README.md": {
+      "bytes": 28484,
+      "sha256": "04a06469e3d83b941eaa776a3647b8690b5a7cc5c833af2381e5345bb1bb45c0"
+    },
+    "original-it/chat_template.jinja": {
+      "bytes": 18683,
+      "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4"
+    },
+    "original-it/config.json": {
+      "bytes": 4423,
+      "sha256": "478c46e8d2c52d5c2d85bf67e3b3e8c90e7c9d91086cee27e3c267907e936bd9"
+    },
+    "original-it/generation_config.json": {
+      "bytes": 260,
+      "sha256": "a8349d9bd64cc5841297fcb5002f0fdc4749c473c8f1b10ea337f9ce4ee7014e"
+    },
+    "original-it/processor_config.json": {
+      "bytes": 1382,
+      "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9"
+    },
+    "original-it/tokenizer_config.json": {
+      "bytes": 3089,
+      "sha256": "a62f4e85a47c0c136edaaa3a4f591fd6783717299a9def47e5ad03a49f6a5eb9"
+    },
+    "original-it-api.json": {
+      "bytes": 24015,
+      "sha256": "79cb3a33f27d9aabbf28811282bbf0301ea22e972efaf0208887ea87e3b2661e"
+    },
+    "provenance.json": {
+      "bytes": 12932,
+      "sha256": "f6fa18ab48e18ca77e4a802a57c7e797e32e229f007592c260bfae8f8cf1d801"
+    },
+    "qat-unquantized/README.md": {
+      "bytes": 29351,
+      "sha256": "abf6c570689b1346835af53bf629d508fda96040492ce0453cd391f6d225404e"
+    },
+    "qat-unquantized/chat_template.jinja": {
+      "bytes": 18683,
+      "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4"
+    },
+    "qat-unquantized/config.json": {
+      "bytes": 4310,
+      "sha256": "a323d02f68420f6fa3a3548130a0d36356075a4047a622e57148558f8eee7077"
+    },
+    "qat-unquantized/generation_config.json": {
+      "bytes": 260,
+      "sha256": "a8349d9bd64cc5841297fcb5002f0fdc4749c473c8f1b10ea337f9ce4ee7014e"
+    },
+    "qat-unquantized/processor_config.json": {
+      "bytes": 1382,
+      "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9"
+    },
+    "qat-unquantized/tokenizer.json": {
+      "bytes": 32169626,
+      "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f"
+    },
+    "qat-unquantized/tokenizer_config.json": {
+      "bytes": 3089,
+      "sha256": "a62f4e85a47c0c136edaaa3a4f591fd6783717299a9def47e5ad03a49f6a5eb9"
+    },
+    "qat-unquantized-api.json": {
+      "bytes": 21667,
+      "sha256": "0de6970d8a8bad6a48999358771c5a561fb0fb8e275b1824ab80c71bcddf02ca"
+    },
+    "resource_plan.json": {
+      "bytes": 2877,
+      "sha256": "1e6880e827723567ebda907ccc3f00f9d70f63931a5bc0c7adeb279544089eb3"
+    }
+  },
+  "file_count": 26,
+  "total_file_bytes": 32693893,
+  "network_metadata_bytes": 32651983,
+  "weights_or_native_calls": 0,
+  "self_excluded": true
+}

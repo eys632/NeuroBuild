@@ -1,0 +1,119 @@
+{
+  "kind": "GLM47_SINGLE_INACTIVE_CACHE_CLEANUP_PREPARATION",
+  "status": "PREPARED_NOT_EXECUTED",
+  "original_helper": {
+    "path": "var/research/cleanup_unused_exaone45_cache.py",
+    "sha256": "7b7fa410f3200573e4daec3413e83b5edbda12a802cf2305f296a6960e3e3e86"
+  },
+  "new_helper": {
+    "path": "var/research/cleanup_unused_glm47_cache.py",
+    "sha256": "d4bc9908196db16c8b97c32835c3b6f89840762d1527c87e0044abcf5598af8c"
+  },
+  "diff": {
+    "path": "var/research/cleanup_unused_glm47_cache.patch",
+    "sha256": "474bca59dcd1e6a3314d40a8ae079387faaf264d5d49f8d4401b7ec1ee14804c"
+  },
+  "literal_changes": [
+    {
+      "old": "EXAONE45",
+      "new": "GLM47",
+      "occurrences": 2
+    },
+    {
+      "old": "runtime/models/exaone45-33b-q4-k-m.json",
+      "new": "runtime/models/glm47-flash-q4-k.json",
+      "occurrences": 2
+    },
+    {
+      "old": "98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8",
+      "new": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+      "occurrences": 1
+    },
+    {
+      "old": "0e969634ef24db05151b435970297a6dee634b7e",
+      "new": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+      "occurrences": 1
+    },
+    {
+      "old": "var/models/LGAI-EXAONE--EXAONE-4.5-33B-GGUF",
+      "new": "var/models/ggml-org--GLM-4.7-Flash-GGUF",
+      "occurrences": 1
+    },
+    {
+      "old": "var/reports/unused-exaone45-weight-cache-cleanup.json",
+      "new": "var/reports/unused-glm47-weight-cache-cleanup.json",
+      "occurrences": 1
+    },
+    {
+      "old": "evaluations/results/phase5x/exposed-native-exaone45-diagnostic/resource_report_final.json",
+      "new": "evaluations/results/phase5x/exposed-native-glm47-diagnostic/resource_report_final.json",
+      "occurrences": 1
+    },
+    {
+      "old": "c6c409a2adcfaa9dad0dbbe3c24e355caf0b7361914a923b85569914d5730e0e",
+      "new": "c0a3d7631f5dde15a87d0345ef84a3e79f181c4ef271b5c4b161dd894625c864",
+      "occurrences": 1
+    },
+    {
+      "old": "var/reports/exaone45-gguf-header-v2.json",
+      "new": "var/reports/glm47-flash-gguf-header.json",
+      "occurrences": 1
+    },
+    {
+      "old": "fb5260c6e1e3356741f7728e4077f771763ea39affd77e8ac9772e417aa70c12",
+      "new": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef",
+      "occurrences": 1
+    },
+    {
+      "old": "EXAONE-4.5-33B-Q4_K_M.gguf",
+      "new": "GLM-4.7-Flash-Q4_K.gguf",
+      "occurrences": 2
+    },
+    {
+      "old": "20047839424",
+      "new": "18244193920",
+      "occurrences": 1
+    },
+    {
+      "old": "5ba3839b67dcee5618ea7b2206cedc8f9e2ec90fbcec3c95a8cc8b33967f6baf",
+      "new": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2",
+      "occurrences": 1
+    }
+  ],
+  "inverse_replacement_original_bytes_exact": true,
+  "unchanged_functions_ast": [
+    "sha",
+    "own",
+    "free",
+    "no_own_users"
+  ],
+  "main_changes": "Only candidate identity literals, manifest/header/stopped-report pins, single filename/bytes/SHA and restore/output paths; control flow unchanged.",
+  "target": {
+    "model_id": "ggml-org/GLM-4.7-Flash-GGUF",
+    "revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+    "file": "var/models/ggml-org--GLM-4.7-Flash-GGUF/7559e96b7e324ab405897dc2b91492b0f376ad4a/GLM-4.7-Flash-Q4_K.gguf",
+    "bytes": 18244193920,
+    "sha256": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2"
+  },
+  "small_saved_evidence_read": {
+    "manifest_sha256": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+    "header_sha256": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef",
+    "final_guard_sha256": "c0a3d7631f5dde15a87d0345ef84a3e79f181c4ef271b5c4b161dd894625c864",
+    "final_guard_saved_state": "STOPPED",
+    "child_exit_code": 0,
+    "child_reaped": true
+  },
+  "execution_boundary": {
+    "helper_imports": 0,
+    "helper_main_calls": 0,
+    "process_reads": 0,
+    "lock_acquisitions": 0,
+    "weight_file_accesses": 0,
+    "deletions": 0,
+    "native_model_gpu_calls": 0,
+    "tests_or_old_checks_rerun": 0,
+    "source_syntax_compile_only": true
+  },
+  "future_owner_action": "Root reviews and checks checkpoint/disk before deciding whether to execute --remove. Runtime own UID/process FD/maps/lock/fullhash/inode/nlink checks remain mandatory at execution.",
+  "preserved": "All metadata, manifests, runtime receipts, evaluation evidence, source and other model files remain outside deletion scope."
+}

@@ -1,0 +1,268 @@
+{
+  "limit_bytes": 103809024,
+  "network_payload_bytes": 32651983,
+  "disk_free_before_bytes": 25534468096,
+  "records": [
+    {
+      "path": "gguf-api.json",
+      "url": "https://huggingface.co/api/models/google/gemma-4-12B-it-qat-q4_0-gguf/revision/29d097773436b69ff9feafd636ab4cf873786537?blobs=true",
+      "final_host": "huggingface.co",
+      "bytes": 20997,
+      "sha256": "959c3a66804b5c833cdcd95efd7f9214ab6f7ab02c9d44337ffb9fbbe593da5d",
+      "git_blob_sha1": "630df3ef43623f4db3231bb307742532cbe83637",
+      "hf_expected": null,
+      "retrieved_utc": "2026-09-20T15:13:32Z"
+    },
+    {
+      "path": "qat-unquantized-api.json",
+      "url": "https://huggingface.co/api/models/google/gemma-4-12B-it-qat-q4_0-unquantized/revision/b6ed86275a6a5735884e208bfed95b445a684ca2?blobs=true",
+      "final_host": "huggingface.co",
+      "bytes": 21667,
+      "sha256": "0de6970d8a8bad6a48999358771c5a561fb0fb8e275b1824ab80c71bcddf02ca",
+      "git_blob_sha1": "6a722a03e4cfafc4dc1ae3dc6d7ee2fcffcc16cd",
+      "hf_expected": null,
+      "retrieved_utc": "2026-09-20T15:13:32Z"
+    },
+    {
+      "path": "original-it-api.json",
+      "url": "https://huggingface.co/api/models/google/gemma-4-12B-it/revision/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7?blobs=true",
+      "final_host": "huggingface.co",
+      "bytes": 24015,
+      "sha256": "79cb3a33f27d9aabbf28811282bbf0301ea22e972efaf0208887ea87e3b2661e",
+      "git_blob_sha1": "e934781e4545e3eb1814ce1ad1e9884d118e0ca6",
+      "hf_expected": null,
+      "retrieved_utc": "2026-09-20T15:13:33Z"
+    },
+    {
+      "path": "gguf-commits.json",
+      "url": "https://huggingface.co/api/models/google/gemma-4-12B-it-qat-q4_0-gguf/commits/29d097773436b69ff9feafd636ab4cf873786537",
+      "final_host": "huggingface.co",
+      "bytes": 2563,
+      "sha256": "9badb68d95261327238b954047e82dbf3ae02fc404d09c573575136fdb229634",
+      "git_blob_sha1": "8afe933984e88366a9e067cd4b92bf145a7a92be",
+      "hf_expected": null,
+      "retrieved_utc": "2026-09-20T15:13:33Z"
+    },
+    {
+      "path": "gguf/README.md",
+      "url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf/resolve/29d097773436b69ff9feafd636ab4cf873786537/README.md",
+      "final_host": "huggingface.co",
+      "bytes": 29260,
+      "sha256": "eb6a50bb1c78dcbf501b039a9b0793f732909bc7a093d9812ff03f5be2da84ce",
+      "git_blob_sha1": "86fecef2c5b4e165ab4276c8f8e4be9d994d4ce1",
+      "hf_expected": {
+        "rfilename": "README.md",
+        "blobId": "86fecef2c5b4e165ab4276c8f8e4be9d994d4ce1",
+        "size": 29260
+      },
+      "retrieved_utc": "2026-09-20T15:13:58Z"
+    },
+    {
+      "path": "qat-unquantized/README.md",
+      "url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized/resolve/b6ed86275a6a5735884e208bfed95b445a684ca2/README.md",
+      "final_host": "huggingface.co",
+      "bytes": 29351,
+      "sha256": "abf6c570689b1346835af53bf629d508fda96040492ce0453cd391f6d225404e",
+      "git_blob_sha1": "c6ab0b3e9d209d5ef67fab0c07e3919c47a2be94",
+      "hf_expected": {
+        "rfilename": "README.md",
+        "blobId": "c6ab0b3e9d209d5ef67fab0c07e3919c47a2be94",
+        "size": 29351
+      },
+      "retrieved_utc": "2026-09-20T15:13:59Z"
+    },
+    {
+      "path": "qat-unquantized/chat_template.jinja",
+      "url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized/resolve/b6ed86275a6a5735884e208bfed95b445a684ca2/chat_template.jinja",
+      "final_host": "huggingface.co",
+      "bytes": 18683,
+      "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+      "git_blob_sha1": "4741bf6e4132ba23a5537f9d6e74e9a6d613d7cd",
+      "hf_expected": {
+        "rfilename": "chat_template.jinja",
+        "blobId": "4741bf6e4132ba23a5537f9d6e74e9a6d613d7cd",
+        "size": 18683
+      },
+      "retrieved_utc": "2026-09-20T15:13:59Z"
+    },
+    {
+      "path": "qat-unquantized/config.json",
+      "url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized/resolve/b6ed86275a6a5735884e208bfed95b445a684ca2/config.json",
+      "final_host": "huggingface.co",
+      "bytes": 4310,
+      "sha256": "a323d02f68420f6fa3a3548130a0d36356075a4047a622e57148558f8eee7077",
+      "git_blob_sha1": "c5e1c252e60fc021a75e43a032ba88523ff245be",
+      "hf_expected": {
+        "rfilename": "config.json",
+        "blobId": "c5e1c252e60fc021a75e43a032ba88523ff245be",
+        "size": 4310
+      },
+      "retrieved_utc": "2026-09-20T15:13:59Z"
+    },
+    {
+      "path": "qat-unquantized/generation_config.json",
+      "url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized/resolve/b6ed86275a6a5735884e208bfed95b445a684ca2/generation_config.json",
+      "final_host": "huggingface.co",
+      "bytes": 260,
+      "sha256": "a8349d9bd64cc5841297fcb5002f0fdc4749c473c8f1b10ea337f9ce4ee7014e",
+      "git_blob_sha1": "d09dccf1b9aee197ef72a6e88a1ceff74b842ff3",
+      "hf_expected": {
+        "rfilename": "generation_config.json",
+        "blobId": "d09dccf1b9aee197ef72a6e88a1ceff74b842ff3",
+        "size": 260
+      },
+      "retrieved_utc": "2026-09-20T15:14:00Z"
+    },
+    {
+      "path": "qat-unquantized/processor_config.json",
+      "url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized/resolve/b6ed86275a6a5735884e208bfed95b445a684ca2/processor_config.json",
+      "final_host": "huggingface.co",
+      "bytes": 1382,
+      "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+      "git_blob_sha1": "b889adcd78015bf5a0139438c5fb0b7067529a61",
+      "hf_expected": {
+        "rfilename": "processor_config.json",
+        "blobId": "b889adcd78015bf5a0139438c5fb0b7067529a61",
+        "size": 1382
+      },
+      "retrieved_utc": "2026-09-20T15:14:00Z"
+    },
+    {
+      "path": "qat-unquantized/tokenizer.json",
+      "url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized/resolve/b6ed86275a6a5735884e208bfed95b445a684ca2/tokenizer.json",
+      "final_host": "us.aws.cdn.hf.co",
+      "bytes": 32169626,
+      "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+      "git_blob_sha1": "c7c5ee3d681ef0152087345da5165560cba9df1d",
+      "hf_expected": {
+        "rfilename": "tokenizer.json",
+        "blobId": "1ff9f3e3439a939b971f9919e821bf87e835a503",
+        "size": 32169626,
+        "lfs": {
+          "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+          "size": 32169626,
+          "pointerSize": 133
+        }
+      },
+      "retrieved_utc": "2026-09-20T15:14:03Z"
+    },
+    {
+      "path": "qat-unquantized/tokenizer_config.json",
+      "url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized/resolve/b6ed86275a6a5735884e208bfed95b445a684ca2/tokenizer_config.json",
+      "final_host": "huggingface.co",
+      "bytes": 3089,
+      "sha256": "a62f4e85a47c0c136edaaa3a4f591fd6783717299a9def47e5ad03a49f6a5eb9",
+      "git_blob_sha1": "6520cdc25462a5eba96fdac6d8cf3caa461feb35",
+      "hf_expected": {
+        "rfilename": "tokenizer_config.json",
+        "blobId": "6520cdc25462a5eba96fdac6d8cf3caa461feb35",
+        "size": 3089
+      },
+      "retrieved_utc": "2026-09-20T15:14:03Z"
+    },
+    {
+      "path": "original-it/README.md",
+      "url": "https://huggingface.co/google/gemma-4-12B-it/resolve/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7/README.md",
+      "final_host": "huggingface.co",
+      "bytes": 28484,
+      "sha256": "04a06469e3d83b941eaa776a3647b8690b5a7cc5c833af2381e5345bb1bb45c0",
+      "git_blob_sha1": "99f6f1ce7651f7c7436612f82038ddc7258542c1",
+      "hf_expected": {
+        "rfilename": "README.md",
+        "blobId": "99f6f1ce7651f7c7436612f82038ddc7258542c1",
+        "size": 28484
+      },
+      "retrieved_utc": "2026-09-20T15:14:03Z"
+    },
+    {
+      "path": "original-it/chat_template.jinja",
+      "url": "https://huggingface.co/google/gemma-4-12B-it/resolve/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7/chat_template.jinja",
+      "final_host": "huggingface.co",
+      "bytes": 18683,
+      "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+      "git_blob_sha1": "4741bf6e4132ba23a5537f9d6e74e9a6d613d7cd",
+      "hf_expected": {
+        "rfilename": "chat_template.jinja",
+        "blobId": "4741bf6e4132ba23a5537f9d6e74e9a6d613d7cd",
+        "size": 18683
+      },
+      "retrieved_utc": "2026-09-20T15:14:04Z"
+    },
+    {
+      "path": "original-it/config.json",
+      "url": "https://huggingface.co/google/gemma-4-12B-it/resolve/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7/config.json",
+      "final_host": "huggingface.co",
+      "bytes": 4423,
+      "sha256": "478c46e8d2c52d5c2d85bf67e3b3e8c90e7c9d91086cee27e3c267907e936bd9",
+      "git_blob_sha1": "324c841b79e36f42e27f08c572c327533469c859",
+      "hf_expected": {
+        "rfilename": "config.json",
+        "blobId": "324c841b79e36f42e27f08c572c327533469c859",
+        "size": 4423
+      },
+      "retrieved_utc": "2026-09-20T15:14:04Z"
+    },
+    {
+      "path": "original-it/generation_config.json",
+      "url": "https://huggingface.co/google/gemma-4-12B-it/resolve/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7/generation_config.json",
+      "final_host": "huggingface.co",
+      "bytes": 260,
+      "sha256": "a8349d9bd64cc5841297fcb5002f0fdc4749c473c8f1b10ea337f9ce4ee7014e",
+      "git_blob_sha1": "d09dccf1b9aee197ef72a6e88a1ceff74b842ff3",
+      "hf_expected": {
+        "rfilename": "generation_config.json",
+        "blobId": "d09dccf1b9aee197ef72a6e88a1ceff74b842ff3",
+        "size": 260
+      },
+      "retrieved_utc": "2026-09-20T15:14:04Z"
+    },
+    {
+      "path": "original-it/processor_config.json",
+      "url": "https://huggingface.co/google/gemma-4-12B-it/resolve/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7/processor_config.json",
+      "final_host": "huggingface.co",
+      "bytes": 1382,
+      "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9",
+      "git_blob_sha1": "b889adcd78015bf5a0139438c5fb0b7067529a61",
+      "hf_expected": {
+        "rfilename": "processor_config.json",
+        "blobId": "b889adcd78015bf5a0139438c5fb0b7067529a61",
+        "size": 1382
+      },
+      "retrieved_utc": "2026-09-20T15:14:04Z"
+    },
+    {
+      "path": "original-it/tokenizer_config.json",
+      "url": "https://huggingface.co/google/gemma-4-12B-it/resolve/707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7/tokenizer_config.json",
+      "final_host": "huggingface.co",
+      "bytes": 3089,
+      "sha256": "a62f4e85a47c0c136edaaa3a4f591fd6783717299a9def47e5ad03a49f6a5eb9",
+      "git_blob_sha1": "6520cdc25462a5eba96fdac6d8cf3caa461feb35",
+      "hf_expected": {
+        "rfilename": "tokenizer_config.json",
+        "blobId": "6520cdc25462a5eba96fdac6d8cf3caa461feb35",
+        "size": 3089
+      },
+      "retrieved_utc": "2026-09-20T15:14:05Z"
+    },
+    {
+      "path": "official-license/gemma4-license.html",
+      "url": "https://ai.google.dev/gemma/docs/gemma_4_license",
+      "final_host": "ai.google.dev",
+      "bytes": 259101,
+      "sha256": "632821edc219599aa7e587e37744d264f2516888d422319c6866a3214034fa79",
+      "git_blob_sha1": "73463de7818fdcbad1842b7a3b17b99464df03bf",
+      "hf_expected": null,
+      "retrieved_utc": "2026-09-20T15:15:39Z"
+    },
+    {
+      "path": "official-license/APACHE-2.0.txt",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+      "final_host": "www.apache.org",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "git_blob_sha1": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+      "hf_expected": null,
+      "retrieved_utc": "2026-09-20T15:15:39Z"
+    }
+  ]
+}

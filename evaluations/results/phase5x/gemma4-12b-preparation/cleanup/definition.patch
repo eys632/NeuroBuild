@@ -1,0 +1,61 @@
+--- var/research/cleanup_unused_exaone45_cache.py
++++ var/research/cleanup_unused_glm47_cache.py
+@@ -1,13 +1,13 @@
+-"""Remove only one inactive, fully verified re-downloadable EXAONE45 GGUF cache file."""
++"""Remove only one inactive, fully verified re-downloadable GLM47 GGUF cache file."""
+ from pathlib import Path
+ from datetime import datetime, timezone
+ import fcntl,hashlib,json,os,stat,sys
+ ROOT=Path('/home/a202192020/NeuroBuild_v2')
+-MANIFEST=ROOT/'runtime/models/exaone45-33b-q4-k-m.json'
+-MANIFEST_SHA='98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8'
+-REV='0e969634ef24db05151b435970297a6dee634b7e'
+-BASE=ROOT/'var/models/LGAI-EXAONE--EXAONE-4.5-33B-GGUF'/REV
+-REPORT=ROOT/'var/reports/unused-exaone45-weight-cache-cleanup.json'
++MANIFEST=ROOT/'runtime/models/glm47-flash-q4-k.json'
++MANIFEST_SHA='8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c'
++REV='7559e96b7e324ab405897dc2b91492b0f376ad4a'
++BASE=ROOT/'var/models/ggml-org--GLM-4.7-Flash-GGUF'/REV
++REPORT=ROOT/'var/reports/unused-glm47-weight-cache-cleanup.json'
+ 
+ def sha(path):
+  with path.open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+@@ -65,17 +65,17 @@
+  own(MANIFEST);assert sha(MANIFEST)==MANIFEST_SHA
+  build=ROOT/'var/reports/llama-cuda-build-verified.json'
+  own(build);assert json.loads(build.read_text())['status']=='COMPILE_PASS_NOT_RUNTIME_VALIDATED'
+- shutdown=ROOT/'evaluations/results/phase5x/exposed-native-exaone45-diagnostic/resource_report_final.json'
+- assert sha(shutdown)=='c6c409a2adcfaa9dad0dbbe3c24e355caf0b7361914a923b85569914d5730e0e'
+- header=ROOT/'var/reports/exaone45-gguf-header-v2.json'
+- assert sha(header)=='fb5260c6e1e3356741f7728e4077f771763ea39affd77e8ac9772e417aa70c12'
++ shutdown=ROOT/'evaluations/results/phase5x/exposed-native-glm47-diagnostic/resource_report_final.json'
++ assert sha(shutdown)=='c0a3d7631f5dde15a87d0345ef84a3e79f181c4ef271b5c4b161dd894625c864'
++ header=ROOT/'var/reports/glm47-flash-gguf-header.json'
++ assert sha(header)=='595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef'
+  s=json.loads(shutdown.read_text());assert s['state']=='STOPPED' and s['child_exit_code']==0 and s['shutdown']['child_reaped'] is True
+- assert s['model_path']==str(BASE/'EXAONE-4.5-33B-Q4_K_M.gguf')
++ assert s['model_path']==str(BASE/'GLM-4.7-Flash-Q4_K.gguf')
+  own(BASE);own(REPORT.parent);assert not REPORT.exists() and not REPORT.is_symlink()
+  manifest=json.loads(MANIFEST.read_text());assert manifest['revision']==REV
+  assert json.loads((BASE/'neurobuild-manifest.json').read_text())==manifest
+- entries=[x for x in manifest['files'] if x['name']=='EXAONE-4.5-33B-Q4_K_M.gguf']
+- assert len(entries)==1 and entries[0]['bytes']==20047839424 and entries[0]['sha256']=='5ba3839b67dcee5618ea7b2206cedc8f9e2ec90fbcec3c95a8cc8b33967f6baf'
++ entries=[x for x in manifest['files'] if x['name']=='GLM-4.7-Flash-Q4_K.gguf']
++ assert len(entries)==1 and entries[0]['bytes']==18244193920 and entries[0]['sha256']=='b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2'
+  lock=ROOT/'var/run/model-server.lock';own(lock)
+  lockfd=os.open(lock,os.O_RDWR|os.O_CLOEXEC|os.O_NOFOLLOW)
+  fcntl.flock(lockfd,fcntl.LOCK_EX|fcntl.LOCK_NB)
+@@ -87,11 +87,11 @@
+   snapshots[e['name']]=(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
+  checked=no_own_users({x[:2] for x in snapshots.values()})
+  before=free();removed=[]
+- report={'kind':'REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_EXAONE45_WEIGHT_CACHE','state':'IN_PROGRESS',
++ report={'kind':'REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_GLM47_WEIGHT_CACHE','state':'IN_PROGRESS',
+   'started_at_utc':datetime.now(timezone.utc).isoformat(),'model_id':manifest['model_id'],'revision':REV,
+   'manifest_sha256':MANIFEST_SHA,'shutdown_report_sha256':sha(shutdown),'native_build_report_sha256':sha(build),
+   'own_process_inspection':checked,'free_before_bytes':before,'removed_files':removed,
+-  'restore_command':'.conda/bin/python scripts/download_model.py runtime/models/exaone45-33b-q4-k-m.json',
++  'restore_command':'.conda/bin/python scripts/download_model.py runtime/models/glm47-flash-q4-k.json',
+   'scope':'One same-UID regular single-link cache file only; all metadata, manifests and evaluation results retained',
+   'foreign_processes_or_files_changed':False}
+  # Publish before deletion, then retain each successful step even after interruption.

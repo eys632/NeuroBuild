@@ -1,0 +1,60 @@
+{
+  "kind": "GEMMA4_12B_CONDITIONAL_WHOLE_VRAM_PLAN",
+  "status": "SOURCE_METADATA_ESTIMATE_NOT_RUNTIME_PASS",
+  "context_tokens": 4096,
+  "logical_batch": 64,
+  "physical_ubatch": 64,
+  "sequences": 1,
+  "kv_types": [
+    "F16",
+    "F16"
+  ],
+  "flash_attention": false,
+  "cuda_graphs": false,
+  "swa_full": false,
+  "no_mmproj_audio_vision_drafter": true,
+  "GPU_offload": "all repeating and output layers requested; normal input embedding remains CPU per pinned loader",
+  "weight_file_MiB": 6652.7169189453125,
+  "swa_cells_normal": 1280,
+  "kv_normal_MiB": 464.0,
+  "kv_defensive_full4096_MiB": 1344.0,
+  "largest_output_F32_MiB": 3840.0,
+  "largest_FFN_weight_F32_MiB": 225.0,
+  "global_attention_score_one_F32_MiB": 16.0,
+  "logits_64rows_F32_MiB": 64.0,
+  "terms_MiB": {
+    "weight_ceiling": 6912,
+    "defensive_full_F16_KV": 1536,
+    "largest_weight_dequantization": 4096,
+    "graph_activation_scheduler_logits": 2048,
+    "driver_modules_handles": 1024,
+    "pool_temporaries_rounding": 1024,
+    "loading_staging": 256,
+    "unmeasured_fragmentation_uncertainty": 1536
+  },
+  "whole_peak_plan_MiB": 18432,
+  "historical_GPU3_free_MiB": 36373,
+  "historical_margin_MiB": 7275,
+  "historical_available_budget_MiB": 29098,
+  "historical_remaining_after_plan_MiB": 17941,
+  "historical_budget_headroom_MiB": 10666,
+  "fresh_GPU_query_performed": false,
+  "limitations": [
+    "No actual GGUF header, tensor inventory/dtype/packing or native load observed for 12B.",
+    "Graph/driver/pool/loading/fragmentation terms are allowances, not mathematical upper bounds.",
+    "Tied embedding CPU input plus GPU output is covered by full-file GPU proxy; do not add a second same-size GPU copy without actual allocation evidence.",
+    "Requires exact future header, vocab/template contract and own runtime resource observation; no quality claim."
+  ],
+  "source_sha256": {
+    "conversion/gemma.py": "872f3fea7496cefdcd39308ad02e2d30c9f507f68a18f8b4f6962995b09350f5",
+    "src/models/gemma4.cpp": "765ee856e30b3ddc126fa75c8252e5fbca6bae0e11abd9b71f4c21d911810ecb",
+    "src/llama-model.cpp": "530dff0cd544382346cc18520cbdb7d7a6f6743c35f7af52aae0bec11d18992a",
+    "src/llama-model-loader.cpp": "efdb5f273bd1ab77301f2cadea1a5a804bafb28040aca033e45605a97a450242",
+    "src/llama-kv-cache-iswa.cpp": "567fe836543e1dd9cdd5b7cb3a91afd049c17c7010f0bddf9fe149b02b5243cb",
+    "src/llama-vocab.cpp": "82e8996cbbd81c1648b1f4946b5f481138aa897a1343dcd8b1a4abe8cff0b5fc",
+    "common/sampling.cpp": "f23f8d663932bfd73abac1bd5e99055fc6efb07e21ef27dd7e25af2f2da40bff",
+    "common/chat.cpp": "ed5db316e93459c6528526633b11943f4b4611634c773b4eab30a66c1f4a91b3",
+    "common/chat-auto-parser-generator.cpp": "9f76ec58eb8e7aa8d2c40df1be0a75ba2e90a0486fc347f6a00e73b4457d1df4",
+    "ggml/src/ggml-cuda/ggml-cuda.cu": "af947e45946d0c47cfae9e056f589a25b61892e4273decf0a893e2dcad48d065"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "kind": "GEMMA12_PREPARATION_INDEPENDENT_READ_REVIEW",
+  "status": "PASS_NO_MATERIAL_FINDINGS",
+  "at_utc": "2026-09-20T15:27:32.660520+00:00",
+  "archive_path": "evaluations/results/phase5x/gemma4-12b-preparation",
+  "archive_integrity_sha256": "34629b1b438de33a143370ac28cb1c2acc851663cc804c49f1128a1ec9bf9fc6",
+  "archive_entries_verified": 43,
+  "exact_original_copies_verified": 42,
+  "unexpected_or_missing_archive_files": 0,
+  "excluded_tokenizer": {
+    "path": "var/research/gemma4-12b-candidate-metadata/qat-unquantized/tokenizer.json",
+    "bytes": 32169626,
+    "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+    "omission_matches_ledger_and_is_explicit": true,
+    "large_tokenizer_payload_rehashed_in_this_review": false
+  },
+  "document_sha256": {
+    "docs/gemma4_12b_candidate.md": "24f97302e7bd47919fddfedae393836c6f529aab2b533ed00ee40fcfb052a2df",
+    "docs/reports/phase5x_gemma4_12b_preparation_report.md": "3d0c212ba2e724c54a58ec88f77152cfeef2b4d6785702cfc4f2a2c342dce5d9"
+  },
+  "existing_local_doc_links": 4,
+  "download": {
+    "receipt_sha256": "eebba0743c8304a7670c66b5905e8b34b40946d6e0cfb507c0aece79645a379f",
+    "verified_files": 2,
+    "manifest_bytes": 6975908556,
+    "weight_bytes": 6975879296,
+    "exit_code": 0,
+    "stderr_bytes": 0,
+    "minimum_free_bytes": 36766171136,
+    "disk_floor_bytes": 22011707392,
+    "weight_rehashed_by_reviewer": false
+  },
+  "cleanup": {
+    "receipt_sha256": "f8f255e09d1b33fe9641beeda8d90069b8dd1f6d78d5013563e06527c2f60d88",
+    "removed_files": 1,
+    "removed_bytes": 18244193920,
+    "free_after_bytes": 43746529280,
+    "permission_limited_own_session_cases": 2,
+    "finished_before_download_started": true,
+    "cleanup_or_process_queries_by_reviewer": false
+  },
+  "regression": {
+    "saved_count": 418,
+    "saved_skips": 0,
+    "saved_suite_seconds": 21.412,
+    "outer_wall_seconds": 22.006879932247102,
+    "receipt_sha256": "f2b00ee159ab4f723f72af18d41413e54f8580a6e5af3f56a193e3f44e1c0988",
+    "log_sha256": "2652a0b4cc990b9e97cfbe1a9840c00232b2c5036e1c1783a964d209b6d73916",
+    "current_three_source_pins_match_saved_receipt": true,
+    "tests_rerun": 0
+  },
+  "resource_math": {
+    "conditional_plan_MiB": 18432,
+    "full_F16_KV_MiB": 1344,
+    "max_vocab_F32_MiB": 3840,
+    "not_actual_peak_or_hard_cap": true
+  },
+  "scope_and_timing_review": {
+    "historical_metadata_no_download_statements_separated_from_later_download": true,
+    "native_pid_in_download_is_downloader_not_model": true,
+    "header_auditor_preparing_not_claimed_PASS": true,
+    "CPU_carry_forward_pending_actual_embedded_equivalence": true,
+    "GPU_runtime_and_quality_not_claimed": true,
+    "suppression2_effect_separate_from_shared_HTTP_sampling_profile": true,
+    "missing_source_index_and_conversion_revision_declared": true,
+    "old_public_vocab_context_and_evaluation_not_rerun": true
+  },
+  "material_findings": [],
+  "bounds": {
+    "tracked_edits": 0,
+    "tests_or_replay_execution": 0,
+    "dataset_body_reads": 0,
+    "native_GPU_HTTP_or_model_calls": 0,
+    "weight_payload_reads": 0
+  }
+}

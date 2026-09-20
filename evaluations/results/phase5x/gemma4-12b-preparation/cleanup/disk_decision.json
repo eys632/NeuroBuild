@@ -1,0 +1,10 @@
+{
+  "kind": "NEXT_GEMMA12_DISK_DECISION",
+  "current_free_bytes": 25502437376,
+  "candidate_download_bytes": 6975908556,
+  "reserve_bytes": 22011707392,
+  "inactive_glm_cache_bytes": 18244193920,
+  "projected_free_after_cleanup_and_download": 36770722740,
+  "checkpoint": "95ebee297ab4e5a50d2a2c702b6e78be17b3fb0f",
+  "scope": "Verified re-downloadable inactive own GGUF cache only; metadata and all evaluations preserved."
+}

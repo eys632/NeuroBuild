@@ -524,14 +524,17 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
         raise ValueError("Native runtime metadata and native JSON protocol must be selected together")
     if native:
         native_candidates = {
-            SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP: ("ggml-org/Qwen3.8-27B-GGUF", "Q4_K_M"),
-            SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP: ("google/gemma-4-31B-it-qat-q4_0-gguf", "Q4_0"),
-            SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP: ("LGAI-EXAONE/EXAONE-4.5-33B-GGUF", "Q4_K_M"),
-            SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP: ("ggml-org/GLM-4.7-Flash-GGUF", "Q4_K_M"),
+            SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP: {("ggml-org/Qwen3.8-27B-GGUF", "Q4_K_M")},
+            SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP: {
+                ("google/gemma-4-31B-it-qat-q4_0-gguf", "Q4_0"),
+                ("google/gemma-4-12B-it-qat-q4_0-gguf", "Q4_0"),
+            },
+            SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP: {("LGAI-EXAONE/EXAONE-4.5-33B-GGUF", "Q4_K_M")},
+            SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP: {("ggml-org/GLM-4.7-Flash-GGUF", "Q4_K_M")},
         }
         if client.sampling_profile not in native_candidates:
             raise ValueError("Native evaluation requires the explicitly planned native sampling profile")
-        if (weight_data["model_id"], runtime_info["quantization"]) != native_candidates[client.sampling_profile]:
+        if (weight_data["model_id"], runtime_info["quantization"]) not in native_candidates[client.sampling_profile]:
             raise ValueError("Native sampling profile, exact model ID and quantization must match")
         gguf_files = [entry for entry in weight_data["files"] if entry["name"].endswith(".gguf")]
         if (len(gguf_files) != 1 or gguf_files[0]["sha256"] != runtime_info["gguf_sha256"]

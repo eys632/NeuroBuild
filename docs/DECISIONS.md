@@ -461,3 +461,24 @@ Production이416회귀 PASS와 동일하므로 suite와 완료 runtime검사를 
 서로 다른 후보의 실패가 이어져 다음 후보의 정보가치와 공통 실패 양상을 함께 재검토한다.
 자동 전체반복으로 실패를 희석하거나 runtime 최적화를 품질 실패의 해결책으로 삼지 않는다.
 Phase5.x 미완료·모델 미채택·Phase6 미시작이며 Hard Blocker 없이 승인된 후보 비교를 계속한다.
+
+
+## D046 — Gemma4-12B QAT의 자원 효율 가설과 완료 증거 재사용
+
+GLM 실패95ebee2 push 후 공식 Gemma12 QAT를 같은 계약의 더 작은 배포 후보로 사전검토한다.
+GGUF29d097773436b69ff9feafd636ab4cf873786537, QAT metadata b6ed86275a6a5735884e208bfed95b445a684ca2다.
+31B 성적/크기/공식 benchmark를 품질 예측으로 대체하지 않는다. 여러 의미·안전 실패가 계속되어
+단순 형식 제약이나 runtime 튜닝만으로 해결한다는 가설은 채택하지 않는다.
+
+공식 tokenizer/template는31B와 bytes가 같아 actual GGUF 관련 metadata와 Gemma 요청 경로까지 같으면
+기존 public/vocab/context 검사를 입력 동등성 근거로 승계한다. 새로 실행한 PASS라고 표시하지 않는다.
+새48층 tensor/payload/softcap과 suppress_tokens258883/258882는 별도 후보 조건이다.
+단일 safetensors만 공개되어 QAT source index 및 정확 conversion revision 대조는 불가능함을 보존한다.
+
+조건부 예상 전체peak18432MiB, nativef072/4096/seq1/F16KV/batch64/flashOFF/graphsOFF다.
+Actualheader+CPU연결을 마친 뒤 freshGPU3 free/util+margin으로 admission한다.
+평가 정의를 CPU에서 먼저 준비해 서버의 불필요한 idle 점유를 줄인다.
+새 evaluator exactpair 허용만 추가했고418회귀PASS, 고정weight다운로드/fullSHA PASS다.
+GLM종료cache한파일만 검증후회수했고 평가/manifest는유지했다. 다른사용자/GPU/시스템변경없다.
+1차120×1+warmup5는이후별도동결이며 현재품질호출0. FAIL후동일후보반복/V2/unused80금지와기존gate유지.
+12B도실패하면다음GPU실험의새가설/비용을먼저등록하고후보비교를계속한다.

@@ -1,0 +1,11 @@
+{
+  "kind": "GEMMA12_GUARDED_DOWNLOAD_PREPARATION",
+  "original_helper_sha256": "a822c564c018fefbdd9f4cd515b8119cc736673a2627381d92bc9f838345996b",
+  "new_helper_sha256": "dc46839113a3317ba9af6eaefbd3f591b151d03a738aeac9910ac701586eb637",
+  "manifest_sha256": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990",
+  "inverse_substitution_exact_original": true,
+  "changes": "Candidate identity paths/pins and completed GLM cleanup identity only; guard logic unchanged",
+  "old_tests_rerun": 0,
+  "download_execution": 0,
+  "gpu_calls": 0
+}

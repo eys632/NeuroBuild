@@ -1,0 +1,54 @@
+{
+  "kind": "REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_GLM47_WEIGHT_CACHE",
+  "state": "COMPLETE",
+  "started_at_utc": "2026-09-20T15:16:22.419756+00:00",
+  "model_id": "ggml-org/GLM-4.7-Flash-GGUF",
+  "revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+  "manifest_sha256": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+  "shutdown_report_sha256": "c0a3d7631f5dde15a87d0345ef84a3e79f181c4ef271b5c4b161dd894625c864",
+  "native_build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "own_process_inspection": {
+    "maps_and_descriptors_checked": 30,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3680268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "free_before_bytes": 25502433280,
+  "removed_files": [
+    {
+      "name": "GLM-4.7-Flash-Q4_K.gguf",
+      "bytes": 18244193920,
+      "sha256": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2"
+    }
+  ],
+  "restore_command": ".conda/bin/python scripts/download_model.py runtime/models/glm47-flash-q4-k.json",
+  "scope": "One same-UID regular single-link cache file only; all metadata, manifests and evaluation results retained",
+  "foreign_processes_or_files_changed": false,
+  "own_process_inspection_before_unlink": {
+    "maps_and_descriptors_checked": 30,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3680268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "removed_bytes": 18244193920,
+  "free_after_bytes": 43746529280,
+  "finished_at_utc": "2026-09-20T15:17:04.971245+00:00"
+}

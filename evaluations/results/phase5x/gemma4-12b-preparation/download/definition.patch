@@ -1,0 +1,53 @@
+--- var/research/download_glm47_flash_guarded.py
++++ var/research/download_gemma4_12b_guarded.py
+@@ -18,20 +18,20 @@
+ import sys
+ 
+ ROOT = Path('/home/a202192020/NeuroBuild_v2')
+-MODEL = 'ggml-org/GLM-4.7-Flash-GGUF'
+-REVISION = '7559e96b7e324ab405897dc2b91492b0f376ad4a'
++MODEL = 'google/gemma-4-12B-it-qat-q4_0-gguf'
++REVISION = '29d097773436b69ff9feafd636ab4cf873786537'
+ SOURCE_PIN = 'f072b103714dfa1eee531f80b24512faf38e3dd2'
+-MANIFEST = Path('runtime/models/glm47-flash-q4-k.json')
++MANIFEST = Path('runtime/models/gemma4-12b-qat-q4-0.json')
+ BUILD_PROOF = Path('var/reports/llama-cuda-build-verified.json')
+-CLEANUP_PROOF = Path('var/reports/unused-exaone45-weight-cache-cleanup.json')
+-DESTINATION = Path('var/models/ggml-org--GLM-4.7-Flash-GGUF') / REVISION
+-REPORT = Path('var/reports/glm47-flash-guarded-download.json')
+-TEMP = Path('var/tmp/glm47-flash-guarded-download')
++CLEANUP_PROOF = Path('var/reports/unused-glm47-weight-cache-cleanup.json')
++DESTINATION = Path('var/models/google--gemma-4-12B-it-qat-q4_0-gguf') / REVISION
++REPORT = Path('var/reports/gemma4-12b-guarded-download.json')
++TEMP = Path('var/tmp/gemma4-12b-guarded-download')
+ RESERVE = 20 * 1024**3
+ BUFFER = 512 * 1024**2
+ MAX_SECONDS = 1800
+ PINS = {
+- 'runtime/models/glm47-flash-q4-k.json':'8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c',
++ 'runtime/models/gemma4-12b-qat-q4-0.json':'7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990',
+  'scripts/download_model.py':'eea7da3f210addeaece15cb2a7072145cb9c380bd475c4a4f92292df78b88353',
+  'scripts/model_guard.py':'cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528',
+  'var/research/run_llama_build.py':'e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f',
+@@ -86,9 +86,9 @@
+          and build['elf_linkage']['ld_library_path'] is None,'FINAL_LINKAGE_PROOF_REQUIRED')
+  if (root/CLEANUP_PROOF).exists() or (root/CLEANUP_PROOF).is_symlink() or cleanup_sha is not None:
+   cleanup=proof(root/CLEANUP_PROOF,cleanup_sha,root)
+-  require(cleanup['kind']=='REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_EXAONE45_WEIGHT_CACHE'
+-          and cleanup['state']=='COMPLETE' and cleanup['revision']=='0e969634ef24db05151b435970297a6dee634b7e'
+-          and cleanup['removed_bytes']==20047839424 and len(cleanup['removed_files'])==1
++  require(cleanup['kind']=='REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_GLM47_WEIGHT_CACHE'
++          and cleanup['state']=='COMPLETE' and cleanup['revision']=='7559e96b7e324ab405897dc2b91492b0f376ad4a'
++          and cleanup['removed_bytes']==18244193920 and len(cleanup['removed_files'])==1
+           and cleanup['foreign_processes_or_files_changed'] is False,'CLEANUP_INCOMPLETE')
+  destination=root/DESTINATION;own(destination,root,missing=True)
+  protected={root/path for path in PINS}|{root/BUILD_PROOF,root/CLEANUP_PROOF}
+@@ -181,7 +181,7 @@
+   def stop(*_): stopped[0]=True
+   previous={sig:signal.signal(sig,stop) for sig in (signal.SIGINT,signal.SIGTERM)}
+   try:
+-   supervisor.run_phase(builder,name='download-glm47-flash',
++   supervisor.run_phase(builder,name='download-gemma4-12b',
+        command=[str(ROOT/'.conda/bin/python'),'-I','-B',str(ROOT/'scripts/download_model.py'),str(ROOT/MANIFEST)],
+        env=environment(ROOT,os.environ),log=subprocess.DEVNULL,record=record,phases=record['phases'],
+        paths=[ROOT/DESTINATION,temporary,ROOT/REPORT],stop_requested=lambda:stopped[0],

@@ -1,0 +1,453 @@
+{
+  "kind": "GEMMA12_GEMMA_BRANCH_SOURCE_EQUIVALENCE_REVIEW",
+  "status": "SOURCE_REVIEW_COMPLETE_CARRY_FORWARD_PENDING_HEADER",
+  "recorded_at_utc": "2026-09-20T15:24:29.631009+00:00",
+  "baseline_commit": "f961fb512f75b98ca2fdb5de4c2d0b946fdf40e4",
+  "current_project_HEAD": "95ebee297ab4e5a50d2a2c702b6e78be17b3fb0f",
+  "scope": "Static source/AST/Git blob and saved scalar proof review only; no client/test/native/encode/render/replay execution.",
+  "baseline_cpu_proof": {
+    "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/final-cpu-proof.json",
+    "sha256": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d"
+  },
+  "client": {
+    "path": "src/neurobuild/infrastructure/local_model.py",
+    "baseline_sha256": "68c086f08bf2c3f5d6464f689baa8e628c8c33664397db06868c26cb6dd0d763",
+    "current_sha256": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "whole_file_bytes_equal": false,
+    "changed_function_names": [
+      "LocalJSONCompletionClient.__init__",
+      "LocalJSONCompletionClient.sampling_parameters"
+    ],
+    "exactly_removed_new_profile_nodes": {
+      "enum": [
+        "EXAONE45_NONTHINKING_LLAMA_CPP",
+        "GLM47_FLASH_NONTHINKING_LLAMA_CPP"
+      ],
+      "native_profile_tuple": [
+        "EXAONE45_NONTHINKING_LLAMA_CPP",
+        "GLM47_FLASH_NONTHINKING_LLAMA_CPP"
+      ],
+      "sampling_branches": [
+        "EXAONE45_NONTHINKING_LLAMA_CPP",
+        "GLM47_FLASH_NONTHINKING_LLAMA_CPP"
+      ]
+    },
+    "whole_module_AST_equals_baseline_after_only_those_six_removals": true,
+    "normalized_module_AST_sha256": "1bfe200463a01d3b70aecc10f69ca93cf9b8f19555732ef01965c7af3aa9c66c",
+    "function_AST_comparison": {
+      "_error": {
+        "baseline_ast_sha256": "bd306d3634181b1018a1be3a559c05d2499ee56167717e3630d274c7412b84d1",
+        "current_ast_sha256": "bd306d3634181b1018a1be3a559c05d2499ee56167717e3630d274c7412b84d1",
+        "AST_exact_equal": true
+      },
+      "_clean_text": {
+        "baseline_ast_sha256": "31ecb34eefed973128bac30f10a0b327470f69e8c8d10d1ef8589cfc7f6b0546",
+        "current_ast_sha256": "31ecb34eefed973128bac30f10a0b327470f69e8c8d10d1ef8589cfc7f6b0546",
+        "AST_exact_equal": true
+      },
+      "_endpoint": {
+        "baseline_ast_sha256": "a733037946cb2cb9f11d4727a153664d6a49e7036a0616b60629ce8596eda5c5",
+        "current_ast_sha256": "a733037946cb2cb9f11d4727a153664d6a49e7036a0616b60629ce8596eda5c5",
+        "AST_exact_equal": true
+      },
+      "_pairs": {
+        "baseline_ast_sha256": "51415449b4fd466d4326ab00404bf1c46a530733fad02eaf39e4e2e5c9565e6f",
+        "current_ast_sha256": "51415449b4fd466d4326ab00404bf1c46a530733fad02eaf39e4e2e5c9565e6f",
+        "AST_exact_equal": true
+      },
+      "_constant": {
+        "baseline_ast_sha256": "40b73f54a9c0ef986b4f04a9a66814765c33c890855342504b6b28042305d5d5",
+        "current_ast_sha256": "40b73f54a9c0ef986b4f04a9a66814765c33c890855342504b6b28042305d5d5",
+        "AST_exact_equal": true
+      },
+      "_NoRedirect.redirect_request": {
+        "baseline_ast_sha256": "36a9bad1045e94945ce8ba6805b3c8e2e587278587727cd8ff579412c03f9113",
+        "current_ast_sha256": "36a9bad1045e94945ce8ba6805b3c8e2e587278587727cd8ff579412c03f9113",
+        "AST_exact_equal": true
+      },
+      "LocalJSONCompletionClient.__init__": {
+        "baseline_ast_sha256": "fff77c29f01adfe7d2eae4c8c84aa467804fef357ba6cffa250e31293f314e7d",
+        "current_ast_sha256": "a88d4007b9a6fda08390bbdce1e44f945928e4cbcc04d27f1037cf73a54085db",
+        "AST_exact_equal": false
+      },
+      "LocalJSONCompletionClient.protocol": {
+        "baseline_ast_sha256": "8ead74ad66bc2bd85003468774c0eee0b1df0c47d955cb4ec3bb0052a59cfbaf",
+        "current_ast_sha256": "8ead74ad66bc2bd85003468774c0eee0b1df0c47d955cb4ec3bb0052a59cfbaf",
+        "AST_exact_equal": true
+      },
+      "LocalJSONCompletionClient.sampling_profile": {
+        "baseline_ast_sha256": "4e466eedff999ac94a4771bb6ac9c2e98f6916248b32aeb5290c5f5a65ff25d5",
+        "current_ast_sha256": "4e466eedff999ac94a4771bb6ac9c2e98f6916248b32aeb5290c5f5a65ff25d5",
+        "AST_exact_equal": true
+      },
+      "LocalJSONCompletionClient.schema": {
+        "baseline_ast_sha256": "198d641d2fa56e6e02030bbb991d20a4091a1a39257c5285ad7322f0832e5ba7",
+        "current_ast_sha256": "198d641d2fa56e6e02030bbb991d20a4091a1a39257c5285ad7322f0832e5ba7",
+        "AST_exact_equal": true
+      },
+      "LocalJSONCompletionClient.enable_thinking": {
+        "baseline_ast_sha256": "f6a6c738258b01f50fb235fa8e3fc34573d47fb22e88be696a0037cd386cfca7",
+        "current_ast_sha256": "f6a6c738258b01f50fb235fa8e3fc34573d47fb22e88be696a0037cd386cfca7",
+        "AST_exact_equal": true
+      },
+      "LocalJSONCompletionClient.sampling_parameters": {
+        "baseline_ast_sha256": "b3cfd68c4bf44feacd9d8e41dc93770b29f500e927fbf915545d7b000bf1931e",
+        "current_ast_sha256": "b86660d0020a6fa43828c7fae7b37acd107e8d3288fa7a23cd25417a97f2bbc8",
+        "AST_exact_equal": false
+      },
+      "LocalJSONCompletionClient.complete": {
+        "baseline_ast_sha256": "72f9d55294ea5a08a51429062309c54726b3b2e564187ce92957eaa6c4aea98d",
+        "current_ast_sha256": "72f9d55294ea5a08a51429062309c54726b3b2e564187ce92957eaa6c4aea98d",
+        "AST_exact_equal": true
+      },
+      "LocalJSONCompletionClient._complete": {
+        "baseline_ast_sha256": "e6fddc68567891c558317cb8445afd0a44c886dca6a94de2c6efcafad46d809a",
+        "current_ast_sha256": "e6fddc68567891c558317cb8445afd0a44c886dca6a94de2c6efcafad46d809a",
+        "AST_exact_equal": true
+      },
+      "LocalRequirementClient.__init__": {
+        "baseline_ast_sha256": "f9c8913c752149318965103a6d4d133fb1f36e4c261e4403e77c38e515d86c6e",
+        "current_ast_sha256": "f9c8913c752149318965103a6d4d133fb1f36e4c261e4403e77c38e515d86c6e",
+        "AST_exact_equal": true
+      },
+      "LocalRequirementClient.generation_contract": {
+        "baseline_ast_sha256": "46111b622f4e069086b52516dc91d39c1293b0ef7f42f118c155f6516202ca9b",
+        "current_ast_sha256": "46111b622f4e069086b52516dc91d39c1293b0ef7f42f118c155f6516202ca9b",
+        "AST_exact_equal": true
+      },
+      "LocalRequirementClient.extract": {
+        "baseline_ast_sha256": "518a3cd4f7471be5c0912cbf75bdfc245ac02baef9b7453c2b8b5784701f6bad",
+        "current_ast_sha256": "518a3cd4f7471be5c0912cbf75bdfc245ac02baef9b7453c2b8b5784701f6bad",
+        "AST_exact_equal": true
+      }
+    },
+    "Gemma_sampling_branch_AST_exact_equal": true,
+    "Gemma_sampling_branch_AST_sha256": "40cf93f9e02c5b614b0c8f25ce75c0174e47f249e12d7f2ea0ef1323d1786a08",
+    "Gemma_sampling_http_fields": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 64,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 0,
+      "seed": 42,
+      "samplers": [
+        "temperature",
+        "top_k",
+        "top_p",
+        "min_p"
+      ]
+    },
+    "Gemma_enable_thinking_remains_false": true,
+    "native_constructor_membership_remains_enabled_for_Gemma": true,
+    "complete_transport_and_Gemma_inline_reasoning_rejection_AST_exact_equal": true
+  },
+  "five_bound_sources": {
+    "src/neurobuild/infrastructure/local_model.py": {
+      "git_baseline_sha256": "68c086f08bf2c3f5d6464f689baa8e628c8c33664397db06868c26cb6dd0d763",
+      "git_blob_oid": "325405926a8d2839eb14e433d9f30c2e74aa5b66",
+      "current_sha256": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+      "byte_identical": false
+    },
+    "src/neurobuild/application/requirement_generation.py": {
+      "git_baseline_sha256": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "git_blob_oid": "90f4aa00de9e3ffd68269b1a273dfc6c899f66ae",
+      "current_sha256": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "byte_identical": true
+    },
+    "src/neurobuild/application/requirements.py": {
+      "git_baseline_sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "git_blob_oid": "4cc952edba91a8755cf0c56e18cb2b625d6153c0",
+      "current_sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "byte_identical": true
+    },
+    "prompts/requirement_generation_v2_v2.txt": {
+      "git_baseline_sha256": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "git_blob_oid": "89499ea9d1f8613c27b477f2a643dc067d60638b",
+      "current_sha256": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "byte_identical": true
+    },
+    "schemas/requirement_generation_v2_decision_branches.schema.json": {
+      "git_baseline_sha256": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+      "git_blob_oid": "ed4f3031bef99a210a2dfda996695c31a9d7f6b6",
+      "current_sha256": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+      "byte_identical": true
+    }
+  },
+  "evaluator": {
+    "path": "scripts/evaluate_requirements.py",
+    "baseline_sha256": "4f9da8c7cd430625fbe0226ae8201d7bcb934834cef435740822b2df948c69e7",
+    "current_working_tree_sha256": "48b919e8ef9ec41ee2765c66fd5d752202248f53502616ec01d687be87f42f24",
+    "function_AST_comparison": {
+      "_pairs": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "c7d42bd5d291e71fb0bae3d7d2c56c3cc149f4e42a39a9726d99c8c36d22a254",
+        "current_ast_sha256": "c7d42bd5d291e71fb0bae3d7d2c56c3cc149f4e42a39a9726d99c8c36d22a254"
+      },
+      "_constant": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "1ec0b825bc44d1859d50028c7dd8aa8e06964cf34b02cd425c91cc9e4eeed4d6",
+        "current_ast_sha256": "1ec0b825bc44d1859d50028c7dd8aa8e06964cf34b02cd425c91cc9e4eeed4d6"
+      },
+      "strict_json": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "1e62a98d6117176d1ad2609b8e0df78df3ba891ba56227d029eef8e37abee425",
+        "current_ast_sha256": "1e62a98d6117176d1ad2609b8e0df78df3ba891ba56227d029eef8e37abee425"
+      },
+      "file_sha": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "69dfde9ed95eb9a3be2aedd3d09862ec7aed795e85dca718b6fb70f30212ddd9",
+        "current_ast_sha256": "69dfde9ed95eb9a3be2aedd3d09862ec7aed795e85dca718b6fb70f30212ddd9"
+      },
+      "load_cases": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "a37836cca428ba8e1b07a8e61bbbf430f5d7050a1ae92ca08d689e8538413ac1",
+        "current_ast_sha256": "a37836cca428ba8e1b07a8e61bbbf430f5d7050a1ae92ca08d689e8538413ac1"
+      },
+      "target_slots": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "8c73aaec67bee67c222222dd56c88f4d976ec1d91c29d8256dd20465ca3a1005",
+        "current_ast_sha256": "8c73aaec67bee67c222222dd56c88f4d976ec1d91c29d8256dd20465ca3a1005"
+      },
+      "expected_ready_target": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "a5d0b13f206aada0fd9ffe140d90fe8f1652182c59a041cd10ffd908c56a6b84",
+        "current_ast_sha256": "a5d0b13f206aada0fd9ffe140d90fe8f1652182c59a041cd10ffd908c56a6b84"
+      },
+      "score_output": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "20c5bb17af1dd01bff049bf7d03c39cbee4008f6fa4d09e77da0aff4f0df7033",
+        "current_ast_sha256": "20c5bb17af1dd01bff049bf7d03c39cbee4008f6fa4d09e77da0aff4f0df7033"
+      },
+      "evaluate_trial": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "e04b982835a012eb70723589d3e165791884a52503ff249db8dc3722cf179199",
+        "current_ast_sha256": "e04b982835a012eb70723589d3e165791884a52503ff249db8dc3722cf179199"
+      },
+      "evaluate_staged_trial": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "8f5dceb9077543181d6e803710b7f750ef741a8a7e76df02911aaf8f45eaaabc",
+        "current_ast_sha256": "8f5dceb9077543181d6e803710b7f750ef741a8a7e76df02911aaf8f45eaaabc"
+      },
+      "rate": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "551b574f41fc78988cffeaec94f911838b0b858ae243e44ff4d34c3e5b7f095c",
+        "current_ast_sha256": "551b574f41fc78988cffeaec94f911838b0b858ae243e44ff4d34c3e5b7f095c"
+      },
+      "latency_summary": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "f29aa77c11edbe1c5581b827eb0ceca5192a447d9b72d6b39ebcb99f41737848",
+        "current_ast_sha256": "f29aa77c11edbe1c5581b827eb0ceca5192a447d9b72d6b39ebcb99f41737848"
+      },
+      "summarize": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "ebd4e712bbf2455e3788f869ef7092321a6a169520d2f0dd1e422b845554e381",
+        "current_ast_sha256": "ebd4e712bbf2455e3788f869ef7092321a6a169520d2f0dd1e422b845554e381"
+      },
+      "run_evaluation": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "f26fc391f5e318dc67747df508466915a7bc3210caeddddcd79a439578539fb9",
+        "current_ast_sha256": "f26fc391f5e318dc67747df508466915a7bc3210caeddddcd79a439578539fb9"
+      },
+      "native_runtime_metadata": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "4cab744f62657708a27e93dd4678a37d18ade9b3d7e6f14f99c0e8da4287211b",
+        "current_ast_sha256": "4cab744f62657708a27e93dd4678a37d18ade9b3d7e6f14f99c0e8da4287211b"
+      },
+      "runtime_metadata": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "309a042caa1902381d736b518a3a397326ec17ca687fd001e848479d288d4dbe",
+        "current_ast_sha256": "309a042caa1902381d736b518a3a397326ec17ca687fd001e848479d288d4dbe"
+      },
+      "git_info": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "b9b340349b1d11b579f73c8e9d2ad7ae6925c10b216ea8ac1490cdc50b74e70b",
+        "current_ast_sha256": "b9b340349b1d11b579f73c8e9d2ad7ae6925c10b216ea8ac1490cdc50b74e70b"
+      },
+      "build_manifest": {
+        "AST_exact_equal": false,
+        "baseline_ast_sha256": "bb265a5c2c763354d8ee79b017f3a0a48406c1b2bde565c0c96af939447ad819",
+        "current_ast_sha256": "380cb4f89e71a02665d6947041b2010e8893af916eb1ecdbcac06a5d58f043a8"
+      },
+      "save_json": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "44d629d5eea9405add31a79d769a3847ef6ee6331c34db106ff9079b85a71e60",
+        "current_ast_sha256": "44d629d5eea9405add31a79d769a3847ef6ee6331c34db106ff9079b85a71e60"
+      },
+      "main": {
+        "AST_exact_equal": true,
+        "baseline_ast_sha256": "44fcacd7c784e2353e0aec183a0b6cb4eb83071b03552907fe3aff06141cf71e",
+        "current_ast_sha256": "44fcacd7c784e2353e0aec183a0b6cb4eb83071b03552907fe3aff06141cf71e"
+      }
+    },
+    "only_changed_function": "build_manifest",
+    "change_scope": "Additional candidate allowlist entries for EXAONE/GLM and exact Gemma12 model/Q4_0 tuple; former value tuple becomes explicit allowed-set membership. Scoring and runtime metadata parser bodies unchanged.",
+    "Gemma12_allowlist_change_is_current_working_tree_not_baseline_receipt": true
+  },
+  "native_pinned_source": {
+    "revision": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+    "official_saved_tree_sha256": "0ef293835188e9ac0b16d98cdd6f995bd2b34c40efb1b7d180cc6d6bec2ff9a1",
+    "official_saved_commit_json_sha256": "c77c8db9bcefd4f4c158b201605b2ca97223951d7c1777076523f8b27d9667ef",
+    "narrow_source_blob_checks": {
+      "common/chat.cpp": {
+        "sha256": "ed5db316e93459c6528526633b11943f4b4611634c773b4eab30a66c1f4a91b3",
+        "git_blob_sha1": "6c8099cf2915d439808d56a39cd9b9cffc1f6c51",
+        "bytes": 64436,
+        "matches_pinned_source_tree": true
+      },
+      "common/chat-auto-parser-generator.cpp": {
+        "sha256": "9f76ec58eb8e7aa8d2c40df1be0a75ba2e90a0486fc347f6a00e73b4457d1df4",
+        "git_blob_sha1": "b78789d8c0dff5511d13e20b338f899af7d46256",
+        "bytes": 22601,
+        "matches_pinned_source_tree": true
+      },
+      "common/chat-peg-parser.cpp": {
+        "sha256": "a069958a4967609f67a3feea22a37dd3a8d712687eb37c56d75ea078aac540e3",
+        "git_blob_sha1": "ffa43a3188883d2c3c5332d48bd6cc3004848c0b",
+        "bytes": 47854,
+        "matches_pinned_source_tree": true
+      },
+      "common/json-schema-to-grammar.cpp": {
+        "sha256": "d5a82fff5d611abd1198ff27c328b20376ffe9f110b4771d579c8bd20c70541f",
+        "git_blob_sha1": "3349ae4fe0cccb20b9d0da6916ae6509ec77f684",
+        "bytes": 43518,
+        "matches_pinned_source_tree": true
+      },
+      "common/sampling.cpp": {
+        "sha256": "f23f8d663932bfd73abac1bd5e99055fc6efb07e21ef27dd7e25af2f2da40bff",
+        "git_blob_sha1": "06dea1e1ccea368f685fdcd1fcb57774aea9ff24",
+        "bytes": 34772,
+        "matches_pinned_source_tree": true
+      },
+      "src/llama-vocab.cpp": {
+        "sha256": "82e8996cbbd81c1648b1f4946b5f481138aa897a1343dcd8b1a4abe8cff0b5fc",
+        "git_blob_sha1": "e038637ce7076f3f2ff90fd071eebf0f96c3a5e6",
+        "bytes": 186473,
+        "matches_pinned_source_tree": true
+      },
+      "src/llama-model.cpp": {
+        "sha256": "530dff0cd544382346cc18520cbdb7d7a6f6743c35f7af52aae0bec11d18992a",
+        "git_blob_sha1": "e195f50d0bde50333eef771a651cebde87d9616f",
+        "bytes": 155924,
+        "matches_pinned_source_tree": true
+      },
+      "src/llama-grammar.cpp": {
+        "sha256": "668d8ad4bd9066551061e1ccd38c6a681a84c50ddc05ae92d565a473d1239986",
+        "git_blob_sha1": "deffec8c0741da6fb5b6af16bded3b9bfcba48be",
+        "bytes": 56325,
+        "matches_pinned_source_tree": true
+      },
+      "tools/server/server-chat.cpp": {
+        "sha256": "a7b148e59d1104adf2d3a04f9e23602511ca88bb01a1788c830360d792677c94",
+        "git_blob_sha1": "a6fe3c6ba61962795378a82d3f1a8c45b121448a",
+        "bytes": 29833,
+        "matches_pinned_source_tree": true
+      },
+      "tools/server/server-context.cpp": {
+        "sha256": "2f5d65ce6ef0504b5c8cf55a74c68d3959c49784ba380ef836566b7a7d5fa12b",
+        "git_blob_sha1": "b6835e43459e3e9f1ea951e9f96f9ade22074cba",
+        "bytes": 226101,
+        "matches_pinned_source_tree": true
+      }
+    },
+    "full_build_or_194object_inventory_recheck_performed": false,
+    "native_executable_run_or_rehashed": false
+  },
+  "prior_saved_proof_refs": {
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/final-cpu-proof.json": {
+      "sha256": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d",
+      "kind": "GEMMA4_NATIVE_CONTRACT_CPU_PROOF",
+      "status": "PASS"
+    },
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-proof.json": {
+      "sha256": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334",
+      "kind": "GEMMA4_NATIVE_PUBLIC_TEMPLATE_CPU_PROOF",
+      "status": "PASS"
+    },
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-vocab-v2-proof.json": {
+      "sha256": "70886f2ad74ef3758fe839f13b4b6740e22cb749f8f0989a98ea376382cc09c6",
+      "kind": "GEMMA4_NATIVE_PUBLIC_VOCAB_CPU_PROOF",
+      "status": "PASS"
+    },
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/vocab-context-v2-proof.json": {
+      "sha256": "06ef550b4ea48b3c3c65d631dafca06c85bd3d350311888b9bc5c86630caf64a",
+      "kind": "GEMMA4_NATIVE_VOCAB_CONTEXT_CPU_PROOF",
+      "status": "PASS"
+    },
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/build-v2.json": {
+      "sha256": "1b6dce0e85790b267ec2514da8c81158c76b9d01a27aa6c2e584787a160e67ee",
+      "kind": "GEMMA4_NATIVE_CONTRACT_CPU_BUILD",
+      "status": "COMPILE_PASS_NOT_EXECUTED"
+    },
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/normalization-witness-proof.json": {
+      "sha256": "bbb9ed28cdae06bb07a3f66949c2e23e59728324f74440be82b567f0a8662e73",
+      "kind": "GEMMA4_NATIVE_PUBLIC_NORMALIZATION_WITNESS",
+      "status": "FAIL_NATIVE_ORIGINAL_ROUNDTRIP"
+    }
+  },
+  "prior_context_aggregate_only": {
+    "exposed120": {
+      "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+      "input_count": 120,
+      "min_input_tokens": 2339,
+      "max_input_tokens": 2646,
+      "max_input_plus_output": 3414
+    },
+    "v2_length80": {
+      "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+      "input_count": 80,
+      "min_input_tokens": 2360,
+      "max_input_tokens": 2593,
+      "max_input_plus_output": 3361
+    }
+  },
+  "metadata_reference_identity": {
+    "official_Gemma12_tokenizer_sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+    "official_Gemma12_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+    "equals_31B_reference_bytes": true,
+    "new_GGUF_embedded_identity_observed": false
+  },
+  "carry_forward_conditions_pending": [
+    "Actual 12B GGUF typed tokenizer fields/order/tokens/scores/types/merges/model/pre flags, BOS/EOS/EOG/add flags and default/tool_use templates must match 31B except explicitly allowed model suppression metadata.",
+    "Native source/build and generation2 schema/prompt/client Gemma branch/axis convention/output cap/sequence settings must remain identical; model routing identity changes must not change message content or template arguments.",
+    "Original input files must retain historical pinned bytes; this review does not open or hash dataset bodies.",
+    "The actual 12B header must separately validate architecture, 48-layer tensor roles/shapes/types/coverage and native load settings.",
+    "Any mismatch requires a scoped new review; no automatic new Unicode variant, source normalization or permissive acceptance."
+  ],
+  "suppression_difference": {
+    "official_12B_ids": [
+      258883,
+      258882
+    ],
+    "actual_GGUF_array_unobserved": true,
+    "native_application": "GGUF INT32 list -> vocab suppress IDs -> common sampling logit bias -INFINITY",
+    "whole_effective_sampling_equal_to_31B": false,
+    "effect": "Model-owned bias differs, even though Gemma HTTP sampling branch is AST-identical; this is not tokenization or template input repair."
+  },
+  "what_can_be_reused_if_conditions_hold": [
+    "Model-independent public JSON grammar/parser cases from prior same source/schema/template.",
+    "Prior 20 public tokenizer ID/raw-roundtrip observations under exact same effective vocabulary; scope remains those cases.",
+    "Prior 200 input token-count aggregates under byte-identical inputs and effective prompt/tokenizer pipeline without re-reading or re-encoding them."
+  ],
+  "what_is_not_proven": [
+    "Actual 12B embedded vocabulary/template/header equivalence or successful load.",
+    "12B whole peak VRAM, effective sampling identity, semantic quality, or all-Unicode preservation."
+  ],
+  "normalization_limitation_retained": "The old literal U+2581 raw-roundtrip failure is retained; no input/output repair or global Unicode guarantee.",
+  "diff": {
+    "path": "var/research/gemma12-gemma-branch-source-equivalence.diff",
+    "sha256": "ff8c34fae6188ba2bf9dc41d943754019844a4ad8a3d4cb26ab7926b953592fb"
+  },
+  "bounds": {
+    "project_source_imports_or_execution": 0,
+    "tests_or_fake_payload_calls": 0,
+    "public_grammar_replays": 0,
+    "tokenizer_encode_decode_calls": 0,
+    "native_GPU_HTTP_or_model_calls": 0,
+    "dataset_body_reads": 0,
+    "old_evaluation_or_replay_calls": 0,
+    "production_edits": 0
+  }
+}

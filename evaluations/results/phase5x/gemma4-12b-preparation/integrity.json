@@ -1,0 +1,228 @@
+{
+  "kind": "GEMMA12_PREPARATION_ARCHIVE_INTEGRITY",
+  "status": "METADATA_DOWNLOAD_REGRESSION_SAVED_HEADER_AND_RUNTIME_PENDING",
+  "files": {
+    "metadata/README.md": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/README.md",
+      "bytes": 8387,
+      "sha256": "4a78218ea5e09fb2e10629f111ab94c798172e6c53a54f8f0a5db80fad9f12e8"
+    },
+    "metadata/candidate_download_manifest_draft.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/candidate_download_manifest_draft.json",
+      "bytes": 618,
+      "sha256": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990"
+    },
+    "metadata/download_ledger.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/download_ledger.json",
+      "bytes": 11614,
+      "sha256": "425b0757239540b60bd32da2cacd6ed7db2dce5983807a5d4cbf1473083c41c5"
+    },
+    "metadata/fetch_metadata.py": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/fetch_metadata.py",
+      "bytes": 5482,
+      "sha256": "9f37fe0b62e2b64a7d146e7103a406739ffd4b201f20cb08578a3c96fcde023b"
+    },
+    "metadata/gguf/README.md": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/gguf/README.md",
+      "bytes": 29260,
+      "sha256": "eb6a50bb1c78dcbf501b039a9b0793f732909bc7a093d9812ff03f5be2da84ce"
+    },
+    "metadata/gguf-api.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/gguf-api.json",
+      "bytes": 20997,
+      "sha256": "959c3a66804b5c833cdcd95efd7f9214ab6f7ab02c9d44337ffb9fbbe593da5d"
+    },
+    "metadata/gguf-commits.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/gguf-commits.json",
+      "bytes": 2563,
+      "sha256": "9badb68d95261327238b954047e82dbf3ae02fc404d09c573575136fdb229634"
+    },
+    "metadata/integrity.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/integrity.json",
+      "bytes": 4073,
+      "sha256": "8efe81c627cbc421e5386443c59306012d2722d7c051bea9c108156518e7f919"
+    },
+    "metadata/official-license/APACHE-2.0.txt": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/official-license/APACHE-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "metadata/official-license/gemma4-license.html": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/official-license/gemma4-license.html",
+      "bytes": 259101,
+      "sha256": "632821edc219599aa7e587e37744d264f2516888d422319c6866a3214034fa79"
+    },
+    "metadata/original-it/README.md": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/original-it/README.md",
+      "bytes": 28484,
+      "sha256": "04a06469e3d83b941eaa776a3647b8690b5a7cc5c833af2381e5345bb1bb45c0"
+    },
+    "metadata/original-it/chat_template.jinja": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/original-it/chat_template.jinja",
+      "bytes": 18683,
+      "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4"
+    },
+    "metadata/original-it/config.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/original-it/config.json",
+      "bytes": 4423,
+      "sha256": "478c46e8d2c52d5c2d85bf67e3b3e8c90e7c9d91086cee27e3c267907e936bd9"
+    },
+    "metadata/original-it/generation_config.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/original-it/generation_config.json",
+      "bytes": 260,
+      "sha256": "a8349d9bd64cc5841297fcb5002f0fdc4749c473c8f1b10ea337f9ce4ee7014e"
+    },
+    "metadata/original-it/processor_config.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/original-it/processor_config.json",
+      "bytes": 1382,
+      "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9"
+    },
+    "metadata/original-it/tokenizer_config.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/original-it/tokenizer_config.json",
+      "bytes": 3089,
+      "sha256": "a62f4e85a47c0c136edaaa3a4f591fd6783717299a9def47e5ad03a49f6a5eb9"
+    },
+    "metadata/original-it-api.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/original-it-api.json",
+      "bytes": 24015,
+      "sha256": "79cb3a33f27d9aabbf28811282bbf0301ea22e972efaf0208887ea87e3b2661e"
+    },
+    "metadata/provenance.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/provenance.json",
+      "bytes": 12932,
+      "sha256": "f6fa18ab48e18ca77e4a802a57c7e797e32e229f007592c260bfae8f8cf1d801"
+    },
+    "metadata/qat-unquantized/README.md": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/qat-unquantized/README.md",
+      "bytes": 29351,
+      "sha256": "abf6c570689b1346835af53bf629d508fda96040492ce0453cd391f6d225404e"
+    },
+    "metadata/qat-unquantized/chat_template.jinja": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/qat-unquantized/chat_template.jinja",
+      "bytes": 18683,
+      "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4"
+    },
+    "metadata/qat-unquantized/config.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/qat-unquantized/config.json",
+      "bytes": 4310,
+      "sha256": "a323d02f68420f6fa3a3548130a0d36356075a4047a622e57148558f8eee7077"
+    },
+    "metadata/qat-unquantized/generation_config.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/qat-unquantized/generation_config.json",
+      "bytes": 260,
+      "sha256": "a8349d9bd64cc5841297fcb5002f0fdc4749c473c8f1b10ea337f9ce4ee7014e"
+    },
+    "metadata/qat-unquantized/processor_config.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/qat-unquantized/processor_config.json",
+      "bytes": 1382,
+      "sha256": "6b938e76555b3e9946890770e1abcd442a4718f34041a58e8139dc8ad34545c9"
+    },
+    "metadata/qat-unquantized/tokenizer_config.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/qat-unquantized/tokenizer_config.json",
+      "bytes": 3089,
+      "sha256": "a62f4e85a47c0c136edaaa3a4f591fd6783717299a9def47e5ad03a49f6a5eb9"
+    },
+    "metadata/qat-unquantized-api.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/qat-unquantized-api.json",
+      "bytes": 21667,
+      "sha256": "0de6970d8a8bad6a48999358771c5a561fb0fb8e275b1824ab80c71bcddf02ca"
+    },
+    "metadata/resource_plan.json": {
+      "original_path": "var/research/gemma4-12b-candidate-metadata/resource_plan.json",
+      "bytes": 2877,
+      "sha256": "1e6880e827723567ebda907ccc3f00f9d70f63931a5bc0c7adeb279544089eb3"
+    },
+    "selection/strategy_review.md": {
+      "original_path": "var/research/post-glm47-strategy-review.md",
+      "bytes": 5594,
+      "sha256": "00da8f9de38437fd541e86902f46038cfe5b853f692cfaf9ec12856c21ed36b2"
+    },
+    "cleanup/cleanup_unused_glm47_cache.py": {
+      "original_path": "var/research/cleanup_unused_glm47_cache.py",
+      "bytes": 7560,
+      "sha256": "d4bc9908196db16c8b97c32835c3b6f89840762d1527c87e0044abcf5598af8c"
+    },
+    "cleanup/definition.patch": {
+      "original_path": "var/research/cleanup_unused_glm47_cache.patch",
+      "bytes": 4380,
+      "sha256": "474bca59dcd1e6a3314d40a8ae079387faaf264d5d49f8d4401b7ec1ee14804c"
+    },
+    "cleanup/preparation.json": {
+      "original_path": "var/research/cleanup_unused_glm47_cache_preparation.json",
+      "bytes": 4433,
+      "sha256": "1c107071d700643e7089cfc155dcd842aad67c310d062e7636142b8b034f9fa6"
+    },
+    "cleanup/disk_decision.json": {
+      "original_path": "var/research/gemma12-disk-cleanup-decision.json",
+      "bytes": 426,
+      "sha256": "d7f36fd30de9166e06d7893897eb6b10a5c263553548a0fae0820351cd1cd8f4"
+    },
+    "cleanup/result.json": {
+      "original_path": "var/reports/unused-glm47-weight-cache-cleanup.json",
+      "bytes": 1994,
+      "sha256": "f8f255e09d1b33fe9641beeda8d90069b8dd1f6d78d5013563e06527c2f60d88"
+    },
+    "download/download_gemma4_12b_guarded.py": {
+      "original_path": "var/research/download_gemma4_12b_guarded.py",
+      "bytes": 10744,
+      "sha256": "dc46839113a3317ba9af6eaefbd3f591b151d03a738aeac9910ac701586eb637"
+    },
+    "download/definition.patch": {
+      "original_path": "var/research/download_gemma4_12b_guarded.patch",
+      "bytes": 3413,
+      "sha256": "061ffccd9c391c7294464728ce6a86819c9b32e11b0bb37ef1380cfa13f52b4d"
+    },
+    "download/preparation.json": {
+      "original_path": "var/research/gemma4-12b-download-preparation.json",
+      "bytes": 554,
+      "sha256": "b45f015768d5d3aa2bc36ac0e6789ca917dce107a3650c6ec22ae95c1c82522b"
+    },
+    "download/result.json": {
+      "original_path": "var/reports/gemma4-12b-guarded-download.json",
+      "bytes": 2900,
+      "sha256": "eebba0743c8304a7670c66b5905e8b34b40946d6e0cfb507c0aece79645a379f"
+    },
+    "download/cli.log.txt": {
+      "original_path": "var/research/gemma4-12b-download-cli.log",
+      "bytes": 219,
+      "sha256": "5b9b3f5f505e4de443f7949d1beb48b81ee572f91f43d6c29a266e8653e4a9e9"
+    },
+    "download/cli.stderr.txt": {
+      "original_path": "var/research/gemma4-12b-download-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "regression/result.json": {
+      "original_path": "var/research/gemma12-binding-regression.json",
+      "bytes": 926,
+      "sha256": "f2b00ee159ab4f723f72af18d41413e54f8580a6e5af3f56a193e3f44e1c0988"
+    },
+    "regression/backend.log.txt": {
+      "original_path": "var/phase5x-gemma12-binding-regression.log",
+      "bytes": 74214,
+      "sha256": "2652a0b4cc990b9e97cfbe1a9840c00232b2c5036e1c1783a964d209b6d73916"
+    },
+    "review/source_equivalence.json": {
+      "original_path": "var/research/gemma12-gemma-branch-source-equivalence.json",
+      "bytes": 23106,
+      "sha256": "c21cbd6102933e1511f51625a88471b85caf8d9192dd3fe01fcd4ac644a37f20"
+    },
+    "review/source_equivalence.diff": {
+      "original_path": "var/research/gemma12-gemma-branch-source-equivalence.diff",
+      "bytes": 4803,
+      "sha256": "ff8c34fae6188ba2bf9dc41d943754019844a4ad8a3d4cb26ab7926b953592fb"
+    },
+    "README.md": {
+      "original_path": null,
+      "bytes": 2381,
+      "sha256": "9ea946823ab5eea4adb1f2226381089eaac3d9cf90946164a17cc0977624558c"
+    }
+  },
+  "excluded_public_cache": {
+    "var/research/gemma4-12b-candidate-metadata/qat-unquantized/tokenizer.json": {
+      "bytes": 32169626,
+      "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+      "reason": "Large public tokenizer/cache artifact; exact official URL and pins in metadata download ledger."
+    }
+  }
+}

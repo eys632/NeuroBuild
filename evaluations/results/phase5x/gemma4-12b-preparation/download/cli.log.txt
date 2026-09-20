@@ -1,0 +1,1 @@
+{"status": "PASS_DOWNLOAD_ONLY_NOT_RUNTIME_VALIDATED", "report": "var/reports/gemma4-12b-guarded-download.json", "model_path": "var/models/google--gemma-4-12B-it-qat-q4_0-gguf/29d097773436b69ff9feafd636ab4cf873786537"}
