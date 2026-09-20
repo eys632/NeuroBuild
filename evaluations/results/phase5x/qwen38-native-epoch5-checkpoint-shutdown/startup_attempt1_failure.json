@@ -1,0 +1,15 @@
+{
+  "kind": "NATIVE_STARTUP_PROBE_ATTEMPT_FAILURE",
+  "observed_at_utc": "2026-09-20T07:27:48.619704+00:00",
+  "controller": "var/research/run_native_epoch5_probe.py",
+  "action": "startup",
+  "exit_code": 1,
+  "status": "FAIL",
+  "code": "HTTP_STATUS_FAILED",
+  "error_type": "ValueError",
+  "preceding_guard_elapsed_seconds": 5.666,
+  "body_retained": false,
+  "http_status_number_retained": false,
+  "quality_calls": 0,
+  "note": "First explicit startup probe was made while native child was still starting; server failure is not established. Preserve attempt; a later explicitly recorded probe is separate."
+}

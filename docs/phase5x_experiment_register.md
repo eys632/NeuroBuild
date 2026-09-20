@@ -127,3 +127,25 @@ READY gold62개는 모두 맞았지만 lookup 분류4건, non-READY 대상 누�
 현재 후보를 채택하거나 formal 반복으로 확대하지 않는다. Source/prompt/gold/gate는 실행 중 고정했다.
 완료 누적은 **22run/1800 formal 또는 diagnostic trial/110 warmup 사례**다.
 Results SHA `959202b4690d96856ffc95a50caa49e29e1579d479f41b8811d6f583bd559009`.
+
+
+## Native Qwen3.8 Q4_K_M 단회120개 — 1차 gate PASS
+
+Run `20260920T071218Z-d9e611b184ea4f8cbb0d7369982ef361`, clean pushed `bec9000e697c6b4930d077822ae30ca484a395ba`.
+Single2.0/기존promptv2·branch schema, raw-Unicode native variant, qwen38_nonthinking_llama_cpp,
+output768/timeout120,120×1+warmup5. Schema120/parser119/semantic117(97.5%),rawFP0/58,
+acceptedFP0/58,unsafe0/120,FN0/62,raw관측120/120. Mean5.215412956s/p955.811240079s.
+Warmup5/5는분모제외.125개 retained final JSON의고정source독립재생과전체집계가일치했다.
+[결과](../evaluations/results/phase5x/exposed-native-qwen38-diagnostic/results.json),
+[평가 보고서](reports/phase5x_native_qwen38_diagnostic_report.md),
+[독립 검토](reviews/phase5x_native_qwen38_exposed_review.md).
+
+실패H02는비연속인용grounding거절,HH-B05는과잉거절,HH-J05는장소누락이다. 모두nonREADY이며
+보정/제외없이117/120으로남겼다. ResultsSHA `e16c753dd9701f1115a8d56445f27f68835e20b9323787316db776606769da48`.
+평가epoch4 lifetime aggregate증가18346MiB/minfree18028MiB였다.125개보존응답은final JSON이며
+별도reasoning필드는저장하지않았다. 공식HF19/20FAIL과rawreference20/20을구분한다.
+
+완료Phase5.x는**23run/1920formal또는diagnostictrial/115warmup사례**다. 합산정확도를만들지않는다.
+사용자checkpoint지시로전체120×3을취소했고같은자료추가반복0회로판단했다. Epoch5는startup·공개응답1회만
+수행후자체종료했으며formal품질호출0/resourceprobe0이다. 다음V280×1+5는별도사전동결예정이고현재모델호출0.
+1차gatePASS를Phase5.x완료·모델최종채택·RTX실측·사람검수로확대하지않는다.

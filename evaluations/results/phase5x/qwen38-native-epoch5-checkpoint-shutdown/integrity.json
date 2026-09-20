@@ -1,0 +1,61 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/README.md": {
+      "bytes": 1301,
+      "sha256": "a7d3bbe4b617e15f9577ec700cefa8b18c009837a7365bbe4d1db1468a39d57f"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/post_shutdown_gpu.json": {
+      "bytes": 796,
+      "sha256": "cc1890ec4bed13cb4bd8e61e0fdc7b5c752d1fa9e975f70ba198aa0b2f92c930"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/public-smoke/guard_after.json": {
+      "bytes": 5177,
+      "sha256": "ff6967566f5a8f24856fe5e89592f85509632cd5ae29a68436da4961888b2db4"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/public-smoke/guard_before.json": {
+      "bytes": 5177,
+      "sha256": "c84d8083e12405838d9a039aa09f7adfa6417a0d35bc2dc0e103a2a35a6e8f83"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/public-smoke/report.json": {
+      "bytes": 1878,
+      "sha256": "05f633d843508382d1379c97cb44b1d2b689e7edecbc7157258554142a237a52"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/resource_report_final.json": {
+      "bytes": 5365,
+      "sha256": "82a818110812544236e49828adcc45a32a110830e00dc8410376cc332c2ed484"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/run_native_epoch5_probe.py": {
+      "bytes": 4028,
+      "sha256": "2e5bd0cc104ba1374cacb5d199efc53ea33f91bfd992f0306765a74d4b46148a"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/startup/launch_config.json": {
+      "bytes": 1371,
+      "sha256": "076eccea41937e24555ce8132cf492617d3b8cefccac2514b374802a8040a4d7"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/startup/listeners.json": {
+      "bytes": 592,
+      "sha256": "77e876dee6b33d91bde79e3df35b8b91cdc23085ec34cce63fd5f70ed58a01a9"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/startup/resource_report.json": {
+      "bytes": 5177,
+      "sha256": "610b650d2f2a0a10a707363c6d6c348068eb1061e2f6257892ee87e6d0d1f6a8"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/startup/runtime_metadata.json": {
+      "bytes": 1359,
+      "sha256": "8f78abfc2f375add3e2269d4cec418a9a5fe672f2b72e5af45b57b2d19fed599"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/startup/startup.json": {
+      "bytes": 2324,
+      "sha256": "f2a4bec94e40041d8fcf5cb37c9daa59ec32626f17189cf6dba00192ac1227de"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/startup_attempt1_failure.json": {
+      "bytes": 614,
+      "sha256": "f208e55c327cb27deef4f4fda37b2a3bb02e134d20b005d704068621f1a445b0"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch5-checkpoint-shutdown/stop_request.json": {
+      "bytes": 476,
+      "sha256": "e673dacc66b6e6367ce1c760dd8259d865d39391efd61819e0ed4f3cc489fd9e"
+    }
+  }
+}

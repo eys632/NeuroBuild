@@ -1,0 +1,12 @@
+{
+  "kind": "OWN_NATIVE_EPOCH_STOP_REQUEST",
+  "guard_pid": 3538534,
+  "guard_start_ticks": 477114533,
+  "child_pid": 3538905,
+  "child_start_ticks": 477119025,
+  "uid": 1003,
+  "pidfd_signal": "SIGTERM",
+  "pidfd_api": "libc syscall; numbers verified from installed x86_64 header",
+  "reason": "Completed exposed diagnostic and postflight; release own GPU before separately frozen formal epoch",
+  "foreign_process_signals": 0
+}

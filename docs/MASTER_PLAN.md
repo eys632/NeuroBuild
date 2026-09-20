@@ -41,6 +41,8 @@ Phase 11을 통과하면 `docs/FINAL_INTERNAL_MVP_REPORT.md`를 작성하고 최
 | **10 Minimal Admin** | runtime/server/URL/model/worker/job/storage/revision/error visibility | 현재 profile/접속 URL, model 상태, job/error와 storage 상태, trace/project/job/proposal/revision/execution 식별 연결, secret/chain-of-thought 비저장 | Phase 8~9; 최소 내부 운영 UI/API로 제한 |
 | **11 Internal Technical MVP Stabilization** | 전체 browser flow, failure/restart/concurrency regression, runbook와 최종 보고 | 아래 전체 MVP 흐름과 불변 조건을 실제로 확인, 문서/재현 정의/phase report/commit/push 완료, 검증되지 않은 RTX 항목과 human GT 한계를 명시 | Phase 1~10 전부 gate 통과. 최종 보고 후 사용자 검토 요청하고 자동 실행 종료 |
 
+2026-09-20 사용자 checkpoint 지시로 모델 평가의 자동 전체3회 반복은 폐지했다. 완료한125개 진단·독립 재생은 보존하며 재실행하지 않는다. 1차4gate를 통과한 현재 후보는 추가 동일자료 반복0회로 판단하고 V2 80×1+warmup5를 별도 사전 동결한다. 기존 schema100%/semantic≥95%/rawFP0/unsafe0 threshold는 유지한다. 이미 완료한 runtime/resource 검사를 반복하거나 비필수 최적화를 Phase 완료 조건으로 추가하지 않는다. D036과 최신 STATUS가 이전 반복 계획을 대체한다.
+
 Phase는 순서대로 진행한다. 선행 Phase의 테스트를 유지하고 필요한 integration을 뒤 단계에서 추가한다. 특정 환경 문제로 필수 gate를 만족하지 못하면 뒤 Phase를 구현하여 그 실패를 감추지 않는다. 같은 Phase 안에서 blocker와 독립적인 문서/진단/복구 작업은 계속할 수 있다.
 
 ## 모든 Phase의 Quality Gate

@@ -1,11 +1,13 @@
 # NeuroBuild_v2
 
 A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의 greenfield rewrite.
-현재 **Phase 0~5 원격 checkpoint 완료**, **Phase5.x 요구사항 품질 평가 확대 진행 중**이다.
-전체 회귀 테스트는 **346개 PASS, skip 0**이다. 작은 개발 자료의 성공은 첫 holdout에서 재현되지 않았다.
+현재 **Phase0~5 원격 checkpoint 완료**, **Qwen3.8 후보의1차 품질 gate PASS**, Phase5.x 추가 검증 준비 상태다.
+전체 회귀 테스트는 **386개 PASS, skip 0**이다. 작은 개발 자료의 성공은 첫 holdout에서 재현되지 않았다.
 최근 32B 단일 호출은 의미 정확도 103/120, facts 계약은 95/120, thinking 비교는 109/120으로 모두 품질 gate에 실패했다.
 Thinking에서도 raw READY 오판 2건과 잘못 수용한 READY 1건이 남아 최종 채택하지 않았다.
-실패 기록과 독립 재검산을 보존하고, 최신 모델을 실행할 별도 local runtime의 호환성을 검증할 계획이다.
+Qwen3.8-27B Q4_K_M 단회120개 진단은 의미117/120, schema120/120, raw 오판0/58, unsafe0/120으로 통과했다.
+Warmup 포함125개 응답의 독립 재생도 일치했다. 모델 서버는 checkpoint를 위해 종료했고 GPU3 VRAM 반환을 확인했다.
+동일120개 전체3회 반복은 취소했다. 같은 자료 추가 반복 없이 V2 80개1회 평가를 별도 사전 동결한다.
 Gold는 자동 생성·사람 미검수이며 Internal Technical MVP는 아직 완료되지 않았다.
 최신 상태는 [STATUS](docs/STATUS.md), 비교 수치는 [실험 목록](docs/phase5x_experiment_register.md)을 따른다.
 Durable review/job queue, API와 frontend는 후속 단계다.

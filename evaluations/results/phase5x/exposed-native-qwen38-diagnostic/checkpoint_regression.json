@@ -1,0 +1,16 @@
+{
+  "kind": "NATIVE_DIAGNOSTIC_CHECKPOINT_REGRESSION",
+  "status": "PASS",
+  "tests": 386,
+  "skipped": 0,
+  "errors": 0,
+  "failures": 0,
+  "seconds": 20.43,
+  "headless": true,
+  "postgresql_integration": true,
+  "ifcopenshell_integration": true,
+  "production_source_commit": "bec9000e697c6b4930d077822ae30ca484a395ba",
+  "production_source_changed_since_diagnostic": false,
+  "log_path": "var/phase5x-native-diagnostic-checkpoint-regression.log",
+  "log_sha256": "460919f7729acc75cb49f10b334c7af7163d065d3061420a468101ba8ae8e9fc"
+}

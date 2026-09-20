@@ -1,6 +1,6 @@
 # Phase 5.x — Requirement Quality Hardening
 
-**현재 상태: 첫 holdout과 후속14B single/staged, 공식32B single 진단 모두 FAIL. 후보 미채택이며 Phase5.x는 완료되지 않았다.**
+**현재 상태: Qwen3.8 native 단회 진단은117/120·rawFP0·unsafe0으로1차 gate PASS다. 모델 서버를 종료하고 결과와125개 독립 재생을 checkpoint한다. 최종 모델 미채택이며 Phase5.x는 아직 완료되지 않았다.** 최신 결과·오류·자원·반복 판단은 [단회 진단 보고서](phase5x_native_qwen38_diagnostic_report.md)를 따른다. 사용자 지시로 기존 전체3회 반복 계획을 취소했다. 아래 과거 평가와 실패는 당시 기록으로 보존한다.
 
 첫 holdout에서 실패한 후보는 `ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ`와 generation 2, decision-branch schema, prompt v2, `legacy_greedy` 조합이다. Development 40개 × 3회에서 schema/parser/semantic **120/120**, raw READY false positive **0/60**, unsafe accepted **0/120**을 기록했다. 직전 neutral sampling의 정식 평가는 119/120이었지만 unsafe 1건으로 실패했으며, 그 결과도 보존했다. 아직 최종 모델을 채택하지 않았다.
 

@@ -1,0 +1,37 @@
+{
+  "kind": "GPU3_POST_OWN_SHUTDOWN_MEASUREMENTS",
+  "at_utc": "2026-09-20T07:30:55.257659+00:00",
+  "physical_gpu": 3,
+  "samples": [
+    {
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    }
+  ],
+  "minimum_free_mib": 36373,
+  "maximum_utilization_percent": 0,
+  "NeuroBuild_child_reaped": true,
+  "foreign_processes_queried_or_changed": false,
+  "other_GPUs_queried_or_changed": false
+}

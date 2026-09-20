@@ -1,0 +1,23 @@
+{
+  "all_loopback": true,
+  "checked_at_utc": "2026-09-20T07:28:01.090824+00:00",
+  "listeners": [
+    {
+      "address": "127.0.0.1",
+      "family": "IPv4",
+      "loopback": true,
+      "port": 8003
+    }
+  ],
+  "non_tcp_socket_count": 1,
+  "notice": "One process and one snapshot only; no descendant, UDP exposure, firewall or future-listener guarantee.",
+  "pid": 3555443,
+  "process_start_ticks": 477282747,
+  "reason_codes": [],
+  "schema_version": 1,
+  "scope": "OWN_UID_PID_TCP_LISTENERS",
+  "snapshot_complete": true,
+  "socket_inode_count": 2,
+  "uid": 1003,
+  "verdict": "PASS"
+}

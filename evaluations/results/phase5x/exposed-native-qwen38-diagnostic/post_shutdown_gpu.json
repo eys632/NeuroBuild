@@ -1,0 +1,7 @@
+{
+  "kind": "GPU3_POST_OWN_SHUTDOWN_SNAPSHOT",
+  "free_mib": 36373,
+  "used_mib": 3965,
+  "utilization_percent": 0,
+  "foreign_processes_queried_or_changed": false
+}

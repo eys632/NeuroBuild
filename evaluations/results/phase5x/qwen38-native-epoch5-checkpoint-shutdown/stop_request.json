@@ -1,0 +1,13 @@
+{
+  "kind": "OWN_NATIVE_EPOCH_STOP_REQUEST",
+  "guard_pid": 3554992,
+  "guard_start_ticks": 477277055,
+  "child_pid": 3555443,
+  "child_start_ticks": 477282747,
+  "uid": 1003,
+  "pidfd_signal": "SIGTERM",
+  "pidfd_api": "libc syscall; verified installed x86_64 header numbers",
+  "reason": "User checkpoint instruction; full repeated evaluation not started; stop only verified NeuroBuild model server",
+  "foreign_process_signals": 0,
+  "broad_process_matching_used": false
+}

@@ -240,3 +240,28 @@ Batch2/ubatch1의 실제 startup·공개 JSON·최대 context 검사는 통과�
 64/64는 명시적인 고정 pair와 최소 예상28,672MiB를 요구한다. 다른 pair나 자동 fallback은 없다.
 새 epoch의 fresh GPU3 사전 검사와 최대 문맥 자원·공개 응답 증거가 필요하다. Sampling·prompt·
 원문 quote/parser·품질 gate는 유지하며, batch에 따른 수치/출력 동등성을 미리 주장하지 않는다.
+
+
+## D036 — 단회1차 gate PASS checkpoint와 최소 반복 원칙
+
+2026-09-20 사용자 지시가 기존 자동120×3·V2×3 평가 순서를 대체한다. 현재 native Qwen3.8의
+노출120개 단회는schema120/semantic117/rawFP0/unsafe0으로 사전4gate를 통과했다. 전체125개
+저장 응답의 독립 재생도 일치했다. 세 오류는 non-READY 인용/과잉거절/대상 범위이며 원본에 보존한다.
+
+같은120개 추가 모델 반복은0회로 판단한다. 현재 해결해야 할 미확정 안전 오판이나 경계선 gate가
+없으며 같은 seed·같은 자료의 전체 반복은 새 의미 사례를 추가하지 않는다. 이는 모델 반복 출력
+동일성의 증명이 아니다. CPU 재생은 저장된 응답의 처리 재현성만 검증한다. 향후 반복이 필요하면
+해결할 구체적 불확실성과 최소 사례/횟수를 먼저 명시하고 사전 동결한다. 기준 미달 후보를 같은
+자료로 무조건 반복하지 않는다.
+
+완료진단 보존·자체 모델 종료·VRAM 반환·필요 회귀·commit/push 후 같은 설정의V2 80×1+warmup5를
+다음 최소 검증으로 준비한다. 첫 warmup 전에 별도 freeze와 원격 checkpoint를 완료한다. 기준은
+schema80/80,semantic≥76/80,rawFP0/40,unsafe0/80이며 schema100%/95%/0/0 threshold를 그대로 유지한다.
+V2preview·선별 재시도·완료125개 재평가는 하지 않는다. Raw관측80/80과 모든 오류/unknown/중단을 보고한다.
+이는 과거3회 계획의 완료가 아니라 사용자 지시에 따른 평가 횟수 변경이다.
+
+Epoch5의 formal 품질 호출0을 확인하고 own guard만 pidfd SIGTERM으로 종료했다. 다른 process는
+변경하지 않았다. 완료한 startup/resource/runtime suite를 처음부터 반복하지 않는다. 새 실행에서는
+현재free/util·ownprocess·device·loopback 등 실제 안전 실행에 필요한 확인만 수행하고 검증된
+source/config/resource 증거를 연결한다. Batch/flash/graphs/cache/throughput tuning은future optimization이며
+Phase 완료를 막지 않는다. 1차PASS만으로 Phase6/모델최종채택을 선언하지 않고V2 품질결과를 확인한다.

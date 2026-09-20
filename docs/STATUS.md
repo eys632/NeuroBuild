@@ -1,72 +1,62 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 16:05 KST**. **Phase 0~5 원격 checkpoint 완료. Phase5.x 품질 gate는 미통과이며 Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 KST — 사용자 checkpoint**. **Phase0~5 원격 checkpoint 완료.
+현재 Qwen3.8 후보는1차 품질 gate PASS이며 Phase5.x 전체 검증은 진행 중이다.**
 
 | 항목 | 현재 상태 |
 |---|---|
-| 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
+| 완료 Phase | 0 Foundation,1 Domain,2 Persistence,3 IFC Engine,4 Explicit Workflow,5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`, 마지막 원격 확인 `f114a9b747d5f5bd2812728ab74a98771143e10c` |
-| 회귀 검증 | **386 tests PASS**, skip 0, 실제 PostgreSQL/IfcOpenShell, headless 19.652초 |
-| 현재 작업 | **Native prefill64 검증 완료, 첫 노출120 품질 진단 동결**. 최종 모델 미채택, Phase6 시작 전 |
-| 잠정 모델 | Phase5 작은 seed 범위의 Qwen3-14B-AWQ/v3. 확대 gate 통과를 뜻하지 않음 |
-| Hard blocker | 없음. 품질 문제를 해결 중. CUDA 빌드·정적 검사 및 native guard CPU 검증 통과. GGUF/header·raw-native context200 통과. 초기 시작 오류 수정 완료.64/64 startup·공개 JSON·최대 문맥 자원 검사와386회귀 PASS. 품질 진단은 다음 checkpoint 뒤 실행 |
-| Backend | `.conda`: Python3.12.14 / PostgreSQL17.11 / psycopg3.2.10 / IfcOpenShell0.8.5 |
-| Model runtime | `.conda-vllm`: Python3.12.14 / cu118 vLLM0.8.5 / Torch2.6.0. 현재 native GPU3 epoch4 검증 중; 기존 vLLM 서버 STOPPED |
-| 다음 검증 | 동결·push 후 native64/64 노출120 품질 진단. 공식 HF19/20 FAIL과 raw variant를 분리하며 gold·parser·gate 유지 |
+| GitHub | 공통 `v2`, 직전 원격 확인 `bec9000e697c6b4930d077822ae30ca484a395ba`; 이번 결과 checkpoint 준비 |
+| 현재 작업 | **단회 진단·독립 재생 PASS 보존, 모델 서버 종료, checkpoint** |
+| 현재 후보 | Qwen3.8-27B Q4_K_M / pinned llama.cpp / raw-Unicode variant, 최종 미채택 |
+| 품질 결과 | 노출120×1: schema120,parser119,semantic117,rawFP0/58,unsafe0/120 |
+| 회귀 검증 | **386 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell,headless20.430초 |
+| Hard blocker | 없음 |
+| 모델 실행 | **NeuroBuild 모델 서버 STOPPED**, epoch4·5 exit0/child reaped |
+| Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
+| 다음 검증 | Checkpoint push 후 V2 80×1+warmup5 사전 동결. 같은120개 추가 반복0회 |
 
-## 최근 품질 결과
+## 단회 결과와 오류
 
-| 구성·자료 | 의미 정확도 | Raw READY 오판 | 잘못 수용한 READY | 결과 |
-|---|---:|---:|---:|---|
-| MoE generation2 첫 holdout80×3 | 211/240 | 9/114 | 12/240 | FAIL |
-| 14B single2.0, exposed120×1 | 113/120 | 2/58 | 3/120 | FAIL |
-| 14B staged, exposed120×1 | 93/120 | 11/58 | 6/120 | FAIL |
-| 32B single2.0, exposed120×1 | 103/120 | 1/58 | 1/120 | FAIL |
-| 32B facts3.0, exposed120×1 | 95/120 | 3/58 | 1/120 | FAIL |
-| 32B thinking2.0, exposed120×1 | **109/120** | **2/58** | **1/120** | **FAIL** |
+Run `20260920T071218Z-d9e611b184ea4f8cbb0d7369982ef361`의120개 평가와5개 warmup을
+완료했고, 고정commit으로125개 final JSON을 독립 재생해 모든 단계·집계가 일치했다.
+**의미 정확도117/120(97.5%), generation schema120/120, raw READY 오판0/58,
+잘못 수용한 READY0/120, raw decision 관측120/120**이다. READY62개는 모두 정확히 수용했다.
+Parser119/120은 그대로 보고하며 별도 사전100% gate가 아니었다. Warmup5/5는 분모에서 제외한다.
+HTTP end-to-end 평균 **5.215412956초**, p95 **5.811240079초**다.
 
-Thinking 진단은 schema117/parser116/FN0이며 truncation3건과 grounding 거절1건이 있었다.
-READY gold62개는 모두 맞았지만 방화문 이동 수용, 분수 표현 READY, lookup 분류와 대상 누락이 남았다.
-잘린3건은 raw decision unknown이다. 전체 관측117/120·non-READY 관측55/58을 함께 보존하며,
-2/58은 미관측3건의 안전성을 보장하지 않는다. 보존된117trial+5warmup의 독립 재생과 원래 집계가 일치했다.
-[상세 검토](reviews/phase5x_generation2_32b_thinking_exposed_review.md), [전체 실험 목록](phase5x_experiment_register.md).
+오류3건은 H02의 비연속 인용 조합→grounding 거절, HH-B05의 CLARIFICATION→UNSUPPORTED 과잉 거절,
+HH-J05의 대상 장소 누락이다. 모두 non-READY이며 실행 오류는 없었다. 오류를 수정하거나 제외하지 않았다.
+[평가 보고서](reports/phase5x_native_qwen38_diagnostic_report.md),
+[독립 검토](reviews/phase5x_native_qwen38_exposed_review.md), [실험 목록](phase5x_experiment_register.md).
 
-완료된 Phase5.x 기록은 **22 run / 1,800 평가 trial / 110 warmup 사례**다.
-서로 다른 split과 반복 실행을 합산한 정확도나 독립 표본 수로 해석하지 않는다.
-Gate는 **schema100% / semantic≥95% / raw READY 오판0 / 잘못 수용한 READY0**이다.
-기존120개는 노출된 regression이며 새로운 unseen 자료가 아니다.
-V2 80개는 모델 호출0이지만 root가 일부 입력/gold를 본 이력이 있다.
-[노출 기록](../evaluations/hardening_v2_input_exposure_addendum.json)을 유지하며 완전 맹검이라고 부르지 않는다.
-Gold는 **AUTO-GENERATED / NOT HUMAN VERIFIED**이며 AI 검토는 사람 검수가 아니다.
+완료 Phase5.x 기록은 **23 run /1,920 평가 trial /115 warmup 사례**다. 서로 다른 split·실행을
+합산 정확도나 독립 표본 수로 해석하지 않는다. 이전 실패와 기준은 그대로 보존한다.
 
-## 운영 상태와 남은 범위
+## GPU3 반환과 checkpoint
 
-**GPU3만 사용한다.** 마지막32B thinking epoch는 own guard3483689/child3483717의 UID·시작 시각·실행 인자를
-확인한 뒤 종료했다. STOPPED/exit0/reaped/FileStore 정리와 TERM→KILL 기록을 보존했다.
-Epoch3144.173초 동안 GPU 전체 baseline 대비 증가 최대22,542MiB, 최소 free13,832MiB였다.
-이는 process별 peak나 hard isolation이 아니다. 종료 후 GPU3 used3,965MiB/free36,373MiB/util0%다.
-다른 사용자의 process와 GPU0/1/2는 변경하지 않았다.
+평가 epoch4 전체의 GPU aggregate 증가 최대18,346MiB/최소 free18,028MiB,
+safety floor7,275MiB/예상 peak28,672MiB였다. Process별 peak나 hard isolation이 아니다.
+정식 반복용 epoch5의 품질 호출은 **0회**다. Startup 확인·공개 응답1회만 수행했고 resource probe는 미실행이다.
+사용자 지시 후 own UID/시작시각/실행 인자/부모 관계를 확인해 해당guard에만 pidfd SIGTERM을 보냈다.
+Epoch4와5 모두 STOPPED/exit0/reaped. 다른 사용자 process는 변경·종료하지 않았다.
+GPU3 종료 후5회 모두 **free36,373MiB/used3,965MiB/util0%**이며 GPU0/1/2는 사용하지 않았다.
 
-Private PostgreSQL은 project 안의0700 Unix socket과 peer 인증을 사용하며 TCP는 비활성이다.
-CUDA11.8/SM80 source build와 `$ORIGIN` relink, source3,607개/ELF/library 정적 검사를 통과했다.
-Native startup과 공개 응답·최대 문맥 자원 검사는 통과했다. 단일 후보 다운로드·헤더 검사와 독립 CPU helper 빌드는 완료했다.
-공개 CPU 문법30개 및 native final-content/sampling 검사는 통과했다. 공식 HF와의 NFC 차이로
-19/20 동등성 검사는 FAIL이며 raw variant의20/20 공개 비교와 실제 native context200개는 PASS다.
-노출120 input+768 최대3177/v2길이80 최대3133으로4096 이내다. 입력·출력 보정은 없다.
-382개 회귀 검사가 native guard 및 다운로드 파일 덮어쓰기 방지 수정까지 포함한다.
+## 반복 정책과 남은 범위
 
-종료된 MoE의 검증된 가중치4개(16,809,467,824 bytes)를 정리했고 당시 free는 약42.4GiB였다.
-기존4B 정리와 이번 MoE의 manifest·복원 명령·평가 자료는 보존한다. 14B/32B 가중치는 유지했다.
-Qwen3.8 GGUF17.67GiB의 전체 SHA/851 tensor 검사를 통과했다. 다운로드 후 약24.65GiB free로
-20GiB+512MiB reserve를 유지했다. GPU3 드라이버 metadata만 조회해 VMM/2MiB granularity를
-확인했으며 context/메모리 할당은 요청하지 않았다. 전체 예상 peak28GiB와 별도 margin을
-[자원 검증 계획](native_qwen38_resource_plan.md)에 기록했다. 초기 batch1 오류는 제한 진단으로 확인해 수정했고2/1 및64/64를 별도로 검증했다.
-현재64/64의 공개 JSON5.178초, 최대 문맥 probe25.678초(Prefill4.075초/생성21.594초) PASS다.
-Probe까지 aggregate 증가18,346MiB/최소 free18,028MiB였으며 정식 품질 진단은 미실행이다.
-[후보와 현재 검증](modern_local_runtime_candidate.md)의 runtime PASS는 모델 품질 gate 통과를 뜻하지 않는다.
-환경·weight·cache·binary는 Git에서 제외한다.
+사용자 최신 지시가 이전 자동120×3·V2×3 계획을 대체한다. 현재 단회 결과는1차4gate를 통과했다.
+추가 같은 자료 반복 없이 checkpoint 뒤 동일 설정의 **V2 80×1+warmup5**를 사전 동결한다.
+Schema100%/semantic≥95%/rawFP0/unsafe0 기준은 유지한다. 실제 모델의 반복 출력 동일성은 미검증이며
+125개 CPU 재생을 그 증거로 대신하지 않는다. 이미 완료한 runtime/resource 검사를 처음부터 반복하지 않는다.
+Phase를 막지 않는 batch/flash/graphs/cache/throughput 튜닝은 future optimization이다.
 
-Phase4 human review는 아직 메모리에만 보존한다. Object resolution/API/browser는 미구현이며
+V2 모델 호출은 **0회**다. Root의 일부 입력/gold 노출 기록을 유지하며 완전 맹검이라고 부르지 않는다.
+Gold는 **AUTO-GENERATED / NOT HUMAN VERIFIED**이고 AI 검토는 사람 검수가 아니다.
+공식 HF tokenizer 비교19/20 FAIL과 별도 raw reference20/20을 구분한다. 입력·출력 NFC 보정은 없다.
+
+Private PostgreSQL은 project0700 Unix socket/peer 인증/TCP OFF다. 환경·weight·cache·binary는 Git에서 제외한다.
+모델 다운로드 뒤 디스크 약24.65GiB free로20GiB+512MiB reserve를 유지한다.
+Phase4 human review는 아직 메모리 보존이며 Object resolution/API/browser는 미구현이다.
 영속 review/queue/worker는 Phase7 예정이다. **RTX5090은 PREDICTED_UNVERIFIED**다.
 Public exposure/pilot/민감 IFC/fine-tuning은 자동 범위 밖이다.

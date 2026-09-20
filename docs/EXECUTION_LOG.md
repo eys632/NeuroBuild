@@ -654,3 +654,38 @@ Startup3GET+ownloopback PASS, public1회5.178초PASS. Resource1회25.678초,
 실제epoch4/config·source/schema/prompt·386회귀·공식HF19/20FAIL/raw20/20·CPUcontext200과
 기존schema120/semantic≥114/rawFP0/unsafe0를묶었다. 현재FROZEN_NOT_EVALUATED이며
 commit/push후125호출(5warmup+120trial)을진행한다. V2품질호출0은유지한다.
+
+
+### 2026-09-20 — 첫 native 노출120 진단 시작
+
+Checkpoint `bec9000e697c6b4930d077822ae30ca484a395ba` commit/push 후 원격v2 일치를 확인했다.
+동결81개 hash 및 신규11개 archive/58개 파일의 integrity가 일치했고, epoch4 PID3538905/
+startticks477119025와 own loopback/argv/guard를 재확인했다. Immutable epoch2 source snapshot의
+EOF blank line1개는 원본 byte 보존을 위해 유지했다. 환경/weight/binary/secret은 staged 대상에 없다.
+Run `20260920T071218Z-d9e611b184ea4f8cbb0d7369982ef361`의 manifest는 clean bec9000이다.
+기존single2.0/promptv2/branchschema, native sampling, output768/timeout120,120×1+warmup5다.
+평가 전 peak18346/minfree18028로 safetyfloor7275 이상이며, 연산은 GPU3에서만 수행한다.
+이 항목은 실행 시작 기록이며 완료/PASS/모델 채택을 뜻하지 않는다.
+
+
+### 2026-09-20 — 단회 진단 완료와 사용자 checkpoint
+
+Run20260920T071218Z-d9e611b184ea4f8cbb0d7369982ef361 exit0,120trial+5warmup 완료.
+Schema120/parser119/semantic117/rawFP0of58/unsafe0/FN0/observed120. Mean5.215412956s/p955.811240079s.
+고정bec9000 source_snapshot으로125개 final JSON 독립재생PASS; proofSHA6a9ce259b60348504cfa1afec9ddb7838d30190e46b88f2b1ab33917e46836ab.
+H02/HH-B05/HH-J05의3개 nonREADY 실패를원본그대로보존했다. 전후81개freezehash/ownepoch/guard/listener검사PASS.
+Epoch4 guard3538534/child3538905를검증해pidfd SIGTERM,STOPPED/exit0/reaped. Lifetime1556.121s,
+2752samples/peak18346/minfree18028. 이후free36373/used3965/util0.
+
+정식반복준비용epoch5 config076eccea41937e24555ce8132cf492617d3b8cefccac2514b374802a8040a4d7,
+max14400/나머지추론조건동일. 첫startup probe는child경과5.666s직후HTTP_STATUS_FAILED로실패해별도보존.
+뒤의명시startup3GET과public1POST는PASS. Resourceprobe와formalquality는0회였다.
+사용자최신지시로진행을중단하고guard3554992/startticks477277055와child3555443/startticks477282747의
+ownUID/executable/argv/부모관계를검증했다. pidfd로해당guard에만SIGTERM을보냈고STOPPED/exit0/reaped확인.
+다른process신호0/killall·광범위pkill0/다른GPU접근0. GPU3후속5회모두free36373/used3965/util0.
+
+386개headless실제PostgreSQL/IfcOpenShell회귀PASS/skip0/20.430s.
+LogSHA460919f7729acc75cb49f10b334c7af7163d065d3061420a468101ba8ae8e9fc.
+진단/종료archive와integrity를작성했다. D036으로자동전체3회계획을대체하고같은120개추가반복0회,
+checkpoint후V280×1+warmup5별도사전동결을판단했다. 기존4gate threshold와노출addendum는유지한다.
+Formalfreezer는미생성/미실행이며ignoredformalreplay초안은미검증/미사용이다. 완료runtime검사를재시작하지않는다.

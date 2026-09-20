@@ -1,5 +1,10 @@
 # Phase5.x native runtime 검증 중간 보고
 
+최신 checkpoint: 단회120개 진단은117/120·rawFP0·unsafe0으로1차 gate PASS이고125개 독립 재생을 완료했다.
+모델 서버는 사용자 지시로 종료했고 GPU3 VRAM 반환을 확인했다. 자동전체3회 평가를 취소했으며
+현재 판단은 [단회 진단 보고서](phase5x_native_qwen38_diagnostic_report.md)와 D036을 따른다. 아래 사전 검증 기록은 당시 상태를 보존한다.
+
+
 **Qwen3.8-27B Q4_K_M / pinned llama.cpp의 GPU3 startup·공개 JSON·최대 문맥 자원 검증을 통과했다.**
 품질 gate는 아직 미통과이며 최종 모델 채택이나 Phase6 시작이 아니다. 실제 노출120 진단 조건을
 동결했고 commit·push 뒤에만 평가한다. 시스템 driver/CUDA/Python 환경은 변경하지 않았다.

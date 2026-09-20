@@ -1,0 +1,189 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/README.md": {
+      "bytes": 1571,
+      "sha256": "d2992cf7cce86938ae2b4767090c73a6c28d63cb979349f7358b01f4f06b4f7f"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/checkpoint_regression.json": {
+      "bytes": 536,
+      "sha256": "30a30fbe47908e6eb45f7581ba68c6950d877cfd58c55a169b41b91c6d19dc53"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/dataset.json": {
+      "bytes": 92253,
+      "sha256": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/freeze.json": {
+      "bytes": 17104,
+      "sha256": "7a1f67bd71c65f0c2d2aacc2b03cb765d7c38ac8eaa31bf7618847c4a5380fd9"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/guard_after.json": {
+      "bytes": 5174,
+      "sha256": "45f3474216d1618c936354bfba57fe723c3a0f594ad288ca388d11be70c0122b"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/guard_before.json": {
+      "bytes": 5172,
+      "sha256": "46fdf27a87c925b95a7c0aadfdc30b1d555355a5ec0bdfcfffea9360e0984c73"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/independent_replay.json": {
+      "bytes": 31876,
+      "sha256": "6a9ce259b60348504cfa1afec9ddb7838d30190e46b88f2b1ab33917e46836ab"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/listeners_after.json": {
+      "bytes": 592,
+      "sha256": "cae78205f6894524524af2c55d54172464142271b611df11d99feb792f36b64a"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/listeners_before.json": {
+      "bytes": 592,
+      "sha256": "edcd21fa6b9aa1e03ccb96ffb30813b077b429bc6457c53e4f52a0b91fad9601"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/manifest.json": {
+      "bytes": 6284,
+      "sha256": "51261e31972b8c39bf59114c2258411381004134356c098801744c024ab73258"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/post_shutdown_gpu.json": {
+      "bytes": 166,
+      "sha256": "b9801be1f4f0f49515882c80a32c57c03dbca40835f5e2012c2169e19798ee9e"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/postflight.json": {
+      "bytes": 242,
+      "sha256": "aeb297d9162d694cb6c4606e7204cbd9333cd12521af27a94dded524e38a284d"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/preflight.json": {
+      "bytes": 392,
+      "sha256": "889fa53d9dd1bd39dfd35e6f6e0472cd31cb0d0067f4ca1e27c6327cc6c4b17e"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/replay_native_qwen38_exposed.py": {
+      "bytes": 32073,
+      "sha256": "c1f063fe4a6ea14c9eaa57bb6e10467460f6765d9a3b4fce67a6fca0f69ac592"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/resource_report_final.json": {
+      "bytes": 5360,
+      "sha256": "bfb5c6eea5e996561162f5ececf9c7c39656628db1479c6a9cf2adcaac673e04"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/results.json": {
+      "bytes": 264539,
+      "sha256": "e16c753dd9701f1115a8d56445f27f68835e20b9323787316db776606769da48"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/evaluations/hardening_v1_exposed_native_qwen38_diagnostic_freeze.json": {
+      "bytes": 17104,
+      "sha256": "7a1f67bd71c65f0c2d2aacc2b03cb765d7c38ac8eaa31bf7618847c4a5380fd9"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/evaluations/requirement_hardening_v1_exposed_regression.jsonl": {
+      "bytes": 69888,
+      "sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/prompts/requirement_generation_v2_v2.txt": {
+      "bytes": 8974,
+      "sha256": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/runtime/models/qwen38-27b-q4-k-m.json": {
+      "bytes": 740,
+      "sha256": "e67de5e421d7de1b2c332506474bc96812b9450a4fe56438b9eb3f64d9d554ed"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/schemas/requirement_generation_v2.schema.json": {
+      "bytes": 1057,
+      "sha256": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/schemas/requirement_generation_v2_decision_branches.schema.json": {
+      "bytes": 4176,
+      "sha256": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/schemas/semantic_requirement.schema.json": {
+      "bytes": 1703,
+      "sha256": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/scripts/evaluate_requirements.py": {
+      "bytes": 42510,
+      "sha256": "b4a4357672ba7d33a908f91635b330b5346defbf8337aeb800e13ffceafd17d7"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/scripts/gpu_preflight.py": {
+      "bytes": 10153,
+      "sha256": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/scripts/llama_server.py": {
+      "bytes": 22259,
+      "sha256": "163e6a27ec6675e17da5dfcd7c6beaa6f70b22f6db6cead0cf52d42e6bff9077"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/scripts/model_guard.py": {
+      "bytes": 11948,
+      "sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/scripts/native_model_bootstrap.py": {
+      "bytes": 4797,
+      "sha256": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/scripts/verify_model_listeners.py": {
+      "bytes": 9550,
+      "sha256": "2d7771d414a7faae4138ea555349d1f7f111d36498ad9815f64ac51910d758dd"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/snapshot.json": {
+      "bytes": 3672,
+      "sha256": "abc8aad84c596526648d5e40c5fc9fda1d68a146d74c15bf1bd95fa3a89bc6b7"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/__init__.py": {
+      "bytes": 84,
+      "sha256": "43ba9f0b620ffa4f960f4d83a7ce7fd9fbae9b8de96d71535926f8a48dbc8461"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/application/__init__.py": {
+      "bytes": 85,
+      "sha256": "d393a04c8462e6e1a2bdc6e012639716d4b30aa18a15ec6fddf169aaedcbd359"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/application/requirement_facts.py": {
+      "bytes": 4976,
+      "sha256": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/application/requirement_generation.py": {
+      "bytes": 7055,
+      "sha256": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/application/requirements.py": {
+      "bytes": 12385,
+      "sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/application/workflow.py": {
+      "bytes": 16129,
+      "sha256": "aadf8f561a4d19ee301dcdaf985631a6f470d86d463aec4f7053dfac50dffdf5"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/domain/__init__.py": {
+      "bytes": 86,
+      "sha256": "152b0592fd08f164e27f99228c033cf131916ddb7bd2b2124fba24511e19be75"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/domain/contracts.py": {
+      "bytes": 13912,
+      "sha256": "107edcaec115d7dbada810ed83398a114b1958b8658bc704bf3e9f7ff6b8e458"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/domain/errors.py": {
+      "bytes": 310,
+      "sha256": "32bb3ba6da83a35706759fe288e41bd490b5c1d56c071b4ec3de67207848b8aa"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/infrastructure/__init__.py": {
+      "bytes": 79,
+      "sha256": "a7cfa5c500a5a587d0fd48bdae32bb951769d7ca525b4b36b1dce6cc0f516739"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/infrastructure/artifacts.py": {
+      "bytes": 12722,
+      "sha256": "52edb48022d20eed6dff6d0b9d779ff25d03acbacb9764331dbb1945f740bbe9"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/infrastructure/ifc_engine.py": {
+      "bytes": 16860,
+      "sha256": "13acf3bf932ca49d495f8e3e718e6de376237b31f2192eb92bc6ce0d61a7c608"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/infrastructure/local_model.py": {
+      "bytes": 21725,
+      "sha256": "3ebef3a1b3cf16b577566c7644952ac5da0def1d1dc11cc0d0b01c581b9d9f1c"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/infrastructure/persistence.py": {
+      "bytes": 13732,
+      "sha256": "872ffe7c16ea7b098e6e4b076ce4ced35132987ff6df99701cc283f9485f154d"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/infrastructure/staged_requirement.py": {
+      "bytes": 11980,
+      "sha256": "7e79b1c488a00e3f81b443fb32f86019f510a274228f56058c4eeae66038efee"
+    },
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/stop_request.json": {
+      "bytes": 430,
+      "sha256": "13f782d243c1fb3db4cf062b05cf19199291a2c93dcde8c003bacd3b4280cbf6"
+    }
+  }
+}
