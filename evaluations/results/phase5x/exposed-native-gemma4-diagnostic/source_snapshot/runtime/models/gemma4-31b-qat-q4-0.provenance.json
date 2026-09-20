@@ -1,0 +1,426 @@
+{
+  "status": "PUBLIC_METADATA_VERIFIED_WEIGHT_PAYLOAD_NOT_DOWNLOADED",
+  "recorded_at_utc": "2026-09-20T08:28:23.909608+00:00",
+  "candidate_status": "NOT_SELECTED_RUNTIME_AND_QUALITY_UNVERIFIED",
+  "quantized_model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+  "quantized_revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+  "download_manifest_path": "runtime/models/gemma4-31b-qat-q4-0.json",
+  "download_manifest_sha256": "16d471fc5bb8ae266015d73b0a648e2b576dab6e6e453de8c28fdc0f1a8a6e3c",
+  "manifest_total_bytes": 17651030836,
+  "selected_weight": {
+    "name": "gemma-4-31B_q4_0-it.gguf",
+    "bytes": 17651001568,
+    "sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+    "verification": "PUBLIC_PINNED_HUB_LFS_METADATA_ONLY; no weight payload/range requested"
+  },
+  "excluded_artifacts": [
+    "gemma-4-31B-it-mmproj.gguf",
+    "all unquantized safetensors",
+    "drafter models"
+  ],
+  "publisher": "Google official namespace; official QAT release, not third-party requantization",
+  "published_lineage": {
+    "gguf_card_base_model": [
+      "google/gemma-4-31B-it-qat-q4_0-unquantized"
+    ],
+    "qat_unquantized_model": "google/gemma-4-31B-it-qat-q4_0-unquantized",
+    "qat_metadata_revision": "1e4d8beecacb8b7590c1d8bedd7335f687bf311f",
+    "qat_card_base_model": [
+      "google/gemma-4-31B-it"
+    ],
+    "it_comparison_model": "google/gemma-4-31B-it",
+    "it_comparison_revision": "842da3794eaa0b77d5f08bae87a17459d91ff475",
+    "conversion_source_revision_embedded_or_published": false,
+    "convert_log_or_src_sha_present": false,
+    "limitation": "Cards declare repository lineage but do not pin which QAT source revision produced this GGUF. Current pinned QAT metadata is a reference; embedded GGUF metadata/tensors not yet inspected."
+  },
+  "license": {
+    "identifier": "apache-2.0",
+    "pinned_api_and_cards_agree": true,
+    "repository_LICENSE_or_NOTICE_present": false,
+    "scope": "Checked pinned GGUF, QAT unquantized and original IT sibling inventories; no standalone license file is invented in the HF download manifest.",
+    "google_license_url": "https://ai.google.dev/gemma/docs/gemma_4_license",
+    "google_license_resolved_url": "https://ai.google.dev/gemma/apache_2",
+    "canonical_license_url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+    "canonical_text_path": "var/research/gemma4-31b-qat-candidate-metadata/official-docs/APACHE-2.0.txt",
+    "canonical_text_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "canonical_text_bytes": 11358,
+    "canonical_text_is_model_repository_LICENSE": false
+  },
+  "text_config": {
+    "hidden_size": 5376,
+    "vocab_size": 262144,
+    "intermediate_size": 21504,
+    "num_hidden_layers": 60,
+    "num_attention_heads": 32,
+    "num_key_value_heads": 16,
+    "num_global_key_value_heads": 4,
+    "head_dim": 256,
+    "global_head_dim": 512,
+    "sliding_window": 1024,
+    "hidden_size_per_layer_input": 0,
+    "num_kv_shared_layers": 0,
+    "attention_k_eq_v": true,
+    "tie_word_embeddings": true,
+    "enable_moe_block": false,
+    "max_position_embeddings": 262144,
+    "use_double_wide_mlp": false,
+    "layer_type_counts": {
+      "sliding_attention": 50,
+      "full_attention": 10
+    }
+  },
+  "config_differences_it_to_qat": [
+    {
+      "path": "text_config.expert_intermediate_size",
+      "it": null,
+      "qat": "ABSENT"
+    },
+    {
+      "path": "text_config.moe_intermediate_size",
+      "it": "ABSENT",
+      "qat": null
+    },
+    {
+      "path": "transformers_version",
+      "it": "5.5.0.dev0",
+      "qat": "5.6.2"
+    }
+  ],
+  "tokenizer_and_template": {
+    "tokenizer_json_bytes": 32169626,
+    "tokenizer_json_sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+    "actual_qat_tokenizer_bytes_verified": true,
+    "it_tokenizer_download_repeated": false,
+    "it_tokenizer_same_remote_lfs_sha_and_size": true,
+    "chat_template_actual_bytes_identical_it_qat": true,
+    "chat_template_bytes": 18683,
+    "chat_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+    "tokenizer_config_bytes_identical": false,
+    "tokenizer_config_additional_qat_keys": [
+      "is_local",
+      "local_files_only",
+      "model_specific_special_tokens"
+    ],
+    "template_default_enable_thinking": false,
+    "template_default_preserve_thinking": false,
+    "text_only_nonthinking_generation_suffix": "<|turn>model\n<|channel>thought\n<channel|>",
+    "model_type": "BPE",
+    "normalizer": {
+      "type": "Replace",
+      "pattern": {
+        "String": " "
+      },
+      "content": "▁"
+    },
+    "pre_tokenizer": {
+      "type": "Split",
+      "pattern": {
+        "String": " "
+      },
+      "behavior": "MergedWithPrevious",
+      "invert": false
+    },
+    "decoder": {
+      "type": "Sequence",
+      "decoders": [
+        {
+          "type": "Replace",
+          "pattern": {
+            "String": "▁"
+          },
+          "content": " "
+        },
+        {
+          "type": "ByteFallback"
+        },
+        {
+          "type": "Fuse"
+        }
+      ]
+    },
+    "normalization_observation": "No NFC/NFKC operator in published tokenizer normalizer. ASCII space maps to U+2581 and decoder maps U+2581 to space; literal marker/combining-mark native parity and original-byte roundtrip remain CPU gates.",
+    "actual_gguf_embedded_template_or_tokenizer_verified": false,
+    "native_cpu_parity_or_context_executed": false,
+    "upstream_transformers_version": "5.6.2",
+    "installed_transformers_runtime_support_claimed": false
+  },
+  "sampling": {
+    "official_card_url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf/blob/59dde24573e7e61570dba08b18a2e1fe246955ed/README.md#best-practices",
+    "official_recommended_parameters": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 64
+    },
+    "qat_generation_config": {
+      "bos_token_id": 2,
+      "do_sample": true,
+      "eos_token_id": [
+        1,
+        106,
+        50
+      ],
+      "pad_token_id": 0,
+      "temperature": 1.0,
+      "top_k": 64,
+      "top_p": 0.95,
+      "transformers_version": "5.6.2"
+    },
+    "original_it_generation_config": {
+      "bos_token_id": 2,
+      "do_sample": true,
+      "eos_token_id": [
+        1,
+        106,
+        50
+      ],
+      "pad_token_id": 0,
+      "temperature": 1.0,
+      "top_k": 64,
+      "top_p": 0.95,
+      "transformers_version": "5.5.0.dev0"
+    },
+    "official_nonthinking_control": "Exclude <|think|> system trigger; published template enable_thinking=false pre-fills an empty thought channel.",
+    "extra_project_candidate_parameters_not_official_recommendations": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 0,
+      "seed": 42,
+      "samplers": [
+        "temperature",
+        "top_k",
+        "top_p",
+        "min_p"
+      ]
+    },
+    "profile_not_implemented_by_this_task": true,
+    "does_not_claim_sampling_equivalence_to_other_runtimes": true
+  },
+  "pending_native_gates": [
+    "Actual GGUF full SHA/header/tensor coverage and embedded template/tokenizer",
+    "Whole GPU startup/inference peak budget",
+    "Native Gemma thought-channel and JSON-fence final-content parser",
+    "Existing branch schema accept/reject and truncation/no-final behavior",
+    "Actual native vocab parity/roundtrip and prompt+768 context length",
+    "Frozen one-pass quality gates; no quality guarantee from QAT or size"
+  ],
+  "retrieval": {
+    "project_response_payload_bytes": 32948600,
+    "limit_bytes": 52428800,
+    "authentication_used": false,
+    "weight_payload_requests": 0,
+    "weight_range_requests": 0,
+    "model_calls": 0,
+    "gpu_calls": 0,
+    "packages_installed": false,
+    "cache_deleted": false,
+    "production_changed": false,
+    "v2_data_read": false,
+    "disk_free_before_metadata_bytes": 26616070144,
+    "metadata_files": [
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/gguf-api.json",
+        "url": "https://huggingface.co/api/models/google/gemma-4-31B-it-qat-q4_0-gguf/revision/59dde24573e7e61570dba08b18a2e1fe246955ed?blobs=true",
+        "bytes": 21232,
+        "sha256": "433fc3e9f92ffc416d3ed336fa76a80534678147cbfcd2ff6d3bcd9bd3052b0c",
+        "repository_revision": "59dde24573e7e61570dba08b18a2e1fe246955ed"
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/original-it-api.json",
+        "url": "https://huggingface.co/api/models/google/gemma-4-31B-it/revision/842da3794eaa0b77d5f08bae87a17459d91ff475?blobs=true",
+        "bytes": 25395,
+        "sha256": "d2602aca4f0f941cf993f8477e272277e4b1de196195b844873cb88657d6f483",
+        "repository_revision": "842da3794eaa0b77d5f08bae87a17459d91ff475"
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized-discovery-api.json",
+        "url": "https://huggingface.co/api/models/google/gemma-4-31B-it-qat-q4_0-unquantized?blobs=true",
+        "bytes": 22200,
+        "sha256": "d5dcbebc9c7f6df92004ebdb1151a659fa81182bb0e5dfb4f951501d35e36b04",
+        "repository_revision": "1e4d8beecacb8b7590c1d8bedd7335f687bf311f"
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized-api.json",
+        "url": "https://huggingface.co/api/models/google/gemma-4-31B-it-qat-q4_0-unquantized/revision/1e4d8beecacb8b7590c1d8bedd7335f687bf311f?blobs=true",
+        "final_host": "huggingface.co",
+        "bytes": 22200,
+        "sha256": "d5dcbebc9c7f6df92004ebdb1151a659fa81182bb0e5dfb4f951501d35e36b04",
+        "expected_remote_size": null,
+        "hf_blob_id": null,
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/gguf/README.md",
+        "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf/resolve/59dde24573e7e61570dba08b18a2e1fe246955ed/README.md",
+        "final_host": "huggingface.co",
+        "bytes": 29268,
+        "sha256": "7acf2548ee8ef633d95ed4544160f6e33e5fc79bace0c6a2e250c5eb34d5d0cc",
+        "expected_remote_size": 29268,
+        "hf_blob_id": "1a2bea6030a2fca59148410a8490db768a081d3c",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/original-it/README.md",
+        "url": "https://huggingface.co/google/gemma-4-31B-it/resolve/842da3794eaa0b77d5f08bae87a17459d91ff475/README.md",
+        "final_host": "huggingface.co",
+        "bytes": 27963,
+        "sha256": "e209f5c435b1e66055bd6d7c29185103ae8d2027a03a96b359335154f206b82b",
+        "expected_remote_size": 27963,
+        "hf_blob_id": "abf7c941ad9bb8d4fe2e350b6e6bf0e3ba05a28d",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/original-it/config.json",
+        "url": "https://huggingface.co/google/gemma-4-31B-it/resolve/842da3794eaa0b77d5f08bae87a17459d91ff475/config.json",
+        "final_host": "huggingface.co",
+        "bytes": 4621,
+        "sha256": "e967dd38bc5cfd38bd09a995a7bf4a754075df2b46aba68f7fbb5a791e6d8dd1",
+        "expected_remote_size": 4621,
+        "hf_blob_id": "5f291aa9973fbb38982f9bade924989edc7b895d",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/original-it/generation_config.json",
+        "url": "https://huggingface.co/google/gemma-4-31B-it/resolve/842da3794eaa0b77d5f08bae87a17459d91ff475/generation_config.json",
+        "final_host": "huggingface.co",
+        "bytes": 208,
+        "sha256": "d4226bbe3117d2d253ba4609720ba82c6c4ce4627a9a6ae05387c78983ac03de",
+        "expected_remote_size": 208,
+        "hf_blob_id": "e605bb4523b1462ea9d9a3810b9e3ecf7ab7b1f6",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/original-it/chat_template.jinja",
+        "url": "https://huggingface.co/google/gemma-4-31B-it/resolve/842da3794eaa0b77d5f08bae87a17459d91ff475/chat_template.jinja",
+        "final_host": "huggingface.co",
+        "bytes": 18683,
+        "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+        "expected_remote_size": 18683,
+        "hf_blob_id": "4741bf6e4132ba23a5537f9d6e74e9a6d613d7cd",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/original-it/tokenizer_config.json",
+        "url": "https://huggingface.co/google/gemma-4-31B-it/resolve/842da3794eaa0b77d5f08bae87a17459d91ff475/tokenizer_config.json",
+        "final_host": "huggingface.co",
+        "bytes": 3082,
+        "sha256": "9f4fec4b1dc6ecddf8f4a92e9caea5971c0e67d81309f3f9066a2bee8c362633",
+        "expected_remote_size": 3082,
+        "hf_blob_id": "6068e357379d36f823c377e30efb101fa2c67fe4",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/README.md",
+        "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-unquantized/resolve/1e4d8beecacb8b7590c1d8bedd7335f687bf311f/README.md",
+        "final_host": "huggingface.co",
+        "bytes": 29359,
+        "sha256": "340965eb32c3eabc7bf7ec4a4849ccd063bcf6b5387f7019426ccd24135d9c4c",
+        "expected_remote_size": 29359,
+        "hf_blob_id": "2db506083c4f671b244912bac55fc26232d3fabf",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/config.json",
+        "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-unquantized/resolve/1e4d8beecacb8b7590c1d8bedd7335f687bf311f/config.json",
+        "final_host": "huggingface.co",
+        "bytes": 4613,
+        "sha256": "95b105ad23b315067985415e721ab9c19cfcf90918b34ea0fa479a08489d86b7",
+        "expected_remote_size": 4613,
+        "hf_blob_id": "bd78055902be7a657e1c9852f7a812094dd813e0",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/generation_config.json",
+        "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-unquantized/resolve/1e4d8beecacb8b7590c1d8bedd7335f687bf311f/generation_config.json",
+        "final_host": "huggingface.co",
+        "bytes": 203,
+        "sha256": "b69207f9be617e982d13cc273cce6fd88c98dda99a4bdc5e2d52ffe0a0d9f0a9",
+        "expected_remote_size": 203,
+        "hf_blob_id": "5a376e9fca28bfac73fe81b623bd6e4d00bb0817",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/chat_template.jinja",
+        "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-unquantized/resolve/1e4d8beecacb8b7590c1d8bedd7335f687bf311f/chat_template.jinja",
+        "final_host": "huggingface.co",
+        "bytes": 18683,
+        "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+        "expected_remote_size": 18683,
+        "hf_blob_id": "4741bf6e4132ba23a5537f9d6e74e9a6d613d7cd",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/tokenizer_config.json",
+        "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-unquantized/resolve/1e4d8beecacb8b7590c1d8bedd7335f687bf311f/tokenizer_config.json",
+        "final_host": "huggingface.co",
+        "bytes": 3729,
+        "sha256": "3ab5c7b94dc97d65ca7064496fa69b88ff875378e1cb7ee3e43070c3a8170999",
+        "expected_remote_size": 3729,
+        "hf_blob_id": "bd297dce3d66737f7d6f9136691db3ad05991a2f",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/processor_config.json",
+        "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-unquantized/resolve/1e4d8beecacb8b7590c1d8bedd7335f687bf311f/processor_config.json",
+        "final_host": "huggingface.co",
+        "bytes": 1689,
+        "sha256": "32bdf45d2ad4cc29a0822ddd157a182de76644f0419a6228d151495256e9813c",
+        "expected_remote_size": 1689,
+        "hf_blob_id": "5465974d23e1eca2c46c2809b26c997946ce0d90",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/model.safetensors.index.json",
+        "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-unquantized/resolve/1e4d8beecacb8b7590c1d8bedd7335f687bf311f/model.safetensors.index.json",
+        "final_host": "huggingface.co",
+        "bytes": 120246,
+        "sha256": "d4aff3b976d69c123a29d1c085d7ba4de1ac3f4ca1726a7f81e1b11462a64ea2",
+        "expected_remote_size": 120246,
+        "hf_blob_id": "17fcef4a0ceb639c8ad4e2f7719f70aaff7de63b",
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/tokenizer.json",
+        "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-unquantized/resolve/1e4d8beecacb8b7590c1d8bedd7335f687bf311f/tokenizer.json",
+        "final_host": "us.aws.cdn.hf.co",
+        "bytes": 32169626,
+        "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+        "expected_remote_size": 32169626,
+        "hf_blob_id": "1ff9f3e3439a939b971f9919e821bf87e835a503",
+        "hf_lfs_sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f"
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/official-docs/gemma4-license.html",
+        "url": "https://ai.google.dev/gemma/docs/gemma_4_license",
+        "final_host": "ai.google.dev",
+        "bytes": 259097,
+        "sha256": "8780aa42e5bcc85bf70406935216112c658351c4d0a4345ab421e7f0b6263d4d",
+        "expected_remote_size": null,
+        "hf_blob_id": null,
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/official-docs/APACHE-2.0.txt",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+        "final_host": "www.apache.org",
+        "bytes": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "expected_remote_size": null,
+        "hf_blob_id": null,
+        "hf_lfs_sha256": null
+      },
+      {
+        "path": "var/research/gemma4-31b-qat-candidate-metadata/official-docs/prompt-formatting-gemma4.html",
+        "url": "https://ai.google.dev/gemma/docs/core/prompt-formatting-gemma4",
+        "final_host": "ai.google.dev",
+        "bytes": 155145,
+        "sha256": "633399d443489dad0ab5751987fc56e58319f5f7360de9500d00bf820493ee8b",
+        "expected_remote_size": null,
+        "hf_blob_id": null,
+        "hf_lfs_sha256": null
+      }
+    ]
+  }
+}

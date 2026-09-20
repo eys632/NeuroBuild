@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "kind": "POST_STOP_GPU3_MEMORY_RETURN",
+  "generated_at_utc": "2026-09-20T09:33:19.741457+00:00",
+  "physical_gpu_index": 3,
+  "state": "STOPPED",
+  "child_exit_code": 0,
+  "shutdown": {
+    "term_sent": true,
+    "kill_sent": true,
+    "child_reaped": true
+  },
+  "resource_report_sha256": "526e5247cc6eb881a0ef364f5e97a9c5bc7e8732224cf5796b0264174e2501ed",
+  "samples": [
+    {
+      "total_mib": 40960,
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "total_mib": 40960,
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "total_mib": 40960,
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "total_mib": 40960,
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "total_mib": 40960,
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    }
+  ],
+  "memory_returned_to_prelaunch_baseline": true,
+  "foreign_process_signals": 0,
+  "other_gpu_queries": 0,
+  "measurement_scope": "GPU3 aggregate; no foreign process queries"
+}

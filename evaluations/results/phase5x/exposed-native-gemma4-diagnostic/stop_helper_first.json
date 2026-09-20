@@ -1,0 +1,8 @@
+{
+  "kind": "OWN_NATIVE_STOP_HELPER_ATTEMPT",
+  "status": "FAILED_BEFORE_SIGNALS",
+  "code": "PYTHON_PIDFD_WRAPPERS_UNAVAILABLE",
+  "foreign_process_signals": 0,
+  "signals_sent": 0,
+  "next_method": "Linux x86_64 pidfd syscalls verified against installed UAPI header"
+}

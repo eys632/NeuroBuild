@@ -1,0 +1,27 @@
+{
+  "at_utc": "2026-09-20T09:16:35.291323+00:00",
+  "automatic_repeat": false,
+  "commit": "eb60307cfeaf477f62cbef2e10e23853500bd3db",
+  "context_probe_elapsed_seconds": 25.059090151451528,
+  "freeze_sha256": "68e1ac40b9bfac0698de252a892057fc785940feda3bf833e0fa193ee9c06326",
+  "frozen_hashes_verified": 143,
+  "guard_sha256": "55115f09a26e5e8835fc488ef1263aa73f7ce327ab5d42a90a910955c8561aa3",
+  "kind": "GEMMA4_ONE_PASS_DIAGNOSTIC_PREEXECUTION",
+  "listeners_sha256": "93121cffafe97ef924e95b0e27298ac289e95eb9fd52cea77850004115e2eeea",
+  "model_calls_in_this_preflight": 0,
+  "per_call_timeout_seconds": 120,
+  "public_fixture_latency_seconds": 5.709282122552395,
+  "remaining_guard_seconds": 6473.0650000000005,
+  "root_time_plan_seconds": 3733,
+  "runtime_checks_reused": true,
+  "runtime_epoch": {
+    "guard_started_at_utc": "2026-09-20T09:03:36.703119+00:00",
+    "pid": 3598326,
+    "start_ticks": 477865222
+  },
+  "status": "PASS_READY_NOT_EVALUATED",
+  "time_plan_rule": "125 * observed worst-context probe elapsed +600s planning allowance; not a latency guarantee or per-call timeout change",
+  "trials": 120,
+  "trials_per_case": 1,
+  "warmups": 5
+}

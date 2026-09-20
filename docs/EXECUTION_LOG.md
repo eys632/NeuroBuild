@@ -861,3 +861,39 @@ Root가 runtime·CPU·395receipt·V2원본9개·현재노출기록·원본gold/g
 Independent final replay/freezer 읽기검토 PASS; 핵심3함수 AST 동일·canonical parser 불변·gate/분모 유지.
 Staged109파일 검토에서 archive원본bytes/hash 일치, local link누락0/secret pattern0/weight·binary·환경0/whitespace0.
 변경은 모델별 검증 도구·증거·문서이므로 기존395 regression을 다시 실행하지 않았다.
+
+
+### 2026-09-20 — Gemma 첫120개 안전 gate FAIL 보존·자체 서버 종료
+
+진단 동결 commit eb60307cfeaf477f62cbef2e10e23853500bd3db의 원격 일치를 확인한 뒤
+fresh own epoch/free·listener·남은시간 조건으로 첫120×1+warmup5만 실행했다.
+Run20260920T091646Z-15102b775ddf46298a6265400d35c4e0은 schema/parser120, semantic115,
+rawFP1/58, acceptedFP1/58, unsafe2/120, FN1/62, raw관측120, warmup5/5다.
+Mean5.807427493475067s/p956.427971040830016s. 전송·파싱·grounding 오류/잘림0.
+오류5건 HH-D04/HH-G03/HH-D05/HH-G04/HH-H05를 보존했다. 실제 IFC 실행은 없다.
+ResultsSHA e143f4cfeda4a72164b0d179bf126060c12ab245028ddda09663d08af5608f6e.
+
+신규 Gemma125개 저장 final JSON만 고정 eb60307 source29파일로 독립 CPU 재생했다.
+Accounting PASS/quality FAIL, proofSHA2ff7a2c6035d23541129c827cdb69f497fdf9185c6f94785c7437f0fb08676b6.
+기존 Qwen125개 재평가·재생0. 이번 후보의 같은 자료 추가 반복·V2·새 holdout 호출0.
+143파일 freeze는 실제 실행 전후 불변이다. 실패 후보를 채택하지 않고 공식 다른 후보 비교로 간다.
+
+Own UID1003/guard3598105/startticks477860062와 child3598326/startticks477865222,
+argv/exe/cwd/parent를 확인했다. Python pidfd wrapper 부재로 첫 helper는 신호 전에 실패했다.
+로컬 x86_64 UAPI syscall434/424를 확인한 pidfd 경로로 guard에만 SIGTERM을 전달했다.
+Guard는 자체 child group TERM/잔여 KILL 정리 후 STOPPED/STOP_REQUESTED/childexit0/reaped였다.
+FinalresourceSHA526e5247cc6eb881a0ef364f5e97a9c5bc7e8732224cf5796b0264174e2501ed,
+1702.239s/3023samples/aggregatepeak18864MiB/minfree17510MiB.
+종료 후5회 GPU3 free36373/used3965/util0, baseline복귀true. 다른 process 신호/광범위kill/GPUfallback0.
+Private PostgreSQL은 유지했다.
+
+원본49개와 README, source map 및 integrity를 exposed-native-gemma4-diagnostic에 보존한다.
+원본 run·freeze·replay·source29·pre/postflight·첫종료실패·최종guard·VRAM반환을 포함한다.
+Production source 변경0이므로 직전395 regression PASS를 재사용하며 suite를 재실행하지 않는다.
+이번 checkpoint의 새 검증은 archive byte/hash/Git source/freeze/문서링크/secret·weight·환경 제외다.
+완료25run/2120trial/125warmup이며 합산 정확도나 독립 표본 수로 해석하지 않는다.
+
+Checkpoint 검토: 원본49/49, snapshot29/29 Git bytes/OID/mode, freeze143/143·V2원본9/9 일치.
+새 archive50파일 hash, 문서 링크/secret pattern/환경·weight·binary 제외 검증 PASS.
+고정 snapshot model_guard.py의 기존 EOF blank1개는 exact Git blob 보존 예외로 기록하고 수정하지 않았다.
+그 외 staged 공백 오류0. 제품 source 변경0, 테스트/모델 재호출0.

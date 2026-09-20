@@ -1,0 +1,14 @@
+{
+  "kind": "OWN_NATIVE_EPOCH_STOP_REQUEST",
+  "at_utc": "2026-09-20T09:32:49.431719+00:00",
+  "guard_pid": 3598105,
+  "guard_start_ticks": 477860062,
+  "child_pid": 3598326,
+  "child_start_ticks": 477865222,
+  "uid": 1003,
+  "pidfd_signal": "SIGTERM",
+  "pidfd_method": "verified x86_64 syscalls434/424; Python wrappers absent",
+  "reason": "Completed first Gemma one-pass diagnostic; failed raw and unsafe READY gates; release own model VRAM without repeated evaluation",
+  "foreign_process_signals": 0,
+  "broad_process_matching_used": false
+}

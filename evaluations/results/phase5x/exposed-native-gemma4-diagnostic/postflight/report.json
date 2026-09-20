@@ -1,0 +1,17 @@
+{
+  "at_utc": "2026-09-20T09:31:31.760032+00:00",
+  "frozen_hashes_verified": 143,
+  "guard_sha256": "3f39a7d29f3afc1d0c2e39041c152bee0334d8fb48c8ee7c03d2ea02da6678ff",
+  "kind": "GEMMA4_ONE_PASS_DIAGNOSTIC_POSTEXECUTION",
+  "listeners_sha256": "18b1d5394bbcdbd3d13d039f75e5a9e6d7680663edb2dff23e4081de988a3a6b",
+  "model_calls_in_postflight": 0,
+  "original_artifact_sha256": {
+    "dataset.json": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc",
+    "manifest.json": "44a8e7a710d6d873f4f436dfe8db66ebf88437ad360ebd9c2f822fff4248f69e",
+    "results.json": "e143f4cfeda4a72164b0d179bf126060c12ab245028ddda09663d08af5608f6e"
+  },
+  "same_epoch": true,
+  "status": "PASS_ACCOUNTING_SCOPE_NOT_QUALITY",
+  "trials": 120,
+  "warmups": 5
+}

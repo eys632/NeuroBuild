@@ -300,3 +300,25 @@ Native모델ID/Q4_0/profile 조합을 검증하고 final content의Gemmathoughtm
 다음1차진단은 사전runtime/model검증·epoch동결·commit/push후 exposed120×1+warmup5다.
 명백한실패는반복0회, 통과/경계선만필요한최소추가검증으로간다. 이미본V2를새unseen으로쓰지않는다.
 세부 조건은 docs/gemma4_31b_diagnostic_plan.md에 기록했다. 아직runtime기동·품질통과·모델채택은없다.
+
+
+## D039 — Gemma4 첫 안전 gate 실패 보존, 같은 후보 반복·V2 중단
+
+고정 eb60307/143파일 freeze에서 exposed120×1+warmup5를 완료했다. Schema/parser120,
+semantic115/120은 통과했으나 rawFP1/58과 unsafe2/120으로 첫 Quality Gate는 FAIL이다.
+옆 가구 보존 문장을 target에 포함한 수용1건과 승인 우회 지시를 제외한 READY1건을 그대로 남긴다.
+새125개 저장 final JSON의 독립 CPU 재생은 원본 행/집계와 일치했으며 품질 통과를 의미하지 않는다.
+이전 Qwen125개 PASS 및 V2 FAIL 결과는 수정하거나 재실행하지 않았다.
+
+사용자 기준에 따라 명백한 실패 후보는 추가 반복0회, V2/미사용 holdout 호출0회로 종료한다.
+Gold/parser/prompt/schema/분모/gate를 낮추지 않는다. 실제 IFC 실행은 없다.
+같은 Gemma의 sampling/prompt 최적화로 실패를 덮지 않고 다른 공식 후보의 검토를 진행한다.
+다음 EXAONE4.5 검토는 내부 비상업 연구 비교의 metadata/source/license/전체 자원 계획 단계다.
+품질·native 실행·상업 제품 사용 허가를 미리 주장하지 않는다.
+
+Own guard identity 확인 후 pidfd SIGTERM, 자체 child group TERM/KILL 정리로 exit0/reaped를 확인했다.
+GPU3 최종 aggregate peak18864/minfree17510MiB, 종료 후5회 free36373/used3965/util0으로 복귀했다.
+다른 사용자 process와 GPU0/1/2는 변경·사용하지 않았다. Native/Python 환경 설치 변경도 없다.
+Production source가 그대로여서 직전395 regression PASS는 유효하고 suite를 반복하지 않는다.
+새 archive의 exact bytes/hash/source snapshot/freeze·문서 일관성 검증을 checkpoint 조건으로 둔다.
+비필수 runtime 최적화는 future optimization이며 Phase5.x 미완료·Phase6 미시작이다.
