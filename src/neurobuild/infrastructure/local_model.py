@@ -4,6 +4,7 @@ No external fallback, redirects, environment proxies, response logging or stored
 reasoning. This transport performs no IFC/approval operation.
 """
 
+from copy import deepcopy
 from dataclasses import dataclass
 from enum import StrEnum
 from hashlib import sha256
@@ -113,13 +114,14 @@ class SamplingProfile(StrEnum):
     QWEN3_THINKING_AWQ = "qwen3_thinking_awq"
 
 
-class LocalRequirementClient:
+class LocalJSONCompletionClient:
+    """Shared safe transport for one explicitly configured JSON contract."""
+
     def __init__(
         self, base_url: str, model: str, *, timeout: float = 60.0, max_tokens: int = 768,
-        prompt_path: Path | None = None, schema_path: Path | None = None,
+        prompt_path: Path, schema_path: Path, expected_schema_version: str,
         protocol: StructuredOutputProtocol | str = StructuredOutputProtocol.LEGACY_GUIDED_JSON,
         sampling_profile: SamplingProfile | str = SamplingProfile.LEGACY_GREEDY,
-        generation_contract: GenerationContract | str = GenerationContract.LEGACY,
     ) -> None:
         self.endpoint = _endpoint(base_url)
         if type(protocol) not in (str, StructuredOutputProtocol):
@@ -134,12 +136,9 @@ class LocalRequirementClient:
             self._sampling_profile = SamplingProfile(sampling_profile)
         except ValueError:
             _error("LOCAL_MODEL_CONFIG_INVALID")
-        if type(generation_contract) not in (str, GenerationContract):
+        if not _clean_text(expected_schema_version, 64):
             _error("LOCAL_MODEL_CONFIG_INVALID")
-        try:
-            self._generation_contract = GenerationContract(generation_contract)
-        except ValueError:
-            _error("LOCAL_MODEL_CONFIG_INVALID")
+        self._expected_schema_version = expected_schema_version
         if (not _clean_text(model, 256) or any(ord(char) < 32 for char in model)
                 or type(timeout) not in (int, float) or not math.isfinite(timeout) or not 0 < timeout <= 300
                 or type(max_tokens) is not int or not 1 <= max_tokens <= 2048):
@@ -147,15 +146,9 @@ class LocalRequirementClient:
         self.model = model
         self.timeout = float(timeout)
         self.max_tokens = max_tokens
-        if self.generation_contract is GenerationContract.LEGACY:
-            default_prompt = _ROOT / "prompts/requirement_v3.txt"
-            default_schema = _ROOT / "schemas/semantic_requirement.schema.json"
-        else:
-            default_prompt = _ROOT / "prompts/requirement_generation_v2_v1.txt"
-            default_schema = _ROOT / "schemas/requirement_generation_v2.schema.json"
         try:
-            prompt_bytes = (prompt_path or default_prompt).read_bytes()
-            schema_bytes = (schema_path or default_schema).read_bytes()
+            prompt_bytes = prompt_path.read_bytes()
+            schema_bytes = schema_path.read_bytes()
             if not 0 < len(prompt_bytes) <= 65536 or not 0 < len(schema_bytes) <= 65536:
                 _error("LOCAL_MODEL_CONFIG_INVALID")
             self._prompt = prompt_bytes.decode("utf-8")
@@ -167,7 +160,7 @@ class LocalRequirementClient:
             properties = self._schema.get("properties")
             version = properties.get("schema_version") if type(properties) is dict else None
             if (type(version) is not dict
-                    or version.get("enum") != [self.generation_contract.value]):
+                    or version.get("enum") != [self._expected_schema_version]):
                 _error("LOCAL_MODEL_CONFIG_INVALID")
         except (OSError, UnicodeError, ValueError, AttributeError):
             _error("LOCAL_MODEL_CONFIG_INVALID")
@@ -186,9 +179,9 @@ class LocalRequirementClient:
         return self._sampling_profile
 
     @property
-    def generation_contract(self) -> GenerationContract:
-        """Explicit output contract; never detected from model output or files."""
-        return self._generation_contract
+    def schema(self) -> dict:
+        """Detached configured schema for validation and reproducible metadata."""
+        return deepcopy(self._schema)
 
     @property
     def enable_thinking(self) -> bool:
@@ -225,23 +218,50 @@ class LocalRequirementClient:
         tool calls and explicit reasoning blocks never reach this boundary.
         ``latency_seconds`` is end-to-end, not TTFT or decode-only duration.
         """
+        return self._complete(source_text, axis_convention=axis_convention)
+
+    def _complete(
+        self, source_text: str, *, axis_convention: str | None = None,
+        classified_decision: str | None = None, schema_override: dict | None = None,
+    ) -> Completion:
+        """Internal staged transport; the caller binds a schema before the request.
+
+        Additional context cannot replace the original source or axis context.
+        The ordinary complete() path supplies neither override and retains its
+        exact historical payload, including omission of sampling fields.
+        """
         if not _clean_text(source_text, MAX_SOURCE_CHARS) or axis_convention not in (None, "project_xy"):
             _error("LOCAL_MODEL_INPUT_INVALID")
+        selected_schema = self._schema
+        user_input = {"source_text": source_text, "axis_convention": axis_convention}
+        if (classified_decision is None) != (schema_override is None):
+            _error("LOCAL_MODEL_CONFIG_INVALID")
+        if classified_decision is not None:
+            if (type(classified_decision) is not str
+                    or classified_decision not in ("READY", "CLARIFICATION", "UNSUPPORTED")
+                    or type(schema_override) is not dict):
+                _error("LOCAL_MODEL_CONFIG_INVALID")
+            properties = schema_override.get("properties")
+            version = properties.get("schema_version") if type(properties) is dict else None
+            if type(version) is not dict or version.get("enum") != [self._expected_schema_version]:
+                _error("LOCAL_MODEL_CONFIG_INVALID")
+            selected_schema = deepcopy(schema_override)
+            user_input["classified_decision"] = classified_decision
         payload = {
             "model": self.model,
             "messages": [
                 {"role": "system", "content": self._prompt},
-                {"role": "user", "content": json.dumps({"source_text": source_text, "axis_convention": axis_convention}, ensure_ascii=False)},
+                {"role": "user", "content": json.dumps(user_input, ensure_ascii=False)},
             ],
             **self.sampling_parameters, "max_tokens": self.max_tokens, "stream": False,
             "chat_template_kwargs": {"enable_thinking": self.enable_thinking},
         }
         if self.protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON:
-            payload.update(guided_json=self._schema, guided_decoding_backend="xgrammar:no-fallback")
+            payload.update(guided_json=selected_schema, guided_decoding_backend="xgrammar:no-fallback")
         elif self.protocol is StructuredOutputProtocol.STRUCTURED_OUTPUTS:
             # Modern backend selection belongs to pinned server launch config.
             # Never add legacy fields, infer support, or retry without a schema.
-            payload["structured_outputs"] = {"json": self._schema}
+            payload["structured_outputs"] = {"json": selected_schema}
         else:
             _error("LOCAL_MODEL_CONFIG_INVALID")
         request = Request(self.endpoint, data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),
@@ -333,6 +353,41 @@ class LocalRequirementClient:
                         _error("LOCAL_MODEL_RESPONSE_INVALID")
                     safe_usage["reasoning_tokens"] = count
         return Completion(content, safe_usage or None, elapsed, self.model)
+
+
+class LocalRequirementClient(LocalJSONCompletionClient):
+    """Original one-request 1.0/2.0 API, with explicit generation selection."""
+
+    def __init__(
+        self, base_url: str, model: str, *, timeout: float = 60.0, max_tokens: int = 768,
+        prompt_path: Path | None = None, schema_path: Path | None = None,
+        protocol: StructuredOutputProtocol | str = StructuredOutputProtocol.LEGACY_GUIDED_JSON,
+        sampling_profile: SamplingProfile | str = SamplingProfile.LEGACY_GREEDY,
+        generation_contract: GenerationContract | str = GenerationContract.LEGACY,
+    ) -> None:
+        if type(generation_contract) not in (str, GenerationContract):
+            _error("LOCAL_MODEL_CONFIG_INVALID")
+        try:
+            self._generation_contract = GenerationContract(generation_contract)
+        except ValueError:
+            _error("LOCAL_MODEL_CONFIG_INVALID")
+        if self.generation_contract is GenerationContract.LEGACY:
+            default_prompt = _ROOT / "prompts/requirement_v3.txt"
+            default_schema = _ROOT / "schemas/semantic_requirement.schema.json"
+        else:
+            default_prompt = _ROOT / "prompts/requirement_generation_v2_v1.txt"
+            default_schema = _ROOT / "schemas/requirement_generation_v2.schema.json"
+        super().__init__(
+            base_url, model, timeout=timeout, max_tokens=max_tokens,
+            prompt_path=prompt_path or default_prompt, schema_path=schema_path or default_schema,
+            expected_schema_version=self.generation_contract.value, protocol=protocol,
+            sampling_profile=sampling_profile,
+        )
+
+    @property
+    def generation_contract(self) -> GenerationContract:
+        """Explicit output contract; never detected from model output or files."""
+        return self._generation_contract
 
     def extract(
         self, source_text: str, *, requirement_id: UUID, project_id: UUID,

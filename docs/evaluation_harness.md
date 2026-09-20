@@ -302,3 +302,40 @@ Phase5 frozen 비교5개는 protocol 옵션 추가 전 commit51a07d5의 client/e
 보존한다. 변경 후 별도 실제 smoke3건은
 [protocol_smoke.json](../evaluations/results/phase5/protocol_smoke.json)이다. 이후 새 profile이나
 prompt의 구현·fake HTTP 성공을 이 과거 실행의 모델 품질 증거로 확대하지 않는다.
+
+## 명시적 두 단계 후보 평가
+
+`--pipeline staged_v1 --generation-contract 2.0`은 전체 요청의 분류와 원문 추출을
+순차 호출한다. 기본값 `--pipeline single`과 기존1.0/2.0 동작은 유지한다.
+두 단계 후보는 최종 채택 전 실험이며 [설계](requirement_staged_pipeline_design.md)를 따른다.
+
+```sh
+.conda/bin/python scripts/evaluate_requirements.py \
+  --base-url http://127.0.0.1:8003 --model neurobuild-local \
+  --model-revision 31c69efc29464b6bb0aee1398b5a7b50a99340c3 \
+  --weight-manifest runtime/models/qwen3-14b-awq.json \
+  --runtime-metadata var/14b-generation2-v2-runtime-metadata.json \
+  --dataset evaluations/requirement_hardening_v1_exposed_regression.jsonl \
+  --split development --pipeline staged_v1 --generation-contract 2.0 \
+  --protocol legacy_guided_json --sampling-profile legacy_greedy \
+  --max-tokens 768 --timeout 60 --warmups 5 --trials 1
+```
+
+이 명령은 기존14B 서버가 해당 metadata로 이미 실행 중인 경우의 진단 예시다.
+서버를 시작하거나 GPU 허용 상태를 검사하지 않는다. 원문120개는 이미 노출된 자료다.
+기본 분류 prompt/schema는 `requirement_classification_v1.txt`와
+`requirement_classification.schema.json`, 추출 prompt는 `requirement_extraction_v1.txt`이고
+추출 schema template은 기존 decision-branches다. 분류는128 tokens, 추출은768 tokens가
+상한이며 timeout은 각 호출에 적용한다. 양쪽 모두 전체 source/axis context를 받고,
+추출 요청에는 검증된 `classified_decision`과 같은 decision으로 제한한 schema를 보낸다.
+
+`classification_output`은 schema-valid 분류이고 `extraction_output`은 template-valid
+최종 인용 출력이다. 각 단계 schema 판정과 바인딩 검증을 구분하며 `schema_valid`는
+양쪽이 모두 유효할 때만 참이다. `generation_output`과 canonical `semantic_output`은
+기존 adapter/parser 검증 경로의 자료다. 첫 분류가 READY였다면 추출 HTTP/형식/grounding
+실패 후에도 raw READY를 보존한다. 오류를 성공한 trial만의 분모로 축소하지 않는다.
+
+전체 latency는 두 호출을 포함한다. 두 Completion이 모두 있을 때만 transport latency와
+token usage를 합산하며, 일부만 도착하면 합산값은 null이고 관측한 stage별 값을 보존한다.
+Manifest는 분류 prompt/schema, 추출 template, decision별 유효 schema hash와 두 단계
+구현 hash를 기록한다. 모델 정확도와 신규 holdout 통과는 별도 실제 실행 증거가 필요하다.

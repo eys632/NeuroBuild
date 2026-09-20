@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "downstream_failure_cases": [
+    {
+      "injected": "LOCAL_MODEL_TIMEOUT",
+      "recorded_safe_error": "LOCAL_MODEL_TIMEOUT",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    },
+    {
+      "injected": "LOCAL_MODEL_TRUNCATED",
+      "recorded_safe_error": "LOCAL_MODEL_TRUNCATED",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    },
+    {
+      "injected": "LOCAL_MODEL_HTTP_ERROR",
+      "recorded_safe_error": "LOCAL_MODEL_HTTP_ERROR",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    },
+    {
+      "injected": "LOCAL_MODEL_RESPONSE_INVALID",
+      "recorded_safe_error": "LOCAL_MODEL_RESPONSE_INVALID",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    },
+    {
+      "injected": "LOCAL_MODEL_UNAVAILABLE",
+      "recorded_safe_error": "LOCAL_MODEL_UNAVAILABLE",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    },
+    {
+      "injected": "LOCAL_MODEL_RESPONSE_TOO_LARGE",
+      "recorded_safe_error": "LOCAL_MODEL_RESPONSE_TOO_LARGE",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    },
+    {
+      "injected": "LOCAL_MODEL_REASONING_CONTENT",
+      "recorded_safe_error": "LOCAL_MODEL_REASONING_CONTENT",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    },
+    {
+      "injected": "RuntimeError",
+      "recorded_safe_error": "LOCAL_MODEL_RESPONSE_INVALID",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    },
+    {
+      "injected": "ValueError",
+      "recorded_safe_error": "LOCAL_MODEL_RESPONSE_INVALID",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    },
+    {
+      "injected": "invalid_json",
+      "recorded_safe_error": "INVALID_MODEL_OUTPUT",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    },
+    {
+      "injected": "invalid_schema",
+      "recorded_safe_error": "INVALID_MODEL_OUTPUT",
+      "raw_classifier_ready_preserved": true,
+      "fp_numerator": 1,
+      "fp_denominator": 1
+    }
+  ],
+  "interrupts_propagated": [
+    "KeyboardInterrupt",
+    "SystemExit"
+  ],
+  "source_sha256": {
+    "src/neurobuild/infrastructure/staged_requirement.py": "7e79b1c488a00e3f81b443fb32f86019f510a274228f56058c4eeae66038efee",
+    "scripts/evaluate_requirements.py": "e114488454bd8289fb1de0462ae88c711b54917ac243db752e8400b95b66a36a"
+  },
+  "network_calls": 0,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "case_scope": "Existing public seed B01; no unseen data."
+}

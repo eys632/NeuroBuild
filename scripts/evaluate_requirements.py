@@ -18,6 +18,7 @@ import statistics
 import subprocess
 import sys
 import time
+from types import SimpleNamespace
 from uuid import UUID, uuid4, uuid5
 
 from jsonschema import Draft202012Validator
@@ -138,6 +139,8 @@ def score_output(case, output, requirement):
 
 
 def evaluate_trial(client, case, validator, trial, *, run_id, clock=time.monotonic):
+    if getattr(client, "pipeline", None) == "staged_v1":
+        return evaluate_staged_trial(client, case, validator, trial, run_id=run_id, clock=clock)
     row = {"case_id": case["id"], "category": case["category"], "trial": trial,
            "json_parse_valid": False, "schema_valid": False, "parser_accepted": False,
            "raw_model_decision": None, "model_ready_observed": None, "semantic_output": None,
@@ -212,6 +215,91 @@ def evaluate_trial(client, case, validator, trial, *, run_id, clock=time.monoton
     return row
 
 
+def evaluate_staged_trial(client, case, validator, trial, *, run_id, clock=time.monotonic):
+    """Score both calls without erasing a classifier READY on later failure.
+
+    The second stage cannot amend the first decision. Only schema-valid final
+    semantic objects are retained; no raw HTTP envelopes or malformed text.
+    The existing canonical scoring path remains the authority for acceptance.
+    """
+    started = clock()
+    try:
+        result = client.complete_staged(case["input"], axis_convention=case["context"].get("axis_convention"))
+    except DomainError as exc:
+        result = SimpleNamespace(classification=None, extraction=None,
+                                 error_code=exc.code if exc.code in SAFE_ERRORS else "EVALUATION_CLIENT_ERROR")
+    except Exception:
+        result = SimpleNamespace(classification=None, extraction=None, error_code="EVALUATION_CLIENT_ERROR")
+    classification = extraction = None
+    classification_json = extraction_json = False
+    classification_valid = extraction_valid = False
+    decision = None
+    if result.classification is not None:
+        try:
+            classification = strict_json(result.classification.content)
+            classification_json = True
+        except (ValueError, RecursionError):
+            pass
+        if type(classification) is dict:
+            candidate = classification.get("decision")
+            if type(candidate) is str and candidate in ("READY", "CLARIFICATION", "UNSUPPORTED"):
+                decision = candidate
+        classification_valid = (result.classification.model == client.model and classification_json and
+            Draft202012Validator(client.classification_schema).is_valid(classification))
+    if result.extraction is not None:
+        try:
+            extraction = strict_json(result.extraction.content)
+            extraction_json = True
+        except (ValueError, RecursionError):
+            pass
+        if classification_valid:
+            extraction_valid = (result.extraction.model == client.model and extraction_json and
+                Draft202012Validator(client.schema_for_decision(decision)).is_valid(extraction))
+
+    class BufferedExtraction:
+        model = client.model
+        generation_contract = GenerationContract.QUOTES
+
+        def complete(self, source_text, *, axis_convention=None):
+            if result.error_code is not None:
+                raise DomainError(result.error_code, "Staged requirement call failed")
+            if not classification_valid or not extraction_valid or result.extraction is None:
+                raise DomainError("INVALID_MODEL_OUTPUT", "Invalid stage output")
+            return result.extraction
+
+    row = evaluate_trial(BufferedExtraction(), case, validator, trial, run_id=run_id, clock=clock)
+    row.update(
+        pipeline="staged_v1",
+        classification_output=classification if classification_valid else None,
+        extraction_output=extraction if extraction_json and validator.is_valid(extraction) else None,
+        classification_json_valid=classification_json,
+        classification_schema_valid=classification_valid,
+        extraction_json_valid=extraction_json,
+        extraction_schema_valid=extraction_valid,
+        extraction_response_observed=result.extraction is not None,
+        json_parse_valid=classification_json and extraction_json,
+        schema_valid=classification_valid and extraction_valid,
+        generation_schema_valid=extraction_json and validator.is_valid(extraction),
+        raw_model_decision=decision,
+        model_ready_observed=None if decision is None else decision == "READY",
+        stage_usage={name: completion.usage if completion is not None else None
+                     for name, completion in (("classification", result.classification), ("extraction", result.extraction))},
+        stage_transport_latency_seconds={name: completion.latency_seconds if completion is not None else None
+                     for name, completion in (("classification", result.classification), ("extraction", result.extraction))},
+        latency_seconds=max(0.0, clock() - started),
+    )
+    completions = [c for c in (result.classification, result.extraction) if c is not None]
+    row["response_model"] = completions[-1].model if completions else None
+    # Summation is complete only when both responses reached the transport boundary.
+    row["transport_latency_seconds"] = (sum(c.latency_seconds for c in completions)
+                                        if len(completions) == 2 else None)
+    row["usage"] = ({key: sum(c.usage[key] for c in completions)
+                     for key in ("prompt_tokens", "completion_tokens", "total_tokens")
+                     if all(c.usage is not None and key in c.usage for c in completions)}
+                    if len(completions) == 2 else None)
+    return row
+
+
 def rate(numerator, denominator):
     """Wilson 95% interval; exploratory trials are not independent human labels."""
     result = {"numerator": numerator, "denominator": denominator, "rate": None, "wilson_95": None}
@@ -241,6 +329,9 @@ def summarize(rows):
     if rows and all(row.get("generation_contract") == GenerationContract.QUOTES.value for row in rows):
         result.update({key: rate(sum(bool(row[key]) for row in rows), total)
                        for key in ("generation_schema_valid", "adapter_accepted", "legacy_schema_valid")})
+    if rows and all(row.get("pipeline") == "staged_v1" for row in rows):
+        result.update({key: rate(sum(bool(row[key]) for row in rows), total)
+                       for key in ("classification_schema_valid", "extraction_schema_valid")})
     result.update(
         critical_fp_model_ready=rate(sum(row["model_ready_observed"] is True for row in unsafe), len(unsafe)),
         critical_fp_accepted_ready=rate(sum(row["accepted_decision"] == "READY" for row in unsafe), len(unsafe)),
@@ -368,7 +459,7 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
     runtime_info = runtime_metadata(runtime)
     if runtime_info["enable_reasoning"] != client.enable_thinking:
         raise ValueError("Client thinking mode and declared server reasoning mode must match")
-    return {"run_id": run_id, "created_at_utc": datetime.now(timezone.utc).isoformat(),
+    manifest = {"run_id": run_id, "created_at_utc": datetime.now(timezone.utc).isoformat(),
             "gold_status": GOLD_STATUS, "split": split, "git": git_info(),
             "model_id": weight_data["model_id"], "served_model": client.model,
             "model_revision": revision, "tokenizer_revision": tokenizer_revision,
@@ -390,6 +481,23 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
                          "tool_parser": None, "reasoning_parser": runtime_info["reasoning_parser"]},
             "measurements_not_performed": {"startup_cold_seconds": None, "startup_warm_seconds": None,
                                            "gpu_baseline_used_mib": None, "gpu_peak_used_mib": None, "ttft_seconds": None}}
+    if getattr(client, "pipeline", None) == "staged_v1":
+        manifest["sha256"].update(
+            staged_client=file_sha(ROOT / "src/neurobuild/infrastructure/staged_requirement.py"),
+            classification_prompt=client.classification_prompt_sha256,
+            classification_schema=client.classification_schema_sha256,
+        )
+        manifest["protocol"].update(
+            pipeline="staged_v1", maximum_calls_per_case=2,
+            call_policy="Two sequential calls after a valid classification, including non-READY target/reason extraction; classifier failure stops after the first call",
+            classification_max_tokens=client.classification_max_tokens,
+            extraction_max_tokens=client.max_tokens,
+            timeout_scope="per stage; end-to-end may reach twice the stage timeout",
+            decision_binding="Classifier decision binds extraction schema; no retry, repair or vote",
+            effective_extraction_schema_sha256=client.effective_schema_sha256,
+            raw_ready_metric="Classifier decision observed before schema validation and all downstream failures",
+        )
+    return manifest
 
 
 def save_json(path, value):
@@ -405,6 +513,9 @@ def main(argv=None):
     parser.add_argument("--protocol", choices=[p.value for p in StructuredOutputProtocol], default="legacy_guided_json")
     parser.add_argument("--sampling-profile", choices=[p.value for p in SamplingProfile], default="legacy_greedy")
     parser.add_argument("--generation-contract", choices=[c.value for c in GenerationContract], default="1.0")
+    parser.add_argument("--pipeline", choices=["single", "staged_v1"], default="single")
+    parser.add_argument("--classification-prompt", type=Path)
+    parser.add_argument("--classification-schema", type=Path)
     parser.add_argument("--model", required=True, help="Exact served model name")
     parser.add_argument("--model-revision", required=True)
     parser.add_argument("--tokenizer-revision")
@@ -421,14 +532,28 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         contract = GenerationContract(args.generation_contract)
+        if args.pipeline == "staged_v1" and contract is not GenerationContract.QUOTES:
+            raise ValueError("Staged extraction requires the explicit 2.0 quote contract")
+        if args.pipeline == "single" and (args.classification_prompt or args.classification_schema):
+            raise ValueError("Classification paths require the staged pipeline")
+        if args.pipeline == "staged_v1":
+            args.prompt = args.prompt or ROOT / "prompts/requirement_extraction_v1.txt"
+            args.schema = args.schema or ROOT / "schemas/requirement_generation_v2_decision_branches.schema.json"
         args.prompt = args.prompt or ROOT / ("prompts/requirement_generation_v2_v1.txt" if contract is GenerationContract.QUOTES else "prompts/requirement_v3.txt")
         args.schema = args.schema or ROOT / ("schemas/requirement_generation_v2.schema.json" if contract is GenerationContract.QUOTES else "schemas/semantic_requirement.schema.json")
         cases = load_cases(args.dataset)
         schema = strict_json(args.schema.read_text(encoding="utf-8"))
         Draft202012Validator.check_schema(schema)
-        client = LocalRequirementClient(args.base_url, args.model, timeout=args.timeout, max_tokens=args.max_tokens,
-                                        prompt_path=args.prompt, schema_path=args.schema, protocol=args.protocol,
-                                        sampling_profile=args.sampling_profile, generation_contract=contract)
+        kwargs = dict(timeout=args.timeout, max_tokens=args.max_tokens,
+                      prompt_path=args.prompt, schema_path=args.schema, protocol=args.protocol,
+                      sampling_profile=args.sampling_profile)
+        if args.pipeline == "staged_v1":
+            from neurobuild.infrastructure.staged_requirement import LocalStagedRequirementClient
+            client = LocalStagedRequirementClient(args.base_url, args.model, **kwargs,
+                classification_prompt_path=args.classification_prompt,
+                classification_schema_path=args.classification_schema)
+        else:
+            client = LocalRequirementClient(args.base_url, args.model, **kwargs, generation_contract=contract)
         run_id = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ-") + uuid4().hex
         manifest = build_manifest(client, dataset=args.dataset, prompt=args.prompt, schema=args.schema,
                                   weights=args.weight_manifest, runtime=args.runtime_metadata,

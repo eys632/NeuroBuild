@@ -1,0 +1,11 @@
+{
+  "captured_at_utc": "2026-09-20T01:11:05.510106+00:00",
+  "files_sha256": {
+    "manifest.json": "fe2d1749a4035e56e3dd828d0fa32e74e76f5b2e77f4bc0b0c619c20992096e8",
+    "results.json": "e160815a082b46d3055ec8cbf63b09f847d8e277e04ff7cdfbeb09a11e1154f9",
+    "dataset.json": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc",
+    "replay.json": "07c30e699a9137ab34f4cc5f0bbd9429c2359d81a39058937e454c94ab52336c",
+    "resource_report.json": "97d3c2c2d37709c5a9236a8ed7fe22d89e582ca80b355b3fb7e503cc301a6869"
+  },
+  "resource_scope": "Snapshot of existing guard report; no new GPU/process/socket query; same epoch bindings verified. Aggregate measurement is not a per-process peak or hard isolation proof."
+}

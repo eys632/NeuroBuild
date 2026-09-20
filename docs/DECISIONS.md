@@ -99,3 +99,10 @@ Holdout의 첫 warmup 이전에 최종 후보 조합을 고정하고 원격 chec
 MoE의 기존 v3/v4 비교도 모두 semantic34/40으로 실패했다. 더 많은 모델 다운로드나 비슷한 prompt 수정을 반복하기 전에 생성 표현을 재검토한다. Generation2는 판단과 원문 target/current instruction/axis evidence만 생성하고, 코드가 evidence의 원래 숫자 철자·단위·명시 부호를 읽는다. 새 adapter는 기존 수치/경계 helper와 변경 없는1.0 parser를 통과시킨다. 모델이 누락한 대상 범위·조건을 코드가 추측해 보충하지 않는다.
 
 Legacy1.0은 기본값과 과거 결과를 보존한다. 계약은 caller가 명시적으로 선택하며 응답 버전으로 자동 전환하지 않는다. 평가기는 adapter보다 먼저 raw READY를 기록하고 원래 model JSON, projection, generation schema, adapter, canonical parser 판정을 구분한다. 같은 gold와 strict semantic/raw FP/unsafe gate를 유지하며 실제 품질 개선 전에는 채택하지 않는다.
+
+
+## D027 — 첫 holdout 실패 보존과 명시적 두 단계 비교
+
+MoE/2.0branch/v2/greedy의 development120/120은 첫 holdout211/240,rawFP9/114,unsafe12/240으로 일반화되지 않았다. 원본80개와 gold는 그대로 보존하고 이후 비교에서는 노출된 regression 자료로 표시한다. 별도 unused v2 80개는 prompt 작성자와 분리하여 작성·사전검토하며 사람 검수로 간주하지 않는다.
+
+기존14B에 같은 generation2 표현을 적용한 전체120개 진단도113/120,rawFP2/58,unsafe3/120으로 실패했다. 원문 인용은 통과했지만 부정/승인우회 분류와 제외대상 보존이 실패했다. 다음 비교는 전체요청 분류 → 분류로 고정된 schema의 원문 추출이며 동일 canonical parser와 gate를 유지한다. 뒤 단계 거절로 첫 분류의 raw READY 오판을 감추지 않는다. [설계와 사전 계획](requirement_staged_pipeline_design.md)을 따른다. 최종 config 채택/Phase6 진행은 보류한다.

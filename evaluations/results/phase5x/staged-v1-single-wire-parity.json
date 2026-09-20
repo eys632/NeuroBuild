@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "baseline_commit": "007d893427ce3682377cd40254a14d8f820abba5",
+  "current_transport_sha256": "9732ad69f9f563f6acb3892ec0c187958d04d006a89251264779123445bc57c3",
+  "cases": [
+    {
+      "contract": "1.0",
+      "protocol": "legacy_guided_json",
+      "payload_sha256": "71d3acab72b7c6740c58683e03a9ee1285ded87646c5f405023dbd6931eadae9",
+      "byte_equal": true
+    },
+    {
+      "contract": "1.0",
+      "protocol": "structured_outputs",
+      "payload_sha256": "5ebd86a4157cb8473334dd3d06234fcb150d4db875fe52d6e6e6eba72036645e",
+      "byte_equal": true
+    },
+    {
+      "contract": "2.0",
+      "protocol": "legacy_guided_json",
+      "payload_sha256": "d7f141256900931266c3d70e5be7d31dad1d7f4b4505eaf4752e37aef243c8f9",
+      "byte_equal": true
+    },
+    {
+      "contract": "2.0",
+      "protocol": "structured_outputs",
+      "payload_sha256": "01bf44c711edca2a32712ff1472c8368021ccdbf59f4d82087b03315bd74969e",
+      "byte_equal": true
+    }
+  ],
+  "actual_network_calls": 0,
+  "gpu_calls": 0
+}

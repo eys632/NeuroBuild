@@ -1,19 +1,19 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 09:49 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 10:29 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b`: Phase 5 commit/push 및 remote hash 일치 |
-| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `64040de` |
-| 회귀 검증 | 전체 **290 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 17.329초 |
-| 현재 작업 | **첫 holdout211/240(87.92%),rawFP9/114,unsafe12/240로 FAIL. 최종 채택 보류. 기존14B에 동일generation2 계약을 적용하는 비교 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
+| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `007d893` |
+| 회귀 검증 | 전체 **314 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 16.945초 |
+| 현재 작업 | **첫 holdout FAIL을 보존했고, 기존14B/동일generation2 노출120개 진단도113/120,rawFP2,unsafe3으로 FAIL. 분류→원문 추출의 두 단계 구현·314개 회귀·독립 검토 완료, 120×1 진단 사전 동결**. 기존1.0 parser/domain 및 gold/gate는 유지 |
 | 잠정 모델 | Phase 5 범위의 **Qwen3-14B-AWQ + v3**. 확대 평가 gate 통과 전 최종 채택으로 보지 않음 |
 | Hard blocker | 없음. GPU 3 가용량을 측정한 공존 실행 조건 통과 |
 | Backend | `.conda`: Python 3.12.14 / PostgreSQL 17.11 / psycopg 3.2.10 / IfcOpenShell 0.8.5 |
-| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. MoE 후보 서버 정상 종료 후 기존14B의 새 epoch 가동. 새 generation2 품질은 아직 미검증. TP 1 / context 4096 / sequence 1 |
-| 다음 검증 | 기존120개는 노출된 regression 자료. 기존14B/동일새계약 비교와 별도 미사용 holdout v2 작성·사전 동결 |
+| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. MoE 후보 서버 정상 종료 후 기존14B의 새 epoch 가동. 같은 generation2 진단은 품질 gate 실패. TP 1 / context 4096 / sequence 1 |
+| 다음 검증 | 기존120개는 노출된 regression 자료. 같은14B의 두 단계 비교와 별도 미사용 holdout v2 데이터80개 동결 완료; 후보 동결은 진단/정식회귀 이후 |
 
 ## Phase 5.x 평가 상태
 
@@ -37,6 +37,8 @@ Raw READY 오판의 분모는 진단 non-READY gold20개/정식60개이고, 잘�
 V8 run `20260919T223831Z-af6ebcd137394488a0adc427bd63edcf`는 schema 40/40, parser 39/40, FN 1/20이다. 세 프롬프트 비교 후 추가 prompt 수정을 중단했다. 기존 v3의 `legacy_greedy` profile 비교도 실패했다. 새 MoE 후보는 파일 검증과 fresh GPU3 예산 검사, 실제 기동 및 loopback 검증을 통과했다. [후보 근거](moe_instruction_candidate.md)와 고정 v3/neutral 진단 기록을 사용한다. 채택 전 실제 runtime·품질 검증이 남아 있다.
 
 기존 14B의 prompt·sampling·thinking 실험과 4B 비교 결과는 실패를 포함해 보존했다. 상세 수치와 판단은 [Phase 5.x 보고서](reports/phase5x_report.md), [4B v3 독립 검토](reviews/phase5x_4b_v3_diagnostic_review.md), [v4 실패 및 v8 사전 검토](reviews/phase5x_4b_v4_v8_review.md)를 따른다.
+
+V2는 아직 모델 출력 미노출 상태다. 다만 후보 파일 동결 뒤 Git의 CRLF CSV 공백 검사 출력에서 root/prompt 작성자에게 일부 입력·gold가 노출됐다. 이후 후보31개 파일 hash는 불변이며 완전 맹검으로 해석하지 않는다. [노출 이력](../evaluations/hardening_v2_input_exposure_addendum.json)을 보존했다.
 
 ## 완료 근거와 실제 한계
 

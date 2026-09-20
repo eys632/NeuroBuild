@@ -1,0 +1,14 @@
+{
+  "event": "ACCIDENTAL_ROOT_INPUT_GOLD_EXPOSURE_AFTER_CANDIDATE_FILE_FREEZE_BEFORE_INFERENCE",
+  "recorded_at_utc": "2026-09-20T01:29:35.723786+00:00",
+  "trigger": "git diff --cached --check printed CRLF CSV lines as trailing-whitespace diagnostics; some v2 inputs and gold became visible in tool output",
+  "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+  "candidate_freeze_sha256": "dd293c8bb3216335130915824e827fa0a3374ccea56d0ec65f586e5122a0d010",
+  "candidate_frozen_at_utc": "2026-09-20T01:28:13.583719+00:00",
+  "candidate_frozen_files_verified_unchanged_after_exposure": 31,
+  "model_calls_on_v2": 0,
+  "prompt_or_code_changes_after_exposure": false,
+  "interpretation": "v2 remains model-output-unseen. Root/prompt author input-and-gold blindness ended at this event. No claim of complete blinding; earlier no-root-read statements are historical only.",
+  "csv_policy": "Preserve frozen CRLF bytes. Use per-command git core.whitespace trailing-space,space-before-tab,cr-at-eol and redirect diagnostics to avoid publishing dataset content.",
+  "future_candidate_change_policy": "If candidate is changed after this event, disclose input/gold exposure in new freeze and reassess independent holdout need; never claim root-input-blind evaluation."
+}

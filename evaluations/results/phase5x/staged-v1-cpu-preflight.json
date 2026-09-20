@@ -1,0 +1,285 @@
+{
+  "kind": "CPU_ONLY_STAGED_V1_14B_PREFLIGHT",
+  "status": "PASS",
+  "model_id": "Qwen/Qwen3-14B-AWQ",
+  "model_revision": "31c69efc29464b6bb0aee1398b5a7b50a99340c3",
+  "chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+  "template_origin": "tokenizer_config.json embedded chat_template",
+  "source_sha256": {
+    "runtime/models/qwen3-14b-awq.json": "208ed94ea360b214612d53f8002b69830670c3269246cef28a329c6ab3b41011",
+    "src/neurobuild/infrastructure/local_model.py": "9732ad69f9f563f6acb3892ec0c187958d04d006a89251264779123445bc57c3",
+    "src/neurobuild/infrastructure/staged_requirement.py": "7e79b1c488a00e3f81b443fb32f86019f510a274228f56058c4eeae66038efee",
+    "src/neurobuild/application/requirement_generation.py": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "scripts/evaluate_requirements.py": "e114488454bd8289fb1de0462ae88c711b54917ac243db752e8400b95b66a36a",
+    "prompts/requirement_classification_v1.txt": "fadecb815452f159a2dad3c1e64a5a7176aa4a361f8049b43e90fd226737c67a",
+    "prompts/requirement_extraction_v1.txt": "fa459815c35f6a4b4e519763b9cf5128bf802a40fcef94f1e08569326e0b4230",
+    "schemas/requirement_classification.schema.json": "e7fdde9a2ea5d1d185f356417bc395347e952ad0c1f11dc991fa5aec1650d8d1",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+  },
+  "source_stable_during_probe": true,
+  "dataset": "evaluations/requirement_hardening_v1_exposed_regression.jsonl",
+  "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+  "exposed_case_count": 120,
+  "length_scope": "All120 exposed inputs; extraction counted under every possible classifier decision, not model predictions; v2 unseen material not accessed.",
+  "context_limit": 4096,
+  "stages": {
+    "classification": {
+      "count": 120,
+      "minimum_input_tokens": 820,
+      "maximum_input_tokens": 1200,
+      "output_cap": 128,
+      "max_input_plus_output": 1328,
+      "remaining_context": 2768
+    },
+    "READY": {
+      "count": 120,
+      "minimum_input_tokens": 885,
+      "maximum_input_tokens": 1265,
+      "output_cap": 768,
+      "max_input_plus_output": 2033,
+      "remaining_context": 2063
+    },
+    "CLARIFICATION": {
+      "count": 120,
+      "minimum_input_tokens": 887,
+      "maximum_input_tokens": 1267,
+      "output_cap": 768,
+      "max_input_plus_output": 2035,
+      "remaining_context": 2061
+    },
+    "UNSUPPORTED": {
+      "count": 120,
+      "minimum_input_tokens": 886,
+      "maximum_input_tokens": 1266,
+      "output_cap": 768,
+      "max_input_plus_output": 2034,
+      "remaining_context": 2062
+    }
+  },
+  "request_capture": [
+    {
+      "decision": "READY",
+      "classification_schema_sha256": "fcf0568fa612da7ce2ceddba2e1e4928835706e2a9ff1dd3c68967ef663ea1db",
+      "extraction_schema_sha256": "63da455289c6afaee1cdddd7e1dfc5a1c82b586faf782447e7f81bd280df330a",
+      "full_source_in_both_stages": true,
+      "explicit_sampling": {
+        "temperature": 0,
+        "seed": 42
+      },
+      "calls": 2
+    },
+    {
+      "decision": "CLARIFICATION",
+      "classification_schema_sha256": "fcf0568fa612da7ce2ceddba2e1e4928835706e2a9ff1dd3c68967ef663ea1db",
+      "extraction_schema_sha256": "941d4821fe1db9b7cd7c28f1ea84c8044f766b4f0acd1391969d23bbdc8529ac",
+      "full_source_in_both_stages": true,
+      "explicit_sampling": {
+        "temperature": 0,
+        "seed": 42
+      },
+      "calls": 2
+    },
+    {
+      "decision": "UNSUPPORTED",
+      "classification_schema_sha256": "fcf0568fa612da7ce2ceddba2e1e4928835706e2a9ff1dd3c68967ef663ea1db",
+      "extraction_schema_sha256": "6498179ab9846bfe74816e8c322aaa48170978b140f8e054d2bd51dde4439bb3",
+      "full_source_in_both_stages": true,
+      "explicit_sampling": {
+        "temperature": 0,
+        "seed": 42
+      },
+      "calls": 2
+    }
+  ],
+  "fake_transport_calls": 720,
+  "network_calls": 0,
+  "model_calls": 0,
+  "gpu_queries": 0,
+  "weights_read": false,
+  "grammar": [
+    {
+      "name": "classification",
+      "effective_schema_sha256": "fcf0568fa612da7ce2ceddba2e1e4928835706e2a9ff1dd3c68967ef663ea1db",
+      "compile_seconds": 0.26196061074733734,
+      "vllm_unsupported_features": false,
+      "fixtures": [
+        {
+          "case": "READY",
+          "expected_accepted": true,
+          "tokens_and_eos_accepted": true
+        },
+        {
+          "case": "CLARIFICATION",
+          "expected_accepted": true,
+          "tokens_and_eos_accepted": true
+        },
+        {
+          "case": "UNSUPPORTED",
+          "expected_accepted": true,
+          "tokens_and_eos_accepted": true
+        },
+        {
+          "case": "missing_decision",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "wrong_version",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "extra_approval",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "wrong_decision",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "extra_quote",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        }
+      ]
+    },
+    {
+      "name": "READY",
+      "effective_schema_sha256": "63da455289c6afaee1cdddd7e1dfc5a1c82b586faf782447e7f81bd280df330a",
+      "compile_seconds": 1.7654899433255196,
+      "vllm_unsupported_features": false,
+      "fixtures": [
+        {
+          "case": "both_axes",
+          "expected_accepted": true,
+          "tokens_and_eos_accepted": true
+        },
+        {
+          "case": "x_only",
+          "expected_accepted": true,
+          "tokens_and_eos_accepted": true
+        },
+        {
+          "case": "y_only",
+          "expected_accepted": true,
+          "tokens_and_eos_accepted": true
+        },
+        {
+          "case": "both_null",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "nonnull_reason",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "extra_approval",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "wrong_decision",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "null_instruction",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        }
+      ]
+    },
+    {
+      "name": "CLARIFICATION",
+      "effective_schema_sha256": "941d4821fe1db9b7cd7c28f1ea84c8044f766b4f0acd1391969d23bbdc8529ac",
+      "compile_seconds": 0.6839385665953159,
+      "vllm_unsupported_features": false,
+      "fixtures": [
+        {
+          "case": "valid",
+          "expected_accepted": true,
+          "tokens_and_eos_accepted": true
+        },
+        {
+          "case": "null_reason",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "nonnull_evidence",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "wrong_nonready_decision",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "wrong_ready_decision",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "extra_approval",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        }
+      ]
+    },
+    {
+      "name": "UNSUPPORTED",
+      "effective_schema_sha256": "6498179ab9846bfe74816e8c322aaa48170978b140f8e054d2bd51dde4439bb3",
+      "compile_seconds": 0.6334808487445116,
+      "vllm_unsupported_features": false,
+      "fixtures": [
+        {
+          "case": "valid",
+          "expected_accepted": true,
+          "tokens_and_eos_accepted": true
+        },
+        {
+          "case": "null_reason",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "nonnull_evidence",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "wrong_nonready_decision",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "wrong_ready_decision",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        },
+        {
+          "case": "extra_approval",
+          "expected_accepted": false,
+          "tokens_and_eos_accepted": false
+        }
+      ]
+    }
+  ],
+  "grammar_valid_fixtures": 8,
+  "grammar_invalid_fixtures": 20,
+  "versions": {
+    "transformers": "4.51.3",
+    "xgrammar": "0.1.18",
+    "torch": "2.6.0+cu118"
+  },
+  "vocab_size": 151936,
+  "cuda_visible_devices": "",
+  "cuda_initialized": false,
+  "notice": "CPU contract/token budget proof only; fake output decisions are fixtures, not inference or quality measurements. No new holdout read."
+}

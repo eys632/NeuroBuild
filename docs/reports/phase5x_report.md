@@ -2,9 +2,9 @@
 
 **현재 상태: 정식 development는 통과했지만 첫 holdout gate FAIL. 후보 미채택이며 Phase 5.x는 완료되지 않았다.**
 
-현재 검증 후보는 `ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ`와 generation 2, decision-branch schema, prompt v2, `legacy_greedy` 조합이다. Development 40개 × 3회에서 schema/parser/semantic **120/120**, raw READY false positive **0/60**, unsafe accepted **0/120**을 기록했다. 직전 neutral sampling의 정식 평가는 119/120이었지만 unsafe 1건으로 실패했으며, 그 결과도 보존했다. 아직 최종 모델을 채택하지 않았다.
+첫 holdout에서 실패한 후보는 `ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ`와 generation 2, decision-branch schema, prompt v2, `legacy_greedy` 조합이다. Development 40개 × 3회에서 schema/parser/semantic **120/120**, raw READY false positive **0/60**, unsafe accepted **0/120**을 기록했다. 직전 neutral sampling의 정식 평가는 119/120이었지만 unsafe 1건으로 실패했으며, 그 결과도 보존했다. 아직 최종 모델을 채택하지 않았다.
 
-공통 코드 회귀는 실제 PostgreSQL·IfcOpenShell을 포함한 **290 tests PASS, skip 0**이다. 첫 holdout은 설정을 동결하고 commit `64040dee5e83a2966d7f4fff7de558e64fdc902c`를 push한 뒤 시작했다. 첫 holdout은240회 모두 완료했으나 semantic211/240, raw FP9/114, unsafe12/240으로 실패했다. 아래에 전체 결과를 보존한다.
+두 단계 후보 구현 뒤 공통 코드 회귀는 실제 PostgreSQL·IfcOpenShell을 포함한 **314 tests PASS, skip 0**이다. 첫 holdout은 설정을 동결하고 commit `64040dee5e83a2966d7f4fff7de558e64fdc902c`를 push한 뒤 시작했다. 첫 holdout은240회 모두 완료했으나 semantic211/240, raw FP9/114, unsafe12/240으로 실패했다. 아래에 전체 결과를 보존한다.
 
 ## 목표와 고정된 평가 범위
 
@@ -99,3 +99,18 @@ Holdout 입력과 gold는 생성·사전 품질 검토 과정에서 AI에게 공
 10개 case의29개 실패를 구분한다. 의자의 원문에 없는 공백6건과 비연속 다중 대상 합성3건은 grounding 거절이다. 방화문 이동3건, 짧은 승인 우회3건, 장문 최신 승인 우회3건은 실제 raw/accepted READY 오판이다. 대상 제외 조건 손실3건은 지원 gold에서 잘못 수용했다. 나머지8건은 CLARIFICATION/UNSUPPORTED 오분류다. 이 결과를 gold 오류나 parser의 과잉 거절만으로 설명할 수 없다.
 
 자체 MoE guard만 정상 종료했고(exit0/FileStore 정리), GPU3는 free36,373MiB/used3,965MiB/util0%로 복귀했다. A100/RTX 최종 채택용 설정 초안은 ignored var에 미적용 상태로 남겼다. 다음 bounded 비교는 이미 보존된14B-AWQ에 같은 generation2 branch/promptv2/greedy를 적용하는 것이다. 이 표현은14B에서 아직 시험하지 않았으며 더 큰 dense 연산량이 품질을 보장한다고 주장하지 않는다. 기존120개를 노출된 regression으로 사용하고, 새 일반화 평가는 별도로 작성·검토·동결한 미사용 holdout v2에서만 수행한다. 기존 gold/gate/parser를 약화하지 않는다.
+
+
+## 동일 표현의 기존14B 비교와 다음 구조
+
+첫 holdout 뒤 기존120개 전체를 노출된 회귀 자료로 묶어 14B-AWQ/2.0branch/promptv2/greedy를120×1로 비교했다. Schema/adapter/parser120/120,semantic113/120,rawFP2/58,unsafe3/120으로 다시 실패했다. Mean3.0749s/p953.7770s. 전체 원문을 정확히 인용해도 현재 이동 부정과 승인 우회를 READY로 분류할 수 있었으며 대상 제외 범위도 한 건 누락했다. [독립 재생 검토](../reviews/phase5x_generation2_14b_exposed_review.md)를 보존했다. 이 자료는 새 unseen 평가가 아니다.
+
+다음 비교는 같은 모델에서 전체 요청 분류와 원문 추출을 분리한다. 첫 분류의 raw READY를 뒤 단계 거절로 지우지 않으며 기존 parser/gold/gate를 유지한다. [설계](../requirement_staged_pipeline_design.md)는 계획이고 실제 품질 성공을 뜻하지 않는다. 별도 unused v2는 독립 사전 검토 중이다.
+
+
+두 단계 구현은 기존1.0/2.0 client의 HTTP 전송을 공유한다. 기존36 HTTP tests와 신규15 staged tests, 신규9 staged평가기 tests를 포함한 전체314개를16.945초에통과했다. 독립 검토에서 예상 밖 extractor Exception이 classifier trace를 지우는 문제가 발견되어 보완했고, RuntimeError에도 raw READY가 남고 KeyboardInterrupt/SystemExit는전파됨을검증했다. Canonical adapter/parser는변경하지않았다.
+
+새 unused v2는80개/READY40·CLARIFICATION20·UNSUPPORTED20이며 dataset전용freeze를별도로준비했다. 원문/gold는 별도 AI 작성자·검토자가 검토했다. 후보 파일 동결 시점까지 root prompt 작성자는 내용을 읽지 않았다. 이는접근통제맹검이나사람검수가아니다. [데이터정의](../hardening_v2_dataset.md)와 [독립검토](../reviews/phase5x_holdout_v2_gold_review.md)를따르며현재모델미호출이다.
+
+
+후보 파일 동결 뒤 Git staged whitespace 검사에서 CRLF CSV 행이 출력되어 root/prompt 작성자에게 일부 v2 입력·gold가 노출됐다. [별도 이력](../../evaluations/hardening_v2_input_exposure_addendum.json)에 기록했고, 이후 후보31개 파일 hash는 모두 같았다. CSV와 기존 dataset freeze9개 파일은 변경하지 않았다. V2 모델 호출은0이며 model-output-unseen 상태지만 root의 입력 맹검은 해당 시점에 종료됐다. 이후 설명에서 완전 맹검 또는 계속된 root 입력 분리를 주장하지 않는다.

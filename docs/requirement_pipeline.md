@@ -108,3 +108,15 @@ proposal 승인 요구는 동일하다. [설계와 경계](requirement_generatio
 HTTP 주소는 numeric loopback 또는 localhost만 가능하고 localhost는127.0.0.1로 고정한다. 환경 proxy와 redirect를 차단하고 credentials/query/fragment/외부 주소를 거절한다. 기본 timeout60초(설정 상한300초), HTTP response262144bytes 한도가 있으며 socket I/O timeout과 response body elapsed-time budget을 검사한다. timeout은 실시간 스케줄러 보장은 아니다. `LOCAL_MODEL_*` 오류는 서버 원문/body/stack trace를 사용자 메시지에 포함하지 않는다. 이 client는 GPU 자원 점검이나 서버 프로세스 시작을 대신하지 않는다.
 
 `tests/test_local_model.py`는 실제 임시 loopback HTTP 서버로 두 dialect의 요청 필드와 공통 parser 연결, unknown protocol 거절, grammar 없는 재시도 금지, redirect/proxy 차단, timeout/크기/불완전 응답, safe errors, reasoning 비보존을 검증한다. GPU와 외부 네트워크를 사용하지 않는다.
+
+## 분류와 추출을 분리하는 후보
+
+`LocalStagedRequirementClient`는 명시적으로 선택하는 실험용 경로다. 먼저 전체 요청을
+`classification-1.0`의 세 decision으로 분류하고, 같은 전체 원문에서 generation2 인용을
+추출한다. 두 번째 요청의 schema는 첫 분류로 제한되며 다시 분류하거나 자동 수정하지
+않는다. 오류는 거절로 반환하고 production `extract`는 기존 generation2 adapter와
+canonical1.0 parser를 필수로 통과한다. 대상 확인과 proposal 승인은 여전히 별개다.
+
+기존 client의 기본 계약이나 runtime profile을 자동으로 바꾸지 않는다.
+후보 설계와 실패 근거는 [두 단계 설계](requirement_staged_pipeline_design.md),
+raw 분류 오판을 보존하는 집계 및 명시적 CLI는 [평가 도구](evaluation_harness.md)를 따른다.

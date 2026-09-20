@@ -68,3 +68,10 @@ Generation2 구현 뒤에도12개/640개 trial 전체를 새 평가기로 재생
 고정 commit64040de에서 최초 모델 노출을 시작했다. Run20260920T002629Z-6742bb1a50b44acd9e02228d83e2747d:80×3=240,warmup5별도, schema240/parser231/semantic211, rawFP9/114, unsafe12/240,FN6/126,mean4.2157s/p955.3083s. [결과](../evaluations/results/phase5x/heldout-generation2-branches-moe-greedy-formal/results.json)·[manifest](../evaluations/results/phase5x/heldout-generation2-branches-moe-greedy-formal/manifest.json)·[독립 검토](reviews/phase5x_generation2_first_holdout_review.md).
 
 위 development16run/960trial와 합치면 총17개 평가run/1200formal또는diagnostictrial,85warmup이다. 서로 다른 split/평가용도를 혼합해 단일 정확도를 만들지 않는다. Firstholdout의FAIL은 그대로 남긴다. 앞으로 기존80개로 튜닝하거나 비교한 결과는 regression/development이며 새로운 unseen 성공으로 표시하지 않는다. 현재 후보는 미채택이고 다음Phase로 진행하지 않는다.
+
+
+## 노출된 전체120개 — 기존14B/Generation2 비교 FAIL
+
+Run `20260920T005540Z-1f4757de74ec4e75adcc48e3c31c148d`, clean007d893에서 기존14B-AWQ/2.0branch/promptv2/greedy로120×1+warmup5를 완료했다. Schema/adapter/canonical/parser120/120, semantic113/120(94.17%),raw+acceptedFP2/58,unsafe3/120,FN4/62. Mean3.074856s,p953.777019s. 단일가구 두 축 이동을 복수 요청으로 거절3건, 불필요확인1건, 제외대상누락1건, 이동부정/현재승인우회 READY2건이다. [결과](../evaluations/results/phase5x/exposed-generation2-14b-diagnostic/results.json), [독립검토](reviews/phase5x_generation2_14b_exposed_review.md).
+
+기존17개에 이어18번째 완료run이며, 누적1320개의formal/diagnostictrial와90warmup이다. Split과 용도가 다르므로 합산 정확도를 만들지 않는다. 결과SHA `e160815a082b46d3055ec8cbf63b09f847d8e277e04ff7cdfbeb09a11e1154f9`. Formal 확대를 시작하지 않고 분류/추출 분리 실험을 준비한다.

@@ -383,3 +383,35 @@ Verifiedownchild3409891 UID/startticks andparent3409876 expectedlauncher/reporta
 GPU3fresh5samplesfree36373/util0,peak18432+margin7275fitsbudget29098; FP16/autoawq_marlin/context4096/TP1/eager/seq1/KV256/fraction.50/allocator.50,새 child3446165. Health200/aliasneurobuild-local/ownTCP5loopbackPASS;초기 aggregatepeak10946/minfree25428. Logweights9.36GiB/CPUoffload0. 새 launchSHAe34887fa0896b8e8950be91a326f66b3a0f6799ccf96d1f08253ad2f76f6d4a4,metadataSHA2f814cf45f2c1d61c04dbef17699f63569f8fab194cdf799986081a326970b8a. 이번 cold startup 시간은 측정하지 않았다.
 
 기존 dev40 bytes와 oldhold80 bytes를 변경 없이 결합한 exposed regression120의 SHA는7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b이며 READY62/CLF23/UNSUP35다. 전체120×1/warmup5의 동일2.0branch/promptv2/legacygreedy 진단을 별도 동결하며 과거 holdout 성공으로 취급하지 않는다.
+
+
+## 기존14B generation2 노출120개 진단 FAIL 및 분리 실험 계획
+
+Run20260920T005540Z-1f4757de74ec4e75adcc48e3c31c148d 완료120+5. Schema/adapter/canonical/parser120,semantic113,rawFP2/58,unsafe3/120,FN4/62,error0,mean3.0748559527s,p953.7770193405s. 독립 검토는 완료 당시 clean007d893 source를 git에서 ignored tree로 꺼내 SHA17개와120+5replay/전체metrics를 확인했다. 완료 이후 시작한 staged source 수정과 구분했다. Archive original bytes 보존, resultsSHAe160815a082b46d3055ec8cbf63b09f847d8e277e04ff7cdfbeb09a11e1154f9.
+
+동일14B guard는GPU3에서계속RUNNING. 관측minfree24460MiB/aggregateincrement11914/floor7275,다른process변경없음. 신규다운로드없고rootdisk39Gfree/98%. 다음실험은 명시적classification→boundextraction두단계, fullsource양쪽전달, 기존2adapter/1parser필수, rawclassifierREADY를후단실패와무관하게집계한다. 새로운v2holdout80초안은별도작성/검토중이며모델호출없음.
+
+
+## 두 단계 구현/회귀 및 unused v2 데이터 동결
+
+LocalJSONCompletionClient로 기존 loopback/HTTP/두 dialect/sampling 전송을 공유하고 LocalRequirementClient의1.0/2.0 기본 동작을 유지했다. LocalStagedRequirementClient는 classification-1.0 → decision으로 제한한2.0 추출을 순차 호출하며, 전체 원문과 context를 양쪽에 전달한다. 기존 adapter SHA6c5c9d50…9f31과 parser SHAa940f395…4a는 불변이다. 독립 검토자가 재현한 RuntimeError 시 첫 분류 기록 손실을 수정했다. Ordinary Exception에는 첫 READY를 보존하고 안전 오류를 반환하며, BaseException은 전파한다.
+
+기존 HTTP36개와 신규 staged15개, root의 staged 평가기9개 테스트가 통과했다. DISPLAY/WAYLAND를 해제하고 private PostgreSQL DSN으로 scripts/test_backend.sh를 실행하여 전체314 PASS/skip0/16.945초를 확인했다. 로그는 var/phase5x-staged-v1-regression.log다. Shared client SHA9732ad69f9f563f6acb3892ec0c187958d04d006a89251264779123445bc57c3, staged client SHA7e79b1c488a00e3f81b443fb32f86019f510a274228f56058c4eeae66038efee, evaluator SHAe114488454bd8289fb1de0462ae88c711b54917ac243db752e8400b95b66a36a.
+
+V2 unused holdout은80개이며 A–J 각8개, READY40/CLARIFICATION20/UNSUPPORTED20이다. Dataset SHA7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40, dataset-only freeze SHA34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995. 사람 검수80행은 공란이고 모델 호출은0이다. 기존v1은 불변이며 독립 reference80개 검증과 중복 검사를 통과했다. 사전 gold의 모호성1건을 모델 노출 전에 명확히 했다. Root/prompt 작성자는 원문/gold 내용을 읽지 않았다. 최종 후보 동결과 모델 품질 평가는 별개다.
+
+최종 actual transport로 v2의80개×3 decision=240 cycle/480개 요청 body를 in-memory fake opener에서 확인했다. 분류 source/axis와 추출의 classified_decision/schema를 포함한 JSON bytes가 기대값과 같았다. 입력을 출력하지 않고 실제 captured messages의14B token 최대값만 확인했다: 분류1125+128=1253, 추출1192+768=1960. 기존 데이터 freeze9개 hash는 불변이며 socket/network/model/GPU/weight 호출 없이 수행했다. 새 증거는 evaluations/results/phase5x/holdout-v2-preflight/staged_transport_binding.json, SHA540e2a47ad5a38309e12ebb6e009d94212f4651ac4e23e18701cc7f1aa91d2c1이다.
+
+
+## Staged v1 독립 검토 및 GPU 진단 사전 동결
+
+독립 검토에서 수정 후11개 downstream fault가 raw READY/FP1을 유지하고2개 interrupt가 전파됨을 확인했다. 기존1/2 × legacy/modern의4개 요청 wire bytes도 이전007d893과 같았다. Actual14B CPU grammar4개에서 valid8/invalid20 모두 예상대로 판정했고 exposed120의 양쪽 실제 message/token 최대는2035/4096이었다. CUDA는 초기화하지 않았으며 model/network/weight 호출은0이다. Proof SHA: CPU29382a48d00c286d1adff107550508799379d1d70aa4289565468867152da86f, error-accounting1da2cdde897f8624ed1a39ba70bc3ef4c0182611df69a98e6db0afd594c76223, wire-parity1c3a2fb6cd57dcc2fbca872c0d2fb396b1387cac5675d166b62f6cfe444bd81b.
+
+기존14B epoch/동일runtime와 staged_v1/2.0/greedy를120×1+warmup5로 비교하는 후보 freeze를 작성했다. 파일31개 hash와 별도 unusedv2 dataset freeze9개 hash를 확인했다. 사전동결 SHA dd293c8bb3216335130915824e827fa0a3374ccea56d0ec65f586e5122a0d010. Schema120/120,semantic≥114/120,rawFP0/58,unsafe0/120 기준은 유지한다. Commit/push 및 clean source 재검사 전에는 모델 호출하지 않는다.
+
+
+## 후보 동결 후 Git 검사에서 발생한 v2 입력 노출
+
+`git diff --cached --check`가 검수 CSV의 CRLF를 trailing whitespace로 표시하면서 일부 v2 입력/gold를 root tool output에 노출했다. 직전 후보31개 파일 동결 뒤의 사건이며, 후속 hash 검증에서 prompt/code 포함31개 모두 동일했다. 이 시점에 root 입력 맹검은 종료됐고 앞의 미열람 문장은 과거 시점의 사실로만 해석한다. 모델은 아직 v2에 호출하지 않았다. 별도 hardening_v2_input_exposure_addendum.json과 현재 STATUS/report에 공개했다.
+
+Freeze의 CSV bytes를 바꾸지 않고 `git -c core.whitespace=trailing-space,space-before-tab,cr-at-eol diff --cached --check`를 로그 파일로 redirect하여 재검사했고 PASS다. 초기 검사 실패 뒤에는 commit/추론을 실행하지 않았다. CRLF-aware 검사는 CSV 형식의 줄 끝만 허용하며 다른 trailing whitespace 검사를 유지한다. 향후 후보 변경 시 입력 노출을 다시 명시하고 독립 holdout 필요성을 재검토한다.

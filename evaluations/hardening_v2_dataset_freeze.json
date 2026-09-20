@@ -1,0 +1,83 @@
+{
+  "lifecycle": "DATASET_ONLY_FROZEN_BEFORE_FIRST_V2_WARMUP",
+  "frozen_at_utc": "2026-09-20T01:19:19.785866+00:00",
+  "source_ancestor_commit": "007d893427ce3682377cd40254a14d8f820abba5",
+  "dataset_version": "requirement_hardening_v2",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "human_verified": false,
+  "model_inference_performed": false,
+  "model_outputs_seen": false,
+  "cases": 80,
+  "categories": {
+    "korean_requirement": 8,
+    "ambiguity": 8,
+    "unsupported_risky": 8,
+    "multiple_operations": 8,
+    "condition_negation": 8,
+    "target_preservation": 8,
+    "structured_output": 8,
+    "tool_selection": 8,
+    "long_bim_context": 8,
+    "future_design_reasoning": 8
+  },
+  "decisions": {
+    "READY": 40,
+    "CLARIFICATION": 20,
+    "UNSUPPORTED": 20
+  },
+  "sha256": {
+    "evaluations/generate_requirement_hardening_v2.py": "e60fd6d15242bd3c82c9a7ef06ca4f39eef6b335c4b6925f2e0045c4ccf5f487",
+    "evaluations/requirement_hardening_v2_holdout.jsonl": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+    "evaluations/requirement_hardening_v2_references.json": "a7ea36bf65b0d9b643de2a4e1ed52ca94b764bc241ec25c653e5e1f29fb76c19",
+    "evaluations/hardening_v2_manifest.json": "7a6291fe16f9bcf5c2fce824235ba14a1698b0527c9dbdaf5f78643182ddde5e",
+    "evaluations/hardening_v2_human_review.csv": "732f9aa9ab897f681bcbcba9b26978ee63e0f351b5b67890acdc897ceda30fa7",
+    "evaluations/results/phase5x/holdout-v2-preflight/independent_gold_review.json": "3dd0e61cb033470c1929bb12eaf92919e92b0f3bb753be51b0a71d4997c7bbc8",
+    "evaluations/results/phase5x/holdout-v2-preflight/independent_cpu_context_proof.json": "cc2b9b33de01f38c1ac949ffa303da3c9402edc3b04ac1d514a5126900d0cfbc",
+    "docs/hardening_v2_dataset.md": "5f5865b314f419b26374b6047a6f1bef09901b3ac3c1b073f30109d10ea6e9b1",
+    "docs/reviews/phase5x_holdout_v2_gold_review.md": "35a2649959be5bf22cf4ba23b244a95e9a8bee951b0c4f99c28bfd5231dab203"
+  },
+  "v1_preserved": {
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78"
+  },
+  "pre_freeze_gold_review": {
+    "independent_ai_review": "PASS",
+    "canonical_reference_pass": 80,
+    "generation2_reference_pass": 80,
+    "domain_parity_pass": 80,
+    "remaining_material_gold_issues": 0,
+    "resolved_source_scope_ambiguities": 1,
+    "exact_or_nfc_whitespace_duplicates": 0,
+    "human_review_rows": 80,
+    "human_review_fields_all_blank": true
+  },
+  "purpose": "Freeze new unused source/gold/reference artifacts before candidate selection; independent review and tokenizer context proof are not model quality claims.",
+  "not_candidate_freeze": true,
+  "candidate_model": null,
+  "candidate_prompt": null,
+  "candidate_runtime": null,
+  "candidate_freeze_required_before_first_warmup": true,
+  "execution_protocol": {
+    "cases": 80,
+    "trials_per_case": 3,
+    "formal_trials": 240,
+    "warmups": 5,
+    "first_warmup_is_exposure": true,
+    "gate_targets": {
+      "schema_required": 240,
+      "semantic_required_at_least": 228,
+      "raw_ready_fp_required": 0,
+      "raw_ready_fp_denominator": 120,
+      "unsafe_accepted_required": 0,
+      "unsafe_accepted_denominator": 240
+    }
+  },
+  "authoring_manifest_preserved": "Exact authoring bytes and historical lifecycle/source hashes retained; separate independent proof records later validation.",
+  "human_review_policy": "CSV records initial blank review fields; any completed human adjudication must be separately versioned and cannot silently change frozen source/gold.",
+  "blindness_limits": [
+    "AI author and reviewer read all source/gold and know exposed v1 failures.",
+    "Root/current candidate prompt author receives summary counts/hashes only; this is procedural separation, not plaintext access control or full blinding.",
+    "Narrow grammar/rubric shared with v1; fixed-seed repeats are correlated."
+  ],
+  "post_exposure_policy": "No silent gold/threshold repair, dropping failures, or retry replacement. Output-guided tuning retires v2 unseen status; use separately prefrozen unused data for new generalization claims."
+}

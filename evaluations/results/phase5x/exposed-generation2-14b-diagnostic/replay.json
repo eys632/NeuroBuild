@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "run_id": "20260920T005540Z-1f4757de74ec4e75adcc48e3c31c148d",
+  "trials": 120,
+  "warmups": 5,
+  "retained_generation_json_replayed": {
+    "warmups": 5,
+    "trials": 120
+  },
+  "unretained_response_rows": {
+    "warmups": 0,
+    "trials": 0
+  },
+  "all_stage_flags_canonical_projection_rubrics_and_metrics_exact": true,
+  "original_artifact_sha256": {
+    "results.json": "e160815a082b46d3055ec8cbf63b09f847d8e277e04ff7cdfbeb09a11e1154f9",
+    "manifest.json": "fe2d1749a4035e56e3dd828d0fa32e74e76f5b2e77f4bc0b0c619c20992096e8",
+    "dataset.json": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc"
+  },
+  "source_hashes_verified": {
+    "dataset": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "prompt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schema": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "canonical_schema": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "generation_adapter": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+    "parser": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "client": "89c02812a454c292eb906e71cf2d2c487d29ba1e1e96e8bccd87a32468d294b8",
+    "scorer": "938dfa586c5d23f7d92b7634f19ea1202c547780201f381bcaab086ea4fba210"
+  },
+  "replay_source_keys_verified": [
+    "dataset",
+    "prompt",
+    "schema",
+    "canonical_schema",
+    "generation_adapter",
+    "parser",
+    "client",
+    "scorer"
+  ],
+  "routine_sha256": "9b3ad4c9178eaa9405bb2744a9c5d8b0de62abcb6b00c2a61244252a2c305383",
+  "latency": "Recorded values preserved, not remeasured",
+  "limitation": "Missing malformed/transport responses are not reconstructed; only their stored safe errors/decisions and flag consistency can be checked. No model/runtime/weight attestation, inference or quality-label correction.",
+  "invocation": {
+    "dataset_override": "evaluations/requirement_hardening_v1_exposed_regression.jsonl",
+    "reason": "Frozen split=development names the exposed 120-case union, not the original 40 cases.",
+    "original_routine_unchanged": true,
+    "source_snapshot_commit": "007d893427ce3682377cd40254a14d8f820abba5",
+    "reason_for_snapshot": "Current scorer/client development began after the completed run; replay uses its frozen source.",
+    "wrapper_sha256": "4802ccbf75ac53378b775508bc839ce6e52540fb652b5786049040257aefdce4"
+  },
+  "frozen_artifacts_verified": {
+    "evaluations/requirement_hardening_v1_exposed_regression.jsonl": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "evaluations/hardening_v1_exposed_regression_manifest.json": "5e10605f49d7c452dac4804bde5d83f9558966b992c835a71dc3eb9ab1d85e05",
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/requirement_generation.py": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+    "src/neurobuild/infrastructure/local_model.py": "89c02812a454c292eb906e71cf2d2c487d29ba1e1e96e8bccd87a32468d294b8",
+    "scripts/evaluate_requirements.py": "938dfa586c5d23f7d92b7634f19ea1202c547780201f381bcaab086ea4fba210",
+    "scripts/model_server.py": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "runtime/models/qwen3-14b-awq.json": "208ed94ea360b214612d53f8002b69830670c3269246cef28a329c6ab3b41011",
+    "runtime/a100/model-runtime.lock": "0a2dde41e8dda948f70d87bd776315611d4d516a9075725cb3a1a9e564c575ae",
+    "evaluations/results/phase5x/generation2-14b-cpu-preflight.json": "d609be2f31396c57ac0dc6ea940a4462d713505c266a099f62c766c3c11fd54a",
+    "evaluations/results/phase5x/14b-generation2-v2-launch/launch_config.json": "e34887fa0896b8e8950be91a326f66b3a0f6799ccf96d1f08253ad2f76f6d4a4",
+    "evaluations/results/phase5x/14b-generation2-v2-launch/runtime_metadata.json": "2f814cf45f2c1d61c04dbef17699f63569f8fab194cdf799986081a326970b8a"
+  },
+  "frozen_file_count": 17,
+  "freeze_precedes_run_and_manifest_runtime_protocol_match": true,
+  "freeze_sha256": "6982eccfe660482daf3c9db4c30b2feec6717dc861e8ae74a67a0f96b3b6f560",
+  "checked_at_utc": "2026-09-20T01:10:19.105008+00:00"
+}

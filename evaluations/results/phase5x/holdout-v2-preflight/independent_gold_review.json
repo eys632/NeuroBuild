@@ -1,0 +1,64 @@
+{
+  "kind": "INDEPENDENT_CPU_GOLD_REVIEW_V2",
+  "recorded_at_utc": "2026-09-20T01:12:14.843184+00:00",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "human_verified": false,
+  "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+  "reference_sha256": "a7ea36bf65b0d9b643de2a4e1ed52ca94b764bc241ec25c653e5e1f29fb76c19",
+  "manifest_sha256": "7a6291fe16f9bcf5c2fce824235ba14a1698b0527c9dbdaf5f78643182ddde5e",
+  "canonical_schema_sha256": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+  "generation_schema_sha256": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+  "parser_sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+  "adapter_sha256": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+  "scorer_sha256": "0c159100485194b94693f6b258608ae119cc7e25306fd5fc3293cc20bd98b1ab",
+  "cases": 80,
+  "category_counts": {
+    "korean_requirement": 8,
+    "ambiguity": 8,
+    "unsupported_risky": 8,
+    "multiple_operations": 8,
+    "condition_negation": 8,
+    "target_preservation": 8,
+    "structured_output": 8,
+    "tool_selection": 8,
+    "long_bim_context": 8,
+    "future_design_reasoning": 8
+  },
+  "decisions": {
+    "READY": 40,
+    "CLARIFICATION": 20,
+    "UNSUPPORTED": 20
+  },
+  "canonical_schema_pass": 80,
+  "generation2_schema_pass": 80,
+  "canonical_parser_scorer_pass": 80,
+  "generation2_parser_scorer_pass": 80,
+  "reference_domain_parity_pass": 80,
+  "semantic_source_gold_review_pass": 80,
+  "pre_freeze_source_ambiguities_identified": 1,
+  "pre_freeze_source_ambiguities_resolved": 1,
+  "remaining_material_gold_issues": 0,
+  "duplicate_screen": {
+    "exact_within_v2": 0,
+    "nfc_whitespace_within_v2": 0,
+    "nfc_whitespace_against_v1_120": 0,
+    "ids_shared_with_v1": 0,
+    "target_numeric_masked_nearest_v1_ratio_max": 0.7555555555555555,
+    "target_numeric_masked_nearest_v1_ratio_at_least_0_8": 0,
+    "interpretation": "Surface-screen only; not semantic independence proof."
+  },
+  "v1_sha256": {
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78"
+  },
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "network_calls": 0,
+  "torch_imported": false,
+  "limits": [
+    "AI reviewer saw all source/gold; not human verification or fully blinded review.",
+    "Reviewer and author know exposed v1 failures and previously participated in prompt authoring; root/current candidate prompt author received no v2 source/gold from this review.",
+    "Same narrow capability and shared rubric; references prove representability rather than future model quality.",
+    "No v2 model output exists at this review; any later output-guided tuning retires v2 unseen status."
+  ]
+}
