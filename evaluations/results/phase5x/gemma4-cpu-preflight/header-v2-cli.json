@@ -1,0 +1,1 @@
+{"kind": "GGUF_HEADER_AUDIT", "status": "PASS", "report": "var/reports/gemma4-gguf-header-v2.json", "report_sha256": "d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756", "tensor_count": 833}

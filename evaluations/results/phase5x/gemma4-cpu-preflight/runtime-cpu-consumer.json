@@ -1,0 +1,43 @@
+{
+  "kind": "GEMMA4_ACTUAL_CPU_PROOF_CONSUMER_CHECK",
+  "status": "PASS",
+  "at_utc": "2026-09-20T09:03:57.008270+00:00",
+  "sha256": {
+    "var/research/gemma4_runtime_probe.py": "e2b7fdc53b37e51af2d358bafdf30e051c377a3e2b3e1a2207736079df6695e0",
+    "var/research/gemma4-native-launch-epoch1.json": "14cb239f83d6997d01490bf3889aa1605d53a06aa8a9b2d63491dc25430b40dc",
+    "var/research/native-gemma4-contract/final-cpu-proof.json": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d"
+  },
+  "scope": "One actual cpu_provenance invocation only; no runtime entrypoint, native validator or suite repeated",
+  "source_files_verified": 5,
+  "linked_proofs_verified": 3,
+  "protocol": "llama_cpp_json_schema",
+  "sampling_profile": "gemma4_nonthinking_llama_cpp",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "official_tokenizer_parity": {
+    "status": "PASS",
+    "case_count": 20,
+    "id_match_count": 20,
+    "native_original_roundtrip_count": 20
+  },
+  "resource_token_id": 236743,
+  "splits": {
+    "exposed120": {
+      "input_count": 120,
+      "min_input_tokens": 2339,
+      "max_input_tokens": 2646,
+      "max_input_plus_output": 3414
+    },
+    "v2_length80": {
+      "input_count": 80,
+      "min_input_tokens": 2360,
+      "max_input_tokens": 2593,
+      "max_input_plus_output": 3361
+    }
+  },
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "epoch_process_queries": 0,
+  "datasets_opened": 0,
+  "additional_unicode_witness": "Separately preserved normalization-witness-proof.json: official/native token IDs match, raw literal U+2581 roundtrip fails; no global Unicode roundtrip claim."
+}

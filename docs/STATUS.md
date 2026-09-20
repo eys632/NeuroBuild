@@ -7,16 +7,16 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`; 단회 결과 `704e9f6`, V2 실패 보존 `3a89af9ebab50058529405e38af0fa398d71d783` push·원격 일치 확인 |
-| 현재 작업 | **V2 실패 checkpoint 완료, Gemma4-31B QAT 사전 검증** |
+| GitHub | 공통 `v2`; 단회 결과 `704e9f6`, V2 실패 보존 `3a89af9`, Gemma profile 준비 `f961fb512f75b98ca2fdb5de4c2d0b946fdf40e4` push·원격 일치 확인 |
+| 현재 작업 | **Gemma4-31B QAT 계약·자원 PASS, 첫 단회 품질 진단 조건 동결** |
 | 현재 후보 | Qwen3.8-27B Q4_K_M / pinned llama.cpp / raw-Unicode variant: V2 FAIL, 미채택 |
 | 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS |
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
 | 회귀 검증 | **395 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless19.339초. Gemma 명시profile 추가 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
-| 모델 실행 | Epoch4·5·6 모두 STOPPED/exit0/reaped, GPU3 메모리 반환 확인 |
+| 모델 실행 | Qwen Epoch4·5·6 STOPPED/exit0/reaped·메모리 반환 확인. Gemma Epoch1 GPU3 계약 검증 중 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | Gemma4-31B QAT 공식 metadata·출력 계약·전체 VRAM 검증. 동일 실패 후보 반복0회 |
+| 다음 검증 | Gemma exposed120×1+warmup5, 원격 checkpoint 후 시작. 동일 실패 Qwen 후보 반복0회 |
 
 ## 보존한 단회 결과와 오류3건
 
@@ -74,7 +74,8 @@ Phase를 막지 않는 batch/flash/graphs/cache/throughput 튜닝은 future opti
 Gold는 **AUTO-GENERATED / NOT HUMAN VERIFIED**다. Root의 일부 입력 노출도 보존하며 완전 맹검이라고 부르지 않는다.
 공식 HF tokenizer19/20 FAIL과 별도 raw reference20/20을 구분하고 입력·출력 NFC 보정은 하지 않는다.
 Private PostgreSQL은 project0700 Unix socket/peer 인증/TCP OFF다. 환경·weight·cache·binary는 Git에서 제외한다.
-비활성 Qwen3-32B 가중치4개19,325,481,744B를 SHA/소유·사용 검사 후 회수했고 디스크 약42.8GiB free다.
+비활성 Qwen3-32B 가중치4개19,325,481,744B를 SHA/소유·사용 검사 후 회수했다.
+Gemma 다운로드 완료 후 디스크 약26.3GiB free다.
 Manifest/평가/복원 정보는 보존했다. 새 다운로드에도20GiB+512MiB reserve를 유지한다.
 Phase4 human review는 아직 메모리 보존이며 Object resolution/API/browser는 미구현이다.
 영속 review/queue/worker는 Phase7 예정이다. **RTX5090은 PREDICTED_UNVERIFIED**다.
@@ -82,5 +83,16 @@ Public exposure/pilot/민감 IFC/fine-tuning은 자동 범위 밖이다.
 
 다음 후보는 [공식 후보 비교](next_model_candidate_comparison.md)의 Gemma4-31B QAT Q4_0다.
 아직 품질·GPU 실행 미검증이며 기존 CUDA11.8/SM80 binary를 재사용할 수 있는지 모델별 계약을 확인한다.
-공식 GGUF 다운로드는 고정SHA/디스크floor guard 아래 진행 중이다. GPU 모델 기동·품질 호출은 아직0이다.
+공식 GGUF 다운로드와 전체SHA/header 검증을 완료했다. 첫 auditor의 Q6_K embedding/I32 배열
+예상 오류와 실패 기록은 보존했고, source 근거를 확인한 v2에서833개 tensor 이름·shape가 일치했다.
+새 모델의 CPU vocab/context 검사는 PASS다. 공식 공개20개 ID/원문 roundtrip20/20,
+입력200개 최대2646+출력768=3414 token이다. Literal U+2581은 공식/native 양쪽의 원문
+roundtrip 실패를 별도로 보존했다. Fresh GPU3 free36373/util0/safety7275/예산29098MiB가
+추정28672MiB를 허용해 제한된 첫 기동을 완료했다. Startup·공개 요청1건·자원 probe1건 PASS다.
+공개 요청5.709초,3328 prefill+768 decode는25.059초,4095 cache다.
+이 시점까지 aggregate 증가 최대18864MiB/최소 free17510MiB이며 종료 epoch의 최종peak가 아니다.
+첫 startup의 props terminalLF1개 표현 차이 실패도 보존했다.
+[사전 검증 보고서](reports/phase5x_gemma4_preflight_report.md)와
+[단회 freeze](../evaluations/hardening_v1_exposed_native_gemma4_diagnostic_freeze.json)에 조건을 기록했다.
+아직 Gemma 품질 결과는 없고 채택·Phase6 진행 근거도 없다.
 새 후보의 준비를 기존 Qwen3.8 실패 수정이나 Phase5.x 완료로 표시하지 않는다.

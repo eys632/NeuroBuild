@@ -1,0 +1,22 @@
+{
+  "source_map": {
+    "listeners.json": "var/reports/gemma4-native-startup-epoch1/listeners.json",
+    "runtime_metadata.json": "var/reports/gemma4-native-startup-epoch1/runtime_metadata.json",
+    "startup.json": "var/reports/gemma4-native-startup-epoch1/startup.json",
+    "resource_report.json": "var/reports/gemma4-native-startup-epoch1/resource_report.json",
+    "launch_config.json": "var/reports/gemma4-native-startup-epoch1/launch_config.json",
+    "first-attempt-failure.json": "var/reports/gemma4-native-startup-epoch1-cli-first.json",
+    "props-failure-diagnosis.json": "var/reports/gemma4-native-startup-epoch1-props-diagnosis.json",
+    "preflight.json": "var/reports/gemma4-native-epoch1-preflight.json"
+  },
+  "sha256": {
+    "listeners.json": "7082611ea2bfb1545fa53c82a838d5617a2bb04ee49c3367079caa28b9caca45",
+    "runtime_metadata.json": "fd8926451b3d047846c1424d339aa0177b9d2c923bec1d0b147a9eb7242505ed",
+    "startup.json": "34e2d7e6b2305961db7a1c0c15ab71ea1e268145583ee1514c6fb8f5e151e514",
+    "resource_report.json": "620ad0e861c88bde1d6906bd3ad3addeb45083faae95746fbfb06f2f28f1eabe",
+    "launch_config.json": "14cb239f83d6997d01490bf3889aa1605d53a06aa8a9b2d63491dc25430b40dc",
+    "first-attempt-failure.json": "f76770b88a73402a56f1d9696ddfcdbc889b5dec8203f705b6bae9b914209514",
+    "props-failure-diagnosis.json": "bd8465e24491e3a5fc75f2a30e6901af375aea89bb5176065c5985b5a5a6e3c5",
+    "preflight.json": "6fe07e00da432c8e93e060353a166b84b399c28fde83458b6a98043229870abe"
+  }
+}

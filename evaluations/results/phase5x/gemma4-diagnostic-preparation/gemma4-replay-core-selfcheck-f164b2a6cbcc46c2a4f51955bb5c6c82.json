@@ -1,0 +1,107 @@
+{
+  "status": "PASS_SYNTHETIC_CORE_ONLY_DRAFT_RUNTIME_PENDING",
+  "helper_sha256": "94c8a83a963da431032cac0c5a7c824be9603673a5b4ef656116fa45368f0265",
+  "selfcheck_sha256": "33bdbd80ce0e3db4036587d0c0b9af26f80439a99106fa177ffd6ca4d98317ed",
+  "original_replay_sha256": "c1f063fe4a6ea14c9eaa57bb6e10467460f6765d9a3b4fce67a6fca0f69ac592",
+  "core_functions_ast_exact": 3,
+  "source_sha256": {
+    "scorer": "4f9da8c7cd430625fbe0226ae8201d7bcb934834cef435740822b2df948c69e7",
+    "parser": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "generation_adapter": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "client": "68c086f08bf2c3f5d6464f689baa8e628c8c33664397db06868c26cb6dd0d763"
+  },
+  "fixtures": [
+    {
+      "fixture": "retained_ready_on_nonready",
+      "retained": true,
+      "error_code": null
+    },
+    {
+      "fixture": "retained_bad_axis",
+      "retained": true,
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "fixture": "retained_ungrounded_target",
+      "retained": true,
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "fixture": "unretained_schema_rawready",
+      "retained": false,
+      "error_code": "JSON_SCHEMA_FAILED"
+    },
+    {
+      "fixture": "unretained_malformed_unknown",
+      "retained": false,
+      "error_code": "JSON_PARSE_FAILED"
+    },
+    {
+      "fixture": "unretained_array_unknown",
+      "retained": false,
+      "error_code": "JSON_SCHEMA_FAILED"
+    },
+    {
+      "fixture": "unretained_timeout_unknown",
+      "retained": false,
+      "error_code": "LOCAL_MODEL_TIMEOUT"
+    },
+    {
+      "fixture": "unretained_truncated_unknown",
+      "retained": false,
+      "error_code": "LOCAL_MODEL_TRUNCATED"
+    },
+    {
+      "fixture": "unretained_missing_final_unknown",
+      "retained": false,
+      "error_code": "LOCAL_MODEL_RESPONSE_INVALID"
+    },
+    {
+      "fixture": "retained_nonready",
+      "retained": true,
+      "error_code": null
+    }
+  ],
+  "row_tampering_rejected": [
+    "erase_rawready",
+    "erase_schema_failed_ready",
+    "invent_timeout_ready",
+    "unknown_as_safe_false",
+    "invent_adapter_success",
+    "erase_canonical",
+    "inflate_semantic",
+    "wrong_contract"
+  ],
+  "count_tampering_rejected": [
+    "missing_trial",
+    "missing_warmup",
+    "trial_order",
+    "metric_denominator"
+  ],
+  "identity_tampering_rejected": [
+    "wrong_model",
+    "qwen_sampling",
+    "qwen_quant",
+    "wrong_template",
+    "penalty_changed",
+    "unknown_batch_pair",
+    "bool_batch",
+    "weaker_gate",
+    "dirty_snapshot",
+    "wrong_gpu",
+    "wrong_variant",
+    "freeze_after_run"
+  ],
+  "synthetic_complete_protocols": 2,
+  "full_120_plus_5_and_62_58_denominators": true,
+  "unknown_keeps_denominator_and_blocks_gate": true,
+  "actual_run_results_read": false,
+  "historical125_replays": 0,
+  "private_dataset_reads": 0,
+  "reasoning_body_reads": 0,
+  "model_calls": 0,
+  "native_calls": 0,
+  "gpu_calls": 0,
+  "network_calls": 0,
+  "limitation": "Actual Gemma CPU/runtime/freeze evidence validation and final source snapshot not bound yet; main is fail-closed."
+}

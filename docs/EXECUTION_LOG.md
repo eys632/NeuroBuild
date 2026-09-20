@@ -789,3 +789,75 @@ GGUF+README총17,651,030,836B, fixed59dde24573e7e61570dba08b18a2e1fe246955ed.
 사전free45,900,111,872B, 완료후예상28,249,081,036B>floor22,011,707,392B.
 CUDA_VISIBLE_DEVICESempty/자체lock·childcleanup/2초diskguard하에다운로드를시작했다. 이항목은시작기록이며완료/GPU/PASS가아니다.
 공식QATmetadata 총32,948,600B 확보, 변환exactsource revision미공개/실제embedded검증대기를provenance에표시했다.
+
+### 2026-09-20 — Gemma 다운로드 완료와 실제 GGUF header 검증
+
+Gemma profile 준비 commit `f961fb512f75b98ca2fdb5de4c2d0b946fdf40e4`를 push하고 원격 일치를 확인했다.
+공식 README/GGUF 2개 다운로드와 고정 size/SHA 확인 완료. Guard receipt
+`bcd53b196c7bf037ca3b41b8b136e2133498b2c675aa16396ea2e457ad192a6f`,
+minimum disk free28,231,639,040B > floor22,011,707,392B. 자체 download child exit0/reaped,
+GPU/native inference0이다. 초기 provenance의 METADATA_ONLY 기록은 당시 증거로 유지한다.
+
+첫 CPU header auditor는 `TENSOR_TYPE_UNSUPPORTED`로 실패했다. 원본 helper와 실패 receipt를 보존했다.
+추가 metadata-only 진단은 Q6_K가 token_embd.weight 1개뿐이고 전체 tensor833개 이름·shape가
+예상과 같음을 확인했다. KV head 배열은 값이 같지만 wire I32여서 v1의 U32 가정도 잘못됐다.
+고정 writer/enum/quant block 및 CUDA dispatch에 근거해 별도 v2를 만들었다.
+23 CPU synthetic tests PASS1.576s, generic parser 8개 AST 유지, Q6_K embedding만 정확히 허용,
+KV 배열 I32 및 dtype분포 F32 422/Q4_0 410/Q6_K 1을 고정했다. Unknown type 허용이나 강제변환은 없다.
+
+Root 검토 뒤 실제 header v2와 전체 파일 hash 검증 PASS. Report SHA
+`d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756`.
+실제 file17,651,001,568B/SHA179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b,
+833 tensors/공식 vocab·merges wire/template 일치. 수치 tensor decode/GPU/context/inference는 하지 않았다.
+전체 파일 proxy/최대F32 matrix5376MiB가 유지되어28,672MiB 계획값은 변경하지 않았다.
+이는 아직 실측 peak나 모델 품질 PASS가 아니며 CPU vocab/context와 freshGPU3 budget이 남아 있다.
+
+### 2026-09-20 — Gemma 실제 CPU 계약 PASS와 첫 제한 기동
+
+최초 vocab CPU 검사는 stage12/line331에서 raw prompt equality로 실패했고 receipt SHA
+`162136e4f1280f11262f5305381056345cab1ba04d904806127efec0125cdf32`를 보존했다.
+Pinned chat.cpp의 add_bos=true 처리가 template 선두 BOS를 제거하고 실제 tokenizer에서 추가함을 확인했다.
+별도 v2 TU만 compile/link해 exact 단일BOS 차이 및 effective token ID 일치를 요구했다.
+기존194개 CPU object/library와 Qwen binary는 불변이다. V1 source/build/failure도 별도 보존했다.
+새 공개 vocab 검사는20개 ID/원문 roundtrip20/20, JSON10수락/20거절/EOG,
+template/grammar/generation prompt 검증 PASS다. 입력200개 길이는 exposed120 최대2646,
+V2길이80 최대2593이고 출력768 포함3414/3361이다. 실제 모델 답변이나 gold 점수는 읽지 않았다.
+Aggregate SHA `a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d`,
+runtime helper의 실제 CPU proof 소비 검사도 PASS다.
+별도 literalU+2581은 공식/native token ID는 같으나 원문 roundtrip FAIL이다.
+Witness SHA `bbb9ed28cdae06bb07a3f66949c2e23e59728324f74440be82b567f0a8662e73`를 보존하고
+전체 Unicode 보존이나 input/output repair를 주장하지 않는다. 이 시점까지 GPU/HTTP/model inference0.
+
+Fresh GPU3 5표본 모두 free36373/used3965/util0, safety7275/예산29098/추정28672MiB로 실행 허용.
+Root가 검증된 기존 guard로 Gemma epoch1을 시작했다. ConfigSHA
+`14cb239f83d6997d01490bf3889aa1605d53a06aa8a9b2d63491dc25430b40dc`,
+7200초/ctx4096/seq1/batch64/ubatch64/GPU3 only/추정28672. 자동 fallback은 없다.
+첫 startup helper는 PROPS_MISMATCH로 실패했지만 health/models/기타props는 일치했다.
+별도 own epoch 내 GET 진단에서 props template18,682B/SHA6a1015c47ccfcfa67c3b772385bccee357a4d37c3cda37bd202e9047f391ab82를 확인했다.
+이는 원본18,683B의 마지막LF1개를 제거한 bytes와 정확히 같고 pinned Jinja lexer.cpp54–57의 동작이다.
+원래 실패/진단을 보존하고 embedded 원본SHA와 props 표시SHA를 구분하도록 좁게 수정한다.
+서버 재시작이나 모델 inference는 아직 없으며 새 startup/resource/품질 PASS를 주장하지 않는다.
+
+### 2026-09-20 — Gemma startup·공개 요청·최대 context 자원 PASS와 진단 동결
+
+별도 runtime helper v3는 raw embedded18,683B/ae5346…와 props18,682B/6a1015…를 각각 확인한다.
+집중 synthetic3검사 PASS, source검토 후 동일 epoch에서 startup PASS다. 첫 실패와GET 진단도 보존했다.
+공개 실제 요청1건 PASS/5.709282122552395초, 자원 probe1건은3328 prefill+768 decode/4095 cache,
+25.059090151451528초 PASS다. 이 시점까지 guard lifetime aggregate peak18864/minfree17510,
+추정28672/floor7275를 유지했다. 이는 final stopped peak나 process별peak가 아니다.
+Child3598326/startticks477865222, guard UTC2026-09-20T09:03:36.703119+00:00으로 전후 identity가 일치했다.
+별도당시실행 public/resource 외 품질 호출0. 완료한 기존 runtime/resource 및 Qwen125/replay 재실행0.
+
+CPU 보관본70파일과 integrity, startup8/public1/resource1 원본 및 각 integrity,
+freezer/replay/preparation18파일을 별도 보존했다. CPU 최초실패/BOS수정/literalU+2581한계도 포함한다.
+Core replay_row/replay_groups/load_snapshot는 기존 검증본 AST 그대로이고 새 Gemma savedmetadata 변조28개 PASS.
+현재 source의395 regression PASS를 재사용한다. 실제125개 결과를 읽거나 재생한 테스트가 아니다.
+Root가 runtime·CPU·395receipt·V2원본9개·현재노출기록·원본gold/gate를 확인하고
+`hardening_v1_exposed_native_gemma4_diagnostic_freeze.json`을 생성했다. 노출120×1+warmup5만 허용하며
+고정profile T1/P.95/K64, generation2/single/output768/timeout120, 재시도·보정·자동3회 반복은 없다.
+첫 품질 호출 전 clean commit/push와 fresh own epoch·남은시간 판단을 별도로 수행한다.
+
+진단 동결 SHA `68e1ac40b9bfac0698de252a892057fc785940feda3bf833e0fa193ee9c06326`,143파일 hash 일치.
+Independent final replay/freezer 읽기검토 PASS; 핵심3함수 AST 동일·canonical parser 불변·gate/분모 유지.
+Staged109파일 검토에서 archive원본bytes/hash 일치, local link누락0/secret pattern0/weight·binary·환경0/whitespace0.
+변경은 모델별 검증 도구·증거·문서이므로 기존395 regression을 다시 실행하지 않았다.

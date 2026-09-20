@@ -1,0 +1,17 @@
+{
+  "kind": "GEMMA4_FREEZER_PROPS_LINK_CPU_PROOF",
+  "status": "PASS_FOCUSED_FAKE_ONLY",
+  "helper_sha256": "2f37aa29bfe71e49e14cc4a5e569e725e83a2f1effeec955c57e7276b8052ff6",
+  "tests_sha256": "d5ff248ee323b7a96858e9673da775012ba7e65c7554655f43534a822accc158",
+  "tests": 1,
+  "seconds": 0.001,
+  "scope": "Embedded18683/rawSHA and props18682/exactoneLFderivedSHA separately required; no genericstrip or I/O normalization",
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "http_calls": 0,
+  "actual_freeze_created": false,
+  "previous_proofs": [
+    "var/research/gemma4-freezer-synthetic-proof.json",
+    "var/research/gemma4-freezer-archive-link-proof.json"
+  ]
+}

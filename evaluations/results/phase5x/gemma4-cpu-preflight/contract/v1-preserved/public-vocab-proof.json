@@ -1,0 +1,28 @@
+{
+  "kind": "GEMMA4_NATIVE_PUBLIC_VOCAB_CPU_PROOF",
+  "status": "FAIL",
+  "at_utc": "2026-09-20T08:54:10.616313+00:00",
+  "model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+  "revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+  "gguf_sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+  "header_sha256": "d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756",
+  "binary_sha256": "2ac32af5ab6ca89c8f49f66138596bb8e444d35123fec7701050b67e8c952784",
+  "build_report_sha256": "100b503c76394ffbe692a70af8a44e619d3475daccb7ad866215bd62c2880682",
+  "public_contract_sha256": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334",
+  "tokenizer_fixture_sha256": "42b2a10fdc4ebc066acb878a5a9e0c9e407affe0b91bc7d32145d8d360dc13e5",
+  "helper_sha256": "4a9b873df6a8a28d5123210b15215840a6f6dcb66f88d20a4923fe34121ef6c1",
+  "model_inference_calls": 0,
+  "gpu_or_http_calls": 0,
+  "native": {
+    "kind": "GEMMA4_NATIVE_CONTRACT_CPU_PREFLIGHT",
+    "status": "FAIL",
+    "code": "CHECK_FAILED",
+    "stage": 12,
+    "check_line": 331,
+    "discarded_stderr_bytes": 0
+  },
+  "exit_code": 1,
+  "bundle_sha256": "f76b14a884dea3585cf94335a12c79eca5fffaea2ceefbe2f2d6afffe2f52581",
+  "validation_error": "CPU_PROBE_FAILED",
+  "scope": "Public30 schema cases + public20 tokenizer parity + one public input length; no evaluation bodies"
+}

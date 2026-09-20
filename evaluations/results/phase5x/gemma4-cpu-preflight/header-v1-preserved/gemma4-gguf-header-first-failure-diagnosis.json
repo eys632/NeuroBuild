@@ -1,0 +1,19 @@
+{
+  "kind": "GEMMA_HEADER_FIRST_FAILURE_METADATA_DIAGNOSIS",
+  "status": "DIAGNOSTIC_NOT_HEADER_PASS",
+  "original_failure": "TENSOR_TYPE_UNSUPPORTED",
+  "auditor_sha256": "1fddda7d091ce617e04b696e1feef779563cef34c0028fc9ee1cc0065472ab7a",
+  "model_path": "var/models/google--gemma-4-31B-it-qat-q4_0-gguf/59dde24573e7e61570dba08b18a2e1fe246955ed/gemma-4-31B_q4_0-it.gguf",
+  "header_bytes_read": 15783773,
+  "first_unsupported_tensor": {
+    "name": "token_embd.weight",
+    "dims": [
+      5376,
+      262144
+    ],
+    "typ": 14,
+    "offset": 22528
+  },
+  "tensor_payload_read": false,
+  "gpu_native_calls": 0
+}

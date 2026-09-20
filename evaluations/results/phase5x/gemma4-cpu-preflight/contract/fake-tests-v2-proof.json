@@ -1,0 +1,17 @@
+{
+  "kind": "GEMMA4_BOS_HELPER_FAKE_TEST_RECEIPT",
+  "status": "PASS",
+  "tests": 11,
+  "elapsed_seconds": 0.018,
+  "recorded_utc": "2026-09-20T09:05:11.810763+00:00",
+  "command": "CUDA_VISIBLE_DEVICES='' .conda/bin/python var/research/native-gemma4-contract/test_helpers_v2.py",
+  "test_source_sha256": "114b92d2b847694ad4bf94fad3b63a17c95b3c10bae5e6f6c2d0b61539c358bb",
+  "validated_function_source_sha256": {
+    "validate_pass": "7144edc5338053832384558975c4c265183a23e92240d5b93af20e34413f2a16"
+  },
+  "model_native_executable_calls": 0,
+  "gguf_reads": 0,
+  "http_gpu_calls": 0,
+  "dataset_body_reads": 0,
+  "timing_note": "Tests executed before the build report SHA pin constant was filled. Only that constant was finalized afterward; tested validation/capture function bodies were not edited. No tests were re-run for this receipt."
+}

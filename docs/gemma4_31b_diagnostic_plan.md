@@ -1,6 +1,7 @@
 # Gemma 4 31B QAT 다음 단회 진단 계획
 
-상태: **PREPARING — runtime/품질 미실행, candidate freeze 아님**.
+사전 평가 상태: **runtime/자원 검증 PASS, 첫 품질 평가 준비**.
+실제 고정 조건은 [candidate freeze](../evaluations/hardening_v1_exposed_native_gemma4_diagnostic_freeze.json)를 따른다.
 Qwen3.8의 보존125개 진단과 V2 실패를 반복하지 않고 다른 공식 모델을 비교한다.
 [후보 비교](next_model_candidate_comparison.md)와 [전체 자원 계획](gemma4_31b_resource_plan.md)을 따른다.
 
@@ -37,6 +38,12 @@ Final content에 Gemma thought/channel marker가 남으면 실패시키고 reaso
    commit/push·첫 호출 전 identity를 확인한다. 이 문서는 그 실행 승인이 완료됐다는 증거가 아니다.
 
 ## 단회 품질 판단
+
+Gemma epoch1에서 startup·공개 요청1건·최대 context 자원 probe1건을 통과했다.
+공개 요청5.709초, 자원 probe25.059초, aggregate 증가 최대18,864MiB/최소 free17,510MiB다.
+공식 tokenizer 공개20개 native ID/원문 roundtrip20/20, 최대 입력2646+출력768=3414 token을 확인했다.
+원래BOS/props template 표현 검사 실패와 별도 literalU+2581 roundtrip 실패는 보존했다.
+단회 품질 평가에서는 같은 guard epoch를 사용하고 완료된 계약·자원 검사는 반복하지 않는다.
 
 첫 진단은 기존 **exposed120개×1+warmup5**다. Generation2.0 single, promptv2/branch schema,
 output768/timeout120/ctx4096/sequence1을 유지한다. Schema120/120, semantic≥114/120,

@@ -1,0 +1,67 @@
+{
+  "kind": "GUARDED_PINNED_PUBLIC_MODEL_DOWNLOAD",
+  "status": "PASS_DOWNLOAD_ONLY_NOT_RUNTIME_VALIDATED",
+  "created_at_utc": "2026-09-20T08:29:50.042603+00:00",
+  "helper_sha256": "b8305b0c32534c867972ae760ce0b86248ded8350c5a88288ffb09e4eaa9d782",
+  "model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+  "revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "input_sha256": {
+    "runtime/models/gemma4-31b-qat-q4-0.json": "16d471fc5bb8ae266015d73b0a648e2b576dab6e6e453de8c28fdc0f1a8a6e3c",
+    "scripts/download_model.py": "eea7da3f210addeaece15cb2a7072145cb9c380bd475c4a4f92292df78b88353",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "var/research/run_llama_build.py": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+    "var/research/relink_llama_rpath.py": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0"
+  },
+  "build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "cleanup_report_sha256": "588221f0be21480e76f6534a09d9c9dc1b8bffab946e3e1f47346cbf9e2366ab",
+  "cuda_visible_devices": "",
+  "disk_floor_bytes": 22011707392,
+  "disk_poll_seconds": 2,
+  "max_phase_seconds": 1800,
+  "termination_grace_is_additional": true,
+  "initial_free_bytes": 45899079680,
+  "conservative_remaining_bytes": 17651030836,
+  "child_stdout_stderr": "DISCARDED; supervisor emits only fixed metadata",
+  "gpu_or_native_execution": false,
+  "phases": [
+    {
+      "name": "download-gemma4-31b",
+      "command": [
+        "/home/a202192020/NeuroBuild_v2/.conda/bin/python",
+        "-I",
+        "-B",
+        "/home/a202192020/NeuroBuild_v2/scripts/download_model.py",
+        "/home/a202192020/NeuroBuild_v2/runtime/models/gemma4-31b-qat-q4-0.json"
+      ],
+      "started_at_utc": "2026-09-20T08:29:50.055819+00:00",
+      "max_seconds": 1800,
+      "budget_bytes": 18187901748,
+      "reserve_bytes": 21474836480,
+      "own_child_pid": 3585494,
+      "guardian_shutdown": {
+        "term_sent": true,
+        "kill_sent": true,
+        "child_reaped": true
+      },
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-20T08:37:37.137378+00:00",
+      "native_cleanup": {
+        "guardian_pid": 3585494,
+        "native_pid": 3585496,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": 0,
+        "stop_requested": false
+      }
+    }
+  ],
+  "minimum_free_bytes": 28231639040,
+  "maximum_own_allocated_bytes": 17651056640,
+  "verified_files": 2,
+  "model_path": "var/models/google--gemma-4-31B-it-qat-q4_0-gguf/59dde24573e7e61570dba08b18a2e1fe246955ed",
+  "downloaded_manifest_sha256": "16d471fc5bb8ae266015d73b0a648e2b576dab6e6e453de8c28fdc0f1a8a6e3c",
+  "finished_at_utc": "2026-09-20T08:37:37.151526+00:00"
+}

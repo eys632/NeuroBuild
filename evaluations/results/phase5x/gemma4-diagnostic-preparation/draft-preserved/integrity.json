@@ -1,0 +1,14 @@
+{
+  "replay_native_gemma4_exposed.py": {
+    "original": "var/review-tools/replay_native_gemma4_exposed.py",
+    "sha256": "94c8a83a963da431032cac0c5a7c824be9603673a5b4ef656116fa45368f0265"
+  },
+  "check_native_gemma4_replay_synthetic.py": {
+    "original": "var/review-tools/check_native_gemma4_replay_synthetic.py",
+    "sha256": "33bdbd80ce0e3db4036587d0c0b9af26f80439a99106fa177ffd6ca4d98317ed"
+  },
+  "gemma4-replay-core-selfcheck-f164b2a6cbcc46c2a4f51955bb5c6c82.json": {
+    "original": "var/research/gemma4-replay-core-selfcheck-f164b2a6cbcc46c2a4f51955bb5c6c82.json",
+    "sha256": "16fc25e7d46761d236a6dc70beaaca83afb3dbeb9b6f8c13440bb40b0d9c7309"
+  }
+}

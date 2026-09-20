@@ -1,0 +1,28 @@
+{
+  "kind": "GEMMA4_GGUF_AUDITOR_CPU_SYNTHETIC_PROOF",
+  "status": "PASS",
+  "created_utc": "2026-09-20T08:41:02.394641+00:00",
+  "helper_sha256": "1fddda7d091ce617e04b696e1feef779563cef34c0028fc9ee1cc0065472ab7a",
+  "test_sha256": "498c107f7c15ca80a671bc237903438393053c876efe346d93e3e8b10ba14f0d",
+  "test_command": ".conda/bin/python -W error::ResourceWarning var/research/test_inspect_gemma4_gguf.py",
+  "tests_passed": 21,
+  "tests_seconds": 1.622,
+  "generic_functions_ast_identical_count": 8,
+  "prior_generic_helper_sha256": "cb8ef9e58aea7066c050d3e96da24708b4be4eae0c7c7498f879e2dddc41940c",
+  "expected_hf_text_index_names": 832,
+  "expected_gguf_tensors": 833,
+  "actual_gguf_read": false,
+  "native_execution": false,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "scope": [
+    "synthetic GGUF framing/size/quant row/padding/full digest",
+    "path ownership/symlink/hardlink/no-clobber",
+    "pinned public config/index and tokenizer JSON only",
+    "candidate header-summary mismatch rejection; no real tensor data"
+  ],
+  "limitations": [
+    "Actual GGUF not inspected; expected schema remains provisional until separate root-authorized audit.",
+    "No numerical tensor, tokenizer runtime, grammar, VRAM or semantic quality certification."
+  ]
+}

@@ -1,0 +1,465 @@
+// Gemma 4 CPU-only contract checker; pinned native HTTP/chat/fence/grammar.
+// No HTTP listener/client, decode, context, backend_init, or model inference.
+// stdin contains synthetic request/corpus; optional future GGUF is vocab-only.
+#include "server-common.h"
+#include "server-schema.h"
+#include "json-schema-to-grammar.h"
+#include "llama-grammar.h"
+#include "unicode.h"
+#include "log.h"
+#include <algorithm>
+#include <cstdlib>
+#include <fstream>
+#include <iostream>
+#include <limits>
+#include <memory>
+#include <stdexcept>
+#include <string>
+#include <vector>
+#include <atomic>
+#include <thread>
+#include <cerrno>
+#include <unistd.h>
+#include <cmath>
+#include <cctype>
+#include <sys/resource.h>
+
+static int check_line = 0;
+static int check_stage = 0;
+static bool parity_mismatch_observed = false;
+static bool parity_native_roundtrip_original = false;
+static bool parity_expected_roundtrip_original = false;
+static size_t parity_native_tokens = 0;
+static size_t parity_expected_tokens = 0;
+static size_t parity_cases_checked = 0;
+static size_t parity_id_matches = 0;
+static uint64_t parity_mismatch_mask = 0;
+static size_t parity_native_roundtrip_cases = 0;
+static size_t parity_expected_roundtrip_cases = 0;
+static void ensure_at(bool good, int line) {
+    if (!good) { check_line = line; throw std::runtime_error("CHECK_FAILED"); }
+}
+#define ensure(good) ensure_at((good), __LINE__)
+// Direct fprintf(stderr) is used by the schema converter. Count and discard
+// bytes in memory; no stderr text is retained on disk or copied into reports.
+class stderr_counter {
+    int saved = -1;
+    int reader = -1;
+    std::thread drain;
+    std::atomic<size_t> bytes{0};
+public:
+    stderr_counter() {
+        int ends[2];
+        ensure(pipe(ends) == 0);
+        reader = ends[0];
+        saved = dup(STDERR_FILENO);
+        if (saved < 0 || dup2(ends[1], STDERR_FILENO) < 0) {
+            close(ends[0]); close(ends[1]);
+            if (saved >= 0) close(saved);
+            throw std::runtime_error("CAPTURE_FAILED");
+        }
+        close(ends[1]);
+        try {
+            drain = std::thread([this]() {
+                char scratch[4096];
+                for (;;) {
+                    const auto n = read(reader, scratch, sizeof(scratch));
+                    if (n > 0) bytes += static_cast<size_t>(n);
+                    else if (n < 0 && errno == EINTR) continue;
+                    else break;
+                }
+            });
+        } catch (...) {
+            dup2(saved, STDERR_FILENO); close(saved); close(reader);
+            saved = reader = -1;
+            throw;
+        }
+    }
+    size_t finish() {
+        if (saved >= 0) {
+            fflush(stderr);
+            int restored;
+            do { restored = dup2(saved, STDERR_FILENO); } while (restored < 0 && errno == EINTR);
+            if (restored < 0) close(STDERR_FILENO); // Ensure EOF; never deadlock on a pipe writer.
+            close(saved); saved = -1;
+            if (drain.joinable()) drain.join();
+            close(reader); reader = -1;
+        }
+        return bytes.load();
+    }
+    ~stderr_counter() { finish(); }
+};
+static std::string read_bounded(std::istream & in, size_t cap) {
+    std::string out;
+    char chunk[8192];
+    while (in) {
+        in.read(chunk, sizeof(chunk));
+        auto n = in.gcount();
+        ensure(out.size() + static_cast<size_t>(n) <= cap);
+        out.append(chunk, static_cast<size_t>(n));
+    }
+    return out;
+}
+static std::string read_file(const char * name, size_t cap) {
+    std::ifstream in(name, std::ios::binary);
+    ensure(in.good());
+    return read_bounded(in, cap);
+}
+static bool accepts(const std::string & grammar_text, const std::string & input) {
+    std::unique_ptr<llama_grammar, decltype(&llama_grammar_free_impl)> grammar(
+        llama_grammar_init_impl(nullptr, grammar_text.c_str(), "root", false,
+                                nullptr, 0, nullptr, 0), &llama_grammar_free_impl);
+    ensure(grammar != nullptr);
+    size_t offset = 0;
+    try {
+        while (offset < input.size()) {
+            auto codepoint = unicode_cpt_from_utf8(input, offset);
+            llama_grammar_accept_token(*grammar, 0, unicode_cpt_to_utf8(codepoint));
+            if (llama_grammar_get_stacks(grammar.get()).empty()) return false;
+        }
+    } catch (const std::exception &) { return false; }
+    const auto & stacks = llama_grammar_get_stacks(grammar.get());
+    return std::any_of(stacks.begin(), stacks.end(), [](const auto & s) { return s.empty(); });
+}
+// Mirror common/sampling.cpp's eager output-format grammar prefill, then
+// constrain actual vocab token candidates. This path runs only with the
+// optional, audited vocab-only model; it creates no context or logits.
+static bool accepts_tokens(const llama_vocab * vocab, const std::string & grammar_text,
+                           const std::string & generation_prompt, const std::string & input) {
+    ensure(vocab != nullptr);
+    std::unique_ptr<llama_grammar, decltype(&llama_grammar_free_impl)> grammar(
+        llama_grammar_init_impl(vocab, grammar_text.c_str(), "root", false,
+                                nullptr, 0, nullptr, 0), &llama_grammar_free_impl);
+    ensure(grammar != nullptr);
+    const auto prefix_tokens = common_tokenize(vocab, generation_prompt, false, true);
+    std::string prefix_pieces;
+    for (size_t i = 0; i < prefix_tokens.size(); ++i) {
+        const auto piece = common_token_to_piece(vocab, prefix_tokens[i], true);
+        ensure(!piece.empty());
+        if (i == 0 && std::isspace(static_cast<unsigned char>(piece[0])) &&
+            !generation_prompt.empty() &&
+            !std::isspace(static_cast<unsigned char>(generation_prompt[0]))) continue;
+        prefix_pieces += piece;
+        // Native prefill accepts tokens directly; it does not sample them.
+        llama_grammar_accept_impl(*grammar, prefix_tokens[i]);
+    }
+    ensure(prefix_pieces == generation_prompt);
+    const auto output_tokens = common_tokenize(vocab, input, false, true);
+    std::string output_pieces;
+    for (const auto token : output_tokens) output_pieces += common_token_to_piece(vocab, token, true);
+    ensure(output_pieces == input);
+    const auto eos = llama_vocab_eos(vocab);
+    ensure(eos >= 0 && llama_vocab_is_eog(vocab, eos));
+    try {
+        for (const auto token : output_tokens) {
+            // An EOG is a completion boundary, never a literal JSON byte.
+            if (llama_vocab_is_eog(vocab, token)) return false;
+            llama_token_data candidate{token, 0.0f, 0.0f};
+            llama_token_data_array candidates{&candidate, 1, -1, false};
+            llama_grammar_apply_impl(*grammar, &candidates);
+            if (!std::isfinite(candidate.logit)) return false;
+            llama_grammar_accept_impl(*grammar, token);
+        }
+        llama_token_data end{eos, 0.0f, 0.0f};
+        llama_token_data_array ending{&end, 1, -1, false};
+        llama_grammar_apply_impl(*grammar, &ending);
+        return std::isfinite(end.logit);
+    } catch (const std::exception &) { return false; }
+}
+static void silent_log(ggml_log_level, const char *, void *) {}
+static json request_parse(json request, const server_chat_params & options, const json & schema) {
+    ensure(request.at("response_format").at("type") == "json_schema");
+    ensure(request.at("response_format").at("json_schema").at("schema") == schema);
+    ensure(request.at("chat_template_kwargs").at("enable_thinking").is_boolean());
+    ensure(request.at("chat_template_kwargs").at("enable_thinking") == false);
+    ensure(options.reasoning_format == COMMON_REASONING_FORMAT_DEEPSEEK);
+    if (request.contains("reasoning_format")) ensure(request.at("reasoning_format") == "deepseek");
+    ensure(request.at("stream") == false);
+    ensure(!request.contains("grammar") && !request.contains("guided_json") &&
+           !request.contains("structured_outputs") && !request.contains("tools"));
+    std::vector<raw_buffer> files;
+    auto native = oaicompat_chat_params_parse(request, options, files);
+    ensure(files.empty());
+    ensure(native.contains("grammar") && !native.at("grammar").get<std::string>().empty());
+    // This first candidate is nonthinking. A lazy grammar requires a distinct,
+    // explicitly tested token-trigger replay before it can be accepted.
+    ensure(native.at("grammar_lazy") == false);
+    // Gemma registers a tool marker even for eager response-format grammar.
+    // Eager mode means it cannot defer enforcement or enable tools.
+    ensure(native.at("grammar_triggers").is_array());
+    ensure(native.at("grammar_triggers").size() == 1);
+    ensure(native.contains("chat_parser"));
+    return native;
+}
+
+int main(int argc, char ** argv) {
+    std::unique_ptr<stderr_counter> stderr_capture;
+    try {
+        // Fail before reading any request/template/model data if core dumps
+        // cannot be disabled. The invocation wrapper enforces the same bound.
+        const rlimit no_core{0, 0};
+        ensure(setrlimit(RLIMIT_CORE, &no_core) == 0);
+        ensure(argc == 3 || argc == 4);
+        const char * visible = std::getenv("CUDA_VISIBLE_DEVICES");
+        ensure(visible != nullptr && std::string(visible).empty());
+        stderr_capture = std::make_unique<stderr_counter>();
+        common_log_set_verbosity_thold(-1);
+        llama_log_set(silent_log, nullptr);
+        // argv1 is verified template; argv2 exact schema. Optional argv3 is the
+        // already header/SHA-audited GGUF; runner must bind paths/hashes first.
+        const auto template_text = read_file(argv[1], 128 * 1024);
+        const auto schema = json::parse(read_file(argv[2], 128 * 1024));
+        const auto bundle = json::parse(read_bounded(std::cin, 16 * 1024 * 1024));
+        ensure(schema.is_object() && !schema.empty());
+        ensure(bundle.at("cases").is_array() && bundle.at("cases").size() <= 128);
+        const auto standalone = json_schema_to_grammar(schema, true);
+        ensure(!standalone.empty());
+        server_chat_params options{};
+        options.use_jinja = true;
+        options.prefill_assistant = false;
+        options.reasoning_format = COMMON_REASONING_FORMAT_DEEPSEEK;
+        options.enable_thinking = false;
+        options.allow_image = options.allow_audio = options.allow_video = false;
+        options.force_pure_content = false;
+        options.chat_template_kwargs = {{"enable_thinking", "false"}};
+        options.tmpls = common_chat_templates_init(nullptr, template_text,
+                                                  "<bos>", "<eos>");
+        const auto native = request_parse(bundle.at("request"), options, schema);
+        // Parse the actual forwarded scalar fields through the native schema.
+        // Use only sampling fields here: grammar/reasoning token setup needs
+        // the optional real vocab and is tested by separate paths below.
+        json sampling_fields = json::object();
+        for (const auto * key : {"temperature","top_p","top_k","min_p","presence_penalty",
+                                "frequency_penalty","repeat_penalty","repeat_last_n","seed",
+                                "samplers","max_tokens"}) sampling_fields[key] = native.at(key);
+        common_params base;
+        base.reasoning_format = COMMON_REASONING_FORMAT_DEEPSEEK;
+        const auto parsed_sampling = server_schema::eval_llama_cmpl_schema(nullptr,base,{},sampling_fields);
+        const auto & sp = parsed_sampling.sampling;
+        ensure(std::abs(sp.temp-1.0f)<1e-6 && std::abs(sp.top_p-0.95f)<1e-6 &&
+               sp.top_k==64 && sp.min_p==0 && sp.penalty_present==0 && sp.penalty_freq==0 &&
+               sp.penalty_repeat==1 && sp.penalty_last_n==0 && sp.seed==42 && parsed_sampling.n_predict==768);
+        std::vector<std::string> sampler_names;
+        for (auto kind : sp.samplers) sampler_names.push_back(common_sampler_type_to_str(kind));
+        ensure(sampler_names == std::vector<std::string>({"temperature","top_k","top_p","min_p"}));
+        const auto native_grammar = native.at("grammar").get<std::string>();
+        common_chat_parser_params final_parser;
+        final_parser.format = static_cast<common_chat_format>(native.at("chat_format").get<int>());
+        final_parser.reasoning_format = COMMON_REASONING_FORMAT_DEEPSEEK;
+        final_parser.reasoning_in_content = false;
+        final_parser.generation_prompt = native.at("generation_prompt").get<std::string>();
+        final_parser.parser.load(native.at("chat_parser").get<std::string>());
+        final_parser.debug = false;
+        ensure(final_parser.format == COMMON_CHAT_FORMAT_PEG_GEMMA4);
+        auto fenced = [](const std::string & text) { return "```json\n" + text + "\n```"; };
+        size_t passing = 0, rejecting = 0;
+        for (const auto & entry : bundle.at("cases")) {
+            const auto text = entry.at("text").get<std::string>();
+            ensure(text.size() <= 65536 && entry.at("accept").is_boolean());
+            const bool expected = entry.at("accept").get<bool>();
+            ensure(accepts(standalone, text) == expected);
+            // Native output-format grammar starts before generation_prompt;
+            // the server sampler prefills that already-rendered assistant text.
+            ensure(accepts(native_grammar, final_parser.generation_prompt + fenced(text)) == expected);
+            if (expected) {
+                auto final = common_chat_parse(fenced(text), false, final_parser);
+                ensure(final.content == text && final.reasoning_content.empty() && final.tool_calls.empty());
+                ensure(final.to_json_oaicompat().at("content") == text);
+            }
+            expected ? ++passing : ++rejecting;
+        }
+        ensure(passing == 10 && rejecting == 20);
+        const auto valid_json = bundle.at("cases").at(0).at("text").get<std::string>();
+        std::vector<std::string> bad_native{
+            valid_json,
+            "```text\n" + valid_json + "\n```",
+            "<|tool_call>call:move{}<tool_call|>",
+            "<|channel>thought\nPUBLIC_UNFINISHED"
+        };
+        for (const auto & text : bad_native) {
+            ensure(!accepts(native_grammar, final_parser.generation_prompt + text));
+        }
+        // Public synthetic parser boundary only. No actual model reasoning is
+        // requested, read or written. Use the same Gemma parser, with the normal
+        // model-turn prefix, to ensure thought and content are distinct fields.
+        auto thought_parser = final_parser;
+        thought_parser.generation_prompt = "<|turn>model\n";
+        const std::string public_thought = "PUBLIC_SYNTHETIC_BOUNDARY";
+        const auto thought_wire = "<|channel>thought\n" + public_thought + "<channel|>" + fenced(valid_json);
+        ensure(accepts(native_grammar, thought_parser.generation_prompt + thought_wire));
+        const auto separated = common_chat_parse(thought_wire, false, thought_parser);
+        ensure(separated.content == valid_json && separated.reasoning_content == public_thought);
+        ensure(separated.tool_calls.empty());
+        ensure(separated.to_json_oaicompat().at("content") == valid_json);
+        json result = {{"status","PASS"}, {"kind","GEMMA4_NATIVE_CONTRACT_CPU_PREFLIGHT"},
+                       {"schema_cases_accepted",passing}, {"schema_cases_rejected",rejecting},
+                       {"native_final_content_exact_cases",passing},
+                       {"native_grammar_generation_prompt_prefilled",true},
+                       {"native_grammar_prefill_bytes",final_parser.generation_prompt.size()},
+                       {"core_dump_limit_zero",true},
+                       {"native_sampling_schema_binding",true},
+                       {"native_request_grammar_nonempty",true}, {"grammar_lazy",false},
+                       {"grammar_triggers",native.at("grammar_triggers").size()},
+                       {"native_fence_rejection_cases",bad_native.size()},
+                       {"artificial_thought_split_cases",1},
+                       {"final_json_bytes_unchanged",true}, {"native_grammar_bytes",native_grammar.size()},
+                       {"standalone_grammar_bytes",standalone.size()},
+                       {"native_request_prompt_bytes",native.at("prompt").get<std::string>().size()},
+                       {"model_context_created",false}, {"backend_init_called",false},
+                       {"weight_tensors_loaded",false}, {"native_tokenization","NOT_RUN"}};
+        if (argc == 4) {
+            check_stage = 10;
+            // Root alone may enable this AFTER full GGUF SHA/header audit.
+            auto params = llama_model_default_params();
+            ggml_backend_dev_t devices[] = {nullptr};
+            params.devices = devices;
+            params.n_gpu_layers = 0;
+            params.vocab_only = true;
+            params.no_alloc = true;
+            params.load_mode = LLAMA_LOAD_MODE_NONE;
+            params.load_mtp = false;
+            std::unique_ptr<llama_model, decltype(&llama_model_free)> model(
+                llama_model_load_from_file(argv[3], params), &llama_model_free);
+            check_stage = 11;
+            ensure(model != nullptr);
+            const auto * vocab = llama_model_get_vocab(model.get());
+            const char * embedded = llama_model_chat_template(model.get(), nullptr);
+            ensure(embedded != nullptr && template_text == embedded);
+            check_stage = 12;
+            options.tmpls = common_chat_templates_init(model.get(), "");
+            const auto actual_native = request_parse(bundle.at("request"), options, schema);
+            // chat.cpp removes the template BOS for vocab.add_bos=true;
+            // the runtime tokenizer then adds exactly one BOS. Metadata-only
+            // template initialization has no model flags, so keeps literal BOS.
+            // Compare that exact native behavior and the effective token IDs;
+            // never strip/normalize any application source or generated JSON.
+            ensure(llama_vocab_get_add_bos(vocab) && !llama_vocab_get_add_eos(vocab));
+            ensure(llama_vocab_bos(vocab) == 2);
+            const auto bos = common_token_to_piece(vocab, llama_vocab_bos(vocab), true);
+            ensure(bos == "<bos>");
+            const auto metadata_prompt = native.at("prompt").get<std::string>();
+            const auto actual_prompt = actual_native.at("prompt").get<std::string>();
+            ensure(metadata_prompt == bos + actual_prompt);
+            const auto metadata_tokens = common_tokenize(vocab, metadata_prompt, false, true);
+            const auto actual_tokens = common_tokenize(vocab, actual_prompt, true, true);
+            ensure(!actual_tokens.empty() && actual_tokens[0] == llama_vocab_bos(vocab));
+            ensure(metadata_tokens == actual_tokens);
+            result["native_bos_template_prefix_removed"] = true;
+            result["native_bos_added_by_tokenizer"] = true;
+            result["metadata_prompt_extra_bos_bytes"] = bos.size();
+            result["native_embedded_vs_external_effective_tokens_match"] = true;
+            ensure(actual_native.at("grammar") == native.at("grammar"));
+            ensure(actual_native.at("generation_prompt") == native.at("generation_prompt"));
+            check_stage = 20;
+            for (const auto & entry : bundle.at("cases")) {
+                ensure(accepts_tokens(vocab, native_grammar, final_parser.generation_prompt,
+                                      fenced(entry.at("text").get<std::string>())) == entry.at("accept").get<bool>());
+                ++check_stage;
+            }
+            result["native_vocab_grammar_cases_accepted"] = passing;
+            result["native_vocab_grammar_cases_rejected"] = rejecting;
+            result["native_vocab_grammar_eog_checked"] = true;
+            result["tokenizer_metadata_parity"] = "NOT_RUN";
+            if (bundle.contains("tokenizer_parity")) {
+                check_stage = 100;
+                const auto & parity = bundle.at("tokenizer_parity");
+                ensure(parity.is_array() && !parity.empty() && parity.size() <= 32);
+                for (const auto & entry : parity) {
+                    ensure(entry.is_object() && entry.size() == 2);
+                    const auto text = entry.at("text").get<std::string>();
+                    ensure(text.size() <= 8192);
+                    const auto & expected = entry.at("expected_token_ids");
+                    ensure(expected.is_array() && expected.size() <= 4096);
+                    std::vector<llama_token> expected_tokens;
+                    for (const auto & id : expected) {
+                        ensure(id.is_number_integer());
+                        const auto token_id = id.get<int64_t>();
+                        ensure(token_id >= 0 && token_id <= std::numeric_limits<llama_token>::max());
+                        ensure(token_id < llama_vocab_n_tokens(vocab));
+                        expected_tokens.push_back(static_cast<llama_token>(token_id));
+                    }
+                    const auto native_tokens = common_tokenize(vocab, text, false, true);
+                    const bool native_roundtrip = common_detokenize(vocab, native_tokens, true) == text;
+                    const bool expected_roundtrip = common_detokenize(vocab, expected_tokens, true) == text;
+                    parity_native_roundtrip_cases += native_roundtrip;
+                    parity_expected_roundtrip_cases += expected_roundtrip;
+                    if (native_tokens != expected_tokens) {
+                        parity_mismatch_observed = true;
+                        parity_native_tokens = native_tokens.size();
+                        parity_expected_tokens = expected_tokens.size();
+                        parity_native_roundtrip_original = native_roundtrip;
+                        parity_expected_roundtrip_original = expected_roundtrip;
+                        parity_mismatch_mask |= uint64_t{1} << parity_cases_checked;
+                    } else ++parity_id_matches;
+                    ++parity_cases_checked;
+                    ++check_stage;
+                }
+                // Observe every public fixture but preserve the exact gate:
+                // any token-ID mismatch still rejects this entire preflight.
+                ensure(!parity_mismatch_observed);
+                ensure(parity_native_roundtrip_cases == parity.size());
+                result["tokenizer_metadata_parity"] = "PASS";
+                result["tokenizer_metadata_parity_cases"] = parity.size();
+                result["tokenizer_native_roundtrip_cases"] = parity_native_roundtrip_cases;
+                result["tokenizer_expected_roundtrip_cases"] = parity_expected_roundtrip_cases;
+                const auto space_tokens = common_tokenize(vocab, " ", false, true);
+                ensure(space_tokens.size() == 1 && !llama_vocab_is_eog(vocab, space_tokens[0]));
+                ensure(common_detokenize(vocab, space_tokens, true) == " ");
+                result["resource_probe_token"] = json{{"text"," "},{"token_id",space_tokens[0]}};
+            }
+            ensure(bundle.at("context_requests").is_array() && bundle.at("context_requests").size() <= 200);
+            size_t largest = 0, smallest = std::numeric_limits<size_t>::max();
+            check_stage = 200;
+            for (const auto & request : bundle.at("context_requests")) {
+                const auto rendered = request_parse(request, options, schema).at("prompt").get<std::string>();
+                ensure(rendered.size() <= 128 * 1024);
+                int32_t n = llama_tokenize(vocab, rendered.data(), static_cast<int32_t>(rendered.size()),
+                                           nullptr, 0, true, true);
+                ensure(n < 0 && n != std::numeric_limits<int32_t>::min());
+                n = -n;
+                std::vector<llama_token> tokens(static_cast<size_t>(n));
+                ensure(llama_tokenize(vocab, rendered.data(), static_cast<int32_t>(rendered.size()),
+                                       tokens.data(), n, true, true) == n);
+                largest = std::max(largest, static_cast<size_t>(n));
+                smallest = std::min(smallest, static_cast<size_t>(n));
+                ++check_stage;
+            }
+            ensure(!bundle.at("context_requests").empty());
+            const size_t cap = bundle.at("max_output_tokens").get<size_t>();
+            ensure(cap == 768 && largest + cap <= 4096);
+            result["native_tokenization"] = "PASS_VOCAB_ONLY";
+            result["embedded_template_exact_match"] = true;
+            result["native_embedded_vs_external_grammar_match"] = true;
+            result["native_generation_prompt_byte_match"] = true;
+            result["input_count"] = bundle.at("context_requests").size();
+            result["min_input_tokens"] = smallest;
+            result["max_input_tokens"] = largest;
+            result["max_input_plus_output"] = largest + cap;
+        }
+        const auto stderr_bytes = stderr_capture->finish();
+        ensure(stderr_bytes == 0);
+        result["discarded_stderr_bytes"] = stderr_bytes;
+        std::cout << result.dump() << std::endl;
+        return 0;
+    } catch (const std::exception &) {
+        // Never echo exception.what(), source strings, model outputs, or tokens.
+        const auto stderr_bytes = stderr_capture ? stderr_capture->finish() : 0;
+        json failure = {{"kind","GEMMA4_NATIVE_CONTRACT_CPU_PREFLIGHT"},{"status","FAIL"},
+                        {"code","CHECK_FAILED"},{"stage",check_stage},{"check_line",check_line},
+                        {"discarded_stderr_bytes",stderr_bytes}};
+        if (parity_mismatch_observed) {
+            failure["parity_native_tokens"] = parity_native_tokens;
+            failure["parity_expected_tokens"] = parity_expected_tokens;
+            failure["parity_native_roundtrip_original"] = parity_native_roundtrip_original;
+            failure["parity_expected_roundtrip_original"] = parity_expected_roundtrip_original;
+            failure["parity_cases_checked"] = parity_cases_checked;
+            failure["parity_id_matches"] = parity_id_matches;
+            failure["parity_id_mismatches"] = parity_cases_checked - parity_id_matches;
+            failure["parity_mismatch_mask"] = parity_mismatch_mask;
+            failure["parity_native_roundtrip_cases"] = parity_native_roundtrip_cases;
+            failure["parity_expected_roundtrip_cases"] = parity_expected_roundtrip_cases;
+        }
+        std::cout << failure.dump() << std::endl;
+        return 1;
+    }
+}

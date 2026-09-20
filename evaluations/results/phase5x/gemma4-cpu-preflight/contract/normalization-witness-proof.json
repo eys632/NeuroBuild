@@ -1,0 +1,41 @@
+{
+  "kind": "GEMMA4_NATIVE_PUBLIC_NORMALIZATION_WITNESS",
+  "status": "FAIL_NATIVE_ORIGINAL_ROUNDTRIP",
+  "at_utc": "2026-09-20T09:02:34.920323+00:00",
+  "model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+  "revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+  "gguf_sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+  "header_sha256": "d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756",
+  "binary_sha256": "61abafb662bd944d10958c79cde6a5e308967af921beee6e63edcaa43e03a52d",
+  "cpp_sha256": "fecf647d431a3af0137f5e9459ddd8afece4e571d4a6a240dc2f4929acf9f20d",
+  "fixture_sha256": "42b2a10fdc4ebc066acb878a5a9e0c9e407affe0b91bc7d32145d8d360dc13e5",
+  "helper_sha256": "26ee9a6faa3776298362b502022ffd608e95c95762cd6393e0091e9f965ed2d3",
+  "official_hf_original_roundtrip": false,
+  "diagnosis": {
+    "status": "FAIL_NATIVE_ORIGINAL_ROUNDTRIP",
+    "official_ids_match_native": true,
+    "native_original_roundtrip": false,
+    "evidence": "Pinned C++ one-case control flow: ID mismatch guard passed, immediately following native raw-roundtrip guard failed",
+    "native_check_line": 400,
+    "classification_scope": "One explicit public witness; no universal tokenizer equivalence claim"
+  },
+  "native": {
+    "kind": "GEMMA4_NATIVE_CONTRACT_CPU_PREFLIGHT",
+    "status": "FAIL",
+    "code": "CHECK_FAILED",
+    "stage": 101,
+    "check_line": 400,
+    "discarded_stderr_bytes": 0
+  },
+  "exit_code": 1,
+  "bundle_sha256": "579ccf935f5a4194793d860909bb72f58925340a848ae2deedd609ce7fddc601",
+  "public_case_count": 1,
+  "original_public20_unchanged": true,
+  "input_output_repair": false,
+  "model_inference_calls": 0,
+  "gpu_or_http_calls": 0,
+  "limits": [
+    "This separate witness never changes the original 20-case reference or quality gates.",
+    "An observed roundtrip failure is retained; it does not prove application quotes can be copied for all Unicode."
+  ]
+}

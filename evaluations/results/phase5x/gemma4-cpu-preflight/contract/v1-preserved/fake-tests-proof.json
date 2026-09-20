@@ -1,0 +1,24 @@
+{
+  "kind": "GEMMA4_CPU_HELPER_FAKE_TESTS",
+  "status": "PASS",
+  "tests": 9,
+  "elapsed_seconds": 0.018,
+  "at_utc": "2026-09-20T08:48:25.328804+00:00",
+  "command": "CUDA_VISIBLE_DEVICES='' .conda/bin/python var/research/native-gemma4-contract/test_helpers.py",
+  "native_executable_calls": 0,
+  "gguf_reads": 0,
+  "gpu_or_http_calls": 0,
+  "evaluation_body_reads": 0,
+  "sha256": {
+    "validator.cpp": "f9d05d6164ddae3c2550933cda1ad991259929caec370a354a05b16cd3459366",
+    "build.py": "5fa6eaff0e021d618b575f0c890095b8d28f910680b8c343ac86faa9b9adfcb4",
+    "build.json": "100b503c76394ffbe692a70af8a44e619d3475daccb7ad866215bd62c2880682",
+    "public_check.py": "e71bd656270b0f4ea3b5fde6c3c137fc415a3475b3cad32d005c583e1601e69d",
+    "public-proof.json": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334",
+    "prepare_tokenizer.py": "56f868a5f34226cdf3c2bac457d0cfa0c333eb771c9b307c18b1d28bce4a0680",
+    "tokenizer-fixture.json": "42b2a10fdc4ebc066acb878a5a9e0c9e407affe0b91bc7d32145d8d360dc13e5",
+    "vocab_check.py": "4a9b873df6a8a28d5123210b15215840a6f6dcb66f88d20a4923fe34121ef6c1",
+    "context_check.py": "5747ab35e2bb5c7562ec25904a551081e0ad7341e64b06d6ff085e00a000b552",
+    "test_helpers.py": "e2b23bbdfa2ec170cde7818053d8b627d2f158de38874db4207586240c9dafae"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "source_map": {
+    "report.json": "var/reports/gemma4-native-resource-epoch1/report.json"
+  },
+  "sha256": {
+    "report.json": "c758208cd614c8506b56a29dca612c5f8d2e0968fab70db47142b3ef0a5b7533"
+  }
+}

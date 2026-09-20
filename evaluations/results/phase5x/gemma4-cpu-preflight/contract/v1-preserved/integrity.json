@@ -1,0 +1,90 @@
+{
+  "status": "PRESERVED_V1_METADATA_TEMPLATE_PASS_MODEL_BOS_CHECK_FAILED",
+  "files": {
+    "validator.cpp": {
+      "original_path": "var/research/native-gemma4-contract/validator.cpp",
+      "bytes": 25000,
+      "sha256": "f9d05d6164ddae3c2550933cda1ad991259929caec370a354a05b16cd3459366"
+    },
+    "validator.o": {
+      "original_path": "var/research/native-gemma4-contract/validator.o",
+      "bytes": 245976,
+      "sha256": "9f06099630a44131aca7c80204aa1788f3ba02d105928f2571dadf8c19e76746"
+    },
+    "gemma4-cpu-validator": {
+      "original_path": "var/research/native-gemma4-contract/gemma4-cpu-validator",
+      "bytes": 11318488,
+      "sha256": "2ac32af5ab6ca89c8f49f66138596bb8e444d35123fec7701050b67e8c952784"
+    },
+    "build.py": {
+      "original_path": "var/research/native-gemma4-contract/build.py",
+      "bytes": 8826,
+      "sha256": "5fa6eaff0e021d618b575f0c890095b8d28f910680b8c343ac86faa9b9adfcb4"
+    },
+    "build.json": {
+      "original_path": "var/research/native-gemma4-contract/build.json",
+      "bytes": 9370,
+      "sha256": "100b503c76394ffbe692a70af8a44e619d3475daccb7ad866215bd62c2880682"
+    },
+    "build.log": {
+      "original_path": "var/research/native-gemma4-contract/build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "public_check.py": {
+      "original_path": "var/research/native-gemma4-contract/public_check.py",
+      "bytes": 8033,
+      "sha256": "e71bd656270b0f4ea3b5fde6c3c137fc415a3475b3cad32d005c583e1601e69d"
+    },
+    "public-proof.json": {
+      "original_path": "var/research/native-gemma4-contract/public-proof.json",
+      "bytes": 2478,
+      "sha256": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334"
+    },
+    "prepare_tokenizer.py": {
+      "original_path": "var/research/native-gemma4-contract/prepare_tokenizer.py",
+      "bytes": 4619,
+      "sha256": "56f868a5f34226cdf3c2bac457d0cfa0c333eb771c9b307c18b1d28bce4a0680"
+    },
+    "tokenizer-fixture.json": {
+      "original_path": "var/research/native-gemma4-contract/tokenizer-fixture.json",
+      "bytes": 5494,
+      "sha256": "42b2a10fdc4ebc066acb878a5a9e0c9e407affe0b91bc7d32145d8d360dc13e5"
+    },
+    "vocab_check.py": {
+      "original_path": "var/research/native-gemma4-contract/vocab_check.py",
+      "bytes": 10312,
+      "sha256": "4a9b873df6a8a28d5123210b15215840a6f6dcb66f88d20a4923fe34121ef6c1"
+    },
+    "public-vocab-proof.json": {
+      "original_path": "var/research/native-gemma4-contract/public-vocab-proof.json",
+      "bytes": 1373,
+      "sha256": "162136e4f1280f11262f5305381056345cab1ba04d904806127efec0125cdf32"
+    },
+    "context_check.py": {
+      "original_path": "var/research/native-gemma4-contract/context_check.py",
+      "bytes": 7339,
+      "sha256": "5747ab35e2bb5c7562ec25904a551081e0ad7341e64b06d6ff085e00a000b552"
+    },
+    "test_helpers.py": {
+      "original_path": "var/research/native-gemma4-contract/test_helpers.py",
+      "bytes": 3409,
+      "sha256": "e2b23bbdfa2ec170cde7818053d8b627d2f158de38874db4207586240c9dafae"
+    },
+    "fake-tests-proof.json": {
+      "original_path": "var/research/native-gemma4-contract/fake-tests-proof.json",
+      "bytes": 1300,
+      "sha256": "bce0559d310f0251e454703fff664ace3e38cfb4adcce27ed3e2ccb1b389476f"
+    },
+    "normalization_witness.py": {
+      "original_path": "var/research/native-gemma4-contract/normalization_witness.py",
+      "bytes": 5284,
+      "sha256": "002a8cabeacac5f0dc5a45935c3056172856e476888645647c9c38fd31dca807"
+    },
+    "README.md": {
+      "original_path": "var/research/native-gemma4-contract/README.md",
+      "bytes": 4807,
+      "sha256": "37afef4242d6854784e27dad70fd11cc2b75d263559c4689c5f94c76a1d67415"
+    }
+  }
+}

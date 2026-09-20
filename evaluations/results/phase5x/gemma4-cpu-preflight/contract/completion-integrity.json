@@ -1,0 +1,71 @@
+{
+  "kind": "GEMMA4_BOS_CPU_CORRECTION_PROOF",
+  "status": "COMPLETED_WITH_LITERAL_U2581_ROUNDTRIP_LIMITATION",
+  "created_utc": "2026-09-20T09:04:28.369670+00:00",
+  "new_fake_tests": 11,
+  "fake_test_seconds": 0.018,
+  "public20_native_parity": "PASS",
+  "input_length_cases": 200,
+  "literal_u2581_native_raw_roundtrip": "FAIL",
+  "gpu_http_model_generation_calls": 0,
+  "files": {
+    "validator_v2.cpp": {
+      "bytes": 26469,
+      "sha256": "fecf647d431a3af0137f5e9459ddd8afece4e571d4a6a240dc2f4929acf9f20d"
+    },
+    "build_v2.py": {
+      "bytes": 11152,
+      "sha256": "532aa0bf182f11f1dcd6ab1f8df03097f326e56c47ef244bb410693c1f691e4d"
+    },
+    "build-v2.json": {
+      "bytes": 11788,
+      "sha256": "1b6dce0e85790b267ec2514da8c81158c76b9d01a27aa6c2e584787a160e67ee"
+    },
+    "public_check_v2.py": {
+      "bytes": 8039,
+      "sha256": "1eed1877142a1382e46d0832513b8b3675a73937885235ee951e4158a685e013"
+    },
+    "vocab_check_v2.py": {
+      "bytes": 10709,
+      "sha256": "ee4231de917a8d0165dda17400d231e65caa6f84c96b0a3251c3a7afd7556c56"
+    },
+    "context_check_v2.py": {
+      "bytes": 7360,
+      "sha256": "3f7d41338adfed6bdac12cf6f604d8b317dd1dc505653ac83ca8c48c61223570"
+    },
+    "normalization_witness_v2.py": {
+      "bytes": 5296,
+      "sha256": "26ee9a6faa3776298362b502022ffd608e95c95762cd6393e0091e9f965ed2d3"
+    },
+    "test_helpers_v2.py": {
+      "bytes": 4138,
+      "sha256": "114b92d2b847694ad4bf94fad3b63a17c95b3c10bae5e6f6c2d0b61539c358bb"
+    },
+    "public-vocab-v2-proof.json": {
+      "bytes": 2915,
+      "sha256": "70886f2ad74ef3758fe839f13b4b6740e22cb749f8f0989a98ea376382cc09c6"
+    },
+    "vocab-context-v2-proof.json": {
+      "bytes": 5875,
+      "sha256": "06ef550b4ea48b3c3c65d631dafca06c85bd3d350311888b9bc5c86630caf64a"
+    },
+    "final-cpu-proof.json": {
+      "bytes": 4009,
+      "sha256": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d"
+    },
+    "normalization-witness-proof.json": {
+      "bytes": 1919,
+      "sha256": "bbb9ed28cdae06bb07a3f66949c2e23e59728324f74440be82b567f0a8662e73"
+    },
+    "README-v2.md": {
+      "bytes": 6242,
+      "sha256": "c318551e2e1ae9705c41141ec592cf1bf7bbc34e014e4173c435a3f5ef3521da"
+    }
+  },
+  "v1_preservation_integrity_sha256": "a2a60e6a51c926b8f55998f388550f4d17cdc29228503fd4b75b9ae046bd2d50",
+  "notes": [
+    "The first GGUF prompt-equality FAIL remains immutable.",
+    "Native source-supported BOS handling is tested without application input/output repair.",
+    "Official20 corpus was never changed after its creation."
+  ]
+}

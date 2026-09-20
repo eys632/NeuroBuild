@@ -1,0 +1,44 @@
+{
+  "kind": "GEMMA4_GGUF_AUDITOR_V2_CPU_PROOF",
+  "status": "PASS_TESTS_NOT_FULL_GGUF_AUDIT",
+  "created_utc": "2026-09-20T08:48:17.921292+00:00",
+  "helper_sha256": "eec3e66ef68e6d09a1c8f9c85247d149ffe4b66d57383ca29468d9af2c384ef5",
+  "test_sha256": "d369fb9111ffe43ab117a7261fd331adcb8b6a8cd3f7ff43dff92e6f85ce4463",
+  "tests_passed": 23,
+  "tests_seconds": 1.576,
+  "test_command": ".conda/bin/python -W error::ResourceWarning var/research/test_inspect_gemma4_gguf_v2.py",
+  "original_helper_sha256": "1fddda7d091ce617e04b696e1feef779563cef34c0028fc9ee1cc0065472ab7a",
+  "original_v1_preserved_directory": "var/research/gemma4-header-auditor-v1-preserved",
+  "metadata_diagnostic_sha256": "ffe0e7b1187081bf238e423272a3d265ccf793fe5bdca858c3e0d61bce035dc8",
+  "saved_metadata_candidate_validation": "PASS",
+  "saved_metadata_expected_tensors": 833,
+  "actual_dtype_counts": {
+    "f32": 422,
+    "q6_K": 1,
+    "q4_0": 410
+  },
+  "generic_functions_ast_unchanged": 8,
+  "runtime_source_sha256": {
+    "gguf-py/gguf/gguf_writer.py": "7e3ff8d04b290dde083ae30d1091b67c95299f6865958fe1cdcb7e35dd201766",
+    "ggml/include/ggml.h": "12ee71f99db7db9b353bc02b1fbb57c344ee17c01ac5fb7952b41a637a747ea9",
+    "ggml/src/ggml-common.h": "0061131b615c5721fc88a78feeb22c1f8c450f1c2646a317d80796a653bf595c",
+    "ggml/src/ggml-cuda/mmq.cu": "a35bb96dfc917c9026023482e24dcf47539fc08ccee1bb4236f40932e9fe540e",
+    "ggml/src/ggml-cuda/mmvq.cu": "d4c70f68ab79d463fd6fd52cac66a62e915858397ba4b2b7f658a7fbf13121f3",
+    "ggml/src/ggml-cuda/convert.cu": "8ebad5e72905e1218c93e3c636c8317896ba385b07d0c41a35a432ca88654c1c",
+    "conversion/gemma.py": "872f3fea7496cefdcd39308ad02e2d30c9f507f68a18f8b4f6962995b09350f5",
+    "src/models/gemma4.cpp": "765ee856e30b3ddc126fa75c8252e5fbca6bae0e11abd9b71f4c21d911810ecb",
+    "gguf-py/gguf/constants.py": "df0078c283a48061260ca4b3f35df36611230c3e7c2ac271bb8a11d2632839ba"
+  },
+  "fixed_expectations": [
+    "token_embd.weight Q6_K only; block256/210 bytes",
+    "head_count_kv array INT32 exactly; same 60 positive values",
+    "observed dtype distribution F32 422/Q4_0 410/Q6_K 1 exactly"
+  ],
+  "payload_full_sha_rechecked": false,
+  "model_calls": 0,
+  "native_calls": 0,
+  "gpu_calls": 0,
+  "largest_f32_matrix_bytes": 5637144576,
+  "whole_resource_estimate_mib": 28672,
+  "resource_estimate_status": "UNCHANGED_PLANNING_ESTIMATE_NOT_RUNTIME_VALIDATED"
+}

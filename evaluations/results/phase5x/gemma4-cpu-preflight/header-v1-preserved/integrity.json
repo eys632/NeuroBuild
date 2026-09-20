@@ -1,0 +1,26 @@
+{
+  "inspect_gemma4_gguf.py": {
+    "original": "var/research/inspect_gemma4_gguf.py",
+    "sha256": "1fddda7d091ce617e04b696e1feef779563cef34c0028fc9ee1cc0065472ab7a"
+  },
+  "test_inspect_gemma4_gguf.py": {
+    "original": "var/research/test_inspect_gemma4_gguf.py",
+    "sha256": "498c107f7c15ca80a671bc237903438393053c876efe346d93e3e8b10ba14f0d"
+  },
+  "gemma4-gguf-auditor-cpu-proof.json": {
+    "original": "var/research/gemma4-gguf-auditor-cpu-proof.json",
+    "sha256": "5054f9531119b8052600131cc833a6b014037cae0ee9e72b755688a07825c12b"
+  },
+  "gemma4-gguf-header-cli-first.json": {
+    "original": "var/reports/gemma4-gguf-header-cli-first.json",
+    "sha256": "ef62a3a78e861326d66e53204c1ff9e5e2b2e465a037704fa9220d722e91b68d"
+  },
+  "gemma4-gguf-header-first-failure-diagnosis.json": {
+    "original": "var/reports/gemma4-gguf-header-first-failure-diagnosis.json",
+    "sha256": "ce0572ca010604c03c8ba7ef06a73477ada4d98ea986e0388be48f36b1584db5"
+  },
+  "gemma4-gguf-header-metadata-diagnostic.json": {
+    "original": "var/reports/gemma4-gguf-header-metadata-diagnostic.json",
+    "sha256": "ffe0e7b1187081bf238e423272a3d265ccf793fe5bdca858c3e0d61bce035dc8"
+  }
+}

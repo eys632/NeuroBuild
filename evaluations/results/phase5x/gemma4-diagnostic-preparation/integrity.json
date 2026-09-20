@@ -1,0 +1,42 @@
+{
+  "source_map": {
+    "freeze_native_gemma4_diagnostic.py": "var/research/freeze_native_gemma4_diagnostic.py",
+    "test_freeze_native_gemma4_diagnostic.py": "var/research/test_freeze_native_gemma4_diagnostic.py",
+    "gemma4-freezer-synthetic-proof.json": "var/research/gemma4-freezer-synthetic-proof.json",
+    "gemma4-freezer-archive-link-proof.json": "var/research/gemma4-freezer-archive-link-proof.json",
+    "gemma4-freezer-props-link-proof.json": "var/research/gemma4-freezer-props-link-proof.json",
+    "replay_native_gemma4_exposed.py": "var/review-tools/replay_native_gemma4_exposed.py",
+    "check_native_gemma4_replay_synthetic.py": "var/review-tools/check_native_gemma4_replay_synthetic.py",
+    "check_native_gemma4_evidence_synthetic.py": "var/review-tools/check_native_gemma4_evidence_synthetic.py",
+    "gemma4-replay-core-selfcheck-f164b2a6cbcc46c2a4f51955bb5c6c82.json": "var/research/gemma4-replay-core-selfcheck-f164b2a6cbcc46c2a4f51955bb5c6c82.json",
+    "gemma4-replay-evidence-selfcheck-6700282b454f414fb8d54595c55e0bdc.json": "var/research/gemma4-replay-evidence-selfcheck-6700282b454f414fb8d54595c55e0bdc.json",
+    "gemma4-replay-evidence-selfcheck-e7c60ec30e244136adebb8865fa2a06e.json": "var/research/gemma4-replay-evidence-selfcheck-e7c60ec30e244136adebb8865fa2a06e.json",
+    "gemma4-replay-evidence-selfcheck-ef772177a7184f8da0c721c9ecd8dfaf.json": "var/research/gemma4-replay-evidence-selfcheck-ef772177a7184f8da0c721c9ecd8dfaf.json",
+    "run_native_gemma4_epoch1_probe.py": "var/research/run_native_gemma4_epoch1_probe.py",
+    "run_native_gemma4_epoch1_probe_v2.py": "var/research/run_native_gemma4_epoch1_probe_v2.py",
+    "draft-preserved/replay_native_gemma4_exposed.py": "var/review-tools/gemma4-replay-draft-preserved/replay_native_gemma4_exposed.py",
+    "draft-preserved/integrity.json": "var/review-tools/gemma4-replay-draft-preserved/integrity.json",
+    "draft-preserved/check_native_gemma4_replay_synthetic.py": "var/review-tools/gemma4-replay-draft-preserved/check_native_gemma4_replay_synthetic.py",
+    "draft-preserved/gemma4-replay-core-selfcheck-f164b2a6cbcc46c2a4f51955bb5c6c82.json": "var/review-tools/gemma4-replay-draft-preserved/gemma4-replay-core-selfcheck-f164b2a6cbcc46c2a4f51955bb5c6c82.json"
+  },
+  "sha256": {
+    "freeze_native_gemma4_diagnostic.py": "2f37aa29bfe71e49e14cc4a5e569e725e83a2f1effeec955c57e7276b8052ff6",
+    "test_freeze_native_gemma4_diagnostic.py": "d5ff248ee323b7a96858e9673da775012ba7e65c7554655f43534a822accc158",
+    "gemma4-freezer-synthetic-proof.json": "de68e0de387a5246df2272fc6421f2cf17a3d1d1349db307ea962cfea5353798",
+    "gemma4-freezer-archive-link-proof.json": "ef2a8edbbab4b9eca98e00b83a024116653bb92eecc2aa323c03f0134021f939",
+    "gemma4-freezer-props-link-proof.json": "5f8081d28b169e98dd993a4b92f37bfc6bcd6c7db47716f66295132122cf056b",
+    "replay_native_gemma4_exposed.py": "0ce14fc2a532eb5add9a02f0137ce3a7aec77ae5837b7a1942a96e7804c41ff0",
+    "check_native_gemma4_replay_synthetic.py": "33bdbd80ce0e3db4036587d0c0b9af26f80439a99106fa177ffd6ca4d98317ed",
+    "check_native_gemma4_evidence_synthetic.py": "6d8dcee0c109ffce2137b3cac12ebd458fc87823c6fb9c63e5f568e5a5e64d8f",
+    "gemma4-replay-core-selfcheck-f164b2a6cbcc46c2a4f51955bb5c6c82.json": "16fc25e7d46761d236a6dc70beaaca83afb3dbeb9b6f8c13440bb40b0d9c7309",
+    "gemma4-replay-evidence-selfcheck-6700282b454f414fb8d54595c55e0bdc.json": "1ba6c67cadbdff1754ca78b292b60961ab6bc8823f69ff9e2f6944f6f5d98c19",
+    "gemma4-replay-evidence-selfcheck-e7c60ec30e244136adebb8865fa2a06e.json": "578c2d21cc02163faa665321b4b326dd3db33eb96b6b292ff3277e68d3fa3e94",
+    "gemma4-replay-evidence-selfcheck-ef772177a7184f8da0c721c9ecd8dfaf.json": "50b409031cc6d5095b2d40b113a1917857671a6a6b3b2bf4393bc81925e67e6b",
+    "run_native_gemma4_epoch1_probe.py": "8afbbea59dae9fbc13cc4bd0d13e06eafa03e8685697bd7b88d552052db9ab71",
+    "run_native_gemma4_epoch1_probe_v2.py": "352efcf270e0ab894c35ad54b5bb2461257f8ffecd5af4b771ed3ba768f383b0",
+    "draft-preserved/replay_native_gemma4_exposed.py": "94c8a83a963da431032cac0c5a7c824be9603673a5b4ef656116fa45368f0265",
+    "draft-preserved/integrity.json": "9ef1ecd1b78b48d5fd5d907fda7988de4751c6df9496bb5736b9b1b7dfad8111",
+    "draft-preserved/check_native_gemma4_replay_synthetic.py": "33bdbd80ce0e3db4036587d0c0b9af26f80439a99106fa177ffd6ca4d98317ed",
+    "draft-preserved/gemma4-replay-core-selfcheck-f164b2a6cbcc46c2a4f51955bb5c6c82.json": "16fc25e7d46761d236a6dc70beaaca83afb3dbeb9b6f8c13440bb40b0d9c7309"
+  }
+}

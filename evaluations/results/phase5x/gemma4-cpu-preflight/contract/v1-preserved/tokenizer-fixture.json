@@ -1,0 +1,293 @@
+{
+  "kind": "GEMMA4_PUBLIC_TOKENIZER_PARITY_FIXTURE",
+  "status": "FIXTURE_ONLY_NATIVE_PARITY_NOT_RUN",
+  "upstream_revision": "1e4d8beecacb8b7590c1d8bedd7335f687bf311f",
+  "tokenizer_path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/tokenizer.json",
+  "tokenizer_sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+  "tokenizers_version": "0.21.2",
+  "add_special_tokens": false,
+  "native_expected_options": {
+    "add_special": false,
+    "parse_special": true
+  },
+  "case_count": 20,
+  "official_original_roundtrip_count": 20,
+  "official_original_roundtrip_mismatch_indices": [],
+  "normalization_witness": {
+    "kind": "PUBLIC_LITERAL_U2581",
+    "text": "literal ▁ and spaces",
+    "expected_token_ids": [
+      82951,
+      139,
+      624,
+      9952
+    ],
+    "decoded_text": "literal   and spaces",
+    "original_roundtrip": false
+  },
+  "tokenizer_parity": [
+    {
+      "text": "",
+      "expected_token_ids": []
+    },
+    {
+      "text": " ",
+      "expected_token_ids": [
+        236743
+      ]
+    },
+    {
+      "text": "\n",
+      "expected_token_ids": [
+        107
+      ]
+    },
+    {
+      "text": "  앞뒤 공백  ",
+      "expected_token_ids": [
+        138,
+        240213,
+        240832,
+        14907,
+        240015,
+        138
+      ]
+    },
+    {
+      "text": "검사실 책상을 X축 양의 방향으로 1m 옮겨줘.",
+      "expected_token_ids": [
+        240189,
+        231340,
+        72291,
+        68699,
+        1684,
+        240067,
+        45483,
+        237281,
+        134299,
+        7246,
+        236743,
+        236770,
+        236757,
+        193217,
+        240505,
+        242332,
+        236761
+      ]
+    },
+    {
+      "text": "Y축 -23.40cm",
+      "expected_token_ids": [
+        236874,
+        240067,
+        753,
+        236778,
+        236800,
+        236761,
+        236812,
+        236771,
+        3696
+      ]
+    },
+    {
+      "text": "X축 +0.125m, Y축 -2mm",
+      "expected_token_ids": [
+        236917,
+        240067,
+        900,
+        236771,
+        236761,
+        236770,
+        236778,
+        236810,
+        236757,
+        236764,
+        895,
+        240067,
+        753,
+        236778,
+        3951
+      ]
+    },
+    {
+      "text": "1/2m １ｍ 1⁄2m −X",
+      "expected_token_ids": [
+        236770,
+        236786,
+        236778,
+        236757,
+        236743,
+        238254,
+        240826,
+        236743,
+        236770,
+        241523,
+        236778,
+        236757,
+        14999,
+        236917
+      ]
+    },
+    {
+      "text": "문을 옮기지 말고 책상을 그대로 둔다.",
+      "expected_token_ids": [
+        177341,
+        193217,
+        237351,
+        237308,
+        219675,
+        72291,
+        68699,
+        114192,
+        236743,
+        243461,
+        237131,
+        236761
+      ]
+    },
+    {
+      "text": "조건이 충족되었는지 아직 모른다.",
+      "expected_token_ids": [
+        144063,
+        237077,
+        65720,
+        240221,
+        121029,
+        115924,
+        112201,
+        14108,
+        239234,
+        237131,
+        236761
+      ]
+    },
+    {
+      "text": "과거 메모\n현재 지시\t끝",
+      "expected_token_ids": [
+        237842,
+        237974,
+        214774,
+        107,
+        207300,
+        10384,
+        237462,
+        255968,
+        240694
+      ]
+    },
+    {
+      "text": "가나다 한글 ㄱㅏ é café",
+      "expected_token_ids": [
+        237272,
+        237610,
+        237131,
+        10601,
+        239723,
+        32228,
+        239793,
+        545,
+        238288,
+        33443
+      ]
+    },
+    {
+      "text": "한국어 😀 🧱 BIM IFC4",
+      "expected_token_ids": [
+        114216,
+        237430,
+        163543,
+        236743,
+        253367,
+        93788,
+        215455,
+        236812
+      ]
+    },
+    {
+      "text": "{\"decision\":\"READY\",\"reason\":null}",
+      "expected_token_ids": [
+        14937,
+        88276,
+        12375,
+        156274,
+        4337,
+        27388,
+        1083,
+        6455,
+        236783
+      ]
+    },
+    {
+      "text": "\"인용\"\\경로\n실제 줄바꿈",
+      "expected_token_ids": [
+        236775,
+        237558,
+        238034,
+        46312,
+        238136,
+        237323,
+        107,
+        238437,
+        237638,
+        60560,
+        238505,
+        242719
+      ]
+    },
+    {
+      "text": "json: null true false [] {}",
+      "expected_token_ids": [
+        3723,
+        236787,
+        2303,
+        1847,
+        2416,
+        2977,
+        8637
+      ]
+    },
+    {
+      "text": "<|turn>model\n",
+      "expected_token_ids": [
+        105,
+        4368,
+        107
+      ]
+    },
+    {
+      "text": "<|channel>thought\n<channel|>",
+      "expected_token_ids": [
+        100,
+        45518,
+        107,
+        101
+      ]
+    },
+    {
+      "text": "<turn|>",
+      "expected_token_ids": [
+        106
+      ]
+    },
+    {
+      "text": "한 물체의 두 축 이동과 서로 다른 두 물체의 이동",
+      "expected_token_ids": [
+        237384,
+        32334,
+        154831,
+        24370,
+        89885,
+        93763,
+        237842,
+        123550,
+        44695,
+        24370,
+        32334,
+        154831,
+        93763
+      ]
+    }
+  ],
+  "scope": "Explicit public synthetic strings only; no evaluation dataset or model outputs",
+  "helper_sha256": "56f868a5f34226cdf3c2bac457d0cfa0c333eb771c9b307c18b1d28bce4a0680"
+}

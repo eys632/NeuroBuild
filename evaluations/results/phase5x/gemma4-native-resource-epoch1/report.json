@@ -1,0 +1,70 @@
+{
+  "application_input_output_nfc_repair": false,
+  "chat_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+  "cpu_checks_rerun": false,
+  "cpu_proof_kind": "GEMMA4_NATIVE_CONTRACT_CPU_PROOF",
+  "cpu_proof_refs": {
+    "public_contract": {
+      "path": "var/research/native-gemma4-contract/public-proof.json",
+      "sha256": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334"
+    },
+    "tokenizer_fixture": {
+      "path": "var/research/native-gemma4-contract/tokenizer-fixture.json",
+      "sha256": "42b2a10fdc4ebc066acb878a5a9e0c9e407affe0b91bc7d32145d8d360dc13e5"
+    },
+    "vocab_context": {
+      "path": "var/research/native-gemma4-contract/vocab-context-v2-proof.json",
+      "sha256": "06ef550b4ea48b3c3c65d631dafca06c85bd3d350311888b9bc5c86630caf64a"
+    }
+  },
+  "cpu_proof_sha256": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d",
+  "cpu_source_sha256": {
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "68c086f08bf2c3f5d6464f689baa8e628c8c33664397db06868c26cb6dd0d763"
+  },
+  "elapsed_seconds": 25.059090151451528,
+  "generated_body_retained": false,
+  "grammar_enabled": false,
+  "guard_after_sha256": "306985f08c4c4c4ea7f50205880a44a77ae07fc45297aaf7a8ead306689f3bf3",
+  "guard_aggregate_increment_limit_mib": 28672,
+  "guard_aggregate_peak_mib": 18864,
+  "guard_before_sha256": "8fb99e9026f98c4255b3d3665e12f81b3b39db1b58bdf16c9db3cf5e1a6c34ad",
+  "guard_minimum_observed_free_mib": 17510,
+  "guard_required_free_floor_mib": 7275,
+  "guard_started_at_utc": "2026-09-20T09:03:36.703119+00:00",
+  "http_post_calls": 1,
+  "kind": "GEMMA4_NATIVE_PUBLIC_CONTEXT_RESOURCE_PROBE",
+  "launch_config_sha256": "14cb239f83d6997d01490bf3889aa1605d53a06aa8a9b2d63491dc25430b40dc",
+  "lifetime_aggregate_values_not_probe_isolated": true,
+  "listener_report_sha256": "dc80e7cf5d5402c358ed79b096b1f71350908137eb9bc947ca6e0f4a31ced9c8",
+  "model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+  "model_revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+  "not_a_per_process_peak_measurement": true,
+  "official_tokenizer_parity": {
+    "case_count": 20,
+    "id_match_count": 20,
+    "native_original_roundtrip_count": 20,
+    "status": "PASS"
+  },
+  "pid": 3598326,
+  "probe_scope": "3328 uncached prompt tokens + 768 sampled tokens; 4095 cached positions",
+  "process_start_ticks": 477865222,
+  "quality_evaluation": false,
+  "request_sha256": "65bf7943ce06626dce778d4b7ace594f8cd9a65f61562ff96087c4a0e3829a1e",
+  "status": "PASS",
+  "stop": true,
+  "stop_type": "limit",
+  "timings/predicted_ms": 20791.492,
+  "timings/predicted_n": 768,
+  "timings/prompt_ms": 4257.199,
+  "timings/prompt_n": 3328,
+  "tokenizer_contract": "official_qat_metadata_native_public_parity_20_of_20",
+  "tokenizer_json_sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+  "tokens_cached": 4095,
+  "tokens_evaluated": 3328,
+  "tokens_predicted": 768,
+  "truncated": true
+}

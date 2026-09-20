@@ -1,0 +1,28 @@
+{
+  "kind": "GEMMA4_FREEZER_SYNTHETIC_CPU_PROOF",
+  "status": "PASS_TESTS_ONLY_REAL_PREREQUISITES_PENDING",
+  "at_utc": "2026-09-20T09:00:55.706870+00:00",
+  "helper_sha256": "c6bc91ffe34593958e373de36aa7e39e966cdad6628f0d5a3386d4f68d2107ee",
+  "tests_sha256": "790d09dec38c485a15dead615057db848cd187d3ba10f30a24c65e979101f797",
+  "tests": 9,
+  "seconds": 0.01,
+  "command": ".conda/bin/python -W error::ResourceWarning var/research/test_freeze_native_gemma4_diagnostic.py",
+  "actual_freeze_created": false,
+  "actual_prerequisite_validation_run": false,
+  "actual_process_queries": 0,
+  "http_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "dataset_body_reads": 0,
+  "historical125_replays": 0,
+  "scope": [
+    "saved-only proof/epoch/hash identity fake checks",
+    "public onecall/body discard and resource floor/peak tamper rejection",
+    "live observation fake guard/current epoch; no inventedcompletiontime gate",
+    "duplicate JSON and forbiddenweight hash path rejection",
+    "incomplete prerequisite mockedmain leaves nofreeze"
+  ],
+  "limitations": [
+    "Real CPU aggregate, archive and runtime evidence still required; synthetic proof is not their substitute."
+  ]
+}

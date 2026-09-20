@@ -1,0 +1,38 @@
+{
+  "kind": "GEMMA4_RUNTIME_PROBE_FAKE_CPU_TESTS",
+  "status": "PASS",
+  "at_utc": "2026-09-20T08:44:46.541522+00:00",
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 0.02,
+  "command": ".conda/bin/python -B var/research/test_gemma4_runtime_probe.py",
+  "sha256": {
+    "var/research/gemma4_runtime_probe.py": "b2fc0a4f820879e6e97d4609230c9ef50281ad40d0aa5156dae4bd92d5f7f694",
+    "var/research/test_gemma4_runtime_probe.py": "1af9f8365830d2a0b46667d11a4c01c88915201532568cd17bf84afecb078070",
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63",
+    "src/neurobuild/infrastructure/local_model.py": "68c086f08bf2c3f5d6464f689baa8e628c8c33664397db06868c26cb6dd0d763",
+    "scripts/evaluate_requirements.py": "4f9da8c7cd430625fbe0226ae8201d7bcb934834cef435740822b2df948c69e7"
+  },
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "native_binary_calls": 0,
+  "model_inference_calls": 0,
+  "process_queries": 0,
+  "production_files_changed": false,
+  "historical_qwen_probe_unchanged": true,
+  "scope": "Fake CPU controls only; aggregate Gemma native vocab/context proof and actual runtime remain pending",
+  "checks": [
+    "generic helper hash pin",
+    "Gemma model/header identity",
+    "official public parity and source/reference hash closure",
+    "context caps and frozen split hashes",
+    "health/models/props/template receipt",
+    "Q4_0 evaluator metadata",
+    "CPU gate before HTTP/process access",
+    "before/after own epoch binding",
+    "single Gemma production-client invocation",
+    "single bounded scalar-only context probe",
+    "startup bundle cross-hashes"
+  ]
+}

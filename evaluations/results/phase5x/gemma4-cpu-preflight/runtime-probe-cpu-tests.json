@@ -1,0 +1,45 @@
+{
+  "kind": "GEMMA4_RUNTIME_PROBE_FAKE_CPU_TESTS",
+  "status": "PASS",
+  "at_utc": "2026-09-20T08:51:13.611246+00:00",
+  "tests": 11,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 0.022,
+  "command": ".conda/bin/python -B var/research/test_gemma4_runtime_probe.py",
+  "sha256": {
+    "var/research/gemma4_runtime_probe.py": "e2b7fdc53b37e51af2d358bafdf30e051c377a3e2b3e1a2207736079df6695e0",
+    "var/research/test_gemma4_runtime_probe.py": "5154c6ef77b952d4ad6ffd209d1a67b158035cc5531911914fabfe2eea49fecd",
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63",
+    "src/neurobuild/infrastructure/local_model.py": "68c086f08bf2c3f5d6464f689baa8e628c8c33664397db06868c26cb6dd0d763",
+    "scripts/evaluate_requirements.py": "4f9da8c7cd430625fbe0226ae8201d7bcb934834cef435740822b2df948c69e7"
+  },
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "native_binary_calls": 0,
+  "model_inference_calls": 0,
+  "process_queries": 0,
+  "production_files_changed": false,
+  "historical_qwen_probe_unchanged": true,
+  "scope": "Fake CPU controls only; aggregate Gemma native vocab/context proof and actual runtime remain pending",
+  "checks": [
+    "generic helper hash pin",
+    "Gemma model/header identity",
+    "official public parity and source/reference hash closure",
+    "context caps and frozen split hashes",
+    "health/models/props/template receipt",
+    "Q4_0 evaluator metadata",
+    "CPU gate before HTTP/process access",
+    "before/after own epoch binding",
+    "single Gemma production-client invocation",
+    "single bounded scalar-only context probe",
+    "startup bundle cross-hashes",
+    "Exact aggregate protocol, sampling profile and pinned source commit; three mismatch controls"
+  ],
+  "supersedes": {
+    "path": "var/research/gemma4-runtime-probe-cpu-proof.json",
+    "sha256": "0a177b1263f57c6d42df4c8ca7aece7365f8508249cae7b6131834c6fb54205e"
+  },
+  "preserved_previous_helper": "var/research/gemma4_runtime_probe-v1-preserved.py",
+  "preserved_previous_tests": "var/research/test_gemma4_runtime_probe-v1-preserved.py"
+}

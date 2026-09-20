@@ -1,13 +1,20 @@
 # Gemma 4 31B QAT Q4_0: A100 사전 자원 계획
 
-2026-09-20. **PRELIMINARY_SOURCE_ESTIMATE — 모델 미다운로드, GGUF header 미검증,
-Gemma GPU 기동·inference·peak 측정 없음.** 이 검토는 source/config/기존 build
-메타데이터만 읽었다. 이전 Qwen peak를 새 모델의 실측값으로 사용하지 않는다.
+2026-09-20. **MODEL_SPECIFIC_RESOURCE_PASS — 다운로드·전체 SHA·header·CPU 계약과
+Gemma GPU3 startup/public/resource 검증 완료.** 아래 source 추정에 실제 header를 대조했다.
+이전 Qwen peak를 새 모델의 실측값으로 사용하지 않는다.
+
+첫 epoch1의 사전5표본은 free36,373MiB/util0%, safety7,275MiB/예산29,098MiB였다.
+새 모델의3328 token prefill+768 decode는25.059초에 완료했고4095 cached positions를 확인했다.
+이 시점까지 aggregate 증가 최대18,864MiB/최소 free17,510MiB로 추정과 floor 안에 있다.
+이는 process별 peak·완료 epoch의 최종 peak·모든 입력의 수학적 상한이 아니다.
+[자원 증거](../evaluations/results/phase5x/gemma4-native-resource-epoch1/report.json).
+기존 binary/driver 검사는 재사용했으며 같은 자원 probe를 자동 반복하지 않는다.
 
 결론: 아래 고정 조건과 실제 GGUF 검증을 전제로 **전체 peak 계획값 28,672 MiB**는
 합리적인 보수 추정이다. 큰 미계상 버퍼가 반드시 필요하다는 source 근거는 발견하지
 못했다. 그러나 graph와 driver 비용은 여전히 allowance이며 수학적 상한·hard cap·
-기동 PASS가 아니다. 현재 조사만으로 12B로 낮춰야 할 구체적인 자원 blocker는 없다.
+기동 전에 사용한 추정값이다. 실제 제한 probe는 위와 같이 통과했으며 현재12B로 낮춰야 할 자원 blocker는 없다.
 header가 가정과 다르거나 남은 CPU gate가 실패하면 이 판단을 그대로 사용하지 않는다.
 
 ## 고정 범위와 입력
@@ -26,7 +33,7 @@ header가 가정과 다르거나 남은 CPU gate가 실패하면 이 판단을 �
 `google/gemma-4-31B-it-qat-q4_0-gguf@59dde24573e7e61570dba08b18a2e1fe246955ed`,
 파일 `gemma-4-31B_q4_0-it.gguf` 17,651,001,568 bytes,
 원격 LFS SHA `179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b`다.
-이는 실제 다운로드 hash 검증이 아니다.
+다운로드와 별도 header audit에서 실제 전체 파일 SHA가 일치했다.
 [고정 artifact metadata](https://huggingface.co/api/models/google/gemma-4-31B-it-qat-q4_0-gguf/revision/59dde24573e7e61570dba08b18a2e1fe246955ed?blobs=true).
 
 공식 QAT unquantized base
@@ -42,6 +49,16 @@ GGUF 카드의 QAT base 관계는 확인됐지만 GGUF 변환에 사용한 exact
 [QAT config](https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-unquantized/blob/1e4d8beecacb8b7590c1d8bedd7335f687bf311f/config.json).
 
 ## 전체 peak 계획 산술
+
+실제 header v2 증거 SHA는 `d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756`이다.
+833개 tensor 이름·shape가 일치하며 F32 422개, Q4_0 410개, Q6_K 1개다.
+Q6_K는 `token_embd.weight`에만 쓰인다. 첫 auditor는 이를 허용하지 않아 실패했고,
+추가 metadata 진단에서는 KV head 배열의 wire type을 U32로 예상한 오류도 확인했다.
+고정 writer는 정수 배열을 I32로 기록한다. 원래 검사기·실패를 보존하고 v2에서
+embedding의 Q6_K와 해당 배열 I32를 정확히 검사한다. 알 수 없는 type 허용이나 값 강제변환은 없다.
+Q6_K는 고정 CUDA MMQ/MMVQ/convert dispatch에서 지원한다. 전체 파일 bytes와 최대 행렬
+shape가 같아 아래 weight proxy·5,376MiB 변환 여유·전체28,672MiB 산술은 변하지 않는다.
+이는 아직 native GPU 실행 성공 증거가 아니다.
 
 | 항목 | 근거 | 계획 MiB |
 | --- | --- | ---: |

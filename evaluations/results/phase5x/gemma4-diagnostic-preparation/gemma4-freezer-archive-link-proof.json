@@ -1,0 +1,18 @@
+{
+  "kind": "GEMMA4_FREEZER_ARCHIVE_LINK_CPU_PROOF",
+  "status": "PASS_FOCUSED_FAKE_ONLY",
+  "helper_sha256": "98083e8842843f9396d3da0adcf9dd71d34ea5939e5ffe8bdb4e8475c7fae543",
+  "tests_sha256": "a0a9f79f6a8077e10c3f974eeb81906a76ef347270e3981e71f7d51e2ed36985",
+  "prior9tests_proof": "var/research/gemma4-freezer-synthetic-proof.json",
+  "prior9tests_proof_sha256": "de68e0de387a5246df2272fc6421f2cf17a3d1d1349db307ea962cfea5353798",
+  "new_test": "FreezeTests.test_archived_cpu_exactlink",
+  "tests": 1,
+  "seconds": 0.001,
+  "actual_freeze_created": false,
+  "actual_cpu_proof_read": false,
+  "actual_process_queries": 0,
+  "http_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "scope": "Archived CPU SHA must equal independent CLI pin and originalvarproof; mismatch rejects before runtime validation. PriorV2output exposure record pinned and collected."
+}

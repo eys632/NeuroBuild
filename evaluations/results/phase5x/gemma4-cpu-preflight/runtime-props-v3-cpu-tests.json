@@ -1,0 +1,46 @@
+{
+  "kind": "GEMMA4_PROPS_TEMPLATE_REPRESENTATION_CPU_REVIEW",
+  "status": "PASS",
+  "at_utc": "2026-09-20T09:08:43.415292+00:00",
+  "tests": 3,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 0.002,
+  "command": ".conda/bin/python -B var/research/test_gemma4_runtime_probe_v3.py",
+  "sha256": {
+    "var/research/gemma4_runtime_probe_v3.py": "14fdc596eea3a15a2a343c961e9080b05d876eac34d34b6f893a2c2cedd97a37",
+    "var/research/test_gemma4_runtime_probe_v3.py": "57f60aa9f4b2f727b3dd991d3f07f889d134169a0cfd323e125d33874972067f",
+    "var/research/run_native_gemma4_epoch1_probe_v2.py": "352efcf270e0ab894c35ad54b5bb2461257f8ffecd5af4b771ed3ba768f383b0",
+    "var/research/gemma4_runtime_probe.py": "e2b7fdc53b37e51af2d358bafdf30e051c377a3e2b3e1a2207736079df6695e0",
+    "var/research/run_native_gemma4_epoch1_probe.py": "8afbbea59dae9fbc13cc4bd0d13e06eafa03e8685697bd7b88d552052db9ab71",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/jinja/lexer.cpp": "3d6774bc2dac477e10ddbee69eff403df36f5925c8512ccf8a249bde5c26dbd7",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat.h": "12b3f8a287698b1b5f3f4e020e52162f5026b06596b55946fa865a4a0b3c4abc",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat.cpp": "ed5db316e93459c6528526633b11943f4b4611634c773b4eab30a66c1f4a91b3",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/tools/server/server-context.cpp": "2f5d65ce6ef0504b5c8cf55a74c68d3959c49784ba380ef836566b7a7d5fa12b"
+  },
+  "source_chain": [
+    "tools/server/server-context.cpp:4609 calls common_chat_templates_source",
+    "common/chat.cpp:744-754 returns template_default->source()",
+    "common/chat.h constructor preserves lexer_result.source in source()",
+    "common/jinja/lexer.cpp:54-57 removes exactly one terminal LF; earlier CR normalization is irrelevant for this no-CR source"
+  ],
+  "embedded_chat_template_bytes": 18683,
+  "embedded_chat_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+  "props_reported_template_bytes": 18682,
+  "props_reported_template_sha256": "6a1015c47ccfcfa67c3b772385bccee357a4d37c3cda37bd202e9047f391ab82",
+  "metadata_chat_template_sha256_meaning": "Original embedded/official template bytes, unchanged",
+  "application_input_output_repair": false,
+  "generic_whitespace_stripping": false,
+  "prior_startup_failure_preserved": true,
+  "production_files_changed": false,
+  "checks": [
+    "actual pinned public template exact LF derivation",
+    "reject raw-original/extra-LF/spaces/truncation/content edits/wrong model scalars",
+    "strict evaluator metadata keeps raw embedded hash"
+  ],
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "native_binary_calls": 0,
+  "epoch_process_queries": 0
+}
