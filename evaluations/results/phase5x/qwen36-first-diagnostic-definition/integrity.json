@@ -1,0 +1,185 @@
+{
+  "kind": "QWEN36_FIRST_DIAGNOSTIC_DEFINITIONS_ARCHIVE",
+  "entries": [
+    {
+      "archive": "README.md",
+      "source": "var/research/qwen36-first-diagnostic-draft/README.md",
+      "bytes": 5084,
+      "sha256": "be0a7ec521d9acd7d36e80d5b83474e7e45aedff39501a0318852fb033b68383"
+    },
+    {
+      "archive": "actual_cpu_binding.patch",
+      "source": "var/research/qwen36-first-diagnostic-draft/actual_cpu_binding.patch",
+      "bytes": 19195,
+      "sha256": "257aef864fd6f8dc76814cc4bf67a180b66b9b0af9cdf04082d4dd41978b4214"
+    },
+    {
+      "archive": "actual_cpu_binding_preparation.json",
+      "source": "var/research/qwen36-first-diagnostic-draft/actual_cpu_binding_preparation.json",
+      "bytes": 2614,
+      "sha256": "f31e1f05d994b23e16f35083accfbf9bab38040ce43a8da5ae001b6690484287"
+    },
+    {
+      "archive": "contract.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/contract.py",
+      "bytes": 20115,
+      "sha256": "a723d9580403add09cc23b4ee8267783a6bbe6abc8200e05953b7f66623d04a0"
+    },
+    {
+      "archive": "evidence.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/evidence.py",
+      "bytes": 12487,
+      "sha256": "becc7d4ce4f1c5e4736faa9d440f5e907b49c29a6350cd7f48d6041a7b32fb57"
+    },
+    {
+      "archive": "freeze_native_qwen36_diagnostic.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/freeze_native_qwen36_diagnostic.py",
+      "bytes": 10479,
+      "sha256": "ff352e7d58a09d42d541bb0142e2722d1d41b716472ff872a1b02a55bd5e84ff"
+    },
+    {
+      "archive": "history/post-actual-cpu-README.md",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/post-actual-cpu-README.md",
+      "bytes": 4493,
+      "sha256": "3f78ceae78e4ba5d5233fa039a9b8f77d2e3f379e608a948cb4694482711e881"
+    },
+    {
+      "archive": "history/pre-actual-cpu/README.md",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-actual-cpu/README.md",
+      "bytes": 4087,
+      "sha256": "efbdb527a0a41cd39bcab026502f1e08871e5e0bc53ff43960ec47f76b4d0f84"
+    },
+    {
+      "archive": "history/pre-actual-cpu/contract.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-actual-cpu/contract.py",
+      "bytes": 10419,
+      "sha256": "9ea3eb172bc1b4d53f0aeff50de1c8006c619e07ab204a0acd0da68b3f82cafb"
+    },
+    {
+      "archive": "history/pre-actual-cpu/evidence.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-actual-cpu/evidence.py",
+      "bytes": 12079,
+      "sha256": "978e1fc12958a95c8108abd8a885b4cca3cbe2f0e7e98e14c16793267838a879"
+    },
+    {
+      "archive": "history/pre-actual-cpu/freeze_native_qwen36_diagnostic.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-actual-cpu/freeze_native_qwen36_diagnostic.py",
+      "bytes": 10479,
+      "sha256": "ff352e7d58a09d42d541bb0142e2722d1d41b716472ff872a1b02a55bd5e84ff"
+    },
+    {
+      "archive": "history/pre-actual-cpu/preparation.json",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-actual-cpu/preparation.json",
+      "bytes": 2808,
+      "sha256": "e6589216227801b5ba502a9634ad1bb90c7a7f701306b4b9bad5bad89266fc9f"
+    },
+    {
+      "archive": "history/pre-actual-cpu/replay_native_qwen36_exposed.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-actual-cpu/replay_native_qwen36_exposed.py",
+      "bytes": 28111,
+      "sha256": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5"
+    },
+    {
+      "archive": "history/pre-runtime-activation/README.md",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-runtime-activation/README.md",
+      "bytes": 4508,
+      "sha256": "8e0a9fae1bea6e89fe448e3a72b08b6e5b2c92183bf53ae2ced7bf75ca3ea763"
+    },
+    {
+      "archive": "history/pre-runtime-activation/actual_cpu_binding.patch",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-runtime-activation/actual_cpu_binding.patch",
+      "bytes": 19195,
+      "sha256": "257aef864fd6f8dc76814cc4bf67a180b66b9b0af9cdf04082d4dd41978b4214"
+    },
+    {
+      "archive": "history/pre-runtime-activation/actual_cpu_binding_preparation.json",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-runtime-activation/actual_cpu_binding_preparation.json",
+      "bytes": 2614,
+      "sha256": "f31e1f05d994b23e16f35083accfbf9bab38040ce43a8da5ae001b6690484287"
+    },
+    {
+      "archive": "history/pre-runtime-activation/contract.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-runtime-activation/contract.py",
+      "bytes": 15788,
+      "sha256": "f730eb1eb858f4703328830200c0cb42e2698907d698f3a42ff778bc7ce85475"
+    },
+    {
+      "archive": "history/pre-runtime-activation/evidence.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-runtime-activation/evidence.py",
+      "bytes": 12487,
+      "sha256": "becc7d4ce4f1c5e4736faa9d440f5e907b49c29a6350cd7f48d6041a7b32fb57"
+    },
+    {
+      "archive": "history/pre-runtime-activation/freeze_native_qwen36_diagnostic.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-runtime-activation/freeze_native_qwen36_diagnostic.py",
+      "bytes": 10479,
+      "sha256": "ff352e7d58a09d42d541bb0142e2722d1d41b716472ff872a1b02a55bd5e84ff"
+    },
+    {
+      "archive": "history/pre-runtime-activation/preparation.json",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-runtime-activation/preparation.json",
+      "bytes": 2808,
+      "sha256": "e6589216227801b5ba502a9634ad1bb90c7a7f701306b4b9bad5bad89266fc9f"
+    },
+    {
+      "archive": "history/pre-runtime-activation/readme_header_clarification.json",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-runtime-activation/readme_header_clarification.json",
+      "bytes": 467,
+      "sha256": "5af636323fedd0e27a2ced813451b11f66d52e8c2910e338aa96c8ea4722f37e"
+    },
+    {
+      "archive": "history/pre-runtime-activation/replay_native_qwen36_exposed.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/history/pre-runtime-activation/replay_native_qwen36_exposed.py",
+      "bytes": 28111,
+      "sha256": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5"
+    },
+    {
+      "archive": "preparation.json",
+      "source": "var/research/qwen36-first-diagnostic-draft/preparation.json",
+      "bytes": 2808,
+      "sha256": "e6589216227801b5ba502a9634ad1bb90c7a7f701306b4b9bad5bad89266fc9f"
+    },
+    {
+      "archive": "readme_header_clarification.json",
+      "source": "var/research/qwen36-first-diagnostic-draft/readme_header_clarification.json",
+      "bytes": 467,
+      "sha256": "5af636323fedd0e27a2ced813451b11f66d52e8c2910e338aa96c8ea4722f37e"
+    },
+    {
+      "archive": "replay_native_qwen36_exposed.py",
+      "source": "var/research/qwen36-first-diagnostic-draft/replay_native_qwen36_exposed.py",
+      "bytes": 28111,
+      "sha256": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5"
+    },
+    {
+      "archive": "runtime_activation.json",
+      "source": "var/research/qwen36-first-diagnostic-draft/runtime_activation.json",
+      "bytes": 2834,
+      "sha256": "fd77b73c928cfd805c8ebd5c786f4dda3b82b9a8a7638da61d9dd0754eed454e"
+    },
+    {
+      "archive": "runtime_activation.patch",
+      "source": "var/research/qwen36-first-diagnostic-draft/runtime_activation.patch",
+      "bytes": 15002,
+      "sha256": "a560c7be9aac2416b7a0bd064c84abc5ec331801939dafad993fe81d17dfb8c3"
+    },
+    {
+      "archive": "freeze-stdout.log.txt",
+      "source": "var/research/qwen36-freeze-cli.log",
+      "bytes": 264,
+      "sha256": "5222a0904c57d11d194c16bd73368831e2ddd3bc7f35f8cce73671de65da4b9f"
+    },
+    {
+      "archive": "freeze-stderr.log.txt",
+      "source": "var/research/qwen36-freeze-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "archive": "final_independent_review.json",
+      "source": "var/research/qwen36-diagnostic-final-activation-independent-review.json",
+      "bytes": 3785,
+      "sha256": "8a38ab3c50eca206ba6533ee59d04362aa869d2853e70b537e3735b63dd815ce"
+    }
+  ]
+}

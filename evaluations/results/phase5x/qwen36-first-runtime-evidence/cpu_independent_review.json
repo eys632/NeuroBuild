@@ -1,0 +1,130 @@
+{
+  "kind": "QWEN36_SINGLE_PUBLIC_AND_CARRIED_CPU_INDEPENDENT_READ_REVIEW",
+  "status": "PASS_READ_REVIEW_NO_MATERIAL_FINDINGS",
+  "created_utc": "2026-09-20T16:55:59.791780+00:00",
+  "reviewed_sha256": {
+    "var/research/native-qwen36-contract/validator.cpp": "c55f66ab7909a921bdf8c429151cf71eb4cc17cc34a0578e65b709eae4c41ec8",
+    "var/research/native-qwen36-contract/build.py": "61760634036bd94e1922d6cb022ab6c2ffaf3cb30dc1c54d6bd2813a31196a0b",
+    "var/research/native-qwen36-contract/public_check.py": "7bb13bb7abd0fc596194d592d9f17b1ba5d5103d15dfae3193a0dd2c181f98fc",
+    "var/research/native-qwen36-contract/source-equivalence.json": "efd6529f1f2db9e7cdd4bd5fc24e8f31e0b8e87189ee1a8865c595d4e1bb2d66",
+    "var/research/native-qwen36-contract/build.json": "8d98d6d7e13e1fa597cc7e88b0c460ca7ebf6d713a94a99dc390f5798753e950",
+    "var/research/native-qwen36-contract/public-proof.json": "c87d48d3ce7a0621dfdbfcaa918e36664b88357a60e1dffb98e93c2dcdd0050c",
+    "var/research/native-qwen36-contract/produce_final.py": "ac904566519ccdf4d392dac17404ecf797286f5833963864a4c448d2eaa01301",
+    "var/research/native-qwen36-contract/final-cpu-proof.json": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+    "var/reports/qwen36-gguf-header.json": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9",
+    "var/reports/qwen36-qwen38-saved-tokenizer-comparison.json": "81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f"
+  },
+  "scope": "Independent source reading and saved scalar receipt inspection only; no reviewed helper import or invocation.",
+  "source_findings": [
+    "The new C++ main accepts only template and schema paths, consumes one public request, and never invokes the renamed historical main, GGUF loader, backend initialization, tokenizer corpus, model context or decode.",
+    "The wrapper captures one production request with a fake opener, then checks the complete effective system/user prompt and the fixed 41-byte nonthinking prefix through the pinned native parser. Native sampling, schema grammar and unchanged final JSON bytes are checked with one synthetic public fixture.",
+    "The build defines a new translation unit and binary while preserving the 194 pinned CPU objects and old source/binary; saved build evidence reports CUDA/dynamic backends/shared libraries disabled and no GPU ELF dependencies.",
+    "The selected-input source equivalence is restricted to nonempty system plus one text user message, no history/tools, nonthinking. It supports the exposed120 input-length carry with exact typed tokenizer equality, without asserting general template equivalence.",
+    "The aggregate reads pinned saved proofs and retains historical official NFC-reference 19/20 FAIL separately from historical raw-reference 20/20 PASS; it does not repair or normalize application input/output.",
+    "Only exposed120 lengths and the one-space resource token are carried. No old V2 or unused holdout input is opened by the aggregate; no new 20/120/200 execution or model quality result is claimed."
+  ],
+  "observed_saved_public": {
+    "status": "PASS",
+    "native": {
+      "kind": "QWEN36_NATIVE_SINGLE_PUBLIC_CPU_CHECK",
+      "status": "PASS",
+      "public_request_count": 1,
+      "native_full_system_user_prompt_exact": true,
+      "native_generation_prefix_exact": true,
+      "native_sampling_schema_binding": true,
+      "native_final_content_exact": true,
+      "native_trailing_suffix_rejected": true,
+      "grammar_lazy": false,
+      "grammar_triggers": 0,
+      "generation_prefix_bytes": 41,
+      "native_prompt_bytes": 9182,
+      "core_dump_limit_zero": true,
+      "discarded_stderr_bytes": 0,
+      "old_public_corpus_calls": 0,
+      "tokenizer_parity_cases": 0,
+      "context_requests": 0,
+      "gguf_opened": false,
+      "model_context_created": false,
+      "backend_init_called": false,
+      "weight_tensors_loaded": false,
+      "model_inference_calls": 0
+    },
+    "new_public_request_count": 1,
+    "native_process_count": 1,
+    "old_public_corpus_calls": 0,
+    "context_requests": 0,
+    "tokenizer_parity_cases": 0,
+    "model_inference_calls": 0,
+    "http_calls": 0,
+    "gpu_calls": 0
+  },
+  "observed_saved_aggregate": {
+    "status": "PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120",
+    "candidate_variant": "qwen36-gguf-raw-unicode-v1",
+    "proof_ref_count": 10,
+    "current_source_count": 5,
+    "splits": {
+      "exposed120": {
+        "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+        "input_count": 120,
+        "min_input_tokens": 2133,
+        "max_input_tokens": 2409,
+        "max_input_plus_output": 3177,
+        "measurement_kind": "CARRIED_FORWARD",
+        "measured_model_id": "ggml-org/Qwen3.8-27B-GGUF"
+      }
+    },
+    "historical_hf_equivalence": {
+      "status": "FAIL",
+      "case_count": 20,
+      "id_match_count": 19,
+      "mismatch_indices": [
+        11
+      ],
+      "native_original_roundtrip_count": 20
+    },
+    "historical_raw_reference": {
+      "status": "PASS",
+      "case_count": 20,
+      "id_match_count": 20,
+      "reference_kind": "hf-tokenizer-json-with-nfc-normalizer-disabled"
+    },
+    "template_input_equivalence": {
+      "status": "PASS",
+      "scope": "nonempty_system_single_user_text_no_history_no_tools_nonthinking",
+      "byte_exact_public_native_render": true,
+      "proof_ref": "source_equivalence"
+    },
+    "sampling_equivalent": false,
+    "application_input_output_nfc_repair": false,
+    "new_executions": {
+      "public_request_count": 1,
+      "native_compile_count": 1,
+      "context_request_count": 0,
+      "public_parity_cases": 0,
+      "old_corpus_replays": 0,
+      "model_inference": 0,
+      "http": 0,
+      "gpu": 0
+    }
+  },
+  "limits": [
+    "PASS concerns this bounded implementation and saved receipt consistency, not new runtime, resource or task quality certification.",
+    "Native final-content equality concerns a synthetic public JSON fixture, not generated model output.",
+    "This review did not rehash weight or binary payloads or rerun builds, public checks, corpus validation, regression or replay."
+  ],
+  "review_actions": {
+    "source_and_saved_metadata_read": true,
+    "helper_imports": 0,
+    "tests": 0,
+    "compiles": 0,
+    "native_calls": 0,
+    "http_calls": 0,
+    "gpu_calls": 0,
+    "process_queries": 0,
+    "weight_accesses": 0,
+    "dataset_body_reads": 0,
+    "result_replays": 0
+  },
+  "material_findings": []
+}

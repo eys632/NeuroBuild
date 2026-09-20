@@ -1,0 +1,1 @@
+{"status": "FROZEN_NOT_EVALUATED", "path": "evaluations/hardening_v1_exposed_native_qwen36_diagnostic_freeze.json", "sha256": "57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074", "candidate_variant": "qwen36-gguf-raw-unicode-v1", "bound_files": 69}

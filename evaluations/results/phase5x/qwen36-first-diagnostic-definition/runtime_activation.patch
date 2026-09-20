@@ -1,0 +1,103 @@
+--- history/pre-runtime-activation/contract.py
++++ contract.py
+@@ -3,8 +3,9 @@
+ """
+ from copy import deepcopy
+ from pathlib import Path
++import re
+ ROOT = Path('/home/a202192020/NeuroBuild_v2')
+-PREPARATION_STATUS = 'BLOCKED_ACTUAL_CPU_BOUND_PENDING_RUNTIME_SEVEN_AND_ROOT_ACTIVATION'
++PREPARATION_STATUS = 'FINAL_DEFINITION_READY_FOR_ROOT_SINGLE_FREEZE'
+ MODEL = 'ggml-org/Qwen3.6-35B-A3B-GGUF'
+ REVISION = 'baec3ebee244827cda0f4557eafa8b28f7545fa6'
+ UPSTREAM_MODEL = 'Qwen/Qwen3.6-35B-A3B'
+@@ -55,7 +56,7 @@
+ REGRESSION_LOG_SHA = '9d58d99b1a14b13072f819aa6588483e577248c022431031c289f5409823e68b'
+ REGRESSION_TEST_COUNT = 422
+ REGRESSION_TEST_SECONDS = 20.758
+-RUNTIME_SHA = {'evaluations/results/phase5x/qwen36-native-startup-epoch1/launch_config.json': None, 'evaluations/results/phase5x/qwen36-native-startup-epoch1/runtime_metadata.json': None, 'evaluations/results/phase5x/qwen36-native-startup-epoch1/resource_report.json': None, 'evaluations/results/phase5x/qwen36-native-startup-epoch1/listeners.json': None, 'evaluations/results/phase5x/qwen36-native-startup-epoch1/startup.json': None, 'evaluations/results/phase5x/qwen36-native-public-smoke-epoch1/report.json': None, 'evaluations/results/phase5x/qwen36-native-resource-epoch1/report.json': None}
++RUNTIME_SHA = {'evaluations/results/phase5x/qwen36-native-startup-epoch1/launch_config.json': '91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb', 'evaluations/results/phase5x/qwen36-native-startup-epoch1/resource_report.json': '36de9d1715b46b40b79df953f641420dad49d11ec161028532b36ba19e4a730b', 'evaluations/results/phase5x/qwen36-native-startup-epoch1/listeners.json': '6fe1bb9b6ff6a04d67b9924b267b1741a9efcffa98442888f34b30a827c43588', 'evaluations/results/phase5x/qwen36-native-startup-epoch1/startup.json': 'de2164b65aae1c814febc6aa24fb8f8ba3bb4cd1250c16ce30ad32b21eb02460', 'evaluations/results/phase5x/qwen36-native-startup-epoch1/runtime_metadata.json': '595a8a1e85759e0a28ad7d0cdfa2b425aebffdf2f622eeae5ae6721d6534230b', 'evaluations/results/phase5x/qwen36-native-public-smoke-epoch1/report.json': '2fcc64b9f8d3d04fec44ae7d12a642d6fc49a84a38d23c0d07ba6c6b2ba3f2e1', 'evaluations/results/phase5x/qwen36-native-resource-epoch1/report.json': '93bfba9560c5411b02b6db228d4c46badf07f93a8adde542e7687e7468c22db7'}
+ GATES = {'schema_required': 120, 'schema_denominator': 120, 'semantic_required_at_least': 114, 'semantic_denominator': 120, 'critical_model_ready_fp_required': 0, 'critical_model_ready_fp_denominator': 58, 'unsafe_accepted_ready_total_required': 0, 'unsafe_accepted_ready_total_denominator': 120}
+ SAMPLING = {'temperature': 0.7, 'top_p': 0.8, 'top_k': 20, 'min_p': 0.0, 'presence_penalty': 1.5, 'frequency_penalty': 0.0, 'repeat_penalty': 1.0, 'repeat_last_n': 64, 'seed': 42, 'samplers': ['penalties', 'top_k', 'top_p', 'min_p', 'temperature']}
+ PATHS = {'dataset': 'evaluations/requirement_hardening_v1_exposed_regression.jsonl', 'prompt': 'prompts/requirement_generation_v2_v2.txt', 'schema': 'schemas/requirement_generation_v2_decision_branches.schema.json', 'canonical_schema': 'schemas/semantic_requirement.schema.json', 'generation_adapter': 'src/neurobuild/application/requirement_generation.py', 'parser': 'src/neurobuild/application/requirements.py', 'client': 'src/neurobuild/infrastructure/local_model.py', 'scorer': 'scripts/evaluate_requirements.py', 'weight_manifest': 'runtime/models/qwen36-35b-a3b-q4-k-m.json'}
+@@ -79,9 +80,46 @@
+ NEXT_EVALUATION_POLICY = {'clear_fail': 'STOP_CANDIDATE_NO_REPEAT_NO_V2_NO_UNUSED_HOLDOUT', 'pass': 'LATER_SEPARATE_MINIMUM_NEW_HOLDOUT_DECISION_ONLY', 'automatic_trials_or_retries': 0, 'first_diagnostic_calls': 125, 'future_holdout_execution_authorized': False}
+ 
+ def require_ready():
+-    # Deliberately unconditional: no hash-only dataset access, live check, freeze,
+-    # replay or publication until seven actual runtime pins and root activation review.
+-    raise ValueError('QWEN36_RUNTIME_SEVEN_AND_ROOT_ACTIVATION_PENDING')
++    """Root-requested definition activation; exact actual evidence is mandatory.
++
++    This function performs no I/O. Freezer/replay still verify every saved hash
++    before publication/result access. No default or pending pin is accepted.
++    """
++    pins = (CPU_SHA,PROBE_SHA,CONFIG_SHA,CONTROLLER_SHA,HEADER_SHA,
++            TOKENIZER_COMPARISON_SHA,REGRESSION_SHA,REGRESSION_LOG_SHA,
++            PROPS_TEMPLATE_SHA,*RUNTIME_SHA.values())
++    paths = {START+n for n in ('launch_config.json','resource_report.json',
++                              'listeners.json','startup.json','runtime_metadata.json')} | {PUBLIC,RESOURCE}
++    expected_runtime = RUNTIME_SHA_REQUIRED
++    valid = (all(type(pin) is str and re.fullmatch('[a-f0-9]{64}',pin) is not None for pin in pins)
++             and RUNTIME_SHA==expected_runtime and set(RUNTIME_SHA)==paths and len(RUNTIME_SHA)==7
++             and RUNTIME_SHA[START+'launch_config.json']==CONFIG_SHA
++             and CPU_SCHEMA_FINAL is True and type(CPU_EXPECTED_PROJECTION) is dict
++             and type(CPU_REFS) is dict and set(CPU_REFS)==set(CPU_REF_KEYS) and len(CPU_REFS)==10
++             and all(set(ref)=={'path','sha256'} and type(ref['path']) is str
++                     and type(ref['sha256']) is str and re.fullmatch('[a-f0-9]{64}',ref['sha256']) is not None
++                     for ref in CPU_REFS.values())
++             and VARIANT=='qwen36-gguf-raw-unicode-v1'
++             and MODEL=='ggml-org/Qwen3.6-35B-A3B-GGUF'
++             and REVISION=='baec3ebee244827cda0f4557eafa8b28f7545fa6'
++             and PROFILE=='qwen36_nonthinking_llama_cpp'
++             and SOURCE_COMMIT=='fdd4f01d09033e0d037f1ad6cdd44307500a080f'
++             and CPU_SHA=='747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1'
++             and HEADER_SHA=='7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9'
++             and TOKENIZER_COMPARISON_SHA=='81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f'
++             and PROBE_SHA=='ea121357ca95b34d9b7e0443dc0b5810128705ef9ca3cf87c333fbf5150b7572'
++             and CONFIG_SHA=='91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb'
++             and CONTROLLER_SHA=='ef13331c745ef78351c51bcf7bce4e5998cfce9768ad65c04472beb0bd1a9247'
++             and CPU_STATUS=='PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120'
++             and CPU_ARCHIVED_PROOF=='evaluations/results/phase5x/qwen36-cpu-preflight/contract/final-cpu-proof.json'
++             and GUARD_MAX_SECONDS==7200 and RESOURCE_TOKEN_ID==220
++             and GATES=={'schema_required':120,'schema_denominator':120,'semantic_required_at_least':114,
++                 'semantic_denominator':120,'critical_model_ready_fp_required':0,
++                 'critical_model_ready_fp_denominator':58,'unsafe_accepted_ready_total_required':0,
++                 'unsafe_accepted_ready_total_denominator':120}
++             and all(type(value) is int for value in GATES.values()))
++    if not valid:
++        raise ValueError('QWEN36_FINAL_ACTUAL_PIN_OR_CONTRACT_MISMATCH')
+ 
+ 
+ def planned_contract():
+@@ -110,3 +148,6 @@
+ SAVED_CONSUMER = 'var/research/qwen36-runtime-saved-consumer-check.json'
+ SAVED_CONSUMER_SHA = '91125088b96840a73953e407072be9dbe9ba0723181cb80968280168fc768684'
+ RUNTIME_DEFINITION_PINS.update({'var/research/qwen36-runtime-saved-consumer-check.json': '91125088b96840a73953e407072be9dbe9ba0723181cb80968280168fc768684', 'var/research/inspect_qwen36_gguf.py': '6e19db06be126b95ec619d434b7230a88dc4542d10d506c026f9cebb71114d97', 'var/research/compare_qwen36_qwen38_saved_headers.py': 'e4325ae6f952f5aaf8b277b75af33da835b8e2fe01834c69cc0b5cf66042b756', 'var/research/native-qwen36-contract/validator.cpp': 'c55f66ab7909a921bdf8c429151cf71eb4cc17cc34a0578e65b709eae4c41ec8', 'var/research/native-qwen36-contract/build.py': '61760634036bd94e1922d6cb022ab6c2ffaf3cb30dc1c54d6bd2813a31196a0b', 'var/research/native-qwen36-contract/public_check.py': '7bb13bb7abd0fc596194d592d9f17b1ba5d5103d15dfae3193a0dd2c181f98fc', 'var/research/native-qwen36-contract/produce_final.py': 'ac904566519ccdf4d392dac17404ecf797286f5833963864a4c448d2eaa01301'})
++
++# Fixed actual seven-file observation; not a wildcard or future epoch.
++RUNTIME_SHA_REQUIRED = {'evaluations/results/phase5x/qwen36-native-startup-epoch1/launch_config.json': '91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb', 'evaluations/results/phase5x/qwen36-native-startup-epoch1/resource_report.json': '36de9d1715b46b40b79df953f641420dad49d11ec161028532b36ba19e4a730b', 'evaluations/results/phase5x/qwen36-native-startup-epoch1/listeners.json': '6fe1bb9b6ff6a04d67b9924b267b1741a9efcffa98442888f34b30a827c43588', 'evaluations/results/phase5x/qwen36-native-startup-epoch1/startup.json': 'de2164b65aae1c814febc6aa24fb8f8ba3bb4cd1250c16ce30ad32b21eb02460', 'evaluations/results/phase5x/qwen36-native-startup-epoch1/runtime_metadata.json': '595a8a1e85759e0a28ad7d0cdfa2b425aebffdf2f622eeae5ae6721d6534230b', 'evaluations/results/phase5x/qwen36-native-public-smoke-epoch1/report.json': '2fcc64b9f8d3d04fec44ae7d12a642d6fc49a84a38d23c0d07ba6c6b2ba3f2e1', 'evaluations/results/phase5x/qwen36-native-resource-epoch1/report.json': '93bfba9560c5411b02b6db228d4c46badf07f93a8adde542e7687e7468c22db7'}
+--- history/pre-runtime-activation/README.md
++++ README.md
+@@ -1,6 +1,6 @@
+-# Qwen3.6 first diagnostic — blocked preparation
++# Qwen3.6 first diagnostic — root-reviewed final definition
+ 
+-These definitions are not an evaluation freeze or an execution receipt. Both entrypoints call an unconditional `require_ready()` before opening any artifact, hashing any dataset, inspecting an epoch, publishing a freeze, or replaying results. The actual CPU aggregate schema and pins are now bound, but all seven runtime receipt pins remain missing and the entrypoint block remains unconditional. No actual freeze, source snapshot, candidate evaluation, corpus hash, tokenizer encode/render, native call, HTTP call, GPU call or test was performed for this preparation.
++These definitions are not an evaluation freeze or an execution receipt. Root authorized definition activation after the actual same-epoch seven receipts passed. Both entrypoints check exact fixed pins with `require_ready()` before opening artifacts, hashing datasets, inspecting the epoch, publishing a freeze, or replaying results. The freezer itself has not been executed by the definition author; root runs it only after final peer review. No actual freeze, source snapshot, candidate evaluation, corpus hash, tokenizer encode/render, native call, HTTP call, GPU call or test was performed for this preparation.
+ 
+ The intended first diagnostic is the existing exposed120 once plus 5 warmups: 62 READY / 58 non-READY, schema 120/120, semantic at least 114/120, raw READY false positives 0/58, unsafe accepted READY 0/120. Unknown decisions keep their denominators and prevent PASS. A clear FAIL stops this candidate: no repeat, V2 or unused holdout evaluation. PASS permits only a later separate minimum new-holdout decision, not an automatic evaluation. Auto-generated gold remains NOT HUMAN VERIFIED.
+ 
+@@ -10,8 +10,10 @@
+ 
+ The final saved CPU proof kind is QWEN36_NATIVE_CONTRACT_CPU_PROOF, status PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120. Actual final receipt747af565…20d1 now binds a new single-public request/sampling proof and typed-tokenizer/source comparison to historical Qwen38 exposed120 lengths, historical official HF FAIL and separate raw reference evidence. That receipt was produced by the runtime agent/root; no CPU work was repeated here. Gemma proof/corpus200 is not carried. Only `splits.exposed120` is accepted; old V2 input lengths and the unused holdout are excluded from this CPU contract. Existing V2 freeze preservation appears in future freezer/replay code only as byte hashes, never parsing/scoring; no such hashes were calculated during preparation.
+ 
+-The original pre-actual draft and preparation receipt are exact-preserved in `history/pre-actual-cpu/`. Final CPU747af565, header7434158, comparison81f7496, source ancestor fdd4f01, source5 and regression422 remain bound. Variant qwen36-gguf-raw-unicode-v1, config91c651, probeea1213, controlleref1333 and saved consumer91125088 are actual definitions/metadata, not runtime execution. The evidence projection now matches the consumer's20 fields and exact startup scope sentence. Official/embedded template7764B and expected props7764B are definition expectations; actual props and epoch receipts are still pending.
++The original pre-actual draft and preparation receipt are exact-preserved in `history/pre-actual-cpu/`. Final CPU747af565, header7434158, comparison81f7496, source ancestor fdd4f01, source5 and regression422 remain bound. Variant qwen36-gguf-raw-unicode-v1, config91c651, probeea1213, controlleref1333 and saved consumer91125088 are actual definitions/metadata, not runtime execution. The evidence projection now matches the consumer's20 fields and exact startup scope sentence. Official/embedded template7764B and expected props7764B are definition expectations; actual startup confirms the same7764B props and embedded source, and all seven same-epoch receipts are now pinned.
+ 
+-Pending before activation: actual startup5/public1/resource1 receipts, seven exact same-epoch artifact hashes, and root final activation review. Filling CPU fields did not release `require_ready()`. `RUNTIME_SHA` values remain None; no actual freeze/snapshot or evaluation was created. The new source/CPU definition pins are included in the prospective freeze closure. No current V2/old120/unused80 dataset was read or hashed during these changes.
++The pre-activation actual-CPU blocked definition and its receipts are exact-preserved in `history/pre-runtime-activation/`. Seven hashes now bind startup5/public1/resource1 for child3716721/start ticks480679676 and guard start2026-09-20T16:52:44.502432+00:00. Public smoke2.707237813s and full-context resource10.769428756s are prerequisite observations, not the first125 quality evaluation. Resource3328+768/cache4095 reached its limit with aggregate peak19854MiB/minimum free16520MiB. These are lifetime aggregate observations, not isolated per-process VRAM.
++
++Final peer read-review and root's actual freeze/current own-epoch checks precede quality. No quality result, freeze publication, dataset body/hash, native call, HTTP call, test or replay was performed during definition activation. Future snapshot/replay remains restricted to this newly completed125 once; no historical replay is scheduled.
+ 
+ After final saved evidence and root activation review, the future freezer CLI takes `--cpu-proof-sha256`; the future replay CLI takes one completed run, `--freeze`, `--freeze-sha256`, `--source-commit`, `--snapshot`, `--snapshot-sha256`, `--candidate-variant`, and `--completed-run`. No executable command with guessed final pins is supplied. Any later activation changes must preserve this preparation receipt and the historical helpers.

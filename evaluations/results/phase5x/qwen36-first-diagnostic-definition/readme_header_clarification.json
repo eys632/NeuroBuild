@@ -1,0 +1,9 @@
+{
+  "kind": "QWEN36_DRAFT_README_HEADER_TIMELABEL_CORRECTION",
+  "old_path": "history/post-actual-cpu-README.md",
+  "old_sha256": "3f78ceae78e4ba5d5233fa039a9b8f77d2e3f379e608a948cb4694482711e881",
+  "new_path": "README.md",
+  "new_sha256": "8e0a9fae1bea6e89fe448e3a72b08b6e5b2c92183bf53ae2ced7bf75ca3ea763",
+  "reason": "Peer source-only review found a historical pending-header sentence after actual header PASS. Code/receipt/gates unchanged.",
+  "executions": 0
+}

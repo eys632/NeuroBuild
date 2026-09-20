@@ -1,0 +1,51 @@
+{
+  "kind": "QWEN36_RUNTIME_ACTIVATION_INDEPENDENT_SOURCE_REVIEW",
+  "status": "PASS_SOURCE_ONLY_NO_MATERIAL_BLOCKER",
+  "reviewed_files_sha256": {
+    "var/research/qwen36_runtime_probe.py": "ea121357ca95b34d9b7e0443dc0b5810128705ef9ca3cf87c333fbf5150b7572",
+    "var/research/qwen36-native-launch-epoch1.json": "91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb",
+    "var/research/run_native_qwen36_epoch1_probe.py": "ef13331c745ef78351c51bcf7bce4e5998cfce9768ad65c04472beb0bd1a9247"
+  },
+  "activation_binding_sha256": "84de8d4e98309bbfd9d44c5e8a8ec61825bc8a854121173a9a53b4699241ed9b",
+  "patch_sha256": "23ac6ae01d9577d0f19ef8105dd4260b1d26a6de77decee031ff39624b336986",
+  "cpu_proof_sha256": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+  "cpu_ref_count": 10,
+  "source_pin_count": 5,
+  "saved_refs_and_current_source_hashes_match": true,
+  "collector_AST_preserved": {
+    "qwen_binding": true,
+    "cpu_provenance": true,
+    "validate_health_models_props": true,
+    "make_metadata": true,
+    "begin": true,
+    "finish": true,
+    "capture_startup": true,
+    "public_smoke": true,
+    "run_resource_smoke": true
+  },
+  "controller_AST_preserved_except_initial_pending_raise": true,
+  "config_changed_fields": [
+    "model_header_report_sha256"
+  ],
+  "cpu_scope": {
+    "new_public_requests": 1,
+    "exposed120": "CARRIED_FORWARD",
+    "new_context_requests": 0,
+    "new_public_parity_cases": 0,
+    "historical_official_hf_equivalence": "FAIL_19_OF_20",
+    "historical_raw_reference": "PASS_20_OF_20"
+  },
+  "quality_draft_scope": "Separate pending freeze/replay wiring; projection and warmup-scope string findings already sent to owner. Not a runtime activation blocker.",
+  "actions": {
+    "reviewed_definition_imports": 0,
+    "consumer_calls": 0,
+    "tests": 0,
+    "native_calls": 0,
+    "http_calls": 0,
+    "gpu_calls": 0,
+    "process_reads": 0,
+    "weight_reads": 0,
+    "dataset_body_reads": 0,
+    "production_edits": 0
+  }
+}

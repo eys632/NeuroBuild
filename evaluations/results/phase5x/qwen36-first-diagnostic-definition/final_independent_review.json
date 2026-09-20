@@ -1,0 +1,76 @@
+{
+  "kind": "QWEN36_FIRST_DIAGNOSTIC_FINAL_ACTIVATION_INDEPENDENT_REVIEW",
+  "status": "PASS_SOURCE_AND_SAVED_METADATA_ONLY",
+  "material_findings": [],
+  "definition_sha256": {
+    "contract.py": "a723d9580403add09cc23b4ee8267783a6bbe6abc8200e05953b7f66623d04a0",
+    "evidence.py": "becc7d4ce4f1c5e4736faa9d440f5e907b49c29a6350cd7f48d6041a7b32fb57",
+    "freeze_native_qwen36_diagnostic.py": "ff352e7d58a09d42d541bb0142e2722d1d41b716472ff872a1b02a55bd5e84ff",
+    "replay_native_qwen36_exposed.py": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5"
+  },
+  "activation_patch_sha256": "a560c7be9aac2416b7a0bd064c84abc5ec331801939dafad993fe81d17dfb8c3",
+  "activation_receipt_sha256": "fd77b73c928cfd805c8ebd5c786f4dda3b82b9a8a7638da61d9dd0754eed454e",
+  "prior_cpu_binding_review_sha256": "6bd15e122e05f378c72f54cacd749dd0ea59b88c611abcb439b42aab67a74c52",
+  "other_three_definitions_byte_equal_before_activation": {
+    "evidence.py": true,
+    "freeze_native_qwen36_diagnostic.py": true,
+    "replay_native_qwen36_exposed.py": true
+  },
+  "replay_core_three_source_and_AST_and_finite120": "Preserved by exact unchanged replay bytes; prior independent comparison remains applicable.",
+  "actual_runtime_archives_exact_originals_sha256": {
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/launch_config.json": "91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/resource_report.json": "36de9d1715b46b40b79df953f641420dad49d11ec161028532b36ba19e4a730b",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/listeners.json": "6fe1bb9b6ff6a04d67b9924b267b1741a9efcffa98442888f34b30a827c43588",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/startup.json": "de2164b65aae1c814febc6aa24fb8f8ba3bb4cd1250c16ce30ad32b21eb02460",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/runtime_metadata.json": "595a8a1e85759e0a28ad7d0cdfa2b425aebffdf2f622eeae5ae6721d6534230b",
+    "evaluations/results/phase5x/qwen36-native-public-smoke-epoch1/report.json": "2fcc64b9f8d3d04fec44ae7d12a642d6fc49a84a38d23c0d07ba6c6b2ba3f2e1",
+    "evaluations/results/phase5x/qwen36-native-resource-epoch1/report.json": "93bfba9560c5411b02b6db228d4c46badf07f93a8adde542e7687e7468c22db7"
+  },
+  "same_epoch": {
+    "launch_config_sha256": "91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb",
+    "pid": 3716721,
+    "process_start_ticks": 480679676,
+    "guard_started_at_utc": "2026-09-20T16:52:44.502432+00:00"
+  },
+  "cpu_proof_sha256": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+  "saved_actual_provenance20_fields_match_all_three_reports": true,
+  "evaluation_scope": {
+    "exposed_cases": 120,
+    "trials_per_case": 1,
+    "warmups": 5,
+    "http_calls": 125,
+    "schema_required": 120,
+    "semantic_required": 114,
+    "raw_fp_required": 0,
+    "raw_fp_denominator": 58,
+    "unsafe_required": 0,
+    "unsafe_denominator": 120,
+    "automatic_repeat_or_v2": false,
+    "unused_holdout_execution": false
+  },
+  "resource_scope": {
+    "nonquality_prerequisite": true,
+    "prompt": 3328,
+    "predicted": 768,
+    "cached": 4095,
+    "aggregate_peak_mib": 19854,
+    "minimum_free_mib": 16520,
+    "limit_mib": 28672,
+    "free_floor_mib": 7275
+  },
+  "freeze_scope": "Root-only future single exclusive publication after final saved/live own-epoch verification; this review did not execute freezer or replay.",
+  "actions": {
+    "definition_imports": 0,
+    "definition_function_calls": 0,
+    "tests": 0,
+    "native_calls": 0,
+    "model_calls": 0,
+    "http_calls": 0,
+    "gpu_calls": 0,
+    "process_queries": 0,
+    "dataset_body_reads": 0,
+    "dataset_hashes": 0,
+    "replays": 0,
+    "production_edits": 0
+  }
+}

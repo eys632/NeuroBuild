@@ -8,7 +8,7 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
 | GitHub | 공통 `v2`; Qwen3.6 준비 `424abd8d976fcc3936c3376863a5a69469f44dc7` push·원격 일치 확인. Gemma12 실패·종료와 이전 원본 증거 보존 |
-| 현재 작업 | **Qwen3.6 실제 header·최소 CPU 계약 완료, GPU3 최초 runtime 준비** |
+| 현재 작업 | **Qwen3.6 GPU3 최초 startup/public/resource PASS, 첫120개 단회 평가 동결 완료** |
 | 최근 후보 | Gemma4-12B/GLM4.7 첫 의미·안전 gate FAIL, EXAONE4.5 첫 의미 gate FAIL, Gemma4-31B 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
@@ -18,9 +18,9 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
 | 회귀 검증 | **422 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless20.758초. Qwen3.6 전용 sampling/exact identity binding 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
-| 모델 실행 | **NeuroBuild 모델 서버 STOPPED**. Gemma12 child exit0/reaped, GPU3 free36373/used3965/util0 복귀 |
+| 모델 실행 | **Qwen3.6 own epoch1 RUNNING**. Guard3716484/child3716721, GPU3 기준선 대비 증가peak19854MiB/minfree16520MiB |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | Fresh GPU3 admission 후 Qwen3.6 최초 runtime/단회 품질 동결. 같은 실패 후보 반복·V2 없음 |
+| 다음 검증 | Qwen3.6 첫120×1+warmup5 동결·평가. FAIL 시 종료·무반복·무V2, PASS 후 최소 후속 판단 |
 
 ## Qwen3.6 준비 — 아직 품질 미평가
 
@@ -53,6 +53,14 @@ Final CPU proof747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1�
 과거 공식 HF NFC reference19/20 FAIL 및 명시 raw reference20/20 PASS를 구분하고 원문 정규화는 하지 않는다.
 Production이422회귀 시점과 같아 suite는 반복하지 않았다. GPU/품질 호출은 아직0회다.
 [CPU 검증 보고서](reports/phase5x_qwen36_cpu_report.md).
+
+CPU checkpoint **fdd4f01d09033e0d037f1ad6cdd44307500a080f** push 후 Qwen3.6을 GPU3에서 처음 기동했다.
+Fresh5 표본은 free36373/used3965/util0, margin7275, available29098MiB로 운영28672를 수용했다.
+동일 own epoch에서 startup GET3 PASS, 공개 production 요청1건 PASS **2.707237813초**,
+full context3328+768 요청1건 PASS **10.769428756초**다. 기준선 대비 GPU3 전체사용 증가peak19854MiB,
+minfree16520MiB이며 개별 process VRAM 측정으로 해석하지 않는다. 서버는 첫 진단 준비를 위해 RUNNING이다.
+사전 동결57c6af28…/69files를 완료했다. 새 평가 호출은 아직0회이며 기존 완료 runtime/평가/재생은 반복하지 않았다.
+[첫 runtime 기록](../evaluations/results/phase5x/qwen36-first-runtime-evidence/README.md).
 
 ## Gemma4-12B 결과와 준비 기록
 

@@ -1,0 +1,82 @@
+{
+  "kind": "QWEN36_FIRST_DIAGNOSTIC_DEFINITION_PREPARATION",
+  "status": "BLOCKED_PREPARATION_ONLY",
+  "created_at_utc": "2026-09-20T16:44:17.857996+00:00",
+  "scope": "Source reading/writing and static AST comparison only; no helper imports or function execution",
+  "source_ancestor_commit": "424abd8d976fcc3936c3376863a5a69469f44dc7",
+  "copy_source": {
+    "path": "var/research/gemma12-first-diagnostic-draft/replay_native_gemma12_exposed.py",
+    "sha256": "b96c007643e553bb99ad27d711dea62344976892dbd487419b400a280427ff49"
+  },
+  "core_functions": {
+    "load_snapshot": {
+      "source_bytes_equal": true,
+      "ast_equal": true,
+      "source_sha256": "e1f5f48f289f1874e2392d4d8072ed603c7e39c0eb3598653b915e776a58a31e"
+    },
+    "replay_row": {
+      "source_bytes_equal": true,
+      "ast_equal": true,
+      "source_sha256": "4529fd9c07bbb2939224b91b8e8e20fb725f561734b7e4b9acea778ef1f8ff2d"
+    },
+    "replay_groups": {
+      "source_bytes_equal": true,
+      "ast_equal": true,
+      "source_sha256": "6170eff1e577ac08344d124e7330231e9de6bf4b27c41cfa19bad6aacc9df743"
+    }
+  },
+  "finite_120_timeout_branch_ast_equal": true,
+  "regression": {
+    "path": "evaluations/results/phase5x/qwen36-preparation/regression_final.json",
+    "sha256": "5b75b7f81c147691b82fefa1032f0d28ee345b331bd3f92688d414859259ea30",
+    "tests": 422,
+    "test_seconds": 20.758,
+    "rerun": false
+  },
+  "activation": "require_ready raises unconditionally before all artifact access; CPU_SCHEMA_FINAL=False",
+  "pending": [
+    "root variant",
+    "actual Qwen36 CPU/header/tokenizer comparison",
+    "exact aggregate schema and reference map",
+    "runtime API and seven same-epoch receipt pins",
+    "CPU/header archives",
+    "guard duration and props template",
+    "future freeze and clean snapshot checkpoint"
+  ],
+  "executions": {
+    "tests": 0,
+    "helper_main": 0,
+    "helper_import": 0,
+    "dataset_reads": 0,
+    "dataset_hashes": 0,
+    "native": 0,
+    "tokenizer": 0,
+    "model_inference": 0,
+    "http": 0,
+    "gpu": 0,
+    "old_replays": 0,
+    "new_replays": 0
+  },
+  "files": {
+    "README.md": {
+      "bytes": 4087,
+      "sha256": "efbdb527a0a41cd39bcab026502f1e08871e5e0bc53ff43960ec47f76b4d0f84"
+    },
+    "contract.py": {
+      "bytes": 10419,
+      "sha256": "9ea3eb172bc1b4d53f0aeff50de1c8006c619e07ab204a0acd0da68b3f82cafb"
+    },
+    "evidence.py": {
+      "bytes": 12079,
+      "sha256": "978e1fc12958a95c8108abd8a885b4cca3cbe2f0e7e98e14c16793267838a879"
+    },
+    "freeze_native_qwen36_diagnostic.py": {
+      "bytes": 10479,
+      "sha256": "ff352e7d58a09d42d541bb0142e2722d1d41b716472ff872a1b02a55bd5e84ff"
+    },
+    "replay_native_qwen36_exposed.py": {
+      "bytes": 28111,
+      "sha256": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5"
+    }
+  }
+}

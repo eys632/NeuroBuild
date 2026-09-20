@@ -1,0 +1,49 @@
+{
+  "kind": "QWEN36_FIRST_DIAGNOSTIC_ACTUAL_CPU_BINDING_INDEPENDENT_REVIEW",
+  "status": "PASS_SOURCE_ONLY_BLOCKED_DRAFT",
+  "files_sha256": {
+    "var/research/qwen36-first-diagnostic-draft/contract.py": "f730eb1eb858f4703328830200c0cb42e2698907d698f3a42ff778bc7ce85475",
+    "var/research/qwen36-first-diagnostic-draft/evidence.py": "becc7d4ce4f1c5e4736faa9d440f5e907b49c29a6350cd7f48d6041a7b32fb57",
+    "var/research/qwen36-first-diagnostic-draft/freeze_native_qwen36_diagnostic.py": "ff352e7d58a09d42d541bb0142e2722d1d41b716472ff872a1b02a55bd5e84ff",
+    "var/research/qwen36-first-diagnostic-draft/replay_native_qwen36_exposed.py": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5",
+    "var/research/qwen36-first-diagnostic-draft/actual_cpu_binding.patch": "257aef864fd6f8dc76814cc4bf67a180b66b9b0af9cdf04082d4dd41978b4214"
+  },
+  "cpu_proof_sha256": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+  "saved_consumer_sha256": "91125088b96840a73953e407072be9dbe9ba0723181cb80968280168fc768684",
+  "resolved_material_findings": [
+    "Actual runtime20-field provenance projection matched",
+    "Startup model_inference_calls_scope literal matched"
+  ],
+  "core_functions": {
+    "load_snapshot": {
+      "ast_equal": true,
+      "source_equal": true
+    },
+    "replay_row": {
+      "ast_equal": true,
+      "source_equal": true
+    },
+    "replay_groups": {
+      "ast_equal": true,
+      "source_equal": true
+    }
+  },
+  "finite_numeric_120_branch_AST_equal": true,
+  "pending_runtime_sha_count": 7,
+  "require_ready_unconditionally_blocks_both_entrypoints": true,
+  "counts_scope": "120 exposed trials once +5 warmups; public1 current CPU, exposed120 carried; no oldV2/newholdout execution",
+  "nonblocking_note": "README has one stale actual-header pending sentence; owner notified separately.",
+  "actions": {
+    "definition_imports": 0,
+    "helper_function_calls": 0,
+    "tests": 0,
+    "native_calls": 0,
+    "http_calls": 0,
+    "gpu_calls": 0,
+    "process_reads": 0,
+    "dataset_body_reads": 0,
+    "dataset_hashes": 0,
+    "replays": 0,
+    "production_edits": 0
+  }
+}

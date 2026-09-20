@@ -1,0 +1,137 @@
+{
+  "application_input_output_nfc_repair": false,
+  "at_utc": "2026-09-20T16:54:45.543635+00:00",
+  "candidate_variant": "qwen36-gguf-raw-unicode-v1",
+  "chat_template_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+  "cpu_checks_rerun": false,
+  "cpu_proof_kind": "QWEN36_NATIVE_CONTRACT_CPU_PROOF",
+  "cpu_proof_refs": {
+    "header": {
+      "path": "var/reports/qwen36-gguf-header.json",
+      "sha256": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9"
+    },
+    "historical_context": {
+      "path": "var/reports/native-contract-raw-cpu-context.json",
+      "sha256": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be"
+    },
+    "historical_header": {
+      "path": "var/reports/qwen38-gguf-header.json",
+      "sha256": "ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a"
+    },
+    "historical_official": {
+      "path": "var/research/native-vocab-public-probe-v4.json",
+      "sha256": "b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0"
+    },
+    "historical_raw": {
+      "path": "var/research/native-vocab-public-probe-v4-raw-diagnostic.json",
+      "sha256": "12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d"
+    },
+    "historical_raw_fixture": {
+      "path": "var/research/native-tokenizer-public-parity-raw-diagnostic.json",
+      "sha256": "9658eb53fae81adee1b775b45f796f3484db69aea41e04a020765fa05d770514"
+    },
+    "public_build": {
+      "path": "var/research/native-qwen36-contract/build.json",
+      "sha256": "8d98d6d7e13e1fa597cc7e88b0c460ca7ebf6d713a94a99dc390f5798753e950"
+    },
+    "public_contract": {
+      "path": "var/research/native-qwen36-contract/public-proof.json",
+      "sha256": "c87d48d3ce7a0621dfdbfcaa918e36664b88357a60e1dffb98e93c2dcdd0050c"
+    },
+    "source_equivalence": {
+      "path": "var/research/native-qwen36-contract/source-equivalence.json",
+      "sha256": "efd6529f1f2db9e7cdd4bd5fc24e8f31e0b8e87189ee1a8865c595d4e1bb2d66"
+    },
+    "tokenizer_comparison": {
+      "path": "var/reports/qwen36-qwen38-saved-tokenizer-comparison.json",
+      "sha256": "81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f"
+    }
+  },
+  "cpu_proof_sha256": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+  "cpu_proof_status": "PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120",
+  "cpu_source_sha256": {
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120"
+  },
+  "embedded_chat_template_bytes": 7764,
+  "embedded_chat_template_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+  "exposed_context": {
+    "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "input_count": 120,
+    "max_input_plus_output": 3177,
+    "max_input_tokens": 2409,
+    "measured_model_id": "ggml-org/Qwen3.8-27B-GGUF",
+    "measurement_kind": "CARRIED_FORWARD",
+    "min_input_tokens": 2133
+  },
+  "gguf_binding": "Live guard full hash + pinned header + current owned file size; no second full hash",
+  "guard_after_sha256": "36de9d1715b46b40b79df953f641420dad49d11ec161028532b36ba19e4a730b",
+  "guard_before_sha256": "36de9d1715b46b40b79df953f641420dad49d11ec161028532b36ba19e4a730b",
+  "guard_started_at_utc": "2026-09-20T16:52:44.502432+00:00",
+  "health_http_status": 200,
+  "historical_hf_equivalence": {
+    "case_count": 20,
+    "id_match_count": 19,
+    "mismatch_indices": [
+      11
+    ],
+    "native_original_roundtrip_count": 20,
+    "status": "FAIL"
+  },
+  "historical_raw_reference": {
+    "case_count": 20,
+    "id_match_count": 20,
+    "reference_kind": "hf-tokenizer-json-with-nfc-normalizer-disabled",
+    "status": "PASS"
+  },
+  "http_get_calls": 3,
+  "installed_small_artifacts_rehashed": true,
+  "kind": "QWEN36_NATIVE_STARTUP_HTTP_PROOF",
+  "launch_config_sha256": "91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb",
+  "listener_report_sha256": "6fe1bb9b6ff6a04d67b9924b267b1741a9efcffa98442888f34b30a827c43588",
+  "max_model_len": 4096,
+  "max_sequences": 1,
+  "model_id": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+  "model_inference_calls": 0,
+  "model_inference_calls_scope": "Explicit HTTP generation calls; native startup warmup is enabled and not counted",
+  "model_path": "/home/a202192020/NeuroBuild_v2/var/models/ggml-org--Qwen3.6-35B-A3B-GGUF/baec3ebee244827cda0f4557eafa8b28f7545fa6/Qwen3.6-35B-A3B-Q4_K_M.gguf",
+  "model_revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+  "models_http_status": 200,
+  "native_identity_verified": true,
+  "native_startup_warmup_enabled": true,
+  "native_startup_warmup_evidence": "Pinned source default: common/common.h:579 and common/common.cpp:1511-1545; not an observed decode counter",
+  "new_cpu_executions": {
+    "context_request_count": 0,
+    "gpu": 0,
+    "http": 0,
+    "model_inference": 0,
+    "native_compile_count": 1,
+    "old_corpus_replays": 0,
+    "public_parity_cases": 0,
+    "public_request_count": 1
+  },
+  "normalization_limitation": "Historical Qwen3.8 official HF NFC reference IDs matched 19/20 (index11 mismatch), while native raw original roundtrip and explicitly NFC-disabled reference matched 20/20. These measurements remain historical; actual typed native tokenizer equality and restricted effective-input equivalence support carry to the explicit Qwen3.6 raw-Unicode variant. Official HF equivalence is not newly measured or asserted; no application input/output normalization repair.",
+  "pid": 3716721,
+  "platform_facts_scope": "Root-supplied measured platform facts; HTTP is not hardware attestation",
+  "process_start_ticks": 480679676,
+  "props_http_status": 200,
+  "props_reported_template_bytes": 7764,
+  "props_reported_template_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+  "props_template_derivation": "Official source has no CR or terminal LF; expected raw embedded and props source bytes equal; no application input/output repair",
+  "raw_http_bodies_saved": false,
+  "resource_report_sha256": "36de9d1715b46b40b79df953f641420dad49d11ec161028532b36ba19e4a730b",
+  "sampling_equivalent": false,
+  "served_model": "neurobuild-qwen36-35b-a3b-q4-k-m",
+  "status": "PASS",
+  "template_input_equivalence": {
+    "byte_exact_public_native_render": true,
+    "proof_ref": "source_equivalence",
+    "scope": "nonempty_system_single_user_text_no_history_no_tools_nonthinking",
+    "status": "PASS"
+  },
+  "tokenizer_contract": "historical_raw_reference_by_exact_typed_metadata_and_restricted_input_equivalence",
+  "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42"
+}

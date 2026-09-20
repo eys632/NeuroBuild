@@ -1,0 +1,334 @@
+{
+  "lifecycle": "FROZEN_BEFORE_NATIVE_QWEN36_EXPOSED_DIAGNOSTIC",
+  "candidate_variant": "qwen36-gguf-raw-unicode-v1",
+  "model_id": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+  "model_revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+  "tokenizer_revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+  "served_model": "neurobuild-qwen36-35b-a3b-q4-k-m",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "dataset": "evaluations/requirement_hardening_v1_exposed_regression.jsonl",
+  "split": "development",
+  "cases": 120,
+  "ready_gold": 62,
+  "nonready_gold": 58,
+  "warmups_per_run": 5,
+  "trials_per_case": 1,
+  "expected_http_calls": 125,
+  "pipeline": "single",
+  "generation_contract": "2.0",
+  "protocol": "llama_cpp_json_schema",
+  "sampling_profile": "qwen36_nonthinking_llama_cpp",
+  "sampling_request_parameters": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "frequency_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "repeat_last_n": 64,
+    "seed": 42,
+    "samplers": [
+      "penalties",
+      "top_k",
+      "top_p",
+      "min_p",
+      "temperature"
+    ]
+  },
+  "enable_thinking": false,
+  "reasoning_parser": "deepseek",
+  "max_tokens": 768,
+  "timeout_seconds": 120,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "maximum_calls_per_case": 1,
+  "gate_targets": {
+    "schema_required": 120,
+    "schema_denominator": 120,
+    "semantic_required_at_least": 114,
+    "semantic_denominator": 120,
+    "critical_model_ready_fp_required": 0,
+    "critical_model_ready_fp_denominator": 58,
+    "unsafe_accepted_ready_total_required": 0,
+    "unsafe_accepted_ready_total_denominator": 120
+  },
+  "prompt": "prompts/requirement_generation_v2_v2.txt",
+  "generation_schema": "schemas/requirement_generation_v2_decision_branches.schema.json",
+  "canonical_schema": "schemas/semantic_requirement.schema.json",
+  "chat_template_override": null,
+  "original_embedded_template_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+  "effective_chat_template_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+  "application_input_output_nfc_repair": false,
+  "cpu_context_report": "var/research/native-qwen36-contract/final-cpu-proof.json",
+  "cpu_context_archive": "evaluations/results/phase5x/qwen36-cpu-preflight/contract/final-cpu-proof.json",
+  "runtime_metadata": "evaluations/results/phase5x/qwen36-native-startup-epoch1/runtime_metadata.json",
+  "public_smoke_report": "evaluations/results/phase5x/qwen36-native-public-smoke-epoch1/report.json",
+  "resource_probe_report": "evaluations/results/phase5x/qwen36-native-resource-epoch1/report.json",
+  "runtime_epoch_snapshot": {
+    "pid": 3716721,
+    "start_ticks": 480679676,
+    "guard_started_at_utc": "2026-09-20T16:52:44.502432+00:00"
+  },
+  "tokenizer_contract": {
+    "candidate_variant": "qwen36-gguf-raw-unicode-v1",
+    "model_id": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+    "model_revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+    "cpu_proof_sha256": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+    "cpu_proof_kind": "QWEN36_NATIVE_CONTRACT_CPU_PROOF",
+    "cpu_proof_status": "PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120",
+    "chat_template_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+    "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+    "tokenizer_contract": "historical_raw_reference_by_exact_typed_metadata_and_restricted_input_equivalence",
+    "historical_hf_equivalence": {
+      "status": "FAIL",
+      "case_count": 20,
+      "id_match_count": 19,
+      "mismatch_indices": [
+        11
+      ],
+      "native_original_roundtrip_count": 20
+    },
+    "historical_raw_reference": {
+      "status": "PASS",
+      "case_count": 20,
+      "id_match_count": 20,
+      "reference_kind": "hf-tokenizer-json-with-nfc-normalizer-disabled"
+    },
+    "template_input_equivalence": {
+      "status": "PASS",
+      "scope": "nonempty_system_single_user_text_no_history_no_tools_nonthinking",
+      "byte_exact_public_native_render": true,
+      "proof_ref": "source_equivalence"
+    },
+    "exposed_context": {
+      "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+      "input_count": 120,
+      "min_input_tokens": 2133,
+      "max_input_tokens": 2409,
+      "max_input_plus_output": 3177,
+      "measurement_kind": "CARRIED_FORWARD",
+      "measured_model_id": "ggml-org/Qwen3.8-27B-GGUF"
+    },
+    "application_input_output_nfc_repair": false,
+    "sampling_equivalent": false,
+    "cpu_proof_refs": {
+      "header": {
+        "path": "var/reports/qwen36-gguf-header.json",
+        "sha256": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9"
+      },
+      "tokenizer_comparison": {
+        "path": "var/reports/qwen36-qwen38-saved-tokenizer-comparison.json",
+        "sha256": "81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f"
+      },
+      "public_contract": {
+        "path": "var/research/native-qwen36-contract/public-proof.json",
+        "sha256": "c87d48d3ce7a0621dfdbfcaa918e36664b88357a60e1dffb98e93c2dcdd0050c"
+      },
+      "public_build": {
+        "path": "var/research/native-qwen36-contract/build.json",
+        "sha256": "8d98d6d7e13e1fa597cc7e88b0c460ca7ebf6d713a94a99dc390f5798753e950"
+      },
+      "historical_header": {
+        "path": "var/reports/qwen38-gguf-header.json",
+        "sha256": "ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a"
+      },
+      "historical_context": {
+        "path": "var/reports/native-contract-raw-cpu-context.json",
+        "sha256": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be"
+      },
+      "historical_official": {
+        "path": "var/research/native-vocab-public-probe-v4.json",
+        "sha256": "b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0"
+      },
+      "historical_raw": {
+        "path": "var/research/native-vocab-public-probe-v4-raw-diagnostic.json",
+        "sha256": "12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d"
+      },
+      "historical_raw_fixture": {
+        "path": "var/research/native-tokenizer-public-parity-raw-diagnostic.json",
+        "sha256": "9658eb53fae81adee1b775b45f796f3484db69aea41e04a020765fa05d770514"
+      },
+      "source_equivalence": {
+        "path": "var/research/native-qwen36-contract/source-equivalence.json",
+        "sha256": "efd6529f1f2db9e7cdd4bd5fc24e8f31e0b8e87189ee1a8865c595d4e1bb2d66"
+      }
+    },
+    "cpu_source_sha256": {
+      "src/neurobuild/infrastructure/local_model.py": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+      "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+    },
+    "normalization_limitation": "Historical Qwen3.8 official HF NFC reference IDs matched 19/20 (index11 mismatch), while native raw original roundtrip and explicitly NFC-disabled reference matched 20/20. These measurements remain historical; actual typed native tokenizer equality and restricted effective-input equivalence support carry to the explicit Qwen3.6 raw-Unicode variant. Official HF equivalence is not newly measured or asserted; no application input/output normalization repair.",
+    "new_cpu_executions": {
+      "public_request_count": 1,
+      "native_compile_count": 1,
+      "context_request_count": 0,
+      "public_parity_cases": 0,
+      "old_corpus_replays": 0,
+      "model_inference": 0,
+      "http": 0,
+      "gpu": 0
+    },
+    "cpu_checks_rerun": false
+  },
+  "normalization_limitation": "Historical Qwen3.8 official HF NFC reference IDs matched 19/20 (index11 mismatch), while native raw original roundtrip and explicitly NFC-disabled reference matched 20/20. These measurements remain historical; actual typed native tokenizer equality and restricted effective-input equivalence support carry to the explicit Qwen3.6 raw-Unicode variant. Official HF equivalence is not newly measured or asserted; no application input/output normalization repair.",
+  "source_ancestor_commit": "fdd4f01d09033e0d037f1ad6cdd44307500a080f",
+  "frozen_at_utc": "2026-09-20T16:59:05.898010+00:00",
+  "sha256": {
+    "docs/hardening_v2_dataset.md": "5f5865b314f419b26374b6047a6f1bef09901b3ac3c1b073f30109d10ea6e9b1",
+    "docs/reviews/phase5x_holdout_v2_gold_review.md": "35a2649959be5bf22cf4ba23b244a95e9a8bee951b0c4f99c28bfd5231dab203",
+    "evaluations/generate_requirement_hardening_v2.py": "e60fd6d15242bd3c82c9a7ef06ca4f39eef6b335c4b6925f2e0045c4ccf5f487",
+    "evaluations/hardening_v2_dataset_freeze.json": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+    "evaluations/hardening_v2_human_review.csv": "732f9aa9ab897f681bcbcba9b26978ee63e0f351b5b67890acdc897ceda30fa7",
+    "evaluations/hardening_v2_input_exposure_addendum.json": "1d44048c86d3a26cec093e6f1d5748ed13e1283de6a4f73a28ba592dc103b682",
+    "evaluations/hardening_v2_manifest.json": "7a6291fe16f9bcf5c2fce824235ba14a1698b0527c9dbdaf5f78643182ddde5e",
+    "evaluations/hardening_v2_model_output_exposure_record.json": "25c080827a6d57aa6bc864495e537490dc7fa48b3ccf91df297a47b9815d447b",
+    "evaluations/requirement_hardening_v1_exposed_regression.jsonl": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "evaluations/requirement_hardening_v2_holdout.jsonl": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+    "evaluations/requirement_hardening_v2_references.json": "a7ea36bf65b0d9b643de2a4e1ed52ca94b764bc241ec25c653e5e1f29fb76c19",
+    "evaluations/results/phase5x/holdout-v2-preflight/independent_cpu_context_proof.json": "cc2b9b33de01f38c1ac949ffa303da3c9402edc3b04ac1d514a5126900d0cfbc",
+    "evaluations/results/phase5x/holdout-v2-preflight/independent_gold_review.json": "3dd0e61cb033470c1929bb12eaf92919e92b0f3bb753be51b0a71d4997c7bbc8",
+    "evaluations/results/phase5x/qwen36-cpu-preflight/contract/final-cpu-proof.json": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+    "evaluations/results/phase5x/qwen36-cpu-preflight/header/header.json": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9",
+    "evaluations/results/phase5x/qwen36-cpu-preflight/header/tokenizer-comparison.json": "81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f",
+    "evaluations/results/phase5x/qwen36-native-public-smoke-epoch1/report.json": "2fcc64b9f8d3d04fec44ae7d12a642d6fc49a84a38d23c0d07ba6c6b2ba3f2e1",
+    "evaluations/results/phase5x/qwen36-native-resource-epoch1/report.json": "93bfba9560c5411b02b6db228d4c46badf07f93a8adde542e7687e7468c22db7",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/launch_config.json": "91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/listeners.json": "6fe1bb9b6ff6a04d67b9924b267b1741a9efcffa98442888f34b30a827c43588",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/resource_report.json": "36de9d1715b46b40b79df953f641420dad49d11ec161028532b36ba19e4a730b",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/runtime_metadata.json": "595a8a1e85759e0a28ad7d0cdfa2b425aebffdf2f622eeae5ae6721d6534230b",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/startup.json": "de2164b65aae1c814febc6aa24fb8f8ba3bb4cd1250c16ce30ad32b21eb02460",
+    "evaluations/results/phase5x/qwen36-preparation/regression_final.json": "5b75b7f81c147691b82fefa1032f0d28ee345b331bd3f92688d414859259ea30",
+    "evaluations/results/phase5x/qwen36-preparation/regression_final.log.txt": "9d58d99b1a14b13072f819aa6588483e577248c022431031c289f5409823e68b",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "runtime/models/qwen36-35b-a3b-q4-k-m.json": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c",
+    "schemas/requirement_generation_v2.schema.json": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "scripts/evaluate_requirements.py": "1915ee707cb6dca4f9f6927b760b0bdce1c1c5d6929837be489dafc97fb0cbfd",
+    "scripts/gpu_preflight.py": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb",
+    "scripts/llama_server.py": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "scripts/native_model_bootstrap.py": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf",
+    "scripts/verify_model_listeners.py": "2d7771d414a7faae4138ea555349d1f7f111d36498ad9815f64ac51910d758dd",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+    "tests/test_local_model.py": "fef278522273e4fbe0819dc7702bebe26da4ca39b7912b6c1ce7c48a8975f859",
+    "tests/test_native_requirement_evaluation.py": "c350555aad68267de789a797824cc3cbe645b2ea00d68b53026f94b892f3397d",
+    "var/reports/llama-cuda-build-verified.json": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+    "var/reports/llama-source-bootstrap.json": "4802877b1f067c17a3fb2e4fe1cc0f3605773b6fba56900aa2c80699739751f6",
+    "var/reports/native-contract-raw-cpu-context.json": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be",
+    "var/reports/qwen36-gguf-header.json": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9",
+    "var/reports/qwen36-qwen38-saved-tokenizer-comparison.json": "81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f",
+    "var/reports/qwen38-gguf-header.json": "ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a",
+    "var/research/compare_qwen36_qwen38_saved_headers.py": "e4325ae6f952f5aaf8b277b75af33da835b8e2fe01834c69cc0b5cf66042b756",
+    "var/research/inspect_qwen36_gguf.py": "6e19db06be126b95ec619d434b7230a88dc4542d10d506c026f9cebb71114d97",
+    "var/research/native-qwen36-contract/build.json": "8d98d6d7e13e1fa597cc7e88b0c460ca7ebf6d713a94a99dc390f5798753e950",
+    "var/research/native-qwen36-contract/build.py": "61760634036bd94e1922d6cb022ab6c2ffaf3cb30dc1c54d6bd2813a31196a0b",
+    "var/research/native-qwen36-contract/final-cpu-proof.json": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+    "var/research/native-qwen36-contract/produce_final.py": "ac904566519ccdf4d392dac17404ecf797286f5833963864a4c448d2eaa01301",
+    "var/research/native-qwen36-contract/public-proof.json": "c87d48d3ce7a0621dfdbfcaa918e36664b88357a60e1dffb98e93c2dcdd0050c",
+    "var/research/native-qwen36-contract/public_check.py": "7bb13bb7abd0fc596194d592d9f17b1ba5d5103d15dfae3193a0dd2c181f98fc",
+    "var/research/native-qwen36-contract/source-equivalence.json": "efd6529f1f2db9e7cdd4bd5fc24e8f31e0b8e87189ee1a8865c595d4e1bb2d66",
+    "var/research/native-qwen36-contract/validator.cpp": "c55f66ab7909a921bdf8c429151cf71eb4cc17cc34a0578e65b709eae4c41ec8",
+    "var/research/native-tokenizer-public-parity-raw-diagnostic.json": "9658eb53fae81adee1b775b45f796f3484db69aea41e04a020765fa05d770514",
+    "var/research/native-vocab-public-probe-v4-raw-diagnostic.json": "12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d",
+    "var/research/native-vocab-public-probe-v4.json": "b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0",
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63",
+    "var/research/qwen36-first-diagnostic-draft/contract.py": "a723d9580403add09cc23b4ee8267783a6bbe6abc8200e05953b7f66623d04a0",
+    "var/research/qwen36-first-diagnostic-draft/evidence.py": "becc7d4ce4f1c5e4736faa9d440f5e907b49c29a6350cd7f48d6041a7b32fb57",
+    "var/research/qwen36-first-diagnostic-draft/freeze_native_qwen36_diagnostic.py": "ff352e7d58a09d42d541bb0142e2722d1d41b716472ff872a1b02a55bd5e84ff",
+    "var/research/qwen36-first-diagnostic-draft/replay_native_qwen36_exposed.py": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5",
+    "var/research/qwen36-native-launch-epoch1.json": "91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb",
+    "var/research/qwen36-runtime-saved-consumer-check.json": "91125088b96840a73953e407072be9dbe9ba0723181cb80968280168fc768684",
+    "var/research/qwen36_runtime_probe.py": "ea121357ca95b34d9b7e0443dc0b5810128705ef9ca3cf87c333fbf5150b7572",
+    "var/research/run_native_qwen36_epoch1_probe.py": "ef13331c745ef78351c51bcf7bce4e5998cfce9768ad65c04472beb0bd1a9247"
+  },
+  "next_evaluation_policy": {
+    "clear_fail": "STOP_CANDIDATE_NO_REPEAT_NO_V2_NO_UNUSED_HOLDOUT",
+    "pass": "LATER_SEPARATE_MINIMUM_NEW_HOLDOUT_DECISION_ONLY",
+    "automatic_trials_or_retries": 0,
+    "first_diagnostic_calls": 125,
+    "future_holdout_execution_authorized": false
+  },
+  "freeze_worktree_head_commit": "fdd4f01d09033e0d037f1ad6cdd44307500a080f",
+  "guard_time_observation": {
+    "guard_max_seconds": 7200,
+    "elapsed_seconds_at_freeze": 332.787,
+    "remaining_seconds_at_freeze": 6867.213,
+    "first_request_requires_fresh_root_time_decision": true,
+    "meaning": "Own guard lifetime observation, not a promised125-call completion duration."
+  },
+  "cpu_measurement_scope": {
+    "status": "PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120",
+    "splits": {
+      "exposed120": {
+        "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+        "input_count": 120,
+        "min_input_tokens": 2133,
+        "max_input_tokens": 2409,
+        "max_input_plus_output": 3177,
+        "measurement_kind": "CARRIED_FORWARD",
+        "measured_model_id": "ggml-org/Qwen3.8-27B-GGUF"
+      }
+    },
+    "historical_hf_equivalence": {
+      "status": "FAIL",
+      "case_count": 20,
+      "id_match_count": 19,
+      "mismatch_indices": [
+        11
+      ],
+      "native_original_roundtrip_count": 20
+    },
+    "historical_raw_reference": {
+      "status": "PASS",
+      "case_count": 20,
+      "id_match_count": 20,
+      "reference_kind": "hf-tokenizer-json-with-nfc-normalizer-disabled"
+    },
+    "new_executions": {
+      "public_request_count": 1,
+      "native_compile_count": 1,
+      "context_request_count": 0,
+      "public_parity_cases": 0,
+      "old_corpus_replays": 0,
+      "model_inference": 0,
+      "http": 0,
+      "gpu": 0
+    },
+    "sampling_equivalent": false
+  },
+  "regression": {
+    "kind": "QWEN36_EXPLICIT_NATIVE_PROFILE_REGRESSION",
+    "exit_code": 0,
+    "started_at_utc": "2026-09-20T16:30:21.738329+00:00",
+    "elapsed_wall_seconds": 21.365940659306943,
+    "log_path": "var/phase5x-qwen36-binding-regression-v2.log",
+    "log_sha256": "9d58d99b1a14b13072f819aa6588483e577248c022431031c289f5409823e68b",
+    "real_postgresql": true,
+    "real_ifcopenshell": true,
+    "headless": true,
+    "cuda_visible_devices": "",
+    "source_sha256": {
+      "scripts/evaluate_requirements.py": "1915ee707cb6dca4f9f6927b760b0bdce1c1c5d6929837be489dafc97fb0cbfd",
+      "src/neurobuild/infrastructure/local_model.py": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+      "tests/test_native_requirement_evaluation.py": "c350555aad68267de789a797824cc3cbe645b2ea00d68b53026f94b892f3397d",
+      "tests/test_local_model.py": "fef278522273e4fbe0819dc7702bebe26da4ca39b7912b6c1ce7c48a8975f859"
+    },
+    "reason": "Corrected existing protocol/profile compatibility test matrix to include explicit Qwen36 native profile; first failed log preserved. No model evaluation/native corpus repeated."
+  },
+  "prior_v2_model_output_exposure_record": "evaluations/hardening_v2_model_output_exposure_record.json",
+  "decision_policy": "Raw final decision before validation; no retry/repair/fallback; unknown preserves all denominators.",
+  "limits": [
+    "Exposed synthetic regression; auto-generated gold is not human verified.",
+    "Qwen36 current single-public CPU request and historical Qwen38 tokenizer/context evidence are distinct.",
+    "Historical HF equivalence FAIL is retained; no input/output NFC repair or blanket Unicode guarantee.",
+    "Only this Qwen36 single-epoch GPU evidence applies to runtime; RTX5090 remains unverified.",
+    "Clear first-gate FAIL stops this candidate: no repeats, V2 or unused holdout; PASS requires a later minimum new-holdout decision."
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "kind": "QWEN36_FIRST_DIAGNOSTIC_ACTUAL_CPU_BINDING_PREPARATION",
+  "status": "BLOCKED_PENDING_RUNTIME_SEVEN_AND_ROOT_ACTIVATION",
+  "at_utc": "2026-09-20T16:54:20.075833+00:00",
+  "source_ancestor_commit": "fdd4f01d09033e0d037f1ad6cdd44307500a080f",
+  "actual_cpu_sha256": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+  "actual_header_sha256": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9",
+  "saved_consumer_sha256": "91125088b96840a73953e407072be9dbe9ba0723181cb80968280168fc768684",
+  "preserved_preparation_sha256": "e6589216227801b5ba502a9634ad1bb90c7a7f701306b4b9bad5bad89266fc9f",
+  "changes": [
+    "Actual CPU/header/comparison/ref10/source5 and expected carried measurements bound",
+    "Actual runtime20-field provenance projection and exact startup scope sentence aligned",
+    "Actual runtime definition/config/controller pins, resource token220, guard7200 and expected props7764 bound",
+    "CPU source definition/producer/consumer metadata hashes added to prospective closure",
+    "Source ancestor advanced to pushed CPU checkpoint fdd4f01; seven actual runtime hashes remain None"
+  ],
+  "static_only": {
+    "core_functions": {
+      "load_snapshot": {
+        "ast_equal": true,
+        "source_bytes_equal": true
+      },
+      "replay_row": {
+        "ast_equal": true,
+        "source_bytes_equal": true
+      },
+      "replay_groups": {
+        "ast_equal": true,
+        "source_bytes_equal": true
+      }
+    },
+    "projection_keyset_matches_saved_actual_consumer": 20,
+    "startup_scope_sentence_matches_runtime_source": true,
+    "expected_cpu_fields_literal_equal_saved_proof": true,
+    "require_ready_unconditional_raise": true,
+    "runtime_pins_pending_count": 7,
+    "python_ast_parses": true
+  },
+  "files": {
+    "contract.py": "f730eb1eb858f4703328830200c0cb42e2698907d698f3a42ff778bc7ce85475",
+    "evidence.py": "becc7d4ce4f1c5e4736faa9d440f5e907b49c29a6350cd7f48d6041a7b32fb57",
+    "freeze_native_qwen36_diagnostic.py": "ff352e7d58a09d42d541bb0142e2722d1d41b716472ff872a1b02a55bd5e84ff",
+    "replay_native_qwen36_exposed.py": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5",
+    "README.md": "3f78ceae78e4ba5d5233fa039a9b8f77d2e3f379e608a948cb4694482711e881",
+    "actual_cpu_binding.patch": "257aef864fd6f8dc76814cc4bf67a180b66b9b0af9cdf04082d4dd41978b4214"
+  },
+  "executions": {
+    "helper_import": 0,
+    "helper_function": 0,
+    "tests": 0,
+    "native": 0,
+    "dataset_read": 0,
+    "dataset_hash": 0,
+    "model": 0,
+    "gpu": 0,
+    "http": 0,
+    "old_replay": 0,
+    "new_replay": 0
+  }
+}

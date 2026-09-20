@@ -1,0 +1,18 @@
+{
+  "kind": "QWEN36_EXACT_OWN_EPOCH_STOP_PIN_BINDING",
+  "helper_sha256": "4a97cdec141d785b3a47539779eafa56ba2f61663ea1f0a56daefc2fa36d3877",
+  "prepared_sha256": "7133109057463230fb865c851e3b37ef02ecaaa7666a937af1a3945c68a37056",
+  "identity_sha256": "00503acf261ae15ff279801a2ccec08972a24afe0c77e3a57caf5ef66db88079",
+  "identity": {
+    "GUARD": 3716484,
+    "GUARD_TICKS": 480674844,
+    "CHILD": 3716721,
+    "CHILD_TICKS": 480679676,
+    "HELPER_SHA": "ea121357ca95b34d9b7e0443dc0b5810128705ef9ca3cf87c333fbf5150b7572",
+    "CONFIG_SHA": "91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb",
+    "IDENTITY_SHA": "00503acf261ae15ff279801a2ccec08972a24afe0c77e3a57caf5ef66db88079",
+    "GUARD_STARTED_AT_UTC": "2026-09-20T16:52:44.502432+00:00"
+  },
+  "signals": 0,
+  "stop_executions": 0
+}

@@ -1379,3 +1379,22 @@ controlleref13331c745ef78351c51bcf7bce4e5998cfce9768ad65c04472beb0bd1a9247에 �
 초기 blocked3개와diff를 보존했고 lifecycle AST는 변경하지 않았다. Saved consumer1회 PASS,
 receipt91125088b96840a73953e407072be9dbe9ba0723181cb80968280168fc768684, provenance20keys/space220 확인.
 GPU·HTTP·native·corpus 호출0. Own stop 도구는 live epoch PID/tick를 채우기 전 차단 상태로 준비했다.
+
+
+### 2026-09-21 KST — Qwen3.6 첫 GPU3 runtime
+
+CPU checkpointfdd4f01d09033e0d037f1ad6cdd44307500a080f push·원격일치·clean 후
+`CUDA_VISIBLE_DEVICES=3 .conda/bin/python scripts/llama_server.py --config var/research/qwen36-native-launch-epoch1.json` 기동.
+Fresh5 free36373/used3965/util0, margin7275/available29098/estimate28672 admissionPASS.
+Own guard3716484/start480674844, child3716721/start480679676, guard시각2026-09-20T16:52:44.502432+00:00.
+Ownidentity00503acf261ae15ff279801a2ccec08972a24afe0c77e3a57caf5ef66db88079를 기록했고 exactpidfd stop도구를 해당epoch에 결합했다(신호0).
+
+Controller startup/public/resource 각1회 PASS. Startupde2164b6…/runtime595a8a1e…,
+public2fcc64b9…/2.707237813초, resource93bfba95…/10.769428756초, tokens3328+768/cache4095.
+이 시점 기준선 대비 GPU3 전체사용 증가peak19854MiB/minfree16520MiB, margin위반없음. 개별process VRAM측정아님.
+새7receipt와CLI/identity/stop정의/독립읽기검토 보존. 현재서버RUNNING/새품질호출0, 기존startup/resource/평가/재생반복0.
+
+실제runtime7을 결합한 firstdiagnostic freezer를 처음 한 번 실행해 exit0/stderr0.
+Freeze57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074/69files,
+120×1+warmup5/기존4gate/동일own epoch/새CPU1+historicalexposed120승계/422회귀를 사전고정했다.
+Replay core3 AST/source와 finite120 처리 불변. 이 시점 신규품질요청0, replay0이며 clean/pushed 평가commit에서만실행한다.

@@ -1,0 +1,153 @@
+--- history/pre-actual-cpu/contract.py
++++ contract.py
+@@ -4,12 +4,12 @@
+ from copy import deepcopy
+ from pathlib import Path
+ ROOT = Path('/home/a202192020/NeuroBuild_v2')
+-PREPARATION_STATUS = 'BLOCKED_PENDING_QWEN36_ACTUAL_CPU_HEADER_RUNTIME_AND_ROOT_VARIANT'
++PREPARATION_STATUS = 'BLOCKED_ACTUAL_CPU_BOUND_PENDING_RUNTIME_SEVEN_AND_ROOT_ACTIVATION'
+ MODEL = 'ggml-org/Qwen3.6-35B-A3B-GGUF'
+ REVISION = 'baec3ebee244827cda0f4557eafa8b28f7545fa6'
+ UPSTREAM_MODEL = 'Qwen/Qwen3.6-35B-A3B'
+ UPSTREAM_REVISION = '995ad96eacd98c81ed38be0c5b274b04031597b0'
+-VARIANT = None
++VARIANT = 'qwen36-gguf-raw-unicode-v1'
+ PROPOSED_VARIANT = 'qwen36-gguf-raw-unicode-v1'
+ SOURCE_PIN = 'f072b103714dfa1eee531f80b24512faf38e3dd2'
+ GGUF_SHA = '671e47e0ec53c665d048b98c3ecbfd5236b5ca9c3e02ed19fc8f81f7b85140c7'
+@@ -17,8 +17,8 @@
+ GGUF_NAME = 'Qwen3.6-35B-A3B-Q4_K_M.gguf'
+ TEMPLATE_SHA = 'e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259'
+ TEMPLATE_BYTES = 7764
+-PROPS_TEMPLATE_SHA = None
+-PROPS_TEMPLATE_BYTES = None
++PROPS_TEMPLATE_SHA = 'e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259'
++PROPS_TEMPLATE_BYTES = 7764
+ TOKENIZER_SHA = '5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42'
+ PROFILE = 'qwen36_nonthinking_llama_cpp'
+ SERVED_MODEL = 'neurobuild-qwen36-35b-a3b-q4-k-m'
+@@ -30,25 +30,25 @@
+ CPU = 'var/research/native-qwen36-contract/final-cpu-proof.json'
+ CPU_KIND = 'QWEN36_NATIVE_CONTRACT_CPU_PROOF'
+ CPU_STATUS = 'PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120'
+-CPU_SHA = None
+-CPU_ARCHIVED_PROOF = None
+-CPU_SCHEMA_FINAL = False
+-CPU_EXPECTED_PROJECTION = None
++CPU_SHA = '747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1'
++CPU_ARCHIVED_PROOF = 'evaluations/results/phase5x/qwen36-cpu-preflight/contract/final-cpu-proof.json'
++CPU_SCHEMA_FINAL = True
++CPU_EXPECTED_PROJECTION = {'splits': {'exposed120': {'dataset_sha256': '7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b', 'input_count': 120, 'min_input_tokens': 2133, 'max_input_tokens': 2409, 'max_input_plus_output': 3177, 'measurement_kind': 'CARRIED_FORWARD', 'measured_model_id': 'ggml-org/Qwen3.8-27B-GGUF'}}, 'resource_probe_token': {'text': ' ', 'token_id': 220, 'native_token_count': 1, 'native_roundtrip': True, 'measurement_kind': 'CARRIED_FORWARD_BY_TYPED_VOCAB_EQUALITY'}, 'historical_hf_equivalence': {'status': 'FAIL', 'case_count': 20, 'id_match_count': 19, 'mismatch_indices': [11], 'native_original_roundtrip_count': 20}, 'historical_raw_reference': {'status': 'PASS', 'case_count': 20, 'id_match_count': 20, 'reference_kind': 'hf-tokenizer-json-with-nfc-normalizer-disabled'}, 'new_executions': {'public_request_count': 1, 'native_compile_count': 1, 'context_request_count': 0, 'public_parity_cases': 0, 'old_corpus_replays': 0, 'model_inference': 0, 'http': 0, 'gpu': 0}, 'normalization_limitation': 'Historical Qwen3.8 official HF NFC reference IDs matched 19/20 (index11 mismatch), while native raw original roundtrip and explicitly NFC-disabled reference matched 20/20. These measurements remain historical; actual typed native tokenizer equality and restricted effective-input equivalence support carry to the explicit Qwen3.6 raw-Unicode variant. Official HF equivalence is not newly measured or asserted; no application input/output normalization repair.', 'tokenizer_contract': 'historical_raw_reference_by_exact_typed_metadata_and_restricted_input_equivalence', 'template_input_equivalence': {'status': 'PASS', 'scope': 'nonempty_system_single_user_text_no_history_no_tools_nonthinking', 'byte_exact_public_native_render': True, 'proof_ref': 'source_equivalence'}, 'template_override_used': False, 'helper_sha256': 'ac904566519ccdf4d392dac17404ecf797286f5833963864a4c448d2eaa01301'}
+ CPU_REF_KEYS = ['header', 'tokenizer_comparison', 'public_contract', 'public_build', 'historical_header', 'historical_context', 'historical_official', 'historical_raw', 'historical_raw_fixture', 'source_equivalence']
+-CPU_REFS = None
++CPU_REFS = {'header': {'path': 'var/reports/qwen36-gguf-header.json', 'sha256': '7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9'}, 'tokenizer_comparison': {'path': 'var/reports/qwen36-qwen38-saved-tokenizer-comparison.json', 'sha256': '81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f'}, 'public_contract': {'path': 'var/research/native-qwen36-contract/public-proof.json', 'sha256': 'c87d48d3ce7a0621dfdbfcaa918e36664b88357a60e1dffb98e93c2dcdd0050c'}, 'public_build': {'path': 'var/research/native-qwen36-contract/build.json', 'sha256': '8d98d6d7e13e1fa597cc7e88b0c460ca7ebf6d713a94a99dc390f5798753e950'}, 'historical_header': {'path': 'var/reports/qwen38-gguf-header.json', 'sha256': 'ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a'}, 'historical_context': {'path': 'var/reports/native-contract-raw-cpu-context.json', 'sha256': '5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be'}, 'historical_official': {'path': 'var/research/native-vocab-public-probe-v4.json', 'sha256': 'b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0'}, 'historical_raw': {'path': 'var/research/native-vocab-public-probe-v4-raw-diagnostic.json', 'sha256': '12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d'}, 'historical_raw_fixture': {'path': 'var/research/native-tokenizer-public-parity-raw-diagnostic.json', 'sha256': '9658eb53fae81adee1b775b45f796f3484db69aea41e04a020765fa05d770514'}, 'source_equivalence': {'path': 'var/research/native-qwen36-contract/source-equivalence.json', 'sha256': 'efd6529f1f2db9e7cdd4bd5fc24e8f31e0b8e87189ee1a8865c595d4e1bb2d66'}}
+ HEADER = 'var/reports/qwen36-gguf-header.json'
+-HEADER_SHA = None
+-HEADER_ARCHIVE = None
+-TOKENIZER_COMPARISON = None
+-TOKENIZER_COMPARISON_SHA = None
+-COMPARISON_ARCHIVE = None
++HEADER_SHA = '7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9'
++HEADER_ARCHIVE = 'evaluations/results/phase5x/qwen36-cpu-preflight/header/header.json'
++TOKENIZER_COMPARISON = 'var/reports/qwen36-qwen38-saved-tokenizer-comparison.json'
++TOKENIZER_COMPARISON_SHA = '81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f'
++COMPARISON_ARCHIVE = 'evaluations/results/phase5x/qwen36-cpu-preflight/header/tokenizer-comparison.json'
+ PROBE = 'var/research/qwen36_runtime_probe.py'
+-PROBE_SHA = None
++PROBE_SHA = 'ea121357ca95b34d9b7e0443dc0b5810128705ef9ca3cf87c333fbf5150b7572'
+ CONFIG = 'var/research/qwen36-native-launch-epoch1.json'
+-CONFIG_SHA = None
++CONFIG_SHA = '91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb'
+ CONTROLLER = 'var/research/run_native_qwen36_epoch1_probe.py'
+-CONTROLLER_SHA = None
+-SOURCE_COMMIT = '424abd8d976fcc3936c3376863a5a69469f44dc7'
++CONTROLLER_SHA = 'ef13331c745ef78351c51bcf7bce4e5998cfce9768ad65c04472beb0bd1a9247'
++SOURCE_COMMIT = 'fdd4f01d09033e0d037f1ad6cdd44307500a080f'
+ REGRESSION = 'evaluations/results/phase5x/qwen36-preparation/regression_final.json'
+ REGRESSION_SHA = '5b75b7f81c147691b82fefa1032f0d28ee345b331bd3f92688d414859259ea30'
+ REGRESSION_LOG = 'evaluations/results/phase5x/qwen36-preparation/regression_final.log.txt'
+@@ -74,14 +74,14 @@
+ V2_DATASET = 'evaluations/requirement_hardening_v2_holdout.jsonl'
+ V2_DATASET_SHA = '7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40'
+ RUNTIME_DEFINITION_PINS = {'var/research/native_runtime_probe.py': 'ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63'}
+-GUARD_MAX_SECONDS = None
+-RESOURCE_TOKEN_ID = None
++GUARD_MAX_SECONDS = 7200
++RESOURCE_TOKEN_ID = 220
+ NEXT_EVALUATION_POLICY = {'clear_fail': 'STOP_CANDIDATE_NO_REPEAT_NO_V2_NO_UNUSED_HOLDOUT', 'pass': 'LATER_SEPARATE_MINIMUM_NEW_HOLDOUT_DECISION_ONLY', 'automatic_trials_or_retries': 0, 'first_diagnostic_calls': 125, 'future_holdout_execution_authorized': False}
+ 
+ def require_ready():
+     # Deliberately unconditional: no hash-only dataset access, live check, freeze,
+-    # replay or publication until actual pins/schema and root activation review.
+-    raise ValueError('QWEN36_ACTUAL_CPU_HEADER_RUNTIME_VARIANT_PENDING')
++    # replay or publication until seven actual runtime pins and root activation review.
++    raise ValueError('QWEN36_RUNTIME_SEVEN_AND_ROOT_ACTIVATION_PENDING')
+ 
+ 
+ def planned_contract():
+@@ -105,3 +105,8 @@
+             'runtime_epoch_snapshot':None,'tokenizer_contract':None,'normalization_limitation':None,
+             'source_ancestor_commit':None,'frozen_at_utc':None,'sha256':None,
+             'next_evaluation_policy':deepcopy(NEXT_EVALUATION_POLICY)}
++
++# Actual saved consumer observation; no invocation is performed by this draft.
++SAVED_CONSUMER = 'var/research/qwen36-runtime-saved-consumer-check.json'
++SAVED_CONSUMER_SHA = '91125088b96840a73953e407072be9dbe9ba0723181cb80968280168fc768684'
++RUNTIME_DEFINITION_PINS.update({'var/research/qwen36-runtime-saved-consumer-check.json': '91125088b96840a73953e407072be9dbe9ba0723181cb80968280168fc768684', 'var/research/inspect_qwen36_gguf.py': '6e19db06be126b95ec619d434b7230a88dc4542d10d506c026f9cebb71114d97', 'var/research/compare_qwen36_qwen38_saved_headers.py': 'e4325ae6f952f5aaf8b277b75af33da835b8e2fe01834c69cc0b5cf66042b756', 'var/research/native-qwen36-contract/validator.cpp': 'c55f66ab7909a921bdf8c429151cf71eb4cc17cc34a0578e65b709eae4c41ec8', 'var/research/native-qwen36-contract/build.py': '61760634036bd94e1922d6cb022ab6c2ffaf3cb30dc1c54d6bd2813a31196a0b', 'var/research/native-qwen36-contract/public_check.py': '7bb13bb7abd0fc596194d592d9f17b1ba5d5103d15dfae3193a0dd2c181f98fc', 'var/research/native-qwen36-contract/produce_final.py': 'ac904566519ccdf4d392dac17404ecf797286f5833963864a4c448d2eaa01301'})
+--- history/pre-actual-cpu/evidence.py
++++ evidence.py
+@@ -99,7 +99,7 @@
+     check(startup['kind']=='QWEN36_NATIVE_STARTUP_HTTP_PROOF' and startup['status']=='PASS'
+           and startup['http_get_calls']==3 and startup['model_inference_calls']==0
+           and startup['native_startup_warmup_enabled'] is True
+-          and startup['model_inference_calls_scope']=='Explicit HTTP generation calls only; native startup warmup is enabled'
++          and startup['model_inference_calls_scope']=='Explicit HTTP generation calls; native startup warmup is enabled and not counted'
+           and startup['raw_http_bodies_saved'] is False,'startup_scope')
+     exact([startup['chat_template_sha256'],startup['embedded_chat_template_sha256'],startup['embedded_chat_template_bytes'],
+            startup['props_reported_template_sha256'],startup['props_reported_template_bytes']],
+@@ -159,11 +159,16 @@
+ 
+ 
+ def provenance_projection(cpu):
+-    """Proposed runtime consumer projection; exact actual API remains pending."""
+-    return {'model_id':MODEL,'model_revision':REVISION,'candidate_variant':VARIANT,
++    """Match the actual saved consumer's 20-field runtime projection exactly."""
++    return {'candidate_variant':VARIANT,'model_id':MODEL,'model_revision':REVISION,
+             'cpu_proof_sha256':CPU_SHA,'cpu_proof_kind':CPU_KIND,'cpu_proof_status':CPU_STATUS,
+             'chat_template_sha256':TEMPLATE_SHA,'tokenizer_json_sha256':TOKENIZER_SHA,
+-            'cpu_measurement_scope':cpu_scope(cpu),
++            'tokenizer_contract':cpu['tokenizer_contract'],
++            'historical_hf_equivalence':cpu['historical_hf_equivalence'],
++            'historical_raw_reference':cpu['historical_raw_reference'],
++            'template_input_equivalence':cpu['template_input_equivalence'],
++            'exposed_context':cpu['splits']['exposed120'],
++            'application_input_output_nfc_repair':False,'sampling_equivalent':False,
++            'cpu_proof_refs':cpu['proof_refs'],'cpu_source_sha256':cpu['source_sha256'],
+             'normalization_limitation':cpu['normalization_limitation'],
+-            'application_input_output_nfc_repair':False,'cpu_proof_refs':cpu['proof_refs'],
+-            'cpu_source_sha256':cpu['source_sha256']}
++            'new_cpu_executions':cpu['new_executions'],'cpu_checks_rerun':False}
+--- history/pre-actual-cpu/README.md
++++ README.md
+@@ -1,15 +1,17 @@
+ # Qwen3.6 first diagnostic — blocked preparation
+ 
+-These definitions are not an evaluation freeze or an execution receipt. Both entrypoints call an unconditional `require_ready()` before opening any artifact, hashing any dataset, inspecting an epoch, publishing a freeze, or replaying results. `CPU_SCHEMA_FINAL=False` independently blocks the proposed CPU validator. No actual freeze, source snapshot, candidate evaluation, corpus hash, tokenizer encode/render, native call, HTTP call, GPU call or test was performed for this preparation.
++These definitions are not an evaluation freeze or an execution receipt. Both entrypoints call an unconditional `require_ready()` before opening any artifact, hashing any dataset, inspecting an epoch, publishing a freeze, or replaying results. The actual CPU aggregate schema and pins are now bound, but all seven runtime receipt pins remain missing and the entrypoint block remains unconditional. No actual freeze, source snapshot, candidate evaluation, corpus hash, tokenizer encode/render, native call, HTTP call, GPU call or test was performed for this preparation.
+ 
+ The intended first diagnostic is the existing exposed120 once plus 5 warmups: 62 READY / 58 non-READY, schema 120/120, semantic at least 114/120, raw READY false positives 0/58, unsafe accepted READY 0/120. Unknown decisions keep their denominators and prevent PASS. A clear FAIL stops this candidate: no repeat, V2 or unused holdout evaluation. PASS permits only a later separate minimum new-holdout decision, not an automatic evaluation. Auto-generated gold remains NOT HUMAN VERIFIED.
+ 
+ `load_snapshot`, `replay_row`, and `replay_groups` are exact source copies of the completed Gemma12 replay; their ASTs were compared without importing or running either helper. Its finite numeric 120 timeout rule accepts int/float and rejects bool/nonfinite. Retained JSON is replayed without response repair; unretained raw observations are not falsely claimed to be reobserved. This is future saved-result consistency checking, not a model retry.
+ 
+-The pinned model is ggml-org/Qwen3.6-35B-A3B-GGUF at baec3ebee244827cda0f4557eafa8b28f7545fa6; original metadata is Qwen/Qwen3.6-35B-A3B at 995ad96eacd98c81ed38be0c5b274b04031597b0. Expected Q4_K_M and template e84f32…4259 still require the actual header. Source ancestor 424abd8d976fcc3936c3376863a5a69469f44dc7 and the existing 422-test / 20.758-second regression receipt are fixed. No regression was rerun. The explicit qwen36_nonthinking_llama_cpp HTTP recipe is T0.7/P0.8/K20/minP0/presence1.5/repeat1; frequency0, repeat window64, seed42 and penalties→top_k→top_p→min_p→temperature are project choices. No input/output normalization is introduced.
++The pinned model is ggml-org/Qwen3.6-35B-A3B-GGUF at baec3ebee244827cda0f4557eafa8b28f7545fa6; original metadata is Qwen/Qwen3.6-35B-A3B at 995ad96eacd98c81ed38be0c5b274b04031597b0. Expected Q4_K_M and template e84f32…4259 still require the actual header. Source ancestor fdd4f01d09033e0d037f1ad6cdd44307500a080f and the existing 422-test / 20.758-second regression receipt are fixed. No regression was rerun. The explicit qwen36_nonthinking_llama_cpp HTTP recipe is T0.7/P0.8/K20/minP0/presence1.5/repeat1; frequency0, repeat window64, seed42 and penalties→top_k→top_p→min_p→temperature are project choices. No input/output normalization is introduced.
+ 
+-The prospective new CPU proof kind is QWEN36_NATIVE_CONTRACT_CPU_PROOF, status PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120. This is a schema proposal, not an observed PASS: a new single-public request/sampling proof and typed-tokenizer/source comparison would bind historical Qwen38 exposed120 lengths, historical official HF FAIL and separate raw reference evidence. Gemma proof/corpus200 is not carried. Only `splits.exposed120` is accepted; old V2 input lengths and the unused holdout are excluded from this CPU contract. Existing V2 freeze preservation appears in future freezer/replay code only as byte hashes, never parsing/scoring; no such hashes were calculated during preparation.
++The prospective new CPU proof kind is QWEN36_NATIVE_CONTRACT_CPU_PROOF, status PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120. Actual final receipt747af565…20d1 now binds a new single-public request/sampling proof and typed-tokenizer/source comparison to historical Qwen38 exposed120 lengths, historical official HF FAIL and separate raw reference evidence. That receipt was produced by the runtime agent/root; no CPU work was repeated here. Gemma proof/corpus200 is not carried. Only `splits.exposed120` is accepted; old V2 input lengths and the unused holdout are excluded from this CPU contract. Existing V2 freeze preservation appears in future freezer/replay code only as byte hashes, never parsing/scoring; no such hashes were calculated during preparation.
+ 
+-Pending before any activation: root-selected runtime variant; actual Qwen36 header and typed-tokenizer comparison; exact final CPU schema/projection and all ten refs; CPU archive; CPU/source/resource-token pins; reviewed probe/controller/config API and hashes; guard duration; effective/props template representation; startup5/public1/resource1 receipts and seven exact epoch hashes. `VARIANT=None`, `CPU_SHA=None`, `CPU_EXPECTED_PROJECTION=None` and the missing receipt hashes deliberately cannot mean a wildcard. `qwen_binding(config)` and the CPU provenance projection are proposed interfaces awaiting the runtime consumer definition. The runtime endpoint artifacts must all bind the same own PID/start ticks/config/guard epoch; nothing is borrowed from a different candidate or claimed as already executed.
++The original pre-actual draft and preparation receipt are exact-preserved in `history/pre-actual-cpu/`. Final CPU747af565, header7434158, comparison81f7496, source ancestor fdd4f01, source5 and regression422 remain bound. Variant qwen36-gguf-raw-unicode-v1, config91c651, probeea1213, controlleref1333 and saved consumer91125088 are actual definitions/metadata, not runtime execution. The evidence projection now matches the consumer's20 fields and exact startup scope sentence. Official/embedded template7764B and expected props7764B are definition expectations; actual props and epoch receipts are still pending.
++
++Pending before activation: actual startup5/public1/resource1 receipts, seven exact same-epoch artifact hashes, and root final activation review. Filling CPU fields did not release `require_ready()`. `RUNTIME_SHA` values remain None; no actual freeze/snapshot or evaluation was created. The new source/CPU definition pins are included in the prospective freeze closure. No current V2/old120/unused80 dataset was read or hashed during these changes.
+ 
+ After final saved evidence and root activation review, the future freezer CLI takes `--cpu-proof-sha256`; the future replay CLI takes one completed run, `--freeze`, `--freeze-sha256`, `--source-commit`, `--snapshot`, `--snapshot-sha256`, `--candidate-variant`, and `--completed-run`. No executable command with guessed final pins is supplied. Any later activation changes must preserve this preparation receipt and the historical helpers.
