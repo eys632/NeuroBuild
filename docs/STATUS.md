@@ -3,6 +3,9 @@
 갱신: **2026-09-21 KST — Qwen3.6 첫 단회 의미 gate FAIL, 원본·독립 재검산 보존, GPU3 반환 완료**.
 Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 모델 미채택, Phase6 미시작**이다.
 
+2026-09-21 provenance 정리: 공개 Google 페이지 raw HTML을 제거하고 최소 license metadata와 Apache-2.0 텍스트를 보존했다.
+평가 결과는 변경하지 않았다. 전체 index secret 검사와 재발 방지 정책은 [정리 보고서](reports/provenance_cleanup_20260921.md)를 따른다.
+
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |

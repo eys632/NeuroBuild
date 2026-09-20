@@ -1,0 +1,46 @@
+{
+  "kind": "PUBLIC_RAW_WEB_SNAPSHOT_REMOVAL",
+  "at_utc": "2026-09-20T17:34:39.453842+00:00",
+  "removed": [
+    {
+      "path": "evaluations/results/phase5x/gemma4-12b-preparation/metadata/official-license/gemma4-license.html",
+      "bytes": 259101,
+      "file_sha256": "632821edc219599aa7e587e37744d264f2516888d422319c6866a3214034fa79",
+      "pattern_counts": {
+        "google_api_key": 9
+      },
+      "was_git_tracked": true
+    },
+    {
+      "path": "var/research/gemma4-12b-candidate-metadata/official-license/gemma4-license.html",
+      "bytes": 259101,
+      "file_sha256": "632821edc219599aa7e587e37744d264f2516888d422319c6866a3214034fa79",
+      "pattern_counts": {
+        "google_api_key": 9
+      },
+      "was_git_tracked": false
+    },
+    {
+      "path": "var/research/gemma4-31b-qat-candidate-metadata/official-docs/gemma4-license.html",
+      "bytes": 259097,
+      "file_sha256": "8780aa42e5bcc85bf70406935216112c658351c4d0a4345ab421e7f0b6263d4d",
+      "pattern_counts": {
+        "google_api_key": 9
+      },
+      "was_git_tracked": false
+    },
+    {
+      "path": "var/research/gemma4-31b-qat-candidate-metadata/official-docs/prompt-formatting-gemma4.html",
+      "bytes": 155145,
+      "file_sha256": "633399d443489dad0ab5751987fc56e58319f5f7360de9500d00bf820493ee8b",
+      "pattern_counts": {
+        "google_api_key": 9
+      },
+      "was_git_tracked": false
+    }
+  ],
+  "values_emitted_or_copied": false,
+  "evaluation_results_modified": false,
+  "git_history_rewrite": false,
+  "legacy_readme_change": "Replaced one explicit X-only HF token placeholder with descriptive non-token placeholder; no credential validity check or network use."
+}

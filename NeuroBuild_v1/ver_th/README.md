@@ -32,7 +32,7 @@ chmod +x run_linux_no_sudo.sh
 
 ```env
 USE_HF_LLM=1
-HF_TOKEN=hf_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+HF_TOKEN=YOUR_HUGGING_FACE_TOKEN
 ```
 
 Inference Providers를 실제 호출하려면 Hugging Face 토큰에 `Make calls to Inference Providers` 권한이 필요합니다. 권한이 없으면 앱은 fallback 보고서로 계속 동작합니다.

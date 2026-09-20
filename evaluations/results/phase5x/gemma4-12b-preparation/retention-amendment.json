@@ -1,0 +1,29 @@
+{
+  "kind": "CURRENT_TREE_PROVENANCE_RETENTION_AMENDMENT",
+  "recorded_at_utc": "2026-09-20T17:36:45.597566+00:00",
+  "original_capture_commit": "117611f74051b09b59dc98ae7cbeeb43e16f519f",
+  "removed_artifact": {
+    "path": "metadata/official-license/gemma4-license.html",
+    "original_file_sha256": "632821edc219599aa7e587e37744d264f2516888d422319c6866a3214034fa79",
+    "original_bytes": 259101,
+    "reason": "Unnecessary full public webpage snapshot contains client-side credential-like patterns; no values retained in this amendment."
+  },
+  "replacement": {
+    "path": "metadata/official-license/license-source.md",
+    "sha256": "5ff81213c0e2199d3db0ae373ab0a3dd50a92c006f46b3d5aed98d3aec4e8444"
+  },
+  "retained_license_text": {
+    "path": "metadata/official-license/APACHE-2.0.txt",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+  },
+  "historical_indexes_unchanged": {
+    "integrity.json": "34629b1b438de33a143370ac28cb1c2acc851663cc804c49f1128a1ec9bf9fc6",
+    "metadata/integrity.json": "8efe81c627cbc421e5386443c59306012d2722d7c051bea9c108156518e7f919",
+    "metadata/download_ledger.json": "425b0757239540b60bd32da2cacd6ed7db2dce5983807a5d4cbf1473083c41c5",
+    "metadata/provenance.json": "f6fa18ab48e18ca77e4a802a57c7e797e32e229f007592c260bfae8f8cf1d801"
+  },
+  "interpretation": "Original integrity/ledger/provenance and README describe the historical capture. They are not a claim that all original raw files remain in the current tree. This amendment deliberately excludes the one HTML; remaining evaluated data and necessary provenance are preserved. No historical evaluation or replay was rerun.",
+  "evaluation_results_modified": false,
+  "git_history_rewrite": false,
+  "secret_values_emitted_or_copied": false
+}

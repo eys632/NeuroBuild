@@ -1427,3 +1427,21 @@ Production/test가424abd8 준비의422PASS와 동일함을 확인한 carry5772ee
 결과 archive는54개 원본 사본842,847B와 integrity8734be6659379587f94d7ea49cea04a755c5823888e4bc418ba580eb8fe566cb를 보존한다.
 문서 diff whitespace 검사는 통과했다. 전체 staged diff 검사에서는 frozen model_guard.py 원본의 EOF 빈 줄1건만 표시됐으며
 Git blob 원본 SHA 보존을 위해 변경하지 않았다. 환경/weight/cache/secret 제외를 확인했다.
+
+### 2026-09-21 KST — 공개 HTML provenance 제거와 secret 검사
+
+사용자가 공식 공개 페이지 client configuration에서 유입됐다고 확인한 Google 패턴 9건의 값을 출력·복사하지 않고
+tracked gemma4-license.html 1개 및 불필요한 ignored HTML 사본3개를 제거했다.
+최소 URL/확인날짜/model/revision/license metadata와 공식 Apache-2.0 텍스트는 보존했다.
+기존 역사적 hash 목록은 그대로 두고 retention amendment를 추가했다.
+독립 검토: 삭제 예외 외 42개 원본 SHA/크기 및 index4개 일치. 완료 평가·재검산 반복0.
+초기 tracked1955개 전체 조사에서 다른 검출은 X-only HF 예시 placeholder1개였으며 설명형 placeholder로 교체했다.
+기존 앱 HTML2개는 패턴0, 별도 tracked raw JS snapshot0이었다.
+
+AGENTS에 외부 전체 HTML/JS/raw HTTP response의 provenance commit 금지, 필수 원본 ignored 보관,
+값 비출력 및 전체 index pre-commit 검사를 추가했다.
+신규 scanner 테스트14개 중13개 PASS, Git 상위 탐색 fixture1개 오류는 테스트 환경 경계 수정 후 해당1개만 PASS.
+Scanner 본체 변경 없이 backend/모델 회귀 반복0. Receipt78fce10d…9915.
+핵심 정리 전체 index 검사:1960/1960파일, findings0/errors0/exit0.
+최종 문서 추가 뒤 index 검사를 거쳐 일반 commit/push한다. 삭제 원문 diff/history rewrite/force push는 수행하지 않는다.
+자세한 범위와 증거는 docs/reports/provenance_cleanup_20260921.md 및 같은 이름 JSON에 기록했다.

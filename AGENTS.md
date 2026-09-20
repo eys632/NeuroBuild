@@ -38,6 +38,15 @@
 - force push/history rewrite/기존 branch 삭제/remote data 삭제 금지. 기존 main 이력을 보존한다. 환경·weight·cache·DB data·IFC 사용자 파일·runtime artifact·local secret은 commit하지 않는다.
 - Git에 저장할 것은 재현 정의, schema/prompt, synthetic evaluation, 테스트, 문서다. 실제 dependency 버전은 설치를 검증하는 단계에서 고정한다.
 
+## 외부 자료 provenance와 secret 검사
+
+- Provenance를 위해 외부 웹페이지의 전체 HTML/JavaScript 또는 raw HTTP response를 Git에 commit하지 않는다. 공개 페이지에도 credential처럼 보이는 client configuration이 포함될 수 있다.
+- 공식 URL, 확인 날짜, 모델/정확 revision, license identifier 및 필요한 결론만 최소 Markdown/metadata로 남긴다. 실제로 필요한 공식 Apache-2.0 등의 license text와 고정 모델 config/template는 이 원칙에 맞춰 보존할 수 있다.
+- 원본 응답 보존이 반드시 필요하면 Git ignored `var/evidence/` 또는 `var/research/`에 둔다. `git check-ignore`로 제외 여부를 확인하고 `git add -f`로 반입하지 않는다. 필요 없는 raw 사본은 남기지 않는다.
+- Commit 전에 `CUDA_VISIBLE_DEVICES='' .conda/bin/python -B scripts/check_repository_secrets.py --staged`로 전체 index를 검사한다. 이 검사는 알려진 패턴 검사이므로 최소 수집과 수동 변경 검토도 유지한다.
+- Secret-like 값은 콘솔, 보고서, diff 설명 또는 다른 파일에 출력·복사하지 않는다. 검사 결과는 파일 경로, 규칙명, 건수만 기록하며 값·주변 문맥을 포함하지 않는다. 실제 credential 여부를 확인하려고 사용하거나 외부로 전송하지 않는다.
+- 과거 provenance에서 raw 자료를 제거할 때는 평가 결과·원래 hash 기록을 수정하지 않고 별도 retention amendment로 현재 보존 예외를 명시한다. 이 작업만을 이유로 history rewrite 또는 force push하지 않는다.
+
 ## 자율 실행과 재개
 
 - 재개 시 전역 지침, 이 파일, `docs/MASTER_PLAN.md`, `docs/STATUS.md`, `docs/DECISIONS.md`, `docs/EXECUTION_LOG.md`를 읽고 `git status`, `git log --oneline --decorate -n 10`을 확인한다. 완료된 Phase를 다시 구현하지 않는다.
