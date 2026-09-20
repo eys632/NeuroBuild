@@ -1,0 +1,226 @@
+{
+  "lifecycle": "FROZEN_BEFORE_FIRST_HOLDOUT_WARMUP_GENERATION2_BRANCHES_MOE_GREEDY",
+  "frozen_at_utc": "2026-09-20T00:23:00.106299+00:00",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "source_ancestor_commit": "468f6f0e3b6ba83053c34292c8d9e506b0dfafb9",
+  "model_id": "ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ",
+  "model_revision": "9f41ff709102dbe73e614f9365f8280170db268e",
+  "protocol": "legacy_guided_json",
+  "prompt": "prompts/requirement_generation_v2_v2.txt",
+  "temperature": 0,
+  "seed": 42,
+  "warmups_per_run": 5,
+  "trials_per_case": 3,
+  "max_tokens": 768,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "sha256": {
+    "evaluations/hardening_v1_manifest.json": "959d3340e4ba095ca2f54d29f55dd4b2f151df00a2a92a619dcc3bf8baa56605",
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+    "evaluations/generate_requirement_hardening_v1.py": "f2908f7557df098690ea9933cd7a210e4510b03ecb7c9e6601b0daff0f4b2019",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "89c02812a454c292eb906e71cf2d2c487d29ba1e1e96e8bccd87a32468d294b8",
+    "scripts/evaluate_requirements.py": "938dfa586c5d23f7d92b7634f19ea1202c547780201f381bcaab086ea4fba210",
+    "scripts/model_server.py": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab",
+    "runtime/models/qwen3-30b-a3b-instruct-2507-awq.json": "32ff8e507fb4b25f5e67da2d03ba898d52467d653eb55c4c1cc906ee2738939c",
+    "prompts/requirement_generation_v2_v1.txt": "ad3e1b1a44dc4373e511ad794814054313bdbafe6ddc66ea43ef253049b95431",
+    "schemas/requirement_generation_v2.schema.json": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+    "src/neurobuild/application/requirement_generation.py": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+    "evaluations/results/phase5x/generation2-cpu-preflight.json": "488ae1a1510fa2c210a38e45f432088ed9a44c832961d0ad299f2e46006da109",
+    "tests/test_requirement_generation.py": "98f69ce6874443f769b63090c6436ef5e4e071a23158c027eb00b371728d07a1",
+    "tests/test_requirement_generation_evaluation.py": "431bf1a80276f2d2c4e4874c9431f4cc03cbbee1bacc590ac506061a3d2e8b93",
+    "tests/test_local_model.py": "eaf893a4ebdcc0867b846ef75640fe5443279c26db0d3acad4c5119ede5311b9",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "evaluations/results/phase5x/generation2-v2-cpu-prompt.json": "afd6486bddea89873412f8c43473a15bf8a306d5c1d2057f2c9a526e6b8302fa",
+    "evaluations/results/phase5x/generation2-v2-cpu-grammar.json": "e69130e162de6335d2a06bd35ff92c5962078f43d96f29136b41f4c555312b66"
+  },
+  "review_evidence": [
+    "docs/requirement_generation_v2_design.md",
+    "docs/reviews/phase5x_generation2_review.md",
+    "docs/reviews/phase5x_moe_v4_diagnostic_review.md",
+    "docs/reviews/phase5x_holdout_protocol_review.md",
+    "docs/reviews/phase5x_generation2_moe_diagnostic_review.md",
+    "docs/reviews/phase5x_generation2_branches_diagnostic_review.md",
+    "docs/reviews/phase5x_generation2_branches_formal_review.md",
+    "docs/reviews/phase5x_generation2_greedy_preflight_review.md",
+    "docs/reviews/phase5x_generation2_greedy_formal_review.md",
+    "docs/reviews/phase5x_generation2_holdout_launch_review.md"
+  ],
+  "independent_review": "AI agent review, not human verification; heldout source/gold inspected before inference, no prompt tuning from outputs",
+  "policy": "Preserve all results. Never modify heldout gold silently or tune this prompt from heldout outputs. New prompts/configuration require separate version/freeze and results.",
+  "gate_targets": {
+    "schema_rate": 1.0,
+    "semantic_rate_minimum": 0.95,
+    "critical_model_ready_fp_count": 0,
+    "unsafe_accepted_ready_total_count": 0
+  },
+  "purpose": "First-ever model exposure of hardening_v1_holdout80:5warmups then each of80cases x3=240formal trials. Candidate chosen only from development. Exactly same model/prompt/schema/parser/client/runtime and legacy_greedy request as successfuldevelopment120; no tuning from holdout output.",
+  "served_model": "neurobuild-moe",
+  "sampling_profile": "legacy_greedy",
+  "sampling_request_parameters": {
+    "temperature": 0,
+    "seed": 42
+  },
+  "enable_thinking": false,
+  "reasoning_parser": null,
+  "timeout_seconds": 60,
+  "cpu_context_bound": {
+    "development_max_input_plus_output": 3678,
+    "holdout_max_input_plus_output": 3683,
+    "limit": 4096,
+    "length_check_torch_imported": false,
+    "grammar_cuda_initialized": false,
+    "grammar_valid_accepted": 13,
+    "grammar_invalid_rejected": 18,
+    "backend_mandatory_controls_pass": 5,
+    "prompt_examples_pass": 7
+  },
+  "implementation_change": "No source/schema/prompt/gold changes. Existing request profile selects temperature0/seed42; omitted parameters use pinned server defaults, not an isolated all-parameters-controlled temperature ablation.",
+  "launch_config_sha256": "8137d448f6dc6ac9c07f8bbe31bafa6d0627e81bcccad3d680a0a7517796296b",
+  "holdout_outputs_seen_before_freeze": false,
+  "preflight_budget": {
+    "estimated_peak_mib": 24576,
+    "minimum_free_mib": 36373,
+    "required_safety_margin_mib": 7275,
+    "fresh_recheck_in_launcher_required": true,
+    "measured_process_peak": false
+  },
+  "generation_contract": "2.0",
+  "generation_schema": "schemas/requirement_generation_v2_decision_branches.schema.json",
+  "canonical_schema": "schemas/semantic_requirement.schema.json",
+  "runtime_reuse": {
+    "same_launch_epoch": true,
+    "started_at_utc": "2026-09-19T23:11:02.235538+00:00",
+    "child_pid": 3409891,
+    "watchdog_state_at_freeze": "RUNNING",
+    "minimum_observed_free_mib": 18642,
+    "required_free_floor_mib": 7275,
+    "observed_aggregate_baseline_relative_peak_mib": 17732,
+    "max_context_output_budget_unchanged": true,
+    "elapsed_seconds_at_freeze": 4313.448
+  },
+  "regression": {
+    "tests_passed": 290,
+    "skipped": 0,
+    "seconds": 17.329,
+    "real_postgresql": true,
+    "real_ifcopenshell": true,
+    "display_unset": true,
+    "legacy_archive_rows_replayed": 640,
+    "legacy_archive_runs_replayed": 12,
+    "scope": "290-test full regression applies to unchanged adapter/parser/client/scorer. New schema/prompt validated by targeted CPU JSONSchema/grammar/token/parity proofs."
+  },
+  "preceding_diagnostic_run_id": null,
+  "runtime_remaining_seconds_at_freeze": 2886.5519999999997,
+  "preceding_failed_formal_run_id": "20260919T235909Z-741a32ddc5394455943e3b480f8863c3",
+  "sampling_semantics": {
+    "wire_fields": {
+      "temperature": 0,
+      "seed": 42
+    },
+    "other_wire_fields": "omitted; pinned server/model defaults",
+    "pinned_vllm_0_8_5_greedy_filter_override": {
+      "top_p": 1.0,
+      "top_k": -1,
+      "min_p": 0.0
+    },
+    "default_penalties": {
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0,
+      "repetition_penalty": 1.0
+    },
+    "scope": "Installed-source/CPU payload review; no guarantee of identical output or correctness."
+  },
+  "preceding_formal_development_run_id": "20260920T001240Z-7daf0ae403de40cfa9043c628abf9d8d",
+  "preceding_formal_results_sha256": "b47a63f0927e90290e334b3a81e15b5fff71b25f49d2f88f84a0a4560d748d99",
+  "preceding_formal_metrics": {
+    "schema_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "semantic_rubric_correct": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "critical_fp_model_ready": {
+      "numerator": 0,
+      "denominator": 60,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.06017185214208986
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 0,
+      "denominator": 120,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.031019166418703486
+      ]
+    },
+    "critical_fn_accepted_ready": {
+      "numerator": 0,
+      "denominator": 60,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.06017185214208986
+      ]
+    },
+    "latency_all": {
+      "count": 120,
+      "mean_seconds": 4.39429099104212,
+      "p95_seconds": 5.910858407616615
+    }
+  },
+  "selected_dataset": "evaluations/requirement_hardening_v1_holdout.jsonl",
+  "split": "heldout",
+  "planned_cases": 80,
+  "planned_formal_trials": 240,
+  "planned_warmups": 5,
+  "time_budget": {
+    "runtime_remaining_seconds": 2886.5519999999997,
+    "expected_requests": 245,
+    "estimated_seconds_at_development_mean": 1076.6012928053194,
+    "estimated_seconds_at_development_p95": 1448.1603098660707,
+    "all_requests_at_timeout_seconds": 14700,
+    "interpretation": "Mean and p95 extrapolation only; actual duration not guaranteed. Fixed guard must not be bypassed. Any interrupted evaluation remains INCOMPLETE and gate notpassed; preserve run and report completed/planned counts."
+  },
+  "holdout_gate_counts": {
+    "schema_required": 240,
+    "semantic_required_at_least": 228,
+    "critical_model_ready_fp_required": 0,
+    "critical_model_ready_fp_denominator": 114,
+    "unsafe_accepted_required": 0,
+    "unsafe_accepted_denominator": 240,
+    "ready_gold_trials": 126
+  },
+  "holdout_governance": {
+    "first_warmup_is_exposure": true,
+    "candidate_changes_after_exposure": "Version and preserve outcome; same80become regression/development, never new unseen holdout. New generalization claims require separately prefrozen unused dataset.",
+    "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+    "blinding": "Not fully blinded: prior AI input/gold inspection; splitsharesnarrowgrammar; no heldout modeloutputs observed beforethisfreeze.",
+    "repetition": "Same seed42; trialsnotindependent; greedydoesnotguaranteebyteidentical output.",
+    "failures": "No retries/repair/omittingfailedtrials/cherrypicking/correctinggoldtosuitoutput."
+  },
+  "preholdout_listener_proof": {
+    "path": "evaluations/results/phase5x/generation2-greedy-preholdout-listeners.json",
+    "sha256": "f49f07cbd7da89b9f332ce3332373aa05913a635434297a32c7d0fce1bbe2689",
+    "scope": "Fresh same-ownPID TCP listener snapshot; not a guarantee of future sockets."
+  }
+}

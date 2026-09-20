@@ -1,6 +1,6 @@
 # Local Requirement pipeline
 
-Phase5의 model 경계는 공통 [기본 prompt v3](../prompts/requirement_v3.txt) → loopback HTTP final completion → [generation schema](../schemas/semantic_requirement.schema.json)와 원문 근거 검증 → `SemanticRequirement`다. 이전 v1/v2는 별도 평가 재현용으로 보존하며 `prompt_path`로 명시할 수 있다. IFC 변경, 실제 GlobalId 선택, target confirmation, proposal approval을 수행하지 않는다. 이 문서와 fake HTTP 테스트만으로 실제 GPU/model 실행 성공을 주장하지 않는다. 실제 평가 결과는 별도 run manifest와 Phase 보고서를 따른다.
+기존1.0 기본 model 경계는 공통 [prompt v3](../prompts/requirement_v3.txt) → loopback HTTP final completion → [generation schema](../schemas/semantic_requirement.schema.json)와 원문 근거 검증 → `SemanticRequirement`다. 이전 v1/v2 prompt는 별도 평가 재현용으로 보존하며 `prompt_path`로 명시할 수 있다. 별도2.0 생성 계약은 아래의 명시적 설정을 사용한다. IFC 변경, 실제 GlobalId 선택, target confirmation, proposal approval을 수행하지 않는다. 이 문서와 fake HTTP 테스트만으로 실제 GPU/model 실행 성공을 주장하지 않는다. 실제 평가 결과는 별도 run manifest와 Phase 보고서를 따른다.
 
 ## 호출과 반환
 
@@ -41,9 +41,41 @@ Backend 한도: source16000자, model final16384자, target1024자, current inst
 ## 별도 generation2 실험
 
 기본 generation 계약은 여전히1.0이다. `LocalRequirementClient(...,
-generation_contract="2.0")`을 명시하면 별도 quote-only prompt/schema를 사용한다.
+generation_contract="2.0")`만 명시하면 기존
+[plain schema](../schemas/requirement_generation_v2.schema.json)와
+[generation2/v1 prompt](../prompts/requirement_generation_v2_v1.txt)를 사용한다.
 `client.generation_contract`는 읽기 전용 enum이다. Custom schema의 version enum도
 선택한 계약과 같아야 하며, 응답을 보고 버전을 추측하거나 실패 후 자동 전환하지 않는다.
+
+현재 별도 비교의 [branch schema](../schemas/requirement_generation_v2_decision_branches.schema.json)와
+[prompt v2](../prompts/requirement_generation_v2_v2.txt)는 **두 경로를 직접 지정해야 한다**.
+Plain schema는 인용 뒤에 decision을 생성하는 순서이고, branch schema는 decision을
+인용보다 앞에 둔다. 후자는 READY X-only/Y-only/XY와 non-READY의 null 규칙도 generation에서
+제한한다. 두 schema 모두 같은7필드 계약이며, 빈 값·원문·부호·현재 지시 검증은 기존
+adapter/parser가 계속 담당한다.
+
+프로젝트 root에서 다음과 같이 명시한다. 이것은
+[greedy development 동결 프로토콜](../evaluations/hardening_v1_generation2_branches_moe_greedy_development_freeze.json)의
+후보 구성 예시이며 최종 선정이 아니다. 현재 평가 상태는 [STATUS](STATUS.md)를 따른다.
+
+```python
+from pathlib import Path
+from neurobuild.infrastructure.local_model import LocalRequirementClient
+
+client = LocalRequirementClient(
+    "http://127.0.0.1:8003", "neurobuild-moe",
+    protocol="legacy_guided_json",
+    generation_contract="2.0",
+    prompt_path=Path("prompts/requirement_generation_v2_v2.txt"),
+    schema_path=Path("schemas/requirement_generation_v2_decision_branches.schema.json"),
+    sampling_profile="legacy_greedy",
+    max_tokens=768, timeout=60,
+)
+```
+
+이 생성자는 서버 시작이나 모델 revision 검증을 수행하지 않는다. 실제 launch/weight
+identity, runtime metadata와 평가 호출은 [평가 도구의 명시적 명령](evaluation_harness.md)을
+따른다. 같은 서버에서 앞서 사용한 neutral sampling과 위 greedy는 별도 frozen run이다.
 
 Generation2는 `target_selection_quote`, `current_instruction_quote`, `dx_evidence`,
 `dy_evidence`와 version/decision/reason을 생성한다. 숫자·단위 중복 생성을 없애고,
@@ -69,7 +101,7 @@ proposal 승인 요구는 동일하다. [설계와 경계](requirement_generatio
 
 두 dialect의 fake HTTP 검증은 client가 올바른 필드를 전송한다는 근거다. HTTP200이나 유효 JSON 한 건은 서버의 grammar 적용 증거가 아니다. 현대 server가 legacy 필드를 조용히 무시할 수 있으므로 runtime/protocol pin과 현장 통합 검증이 필요하다. RTX5090 또는 현대 runtime을 실행·검증했다고 해석하지 않는다.
 
-설치된 vLLM0.8.5 + xgrammar0.1.18에서 CPU 검증했다. `has_xgrammar_unsupported_json_features`가 최종 schema에 False를 반환했고, Qwen3-14B-AWQ revision `31c69efc29464b6bb0aee1398b5a7b50a99340c3`의 local tokenizer(vocab151936)로 grammar compile이 성공했다. READY/CLARIFICATION 예시2개의 token과 EOS를 수락하고 추가 approval 필드는 거절했다. GPU를 숨긴 offline process에서 tokenizer만 사용한 결과이며 모델 weight 로드나 실제 inference 검증은 아니다.
+기존1.0 schema는 설치된 vLLM0.8.5 + xgrammar0.1.18에서 CPU 검증했다. `has_xgrammar_unsupported_json_features`가 False를 반환했고, Qwen3-14B-AWQ revision `31c69efc29464b6bb0aee1398b5a7b50a99340c3`의 local tokenizer(vocab151936)로 grammar compile이 성공했다. READY/CLARIFICATION 예시2개의 token과 EOS를 수락하고 추가 approval 필드는 거절했다. 새2.0 branch schema의 별도 [CPU 증거](../evaluations/results/phase5x/generation2-v2-cpu-grammar.json)는 MoE tokenizer로 정상13개 수락·비정상18개 거절과 backend 필수 검사5개를 확인한다. 두 검증 모두 GPU를 숨긴 offline tokenizer/grammar 검사이며 모델 weight 로드나 의미 정확도 결과가 아니다. 실제 추론 기록은 [실험 목록](phase5x_experiment_register.md)에서 별도로 구분한다.
 
 단일 choice/index0, role=assistant, finish_reason=stop, 설정과 같은 model 이름만 받는다. length/tool_calls/content_filter 등으로 끝나면 실행 가능한 결과로 반환하지 않는다. 선택적 reasoning 필드는 저장/반환/출력하지 않는다. 로그도 남기지 않으며 caller는 평가 저장 시 final schema-valid structured output만 선택해야 한다.
 

@@ -65,6 +65,45 @@ Phase5의14B-AWQ/v3는 공개 seed에서의 기존 선정 기록이며 Phase5.x 
 실패 후 다른 계약으로 재시도하지 않는다. 상세 경계는
 [generation2 설계](requirement_generation_v2_design.md)를 따른다.
 
+**2.0만 지정하면 현재 branch 실험 구성이 선택되지 않는다.** 두 구성은 같은7필드
+계약을 사용하지만 generation 제약과 예시 순서가 다르다.
+
+| 구성 | 명시할 schema / prompt | 생성 순서와 제약 |
+|---|---|---|
+| 2.0의 기존 기본값 | `requirement_generation_v2.schema.json` / `requirement_generation_v2_v1.txt` | 인용 → decision; 상태별 null 규칙은 backend에서 검사 |
+| 별도 branch 실험 | `requirement_generation_v2_decision_branches.schema.json` / `requirement_generation_v2_v2.txt` | decision → 인용; READY X-only/Y-only/XY와 non-READY null 규칙을 generation 단계에서도 제한 |
+
+다음은 [동결한 greedy development 프로토콜](../evaluations/hardening_v1_generation2_branches_moe_greedy_development_freeze.json)의
+명시적 구성이다. 후보 비교용이며 최종 선정 선언이 아니다. 실제 결과와 다음 실행 가능
+여부는 [STATUS](STATUS.md)를 따른다. 기존 MoE launch와 같은 서버임을 확인한 경우의
+metadata 예시이며, 재기동했다면 새 launch/runtime 증거로 경로를 교체한다.
+
+```sh
+cd /home/a202192020/NeuroBuild_v2
+.conda/bin/python scripts/evaluate_requirements.py \
+  --base-url http://127.0.0.1:8003 \
+  --protocol legacy_guided_json \
+  --generation-contract 2.0 \
+  --schema schemas/requirement_generation_v2_decision_branches.schema.json \
+  --prompt prompts/requirement_generation_v2_v2.txt \
+  --sampling-profile legacy_greedy \
+  --model neurobuild-moe \
+  --model-revision 9f41ff709102dbe73e614f9365f8280170db268e \
+  --weight-manifest var/models/ELVISIO--Qwen3-30B-A3B-Instruct-2507-AWQ/9f41ff709102dbe73e614f9365f8280170db268e/neurobuild-manifest.json \
+  --runtime-metadata evaluations/results/phase5x/moe-instruct-v1-launch/runtime_metadata.json \
+  --dataset evaluations/requirement_hardening_v1_development.jsonl \
+  --split development \
+  --max-tokens 768 \
+  --timeout 60 \
+  --warmups 5 \
+  --trials 3
+```
+
+Branch schema는 빈 문자열·원문 grounding·방향의 의미까지 보장하지 않는다. 기존
+adapter/parser가 이를 계속 검사한다. Greedy 요청의 sampling field는 T0/seed42뿐이며
+설치된 vLLM0.8.5의 filter 처리와 생략값은 [사전 검토](reviews/phase5x_generation2_greedy_preflight_review.md)를
+따른다. Greedy 선택도 같은 응답이나 정답을 보장하지 않는다.
+
 Generation2에서는 모델이 원문 선택 구절·현재 지시·축 근거를 인용하고,
 adapter가 기존 수치 검증 규칙으로 숫자 철자·단위·명시 부호를 읽어1.0 JSON으로
 투영한다. 전체 source, target, instruction을 자동 보완하지 않는다. 평가의
@@ -82,8 +121,11 @@ adapter가 거절한 READY도 기존 raw FP에 남는다. 최종 의미와 unsaf
 
 Manifest에는 명시적인 generation contract와 adapter/canonical schema SHA를 추가한다.
 기존1.0 run의 trial 형식과 집계 결과는 유지하며, timeout/truncation/변환 실패도 모든
-분모에 남긴다. 새 schema의 인용→decision 순서는 이번 표현 변경에 포함되므로
-순서만의 효과를 분리해서 주장하지 않는다. 모델 품질은 별도 실제 평가 전 미검증이다.
+분모에 남긴다. 기존2.0의 인용→decision과 branch 실험의 decision→인용 순서는 각각의
+schema/prompt 구성에 포함된다. 표현·제약·예시 변경의 효과를 순서 하나의 효과로
+분리해서 주장하지 않는다. 이미 수행한 실제 비교와 실패 결과는
+[실험 목록](phase5x_experiment_register.md)에 보존하며, CPU 검증을 의미 정확도나
+Phase5.x 완료 근거로 대신하지 않는다.
 
 ### 명시적인 sampling·protocol 선택
 

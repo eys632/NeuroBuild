@@ -353,3 +353,10 @@ Pushed29a6c7760423f8af79502ddc70fa1ba603b79a1c, hashesverified/currentguardRUNNI
 Run20260919T235909Z-741a32ddc5394455943e3b480f8863c3,40×3/warmup5: schema/adapter/canonical/parser120/120,semantic119/120(99.17%),raw/acceptedFP0/60,FN0/60,unsafeaccepted1/120,mean3.994758s/p955.410634s. HD-F02trial3은 전체 current instruction과 -0.16m를 보존했지만 target을 `복도 쪽 낮은 장`으로 줄여 `연구실` 및 제외 대상을 빠뜨렸다. 이전 단회 PASS나 높은 평균으로 unsafe0 기준을 상쇄하지 않는다. 원본·manifest·resource를 그대로 보존했다. Holdout은 계속 미호출이다.
 
 다음 비교는 prompt/schema/adapter/parser/scorer/model/runtime를 그대로 두고 기존 legacy_greedy 요청(T0/seed42)으로 전체40×3을 평가한다. 다른 sampling 필드는 생략하여 고정 서버 기본값을 따르므로 단일 temperature만 통제한 ablation으로 부르지 않는다. Greedy에서도 runtime 수치 비결정성은 가능하다. 과거4B/legacy계약의 greedy 실패도 보존한다. 새 representation+MoE에서 아직 비교하지 않은 decoding 차이이며, 실패case만 반복하거나 성공run만 선택하지 않는다. 현290testsPASS는 소스 변경 없이 유지된다.
+
+
+## Greedy 정식 development PASS 및 첫 holdout 동결 준비
+
+Pushed468f6f0e3b6ba83053c34292c8d9e506b0dfafb9 뒤 clean manifest로 시작했다. Run20260920T001240Z-7daf0ae403de40cfa9043c628abf9d8d:40×3/warmup5, schema/adapter/canonical/parser/semantic120/120,rawFP0/60,unsafe0/120,FN0/60,error0,mean4.394291s/p955.910858s. Server cumulative success305→430. 결과SHA b47a63f0927e90290e334b3a81e15b5fff71b25f49d2f88f84a0a4560d748d99. 모든 원본/manifest/resource를 보존했으며 독립120+5replay를 수행한다.
+
+고정된 기존 heldout80을 처음으로 모델에 노출하기 전에 같은 모델·2.0branch·promptv2·greedy와 전체 source/runtime/data hash를 별도 freeze한다. 계획5warmups+240formal; schema240/240,semantic≥228/240,rawFP0/114,unsafe0/240를 유지한다. 첫 warmup부터 노출로 보며, 이후 튜닝하면 같은80개를 새 unseen 성공으로 부르지 않는다. 현 guard 잔여시간과245회×development평균/p95로 예산을 점검하되 timeout 최악시간까지 보장하지 않는다. 중단되면 INCOMPLETE/미통과다. 사람 미검수/입력·gold 사전AI검토/공유문법/반복상관 한계는 유지한다.
