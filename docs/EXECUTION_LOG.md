@@ -429,3 +429,19 @@ Own guard3446143/child3446165의 UID/startticks/model/report arguments를 확인
 ## 공식32B 다운로드 전 checkpoint 준비
 
 2026-09-20 11:02 KST. 공식Qwen/Qwen3-32B-AWQ rev0499c3ac83fdef8810b907a23894ba91e95eddd8의13파일manifest와 Apache2 LICENSE, 정적 호환성, provenance 및 메모리 계획을 보존했다. 총19,341,523,989bytes이며 manifestSHAfbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03. GPU3free36373/util0, wholepeak25600+margin7275 뒤3498MiB잔여다. 최종fraction.60/.60과allowance0을 명시한다. 실제CUDA가보고하는총량과non-Torch 때문에 fraction을 wholecap으로 해석하지 않는다. 현재45.59GiBfree에서 다운로드후27.58GiB를 예상하고 downloader의20GiB reserve를 유지한다. 새dependency/GPU모델호출/weightdownload는 이 checkpoint 전에 없었다.
+
+
+## 32B 다운로드 완료와 저장dtype 불일치 조사
+
+049ab13f15e34bf527846e5a121610047431b1a4 commit/push/remotehash/clean 확인 후 기존downloader를 실행했다. Exit0,13개파일SHA/size검증과 완료manifest일치,partial0, usable27.568GiB. GPU3별도5회preflight는minimumfree36373/util0/swing0, margin7275/wholepeak25600/remaining3498 PASS. Tokenizer/CPUgrammar는valid8/invalid14/예시7, exposed120최대3687 및v2 length-only3612/4096이었다. Header는실제707BF16과896I32를발견했고 configfloat16 가정과 달라 기동을보류했다. Loadercast와CPUfinite/FP16range검증을추가하며 원본weight/config는바꾸지않는다. 이시점32B GPU모델호출0.
+
+
+## 32B CPU 경계 해결·실제 GPU3 기동·진단 동결
+
+CPUheader1603/BF16707/I32896/shape-shard-offsetcoverage PASS. Indexmetadata19338405888 vs actualtensor19325298688 차이를보존했다. 추가CPU2threads/8MiBchunks로707BF16tensor/1,800,295,424원소를33.307초검사, nonfinite/FP16overflow/castnonfinite0. Scale448개는strictpositive/값변경0/zero0, 일반embedding/norm/head에서는392411rounding과2335zero를경고로보존했다. Tokenizer/grammar/context와loadercopy_경계까지검토하고actualGPU기동을허용했다. Source/prompt/gold/환경변경0,314회귀재실행하지않음.
+
+CUDA_VISIBLE_DEVICES=3 .conda/bin/python scripts/model_server.py --profile a100 --model-path var/models/Qwen--Qwen3-32B-AWQ/0499c3ac83fdef8810b907a23894ba91e95eddd8 --dtype half --estimated-peak-mib 25600 --peak-allowance-mib 0 --gpu-memory-utilization 0.60 --torch-memory-fraction 0.60 --max-model-len 4096 --max-seconds 7200 --log-file var/logs/qwen3-32b-generation2-v2-server.log --report-file var/reports/qwen3-32b-generation2-v2-server.json
+
+Guardsession97831/child3467850, fresh5samplefree36373/util0/swing0/margin7275. ActualAWQMarlin/FP16기동, weight18.1453GiB/activation0.76GiB/nonTorch0.09GiB/KV256. Health200 및v1/models의alias/root/context확인; ownTCP5개127.0.0.1 PASS. 초기minfree16042/aggregatepeak20332. 현재환경버전도별도importmetadata/TorchCUDA와GPU3name/driverquery로runtime_metadata와일치확인. 아직inference호출0.
+
+Freeze helper를실행하여 actualCPU/header/cast/download/launch/listener/source연결29hash와v2freeze9hash를검증했다. Single32B120x1 사전동결SHA0e525113175e9617c2f46f3e32958b184dd4d76918873157ee978de25d26e023. Independentreview/commit/push/clean재검사뒤에만warmup을시작한다.

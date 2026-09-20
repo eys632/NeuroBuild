@@ -1,0 +1,233 @@
+{
+  "lifecycle": "FROZEN_BEFORE_SINGLE_GENERATION2_32B_EXPOSED_DIAGNOSTIC",
+  "frozen_at_utc": "2026-09-20T02:20:00.001259+00:00",
+  "source_ancestor_commit": "049ab13f15e34bf527846e5a121610047431b1a4",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "purpose": "Official32B vs prior14B SINGLE control: same semantic contract, generation2 branch schema, promptv2 and greedy wire parameters. Current client/harness include staged refactor; recorded single-client wire parity covers fixtures, not full runtime equivalence. All120 inputs are exposed regression, not unseen holdout.",
+  "model_id": "Qwen/Qwen3-32B-AWQ",
+  "model_revision": "0499c3ac83fdef8810b907a23894ba91e95eddd8",
+  "served_model": "neurobuild-local",
+  "dataset": "evaluations/requirement_hardening_v1_exposed_regression.jsonl",
+  "split": "development",
+  "cases": 120,
+  "ready_gold": 62,
+  "nonready_gold": 58,
+  "warmups_per_run": 5,
+  "trials_per_case": 1,
+  "pipeline": "single",
+  "generation_contract": "2.0",
+  "prompt": "prompts/requirement_generation_v2_v2.txt",
+  "generation_schema": "schemas/requirement_generation_v2_decision_branches.schema.json",
+  "canonical_schema": "schemas/semantic_requirement.schema.json",
+  "protocol": "legacy_guided_json",
+  "guided_decoding_backend": "xgrammar:no-fallback",
+  "sampling_profile": "legacy_greedy",
+  "sampling_request_parameters": {
+    "temperature": 0,
+    "seed": 42
+  },
+  "unspecified_sampling_parameters": "Server/modeldefaults; pinnedmodel defaultT.6/top_p.95/top_k20, explicitT0overridesT; installedvLLMgreedysetsfilters1/-1/0, defaultpenalties0/0/1. Not allwireparameters controlled.",
+  "enable_thinking": false,
+  "reasoning_parser": null,
+  "max_tokens": 768,
+  "timeout_seconds": 60,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "gate_targets": {
+    "schema_required": 120,
+    "schema_denominator": 120,
+    "semantic_required_at_least": 114,
+    "semantic_denominator": 120,
+    "critical_model_ready_fp_required": 0,
+    "critical_model_ready_fp_denominator": 58,
+    "unsafe_accepted_ready_total_required": 0,
+    "unsafe_accepted_ready_total_denominator": 120
+  },
+  "sha256": {
+    "evaluations/requirement_hardening_v1_exposed_regression.jsonl": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "evaluations/hardening_v1_exposed_regression_manifest.json": "5e10605f49d7c452dac4804bde5d83f9558966b992c835a71dc3eb9ab1d85e05",
+    "evaluations/requirement_hardening_v1_development.jsonl": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+    "evaluations/requirement_hardening_v1_holdout.jsonl": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/requirement_generation.py": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "evaluations/hardening_v1_exposed_generation2_14b_diagnostic_freeze.json": "6982eccfe660482daf3c9db4c30b2feec6717dc861e8ae74a67a0f96b3b6f560",
+    "evaluations/hardening_v1_exposed_staged_14b_diagnostic_freeze.json": "dd293c8bb3216335130915824e827fa0a3374ccea56d0ec65f586e5122a0d010",
+    "runtime/models/qwen3-32b-awq.json": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03",
+    "src/neurobuild/infrastructure/local_model.py": "9732ad69f9f563f6acb3892ec0c187958d04d006a89251264779123445bc57c3",
+    "scripts/evaluate_requirements.py": "e114488454bd8289fb1de0462ae88c711b54917ac243db752e8400b95b66a36a",
+    "scripts/model_server.py": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab",
+    "scripts/gpu_preflight.py": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb",
+    "scripts/verify_model_listeners.py": "2d7771d414a7faae4138ea555349d1f7f111d36498ad9815f64ac51910d758dd",
+    "runtime/a100/model-runtime.lock": "0a2dde41e8dda948f70d87bd776315611d4d516a9075725cb3a1a9e564c575ae",
+    "evaluations/results/phase5x/generation2-32b-cpu-preflight.json": "0ba7937d289a6d19f7755287038f122f8171ab145483eb46f83760fb236e6cb0",
+    "evaluations/results/phase5x/32b-header-audit.json": "51c1261d99c0e1a445e31b4a95fa12211ddb13bdd02f8eac45984dab18dadb04",
+    "evaluations/results/phase5x/32b-download.json": "226fcddcc4c59bf6f941c38c9603c669ef7e257f73a24bb936673faa2bf2f201",
+    "evaluations/results/phase5x/32b-dtype-cast-audit.json": "ba92dceb6dfdd208027df63178d39f418e66ccb16a8162e6498dd9343feafdb7",
+    "evaluations/results/phase5x/32b-generation2-v2-launch/launch_config.json": "296edfef8091b0322f5ece5c673147629def10d891b391dbb725da7c1d936b15",
+    "evaluations/results/phase5x/32b-generation2-v2-launch/runtime_metadata.json": "a8b31b2be5b4d8c4c1c7089fa33fcc470e569473fbd03432deadaab16453e161",
+    "evaluations/results/phase5x/32b-generation2-v2-launch/resource_report.json": "e20530a7d4ba5f45a5a92cb16378d3ec28fd48fbffd90d9e5cfbdfaa6dfbc4e2",
+    "evaluations/results/phase5x/32b-generation2-v2-launch/listeners.json": "a6aa8d44a164e50fbf6aef7070c52eec60afcfdd8cdca26091b567c9e52914ff",
+    "evaluations/results/phase5x/staged-v1-single-wire-parity.json": "1c3a2fb6cd57dcc2fbca872c0d2fb396b1387cac5675d166b62f6cfe444bd81b",
+    "evaluations/hardening_v2_dataset_freeze.json": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+    "evaluations/hardening_v2_input_exposure_addendum.json": "1d44048c86d3a26cec093e6f1d5748ed13e1283de6a4f73a28ba592dc103b682"
+  },
+  "template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+  "cpu_preflight": {
+    "status": "PASS",
+    "context_limit": 4096,
+    "output_cap": 768,
+    "splits": {
+      "development": {
+        "dataset": "evaluations/requirement_hardening_v1_development.jsonl",
+        "dataset_sha256": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+        "count": 40,
+        "minimum_input_tokens": 2539,
+        "maximum_input_tokens": 2914,
+        "max_input_plus_output": 3682,
+        "remaining_context": 414,
+        "scope": "INPUT_LENGTH_ONLY; already exposed material, not new unseen holdout"
+      },
+      "exposed_previous_holdout_regression": {
+        "dataset": "evaluations/requirement_hardening_v1_holdout.jsonl",
+        "dataset_sha256": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+        "count": 80,
+        "minimum_input_tokens": 2545,
+        "maximum_input_tokens": 2919,
+        "max_input_plus_output": 3687,
+        "remaining_context": 409,
+        "scope": "INPUT_LENGTH_ONLY; already exposed material, not new unseen holdout"
+      },
+      "unused_v2_holdout_length_only": {
+        "dataset": "evaluations/requirement_hardening_v2_holdout.jsonl",
+        "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+        "count": 80,
+        "minimum_input_tokens": 2565,
+        "maximum_input_tokens": 2844,
+        "max_input_plus_output": 3612,
+        "remaining_context": 484,
+        "scope": "INPUT_LENGTH_ONLY; unopened model-output holdout; no case text or gold disclosed"
+      }
+    },
+    "valid_grammar": 8,
+    "invalid_grammar": 14,
+    "prompt_examples": 7,
+    "cuda_initialized": false
+  },
+  "header_audit": {
+    "status": "PASS_WITH_STORAGE_DTYPE_AND_INDEX_SIZE_WARNINGS",
+    "actual_tensor_count": 1603,
+    "tensor_data_bytes": 19325298688,
+    "known_storage_dtype_and_index_size_warnings": [
+      "Initial float16 storage assumption failed: actual707 noninteger tensors use BF16 while config torch_dtype=float16. Loader and numeric cast validation are separate.",
+      "Pinned index metadata.total_size differs from config-derived and manifest file sizes; exact cause unproved. Actual per-tensor sizes, shard mapping and byte coverage are mandatory."
+    ],
+    "dtype_counts": {
+      "BF16": 707,
+      "I32": 896
+    },
+    "header_audit_is_not_full_weight_sha": true
+  },
+  "download_verification": {
+    "status": "DOWNLOADER_COMPLETE_13_FILES_SIZE_SHA_VERIFIED",
+    "verified_files": 13,
+    "total_bytes": 19341523989,
+    "download_log_sha256": "938c1947d41b8d6f2cfe9678ecd2d96f6783c98a4836d172484556e8c9105cc6",
+    "weights_rehashed_by_freeze_helper": false
+  },
+  "cpu_dtype_cast_audit": {
+    "status": "PASS",
+    "source_dtype": "BF16",
+    "runtime_parameter_dtype": "FP16",
+    "counts": {
+      "i32_tensors_skipped": 896,
+      "elements": 1800295424,
+      "source_nonfinite": 0,
+      "outside_fp16_finite_range": 0,
+      "cast_nonfinite": 0,
+      "changed_after_copy": 392411,
+      "nonzero_to_zero": 2335,
+      "payload_bytes_read": 3600590848,
+      "bf16_tensors_scanned": 707,
+      "nonpositive_scales": 0
+    },
+    "maximum_absolute_value": 27.25,
+    "scale_tensors_positive_and_unchanged": 448,
+    "limitations": [
+      "Reads BF16 payloads only under explicit authorization, in bounded chunks; header-only audit remains separate.",
+      "Finite in-range conversion does not establish quantization fidelity or language-task quality.",
+      "Small/subnormal values may round or underflow; counts are preserved, not silently excluded."
+    ],
+    "interpretation": "BF16 storage is cast to configured FP16 parameters. Non-scale rounding and underflow counts are retained; finite conversion is not a model quality or GPU kernel PASS."
+  },
+  "runtime_metadata": {
+    "python": "3.12.14",
+    "vllm": "0.8.5+cu118",
+    "torch": "2.6.0+cu118",
+    "cuda": "11.8",
+    "transformers": "4.51.3",
+    "xgrammar": "0.1.18",
+    "driver": "535.183.01",
+    "gpu": "NVIDIA A100-PCIE-40GB",
+    "quantization": "awq_marlin",
+    "dtype": "float16",
+    "physical_gpu": 3,
+    "max_model_len": 4096,
+    "tensor_parallel_size": 1,
+    "profile": "a100",
+    "chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+    "launch_config_sha256": "296edfef8091b0322f5ece5c673147629def10d891b391dbb725da7c1d936b15",
+    "enable_reasoning": false,
+    "reasoning_parser": null
+  },
+  "runtime_epoch_snapshot": {
+    "started_at_utc": "2026-09-20T02:18:03.517114+00:00",
+    "child_pid": 3467850,
+    "state": "RUNNING",
+    "elapsed_seconds": 66.795,
+    "minimum_observed_free_mib": 16042,
+    "required_free_floor_mib": 7275,
+    "observed_baseline_relative_peak_mib": 20332,
+    "aggregate_increment_limit_mib": 25600,
+    "peak_allowance_mib": 0,
+    "measurement_scope": "permitted_GPU_aggregate_only",
+    "per_process_measurement": false
+  },
+  "preflight_budget": {
+    "estimated_startup_or_inference_peak_mib": 25600,
+    "estimate_must_include": [
+      "weights",
+      "KV_cache",
+      "workspace",
+      "CUDA_context",
+      "allocator_overhead"
+    ],
+    "required_safety_margin_mib": 7275,
+    "available_model_budget_mib": 29098,
+    "unallocated_budget_after_estimated_peak_mib": 3498,
+    "estimate_is_measured_peak": false
+  },
+  "runtime_snapshot_limits": "Archived snapshots, not a fresh liveness query. Aggregate memory is not a per-process upper bound; Torch fraction and watchdog are not hard whole-device isolation. Root rechecks own service before calls.",
+  "regression": {
+    "tests_passed": 314,
+    "skipped": 0,
+    "seconds": 16.945,
+    "log": "var/phase5x-staged-v1-regression.log",
+    "log_sha256": "5957f7a788b8a5220c27d8652ff357ac988b0583118b6791071baddab7a73d14",
+    "scope": "Completed regression log retained; this helper does not rerun tests or claim a new regression execution."
+  },
+  "v2_holdout_preservation": {
+    "freeze_sha256": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+    "frozen_artifacts_verified": 9,
+    "individual_v2_artifact_hashes_or_contents_printed": false,
+    "input_exposure_addendum_sha256": "1d44048c86d3a26cec093e6f1d5748ed13e1283de6a4f73a28ba592dc103b682",
+    "limitation": "Some v2 inputs/gold were accidentally exposed to root after the prior staged candidate freeze. Root-input blindness ended; model-output-unseen is distinct. This32B model change follows that event, while promptv2 and semantic contracts predate it. No claim of complete blinding or independent human gold.",
+    "this_script_v2_model_calls": 0
+  },
+  "next_if_pass": "Diagnostic is insufficient for adoption: separately freeze unchanged candidate for exposed120x3 formal. Any later v2 evaluation needs its own candidate freeze and exposure disclosure.",
+  "model_calls_from_this_script": 0,
+  "gpu_calls_from_this_script": 0,
+  "helper_sha256": "761b4aef62c3a94d60382d412a4ac1cbe18ec3dc8b1de5da731b88244ce0d125"
+}

@@ -121,3 +121,17 @@ Holdout 입력과 gold는 생성·사전 품질 검토 과정에서 AI에게 공
 Staged14B 진단은120×1+warmup5를 완료했지만 semantic93/120,rawFP11/58,unsafe6/120으로 실패했다. 양쪽 schema는120/120, canonical parser는103/120이었다. 첫 분류 오판은 후단이 거절한6건까지 모두 보존했다. Null을 문자열로 만든 인용 오류 등이17건의 grounding 거절을 유발했으며, 전체 정확도는 같은14B의 single113/120보다 낮았다. Mean4.6910초/p955.5816초다. [독립 재생과 실패 분석](../reviews/phase5x_staged_14b_exposed_review.md)은125개 전부의 판정과 집계가 같음을 확인했다.
 
 새 분리 구조를 채택하지 않는다. 다음 비교는 기존 single2.0 branch/promptv2/greedy를 유지한 공식32B AWQ 후보의 자원 적합성 검토다. 후보 변경은 품질 향상의 보장이 아니며, 같은 gate와 공개된 holdout 노출 이력을 유지한다.32B 실행/품질/RTX 실측은 아직 없다.
+
+
+## 공식32B 단일 호출 진단 준비
+
+기존 single2.0/branch/promptv2/greedy와 canonical parser/adapter/gold/gate를 유지하며
+공식Qwen3-32B-AWQ를 비교한다. 다운로드13파일SHA/size, CPU header1603과 BF16→FP16범위,
+tokenizer/grammar/context 및 GPU3 실제AWQMarlin/FP16 기동을 검증했다. 저장dtype·index표기 차이와
+일반weight cast rounding/underflow는 보존하며 품질성공으로 해석하지 않는다. Wholepeak25GiB,
+allowance0, margin7275MiB로 guard를 유지한다. [후보와 증거](../dense_32b_candidate.md).
+
+진단은exposed120×1+warmup5이며 schema120/semantic≥114/rawFP0of58/unsafe0of120 기준이다.
+실제 모델 품질 결과는 아직 없으며 통과해도120×3정식과별도v2평가가 남는다.
+V2 model-output-unseen과 root의일부input/gold노출은 구분한다. 이번모델변경은노출뒤이며
+원래prompt는v2작성전부터동결됐다는사실도함께기록한다.

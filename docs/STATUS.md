@@ -1,19 +1,19 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 11:02 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 11:21 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b`: Phase 5 commit/push 및 remote hash 일치 |
-| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `45858d6` |
+| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `049ab13` |
 | 회귀 검증 | 전체 **314 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 16.945초 |
-| 현재 작업 | **두 단계14B 진단도93/120,rawFP11/58,unsafe6/120으로 FAIL. 기존 단일 호출113/120보다 악화되어 채택하지 않음. 공식32B AWQ의 단일 호출 비교 계획과 whole25GiB 예산 검토 완료, 다운로드 전 checkpoint 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
+| 현재 작업 | **두 단계14B 진단도93/120,rawFP11/58,unsafe6/120으로 FAIL. 기존 단일 호출113/120보다 악화되어 채택하지 않음. 공식32B AWQ는 CPU 검사와 GPU3 기동 PASS. 기존 단일 호출 계약을 유지한120×1 진단 후보를 동결하고 checkpoint 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
 | 잠정 모델 | Phase 5 범위의 **Qwen3-14B-AWQ + v3**. 확대 평가 gate 통과 전 최종 채택으로 보지 않음 |
 | Hard blocker | 없음. GPU 3 가용량을 측정한 공존 실행 조건 통과 |
 | Backend | `.conda`: Python 3.12.14 / PostgreSQL 17.11 / psycopg 3.2.10 / IfcOpenShell 0.8.5 |
-| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. MoE와14B의 자체 모델 서버 모두 종료. 14B의 single/staged 진단은 모두 품질 gate 실패. TP 1 / context 4096 / sequence 1 |
-| 다음 검증 | 기존120개는 노출된 regression 자료. 기존 single2.0/branch/promptv2를 유지한32B의 파일 다운로드·CPU 검증·GPU3 기동. 자원 계획은 [후보 문서](dense_32b_candidate.md). V2 데이터80개 동결/모델 미호출 |
+| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. MoE와14B 서버 종료. 현재32B AWQ/FP16 자체 서버만 GPU3에서 기동. TP1 / context4096 / sequence1 / fraction.60 / wholepeak25GiB / allowance0 |
+| 다음 검증 | 기존120개는 노출된 regression 자료. 기존 single2.0/branch/promptv2를 유지한32B의 exposed120×1 품질 진단. 자원 계획은 [후보 문서](dense_32b_candidate.md). V2 데이터80개 동결/모델 미호출 |
 
 ## Phase 5.x 평가 상태
 
@@ -53,6 +53,11 @@ V2는 아직 모델 출력 미노출 상태다. 다만 후보 파일 동결 뒤 
 
 다음 모델 다운로드를 검토하기 위해, 평가를 마친4B의 재다운로드 가능한 weight3개를 전체 SHA/소유권/regular-file/single-link 검증 뒤 정리했다. 8,044,982,000 bytes를 확보했고 manifest/metadata/평가 결과는 보존했다. [정리 기록](../evaluations/results/phase5x/unused_4b_weight_cache_cleanup.json)으로 같은 checkpoint를 다시 받을 수 있다. 14B와 MoE weight는 아직 보존한다.
 
-Private PostgreSQL은 `var/postgres`에 있으며, `0700` 권한의 `var/run/postgresql` 디렉터리 내 Unix socket과 peer 인증만 사용한다. TCP는 비활성이다. 마지막 디스크 확인에서 root filesystem 여유는 약 **45.6GiB (df 표시46G, 사용률98%)**다. 환경·weight·cache는 프로젝트 내부에 두고 Git에서 제외하며, 다운로드 시 **20GiB reserve**와 설치 전 디스크 확인을 유지한다.
+Private PostgreSQL은 `var/postgres`에 있으며, `0700` 권한의 `var/run/postgresql` 디렉터리 내 Unix socket과 peer 인증만 사용한다. TCP는 비활성이다. 마지막 디스크 확인에서 root filesystem 여유는 약 **27.6GiB (df 표시28G, 사용률99%)**다. 환경·weight·cache는 프로젝트 내부에 두고 Git에서 제외하며, 다운로드 시 **20GiB reserve**와 설치 전 디스크 확인을 유지한다.
 
 Phase 4의 human review 상태는 아직 메모리에만 보존한다. 영속 review/queue/worker는 Phase 7 예정이며 object resolution/API/browser도 아직 구현 전이다. **RTX5090은 PREDICTED_UNVERIFIED**이며 현장 검증이 필요하다. [Runtime protocol 및 SM120 검토](model_protocol_compatibility.md). Public exposure/pilot/민감 IFC/fine-tuning은 자동 범위 밖이다.
+
+32B 실제 기동은 AWQMarlin/FP16, weight18.1453GiB/activation profile0.76GiB였다.
+초기 관측 aggregate 증가20,332MiB, minfree16,042MiB로 floor7,275MiB를 유지했다.
+이는 startup부터의 GPU 전체 baseline 상대 관측이며 정확한 process peak나 품질 성공이 아니다.
+자체 child의5개 TCP listener는 모두127.0.0.1이었다.

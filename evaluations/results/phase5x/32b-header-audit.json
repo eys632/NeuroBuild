@@ -1,0 +1,93 @@
+{
+  "kind": "CPU_HEADER_ONLY_NOT_WEIGHT_HASH_OR_KERNEL_VERIFICATION",
+  "status": "PASS_WITH_STORAGE_DTYPE_AND_INDEX_SIZE_WARNINGS",
+  "utc": "2026-09-20T02:14:25.512198+00:00",
+  "model_id": "Qwen/Qwen3-32B-AWQ",
+  "revision": "0499c3ac83fdef8810b907a23894ba91e95eddd8",
+  "manifest_sha256": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03",
+  "config_sha256": "0e0c09d430b12e84773ef83ca83dba7c9174caf5a94bb940cd895b82df6c6528",
+  "index_sha256": "7d0427c7d238f401b5d38ec08dca07cc8a921aa69d73769b2b7983520de504a1",
+  "expected_tensor_count": 1603,
+  "index_tensor_count": 1603,
+  "expected_tensor_data_bytes": 19325298688,
+  "config_runtime_dtype": "float16",
+  "observed_storage_float_dtype": "BF16",
+  "cast_value_validation": "Separate CPU dtype-cast proof required; header audit cannot establish numeric convertibility.",
+  "index_claimed_tensor_data_bytes": 19338405888,
+  "index_size_discrepancy_bytes": 13107200,
+  "warnings": [
+    "Initial float16 storage assumption failed: actual707 noninteger tensors use BF16 while config torch_dtype=float16. Loader and numeric cast validation are separate.",
+    "Pinned index metadata.total_size differs from config-derived and manifest file sizes; exact cause unproved. Actual per-tensor sizes, shard mapping and byte coverage are mandatory."
+  ],
+  "dtype_counts": {
+    "BF16": 707,
+    "I32": 896
+  },
+  "tensor_payload_read": false,
+  "torch_imported": false,
+  "network_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "scope": "Config/index/actual headers do not verify numerical weights, full weight SHA, model quality, or CUDA kernels.",
+  "actual_tensor_count": 1603,
+  "shards": {
+    "model-00001-of-00004.safetensors": {
+      "tensor_count": 343,
+      "file_bytes": 4966384688,
+      "header_bytes": 38952,
+      "header_sha256": "fbff4fc6006cc4080e88e902da71b7c2cd88bb4ac8a213131c25da276696f7b4",
+      "tensor_data_bytes": 4966345728,
+      "stat_identity": [
+        66306,
+        36205477,
+        4966384688,
+        1789869962146633046
+      ],
+      "shape_dtype_shard_offsets_coverage": "PASS"
+    },
+    "model-00002-of-00004.safetensors": {
+      "tensor_count": 497,
+      "file_bytes": 4998723112,
+      "header_bytes": 56864,
+      "header_sha256": "df5c5745ef23a9d061469c9a1ae06bd2b4b87dfbb34bf20b9f46be9623d46aab",
+      "tensor_data_bytes": 4998666240,
+      "stat_identity": [
+        66306,
+        36205478,
+        4998723112,
+        1789870095699170721
+      ],
+      "shape_dtype_shard_offsets_coverage": "PASS"
+    },
+    "model-00003-of-00004.safetensors": {
+      "tensor_count": 481,
+      "file_bytes": 4949671152,
+      "header_bytes": 55016,
+      "header_sha256": "7017fdd994a1b1516d89b5acd9664e47a2017a6f8c6422735bf73700115a0578",
+      "tensor_data_bytes": 4949616128,
+      "stat_identity": [
+        66306,
+        36205479,
+        4949671152,
+        1789870229971760010
+      ],
+      "shape_dtype_shard_offsets_coverage": "PASS"
+    },
+    "model-00004-of-00004.safetensors": {
+      "tensor_count": 282,
+      "file_bytes": 4410702792,
+      "header_bytes": 32192,
+      "header_sha256": "261245def5a6dd89a24306c731f8cb1d2de49d426375769fbd91dbe2279613b4",
+      "tensor_data_bytes": 4410670592,
+      "stat_identity": [
+        66306,
+        36205480,
+        4410702792,
+        1789870346631764521
+      ],
+      "shape_dtype_shard_offsets_coverage": "PASS"
+    }
+  },
+  "observed_tensor_data_bytes": 19325298688,
+  "total_header_bytes_read": 183056
+}
