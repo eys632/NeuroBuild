@@ -1,19 +1,19 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 11:40 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 11:58 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b`: Phase 5 commit/push 및 remote hash 일치 |
-| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `edb586a` |
-| 회귀 검증 | 전체 **314 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 16.945초 |
-| 현재 작업 | **32B 단일 호출도 semantic103/120, rawFP1/58, unsafe1/120으로 FAIL. 후보 미채택. 같은 모델에서 원문 사실→최종decision의 단일 호출 계약을 제한 설계 검토 중**. Canonical parser/gold/gate 유지 |
+| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `16d6789` |
+| 회귀 검증 | 전체 **346 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 18.730초 |
+| 현재 작업 | **32B 단일 호출도 semantic103/120, rawFP1/58, unsafe1/120으로 FAIL. 후보 미채택. 같은 모델의 원문 사실→최종decision 계약3.0 구현·CPU문법·회귀·독립 검토 통과, 제한 진단 준비 중**. Canonical parser/gold/gate 유지 |
 | 잠정 모델 | Phase 5 범위의 **Qwen3-14B-AWQ + v3**. 확대 평가 gate 통과 전 최종 채택으로 보지 않음 |
 | Hard blocker | 없음. GPU 3 가용량을 측정한 공존 실행 조건 통과 |
 | Backend | `.conda`: Python 3.12.14 / PostgreSQL 17.11 / psycopg 3.2.10 / IfcOpenShell 0.8.5 |
-| Model Runtime | `.conda-vllm`: Python3.12.14 / cu118 vLLM0.8.5 / Torch2.6.0. 자체 모델 서버 모두 종료, GPU3 free36,373MiB/util0 복귀 |
-| 다음 검증 | 원문에 실제 있는 조건과 후속 inventory/approval를 구분하는 한 호출 facts 계약의 사전 설계·검토. 기존120개 regression/gold와 raw FP·unsafe gate는 유지. V2 모델 호출0, root 입력노출 한계 공개 |
+| Model Runtime | `.conda-vllm`: Python3.12.14 / cu118 vLLM0.8.5 / Torch2.6.0. 새32B facts 진단 epoch RUNNING/자체5 TCP loopback 검증. 기동 직전 GPU3 free36,373MiB/util0, peak25,600+margin7,275MiB 적합 |
+| 다음 검증 | Facts3.0의 exposed120×1+warmup5 사전 동결·commit/push 후 제한 진단. 기존 gold와 raw FP·unsafe gate 유지. V2 모델 호출0, root 입력노출 한계 공개 |
 
 ## Phase 5.x 평가 상태
 

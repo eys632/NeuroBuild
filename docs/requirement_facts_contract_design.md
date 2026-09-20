@@ -53,7 +53,9 @@ Schema상의 필드 순서만을 의미적 실행 순서의 보장으로 주장�
    포함 관계와 수치 부호·단위는 기존 adapter/parser가 다시 검증한다.
 3. READY와 양립하려면 CURRENT_MOVE/FURNITURE/ONE/ONE_RELATIVE_XY_VECTOR/EXPLICIT,
    condition NONE, authority NONE 또는 HISTORICAL_OR_QUOTED_ONLY가
-   필요하다. 명시적 불일치는 `FACTS_CONTRADICTION`으로 거절한다. READY를 다른 label로 바꾸지 않는다.
+   필요하다. 명시적 불일치는 기존 안전 오류 `INVALID_MODEL_OUTPUT`으로 거절하고,
+   원문에 없는 quote나 target 범위 누락은 `UNGROUNDED_REQUIREMENT`로 거절한다.
+   별도 오류명으로 raw READY를 재분류하지 않으며 READY를 다른 label로 바꾸지 않는다.
    NonREADY를 facts만으로 READY로 승격하거나 별도 label 우선순위 엔진으로 재분류하지 않는다.
 4. 모델이 최종 CLARIFICATION/UNSUPPORTED 중 어느 것을 고르는지는 여전히 원래 제품 계약이다.
    복합 문장에서 negation/조회/unsupported의 새로운 우선순위를 코드로 발명하지 않는다.
@@ -100,3 +102,31 @@ GenerationContract.FACTS=3.0을 별도선택하며 pipeline은single이다. Clie
 출력cap은facts증가를반영해1024로계획하고실제tokenizer에서전체prompt/source+1024≤4096을확인한다. 재시도/두번째호출/투표/자동수정은없다. 새표현과prompt/출력cap이함께바뀌므로특정요소하나의인과효과라고주장하지않는다. 기존314회귀와추가계약/HTTP/harness거절·raw계수검증,실제CPUgrammar/context,독립review를마친뒤후보동결/commit/push하고120×1+5warmup을수행한다.
 
 이번candidate변경은root일부v2입력/gold노출뒤다. V2는모델출력미노출상태이며완전맹검을주장하지않는다. 현재prompt작성자는v2미열람상태를유지하고v2원저자검토는순수계약/구조검토로한정한다. [기존노출이력](../evaluations/hardening_v2_input_exposure_addendum.json)을보존한다.
+
+## 최초 prompt/schema 구현 경계
+
+새 파일은 [requirement_generation_v3_v1.txt](../prompts/requirement_generation_v3_v1.txt)와
+[requirement_generation_v3.schema.json](../schemas/requirement_generation_v3.schema.json)이다.
+기존1.0/2.0 prompt·schema·gold는 수정하지 않는다. Prompt 예시는 무조건 단일XY 이동과
+실제 외부 조건이 있는 요청의 완결된2개뿐이며, 기존17개 실패를 case별 예시로 추가하지 않는다.
+이는 모델 품질 증거가 아닌 AUTO-GENERATED / NOT HUMAN VERIFIED 계약 예시다.
+
+Schema는 READY_X/READY_Y/READY_XY/nonREADY의4개 `anyOf` branch다.
+각 branch의 속성 순서는 schema_version → facts → target_selection_quote →
+current_instruction_quote → dx_evidence → dy_evidence → reason → decision이다.
+READY branch는 명시된 READY-compatible facts enum, condition NONE/quote null,
+적어도 한 축, reason null을 grammar로 제한한다. NonREADY branch는 전체 facts enum과
+두 nonREADY label을 허용하며 current/axis null과 reason string을 요구한다.
+Schema로 nonREADY label 우선순위를 계산하지 않는다.
+
+Condition/authority와 quote의 추가 상호관계, authority의 역사적 근거,
+quote의 원문 존재·비어 있지 않음·길이·scope/exclusion 포함 관계는 adapter가 검증한다.
+Schema는 단순 enum/type/null/required/anyOf 및 추가 key 금지만 사용하며 regex,
+`if`/`allOf`나 의미 entailment 검사를 추가하지 않는다. Facts-first 속성 순서는 generation
+구조의 선택이며 모델의 내부 판단 순서나 정확성을 증명하지 않는다. Branch grammar가
+허용하는 facts 역시 잘못된 의미 해석일 수 있다.
+
+새 출력 표현, prompt, grammar 제약과 output cap1024가 함께 바뀐다.
+후속 비교를 필드 순서·checklist·cap 중 한 요소만의 효과로 보고하지 않는다.
+실제 tokenizer에서 원문 전체+prompt+1024≤4096과 CPU xgrammar fixture를 검증한 뒤
+실험 동결 여부를 결정한다. 아직 이 계약으로 모델을 호출하거나 품질 gate를 통과하지 않았다.

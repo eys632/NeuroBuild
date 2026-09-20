@@ -1,0 +1,276 @@
+{
+  "kind": "CPU_ONLY_GENERATION3_32B_PREFLIGHT",
+  "status": "PASS",
+  "model_id": "Qwen/Qwen3-32B-AWQ",
+  "model_revision": "0499c3ac83fdef8810b907a23894ba91e95eddd8",
+  "sha256": {
+    "prompts/requirement_generation_v3_v1.txt": "5f27427c2c5d95437bb1bdb6f2dcc86ae0f4cf2bf81dca8a01512034cb6ef3ed",
+    "schemas/requirement_generation_v3.schema.json": "54f68b0425f63ff0940d7eae61b27ab18b78bee72bc539a5f53e1ec78b088bcc",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirement_facts.py": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5",
+    "src/neurobuild/infrastructure/local_model.py": "9bdb19a65ba79e253afe262a72e2dc4ecfcaacbc33ca9588c940f553be58123f",
+    "scripts/evaluate_requirements.py": "b6d7068af5916c0f23f10068485affbce792a234891cb9f28aaeae10f587b5aa",
+    "docs/requirement_facts_contract_design.md": "948d7aef053dab0aced893addaca3b0ac577eb1889959a4312ea038ba3ccb135",
+    "runtime/models/qwen3-32b-awq.json": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03"
+  },
+  "legacy_baseline_sha256": "c44a435bbd3e5b58535b6b7b2b8cbe9a1ab3c0ec41fe6f64d110e2c494184e29",
+  "legacy_v2_function_ast_unchanged": {
+    "_validate_source": "a6c2a0689e0f0c16104342725380dcb06c993a3551c59d5922bf646a4d08ffb1",
+    "_quoted_axis": "340bc9211076ef9d9e14ba60c8c483bc75e9d2950ce8c2508b93eab51a6bc958",
+    "adapt_generation_v2": "9a3f7f6c19d03e4735ed7d51f50a47527463da9872ef4882e06c42c5361fa385"
+  },
+  "canonical_parser_byte_unchanged": true,
+  "metadata_verified": {
+    "config.json": {
+      "name": "config.json",
+      "bytes": 907,
+      "sha256": "0e0c09d430b12e84773ef83ca83dba7c9174caf5a94bb940cd895b82df6c6528"
+    },
+    "tokenizer_config.json": {
+      "name": "tokenizer_config.json",
+      "bytes": 9732,
+      "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    },
+    "tokenizer.json": {
+      "name": "tokenizer.json",
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "vocab.json": {
+      "name": "vocab.json",
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "merges.txt": {
+      "name": "merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    }
+  },
+  "weight_payloads_read": false,
+  "tokenizer_class": "Qwen2TokenizerFast",
+  "chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+  "chat_template_origin": "tokenizer_config.json; no separate jinja",
+  "enable_thinking": false,
+  "empty_think_prefix_is_template_not_model_reasoning": true,
+  "actual_client_fake_capture_count": 200,
+  "context_limit": 4096,
+  "output_cap": 1024,
+  "system_prompt_tokens": 2178,
+  "splits": {
+    "development": {
+      "dataset_sha256": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+      "count": 40,
+      "minimum_input_tokens": 2218,
+      "maximum_input_tokens": 2593,
+      "max_input_plus_output": 3617,
+      "remaining_context": 479,
+      "scope": "INPUT_LENGTH_ONLY; no input, gold, case IDs, or model outputs disclosed"
+    },
+    "exposed_previous_holdout_regression": {
+      "dataset_sha256": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+      "count": 80,
+      "minimum_input_tokens": 2224,
+      "maximum_input_tokens": 2598,
+      "max_input_plus_output": 3622,
+      "remaining_context": 474,
+      "scope": "INPUT_LENGTH_ONLY; no input, gold, case IDs, or model outputs disclosed"
+    },
+    "v2_input_length_only": {
+      "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+      "count": 80,
+      "minimum_input_tokens": 2244,
+      "maximum_input_tokens": 2523,
+      "max_input_plus_output": 3547,
+      "remaining_context": 549,
+      "scope": "INPUT_LENGTH_ONLY; no input, gold, case IDs, or model outputs disclosed"
+    }
+  },
+  "grammar": {
+    "xgrammar": "0.1.18",
+    "compile_seconds": 5.957312611863017,
+    "vllm_unsupported_features": false,
+    "fixtures": [
+      {
+        "fixture": "prompt_example_1",
+        "json_schema_valid": true,
+        "grammar_token_eos_accepted": true,
+        "full_adapter_parser_accepted": true,
+        "error_code": null
+      },
+      {
+        "fixture": "prompt_example_2",
+        "json_schema_valid": true,
+        "grammar_token_eos_accepted": true,
+        "full_adapter_parser_accepted": true,
+        "error_code": null
+      },
+      {
+        "fixture": "ready_xy",
+        "json_schema_valid": true,
+        "grammar_token_eos_accepted": true,
+        "full_adapter_parser_accepted": true,
+        "error_code": null
+      },
+      {
+        "fixture": "nonready_not_promoted_CLARIFICATION",
+        "json_schema_valid": true,
+        "grammar_token_eos_accepted": true,
+        "full_adapter_parser_accepted": true,
+        "error_code": null
+      },
+      {
+        "fixture": "nonready_bad_instruction_CLARIFICATION",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "nonready_not_promoted_UNSUPPORTED",
+        "json_schema_valid": true,
+        "grammar_token_eos_accepted": true,
+        "full_adapter_parser_accepted": true,
+        "error_code": null
+      },
+      {
+        "fixture": "nonready_bad_instruction_UNSUPPORTED",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "root_version_only",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "wrong_version",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "extra_approval",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "ready_null_axes",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "ready_reason",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "missing_final_decision",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "facts_extra_reasoning",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "unknown_fact_enum",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "ready_condition",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "ready_multiple_targets",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "ready_sequential_motion",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "ready_authority_bypass",
+        "json_schema_valid": false,
+        "grammar_token_eos_accepted": false,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "authority_none_nonnull_quote",
+        "json_schema_valid": true,
+        "grammar_token_eos_accepted": true,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "history_missing_quote",
+        "json_schema_valid": true,
+        "grammar_token_eos_accepted": true,
+        "full_adapter_parser_accepted": false,
+        "error_code": "INVALID_MODEL_OUTPUT"
+      },
+      {
+        "fixture": "scope_missing_in_target",
+        "json_schema_valid": true,
+        "grammar_token_eos_accepted": true,
+        "full_adapter_parser_accepted": false,
+        "error_code": "UNGROUNDED_REQUIREMENT"
+      },
+      {
+        "fixture": "quote_not_in_source",
+        "json_schema_valid": true,
+        "grammar_token_eos_accepted": true,
+        "full_adapter_parser_accepted": false,
+        "error_code": "UNGROUNDED_REQUIREMENT"
+      },
+      {
+        "fixture": "facts_pass_quote_parser_rejects_unsigned",
+        "json_schema_valid": true,
+        "grammar_token_eos_accepted": true,
+        "full_adapter_parser_accepted": false,
+        "error_code": "UNGROUNDED_REQUIREMENT"
+      }
+    ],
+    "prompt_examples": 2
+  },
+  "transformers": "4.51.3",
+  "torch": "2.6.0+cu118",
+  "torch_imported_during_tokenization": false,
+  "torch_imported_for_cpu_grammar": true,
+  "cuda_initialized": false,
+  "cuda_visible_devices": "",
+  "model_calls": 0,
+  "network_calls": 0,
+  "gpu_queries": 0,
+  "limitations": "Structural/backend fixture checks and CPU lengths are not semantic quality or actual GPU grammar enforcement. V2 length-only text/gold is not published by this proof; previous root exposure remains disclosed elsewhere."
+}

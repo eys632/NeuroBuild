@@ -1,0 +1,76 @@
+{
+  "at_utc": "2026-09-20T03:00:03.884996+00:00",
+  "health_status": 200,
+  "models": {
+    "object": "list",
+    "data": [
+      {
+        "id": "neurobuild-local",
+        "object": "model",
+        "created": 1789873128,
+        "owned_by": "vllm",
+        "root": "/home/a202192020/NeuroBuild_v2/var/models/Qwen--Qwen3-32B-AWQ/0499c3ac83fdef8810b907a23894ba91e95eddd8",
+        "parent": null,
+        "max_model_len": 4096,
+        "permission": [
+          {
+            "id": "modelperm-411e4f8a8b3e4a5c9ffa0489061d2bb6",
+            "object": "model_permission",
+            "created": 1789873128,
+            "allow_create_engine": false,
+            "allow_sampling": true,
+            "allow_logprobs": true,
+            "allow_search_indices": false,
+            "allow_view": true,
+            "allow_fine_tuning": false,
+            "organization": "*",
+            "group": null,
+            "is_blocking": false
+          }
+        ]
+      }
+    ]
+  },
+  "child_pid": 3476232,
+  "child_start_ticks": 475660153,
+  "guard_pid": 3476219,
+  "guard_start_ticks": 475659712,
+  "guard_uid": 1003,
+  "verified_guard_arguments": {
+    "--profile": "a100",
+    "--model-path": "var/models/Qwen--Qwen3-32B-AWQ/0499c3ac83fdef8810b907a23894ba91e95eddd8",
+    "--estimated-peak-mib": "25600",
+    "--gpu-memory-utilization": "0.60",
+    "--torch-memory-fraction": "0.60",
+    "--peak-allowance-mib": "0",
+    "--max-seconds": "10800",
+    "--log-file": "var/logs/qwen3-32b-generation3-v1-server.log",
+    "--report-file": "var/reports/qwen3-32b-generation3-v1-server.json"
+  },
+  "served_model_name_cli_explicit": false,
+  "http_get_calls": 2,
+  "inference_calls": 0,
+  "resource_report_sha256": "2442adea39263e6f1f1f35692bd341a607fa7867768439d3418e7a0ebdc35f1b",
+  "startup_log_sha256": "4a97fdb4edf9a93056c6d1cc94916820e7aff892477fad26748406753615b5bc",
+  "log_observations": {
+    "awq_marlin": true,
+    "dtype": "torch.float16",
+    "application_startup_complete": true,
+    "model_loading_GiB": 18.1453,
+    "profile_weights_GiB": 18.15,
+    "profile_activation_peak_GiB": 0.76,
+    "profile_non_torch_increase_GiB": 0.09
+  },
+  "installed_version_probe": {
+    "python": "3.12.14",
+    "vllm": "0.8.5+cu118",
+    "torch": "2.6.0+cu118",
+    "cuda": "11.8",
+    "transformers": "4.51.3",
+    "xgrammar": "0.1.18",
+    "driver": "535.183.01",
+    "cuda_initialized": false
+  },
+  "installed_version_probe_scope": "Separate CUDA-hidden CPU process; importlib metadata/Torch build info and read-only /proc/driver/nvidia/version, no GPU query. GPU name inherited from this same measured A100 profile; own child confirms physical3 identity.",
+  "startup_only_not_quality_evidence": true
+}

@@ -1,0 +1,14 @@
+{
+  "kind": "PRE_GENERATION3_SOURCE_BASELINE",
+  "commit": "16d67895dfa8bfabe2c59f66732f7ec25b0510ac",
+  "canonical_parser_sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+  "generation2_module_before_sha256": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+  "generation2_function_ast_sha256": {
+    "_validate_source": "a6c2a0689e0f0c16104342725380dcb06c993a3551c59d5922bf646a4d08ffb1",
+    "_quoted_axis": "340bc9211076ef9d9e14ba60c8c483bc75e9d2950ce8c2508b93eab51a6bc958",
+    "adapt_generation_v2": "9a3f7f6c19d03e4735ed7d51f50a47527463da9872ef4882e06c42c5361fa385"
+  },
+  "scope": "AST includes function signature/decorators/body/docstring, excludes line numbers and formatting; canonical file compared as exact bytes.",
+  "src/neurobuild/infrastructure/local_model.py": "9732ad69f9f563f6acb3892ec0c187958d04d006a89251264779123445bc57c3",
+  "scripts/evaluate_requirements.py": "e114488454bd8289fb1de0462ae88c711b54917ac243db752e8400b95b66a36a"
+}

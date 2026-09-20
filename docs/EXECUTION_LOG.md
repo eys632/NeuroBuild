@@ -457,3 +457,14 @@ Pushededb586af8e8cefd10b4e2574d48b7d1cf24cc8e1/remotehash일치/clean/freeze29ha
 Run20260920T022318Z-88be9f58a8fa4017b9ad432ea95740b9 exit0/125HTTPsuccess/120trial+5warmups완료. Schema/parser120,semantic103,raw+acceptedFP1/58,unsafe1/120,FN11/62,error0,mean5.077785380704639s,p956.068347116932273s. 125개독립replay/전체row/metrics일치. ResultsSHAf6ba0506921464c084899d7cfa457d6241b685e952caffa224c71f842472eec3. FAIL보존,formal미실행. 다음한호출facts계약을설계검토하며source/prompt/gold/gate는아직변경없다.
 
 자체child3467850/guard3467820의UID/startticks와정확한model/report인자를재확인한뒤guard에SIGTERM. Guardsession97831exit0, STOPPED/STOP_REQUESTED/child_exit0/reaped/FileStorecleaned이며TERM+KILL이기록됐다. Epoch998.119초,minfree13834/aggregatepeak22540. ShutdownSHA8f47637db6434a67782132864146d21c954ea42dfc9406cdef21362f12275894. GPU3free36373used3965util0복귀. 다른process나GPU0/1/2변경없음.
+
+
+## Facts3.0 구현 및 실행 전 검증
+
+기존32B 실패 checkpoint16d67895 뒤 explicit3.0 enum/adapter/prompt/schema/client/evaluator를 추가했다. 한 호출의11개 facts와최종rootdecision을검증해 원래6값을그대로2.0으로투영하고 기존2→1adapter/canonicalparser를반드시통과시킨다. 누락의미를코드로추가하거나decision을보정하지않는다. 평가기는검증전rawREADY와각단계통과여부를별도기록한다. 기존1/2defaultwire6쌍byteequal,2adapterhelper3개AST/함수본문동일,canonicalparserSHAa940f395…fb4a불변.
+
+BackendprivatePG DSN으로 env -u DISPLAY -u WAYLAND_DISPLAY bash scripts/test_backend.sh 실행:346testsPASS/skip0/18.730s, log var/phase5x-generation3-regression.log. 신규17facts+9평가기+6실제loopbackHTTPtests다. 개발중두testfixture오류를수정했고production거절규칙은완화하지않았다. CPU actual32tokenizer/payloadcapture200회:exposed최대3622/4096(output1024포함),v2길이만3547. xgrammar0.1.18의24controls와두예시/domain통과,10rawREADY오류경로분자·분모보존,interrupt전파확인. 실제모델품질호출은아직0이다.
+
+FreshGPU3preflight5회free36373/util0/swing0, wholepeak25600+margin7275 뒤3498MiB잔여PASS. 같은모델/FP16AWQMarlin/ctx4096/seq1/KV256/fraction.60/.60/allowance0로 새generation3-v1 epoch기동을시작했다. Guard는자체5회preflight를반복한다. 이번epochmaxseconds10800으로제한하고freefloor/aggregate감시를유지한다. 다른process변경이나GPUfallback없다. rootfilesystemdf28Gfree/99%이며새download/install은없다.
+
+새32B facts epoch 2026-09-20T02:56:53.177123Z, own guard3476219/child3476232. Health200/v1models alias·root·ctx4096, ownTCP5개127.0.0.1검증. FreshCPUversionprobe와localtemplate를새launch/runtimehash에연결했다. Initialsnapshotelapsed186.288s/minfree16060/aggregate20314/floor7275/limit25600. AWQMarlinFP16/weights18.1453GiB/activation.76GiB/KV256. 새freeze820c16c7bd130666fbe8e2446cfd22a308cd9902c4bb1b3ac3481961939bb831는44개source/proofhash와별도v2고정9개를검증했다. 진단120×1+warmup5/generation3.0/output1024/T0/onecall,gate불변. 아직completion0이며commit/push후freshliveness와hash를확인하고시작한다.

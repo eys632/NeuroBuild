@@ -1,0 +1,199 @@
+{
+  "kind": "GENERATION3_INDEPENDENT_FAKE_ONLY_BOUNDARY_REVIEW",
+  "status": "PASS",
+  "baseline_commit": "16d67895dfa8bfabe2c59f66732f7ec25b0510ac",
+  "source_sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "9bdb19a65ba79e253afe262a72e2dc4ecfcaacbc33ca9588c940f553be58123f",
+    "scripts/evaluate_requirements.py": "b6d7068af5916c0f23f10068485affbce792a234891cb9f28aaeae10f587b5aa",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirement_facts.py": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5",
+    "schemas/requirement_generation_v3.schema.json": "54f68b0425f63ff0940d7eae61b27ab18b78bee72bc539a5f53e1ec78b088bcc"
+  },
+  "legacy_wire_pairs": [
+    {
+      "contract": "1.0",
+      "protocol": "legacy_guided_json",
+      "explicit_branch_prompt_schema": false,
+      "payload_sha256": "0b6868f8ab3570bd11a609fe71bfb972c77f0d2b81dacf68c90d0b0fb9b9c338",
+      "byte_equal": true
+    },
+    {
+      "contract": "1.0",
+      "protocol": "structured_outputs",
+      "explicit_branch_prompt_schema": false,
+      "payload_sha256": "513afe1f3a57136229df3c78183bf4fa4ef893c6e915df5ac80b6c53cf8f4cf7",
+      "byte_equal": true
+    },
+    {
+      "contract": "2.0",
+      "protocol": "legacy_guided_json",
+      "explicit_branch_prompt_schema": false,
+      "payload_sha256": "a8589de74b889f197c89cedc4537e495e0a95f93d21bacf88da7e3f5d1e931ec",
+      "byte_equal": true
+    },
+    {
+      "contract": "2.0",
+      "protocol": "structured_outputs",
+      "explicit_branch_prompt_schema": false,
+      "payload_sha256": "22daca381fbb66d85b101f5dc451faad1e2db8d586b61dc1a6e281b62294560b",
+      "byte_equal": true
+    },
+    {
+      "contract": "2.0",
+      "protocol": "legacy_guided_json",
+      "explicit_branch_prompt_schema": true,
+      "payload_sha256": "ba7402af6c6a963a115474d5af8206b676e7700bf38c182683eb1048834cb4fe",
+      "byte_equal": true
+    },
+    {
+      "contract": "2.0",
+      "protocol": "structured_outputs",
+      "explicit_branch_prompt_schema": true,
+      "payload_sha256": "997c6cc9c3f0ad53c95126e25dacc33e0e0de9f9873c5811e10b40ab01976f38",
+      "byte_equal": true
+    }
+  ],
+  "raw_ready_fault_probes": [
+    {
+      "probe": "known_omitted_condition_counted_unsafe",
+      "raw_ready_preserved": true,
+      "raw_fp_numerator": 1,
+      "raw_fp_denominator": 1,
+      "generation_schema_valid": true,
+      "facts_projection_accepted": true,
+      "adapter_accepted": true,
+      "legacy_schema_valid": true,
+      "parser_accepted": true,
+      "error_code": null,
+      "unsafe_accepted_numerator": 1
+    },
+    {
+      "probe": "generation_schema_rejection",
+      "raw_ready_preserved": true,
+      "raw_fp_numerator": 1,
+      "raw_fp_denominator": 1,
+      "generation_schema_valid": false,
+      "facts_projection_accepted": false,
+      "adapter_accepted": false,
+      "legacy_schema_valid": false,
+      "parser_accepted": false,
+      "error_code": "JSON_SCHEMA_FAILED",
+      "unsafe_accepted_numerator": 0
+    },
+    {
+      "probe": "facts_scope_rejection",
+      "raw_ready_preserved": true,
+      "raw_fp_numerator": 1,
+      "raw_fp_denominator": 1,
+      "generation_schema_valid": true,
+      "facts_projection_accepted": false,
+      "adapter_accepted": false,
+      "legacy_schema_valid": false,
+      "parser_accepted": false,
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "unsafe_accepted_numerator": 0
+    },
+    {
+      "probe": "facts_null_consistency_rejection",
+      "raw_ready_preserved": true,
+      "raw_fp_numerator": 1,
+      "raw_fp_denominator": 1,
+      "generation_schema_valid": true,
+      "facts_projection_accepted": false,
+      "adapter_accepted": false,
+      "legacy_schema_valid": false,
+      "parser_accepted": false,
+      "error_code": "INVALID_MODEL_OUTPUT",
+      "unsafe_accepted_numerator": 0
+    },
+    {
+      "probe": "projection_then_quote_parser_rejection",
+      "raw_ready_preserved": true,
+      "raw_fp_numerator": 1,
+      "raw_fp_denominator": 1,
+      "generation_schema_valid": true,
+      "facts_projection_accepted": true,
+      "adapter_accepted": false,
+      "legacy_schema_valid": false,
+      "parser_accepted": false,
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "unsafe_accepted_numerator": 0
+    },
+    {
+      "probe": "facts_domain_error",
+      "raw_ready_preserved": true,
+      "raw_fp_numerator": 1,
+      "raw_fp_denominator": 1,
+      "generation_schema_valid": true,
+      "facts_projection_accepted": false,
+      "adapter_accepted": false,
+      "legacy_schema_valid": false,
+      "parser_accepted": false,
+      "error_code": "INVALID_MODEL_OUTPUT",
+      "unsafe_accepted_numerator": 0
+    },
+    {
+      "probe": "facts_runtime_error",
+      "raw_ready_preserved": true,
+      "raw_fp_numerator": 1,
+      "raw_fp_denominator": 1,
+      "generation_schema_valid": true,
+      "facts_projection_accepted": false,
+      "adapter_accepted": false,
+      "legacy_schema_valid": false,
+      "parser_accepted": false,
+      "error_code": "EVALUATION_CLIENT_ERROR",
+      "unsafe_accepted_numerator": 0
+    },
+    {
+      "probe": "quote_domain_error",
+      "raw_ready_preserved": true,
+      "raw_fp_numerator": 1,
+      "raw_fp_denominator": 1,
+      "generation_schema_valid": true,
+      "facts_projection_accepted": true,
+      "adapter_accepted": false,
+      "legacy_schema_valid": false,
+      "parser_accepted": false,
+      "error_code": "UNGROUNDED_REQUIREMENT",
+      "unsafe_accepted_numerator": 0
+    },
+    {
+      "probe": "canonical_domain_error",
+      "raw_ready_preserved": true,
+      "raw_fp_numerator": 1,
+      "raw_fp_denominator": 1,
+      "generation_schema_valid": true,
+      "facts_projection_accepted": true,
+      "adapter_accepted": true,
+      "legacy_schema_valid": true,
+      "parser_accepted": false,
+      "error_code": "INVALID_MODEL_OUTPUT",
+      "unsafe_accepted_numerator": 0
+    },
+    {
+      "probe": "canonical_runtime_error",
+      "raw_ready_preserved": true,
+      "raw_fp_numerator": 1,
+      "raw_fp_denominator": 1,
+      "generation_schema_valid": true,
+      "facts_projection_accepted": true,
+      "adapter_accepted": true,
+      "legacy_schema_valid": true,
+      "parser_accepted": false,
+      "error_code": "EVALUATION_CLIENT_ERROR",
+      "unsafe_accepted_numerator": 0
+    }
+  ],
+  "interrupts_propagated": [
+    "KeyboardInterrupt",
+    "SystemExit"
+  ],
+  "canonical_sha_and_v2_function_ast_unchanged": true,
+  "actual_network_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "datasets_read": 0,
+  "scope": "Synthetic fixtures only; omitted-condition acceptance is a documented limitation and deliberately counted as unsafe. No model quality inference."
+}

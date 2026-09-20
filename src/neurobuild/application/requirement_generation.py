@@ -20,6 +20,7 @@ from neurobuild.domain.errors import DomainError
 class GenerationContract(StrEnum):
     LEGACY = "1.0"
     QUOTES = "2.0"
+    FACTS = "3.0"
 
 
 _KEYS = {
@@ -130,13 +131,26 @@ def parse_generated_requirement(
     """Explicitly route one configured generation contract into the 1.0 parser."""
     if type(generation_contract) is not GenerationContract:
         _fail("INVALID_REQUIREMENT_INPUT")
-    if generation_contract is GenerationContract.QUOTES:
+    if generation_contract is GenerationContract.FACTS:
+        # Local import keeps the separate facts adapter from changing the
+        # existing quote helpers or introducing a module-import cycle.
+        from neurobuild.application.requirement_facts import adapt_generation_v3
+        _validate_source(source_text)
+        if (axis_convention not in (None, "project_xy")
+                or not all(type(value) is UUID for value in
+                           (requirement_id, project_id, base_revision_id))):
+            _fail("INVALID_REQUIREMENT_INPUT")
+        response_text = adapt_generation_v3(response_text, source_text=source_text)
+        response_text = adapt_generation_v2(response_text, source_text=source_text)
+    elif generation_contract is GenerationContract.QUOTES:
         _validate_source(source_text)
         if (axis_convention not in (None, "project_xy")
                 or not all(type(value) is UUID for value in
                            (requirement_id, project_id, base_revision_id))):
             _fail("INVALID_REQUIREMENT_INPUT")
         response_text = adapt_generation_v2(response_text, source_text=source_text)
+    elif generation_contract is not GenerationContract.LEGACY:
+        _fail("INVALID_REQUIREMENT_INPUT")
     return parse_requirement(
         response_text, source_text=source_text, requirement_id=requirement_id,
         project_id=project_id, base_revision_id=base_revision_id,

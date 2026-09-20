@@ -159,3 +159,12 @@ Epoch998.119초의aggregatepeak22,540MiB/minfree13,834MiB는계획한도내였�
 별도계약을제한검토한다. 원문에있는조건과후속대상확인/적용승인을분리하고,
 중간facts가틀릴수있음을인정한다. Backend모순거절로rawREADY오판을지우거나결정을수정하지않는다.
 Canonicalparser/gold/gate는유지하며자료노출이력도계속공개한다.
+
+
+## Facts3.0 계약 구현과 제한 진단 준비
+
+[설계](../requirement_facts_contract_design.md)에따라같은32B에서한호출로원문semantic facts를생성한뒤최종decision을명시한다. Facts검증은선언간모순과인용경계를거절하며semantic completeness를증명하지않는다. Projection3→2→1이최종decision을그대로보존하고rawREADY를먼저계수한다. Canonicalparserbytes/기존2helper행동/기존1·2wire를보존했다.
+
+346개회귀테스트와독립CPU문법/문맥/오류회계검토가통과했다. Actual32B tokenizer의최대입력+1024출력=3622/4096이다. 같은4096context/seq1/KV256을유지하므로기존wholepeak25GiB계획을사용하되freshGPU3측정및watchdog가필수다. Prompt/schema/출력한도가동시에바뀌므로효과를한요소에귀속하지않는다.
+
+다음은exposed120×1+warmup5 진단이며schema120/semantic≥114/rawFP0of58/unsafe0of120기준을유지한다. 진단전후보동결·원격checkpoint가필요하고모델결과나채택은아직없다. 통과한경우에만별도동결한120×3정식후v2평가로진행한다. V2는model-output-unseen이나root가일부input/gold를본이력이있으며완전맹검이나사람검수라고부르지않는다.

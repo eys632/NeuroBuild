@@ -1,0 +1,593 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NeuroBuild generation 3.0: source-grounded facts and explicit final decision",
+  "description": "One call. Facts precede the explicit final root decision in generated property order. READY branches constrain declared facts and axis presence only; backend still validates quote grounding, limits, nonblank strings, cross-field consistency and canonical parsing. Neither property order nor facts prove semantic accuracy or grant approval.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "enum": [
+        "3.0"
+      ]
+    }
+  },
+  "anyOf": [
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "facts",
+        "target_selection_quote",
+        "current_instruction_quote",
+        "dx_evidence",
+        "dy_evidence",
+        "reason",
+        "decision"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "3.0"
+          ]
+        },
+        "facts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "intent",
+            "condition",
+            "condition_quote",
+            "target_class",
+            "target_count",
+            "motion",
+            "axis_completeness",
+            "authority",
+            "authority_quote",
+            "selection_scope_quote",
+            "selection_exclusion_quote"
+          ],
+          "properties": {
+            "intent": {
+              "type": "string",
+              "enum": [
+                "CURRENT_MOVE"
+              ]
+            },
+            "condition": {
+              "type": "string",
+              "enum": [
+                "NONE"
+              ]
+            },
+            "condition_quote": {
+              "type": "null"
+            },
+            "target_class": {
+              "type": "string",
+              "enum": [
+                "FURNITURE"
+              ]
+            },
+            "target_count": {
+              "type": "string",
+              "enum": [
+                "ONE"
+              ]
+            },
+            "motion": {
+              "type": "string",
+              "enum": [
+                "ONE_RELATIVE_XY_VECTOR"
+              ]
+            },
+            "axis_completeness": {
+              "type": "string",
+              "enum": [
+                "EXPLICIT"
+              ]
+            },
+            "authority": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "HISTORICAL_OR_QUOTED_ONLY"
+              ]
+            },
+            "authority_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selection_scope_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selection_exclusion_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "target_selection_quote": {
+          "type": "string"
+        },
+        "current_instruction_quote": {
+          "type": "string"
+        },
+        "dx_evidence": {
+          "type": "string"
+        },
+        "dy_evidence": {
+          "type": "null"
+        },
+        "reason": {
+          "type": "null"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "READY"
+          ]
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "facts",
+        "target_selection_quote",
+        "current_instruction_quote",
+        "dx_evidence",
+        "dy_evidence",
+        "reason",
+        "decision"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "3.0"
+          ]
+        },
+        "facts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "intent",
+            "condition",
+            "condition_quote",
+            "target_class",
+            "target_count",
+            "motion",
+            "axis_completeness",
+            "authority",
+            "authority_quote",
+            "selection_scope_quote",
+            "selection_exclusion_quote"
+          ],
+          "properties": {
+            "intent": {
+              "type": "string",
+              "enum": [
+                "CURRENT_MOVE"
+              ]
+            },
+            "condition": {
+              "type": "string",
+              "enum": [
+                "NONE"
+              ]
+            },
+            "condition_quote": {
+              "type": "null"
+            },
+            "target_class": {
+              "type": "string",
+              "enum": [
+                "FURNITURE"
+              ]
+            },
+            "target_count": {
+              "type": "string",
+              "enum": [
+                "ONE"
+              ]
+            },
+            "motion": {
+              "type": "string",
+              "enum": [
+                "ONE_RELATIVE_XY_VECTOR"
+              ]
+            },
+            "axis_completeness": {
+              "type": "string",
+              "enum": [
+                "EXPLICIT"
+              ]
+            },
+            "authority": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "HISTORICAL_OR_QUOTED_ONLY"
+              ]
+            },
+            "authority_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selection_scope_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selection_exclusion_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "target_selection_quote": {
+          "type": "string"
+        },
+        "current_instruction_quote": {
+          "type": "string"
+        },
+        "dx_evidence": {
+          "type": "null"
+        },
+        "dy_evidence": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "null"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "READY"
+          ]
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "facts",
+        "target_selection_quote",
+        "current_instruction_quote",
+        "dx_evidence",
+        "dy_evidence",
+        "reason",
+        "decision"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "3.0"
+          ]
+        },
+        "facts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "intent",
+            "condition",
+            "condition_quote",
+            "target_class",
+            "target_count",
+            "motion",
+            "axis_completeness",
+            "authority",
+            "authority_quote",
+            "selection_scope_quote",
+            "selection_exclusion_quote"
+          ],
+          "properties": {
+            "intent": {
+              "type": "string",
+              "enum": [
+                "CURRENT_MOVE"
+              ]
+            },
+            "condition": {
+              "type": "string",
+              "enum": [
+                "NONE"
+              ]
+            },
+            "condition_quote": {
+              "type": "null"
+            },
+            "target_class": {
+              "type": "string",
+              "enum": [
+                "FURNITURE"
+              ]
+            },
+            "target_count": {
+              "type": "string",
+              "enum": [
+                "ONE"
+              ]
+            },
+            "motion": {
+              "type": "string",
+              "enum": [
+                "ONE_RELATIVE_XY_VECTOR"
+              ]
+            },
+            "axis_completeness": {
+              "type": "string",
+              "enum": [
+                "EXPLICIT"
+              ]
+            },
+            "authority": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "HISTORICAL_OR_QUOTED_ONLY"
+              ]
+            },
+            "authority_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selection_scope_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selection_exclusion_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "target_selection_quote": {
+          "type": "string"
+        },
+        "current_instruction_quote": {
+          "type": "string"
+        },
+        "dx_evidence": {
+          "type": "string"
+        },
+        "dy_evidence": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "null"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "READY"
+          ]
+        }
+      }
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "facts",
+        "target_selection_quote",
+        "current_instruction_quote",
+        "dx_evidence",
+        "dy_evidence",
+        "reason",
+        "decision"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "enum": [
+            "3.0"
+          ]
+        },
+        "facts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "intent",
+            "condition",
+            "condition_quote",
+            "target_class",
+            "target_count",
+            "motion",
+            "axis_completeness",
+            "authority",
+            "authority_quote",
+            "selection_scope_quote",
+            "selection_exclusion_quote"
+          ],
+          "properties": {
+            "intent": {
+              "type": "string",
+              "enum": [
+                "CURRENT_MOVE",
+                "NEGATED_MOVE",
+                "INFORMATION_ONLY",
+                "NO_CURRENT_REQUEST",
+                "AMBIGUOUS"
+              ]
+            },
+            "condition": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "UNRESOLVED",
+                "AMBIGUOUS"
+              ]
+            },
+            "condition_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "target_class": {
+              "type": "string",
+              "enum": [
+                "FURNITURE",
+                "NON_FURNITURE",
+                "UNSPECIFIED"
+              ]
+            },
+            "target_count": {
+              "type": "string",
+              "enum": [
+                "ONE",
+                "MULTIPLE",
+                "UNSPECIFIED"
+              ]
+            },
+            "motion": {
+              "type": "string",
+              "enum": [
+                "ONE_RELATIVE_XY_VECTOR",
+                "SEQUENTIAL_OR_MULTI_ACTION",
+                "OTHER_CHANGE",
+                "UNSPECIFIED"
+              ]
+            },
+            "axis_completeness": {
+              "type": "string",
+              "enum": [
+                "EXPLICIT",
+                "INCOMPLETE",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "authority": {
+              "type": "string",
+              "enum": [
+                "NONE",
+                "CURRENT_BYPASS_OR_OVERWRITE",
+                "HISTORICAL_OR_QUOTED_ONLY",
+                "AMBIGUOUS"
+              ]
+            },
+            "authority_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selection_scope_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "selection_exclusion_quote": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "target_selection_quote": {
+          "type": "string"
+        },
+        "current_instruction_quote": {
+          "type": "null"
+        },
+        "dx_evidence": {
+          "type": "null"
+        },
+        "dy_evidence": {
+          "type": "null"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "CLARIFICATION",
+            "UNSUPPORTED"
+          ]
+        }
+      }
+    }
+  ]
+}

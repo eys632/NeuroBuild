@@ -1,0 +1,78 @@
+{
+  "archive_kind": "GENERATION3_INDEPENDENT_CPU_AND_FAKE_BOUNDARY_PREFLIGHT",
+  "archived_at_utc": "2026-09-20T02:57:52.253165+00:00",
+  "records": [
+    {
+      "archived_path": "evaluations/results/phase5x/generation3-preflight/cpu_preflight.json",
+      "original_path": "var/research/generation3-32b-preflight-70ea33d936e64c3f9697ed2c55d391ad.json",
+      "bytes": 10391,
+      "sha256": "14b1b2149d96edb5385958906b693babacffd6e3ffb98f7aa8b2b0720e122699",
+      "copied_exact_bytes": true
+    },
+    {
+      "archived_path": "evaluations/results/phase5x/generation3-preflight/boundary_review.json",
+      "original_path": "var/research/generation3-boundary-review-fbd5cad667514ebda8bf50637044e6f0.json",
+      "bytes": 6917,
+      "sha256": "1ce7a5a3b929d377f769f560beb582a9b0d63a1ce08e84678f0fd4716fbedc39",
+      "copied_exact_bytes": true
+    },
+    {
+      "archived_path": "evaluations/results/phase5x/generation3-preflight/verify_generation3_32b_preflight.py",
+      "original_path": "var/research/verify_generation3_32b_preflight.py",
+      "bytes": 16751,
+      "sha256": "e623d2309f911cd873bdcc56808716d6471cf6ddf607ea3d76ff1ddac0e48ba9",
+      "copied_exact_bytes": true
+    },
+    {
+      "archived_path": "evaluations/results/phase5x/generation3-preflight/review_generation3_boundaries.py",
+      "original_path": "var/research/review_generation3_boundaries.py",
+      "bytes": 11402,
+      "sha256": "cbd5e4f9fe82adb0421465eaca2739d79dc52fd50dfd54189853e8a410d8cd4b",
+      "copied_exact_bytes": true
+    },
+    {
+      "archived_path": "evaluations/results/phase5x/generation3-preflight/generation3_legacy_baseline.json",
+      "original_path": "var/research/generation3_legacy_baseline.json",
+      "bytes": 1000,
+      "sha256": "c44a435bbd3e5b58535b6b7b2b8cbe9a1ab3c0ec41fe6f64d110e2c494184e29",
+      "copied_exact_bytes": true
+    },
+    {
+      "archived_path": "evaluations/results/phase5x/generation3-preflight/independent_review.md",
+      "original_path": "var/research/generation3_independent_preflight_review.md",
+      "bytes": 3810,
+      "sha256": "526711c9087dee5216506767ada3855761b2a52ceb94c2627d976571b0aeab1b",
+      "copied_exact_bytes": true
+    }
+  ],
+  "source_hashes_rechecked_at_archive": true,
+  "model_calls": 0,
+  "gpu_queries": 0,
+  "actual_http_calls": 0,
+  "v2_scope": "Input-length-only aggregates/hashes in proof. No v2 input/gold, case IDs, per-case lengths or model outputs copied. Synthetic helper fixtures are independent local probe text. Earlier root input exposure is not erased.",
+  "cpu_runtime": "Project .conda-vllm, masked CUDA_VISIBLE_DEVICES, offline tokenizers; Torch imported only for CPU xgrammar.",
+  "backend_runtime": "Project .conda, fake HTTP and synthetic adapter/harness fault probes only.",
+  "helpers_executed_from_original_paths": true,
+  "archived_helpers_runnable_in_place": false,
+  "restore_required": "Restore exact helper and baseline bytes to recorded original var/research paths; both helpers calculate ROOT from parents[2], and boundary helper imports the CPU helper from its original path. Existing files must be verified or deliberately handled; never silently overwrite newer helpers.",
+  "reproduction_dependencies": [
+    "Pinned actual32B local tokenizer/config and downloader manifest; no weight payload read by these helpers.",
+    "Tracked source/prompt/schema/runtime model manifest matching proof hashes.",
+    "Existing v1 development40/exposed80 and v2 dataset80 for CPU input-length accounting; no model outputs required.",
+    "Git checkpoint16d67895dfa8bfabe2c59f66732f7ec25b0510ac reachable for the historical client source.",
+    "Project .conda/.conda-vllm dependencies; no setup/install implied by archive."
+  ],
+  "full_regression_external_evidence": {
+    "reported_by": "root",
+    "tests_passed": 346,
+    "skipped": 0,
+    "seconds": 18.73,
+    "not_executed_by_these_helpers": true
+  },
+  "claim_limits": [
+    "No model quality/gate PASS.",
+    "No actual GPU kernel or server-side grammar enforcement claim.",
+    "Facts consistency is not source-wide semantic entailment.",
+    "Six legacy wire fixture pairs are bounded evidence, not an exhaustive equivalence proof."
+  ]
+}

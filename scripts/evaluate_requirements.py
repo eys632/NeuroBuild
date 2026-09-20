@@ -25,6 +25,7 @@ from jsonschema import Draft202012Validator
 
 from neurobuild.application.requirements import MAX_RESPONSE_CHARS, parse_requirement
 from neurobuild.application.requirement_generation import GenerationContract, adapt_generation_v2
+from neurobuild.application.requirement_facts import adapt_generation_v3
 from neurobuild.domain.errors import DomainError
 from neurobuild.infrastructure.local_model import LocalRequirementClient, SamplingProfile, StructuredOutputProtocol
 
@@ -150,9 +151,11 @@ def evaluate_trial(client, case, validator, trial, *, run_id, clock=time.monoton
     started = clock()
     try:
         contract = GenerationContract(getattr(client, "generation_contract", GenerationContract.LEGACY))
-        if contract is GenerationContract.QUOTES:
+        if contract in (GenerationContract.QUOTES, GenerationContract.FACTS):
             row.update(generation_contract=contract.value, generation_output=None,
                        generation_schema_valid=False, adapter_accepted=False, legacy_schema_valid=False)
+        if contract is GenerationContract.FACTS:
+            row.update(facts_projection_accepted=False, projected_quote_output=None)
         completion = client.complete(case["input"], axis_convention=case["context"].get("axis_convention"))
         row["response_model"] = completion.model
         row["transport_latency_seconds"] = completion.latency_seconds
@@ -172,7 +175,7 @@ def evaluate_trial(client, case, validator, trial, *, run_id, clock=time.monoton
                 row["raw_model_decision"] = decision
                 row["model_ready_observed"] = decision == "READY"
             row["schema_valid"] = validator.is_valid(output)
-            if contract is GenerationContract.QUOTES:
+            if contract in (GenerationContract.QUOTES, GenerationContract.FACTS):
                 row["generation_schema_valid"] = row["schema_valid"]
             if not row["schema_valid"]:
                 row["error_code"] = "JSON_SCHEMA_FAILED"
@@ -180,11 +183,19 @@ def evaluate_trial(client, case, validator, trial, *, run_id, clock=time.monoton
                 # Schema-valid final semantic content only. Never save malformed
                 # raw text, unknown fields, HTTP envelopes or reasoning content.
                 canonical_text = completion.content
-                if contract is GenerationContract.QUOTES:
+                if contract in (GenerationContract.QUOTES, GenerationContract.FACTS):
                     # Observe and retain the model's decision BEFORE adaptation.
                     # Projection failure cannot erase a raw READY false positive.
                     row["generation_output"] = output
-                    canonical_text = adapt_generation_v2(completion.content, source_text=case["input"])
+                    quote_text = completion.content
+                    if contract is GenerationContract.FACTS:
+                        quote_text = adapt_generation_v3(quote_text, source_text=case["input"])
+                        quote_output = strict_json(quote_text)
+                        quote_schema = strict_json((ROOT / "schemas/requirement_generation_v2.schema.json").read_text(encoding="utf-8"))
+                        if not Draft202012Validator(quote_schema).is_valid(quote_output):
+                            raise DomainError("INVALID_MODEL_OUTPUT", "Facts projection does not satisfy the quote schema")
+                        row.update(facts_projection_accepted=True, projected_quote_output=quote_output)
+                    canonical_text = adapt_generation_v2(quote_text, source_text=case["input"])
                     row["adapter_accepted"] = True
                     output = strict_json(canonical_text)
                     canonical_schema = strict_json((ROOT / "schemas/semantic_requirement.schema.json").read_text(encoding="utf-8"))
@@ -326,9 +337,12 @@ def summarize(rows):
                          and not row["semantic_rubric_correct"]]
     result = {key: rate(sum(bool(row[key]) for row in rows), total)
               for key in ("json_parse_valid", "schema_valid", "parser_accepted", "semantic_rubric_correct")}
-    if rows and all(row.get("generation_contract") == GenerationContract.QUOTES.value for row in rows):
+    if rows and all(row.get("generation_contract") in (GenerationContract.QUOTES.value, GenerationContract.FACTS.value)
+                    for row in rows):
         result.update({key: rate(sum(bool(row[key]) for row in rows), total)
                        for key in ("generation_schema_valid", "adapter_accepted", "legacy_schema_valid")})
+    if rows and all(row.get("generation_contract") == GenerationContract.FACTS.value for row in rows):
+        result["facts_projection_accepted"] = rate(sum(bool(row["facts_projection_accepted"]) for row in rows), total)
     if rows and all(row.get("pipeline") == "staged_v1" for row in rows):
         result.update({key: rate(sum(bool(row[key]) for row in rows), total)
                        for key in ("classification_schema_valid", "extraction_schema_valid")})
@@ -450,9 +464,12 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
               "scorer": file_sha(Path(__file__)),
               "parser": file_sha(ROOT / "src/neurobuild/application/requirements.py"),
               "client": file_sha(ROOT / "src/neurobuild/infrastructure/local_model.py")}
-    if client.generation_contract is GenerationContract.QUOTES:
+    if client.generation_contract in (GenerationContract.QUOTES, GenerationContract.FACTS):
         hashes.update(generation_adapter=file_sha(ROOT / "src/neurobuild/application/requirement_generation.py"),
                       canonical_schema=file_sha(ROOT / "schemas/semantic_requirement.schema.json"))
+    if client.generation_contract is GenerationContract.FACTS:
+        hashes.update(facts_adapter=file_sha(ROOT / "src/neurobuild/application/requirement_facts.py"),
+                      quote_projection_schema=file_sha(ROOT / "schemas/requirement_generation_v2.schema.json"))
     if hashes["prompt"] != client.prompt_sha256 or hashes["schema"] != client.schema_sha256:
         raise ValueError("Client prompt/schema differs from recorded files")
     sampling = client.sampling_parameters
@@ -481,6 +498,13 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
                          "tool_parser": None, "reasoning_parser": runtime_info["reasoning_parser"]},
             "measurements_not_performed": {"startup_cold_seconds": None, "startup_warm_seconds": None,
                                            "gpu_baseline_used_mib": None, "gpu_peak_used_mib": None, "ttft_seconds": None}}
+    if client.generation_contract is GenerationContract.FACTS:
+        manifest["protocol"].update(
+            pipeline="single", maximum_calls_per_case=1,
+            projection_chain=["3.0", "2.0", "1.0"],
+            facts_validation="Exact source quotes and declared-fact consistency; no semantic entailment proof or decision correction",
+            raw_ready_metric="Root model decision observed before generation schema, facts projection and all downstream validation",
+        )
     if getattr(client, "pipeline", None) == "staged_v1":
         manifest["sha256"].update(
             staged_client=file_sha(ROOT / "src/neurobuild/infrastructure/staged_requirement.py"),
@@ -539,8 +563,13 @@ def main(argv=None):
         if args.pipeline == "staged_v1":
             args.prompt = args.prompt or ROOT / "prompts/requirement_extraction_v1.txt"
             args.schema = args.schema or ROOT / "schemas/requirement_generation_v2_decision_branches.schema.json"
-        args.prompt = args.prompt or ROOT / ("prompts/requirement_generation_v2_v1.txt" if contract is GenerationContract.QUOTES else "prompts/requirement_v3.txt")
-        args.schema = args.schema or ROOT / ("schemas/requirement_generation_v2.schema.json" if contract is GenerationContract.QUOTES else "schemas/semantic_requirement.schema.json")
+        defaults = {
+            GenerationContract.LEGACY: ("prompts/requirement_v3.txt", "schemas/semantic_requirement.schema.json"),
+            GenerationContract.QUOTES: ("prompts/requirement_generation_v2_v1.txt", "schemas/requirement_generation_v2.schema.json"),
+            GenerationContract.FACTS: ("prompts/requirement_generation_v3_v1.txt", "schemas/requirement_generation_v3.schema.json"),
+        }
+        args.prompt = args.prompt or ROOT / defaults[contract][0]
+        args.schema = args.schema or ROOT / defaults[contract][1]
         cases = load_cases(args.dataset)
         schema = strict_json(args.schema.read_text(encoding="utf-8"))
         Draft202012Validator.check_schema(schema)

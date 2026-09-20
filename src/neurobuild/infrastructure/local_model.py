@@ -156,7 +156,7 @@ class LocalJSONCompletionClient:
             if not self._prompt.strip() or type(self._schema) is not dict:
                 _error("LOCAL_MODEL_CONFIG_INVALID")
             # Explicit custom paths cannot silently select a different output
-            # contract. Both generations require the same version-enum binding.
+            # contract. Every generation requires the same version-enum binding.
             properties = self._schema.get("properties")
             version = properties.get("schema_version") if type(properties) is dict else None
             if (type(version) is not dict
@@ -356,7 +356,7 @@ class LocalJSONCompletionClient:
 
 
 class LocalRequirementClient(LocalJSONCompletionClient):
-    """Original one-request 1.0/2.0 API, with explicit generation selection."""
+    """One request with an explicitly selected generation contract."""
 
     def __init__(
         self, base_url: str, model: str, *, timeout: float = 60.0, max_tokens: int = 768,
@@ -374,9 +374,14 @@ class LocalRequirementClient(LocalJSONCompletionClient):
         if self.generation_contract is GenerationContract.LEGACY:
             default_prompt = _ROOT / "prompts/requirement_v3.txt"
             default_schema = _ROOT / "schemas/semantic_requirement.schema.json"
-        else:
+        elif self.generation_contract is GenerationContract.QUOTES:
             default_prompt = _ROOT / "prompts/requirement_generation_v2_v1.txt"
             default_schema = _ROOT / "schemas/requirement_generation_v2.schema.json"
+        elif self.generation_contract is GenerationContract.FACTS:
+            default_prompt = _ROOT / "prompts/requirement_generation_v3_v1.txt"
+            default_schema = _ROOT / "schemas/requirement_generation_v3.schema.json"
+        else:
+            _error("LOCAL_MODEL_CONFIG_INVALID")
         super().__init__(
             base_url, model, timeout=timeout, max_tokens=max_tokens,
             prompt_path=prompt_path or default_prompt, schema_path=schema_path or default_schema,
