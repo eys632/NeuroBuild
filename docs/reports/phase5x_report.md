@@ -1,6 +1,6 @@
 # Phase 5.x — Requirement Quality Hardening
 
-**현재 상태: 첫 holdout과 후속14B single/staged 진단 모두 FAIL. 후보 미채택이며 Phase5.x는 완료되지 않았다.**
+**현재 상태: 첫 holdout과 후속14B single/staged, 공식32B single 진단 모두 FAIL. 후보 미채택이며 Phase5.x는 완료되지 않았다.**
 
 첫 holdout에서 실패한 후보는 `ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ`와 generation 2, decision-branch schema, prompt v2, `legacy_greedy` 조합이다. Development 40개 × 3회에서 schema/parser/semantic **120/120**, raw READY false positive **0/60**, unsafe accepted **0/120**을 기록했다. 직전 neutral sampling의 정식 평가는 119/120이었지만 unsafe 1건으로 실패했으며, 그 결과도 보존했다. 아직 최종 모델을 채택하지 않았다.
 
@@ -135,3 +135,27 @@ allowance0, margin7275MiB로 guard를 유지한다. [후보와 증거](../dense_
 실제 모델 품질 결과는 아직 없으며 통과해도120×3정식과별도v2평가가 남는다.
 V2 model-output-unseen과 root의일부input/gold노출은 구분한다. 이번모델변경은노출뒤이며
 원래prompt는v2작성전부터동결됐다는사실도함께기록한다.
+
+
+## 공식32B 단일 호출 전체120개 진단 — FAIL
+
+Run20260920T022318Z-88be9f58a8fa4017b9ad432ea95740b9는 pushededb586a/clean,
+같은single2.0/branch/promptv2/greedy,120×1+warmup5에서 완료됐다.
+Schema/parser120,semantic103/120(85.833%), raw+acceptedFP1/58,unsafe1/120,FN11/62,
+error0,mean5.077785s/p956.068347s다. Warmup5는schema/parser5,semantic4이며 정식분모에서 제외했다.
+125개 독립 재생과 frozen evaluate_trial의 전체row/metrics가 일치했다.
+[결과와 검토](../reviews/phase5x_generation2_32b_exposed_review.md).
+
+실패17개는 명시Y음의방향을불명확으로판단4, 원문에없는충돌·공간·단일객체확정조건을요구7,
+nonREADY간label혼동4, nonREADY대상범위누락1, 현재승인생략/덮어쓰기를READY로수용1이다.
+AcceptedREADY51개는대상/수치가모두맞았고복사/grounding오류가없어span복사대안은선택하지않는다.
+모델크기만바꿔개선됐다고주장하지않으며formal반복도실행하지않는다.
+
+Own32Bguard를종료했고child exit0/reaped/FileStorecleaned,TERM+KILL기록을보존했다.
+Epoch998.119초의aggregatepeak22,540MiB/minfree13,834MiB는계획한도내였다.
+종료뒤GPU3free36,373/used3,965/util0로복귀했다. 타인process/다른GPU변경없음.
+
+다음은같은32B/runtime에서한호출의semantic facts를생성한뒤최종decision을명시하는
+별도계약을제한검토한다. 원문에있는조건과후속대상확인/적용승인을분리하고,
+중간facts가틀릴수있음을인정한다. Backend모순거절로rawREADY오판을지우거나결정을수정하지않는다.
+Canonicalparser/gold/gate는유지하며자료노출이력도계속공개한다.

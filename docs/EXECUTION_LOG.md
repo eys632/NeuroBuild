@@ -445,3 +445,15 @@ CUDA_VISIBLE_DEVICES=3 .conda/bin/python scripts/model_server.py --profile a100 
 Guardsession97831/child3467850, fresh5samplefree36373/util0/swing0/margin7275. ActualAWQMarlin/FP16기동, weight18.1453GiB/activation0.76GiB/nonTorch0.09GiB/KV256. Health200 및v1/models의alias/root/context확인; ownTCP5개127.0.0.1 PASS. 초기minfree16042/aggregatepeak20332. 현재환경버전도별도importmetadata/TorchCUDA와GPU3name/driverquery로runtime_metadata와일치확인. 아직inference호출0.
 
 Freeze helper를실행하여 actualCPU/header/cast/download/launch/listener/source연결29hash와v2freeze9hash를검증했다. Single32B120x1 사전동결SHA0e525113175e9617c2f46f3e32958b184dd4d76918873157ee978de25d26e023. Independentreview/commit/push/clean재검사뒤에만warmup을시작한다.
+
+
+## 32B single 진단 시작
+
+Pushededb586af8e8cefd10b4e2574d48b7d1cf24cc8e1/remotehash일치/clean/freeze29hash확인후2026-09-20T02:23:18Z 시작. Run20260920T022318Z-88be9f58a8fa4017b9ad432ea95740b9, pipeline single/contract2.0/branchschema/promptv2/legacy_greedy, exposed120×1+warmup5/output768/timeout60. Manifestdirtyfalse. Own32Bguard잔여6889.53초에서시작했으며모델품질결과는아직미완료다. 시작뒤source/prompt/gold/gate변경없음.
+
+
+## 32B 단일2.0 FAIL 및 자체서버 종료
+
+Run20260920T022318Z-88be9f58a8fa4017b9ad432ea95740b9 exit0/125HTTPsuccess/120trial+5warmups완료. Schema/parser120,semantic103,raw+acceptedFP1/58,unsafe1/120,FN11/62,error0,mean5.077785380704639s,p956.068347116932273s. 125개독립replay/전체row/metrics일치. ResultsSHAf6ba0506921464c084899d7cfa457d6241b685e952caffa224c71f842472eec3. FAIL보존,formal미실행. 다음한호출facts계약을설계검토하며source/prompt/gold/gate는아직변경없다.
+
+자체child3467850/guard3467820의UID/startticks와정확한model/report인자를재확인한뒤guard에SIGTERM. Guardsession97831exit0, STOPPED/STOP_REQUESTED/child_exit0/reaped/FileStorecleaned이며TERM+KILL이기록됐다. Epoch998.119초,minfree13834/aggregatepeak22540. ShutdownSHA8f47637db6434a67782132864146d21c954ea42dfc9406cdef21362f12275894. GPU3free36373used3965util0복귀. 다른process나GPU0/1/2변경없음.

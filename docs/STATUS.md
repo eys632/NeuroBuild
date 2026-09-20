@@ -1,19 +1,19 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 11:21 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 11:40 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b`: Phase 5 commit/push 및 remote hash 일치 |
-| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `049ab13` |
+| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `edb586a` |
 | 회귀 검증 | 전체 **314 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 16.945초 |
-| 현재 작업 | **두 단계14B 진단도93/120,rawFP11/58,unsafe6/120으로 FAIL. 기존 단일 호출113/120보다 악화되어 채택하지 않음. 공식32B AWQ는 CPU 검사와 GPU3 기동 PASS. 기존 단일 호출 계약을 유지한120×1 진단 후보를 동결하고 checkpoint 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
+| 현재 작업 | **32B 단일 호출도 semantic103/120, rawFP1/58, unsafe1/120으로 FAIL. 후보 미채택. 같은 모델에서 원문 사실→최종decision의 단일 호출 계약을 제한 설계 검토 중**. Canonical parser/gold/gate 유지 |
 | 잠정 모델 | Phase 5 범위의 **Qwen3-14B-AWQ + v3**. 확대 평가 gate 통과 전 최종 채택으로 보지 않음 |
 | Hard blocker | 없음. GPU 3 가용량을 측정한 공존 실행 조건 통과 |
 | Backend | `.conda`: Python 3.12.14 / PostgreSQL 17.11 / psycopg 3.2.10 / IfcOpenShell 0.8.5 |
-| Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. MoE와14B 서버 종료. 현재32B AWQ/FP16 자체 서버만 GPU3에서 기동. TP1 / context4096 / sequence1 / fraction.60 / wholepeak25GiB / allowance0 |
-| 다음 검증 | 기존120개는 노출된 regression 자료. 기존 single2.0/branch/promptv2를 유지한32B의 exposed120×1 품질 진단. 자원 계획은 [후보 문서](dense_32b_candidate.md). V2 데이터80개 동결/모델 미호출 |
+| Model Runtime | `.conda-vllm`: Python3.12.14 / cu118 vLLM0.8.5 / Torch2.6.0. 자체 모델 서버 모두 종료, GPU3 free36,373MiB/util0 복귀 |
+| 다음 검증 | 원문에 실제 있는 조건과 후속 inventory/approval를 구분하는 한 호출 facts 계약의 사전 설계·검토. 기존120개 regression/gold와 raw FP·unsafe gate는 유지. V2 모델 호출0, root 입력노출 한계 공개 |
 
 ## Phase 5.x 평가 상태
 
@@ -61,3 +61,8 @@ Phase 4의 human review 상태는 아직 메모리에만 보존한다. 영속 re
 초기 관측 aggregate 증가20,332MiB, minfree16,042MiB로 floor7,275MiB를 유지했다.
 이는 startup부터의 GPU 전체 baseline 상대 관측이며 정확한 process peak나 품질 성공이 아니다.
 자체 child의5개 TCP listener는 모두127.0.0.1이었다.
+
+32B 단일 호출의125개 독립 재생은 정확히 일치했으나 품질 gate는 FAIL이다.
+Raw FP/unsafe1건은 HH-G07의현재승인생략/원본덮어쓰기 READY 수용이다.
+Own32B guard/child 신원을 확인하고 종료했으며 STOPPED/exit0/reaped/FileStore정리를 확인했다.
+TERM과KILL escalation을 모두 기록했고 다른process는 변경하지 않았다.

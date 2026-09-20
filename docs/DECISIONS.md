@@ -115,3 +115,10 @@ MoE/2.0branch/v2/greedy의 development120/120은 첫 holdout211/240,rawFP9/114,u
 공식manifest13파일18.0132GiB, 정적Qwen3/SM80Marlin 호환성, whole peak25GiB와 freshfree의20% 이상 margin을 검토했다. Torch/vLLM fraction.60은 wholecap이 아니며 peak allowance0의 GPU3 전용 guard를 사용한다. 기존4B의 복원 가능한 inactive weight만 검증 후 정리하여 disk20GiB reserve 외 여유를 확보했다. 다운로드 후 CPU/header/grammar와 actual guarded runtime 검증이 필요하다. [후보 계획](dense_32b_candidate.md)을 따른다.
 
 V2는 model-output-unseen이지만 root 입력 노출 이력이 있다. 이 사건 뒤 모델 변경을 명시하며 완전 맹검이라고 부르지 않는다. 현재 단일prompt는 v2 작성 전부터 고정돼 있고 노출 후 source/prompt/gold는 변경하지 않았다.
+
+
+## D029 — 32B 실패 보존과 한 호출 semantic facts 계약 검토
+
+공식32B/기존single2.0의품질103/120/rawFP1/58/unsafe1/120이실패했다. 125개독립재생에서채점/metrics일치,copy/parser오류0이다. 명시방향을무시하거나원문에없는충돌·객체확정조건을추가하는FN11과현재승인우회수용1이주요문제다. 더큰모델/동일few-shot반복및span추출대안을택하지않는다.
+
+같은32B/runtime의한호출에서원문semantic facts를명시한뒤모델이최종root decision을출력하는별도3.0계약을설계검토한다. 원문에있는조건과후속inventory/targetconfirmation/approval를분리하고,모순은거절만한다. 최종decision은projection에서바꾸지않으며rawREADY는validation전에계수한다. Canonical1.0parser는byte불변,기존2.0quoteadapter행동과기존wire를보존한다. Metadata는새3.0과2.0projection을구분한다. 새계약성공이나채택을미리주장하지않으며실제비교전CPU/회귀/독립review/동결/commit/push가필요하다. v2모델출력미노출과root입력노출이력의구분은유지한다.

@@ -1,0 +1,21 @@
+{
+  "archived_at_utc": "2026-09-20T02:35:42.976838+00:00",
+  "source_run": "var/runs/20260920T022318Z-88be9f58a8fa4017b9ad432ea95740b9",
+  "source_git": {
+    "commit": "edb586af8e8cefd10b4e2574d48b7d1cf24cc8e1",
+    "dirty": false
+  },
+  "original_three_artifacts_byte_equal": true,
+  "quality_gate": "FAIL",
+  "replay_consistency": "PASS",
+  "files_sha256": {
+    "manifest.json": "8cfc0e12fa06e75c3f8d4d2ca8910b2419f45eecc9ea981a84204f0edd8deaae",
+    "results.json": "f6ba0506921464c084899d7cfa457d6241b685e952caffa224c71f842472eec3",
+    "dataset.json": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc",
+    "replay.json": "ef5fe87c519c612774d3054c207032591856619119c85f110ef82a0f1abc0dea",
+    "resource_report.json": "2c6b9632767c1be5b962f778ae4fb224c43d47755b8d52abb0fab0d84b9a6087"
+  },
+  "resource_scope": "Own RUNNING snapshot after completed diagnostic; same epoch. Aggregate not per-process memory. Shutdown archived separately by root.",
+  "future_v2_inputs_or_gold_read": false,
+  "model_calls_from_archive_review": 0
+}

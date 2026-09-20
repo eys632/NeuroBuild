@@ -55,8 +55,9 @@ vLLM0.8.5의 unsupported-feature 검사도 통과했다. 코드·prompt·schema�
 | 이미 노출된 기존 holdout regression | 80 | 3,687 | 409 |
 | 미호출 holdout v2 길이만 | 80 | 3,612 | 484 |
 
-v2 원문·case별 값·gold는 root/prompt 작성자에게 공개하지 않았고 모델에 보내지 않았다.
-사람 검수 전 synthetic gold라는 한계와 독립 미사용 holdout의 절차적 구분은 유지한다.
+이번 CPU 검사의 출력에는 v2 원문·case별 값·gold를 포함하지 않았고 모델에 보내지 않았다.
+과거 root의 입력 부분 노출은 [별도 addendum](../../evaluations/hardening_v2_input_exposure_addendum.json)에
+기록된 그대로 유지한다. 전체 작업의 완전한 blind를 주장하지 않는다. 사람 미검수 synthetic gold 한계도 유지한다.
 
 ## 보존 및 재현
 

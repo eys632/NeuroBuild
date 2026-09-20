@@ -4,7 +4,7 @@ A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의
 현재 **Phase 0~5 원격 checkpoint 완료**, **Phase5.x 요구사항 품질 평가 확대 진행 중**이다.
 전체 314 tests가 통과했다. Phase5의 작은 개발 seed에서는 14B/v3가 60/60을 기록했지만,
 확대 development는120/120이었지만 첫 holdout211/240, raw READY오판9건·잘못 수용12건으로 실패했다.
-기존14B의 단일 호출 진단113/120과 두 단계 진단93/120 모두 gate에 실패했다. 결과를 보존했다. 공식32B AWQ는 GPU3 기동을 통과했고 같은 단일 호출 계약의 진단을 준비 중이다.
+기존14B의 단일 호출 진단113/120과 두 단계 진단93/120 모두 gate에 실패했다. 결과를 보존했다. 공식32B AWQ는 GPU3 실행에는 성공했으나 품질103/120, raw오판1·잘못수용1로 실패했다. 다음 단일 호출 facts 계약을 검토 중이다.
 Gold는 자동 생성·사람 미검수이며 Internal Technical MVP는 아직 완료되지 않았다.
 최신 상태는 [STATUS](docs/STATUS.md), 비교 수치는 [실험 목록](docs/phase5x_experiment_register.md)을 따른다.
 Durable review/job queue, API와 frontend는 후속 단계다.

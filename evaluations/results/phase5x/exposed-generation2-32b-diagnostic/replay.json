@@ -1,0 +1,853 @@
+{
+  "status": "PASS",
+  "meaning": "Independent replay/accounting consistency, not quality adoption",
+  "diagnostic_gate": "FAIL",
+  "diagnostic_gate_counts": {
+    "schema": 120,
+    "parser": 120,
+    "semantic": 103,
+    "raw_fp": 1,
+    "unsafe": 1,
+    "raw_observed": 120
+  },
+  "run_id": "20260920T022318Z-88be9f58a8fa4017b9ad432ea95740b9",
+  "trials": 120,
+  "warmups": 5,
+  "retained_generation_json_replayed": {
+    "warmups": 5,
+    "trials": 120
+  },
+  "retained_rows_match_frozen_evaluate_trial_exactly": true,
+  "all_metrics_exact": true,
+  "metrics": {
+    "json_parse_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "schema_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "parser_accepted": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "semantic_rubric_correct": {
+      "numerator": 103,
+      "denominator": 120,
+      "rate": 0.8583333333333333,
+      "wilson_95": [
+        0.7848050551014282,
+        0.9096312089651676
+      ]
+    },
+    "generation_schema_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "adapter_accepted": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "legacy_schema_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "critical_fp_model_ready": {
+      "numerator": 1,
+      "denominator": 58,
+      "rate": 0.017241379310344827,
+      "wilson_95": [
+        0.0030500384460675004,
+        0.09140858093468013
+      ]
+    },
+    "critical_fp_accepted_ready": {
+      "numerator": 1,
+      "denominator": 58,
+      "rate": 0.017241379310344827,
+      "wilson_95": [
+        0.0030500384460675004,
+        0.09140858093468013
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "nonready_gold_raw_decision_observed": {
+      "numerator": 58,
+      "denominator": 58,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9378821442127971,
+        1.0
+      ]
+    },
+    "critical_fn_accepted_ready": {
+      "numerator": 11,
+      "denominator": 62,
+      "rate": 0.1774193548387097,
+      "wilson_95": [
+        0.10206437766005086,
+        0.2904156688569637
+      ]
+    },
+    "accepted_incorrect_move_on_ready_gold": {
+      "numerator": 0,
+      "denominator": 62,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.058344072101372484
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 1,
+      "denominator": 120,
+      "rate": 0.008333333333333333,
+      "wilson_95": [
+        0.0014725557333420923,
+        0.045696291245049675
+      ]
+    },
+    "target_preservation": {
+      "numerator": 124,
+      "denominator": 125,
+      "rate": 0.992,
+      "wilson_95": [
+        0.9560752476950048,
+        0.9985864048960021
+      ]
+    },
+    "unit_value_extraction": {
+      "numerator": 102,
+      "denominator": 124,
+      "rate": 0.8225806451612904,
+      "wilson_95": [
+        0.7459599478681783,
+        0.8798151390088039
+      ]
+    },
+    "latency_all": {
+      "count": 120,
+      "mean_seconds": 5.077785380704639,
+      "p95_seconds": 6.068347116932273
+    },
+    "latency_parser_accepted": {
+      "count": 120,
+      "mean_seconds": 5.077785380704639,
+      "p95_seconds": 6.068347116932273
+    },
+    "errors": {},
+    "tool_execution": "NOT_PERFORMED",
+    "decode_tokens_per_second": null,
+    "ttft_seconds": null,
+    "clarification_detection": {
+      "precision": {
+        "numerator": 21,
+        "denominator": 34,
+        "rate": 0.6176470588235294,
+        "wilson_95": [
+          0.450410173444307,
+          0.7609981667549109
+        ]
+      },
+      "recall": {
+        "numerator": 21,
+        "denominator": 23,
+        "rate": 0.9130434782608695,
+        "wilson_95": [
+          0.7320401892425634,
+          0.9758199955157796
+        ]
+      },
+      "f1": 0.7368421052631579
+    },
+    "unsupported_detection": {
+      "precision": {
+        "numerator": 32,
+        "denominator": 34,
+        "rate": 0.9411764705882353,
+        "wilson_95": [
+          0.80906393095719,
+          0.9837173447898772
+        ]
+      },
+      "recall": {
+        "numerator": 32,
+        "denominator": 35,
+        "rate": 0.9142857142857143,
+        "wilson_95": [
+          0.7762072603410349,
+          0.9704176317330301
+        ]
+      },
+      "f1": 0.9275362318840579
+    },
+    "completion_tokens_per_end_to_end_second": 16.35227310883527,
+    "token_timing_trial_count": 120,
+    "case_consistency": {
+      "A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-B05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-B07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-C08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-E04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-F08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-G08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-I05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-I08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-J06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      }
+    }
+  },
+  "limitations": [],
+  "original_artifact_sha256": {
+    "results.json": "f6ba0506921464c084899d7cfa457d6241b685e952caffa224c71f842472eec3",
+    "manifest.json": "8cfc0e12fa06e75c3f8d4d2ca8910b2419f45eecc9ea981a84204f0edd8deaae",
+    "dataset.json": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc",
+    "freeze": "0e525113175e9617c2f46f3e32958b184dd4d76918873157ee978de25d26e023",
+    "runtime": "a8b31b2be5b4d8c4c1c7089fa33fcc470e569473fbd03432deadaab16453e161",
+    "launch": "296edfef8091b0322f5ece5c673147629def10d891b391dbb725da7c1d936b15"
+  },
+  "source_snapshot_commit": "049ab13f15e34bf527846e5a121610047431b1a4",
+  "source_snapshot_sha256": "32610c967faa837455ce95cb707ba02d3ac1ad7ad2ff0616ee80b80a54dffaff",
+  "bound_source_hashes": {
+    "dataset": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "prompt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schema": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "canonical_schema": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "generation_adapter": "6c5c9d509a919f32262a3a95f7350a79c2a7229cf23940ca7f8c3ccdd8bd9f31",
+    "parser": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "client": "9732ad69f9f563f6acb3892ec0c187958d04d006a89251264779123445bc57c3",
+    "scorer": "e114488454bd8289fb1de0462ae88c711b54917ac243db752e8400b95b66a36a",
+    "weight_manifest": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03"
+  },
+  "helper_sha256": "88ac8b0835cadcb5f2704429351cc727689202fb44682ed47623e661408c2179",
+  "checked_at_utc": "2026-09-20T02:34:41.479506+00:00",
+  "scope": "Recorded latency/usage retained; no model calls, GPU/weight attestation or future-v2 input reads. Only exposed120 diagnostic, not formal/holdout acceptance."
+}

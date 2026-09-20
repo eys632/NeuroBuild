@@ -84,3 +84,10 @@ Run `20260920T013141Z-f3266f57faac473ebd0b9df66cb3cd75`, clean pushed45858d6에�
 Classifier decision 자체는108/120이며 rawFP11건 중6건은 후단이 거절하고5건은 수용했다. 17개 grounding 오류 중12개는 JSON null 대신 문자열 "null"을 evidence로 생성한 오류다. 이를 수작업 보정해 재채점하지 않는다. Parser 수용 뒤의 제외대상 손실1건을 더하면 unsafe6이다. 이전 single 실패7개 중6개를 해결했지만 신규 실패26개가 늘어 전체 의미 정확도는 악화했다. 분리 여부뿐 아니라 prompt/schema 제약 조합도 달라 단일 원인으로 단정하지 않는다. 이 후보는 채택하지 않고 formal 반복도 실행하지 않는다.
 
 완료된 Phase5.x 평가는19run,1440 formal/diagnostictrial,95warmup사례다. 두 단계는 사례당 호출 수가 달라 HTTP 호출 수와 구분하며, 서로 다른 split을 합쳐 하나의 정확도를 만들지 않는다. Results SHA `e1a7735a277ebd56dbbd6e8fc4bbb400f59b7eeab333a427f6f3b81870bbc905`.
+
+
+## 공식32B single2.0 전체120개 진단 — FAIL
+
+Run20260920T022318Z-88be9f58a8fa4017b9ad432ea95740b9,cleanedb586a. Schema/parser120/120,semantic103/120,raw+acceptedFP1/58,unsafe1/120,FN11/62,errors0. Mean5.077785s/p956.068347s. Warmup5는semantic4/5이며분모제외. 125개독립재생일치. [독립검토](reviews/phase5x_generation2_32b_exposed_review.md). ResultsSHA `f6ba0506921464c084899d7cfa457d6241b685e952caffa224c71f842472eec3`.
+
+완료된Phase5.x는20run,1560 formal/diagnostictrial,100warmup사례다. 같은자료/greedy반복은독립표본이아니며split별결과를합산정확도로만들지않는다. 크기만변경한이번후보는채택하지않고formal도미실행이다. 새weights나같은few-shot반복대신기존32B에서one-call facts계약을제한설계검토한다.

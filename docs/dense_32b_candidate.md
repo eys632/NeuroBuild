@@ -1,6 +1,6 @@
 # 공식 32B AWQ 단일 호출 비교 계획
 
-2026-09-20. **다운로드·CPU 검사·A100 기동 PASS / 품질 미검증 / RTX5090 PREDICTED_UNVERIFIED**. 아래 산정은 기동 전 계획이며 후속 관측을 마지막에 구분한다.
+2026-09-20. **다운로드·CPU 검사·A100 실행 PASS / 단일2.0 품질 FAIL·미채택 / RTX5090 PREDICTED_UNVERIFIED**. 아래 산정은 기동 전 계획이며 후속 관측을 마지막에 구분한다.
 
 14B의 generation2 단일 호출은 노출된120개에서 의미113/120, raw READY 오판2/58,
 unsafe3/120이었다. 분류와 추출을 나눈 후보는93/120, raw11/58, unsafe6/120으로
@@ -92,3 +92,10 @@ Health200, 정확한 model root/alias/context4096 및 자체TCP5개 모두 loopb
 29개 tracked 파일 hash와별도v2freeze9파일 보존을 확인했다. SHA256
 `0e525113175e9617c2f46f3e32958b184dd4d76918873157ee978de25d26e023`.
 이후 commit/push와 clean hash 재검사를 완료한 뒤 첫 warmup을 실행한다.
+
+## 단일2.0 진단 완료
+
+120×1결과는semantic103/120,rawFP1/58,unsafe1/120으로FAIL이었다. Schema/parser120이며
+125개재생과정식metrics가일치했다. [실패검토](reviews/phase5x_generation2_32b_exposed_review.md).
+Formal확대나채택을하지않고자체서버를종료했다. 최종관측aggregatepeak22,540MiB/minfree13,834MiB,
+종료후free36,373MiB복귀는자원실행근거이며품질통과와구분한다.
