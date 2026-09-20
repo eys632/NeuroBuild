@@ -1,0 +1,45 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/qwen38-native-v2-minimal-preparation/README.md": {
+      "bytes": 1188,
+      "sha256": "94fd98eafd478b9154e787445823fd97ec0e1fe60e34332d022c36e23984f275"
+    },
+    "evaluations/results/phase5x/qwen38-native-v2-minimal-preparation/attest_native_epoch6_minimal.py": {
+      "bytes": 16644,
+      "sha256": "1ef8accbe06fe683d7e953d61dd928e925371269a37ece6cb830755b97ba7930"
+    },
+    "evaluations/results/phase5x/qwen38-native-v2-minimal-preparation/check_native_qwen38_v2_minimal_synthetic.py": {
+      "bytes": 23323,
+      "sha256": "34d9ef58e41574ccf7fbe64183d81acbe1758ef46229d219abc4e5f97274efa3"
+    },
+    "evaluations/results/phase5x/qwen38-native-v2-minimal-preparation/freeze_native_qwen38_v2_minimal.py": {
+      "bytes": 12774,
+      "sha256": "0dccd095f779863286d626ff8472b610b2c7fb41e8161b2d95d81b572992fc54"
+    },
+    "evaluations/results/phase5x/qwen38-native-v2-minimal-preparation/freezer_preparation.json": {
+      "bytes": 393,
+      "sha256": "7226da16a4e1765a9fd67efc7a6b6dadd56037c0ad739d8c2b8d2102cf84f754"
+    },
+    "evaluations/results/phase5x/qwen38-native-v2-minimal-preparation/native-epoch6-minimal-attestation-cpu-proof.json": {
+      "bytes": 1342,
+      "sha256": "93997fc095f5ee90bb854e6244e8d6bf6c39ddcf7219c13c85d71c28468c10a6"
+    },
+    "evaluations/results/phase5x/qwen38-native-v2-minimal-preparation/native-v2-minimal-replay-selfcheck-9eed62037c75400785a81da09004c988.json": {
+      "bytes": 4165,
+      "sha256": "41c9a274c1e8ede37a26b00e12cac37722e6f7a0a4817b5baee8dc17c2150c58"
+    },
+    "evaluations/results/phase5x/qwen38-native-v2-minimal-preparation/qwen38-native-launch-epoch6-minimal-v2.json": {
+      "bytes": 1378,
+      "sha256": "5ceebfc420edf9b262208c7afdd9511a00132f1d7221e4a91bb3c636c93b7b31"
+    },
+    "evaluations/results/phase5x/qwen38-native-v2-minimal-preparation/replay_native_qwen38_v2_minimal.py": {
+      "bytes": 45799,
+      "sha256": "9bc2ec91b085d680f20cd3c2663e599e8cb1a446e376c40c546c4e9808125866"
+    },
+    "evaluations/results/phase5x/qwen38-native-v2-minimal-preparation/test_attest_native_epoch6_minimal.py": {
+      "bytes": 7839,
+      "sha256": "a3fdb821d552fae322aa3385a5e09a60853b2812423765753250ab5a7da2b1dd"
+    }
+  }
+}

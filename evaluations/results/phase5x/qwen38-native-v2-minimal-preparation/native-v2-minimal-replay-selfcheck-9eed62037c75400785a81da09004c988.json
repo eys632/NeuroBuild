@@ -1,0 +1,147 @@
+{
+  "status": "PASS_SYNTHETIC_PREPARATION_ONLY",
+  "helper_sha256": "9bc2ec91b085d680f20cd3c2663e599e8cb1a446e376c40c546c4e9808125866",
+  "selfcheck_sha256": "34d9ef58e41574ccf7fbe64183d81acbe1758ef46229d219abc4e5f97274efa3",
+  "source_scope": "Current exact source for synthetic preparation; run checkpoint snapshot binding deferred until root provides final pins",
+  "source_sha256": {
+    "scorer": "b4a4357672ba7d33a908f91635b330b5346defbf8337aeb800e13ffceafd17d7",
+    "parser": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "generation_adapter": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "client": "3ebef3a1b3cf16b577566c7644952ac5da0def1d1dc11cc0d0b01c581b9d9f1c"
+  },
+  "fixtures": [
+    {
+      "fixture": "retained_ready_on_nonready",
+      "retained": true,
+      "error_code": null
+    },
+    {
+      "fixture": "retained_bad_axis",
+      "retained": true,
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "fixture": "retained_ungrounded_target",
+      "retained": true,
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "fixture": "unretained_schema_rawready",
+      "retained": false,
+      "error_code": "JSON_SCHEMA_FAILED"
+    },
+    {
+      "fixture": "unretained_malformed_unknown",
+      "retained": false,
+      "error_code": "JSON_PARSE_FAILED"
+    },
+    {
+      "fixture": "unretained_array_unknown",
+      "retained": false,
+      "error_code": "JSON_SCHEMA_FAILED"
+    },
+    {
+      "fixture": "unretained_timeout_unknown",
+      "retained": false,
+      "error_code": "LOCAL_MODEL_TIMEOUT"
+    },
+    {
+      "fixture": "unretained_truncated_unknown",
+      "retained": false,
+      "error_code": "LOCAL_MODEL_TRUNCATED"
+    },
+    {
+      "fixture": "unretained_missing_final_unknown",
+      "retained": false,
+      "error_code": "LOCAL_MODEL_RESPONSE_INVALID"
+    },
+    {
+      "fixture": "retained_nonready",
+      "retained": true,
+      "error_code": null
+    }
+  ],
+  "row_tampering_rejected": [
+    "erase_rawready",
+    "erase_schema_failed_ready",
+    "invent_timeout_ready",
+    "unknown_as_safe_false",
+    "invent_adapter_success",
+    "erase_canonical",
+    "inflate_semantic",
+    "wrong_contract"
+  ],
+  "count_tampering_rejected": [
+    "missing_trial",
+    "missing_warmup",
+    "trial_order",
+    "duplicate_case",
+    "wrong_trial_index",
+    "metric_denominator"
+  ],
+  "identity_tampering_rejected": [
+    "wrong_model",
+    "wrong_development_split",
+    "different_dataset",
+    "dirty_run",
+    "legacy_protocol",
+    "thinking_mode",
+    "history_penalty",
+    "wrong_physical_gpu",
+    "old_batch_one",
+    "unreviewed_batch_pair",
+    "bool_microbatch",
+    "hide_hf_failure",
+    "input_nfc_repair",
+    "lower_quality_gate"
+  ],
+  "runtime_evidence_tampering_rejected": [
+    "claim_full_startup",
+    "wrong_current_attestation_edge",
+    "wrong_current_listener_hash",
+    "model_probe_repeated",
+    "historical_suite_repeated",
+    "historical_pass_relabelled",
+    "changed_inference",
+    "changed_batch",
+    "hidden_config_change",
+    "current_pid_mismatch",
+    "current_ticks_mismatch",
+    "external_listener",
+    "wrong_uid",
+    "wrong_port",
+    "wrong_gpu",
+    "unverified_identity",
+    "failed_fresh_preflight",
+    "free_below_floor",
+    "exceeded_peak",
+    "expired_guard",
+    "reasoning_body_policy",
+    "insufficient_freeze_time",
+    "disable_pre_warmup_recheck",
+    "weaken_time_budget",
+    "late_attestation",
+    "current_old_epoch_conflation",
+    "old_hf_failure_hidden"
+  ],
+  "execution_addendum_tampering_rejected": [
+    "silently_three_trials",
+    "warmup_removed",
+    "previous_freeze_changed",
+    "failed_prerequisite",
+    "unlinked_prior_results",
+    "weakened_semantic_gate"
+  ],
+  "synthetic_complete_protocols": 2,
+  "replay_row_ast_unchanged": true,
+  "diagnostic_helper_unchanged": true,
+  "full_80_plus_5_and_40_40_denominators": true,
+  "unknown_keeps_denominator_and_blocks_gate": true,
+  "actual_run_results_read": false,
+  "private_dataset_reads": 0,
+  "reasoning_body_reads": 0,
+  "network_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "native_calls": 0
+}

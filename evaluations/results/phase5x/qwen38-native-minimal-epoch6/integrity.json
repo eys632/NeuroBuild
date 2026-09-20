@@ -1,0 +1,37 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/qwen38-native-minimal-epoch6/README.md": {
+      "bytes": 889,
+      "sha256": "cbbf957d4acd2e326d5d1cc3f9117bd26f31e1f0f92f33ef0f6936f2b2b779f2"
+    },
+    "evaluations/results/phase5x/qwen38-native-minimal-epoch6/attestation.json": {
+      "bytes": 2853,
+      "sha256": "393991f72b8f0b54bad52e7cd56a2b485b99a7f030ab043063f07be09a84e586"
+    },
+    "evaluations/results/phase5x/qwen38-native-minimal-epoch6/contract_carry_forward.json": {
+      "bytes": 5702,
+      "sha256": "8f0002dbe051fcdea3d4c42960974e851f92a26b43ce1f4bbf64123386315fca"
+    },
+    "evaluations/results/phase5x/qwen38-native-minimal-epoch6/guard_after.json": {
+      "bytes": 5180,
+      "sha256": "b927880d014a429e9aebd42800bb2c90a49853829d8f74d61f5c9ea001001f4b"
+    },
+    "evaluations/results/phase5x/qwen38-native-minimal-epoch6/guard_before.json": {
+      "bytes": 5180,
+      "sha256": "b927880d014a429e9aebd42800bb2c90a49853829d8f74d61f5c9ea001001f4b"
+    },
+    "evaluations/results/phase5x/qwen38-native-minimal-epoch6/launch_config.json": {
+      "bytes": 1378,
+      "sha256": "5ceebfc420edf9b262208c7afdd9511a00132f1d7221e4a91bb3c636c93b7b31"
+    },
+    "evaluations/results/phase5x/qwen38-native-minimal-epoch6/listeners.json": {
+      "bytes": 592,
+      "sha256": "91532059ea47682e930d3c4d4cefe085d2bdc06127269e9b2b014aece3851b3a"
+    },
+    "evaluations/results/phase5x/qwen38-native-minimal-epoch6/runtime_metadata.json": {
+      "bytes": 1359,
+      "sha256": "6278cdf82f58804e6f4b451d463dca90fd6d8d5eac774ecca918ea18800ddd9f"
+    }
+  }
+}

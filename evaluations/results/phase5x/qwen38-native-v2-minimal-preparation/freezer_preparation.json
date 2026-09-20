@@ -1,0 +1,12 @@
+{
+  "kind": "V2_MINIMAL_FREEZER_PREPARATION",
+  "status": "SYNTAX_AND_HASH_ONLY_PREREQUISITES_PASS",
+  "diagnostic_frozen_files": 81,
+  "v2_files_hashed_without_parsing": 9,
+  "previous125_replayed_again": false,
+  "model_calls": 0,
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "freezer_main_executed": false,
+  "freezer_sha256": "0dccd095f779863286d626ff8472b610b2c7fb41e8161b2d95d81b572992fc54"
+}

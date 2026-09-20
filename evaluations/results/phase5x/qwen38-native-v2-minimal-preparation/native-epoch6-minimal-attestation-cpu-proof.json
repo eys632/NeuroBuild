@@ -1,0 +1,32 @@
+{
+  "kind": "NATIVE_MINIMAL_ATTESTATION_NEW_HELPER_CPU_TESTS",
+  "status": "PASS",
+  "at_utc": "2026-09-20T07:46:52.333266+00:00",
+  "tests": 10,
+  "seconds": 0.015,
+  "command": ".conda/bin/python -B var/research/test_attest_native_epoch6_minimal.py -v",
+  "errors": 0,
+  "failures": 0,
+  "historical_full_regression_rerun": false,
+  "diagnostic_source_pins_unchanged": 16,
+  "scope": [
+    "only three operational config changes",
+    "one fake health GET and zero model calls",
+    "invalid carry rejected before fake HTTP",
+    "health/epoch failures do not retry",
+    "saved bundle validator is offline",
+    "carry/metadata/epoch tamper rejected",
+    "source hash and symlink rejection"
+  ],
+  "real_http_calls": 0,
+  "gpu_calls": 0,
+  "model_inference_calls": 0,
+  "live_process_queries": 0,
+  "helper_main_executed": false,
+  "sha256": {
+    "var/research/qwen38-native-launch-epoch6-minimal-v2.json": "5ceebfc420edf9b262208c7afdd9511a00132f1d7221e4a91bb3c636c93b7b31",
+    "var/research/attest_native_epoch6_minimal.py": "1ef8accbe06fe683d7e953d61dd928e925371269a37ece6cb830755b97ba7930",
+    "var/research/test_attest_native_epoch6_minimal.py": "a3fdb821d552fae322aa3385a5e09a60853b2812423765753250ab5a7da2b1dd",
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63"
+  }
+}

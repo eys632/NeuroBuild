@@ -1,0 +1,86 @@
+{
+  "actual_changed_fields": [
+    "log_file",
+    "max_seconds",
+    "report_file"
+  ],
+  "allowed_operational_changes": [
+    "max_seconds",
+    "log_file",
+    "report_file"
+  ],
+  "application_input_output_nfc_repair": false,
+  "context_cpu_proof_sha256": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be",
+  "context_tokenizer": "native_raw_unicode_no_nfc_repair",
+  "cpu_probe_calls": 0,
+  "current_launch_config_sha256": "5ceebfc420edf9b262208c7afdd9511a00132f1d7221e4a91bb3c636c93b7b31",
+  "hf_equivalence": {
+    "case_count": 20,
+    "id_match_count": 19,
+    "mismatch_indices": [
+      11
+    ],
+    "original_fixture_sha256": "79c4448b7ee949add0a80e8a7f0fc0d73575aaf01ff6e52beb3cfae8434ea1bd",
+    "proof_path": "var/research/native-vocab-public-probe-v4.json",
+    "proof_sha256": "b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0",
+    "status": "FAIL"
+  },
+  "historical_epoch": {
+    "guard_started_at_utc": "2026-09-20T06:59:21.391376+00:00",
+    "pid": 3538905,
+    "process_start_ticks": 477119025
+  },
+  "historical_freeze_path": "evaluations/hardening_v1_exposed_native_qwen38_diagnostic_freeze.json",
+  "historical_freeze_sha256": "7a1f67bd71c65f0c2d2aacc2b03cb765d7c38ac8eaa31bf7618847c4a5380fd9",
+  "historical_launch_config_sha256": "a8f6891e96f0567820a8029ba4ea8d689e01a842c888a9b09482f1e724e5d052",
+  "historical_paths": {
+    "evaluations/results/phase5x/native-runtime-batch64-preflight/backend-regression.json": "a5ca201bb0b4414d409a72f7c5be8fde740dd355d35fa6867998f4b1cf4a4c15",
+    "evaluations/results/phase5x/qwen38-native-public-smoke-epoch4/report.json": "81fc7a0011273bc66479f0a775c2168cba1f986da22cee553872a347f2f21f4f",
+    "evaluations/results/phase5x/qwen38-native-resource-epoch4/report.json": "a590bdbc61da400de5a2c15133cbe7d3db9159fc1ec714566adc12eaaa46d55f",
+    "evaluations/results/phase5x/qwen38-native-startup-epoch4/launch_config.json": "a8f6891e96f0567820a8029ba4ea8d689e01a842c888a9b09482f1e724e5d052",
+    "evaluations/results/phase5x/qwen38-native-startup-epoch4/listeners.json": "98284cc7ff7666292a1f82364d3541f8dcfe92087f1846bae22f0ff920f330d1",
+    "evaluations/results/phase5x/qwen38-native-startup-epoch4/resource_report.json": "962e676fc12aa74e983d6c1f8cb4e0ed87167d9c231f0c21717a8847065ccef4",
+    "evaluations/results/phase5x/qwen38-native-startup-epoch4/runtime_metadata.json": "35d299d1fd787771bef12944593d702bd2a0978239b93578a537112e73af6591",
+    "evaluations/results/phase5x/qwen38-native-startup-epoch4/startup.json": "996623905880608e46486261ce6ef2795e7f0411e909e3e0fc4d8f922b7d1270",
+    "var/reports/native-contract-raw-cpu-context.json": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be"
+  },
+  "historical_test_count": 386,
+  "inference_config_equivalent": true,
+  "kind": "NATIVE_HISTORICAL_CONTRACT_CARRY_FORWARD",
+  "platform_facts_scope": "Historical same-host platform record; versions are not remeasured by this helper.",
+  "public_model_calls": 0,
+  "raw_reference": {
+    "case_count": 20,
+    "fixture_path": "var/research/native-tokenizer-public-parity-raw-diagnostic.json",
+    "fixture_sha256": "9658eb53fae81adee1b775b45f796f3484db69aea41e04a020765fa05d770514",
+    "id_match_count": 20,
+    "kind": "hf-tokenizer-json-with-nfc-normalizer-disabled",
+    "native_original_roundtrip_count": 20,
+    "native_proof_path": "var/research/native-vocab-public-probe-v4-raw-diagnostic.json",
+    "native_proof_sha256": "12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d"
+  },
+  "reference_kind": "hf-tokenizer-json-with-nfc-normalizer-disabled",
+  "resource_model_calls": 0,
+  "runtime_variant": "qwen38-gguf-raw-unicode-v1",
+  "scope": "Historical contract/resource/regression only; current process and health are attested separately.",
+  "status": "VERIFIED_REUSED_NOT_RERUN",
+  "tests_rerun": 0,
+  "unchanged_source_sha256": {
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "runtime/models/qwen38-27b-q4-k-m.json": "e67de5e421d7de1b2c332506474bc96812b9450a4fe56438b9eb3f64d9d554ed",
+    "schemas/requirement_generation_v2.schema.json": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "scripts/evaluate_requirements.py": "b4a4357672ba7d33a908f91635b330b5346defbf8337aeb800e13ffceafd17d7",
+    "scripts/gpu_preflight.py": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb",
+    "scripts/llama_server.py": "163e6a27ec6675e17da5dfcd7c6beaa6f70b22f6db6cead0cf52d42e6bff9077",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "scripts/native_model_bootstrap.py": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf",
+    "scripts/verify_model_listeners.py": "2d7771d414a7faae4138ea555349d1f7f111d36498ad9815f64ac51910d758dd",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "3ebef3a1b3cf16b577566c7644952ac5da0def1d1dc11cc0d0b01c581b9d9f1c",
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63",
+    "var/research/run_native_context_raw_cpu.py": "4ab1dcf73d983c35dcd3c5006bbfecbb3594c6ff865fa8c2f77fee3dfdd31153"
+  }
+}

@@ -1,21 +1,21 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 KST — 사용자 checkpoint**. **Phase0~5 원격 checkpoint 완료.
+갱신: **2026-09-20 KST — checkpoint 완료, V2 최소 평가 동결**. **Phase0~5 원격 checkpoint 완료.
 현재 Qwen3.8 후보는1차 품질 gate PASS이며 Phase5.x 전체 검증은 진행 중이다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation,1 Domain,2 Persistence,3 IFC Engine,4 Explicit Workflow,5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`, 직전 원격 확인 `bec9000e697c6b4930d077822ae30ca484a395ba`; 이번 결과 checkpoint 준비 |
-| 현재 작업 | **단회 진단·독립 재생 PASS 보존, 모델 서버 종료, checkpoint** |
+| GitHub | 공통 `v2`, 단회 결과 checkpoint `704e9f6eaacadeb445c70a09ea5e1a07db0778f5` push·원격 일치 확인 |
+| 현재 작업 | **단회 진단 checkpoint 완료, V2 80×1 실행 조건 동결** |
 | 현재 후보 | Qwen3.8-27B Q4_K_M / pinned llama.cpp / raw-Unicode variant, 최종 미채택 |
 | 품질 결과 | 노출120×1: schema120,parser119,semantic117,rawFP0/58,unsafe0/120 |
 | 회귀 검증 | **386 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell,headless20.430초 |
 | Hard blocker | 없음 |
-| 모델 실행 | **NeuroBuild 모델 서버 STOPPED**, epoch4·5 exit0/child reaped |
+| 모델 실행 | Checkpoint에서 epoch4·5 STOPPED/exit0/reaped. 현재 동일 설정 epoch6은 V2 실행 전 대기 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | Checkpoint push 후 V2 80×1+warmup5 사전 동결. 같은120개 추가 반복0회 |
+| 다음 검증 | V2 freeze push 후 같은 epoch·잔여≥3150초 확인,80×1+warmup5 실행. 같은120개 추가 반복0회 |
 
 ## 단회 결과와 오류
 
@@ -51,7 +51,8 @@ Schema100%/semantic≥95%/rawFP0/unsafe0 기준은 유지한다. 실제 모델�
 125개 CPU 재생을 그 증거로 대신하지 않는다. 이미 완료한 runtime/resource 검사를 처음부터 반복하지 않는다.
 Phase를 막지 않는 batch/flash/graphs/cache/throughput 튜닝은 future optimization이다.
 
-V2 모델 호출은 **0회**다. Root의 일부 입력/gold 노출 기록을 유지하며 완전 맹검이라고 부르지 않는다.
+V2 모델 호출은 **0회**다. Candidate freeze SHA `e09a143794d7c9ddaae6215502ba85314222c6b9a184bee09b417ab0e4cd5976`을 생성했다.
+Epoch6은 freshGPU3 사전 검사와 현재ownidentity/loopback/healthGET1만 확인했다. 과거 검증은 재사용하며 공개/resource 모델 재호출은0이다. Root의 일부 입력/gold 노출 기록을 유지하며 완전 맹검이라고 부르지 않는다.
 Gold는 **AUTO-GENERATED / NOT HUMAN VERIFIED**이고 AI 검토는 사람 검수가 아니다.
 공식 HF tokenizer 비교19/20 FAIL과 별도 raw reference20/20을 구분한다. 입력·출력 NFC 보정은 없다.
 

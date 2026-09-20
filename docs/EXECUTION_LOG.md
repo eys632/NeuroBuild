@@ -689,3 +689,37 @@ LogSHA460919f7729acc75cb49f10b334c7af7163d065d3061420a468101ba8ae8e9fc.
 진단/종료archive와integrity를작성했다. D036으로자동전체3회계획을대체하고같은120개추가반복0회,
 checkpoint후V280×1+warmup5별도사전동결을판단했다. 기존4gate threshold와노출addendum는유지한다.
 Formalfreezer는미생성/미실행이며ignoredformalreplay초안은미검증/미사용이다. 완료runtime검사를재시작하지않는다.
+
+
+### 2026-09-20 — 단회 결과 checkpoint 원격 완료와 V2 최소 계획
+
+`704e9f6eaacadeb445c70a09ea5e1a07db0778f5`을v2에commit/push하고ls-remote동일값과cleanworktree를확인했다.
+75파일/1,101,775B, production src/scripts/tests변경0,환경/weight/binary/secret제외. 원래81freezehash·V2보존9hash·
+진단/종료archive60파일무결성일치. 보존source_snapshot/model_guard.py의EOFblank1은원본byte유지했다.
+
+HardBlocker없음을확인해V2 80×1+warmup5 계획을별도작성했다. 기존datasetfreeze의80×3기록과9파일은수정하지않고
+사용자지시에따른별도minimal_execution_addendum를생성했다. Gate는80/80,≥76/80,raw0/40,unsafe0/80으로
+100%/95%/0/0 threshold를유지한다. 모델은STOPPED상태이며V2모델호출0,본문추가parsing/preview0이다.
+완료runtime/resource suite는반복하지않고,후속실행에서는동일추론설정과역사적검증증거를연결하며현재ownidentity·
+loopback·freshfree/util·health만최소확인한다. Actual실행동결은준비/검토를마친뒤별도수행한다.
+
+
+### 2026-09-20 — V2 최소 현재 epoch 확인과 사전 동결
+
+신규attester CPU/fake10PASS, V2replay 합성fixture10 및 변조61개거절PASS, 독립읽기검토PASS.
+기존386회귀/runtime/공개·resource suite나완료125개모델평가·replay는반복하지않았다.
+Epoch6 configSHA5ceebfc420edf9b262208c7afdd9511a00132f1d7221e4a91bb3c636c93b7b31,
+같은64/64·추론설정에서max3600/log/report만변경했다. FreshGPU3 budget조건으로기동했고child3567367을확인했다.
+현재ownPID/전체argv/loopback/device/guard와healthGET1이PASS. 공개generation/resource모델호출0,
+fullstartup3GET0. 서버내부기동warmup과이helper의모델API호출수를구분한다.
+
+AttestationSHA393991f72b8f0b54bad52e7cd56a2b485b99a7f030ab043063f07be09a84e586,
+carrySHA8f0002dbe051fcdea3d4c42960974e851f92a26b43ce1f4bbf64123386315fca,
+metadataSHA6278cdf82f58804e6f4b451d463dca90fd6d8d5eac774ecca918ea18800ddd9f.
+기존epoch4계약·자원증거를역사적자료로만연결하고현재epoch의새benchmark로표기하지않았다.
+
+V2 candidatefreeze `evaluations/hardening_v2_native_qwen38_minimal_freeze.json`
+SHAe09a143794d7c9ddaae6215502ba85314222c6b9a184bee09b417ab0e4cd5976,121개hash,
+80×1+warmup5/40READY40nonREADY/gate80·76·raw0of40·unsafe0of80·raw관측80,
+85×30+600=3150초예산과새epoch의currentproof/source/carry/addendum를동결했다.
+Main동결때liveguard와잔여≥3150확인PASS. 아직V2모델호출0이며push후첫warmup직전에다시확인한다.
