@@ -1,0 +1,17 @@
+{
+  "kind": "NATIVE_RUNTIME_BACKEND_REGRESSION",
+  "status": "PASS",
+  "tests": 384,
+  "seconds": 19.698,
+  "skipped": 0,
+  "errors": 0,
+  "failures": 0,
+  "command": "NEUROBUILD_TEST_DSN=(private project Unix socket DSN) env -u DISPLAY -u WAYLAND_DISPLAY bash scripts/test_backend.sh",
+  "postgresql_integration": true,
+  "ifcopenshell_integration": true,
+  "headless": true,
+  "log_path": "var/phase5x-native-runtime-regression-batch2.log",
+  "log_sha256": "62a1d062e6b3dceb9e488ba8c4b53e4bc316d946b1aa03df4462eb083709aad2",
+  "recorded_at_utc": "2026-09-20T06:46:05.872846+00:00",
+  "scope": "Native logicalbatch2 physicalubatch1 config/arguments/guard and all prior regressions; no modelquality claim"
+}

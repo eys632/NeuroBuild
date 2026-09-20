@@ -10,7 +10,7 @@
 `c600de0300ae8a0eb3a6c0b8b5561b8b96f16bd2c863c2a66c42de29d391a747`를 쓴다.
 전체 파일18,973,870,528 bytes와851개 tensor의 형상/type/offset/packed coverage를 확인했다.
 GPU3→논리CUDA0만, split 없음, all layers/fit OFF, context4096/sequence1,
-batch1/ubatch1, K/V F16, recurrent F32/rollback0, CUDA graphs OFF,
+logical batch2/physical ubatch1, K/V F16, recurrent F32/rollback0, CUDA graphs OFF,
 prompt/context checkpoint 및 RAM cache OFF다. 상속된 allocator/device override는 제거한다.
 
 현재 binary의 VMM 경로를 compile flags와 symbol로 확인했다. GPU3의 별도 UUID 검사와
@@ -59,3 +59,31 @@ Guard는 baseline 대비 전체 GPU used 증가28,672MiB와 free floor를 감시
 관측한 최대 증가량은 공용 GPU 전체 변화이며 per-process peak라고 부르지 않는다.
 자원 검사에 성공해도 source/model/prompt/schema/sampling/runtime evidence를 동결하고
 commit/push한 뒤 기존 노출120 진단 및 후속 품질 gate를 별도로 수행한다.
+
+
+## D034 시작 실패 수정
+
+첫batch1의시작실패는같은설정의제한진단에서llama-context.cpp:1734로확인했다.
+Server의2token seq_rm 검사를수용하도록logicalbatch2를쓴다. Physicalubatch1은유지한다.
+Graphreserve의n_tokens=min(ctx,ubatch)=1, hybrid는두논리token을순차ubatch로분리하므로
+동시성/SSM/ctx/KV가두배가되지않는다. Logicaloutput배열·추가logits가필요하면수MiB의host/
+pinned-host 비용이늘수있다. 기존28GiB예상과margin을유지하되새epoch에서실측한다.
+원래batch1실패의관측값을새profile의runtime통과증거로쓰지않는다.
+
+
+## 별도 prefill64 성능 후보
+
+Batch2/ubatch1 epoch3는 startup·공개 JSON·최대 문맥 자원 검사에 통과했다. 다만 공개 요청이
+55.055초, 자원 probe의3328 입력 처리가82.071초 걸렸다. 전체 품질 평가 전에 명시적인
+batch64/ubatch64 후보를 별도로 검증한다. 앞선2/1 결과를64/64의 실측 증거로 쓰지 않는다.
+
+64token의 attention score는24MiB/plane, FFN은4.25MiB/activation, 전체 logits는60.625MiB,
+fused DeltaNet 출력+최종state는4.5MiB/층이다. GGML은 마지막 참조 후 allocation을 재사용하며,
+rollback0의 영구 state를64배 복제하지 않는다. MMQ activation과 stream-K fixup도 기존1GiB
+pool 여유 안에서 검토했다. F32 최대 weight 역양자화4,850MiB, graph2GiB, driver1GiB,
+추가pool1GiB, 불확실성1,225MiB와 별도 free margin을 그대로 유지한다. Source 검토상28GiB
+전체 예상으로 제한 검사할 근거가 있으나 엄밀 상한이나 실제 fit을 뜻하지 않는다.
+
+허용 pair는 기존2/1과 명시64/64 두 개뿐이며 자동 선택·fallback은 없다.64/64는 최소28,672MiB
+예상 peak를 요구한다. Context4096/seq1/기존 모델·sampling·schema·prompt와 safety floor는
+유지한다. 새 fresh 사전 검사, 실제 최대 문맥 자원·공개 응답 검사 후에만 품질 조건을 동결한다.

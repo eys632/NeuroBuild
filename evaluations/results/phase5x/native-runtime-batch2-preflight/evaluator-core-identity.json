@@ -1,0 +1,22 @@
+{
+  "kind": "EVALUATOR_CORE_AST_IDENTITY",
+  "status": "PASS",
+  "baseline_commit": "0fd60350b6e9df6538e5cf3d1ee1b13fa949fccc",
+  "baseline_file_sha256": "b6d7068af5916c0f23f10068485affbce792a234891cb9f28aaeae10f587b5aa",
+  "current_file_sha256": "b4a4357672ba7d33a908f91635b330b5346defbf8337aeb800e13ffceafd17d7",
+  "identical_functions": [
+    "evaluate_staged_trial",
+    "evaluate_trial",
+    "expected_ready_target",
+    "latency_summary",
+    "load_cases",
+    "rate",
+    "run_evaluation",
+    "score_output",
+    "strict_json",
+    "summarize",
+    "target_slots"
+  ],
+  "dataset_or_output_parsed": false,
+  "model_calls": 0
+}

@@ -105,8 +105,6 @@ class NativeLaunchConfig:
     max_seconds: float = 1800
     max_model_len: int = 4096
     peak_allowance_mib: int = 0
-    batch_size: int = 2
-    ubatch_size: int = 1
 
     def __post_init__(self):
         Policy(self.profile, self.estimated_peak_mib)
@@ -125,13 +123,6 @@ class NativeLaunchConfig:
         require(type(self.max_model_len) is int and self.max_model_len == 4096
                 and type(self.peak_allowance_mib) is int and self.peak_allowance_mib == 0,
                 "INVALID_CONFIG", "Native context4096 and zero peak allowance are fixed")
-        # Default (2, 1) covers the server's two-token sequence-removal probe.
-        # (64, 64) is an explicit prefill experiment with its own peak estimate.
-        require(type(self.batch_size) is int and type(self.ubatch_size) is int
-                and (self.batch_size, self.ubatch_size) in ((2, 1), (64, 64)),
-                "INVALID_CONFIG", "Native batch/ubatch must be explicitly (2, 1) or (64, 64)")
-        require((self.batch_size, self.ubatch_size) != (64, 64) or self.estimated_peak_mib >= 28672,
-                "INVALID_CONFIG", "Native batch64 requires a whole-peak estimate of at least 28672 MiB")
         require(type(self.served_model_name) is str and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,99}", self.served_model_name),
                 "INVALID_CONFIG", "Use a short safe model alias")
         for field in fields(self):
@@ -159,8 +150,7 @@ def native_arguments(config, root):
             "--device", "CUDA0", "--main-gpu", "0", "--split-mode", "none", "--gpu-layers", "all",
             "--fit", "off", "--ctx-size", "4096", "--parallel", "1", "--no-context-shift",
             "--cache-type-k", "f16", "--cache-type-v", "f16", "--flash-attn", "off",
-            "--batch-size", str(config.batch_size), "--ubatch-size", str(config.ubatch_size),
-            "--threads", "2", "--threads-batch", "2",
+            "--batch-size", "1", "--ubatch-size", "1", "--threads", "2", "--threads-batch", "2",
             "--threads-http", "1", "--ctx-checkpoints", "0", "--cache-ram", "0",
             "--no-cache-idle-slots", "--no-cache-prompt", "--offline", "--no-mmproj", "--no-ui",
             "--no-ui-mcp-proxy", "--no-models-autoload", "--jinja", "--reasoning",
@@ -287,7 +277,7 @@ class _NativeRuntime:
     def fields(self, config):
         return {"allocator_cap_kind": "NONE_VERIFIED", "torch_allocator_fraction": None,
                 "gpu_memory_utilization": None, "native_artifacts": self.artifacts,
-                "max_num_seqs": 1, "batch_size": config.batch_size, "ubatch_size": config.ubatch_size,
+                "max_num_seqs": 1, "batch_size": 1, "ubatch_size": 1,
                 "cache_type_k": "f16", "cache_type_v": "f16", "flash_attention": "off", "skip_chat_parsing": False}
 
     def check_budget(self, config, total, budget):

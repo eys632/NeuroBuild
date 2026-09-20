@@ -1,0 +1,49 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/README.md": {
+      "bytes": 1342,
+      "sha256": "a8cd1f6ee601c0e802ab8b769653c26640f02031e59f6c29f647b4fe00544db0"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/diagnose_native_startup.py": {
+      "bytes": 12576,
+      "sha256": "ebaf28ab507400e35056b064768eb22942cd69ef6a19f66d014184998acdbf73"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/native-startup-diagnostic-cpu-proof-v2.json": {
+      "bytes": 935,
+      "sha256": "6ec5149aa3132d9dbd008fa6baa7e8f6449a5233b58254cb30589edc16e95d01"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/qwen38-native-launch-epoch1.json": {
+      "bytes": 1316,
+      "sha256": "c92048ae165dc62f4548e30a294459d5ed1c2e07d2a934c495a39517ccb6510e"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/qwen38-native-launch-epoch2-diagnostic.json": {
+      "bytes": 1336,
+      "sha256": "df31f95aae6ef683a74ffba0c9bd0994194ad66465fe08fc7e978fe5942799fe"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/resource_report.json": {
+      "bytes": 6265,
+      "sha256": "b9a5108da00da048605b1e3b06ec4dadadee65501ac8396c17cde6844e8d21d3"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/source_snapshot/scripts/gpu_preflight.py": {
+      "bytes": 10153,
+      "sha256": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/source_snapshot/scripts/llama_server.py": {
+      "bytes": 21507,
+      "sha256": "c87f52735d620adc839102b2a68ebb2844b5608a711f83c4f127fdbaf16af2b1"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/source_snapshot/scripts/model_guard.py": {
+      "bytes": 11948,
+      "sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/source_snapshot/scripts/native_model_bootstrap.py": {
+      "bytes": 4797,
+      "sha256": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch2-diagnostic/test_diagnose_native_startup.py": {
+      "bytes": 9253,
+      "sha256": "08a4989d0e1914f09dfc2f60fc8e0080ad879523249c594d18db0eefc82e7555"
+    }
+  }
+}

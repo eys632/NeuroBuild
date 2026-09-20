@@ -1,0 +1,25 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/qwen38-native-diagnostic-preparation/README.md": {
+      "bytes": 888,
+      "sha256": "cd42014f88c0261355a5049c3dcf2d07b231fd761326d4bc9363e710a5a7575d"
+    },
+    "evaluations/results/phase5x/qwen38-native-diagnostic-preparation/check_native_qwen38_replay_synthetic.py": {
+      "bytes": 12971,
+      "sha256": "73892909657dadcce3ada2fe9e459dfb030e83a953dfd70d0abb7dd19b03d32c"
+    },
+    "evaluations/results/phase5x/qwen38-native-diagnostic-preparation/freeze_native_qwen38_diagnostic.py": {
+      "bytes": 11884,
+      "sha256": "cb6ad835f614d9033cb67a2f59ce38f51020edb9db217c559411ac6af9c6e542"
+    },
+    "evaluations/results/phase5x/qwen38-native-diagnostic-preparation/native-replay-selfcheck-2b463b0041c244528cd6300cc832f9fa.json": {
+      "bytes": 3034,
+      "sha256": "d75cb1c314def28b9ed58001b2122cfc5e976904e197d813b4e918873bb7ba5a"
+    },
+    "evaluations/results/phase5x/qwen38-native-diagnostic-preparation/replay_native_qwen38_exposed.py": {
+      "bytes": 32073,
+      "sha256": "c1f063fe4a6ea14c9eaa57bb6e10467460f6765d9a3b4fce67a6fca0f69ac592"
+    }
+  }
+}

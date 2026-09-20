@@ -1,0 +1,33 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/native-runtime-batch64-preflight/README.md": {
+      "bytes": 384,
+      "sha256": "9841f2adaf7cc70da5e205626c73ab8565f34e049561cee7cd9b3d7e1e4efc39"
+    },
+    "evaluations/results/phase5x/native-runtime-batch64-preflight/backend-regression.json": {
+      "bytes": 715,
+      "sha256": "a5ca201bb0b4414d409a72f7c5be8fde740dd355d35fa6867998f4b1cf4a4c15"
+    },
+    "evaluations/results/phase5x/native-runtime-batch64-preflight/native-prefill-pair-cpu-proof.json": {
+      "bytes": 1326,
+      "sha256": "d311198663d79a4912acabcee1d943584eb7f3e173bf4bc0648e61f043db0326"
+    },
+    "evaluations/results/phase5x/native-runtime-batch64-preflight/native_runtime_probe.py": {
+      "bytes": 28876,
+      "sha256": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63"
+    },
+    "evaluations/results/phase5x/native-runtime-batch64-preflight/native_runtime_smoke_plan.md": {
+      "bytes": 17471,
+      "sha256": "a03ed7346c621d2546780ba822dee7803dc17980ff2e91b947cd9070b1288224"
+    },
+    "evaluations/results/phase5x/native-runtime-batch64-preflight/run_native_epoch4_probe.py": {
+      "bytes": 4021,
+      "sha256": "6a8d98d924cf2ecdb762160c96f079a7395f993b32ef6f57ac49dca23f00549f"
+    },
+    "evaluations/results/phase5x/native-runtime-batch64-preflight/test_native_runtime_probe.py": {
+      "bytes": 18453,
+      "sha256": "f1d750fc5192363f656c477c0e214b5d93d97b489af0ae6c4808a86a72facaa1"
+    }
+  }
+}

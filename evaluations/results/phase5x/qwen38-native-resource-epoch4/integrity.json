@@ -1,0 +1,13 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/qwen38-native-resource-epoch4/README.md": {
+      "bytes": 456,
+      "sha256": "fac934d7dd26d2468f36a0c70f2a0254112872f38444c32deeb5dd7215eb9c92"
+    },
+    "evaluations/results/phase5x/qwen38-native-resource-epoch4/report.json": {
+      "bytes": 2608,
+      "sha256": "a590bdbc61da400de5a2c15133cbe7d3db9159fc1ec714566adc12eaaa46d55f"
+    }
+  }
+}

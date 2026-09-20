@@ -1,0 +1,20 @@
+{
+  "kind": "NATIVE_RUNTIME_PROBE_BATCH2_CPU_PREPARATION",
+  "status": "CPU_FAKE_TESTS_PASS_NOT_RUNTIME_EXECUTED",
+  "logical_batch_size": 2,
+  "physical_ubatch_size": 1,
+  "strict_config_report_binding": true,
+  "tests": 14,
+  "seconds": 0.034,
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "native_executions": 0,
+  "dataset_reads": 0,
+  "sha256": {
+    "var/research/native_runtime_probe.py": "fd0ade94ae05122d3c7d8d98952c75dc8167da0e3aa470e8faacea70a2648fd8",
+    "var/research/test_native_runtime_probe.py": "671b97768216cab45e17df5fc5a5211f085d594fcea27235509ad592953cc134",
+    "scripts/llama_server.py": "a0d0c3c82d3a9e28b51c0c53e9b69c214e1a00e29de4160a40b59227091f74d8"
+  },
+  "prior_batch1_proof_preserved": true,
+  "history_directory": "var/research/native-runtime-probe-history/batch1/"
+}

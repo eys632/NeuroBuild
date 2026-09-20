@@ -1,0 +1,17 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/qwen38-native-epoch3-shutdown/README.md": {
+      "bytes": 651,
+      "sha256": "ebf5e1bc13fea0c48c984bf7e7f0729291674f5cb5f1f27f06f6a5d1274e5da4"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch3-shutdown/resource_report.json": {
+      "bytes": 5356,
+      "sha256": "721db03b7d59fa715a8e4d791e8af9fdd9d6ae5f81547c58ab481848d7c3c70f"
+    },
+    "evaluations/results/phase5x/qwen38-native-epoch3-shutdown/stop_request.json": {
+      "bytes": 452,
+      "sha256": "31b8329fa0955045042b16a97c2385adc5837e278883b9168fd1c7391ffca71b"
+    }
+  }
+}

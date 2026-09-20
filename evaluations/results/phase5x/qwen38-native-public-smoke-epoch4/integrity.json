@@ -1,0 +1,21 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/qwen38-native-public-smoke-epoch4/README.md": {
+      "bytes": 469,
+      "sha256": "d37e23ce825c94bbf4d53de0799f42a2b36ca186fb844cdefcd9ac091135175d"
+    },
+    "evaluations/results/phase5x/qwen38-native-public-smoke-epoch4/guard_after.json": {
+      "bytes": 5171,
+      "sha256": "dbaf1e78d84319ff3b26380243f7fe94072e036e41282970fbd5286b43925685"
+    },
+    "evaluations/results/phase5x/qwen38-native-public-smoke-epoch4/guard_before.json": {
+      "bytes": 5170,
+      "sha256": "ace7085e057cd497a055e4313c47c319d4986a1b7d24d7643af4fe0f87874bb2"
+    },
+    "evaluations/results/phase5x/qwen38-native-public-smoke-epoch4/report.json": {
+      "bytes": 1878,
+      "sha256": "81fc7a0011273bc66479f0a775c2168cba1f986da22cee553872a347f2f21f4f"
+    }
+  }
+}

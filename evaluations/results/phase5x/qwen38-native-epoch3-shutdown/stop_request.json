@@ -1,0 +1,12 @@
+{
+  "kind": "OWN_NATIVE_EPOCH_STOP_REQUEST",
+  "guard_pid": 3532544,
+  "guard_start_ticks": 477034863,
+  "child_pid": 3532613,
+  "child_start_ticks": 477039270,
+  "uid": 1003,
+  "pidfd_signal": "SIGTERM",
+  "pidfd_api": "libc syscall; numbers verified from installed x86_64 header; Python os.pidfd_open unavailable",
+  "reason": "Completed startup/public/resource proof; release own GPU before prefill profile review",
+  "foreign_process_signals": 0
+}

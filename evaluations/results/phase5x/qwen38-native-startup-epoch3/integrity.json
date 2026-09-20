@@ -1,0 +1,29 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/qwen38-native-startup-epoch3/README.md": {
+      "bytes": 871,
+      "sha256": "0e429f56689c4ab2e897cf528fc54a7a3b4f047765343c1f6e45859cdb1288b4"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch3/launch_config.json": {
+      "bytes": 1355,
+      "sha256": "071eb92db7c717e69058623b067a6929150f2970730612198f8485ebb368f635"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch3/listeners.json": {
+      "bytes": 592,
+      "sha256": "0172edf6c2eeace3454467f0c38437483e884709da6e5dc161bb7cf703e7224f"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch3/resource_report.json": {
+      "bytes": 5169,
+      "sha256": "345164f321a91d83a7f632f12ba5f133a9a752376c7d1d8214c86b4f28571ca5"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch3/runtime_metadata.json": {
+      "bytes": 1359,
+      "sha256": "fec19dcdb72df284d9f2d31e88fc905109e25108a602bcec17963668369dd701"
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch3/startup.json": {
+      "bytes": 2324,
+      "sha256": "91c2498aab5bda4c921ac2380d26588de1242e1b590833e7f0cfdf32e428f037"
+    }
+  }
+}

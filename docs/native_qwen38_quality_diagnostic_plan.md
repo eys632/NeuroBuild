@@ -6,7 +6,7 @@ Phase5.x에서 `qwen38-gguf-raw-unicode-v1` 후보를 한 번 비교한다. 실�
 
 모델은 ggml-org/Qwen3.8-27B-GGUF revision efbb3b1f70a21d97fd4495240648405f7228554f의
 Q4_K_M이다. llama.cpp f072b103714dfa1eee531f80b24512faf38e3dd2, GPU3/internalCUDA0,
-ctx4096/seq1/batch1/ubatch1/F16KV/flashoff/graphsoff/fitoff 조건을 고정한다.
+ctx4096/seq1/logicalbatch64/physicalubatch64/F16KV/flashoff/graphsoff/fitoff 조건을 고정한다.
 공식 HF NFC 동등성은19/20 FAIL이며 원문을 그대로 처리하는 별도 native 후보다. 이 차이는
 startup proof와 그 SHA를 가진 runtime metadata, quality freeze에 명시한다. 입력/출력 정규화,
 인용 보정, parser 완화는 없다. V2 모델 호출은 이번 노출 자료 진단에서 수행하지 않는다.
@@ -33,3 +33,8 @@ Runtime 증거·source/prompt/schema/dataset hashes·sampling·원문 tokenizer 
 이120개는 unseen이 아니다. V2 80개는 아직 모델 출력 미관측이며 root의 일부 입력/gold 노출
 이력을 지우지 않는다. Gold는 AUTO-GENERATED / NOT HUMAN VERIFIED다. 노출 진단 통과가
 후속 반복/미관측 평가 또는 사람 검수를 대신하지 않는다. RTX5090은 미검증으로 유지한다.
+
+
+실행 전 성능 검토에서2/1의3328token 입력 처리가82.071초임을 확인해 D035의64/64 후보를
+별도로 검증한다. 품질 run은64/64의 새 startup·public·resource 증거를 통과하고 동결한 뒤다.
+2/1의 결과와 새 profile의 수치/출력을 동일하다고 가정하지 않는다. 기존95%·FP0 gate는 불변이다.

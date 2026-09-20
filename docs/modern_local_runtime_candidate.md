@@ -26,8 +26,10 @@ UUID/parent-death/자체 process 정리 경계를 추가했다. 다운로드 보
 공식 HF tokenizer와의 exact ID 비교는19/20 FAIL이다. NFC 처리 차이를 확인했고 native raw
 UTF-8 roundtrip20/20, NFC만 끈 별도 reference20/20을 관측했다. D033에 따라
 `qwen38-gguf-raw-unicode-v1` 별도 실험 후보의 실제 context를 검증한다. 공식 동등성 FAIL과
-품질 gate는 유지하며 입력/출력 NFC 보정은 없다. CPU raw-native context200개는 통과했다. 첫 GPU3 startup은SIGABRT(-6)로 실패했고
-자체 프로세스 정리 후VRAM이baseline으로복귀했다. 평가요청0이며시작원인을진단한다.
+품질 gate는 유지하며 입력/출력 NFC 보정은 없다. CPU raw-native context200개는 통과했다. 초기 batch1의 시작 실패는 내부2token 검사와의
+충돌로 확인했고 batch2/ubatch1 수정 후 startup·공개 JSON·최대 문맥 자원 검사를 통과했다.
+입력 지연을 줄이기 위해 별도64/64 profile을 검증 중이다. 이 profile의 startup과 공개 JSON은
+통과했고 응답은5.178초였다. 품질 평가와 최종 채택은 아직 미실행이다.
 
 단일 GGUF의 전체 SHA와851 tensor/header/embedded template 검사를 통과했다.
 GPU3의 드라이버 metadata 조회로 VMM과2MiB granularity를 확인했다(context/할당 없음).

@@ -615,3 +615,42 @@ STOPPED/TERM+KILL/reaped, observedaggregatepeak18290/minfree18084이다.
 Startup 내부 warmup 실행 여부는 미확인이고 runtime readiness PASS를 주장하지 않는다.
 원래 stdout/stderr는폐기되어 원인미상이며 OOM이라단정하지 않는다. raw본문저장 없는 제한된
 stderr code/source 위치 진단을 준비한다. 실패config/report는 epoch1-failed archive에 보존했다.
+
+
+### 2026-09-20 — 시작 오류 확인, batch 수정과 회귀
+
+Checkpoint f114a9b747d5f5bd2812728ab74a98771143e10c를 공통v2에 push하고 remote 일치를 확인했다.
+동일 batch1의 epoch2는 stderr를 제한된 메모리 parser로 처리했다. CPU/fake11개와 독립 검토를
+통과했으며 원문은 저장하지 않았다. 실제 child3530990은7.839초에SIGABRT(-6),
+stderr347B/4행에서 GGML_ASSERT_FAILED, llama-context.cpp:1734를 확인했다.
+Overflow0/EOFtrue/reader stopped/complete/reaped이며 free36373으로 복귀했다.
+고정 source의 시작 seq_rm2token과 logicalbatch1 충돌을 확인해 D034에 기록했다.
+
+Native config의 logicalbatch2/physicalubatch1을 고정 정수로 명시하고 argv/report에 연결했다.
+Native launcher focused15PASS, probe consumer14PASS 후 전체 regression384PASS/skip0/19.698s.
+Log SHA62a1d062e6b3dceb9e488ba8c4b53e4bc316d946b1aa03df4462eb083709aad2.
+Source/VRAM 독립 검토에서 physical graph/KV/recurrent state 유지와 작은 host output 증가를
+확인했다.28GiB 예상과 fresh margin을 유지하며 실제 peak 성공을 미리 주장하지 않는다.
+새 epoch3 config SHA071eb92db7c717e69058623b067a6929150f2970730612198f8485ebb368f635로
+guard를 시작했다. 이전 실패2개의 config/report/source는 보존한다. HTTP·품질 검증은 별도다.
+
+
+### 2026-09-20 — 실제 runtime PASS와 prefill64 성능 검증, 품질 조건 동결
+
+Epoch3(2/1) startup·공개JSON·자원probe PASS. Public55.055초,3328prefill82.071초/768decode21.545초,
+합계103.625초,4095cached경계 일치.417.489초 감시755회 동안 peak18290/minfree18084였다.
+자체guard3532544의UID/시작시각/exec/argv와child3532613을확인해pidfd SIGTERM을보냈다.
+Python os.pidfd_open 부재로 첫 신호 시도 전 중단했으며, 설치된x86_64 header의 syscall번호를
+확인한 libc pidfd 호출로 전송했다. STOPPED/exit0/reaped/후속free36373을 확인했다.
+
+입력 처리 지연에 대해D035의명시64/64 후보를 source/VRAM검토하고386회귀PASS로 검증했다.
+Epoch4 config SHAa8f6891e96f0567820a8029ba4ea8d689e01a842c888a9b09482f1e724e5d052,
+child3538905, 동일GPU3예산28672+margin7275와freshfree36373/util0.
+Startup3GET+ownloopback PASS, public1회5.178초PASS. Resource1회25.678초,
+3328prefill4.075초/768decode21.594초/4095cached boundary PASS, aggregatepeak18346/minfree18028.
+이들은 품질점수나per-process상한이아니다. Rawbody/reasoning미보존,모든historicalproof별도보존.
+
+노출120품질진단freeze SHA7a1f67bd71c65f0c2d2aacc2b03cb765d7c38ac8eaa31bf7618847c4a5380fd9 생성.
+실제epoch4/config·source/schema/prompt·386회귀·공식HF19/20FAIL/raw20/20·CPUcontext200과
+기존schema120/semantic≥114/rawFP0/unsafe0를묶었다. 현재FROZEN_NOT_EVALUATED이며
+commit/push후125호출(5warmup+120trial)을진행한다. V2품질호출0은유지한다.

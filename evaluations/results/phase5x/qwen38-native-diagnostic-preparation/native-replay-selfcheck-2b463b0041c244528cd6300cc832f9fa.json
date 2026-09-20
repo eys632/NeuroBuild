@@ -1,0 +1,106 @@
+{
+  "status": "PASS_SYNTHETIC_PREPARATION_ONLY",
+  "helper_sha256": "c1f063fe4a6ea14c9eaa57bb6e10467460f6765d9a3b4fce67a6fca0f69ac592",
+  "selfcheck_sha256": "73892909657dadcce3ada2fe9e459dfb030e83a953dfd70d0abb7dd19b03d32c",
+  "source_scope": "Current exact source for synthetic preparation; run checkpoint snapshot binding deferred until root provides final pins",
+  "source_sha256": {
+    "scorer": "b4a4357672ba7d33a908f91635b330b5346defbf8337aeb800e13ffceafd17d7",
+    "parser": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "generation_adapter": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "client": "3ebef3a1b3cf16b577566c7644952ac5da0def1d1dc11cc0d0b01c581b9d9f1c"
+  },
+  "fixtures": [
+    {
+      "fixture": "retained_ready_on_nonready",
+      "retained": true,
+      "error_code": null
+    },
+    {
+      "fixture": "retained_bad_axis",
+      "retained": true,
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "fixture": "retained_ungrounded_target",
+      "retained": true,
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "fixture": "unretained_schema_rawready",
+      "retained": false,
+      "error_code": "JSON_SCHEMA_FAILED"
+    },
+    {
+      "fixture": "unretained_malformed_unknown",
+      "retained": false,
+      "error_code": "JSON_PARSE_FAILED"
+    },
+    {
+      "fixture": "unretained_array_unknown",
+      "retained": false,
+      "error_code": "JSON_SCHEMA_FAILED"
+    },
+    {
+      "fixture": "unretained_timeout_unknown",
+      "retained": false,
+      "error_code": "LOCAL_MODEL_TIMEOUT"
+    },
+    {
+      "fixture": "unretained_truncated_unknown",
+      "retained": false,
+      "error_code": "LOCAL_MODEL_TRUNCATED"
+    },
+    {
+      "fixture": "unretained_missing_final_unknown",
+      "retained": false,
+      "error_code": "LOCAL_MODEL_RESPONSE_INVALID"
+    },
+    {
+      "fixture": "retained_nonready",
+      "retained": true,
+      "error_code": null
+    }
+  ],
+  "row_tampering_rejected": [
+    "erase_rawready",
+    "erase_schema_failed_ready",
+    "invent_timeout_ready",
+    "unknown_as_safe_false",
+    "invent_adapter_success",
+    "erase_canonical",
+    "inflate_semantic",
+    "wrong_contract"
+  ],
+  "count_tampering_rejected": [
+    "missing_trial",
+    "missing_warmup",
+    "trial_order",
+    "metric_denominator"
+  ],
+  "identity_tampering_rejected": [
+    "wrong_model",
+    "future_holdout",
+    "different_dataset",
+    "dirty_run",
+    "legacy_protocol",
+    "thinking_mode",
+    "history_penalty",
+    "wrong_physical_gpu",
+    "old_batch_one",
+    "unreviewed_batch_pair",
+    "bool_microbatch",
+    "hide_hf_failure",
+    "input_nfc_repair",
+    "lower_quality_gate"
+  ],
+  "synthetic_complete_protocols": 2,
+  "full_120_plus_5_and_62_58_denominators": true,
+  "unknown_keeps_denominator_and_blocks_gate": true,
+  "actual_run_results_read": false,
+  "private_dataset_reads": 0,
+  "reasoning_body_reads": 0,
+  "network_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "native_calls": 0
+}

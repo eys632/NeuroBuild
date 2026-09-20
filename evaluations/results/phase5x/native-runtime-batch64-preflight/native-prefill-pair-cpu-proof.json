@@ -1,0 +1,40 @@
+{
+  "kind": "NATIVE_EXPLICIT_PREFILL_PAIR_CPU_PROOF",
+  "status": "CPU_FAKE_TESTS_PASS_NO_GPU_OR_PERFORMANCE_RESULT",
+  "default_pair": [
+    2,
+    1
+  ],
+  "explicit_experimental_pair": [
+    64,
+    64
+  ],
+  "minimum_experimental_whole_peak_mib": 28672,
+  "automatic_pair_selection": false,
+  "launcher_tests": {
+    "count": 17,
+    "seconds": 0.152,
+    "status": "PASS"
+  },
+  "consumer_tests": {
+    "count": 14,
+    "seconds": 0.017,
+    "status": "PASS"
+  },
+  "diff_check": "PASS",
+  "gpu_calls": 0,
+  "http_calls": 0,
+  "native_executions": 0,
+  "dataset_reads": 0,
+  "sha256": {
+    "scripts/llama_server.py": "163e6a27ec6675e17da5dfcd7c6beaa6f70b22f6db6cead0cf52d42e6bff9077",
+    "tests/test_llama_server.py": "4a00932af7b39ad12590ecfaa8df44617c8b61789bf8826a4dd98d7afe06e590",
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63",
+    "var/research/test_native_runtime_probe.py": "f1d750fc5192363f656c477c0e214b5d93d97b489af0ae6c4808a86a72facaa1"
+  },
+  "prior_pair_history": "var/research/native-runtime-probe-history/batch2/",
+  "limits": [
+    "Static bounded candidate only. New epoch resource measurements and quality gates remain required.",
+    "Runtime/default arguments for pair2/1 unchanged; profile/protocol/business logic unchanged."
+  ]
+}

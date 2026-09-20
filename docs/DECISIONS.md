@@ -208,3 +208,35 @@ vocab-only token 수를 사용한다. 기존 HF 동등성을 요구한 검사 �
 helper/report에서 reference 종류를 명시한다. 공개 grammar/EOG 검증과 최대 context4096,
 completion768, 원문 roundtrip 조건은 유지한다. 이후 GPU3 실행에는 D032와 전체 peak·margin
 조건이 그대로 적용된다. 이번 결정은 Phase5.x의 실험 전략이며 품질 gate 통과가 아니다.
+
+
+## D034 — 시작 검사에 맞는 logical batch2와 physical ubatch1
+
+첫 native GPU startup은SIGABRT로 실패했다. 같은profile의 제한된 stderr 진단에서
+`llama-context.cpp:1734`의GGML_ASSERT 실패를 실제 확인했다. 고정 source의 시작 sequence
+removal 검사는2token을한 decode에 전달하며 logical batch1과충돌한다. 실패2개와그당시source/
+config를보존한다. Watchdog free floor 초과나타인process변경이원인이었다고주장하지않는다.
+
+NativeLaunchConfig에 logical batch2/physical ubatch1을명시적인고정정수로기록한다.
+한 CUDA graph의물리token수·context4096·sequence1·F16KV·rollback0은유지하며GPUfallback은없다.
+논리입출력배열에수MiB의host/pinned-host 증가가가능하나기존28GiB전체예상과추가margin에
+이를포함한다. 실제wholeGPU peak나bitwise/품질동등성은새실행전미검증이다.
+
+CPU vocab/template/grammar/context 증거는GPU context/decode를만들지않고동일production
+wire의실제native token수를측정한것이므로유효하다. 이를새GPU실행성공증거로재사용하지않는다.
+새config/argv/report의일관성과기존거절·guard검사를회귀검증한뒤freshGPU3조건으로재실행한다.
+원래batch1로얻은startup실패는새epoch로덮어쓰지않는다. 품질평가는runtime검증·동결후다.
+
+
+## D035 — 품질 평가 전 명시적 prefill64 성능 검증
+
+Batch2/ubatch1의 실제 startup·공개 JSON·최대 context 검사는 통과했으나 입력 처리 지연이
+크다. 공개 요청55.055초, 자원 probe의3328token prefill82.071초를 관측했다. 이 설정으로
+전체 평가를 시작하기 전에 batch64/ubatch64의 성능·자원을 별도 검증한다. 모델 응답의 품질을
+개선하기 위한 prompt/schema 변경은 없으며 실제 exposed/v2 품질 호출은 아직0회다.
+
+고정 source의 MMQ/GDN/graph liveness와 전체 workspace 검토에서64/64를28GiB 예상 예산으로
+제한 실행할 근거를 확인했다. 이 값은 엄밀 상한이 아니다. 기존2/1은 기본값으로 보존하고,
+64/64는 명시적인 고정 pair와 최소 예상28,672MiB를 요구한다. 다른 pair나 자동 fallback은 없다.
+새 epoch의 fresh GPU3 사전 검사와 최대 문맥 자원·공개 응답 증거가 필요하다. Sampling·prompt·
+원문 quote/parser·품질 gate는 유지하며, batch에 따른 수치/출력 동등성을 미리 주장하지 않는다.

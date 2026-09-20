@@ -140,6 +140,7 @@ class NativeGuardTests(unittest.TestCase):
         self.assertIsNone(report["torch_allocator_fraction"])
         self.assertEqual(report["required_free_floor_mib"], 7275)
         self.assertEqual(report["aggregate_increment_limit_mib"], 25600)
+        self.assertEqual((report["batch_size"], report["ubatch_size"], report["max_num_seqs"]), (2, 1, 1))
         self.assertEqual(queries, [3] * 9)
         self.assertEqual(signals, [(FakeChild.pid, signal.SIGTERM), (FakeChild.pid, signal.SIGKILL)])
         self.assertEqual(sum(call.args[0] == self.model for call in digest.call_args_list), 1)
@@ -157,7 +158,7 @@ class NativeGuardTests(unittest.TestCase):
         self.assertEqual([(a, b) for a, b in zip(off, on) if a != b], [("off", "on")])
         for key, value in {"--host": "127.0.0.1", "--device": "CUDA0", "--gpu-layers": "all",
                            "--split-mode": "none", "--fit": "off", "--ctx-size": "4096", "--parallel": "1",
-                           "--batch-size": "1", "--ubatch-size": "1", "--reasoning-format": "deepseek",
+                           "--batch-size": "2", "--ubatch-size": "1", "--reasoning-format": "deepseek",
                            "--cache-type-k": "f16", "--cache-type-v": "f16", "--flash-attn": "off"}.items():
             self.assertEqual(off.count(key), 1)
             self.assertEqual(off[off.index(key) + 1], value)
@@ -183,6 +184,64 @@ class NativeGuardTests(unittest.TestCase):
                       {"source_commit": "a" * 40}, {"model_sha256": "AUTO"}):
             with self.subTest(delta=delta), self.assertRaises(PreflightError):
                 replace(self.config, **delta)
+
+    def test_default_batch_pair_is_two_one_and_single_field_changes_are_rejected(self):
+        self.assertEqual((self.config.batch_size, self.config.ubatch_size), (2, 1))
+        serialized = asdict(self.config)
+        self.assertEqual((serialized["batch_size"], serialized["ubatch_size"]), (2, 1))
+        for field, bad_values in (
+                ("batch_size", (0, 1, 3, True, False, 2.0, "2", None)),
+                ("ubatch_size", (0, 2, 3, True, False, 1.0, "1", None))):
+            for value in bad_values:
+                with self.subTest(field=field, value=value), self.assertRaises(PreflightError) as error:
+                    replace(self.config, **{field: value})
+                self.assertEqual(error.exception.code, "INVALID_CONFIG")
+
+    def test_cli_rejects_old_explicit_batch_one_before_guard_or_gpu(self):
+        path = self.root / "launch-batch-one.json"
+        values = asdict(self.config)
+        values["batch_size"] = 1
+        path.write_text(json.dumps({key: str(value) if isinstance(value, Path) else value
+                                    for key, value in values.items()}))
+        before = path.read_bytes()
+        with patch.object(native, "ROOT", self.root), patch.object(native, "run_guard") as guard, redirect_stdout(StringIO()) as output:
+            result = native.main(["--config", str(path)])
+        self.assertEqual(result, 2)
+        self.assertEqual(json.loads(output.getvalue()), {"state": "BLOCKED", "reason": "INVALID_CONFIG"})
+        guard.assert_not_called()
+        self.assertEqual(path.read_bytes(), before)
+
+    def test_explicit_batch64_pair_binds_arguments_report_and_peak_budget(self):
+        candidate = replace(self.config, batch_size=64, ubatch_size=64, estimated_peak_mib=28672)
+        baseline = native.native_arguments(self.config, self.root)
+        expected = list(baseline)
+        expected[expected.index("--batch-size") + 1] = "64"
+        expected[expected.index("--ubatch-size") + 1] = "64"
+        self.assertEqual(native.native_arguments(candidate, self.root), expected)
+        # Default flags and all other production arguments remain unchanged.
+        self.assertEqual(native.native_arguments(self.config, self.root), baseline)
+        report, queries, launches, signals = self.run_fake(config=candidate)
+        self.assertEqual((report["batch_size"], report["ubatch_size"]), (64, 64))
+        self.assertEqual(report["aggregate_increment_limit_mib"], 28672)
+        self.assertEqual(report["required_free_floor_mib"], 7275)
+        self.assertEqual(set(queries), {3})
+        self.assertEqual(launches[0][0][-len(expected):], expected)
+        self.assertEqual(len(signals), 2)
+
+    def test_cli_batch_pair_and_peak_floor_reject_before_guard_or_gpu(self):
+        path = self.root / "launch-prefill-candidate.json"
+        for batch, ubatch, peak in ((64, 64, 28671), (32, 32, 28672), (64, 1, 28672),
+                                   (2, 64, 28672), (True, 64, 28672), (64, 64.0, 28672)):
+            values = asdict(self.config)
+            values.update(batch_size=batch, ubatch_size=ubatch, estimated_peak_mib=peak)
+            path.write_text(json.dumps(values, default=str))
+            with self.subTest(batch=batch, ubatch=ubatch, peak=peak), \
+                    patch.object(native, "ROOT", self.root), patch.object(native, "run_guard") as guard, \
+                    redirect_stdout(StringIO()) as output:
+                status = native.main(["--config", str(path)])
+            self.assertEqual(status, 2)
+            self.assertEqual(json.loads(output.getvalue())["reason"], "INVALID_CONFIG")
+            guard.assert_not_called()
 
     def test_preflight_mask_budget_lock_and_output_fail_before_query_or_child(self):
         report, queries, launches, _ = self.run_fake(env={"CUDA_VISIBLE_DEVICES": "1"})
