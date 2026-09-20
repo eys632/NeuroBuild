@@ -1,0 +1,382 @@
+{
+  "kind": "GEMMA4_12B_PINNED_METADATA_PROVENANCE",
+  "status": "METADATA_ONLY_CONDITIONAL_NATIVE_FEASIBILITY",
+  "recorded_at_utc": "2026-09-20T15:17:18.844424+00:00",
+  "model_id": "google/gemma-4-12B-it-qat-q4_0-gguf",
+  "revision": "29d097773436b69ff9feafd636ab4cf873786537",
+  "download_manifest_path": "var/research/gemma4-12b-candidate-metadata/candidate_download_manifest_draft.json",
+  "download_manifest_sha256": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990",
+  "selected_weight": {
+    "name": "gemma-4-12b-it-qat-q4_0.gguf",
+    "bytes": 6975879296,
+    "sha256": "93567e57a8fe10b23569b9d9ec38cd005deedf71e29477c421a4b83f418a538b"
+  },
+  "weight_verification": "official pinned API LFS metadata only; payload/range not requested",
+  "manifest_total_bytes": 6975908556,
+  "download_network_bytes": 32651983,
+  "download_limit_bytes": 103809024,
+  "download_ledger_sha256": "425b0757239540b60bd32da2cacd6ed7db2dce5983807a5d4cbf1473083c41c5",
+  "fetch_helper_sha256": "9f37fe0b62e2b64a7d146e7103a406739ffd4b201f20cb08578a3c96fcde023b",
+  "disk_free_before_bytes": 25534468096,
+  "project_disk_reserve_bytes": 22011707392,
+  "projected_free_after_weight_and_README_before_metadata_overhead_bytes": 18558559540,
+  "disk_floor_pass_without_cleanup": false,
+  "published_lineage": {
+    "gguf_base_model": [
+      "google/gemma-4-12B-it-qat-q4_0-unquantized"
+    ],
+    "qat_model_id": "google/gemma-4-12B-it-qat-q4_0-unquantized",
+    "qat_metadata_revision": "b6ed86275a6a5735884e208bfed95b445a684ca2",
+    "qat_base_model": [
+      "google/gemma-4-12B-it"
+    ],
+    "original_it_model_id": "google/gemma-4-12B-it",
+    "original_it_metadata_revision": "707f0a3b8a3c7ad586ed01e27eafbad8a27dd0f7",
+    "exact_conversion_source_revision_published": false,
+    "convert_log_or_src_sha_present": false,
+    "gguf_pinned_commit_title": "Upload validated QAT GGUF checkpoint (280 sequence length, corrected vocabulary)",
+    "commit_title_280_is_not_a_verified_text_context_limit": true,
+    "safetensors_index_published": false,
+    "single_unquantized_weight_payload_not_downloaded": true
+  },
+  "license": {
+    "identifier": "apache-2.0",
+    "three_pinned_cards_apis_agree": true,
+    "standalone_repository_LICENSE_present": false,
+    "official_license_url": "https://ai.google.dev/gemma/docs/gemma_4_license",
+    "official_license_html_sha256": "632821edc219599aa7e587e37744d264f2516888d422319c6866a3214034fa79",
+    "apache_text_sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "apache_text_is_repository_LICENSE": false
+  },
+  "architecture": "Gemma4UnifiedForConditionalGeneration",
+  "text_config": {
+    "attention_bias": false,
+    "attention_dropout": 0.0,
+    "attention_k_eq_v": true,
+    "bos_token_id": 2,
+    "dtype": "bfloat16",
+    "enable_moe_block": false,
+    "eos_token_id": 1,
+    "final_logit_softcapping": 30.0,
+    "global_head_dim": 512,
+    "head_dim": 256,
+    "hidden_activation": "gelu_pytorch_tanh",
+    "hidden_size": 3840,
+    "hidden_size_per_layer_input": 0,
+    "initializer_range": 0.02,
+    "intermediate_size": 15360,
+    "layer_types": [
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "full_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "full_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "full_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "full_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "full_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "full_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "full_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "sliding_attention",
+      "full_attention"
+    ],
+    "max_position_embeddings": 262144,
+    "model_type": "gemma4_unified_text",
+    "moe_intermediate_size": null,
+    "num_attention_heads": 16,
+    "num_experts": null,
+    "num_global_key_value_heads": 1,
+    "num_hidden_layers": 48,
+    "num_key_value_heads": 8,
+    "num_kv_shared_layers": 0,
+    "pad_token_id": 0,
+    "rms_norm_eps": 1e-06,
+    "rope_parameters": {
+      "full_attention": {
+        "partial_rotary_factor": 0.25,
+        "rope_theta": 1000000.0,
+        "rope_type": "proportional"
+      },
+      "sliding_attention": {
+        "rope_theta": 10000.0,
+        "rope_type": "default"
+      }
+    },
+    "sliding_window": 1024,
+    "tie_word_embeddings": true,
+    "top_k_experts": null,
+    "use_bidirectional_attention": "vision",
+    "use_cache": true,
+    "use_double_wide_mlp": false,
+    "vocab_size": 262144,
+    "vocab_size_per_layer_input": 0
+  },
+  "comparison_with_31b_qat": {
+    "config.json": {
+      "bytes": 4310,
+      "sha256": "a323d02f68420f6fa3a3548130a0d36356075a4047a622e57148558f8eee7077",
+      "gemma31_qat_path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/config.json",
+      "gemma31_qat_sha256": "95b105ad23b315067985415e721ab9c19cfcf90918b34ea0fa479a08489d86b7",
+      "exact_bytes_equal": false
+    },
+    "generation_config.json": {
+      "bytes": 260,
+      "sha256": "a8349d9bd64cc5841297fcb5002f0fdc4749c473c8f1b10ea337f9ce4ee7014e",
+      "gemma31_qat_path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/generation_config.json",
+      "gemma31_qat_sha256": "b69207f9be617e982d13cc273cce6fd88c98dda99a4bdc5e2d52ffe0a0d9f0a9",
+      "exact_bytes_equal": false
+    },
+    "tokenizer_config.json": {
+      "bytes": 3089,
+      "sha256": "a62f4e85a47c0c136edaaa3a4f591fd6783717299a9def47e5ad03a49f6a5eb9",
+      "gemma31_qat_path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/tokenizer_config.json",
+      "gemma31_qat_sha256": "3ab5c7b94dc97d65ca7064496fa69b88ff875378e1cb7ee3e43070c3a8170999",
+      "exact_bytes_equal": false
+    },
+    "chat_template.jinja": {
+      "bytes": 18683,
+      "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+      "gemma31_qat_path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/chat_template.jinja",
+      "gemma31_qat_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+      "exact_bytes_equal": true
+    },
+    "tokenizer.json": {
+      "bytes": 32169626,
+      "sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+      "gemma31_qat_path": "var/research/gemma4-31b-qat-candidate-metadata/qat-unquantized/tokenizer.json",
+      "gemma31_qat_sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+      "exact_bytes_equal": true
+    }
+  },
+  "text_config_differences_from_31b": {
+    "hidden_size": {
+      "31b": 5376,
+      "12b": 3840
+    },
+    "intermediate_size": {
+      "31b": 21504,
+      "12b": 15360
+    },
+    "model_type": {
+      "31b": "gemma4_text",
+      "12b": "gemma4_unified_text"
+    },
+    "num_attention_heads": {
+      "31b": 32,
+      "12b": 16
+    },
+    "num_global_key_value_heads": {
+      "31b": 4,
+      "12b": 1
+    },
+    "num_hidden_layers": {
+      "31b": 60,
+      "12b": 48
+    },
+    "num_key_value_heads": {
+      "31b": 16,
+      "12b": 8
+    },
+    "vocab_size_per_layer_input": {
+      "31b": 262144,
+      "12b": 0
+    }
+  },
+  "layer_types": {
+    "12b": {
+      "sliding": 40,
+      "full": 8
+    },
+    "31b": {
+      "sliding": 50,
+      "full": 10
+    }
+  },
+  "tokenizer_config_differences_from_31b": {
+    "is_local": {
+      "31b": false,
+      "12b": null
+    },
+    "local_files_only": {
+      "31b": false,
+      "12b": null
+    },
+    "model_specific_special_tokens": {
+      "31b": {
+        "audio_token": "<|audio|>",
+        "boa_token": "<|audio>",
+        "boi_token": "<|image>",
+        "eoa_token": "<audio|>",
+        "eoc_token": "<channel|>",
+        "eoi_token": "<image|>",
+        "eot_token": "<turn|>",
+        "escape_token": "<|\"|>",
+        "etc_token": "<tool_call|>",
+        "etd_token": "<tool|>",
+        "etr_token": "<tool_response|>",
+        "image_token": "<|image|>",
+        "soc_token": "<|channel>",
+        "sot_token": "<|turn>",
+        "stc_token": "<|tool_call>",
+        "std_token": "<|tool>",
+        "str_token": "<|tool_response>",
+        "think_token": "<|think|>"
+      },
+      "12b": null
+    },
+    "processor_class": {
+      "31b": "Gemma4Processor",
+      "12b": "Gemma4UnifiedProcessor"
+    }
+  },
+  "tokenizer": {
+    "model_type": "BPE",
+    "vocab_entries": 262144,
+    "added_entries": 24,
+    "normalizer": {
+      "type": "Replace",
+      "pattern": {
+        "String": " "
+      },
+      "content": "▁"
+    },
+    "decoder": {
+      "type": "Sequence",
+      "decoders": [
+        {
+          "type": "Replace",
+          "pattern": {
+            "String": "▁"
+          },
+          "content": " "
+        },
+        {
+          "type": "ByteFallback"
+        },
+        {
+          "type": "Fuse"
+        }
+      ]
+    },
+    "new_encode_decode_performed": false,
+    "known_inherited_metadata_limitation": "Same exact tokenizer as 31B: literal U+2581 versus space is not injective after decoding; preserve existing witness, do not claim all-Unicode raw preservation. New 12B embedded vocabulary remains unobserved.",
+    "original_IT_same_tokenizer_LFS_metadata": true,
+    "IT_QAT_template_exact_equal": true
+  },
+  "generation_config": {
+    "bos_token_id": 2,
+    "do_sample": true,
+    "eos_token_id": [
+      1,
+      106,
+      50
+    ],
+    "pad_token_id": 0,
+    "suppress_tokens": [
+      258883,
+      258882
+    ],
+    "temperature": 1.0,
+    "top_k": 64,
+    "top_p": 0.95,
+    "transformers_version": "5.10.0.dev0"
+  },
+  "sampling": {
+    "official": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 64,
+      "suppress_tokens": [
+        258883,
+        258882
+      ]
+    },
+    "existing_project_Gemma_neutral_extras": {
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 0,
+      "seed": 42,
+      "samplers": [
+        "temperature",
+        "top_k",
+        "top_p",
+        "min_p"
+      ],
+      "enable_thinking": false
+    },
+    "neutral_extras_are_project_choices": true,
+    "suppression_must_be_observed_in_GGUF_key": "tokenizer.ggml.suppress_tokens INT32[258883,258882]",
+    "native_support": "conversion/gemma.py:817-830 -> src/llama-vocab.cpp:2660-2677 -> common/sampling.cpp:325-337"
+  },
+  "native_source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "native_source_sha256": {
+    "conversion/gemma.py": "872f3fea7496cefdcd39308ad02e2d30c9f507f68a18f8b4f6962995b09350f5",
+    "src/models/gemma4.cpp": "765ee856e30b3ddc126fa75c8252e5fbca6bae0e11abd9b71f4c21d911810ecb",
+    "src/llama-model.cpp": "530dff0cd544382346cc18520cbdb7d7a6f6743c35f7af52aae0bec11d18992a",
+    "src/llama-model-loader.cpp": "efdb5f273bd1ab77301f2cadea1a5a804bafb28040aca033e45605a97a450242",
+    "src/llama-kv-cache-iswa.cpp": "567fe836543e1dd9cdd5b7cb3a91afd049c17c7010f0bddf9fe149b02b5243cb",
+    "src/llama-vocab.cpp": "82e8996cbbd81c1648b1f4946b5f481138aa897a1343dcd8b1a4abe8cff0b5fc",
+    "common/sampling.cpp": "f23f8d663932bfd73abac1bd5e99055fc6efb07e21ef27dd7e25af2f2da40bff",
+    "common/chat.cpp": "ed5db316e93459c6528526633b11943f4b4611634c773b4eab30a66c1f4a91b3",
+    "common/chat-auto-parser-generator.cpp": "9f76ec58eb8e7aa8d2c40df1be0a75ba2e90a0486fc347f6a00e73b4457d1df4",
+    "ggml/src/ggml-cuda/ggml-cuda.cu": "af947e45946d0c47cfae9e056f589a25b61892e4273decf0a893e2dcad48d065"
+  },
+  "native_static_support": {
+    "converter_registers_Unified_to_GEMMA4": true,
+    "48_layer_size_label": "LLM_TYPE_UNKNOWN",
+    "label_alone_is_not_execution_blocker": true,
+    "generic_loader_graph_has_no_31B_type_gate": true,
+    "actual_12B_GGUF_header_or_runtime_verified": false,
+    "native_source_or_binary_rebuild_justified_by_current_metadata": false
+  },
+  "resource_plan_sha256": "1e6880e827723567ebda907ccc3f00f9d70f63931a5bc0c7adeb279544089eb3",
+  "bounds": {
+    "weight_payload_downloads": 0,
+    "range_weight_requests": 0,
+    "tokenizer_encode_decode_calls": 0,
+    "template_render_calls": 0,
+    "native_compiles_or_calls": 0,
+    "GPU_or_model_HTTP_calls": 0,
+    "dataset_or_model_result_reads": 0,
+    "production_edits": 0,
+    "package_installs": 0,
+    "cache_cleanup": 0
+  }
+}

@@ -1,0 +1,408 @@
+{
+  "lifecycle": "FROZEN_BEFORE_NATIVE_GEMMA4_12B_EXPOSED_DIAGNOSTIC",
+  "candidate_variant": "gemma4-12b-qat-q4_0-carried-contract-v1",
+  "model_id": "google/gemma-4-12B-it-qat-q4_0-gguf",
+  "model_revision": "29d097773436b69ff9feafd636ab4cf873786537",
+  "tokenizer_revision": "29d097773436b69ff9feafd636ab4cf873786537",
+  "served_model": "neurobuild-gemma4-12b-qat-q4-0",
+  "gold_status": "AUTO-GENERATED / NOT HUMAN VERIFIED",
+  "dataset": "evaluations/requirement_hardening_v1_exposed_regression.jsonl",
+  "split": "development",
+  "cases": 120,
+  "ready_gold": 62,
+  "nonready_gold": 58,
+  "warmups_per_run": 5,
+  "trials_per_case": 1,
+  "expected_http_calls": 125,
+  "pipeline": "single",
+  "generation_contract": "2.0",
+  "protocol": "llama_cpp_json_schema",
+  "sampling_profile": "gemma4_nonthinking_llama_cpp",
+  "sampling_request_parameters": {
+    "temperature": 1.0,
+    "top_p": 0.95,
+    "top_k": 64,
+    "min_p": 0.0,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "repeat_last_n": 0,
+    "seed": 42,
+    "samplers": [
+      "temperature",
+      "top_k",
+      "top_p",
+      "min_p"
+    ]
+  },
+  "enable_thinking": false,
+  "reasoning_parser": "deepseek",
+  "max_tokens": 768,
+  "timeout_seconds": 120,
+  "max_model_len": 4096,
+  "concurrency": 1,
+  "maximum_calls_per_case": 1,
+  "gate_targets": {
+    "schema_required": 120,
+    "schema_denominator": 120,
+    "semantic_required_at_least": 114,
+    "semantic_denominator": 120,
+    "critical_model_ready_fp_required": 0,
+    "critical_model_ready_fp_denominator": 58,
+    "unsafe_accepted_ready_total_required": 0,
+    "unsafe_accepted_ready_total_denominator": 120
+  },
+  "prompt": "prompts/requirement_generation_v2_v2.txt",
+  "generation_schema": "schemas/requirement_generation_v2_decision_branches.schema.json",
+  "canonical_schema": "schemas/semantic_requirement.schema.json",
+  "chat_template_override": null,
+  "original_embedded_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+  "effective_chat_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+  "application_input_output_nfc_repair": false,
+  "cpu_context_report": "var/research/native-gemma4-12b-contract/cpu-carry-forward.json",
+  "cpu_context_archive": "evaluations/results/phase5x/gemma4-12b-cpu-preflight/contract/cpu-carry-forward.json",
+  "runtime_metadata": "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/runtime_metadata.json",
+  "public_smoke_report": "evaluations/results/phase5x/gemma4-12b-native-public-smoke-epoch1/report.json",
+  "resource_probe_report": "evaluations/results/phase5x/gemma4-12b-native-resource-epoch1/report.json",
+  "sampling_behavior": {
+    "http_recipe_equal": true,
+    "full_sampling_equivalent": false,
+    "additional_suppressed_ids": [
+      258883,
+      258882
+    ],
+    "suppression_eog_disjoint": true,
+    "native_effect": "Model-owned negative-infinity logit bias before the unchanged HTTP sampling recipe"
+  },
+  "runtime_epoch_snapshot": {
+    "pid": 3697702,
+    "start_ticks": 480288365,
+    "guard_started_at_utc": "2026-09-20T15:48:00.053772+00:00"
+  },
+  "tokenizer_contract": {
+    "model_id": "google/gemma-4-12B-it-qat-q4_0-gguf",
+    "model_revision": "29d097773436b69ff9feafd636ab4cf873786537",
+    "candidate_variant": "gemma4-12b-qat-q4_0-carried-contract-v1",
+    "cpu_proof_sha256": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f",
+    "cpu_proof_kind": "GEMMA4_12B_CPU_CONTRACT_CARRY_FORWARD",
+    "cpu_proof_status": "CARRIED_FORWARD_BY_EXACT_INPUT_EQUIVALENCE",
+    "chat_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+    "tokenizer_json_sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+    "tokenizer_contract": "carried_forward_by_exact_typed_tokenizer_and_effective_input_equivalence",
+    "historical_measurements": {
+      "measured_model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+      "measured_revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+      "measured_gguf_sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+      "original_status": "PASS",
+      "measurement_status_for_new_candidate": "CARRIED_FORWARD_BY_EXACT_INPUT_EQUIVALENCE",
+      "public_contract": {
+        "status": "PASS",
+        "kind": "GEMMA4_NATIVE_CONTRACT_CPU_PREFLIGHT",
+        "schema_cases_accepted": 10,
+        "schema_cases_rejected": 20,
+        "native_final_content_exact_cases": 10,
+        "native_grammar_generation_prompt_prefilled": true,
+        "native_grammar_prefill_bytes": 41,
+        "core_dump_limit_zero": true,
+        "native_sampling_schema_binding": true,
+        "native_request_grammar_nonempty": true,
+        "grammar_lazy": false,
+        "grammar_triggers": 1,
+        "native_fence_rejection_cases": 4,
+        "artificial_thought_split_cases": 1,
+        "final_json_bytes_unchanged": true,
+        "native_grammar_bytes": 6461,
+        "standalone_grammar_bytes": 4248,
+        "native_request_prompt_bytes": 9171,
+        "model_context_created": false,
+        "backend_init_called": false,
+        "weight_tensors_loaded": false,
+        "native_tokenization": "NOT_RUN",
+        "discarded_stderr_bytes": 0
+      },
+      "official_tokenizer_parity": {
+        "status": "PASS",
+        "case_count": 20,
+        "id_match_count": 20,
+        "native_original_roundtrip_count": 20
+      },
+      "splits": {
+        "exposed120": {
+          "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+          "input_count": 120,
+          "min_input_tokens": 2339,
+          "max_input_tokens": 2646,
+          "max_input_plus_output": 3414,
+          "bundle_sha256": "a22a2dc11b66006544b0b521cc074dd60d1322c5127649c67662139917e1a519"
+        },
+        "v2_length80": {
+          "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+          "input_count": 80,
+          "min_input_tokens": 2360,
+          "max_input_tokens": 2593,
+          "max_input_plus_output": 3361,
+          "bundle_sha256": "4cd947414eb26e953fb55b37138c96cbab44359f1670b7e2d0cbe45bc6b511b8"
+        }
+      }
+    },
+    "new_cpu_executions": {
+      "native_public": 0,
+      "vocab": 0,
+      "context": 0,
+      "model_inference": 0,
+      "http": 0,
+      "gpu": 0
+    },
+    "sampling_behavior": {
+      "http_recipe_equal": true,
+      "full_sampling_equivalent": false,
+      "additional_suppressed_ids": [
+        258883,
+        258882
+      ],
+      "suppression_eog_disjoint": true,
+      "native_effect": "Model-owned negative-infinity logit bias before the unchanged HTTP sampling recipe"
+    },
+    "normalization_limitation": {
+      "official_hf_literal_u2581_raw_roundtrip": false,
+      "reference": "tokenizer_fixture.normalization_witness",
+      "global_unicode_roundtrip_guarantee": false,
+      "input_output_repair": false
+    },
+    "literal_u2581_witness_status": "FAIL_NATIVE_ORIGINAL_ROUNDTRIP",
+    "application_input_output_nfc_repair": false,
+    "cpu_proof_refs": {
+      "old_header": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/header-v2.json",
+        "sha256": "d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756"
+      },
+      "new_header": {
+        "path": "var/reports/gemma4-12b-gguf-header.json",
+        "sha256": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0"
+      },
+      "tokenizer_comparison": {
+        "path": "var/reports/gemma4-12b-saved-tokenizer-comparison.json",
+        "sha256": "a6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481"
+      },
+      "source_equivalence": {
+        "path": "var/research/gemma12-gemma-branch-source-equivalence.json",
+        "sha256": "c21cbd6102933e1511f51625a88471b85caf8d9192dd3fe01fcd4ac644a37f20"
+      },
+      "historical_aggregate": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/final-cpu-proof.json",
+        "sha256": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d"
+      },
+      "public_contract": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-proof.json",
+        "sha256": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334"
+      },
+      "vocab": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-vocab-v2-proof.json",
+        "sha256": "70886f2ad74ef3758fe839f13b4b6740e22cb749f8f0989a98ea376382cc09c6"
+      },
+      "vocab_context": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/vocab-context-v2-proof.json",
+        "sha256": "06ef550b4ea48b3c3c65d631dafca06c85bd3d350311888b9bc5c86630caf64a"
+      },
+      "tokenizer_fixture": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/tokenizer-fixture.json",
+        "sha256": "42b2a10fdc4ebc066acb878a5a9e0c9e407affe0b91bc7d32145d8d360dc13e5"
+      },
+      "normalization_witness": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/normalization-witness-proof.json",
+        "sha256": "bbb9ed28cdae06bb07a3f66949c2e23e59728324f74440be82b567f0a8662e73"
+      },
+      "historical_cpu_build": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/build-v2.json",
+        "sha256": "1b6dce0e85790b267ec2514da8c81158c76b9d01a27aa6c2e584787a160e67ee"
+      },
+      "historical_cpp": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/validator_v2.cpp",
+        "sha256": "fecf647d431a3af0137f5e9459ddd8afece4e571d4a6a240dc2f4929acf9f20d"
+      }
+    },
+    "cpu_source_sha256": {
+      "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+      "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+    },
+    "cpu_checks_rerun": false
+  },
+  "normalization_limitation": {
+    "official_hf_literal_u2581_raw_roundtrip": false,
+    "reference": "tokenizer_fixture.normalization_witness",
+    "global_unicode_roundtrip_guarantee": false,
+    "input_output_repair": false
+  },
+  "source_ancestor_commit": "fa3d337871f2d8078a6145b3a3632a0ddeab7ce6",
+  "frozen_at_utc": "2026-09-20T15:53:20.955735+00:00",
+  "sha256": {
+    "docs/hardening_v2_dataset.md": "5f5865b314f419b26374b6047a6f1bef09901b3ac3c1b073f30109d10ea6e9b1",
+    "docs/reviews/phase5x_holdout_v2_gold_review.md": "35a2649959be5bf22cf4ba23b244a95e9a8bee951b0c4f99c28bfd5231dab203",
+    "evaluations/generate_requirement_hardening_v2.py": "e60fd6d15242bd3c82c9a7ef06ca4f39eef6b335c4b6925f2e0045c4ccf5f487",
+    "evaluations/hardening_v2_dataset_freeze.json": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+    "evaluations/hardening_v2_human_review.csv": "732f9aa9ab897f681bcbcba9b26978ee63e0f351b5b67890acdc897ceda30fa7",
+    "evaluations/hardening_v2_input_exposure_addendum.json": "1d44048c86d3a26cec093e6f1d5748ed13e1283de6a4f73a28ba592dc103b682",
+    "evaluations/hardening_v2_manifest.json": "7a6291fe16f9bcf5c2fce824235ba14a1698b0527c9dbdaf5f78643182ddde5e",
+    "evaluations/hardening_v2_model_output_exposure_record.json": "25c080827a6d57aa6bc864495e537490dc7fa48b3ccf91df297a47b9815d447b",
+    "evaluations/requirement_hardening_v1_exposed_regression.jsonl": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "evaluations/requirement_hardening_v2_holdout.jsonl": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+    "evaluations/requirement_hardening_v2_references.json": "a7ea36bf65b0d9b643de2a4e1ed52ca94b764bc241ec25c653e5e1f29fb76c19",
+    "evaluations/results/phase5x/gemma4-12b-cpu-preflight/contract/cpu-carry-forward.json": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f",
+    "evaluations/results/phase5x/gemma4-12b-cpu-preflight/header.json": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0",
+    "evaluations/results/phase5x/gemma4-12b-cpu-preflight/tokenizer-comparison.json": "a6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481",
+    "evaluations/results/phase5x/gemma4-12b-native-public-smoke-epoch1/report.json": "042ed74b7c23ebcd084c36579fd39f4e5ca0680960a2b49da7d45f2e8b2d5e5f",
+    "evaluations/results/phase5x/gemma4-12b-native-resource-epoch1/report.json": "b2edfb4c0fc73615a456b97547690b75138f01310a042fb8141767d3388666c5",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/launch_config.json": "03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/listeners.json": "056f5a0ae82d83502edf76b83835092fa53fca7623f5f105f31c67bdb6604076",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/resource_report.json": "cb35db98aae6b5bfcfd3c725f541418109f32e3824da03a2ce84226f8597604a",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/runtime_metadata.json": "6efd2f49f7601ac80de0e0816d2cc5e2ed91c04ed7a211ea4d40bab87f2e5cd4",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/startup.json": "9949a39bb15dff4aa3d195f72f354b2055fb92407ab0a19b040f0f4842993213",
+    "evaluations/results/phase5x/gemma4-12b-preparation/regression/backend.log.txt": "2652a0b4cc990b9e97cfbe1a9840c00232b2c5036e1c1783a964d209b6d73916",
+    "evaluations/results/phase5x/gemma4-12b-preparation/regression/result.json": "f2b00ee159ab4f723f72af18d41413e54f8580a6e5af3f56a193e3f44e1c0988",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/build-v2.json": "1b6dce0e85790b267ec2514da8c81158c76b9d01a27aa6c2e584787a160e67ee",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/final-cpu-proof.json": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/normalization-witness-proof.json": "bbb9ed28cdae06bb07a3f66949c2e23e59728324f74440be82b567f0a8662e73",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-proof.json": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-vocab-v2-proof.json": "70886f2ad74ef3758fe839f13b4b6740e22cb749f8f0989a98ea376382cc09c6",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/tokenizer-fixture.json": "42b2a10fdc4ebc066acb878a5a9e0c9e407affe0b91bc7d32145d8d360dc13e5",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/validator_v2.cpp": "fecf647d431a3af0137f5e9459ddd8afece4e571d4a6a240dc2f4929acf9f20d",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/vocab-context-v2-proof.json": "06ef550b4ea48b3c3c65d631dafca06c85bd3d350311888b9bc5c86630caf64a",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/header-v2.json": "d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756",
+    "evaluations/results/phase5x/holdout-v2-preflight/independent_cpu_context_proof.json": "cc2b9b33de01f38c1ac949ffa303da3c9402edc3b04ac1d514a5126900d0cfbc",
+    "evaluations/results/phase5x/holdout-v2-preflight/independent_gold_review.json": "3dd0e61cb033470c1929bb12eaf92919e92b0f3bb753be51b0a71d4997c7bbc8",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "runtime/models/gemma4-12b-qat-q4-0.json": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990",
+    "schemas/requirement_generation_v2.schema.json": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "scripts/evaluate_requirements.py": "48b919e8ef9ec41ee2765c66fd5d752202248f53502616ec01d687be87f42f24",
+    "scripts/gpu_preflight.py": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb",
+    "scripts/llama_server.py": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "scripts/native_model_bootstrap.py": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf",
+    "scripts/verify_model_listeners.py": "2d7771d414a7faae4138ea555349d1f7f111d36498ad9815f64ac51910d758dd",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "tests/test_native_requirement_evaluation.py": "1bb28fd6cc1b208e21a2693933febd337958055dc90d5d566c91dbdefb470fe7",
+    "var/reports/gemma4-12b-gguf-header.json": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0",
+    "var/reports/gemma4-12b-saved-tokenizer-comparison.json": "a6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481",
+    "var/reports/llama-cuda-build-verified.json": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+    "var/reports/llama-source-bootstrap.json": "4802877b1f067c17a3fb2e4fe1cc0f3605773b6fba56900aa2c80699739751f6",
+    "var/research/gemma12-first-diagnostic-draft/contract.py": "74a3c237a55e27bd19d81a0e5cc7005f7909f8ba7c2246727a697c7ccae96f6f",
+    "var/research/gemma12-first-diagnostic-draft/evidence.py": "ca242430da7a5fa57de93c1b2654e14eb89878e1af6b24a9fcd51e51b8d59b46",
+    "var/research/gemma12-first-diagnostic-draft/freeze_native_gemma12_diagnostic.py": "8fdae08ce15ef47e01bfa30411900a06fe8b69364fdeb0f64daee65fd9b17eee",
+    "var/research/gemma12-first-diagnostic-draft/replay_native_gemma12_exposed.py": "b96c007643e553bb99ad27d711dea62344976892dbd487419b400a280427ff49",
+    "var/research/gemma12-gemma-branch-source-equivalence.json": "c21cbd6102933e1511f51625a88471b85caf8d9192dd3fe01fcd4ac644a37f20",
+    "var/research/gemma12-runtime-activation-binding.json": "9e0db49c46bbd30d81fcb6001f749fc42124e87b6b160bdd75fa23d31b626f31",
+    "var/research/gemma12-runtime-activation.patch": "df845651f0fbfb00a8a8bc837db33f30468073e892c3b02896e25c567a18278f",
+    "var/research/gemma12-runtime-carry-consumer-controls.json": "836f1421ca51f75d1db5a9fdd1732662e3c57d0dcf9f941dafd2f5a21b32677d",
+    "var/research/gemma4-12b-native-launch-epoch1.json": "03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812",
+    "var/research/gemma4_12b_runtime_probe.py": "69c90fbbab9ee2a5f9db45723be6be7ebc544f44622b191bba76f3a7afc62d4d",
+    "var/research/native-gemma4-12b-contract/cpu-carry-forward.json": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f",
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63",
+    "var/research/run_native_gemma4_12b_epoch1_probe.py": "10ca99d2f7e70b3cd5d1e0019afaea1a87cf9c9aaa66845aa62cfef0077ad2b4",
+    "var/research/test_gemma12_runtime_carry_consumer.py": "dbd47e2ee642f3cc31c49827aeeed122a1b3a38441afe572da94d0db307e99fc"
+  },
+  "freeze_worktree_head_commit": "fa3d337871f2d8078a6145b3a3632a0ddeab7ce6",
+  "guard_time_observation": {
+    "guard_max_seconds": 7200,
+    "elapsed_seconds_at_freeze": 301.018,
+    "remaining_seconds_at_freeze": 6898.982,
+    "first_request_requires_fresh_root_time_decision": true,
+    "meaning": "Own guard lifetime observation, not a promised125-call completion duration."
+  },
+  "historical_cpu_measurements": {
+    "measured_model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+    "measured_revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+    "measured_gguf_sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+    "original_status": "PASS",
+    "measurement_status_for_new_candidate": "CARRIED_FORWARD_BY_EXACT_INPUT_EQUIVALENCE",
+    "public_contract": {
+      "status": "PASS",
+      "kind": "GEMMA4_NATIVE_CONTRACT_CPU_PREFLIGHT",
+      "schema_cases_accepted": 10,
+      "schema_cases_rejected": 20,
+      "native_final_content_exact_cases": 10,
+      "native_grammar_generation_prompt_prefilled": true,
+      "native_grammar_prefill_bytes": 41,
+      "core_dump_limit_zero": true,
+      "native_sampling_schema_binding": true,
+      "native_request_grammar_nonempty": true,
+      "grammar_lazy": false,
+      "grammar_triggers": 1,
+      "native_fence_rejection_cases": 4,
+      "artificial_thought_split_cases": 1,
+      "final_json_bytes_unchanged": true,
+      "native_grammar_bytes": 6461,
+      "standalone_grammar_bytes": 4248,
+      "native_request_prompt_bytes": 9171,
+      "model_context_created": false,
+      "backend_init_called": false,
+      "weight_tensors_loaded": false,
+      "native_tokenization": "NOT_RUN",
+      "discarded_stderr_bytes": 0
+    },
+    "official_tokenizer_parity": {
+      "status": "PASS",
+      "case_count": 20,
+      "id_match_count": 20,
+      "native_original_roundtrip_count": 20
+    },
+    "splits": {
+      "exposed120": {
+        "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+        "input_count": 120,
+        "min_input_tokens": 2339,
+        "max_input_tokens": 2646,
+        "max_input_plus_output": 3414,
+        "bundle_sha256": "a22a2dc11b66006544b0b521cc074dd60d1322c5127649c67662139917e1a519"
+      },
+      "v2_length80": {
+        "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+        "input_count": 80,
+        "min_input_tokens": 2360,
+        "max_input_tokens": 2593,
+        "max_input_plus_output": 3361,
+        "bundle_sha256": "4cd947414eb26e953fb55b37138c96cbab44359f1670b7e2d0cbe45bc6b511b8"
+      }
+    }
+  },
+  "new_cpu_executions": {
+    "native_public": 0,
+    "vocab": 0,
+    "context": 0,
+    "model_inference": 0,
+    "http": 0,
+    "gpu": 0
+  },
+  "regression": {
+    "kind": "GEMMA12_EXACT_NATIVE_IDENTITY_REGRESSION",
+    "exit_code": 0,
+    "started_at_utc": "2026-09-20T15:20:49.142879+00:00",
+    "elapsed_wall_seconds": 22.006879932247102,
+    "log_path": "var/phase5x-gemma12-binding-regression.log",
+    "log_sha256": "2652a0b4cc990b9e97cfbe1a9840c00232b2c5036e1c1783a964d209b6d73916",
+    "real_postgresql": true,
+    "real_ifcopenshell": true,
+    "headless": true,
+    "cuda_visible_devices": "",
+    "source_sha256": {
+      "scripts/evaluate_requirements.py": "48b919e8ef9ec41ee2765c66fd5d752202248f53502616ec01d687be87f42f24",
+      "tests/test_native_requirement_evaluation.py": "1bb28fd6cc1b208e21a2693933febd337958055dc90d5d566c91dbdefb470fe7",
+      "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780"
+    },
+    "reason": "New exact Gemma12/Q4_0 allowlist binding and rejection coverage; first regression after this production change."
+  },
+  "prior_v2_model_output_exposure_record": "evaluations/hardening_v2_model_output_exposure_record.json",
+  "decision_policy": "Raw final decision before validation; no retry/repair/fallback; unknown preserves all denominators.",
+  "limits": [
+    "Exposed synthetic regression; auto-generated gold is not human verified.",
+    "Historical Gemma31 CPU observations carried forward; no new public/vocab/context execution.",
+    "Suppression2 changes full native sampling; official literalU+2581 limitation retained.",
+    "Only the new12 single-epoch GPU evidence applies to runtime; RTX5090 remains unverified."
+  ]
+}

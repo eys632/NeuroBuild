@@ -1,0 +1,48 @@
+{
+  "kind": "GEMMA12_RUNNING_MANIFEST_INDEPENDENT_REVIEW",
+  "status": "MANIFEST_CONSISTENT_QUALITY_PENDING",
+  "material_findings": [],
+  "run_id": "20260920T155657Z-430e9203623a477eb655af9521bec051",
+  "created_at_utc": "2026-09-20T15:56:57.378926+00:00",
+  "manifest_path": "var/runs/20260920T155657Z-430e9203623a477eb655af9521bec051/manifest.json",
+  "manifest_sha256": "f45a608f7f0c34080c64c9fca05765a289d4e21ccfd45fba007fee5507567d9e",
+  "source_commit": "302edf1d4d7927ab502cec1971f41d64f4c9cc54",
+  "git_dirty": false,
+  "freeze_sha256": "3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c",
+  "runtime_metadata_sha256": "6efd2f49f7601ac80de0e0816d2cc5e2ed91c04ed7a211ea4d40bab87f2e5cd4",
+  "model_id": "google/gemma-4-12B-it-qat-q4_0-gguf",
+  "revision": "29d097773436b69ff9feafd636ab4cf873786537",
+  "protocol": "llama_cpp_json_schema",
+  "profile": "gemma4_nonthinking_llama_cpp",
+  "planned_counts": {
+    "cases": 120,
+    "warmups": 5,
+    "trials_per_case": 1,
+    "http_calls": 125
+  },
+  "gates": {
+    "schema_required": 120,
+    "schema_denominator": 120,
+    "semantic_required_at_least": 114,
+    "semantic_denominator": 120,
+    "critical_model_ready_fp_required": 0,
+    "critical_model_ready_fp_denominator": 58,
+    "unsafe_accepted_ready_total_required": 0,
+    "unsafe_accepted_ready_total_denominator": 120
+  },
+  "source_and_evidence_hash_fields_matched": 10,
+  "all_manifest_runtime_fields_equal_frozen_runtime": true,
+  "same_epoch_pins": {
+    "pid": 3697702,
+    "start_ticks": 480288365,
+    "guard_started_at_utc": "2026-09-20T15:48:00.053772+00:00"
+  },
+  "not_claimed": [
+    "Completed calls or quality metrics",
+    "Current process liveness",
+    "Fresh GPU/runtime measurement"
+  ],
+  "dataset_or_result_body_reads": 0,
+  "model_http_gpu_native_calls": 0,
+  "tests_or_replays": 0
+}

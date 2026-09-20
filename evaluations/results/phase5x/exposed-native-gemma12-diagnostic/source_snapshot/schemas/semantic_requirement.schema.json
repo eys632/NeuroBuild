@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NeuroBuild semantic requirement 1.0",
+  "description": "Generation shape only. Mandatory backend validation also checks decision/operation consistency, exact source evidence, lexical values and project-axis context. A valid result never grants human approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "decision", "target_text", "operation", "reason"],
+  "properties": {
+    "schema_version": {"type": "string", "enum": ["1.0"]},
+    "decision": {"type": "string", "enum": ["READY", "CLARIFICATION", "UNSUPPORTED"]},
+    "target_text": {"type": "string"},
+    "operation": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "coordinate_frame", "instruction_text", "dx", "dy"],
+          "properties": {
+            "kind": {"type": "string", "enum": ["MOVE_FURNITURE"]},
+            "coordinate_frame": {"type": "string", "enum": ["PROJECT_WORLD_XY"]},
+            "instruction_text": {"type": "string"},
+            "dx": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/axis"}]},
+            "dy": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/axis"}]}
+          }
+        }
+      ]
+    },
+    "reason": {"anyOf": [{"type": "null"}, {"type": "string"}]}
+  },
+  "$defs": {
+    "axis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "unit", "evidence"],
+      "properties": {
+        "value": {"type": "string"},
+        "unit": {"type": "string", "enum": ["m", "cm", "mm"]},
+        "evidence": {"type": "string"}
+      }
+    }
+  }
+}

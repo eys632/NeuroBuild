@@ -1,0 +1,1316 @@
+{
+  "status": "PASS",
+  "meaning": "Saved-result replay/accounting consistency, not adoption",
+  "diagnostic_gate": "FAIL",
+  "diagnostic_gate_counts": {
+    "schema": 120,
+    "quote_adapter": 118,
+    "canonical_schema": 118,
+    "parser": 118,
+    "semantic": 112,
+    "raw_fp": 3,
+    "unsafe": 1,
+    "false_negative": 0,
+    "raw_observed": 120
+  },
+  "trials": 120,
+  "warmups": 5,
+  "retained_generation_json_replayed": {
+    "warmups": 5,
+    "trials": 120
+  },
+  "unretained_response_rows": {
+    "warmups": 0,
+    "trials": 0
+  },
+  "retained_stages_and_trial_metrics_exact": true,
+  "frozen_evaluate_trial_exact_on_retained_rows": true,
+  "metrics": {
+    "json_parse_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "schema_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "parser_accepted": {
+      "numerator": 118,
+      "denominator": 120,
+      "rate": 0.9833333333333333,
+      "wilson_95": [
+        0.941264037027841,
+        0.9954174354340789
+      ]
+    },
+    "semantic_rubric_correct": {
+      "numerator": 112,
+      "denominator": 120,
+      "rate": 0.9333333333333333,
+      "wilson_95": [
+        0.8739486959646967,
+        0.9658346931390938
+      ]
+    },
+    "generation_schema_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "adapter_accepted": {
+      "numerator": 118,
+      "denominator": 120,
+      "rate": 0.9833333333333333,
+      "wilson_95": [
+        0.941264037027841,
+        0.9954174354340789
+      ]
+    },
+    "legacy_schema_valid": {
+      "numerator": 118,
+      "denominator": 120,
+      "rate": 0.9833333333333333,
+      "wilson_95": [
+        0.941264037027841,
+        0.9954174354340789
+      ]
+    },
+    "critical_fp_model_ready": {
+      "numerator": 3,
+      "denominator": 58,
+      "rate": 0.05172413793103448,
+      "wilson_95": [
+        0.017746134659410502,
+        0.14139401190842663
+      ]
+    },
+    "critical_fp_accepted_ready": {
+      "numerator": 1,
+      "denominator": 58,
+      "rate": 0.017241379310344827,
+      "wilson_95": [
+        0.0030500384460675004,
+        0.09140858093468013
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "nonready_gold_raw_decision_observed": {
+      "numerator": 58,
+      "denominator": 58,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9378821442127971,
+        1.0
+      ]
+    },
+    "critical_fn_accepted_ready": {
+      "numerator": 0,
+      "denominator": 62,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.058344072101372484
+      ]
+    },
+    "accepted_incorrect_move_on_ready_gold": {
+      "numerator": 0,
+      "denominator": 62,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.058344072101372484
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 1,
+      "denominator": 120,
+      "rate": 0.008333333333333333,
+      "wilson_95": [
+        0.0014725557333420923,
+        0.045696291245049675
+      ]
+    },
+    "target_preservation": {
+      "numerator": 121,
+      "denominator": 125,
+      "rate": 0.968,
+      "wilson_95": [
+        0.9206059306276999,
+        0.9874868608613065
+      ]
+    },
+    "unit_value_extraction": {
+      "numerator": 124,
+      "denominator": 124,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9699513846593223,
+        0.9999999999999999
+      ]
+    },
+    "latency_all": {
+      "count": 120,
+      "mean_seconds": 2.5779288289447626,
+      "p95_seconds": 2.9468396371230483
+    },
+    "latency_parser_accepted": {
+      "count": 118,
+      "mean_seconds": 2.580006224632074,
+      "p95_seconds": 2.9703058023005724
+    },
+    "errors": {
+      "UNGROUNDED_REQUIREMENT": 1,
+      "INVALID_MODEL_OUTPUT": 1
+    },
+    "tool_execution": "NOT_PERFORMED",
+    "decode_tokens_per_second": null,
+    "ttft_seconds": null,
+    "clarification_detection": {
+      "precision": {
+        "numerator": 18,
+        "denominator": 18,
+        "rate": 1.0,
+        "wilson_95": [
+          0.8241207763533425,
+          1.0
+        ]
+      },
+      "recall": {
+        "numerator": 18,
+        "denominator": 23,
+        "rate": 0.782608695652174,
+        "wilson_95": [
+          0.5809651698373599,
+          0.9033602197341379
+        ]
+      },
+      "f1": 0.878048780487805
+    },
+    "unsupported_detection": {
+      "precision": {
+        "numerator": 34,
+        "denominator": 37,
+        "rate": 0.918918918918919,
+        "wilson_95": [
+          0.7869932065071162,
+          0.9720394258995521
+        ]
+      },
+      "recall": {
+        "numerator": 34,
+        "denominator": 35,
+        "rate": 0.9714285714285714,
+        "wilson_95": [
+          0.8546691276638632,
+          0.9949385081445556
+        ]
+      },
+      "f1": 0.9444444444444445
+    },
+    "completion_tokens_per_end_to_end_second": 33.88702292805042,
+    "token_timing_trial_count": 120,
+    "case_consistency": {
+      "A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-B08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-C08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-G08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-H04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-H06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-I05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-I08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      }
+    }
+  },
+  "warmup_metrics_separate": {
+    "json_parse_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "schema_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "parser_accepted": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "semantic_rubric_correct": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "generation_schema_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "adapter_accepted": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "legacy_schema_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "critical_fp_model_ready": {
+      "numerator": 0,
+      "denominator": 3,
+      "rate": 0.0,
+      "wilson_95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+      ]
+    },
+    "critical_fp_accepted_ready": {
+      "numerator": 0,
+      "denominator": 3,
+      "rate": 0.0,
+      "wilson_95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "nonready_gold_raw_decision_observed": {
+      "numerator": 3,
+      "denominator": 3,
+      "rate": 1.0,
+      "wilson_95": [
+        0.4385029682449546,
+        1.0
+      ]
+    },
+    "critical_fn_accepted_ready": {
+      "numerator": 0,
+      "denominator": 2,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.6576197724933469
+      ]
+    },
+    "accepted_incorrect_move_on_ready_gold": {
+      "numerator": 0,
+      "denominator": 2,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.6576197724933469
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 0,
+      "denominator": 5,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.43448246478317476
+      ]
+    },
+    "target_preservation": {
+      "numerator": 4,
+      "denominator": 4,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5101091635454027,
+        1.0
+      ]
+    },
+    "unit_value_extraction": {
+      "numerator": 4,
+      "denominator": 4,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5101091635454027,
+        1.0
+      ]
+    },
+    "latency_all": {
+      "count": 5,
+      "mean_seconds": 2.368320648744702,
+      "p95_seconds": 2.5555016538128257
+    },
+    "latency_parser_accepted": {
+      "count": 5,
+      "mean_seconds": 2.368320648744702,
+      "p95_seconds": 2.5555016538128257
+    },
+    "errors": {},
+    "tool_execution": "NOT_PERFORMED",
+    "decode_tokens_per_second": null,
+    "ttft_seconds": null,
+    "clarification_detection": {
+      "precision": {
+        "numerator": 2,
+        "denominator": 2,
+        "rate": 1.0,
+        "wilson_95": [
+          0.34238022750665303,
+          1.0
+        ]
+      },
+      "recall": {
+        "numerator": 2,
+        "denominator": 2,
+        "rate": 1.0,
+        "wilson_95": [
+          0.34238022750665303,
+          1.0
+        ]
+      },
+      "f1": 1.0
+    },
+    "unsupported_detection": {
+      "precision": {
+        "numerator": 1,
+        "denominator": 1,
+        "rate": 1.0,
+        "wilson_95": [
+          0.20654931437723745,
+          1.0
+        ]
+      },
+      "recall": {
+        "numerator": 1,
+        "denominator": 1,
+        "rate": 1.0,
+        "wilson_95": [
+          0.20654931437723745,
+          1.0
+        ]
+      },
+      "f1": 1.0
+    },
+    "completion_tokens_per_end_to_end_second": 30.485736818732157,
+    "token_timing_trial_count": 5,
+    "case_consistency": {
+      "A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      }
+    }
+  },
+  "raw_ready_observation_coverage": {
+    "all_trials": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "nonready_gold_trials": {
+      "numerator": 58,
+      "denominator": 58,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9378821442127971,
+        1.0
+      ]
+    },
+    "meaning": "Unknown is not safe non-READY; full denominators remain and unknown prevents gate PASS"
+  },
+  "unobserved_decisions_by_error": {
+    "warmups": {},
+    "trials": {}
+  },
+  "limitations": [],
+  "run_id": "20260920T155657Z-430e9203623a477eb655af9521bec051",
+  "runtime_variant": "gemma4-12b-qat-q4_0-carried-contract-v1",
+  "tokenizer_contract": {
+    "model_id": "google/gemma-4-12B-it-qat-q4_0-gguf",
+    "model_revision": "29d097773436b69ff9feafd636ab4cf873786537",
+    "candidate_variant": "gemma4-12b-qat-q4_0-carried-contract-v1",
+    "cpu_proof_sha256": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f",
+    "cpu_proof_kind": "GEMMA4_12B_CPU_CONTRACT_CARRY_FORWARD",
+    "cpu_proof_status": "CARRIED_FORWARD_BY_EXACT_INPUT_EQUIVALENCE",
+    "chat_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+    "tokenizer_json_sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+    "tokenizer_contract": "carried_forward_by_exact_typed_tokenizer_and_effective_input_equivalence",
+    "historical_measurements": {
+      "measured_model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+      "measured_revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+      "measured_gguf_sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+      "original_status": "PASS",
+      "measurement_status_for_new_candidate": "CARRIED_FORWARD_BY_EXACT_INPUT_EQUIVALENCE",
+      "public_contract": {
+        "status": "PASS",
+        "kind": "GEMMA4_NATIVE_CONTRACT_CPU_PREFLIGHT",
+        "schema_cases_accepted": 10,
+        "schema_cases_rejected": 20,
+        "native_final_content_exact_cases": 10,
+        "native_grammar_generation_prompt_prefilled": true,
+        "native_grammar_prefill_bytes": 41,
+        "core_dump_limit_zero": true,
+        "native_sampling_schema_binding": true,
+        "native_request_grammar_nonempty": true,
+        "grammar_lazy": false,
+        "grammar_triggers": 1,
+        "native_fence_rejection_cases": 4,
+        "artificial_thought_split_cases": 1,
+        "final_json_bytes_unchanged": true,
+        "native_grammar_bytes": 6461,
+        "standalone_grammar_bytes": 4248,
+        "native_request_prompt_bytes": 9171,
+        "model_context_created": false,
+        "backend_init_called": false,
+        "weight_tensors_loaded": false,
+        "native_tokenization": "NOT_RUN",
+        "discarded_stderr_bytes": 0
+      },
+      "official_tokenizer_parity": {
+        "status": "PASS",
+        "case_count": 20,
+        "id_match_count": 20,
+        "native_original_roundtrip_count": 20
+      },
+      "splits": {
+        "exposed120": {
+          "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+          "input_count": 120,
+          "min_input_tokens": 2339,
+          "max_input_tokens": 2646,
+          "max_input_plus_output": 3414,
+          "bundle_sha256": "a22a2dc11b66006544b0b521cc074dd60d1322c5127649c67662139917e1a519"
+        },
+        "v2_length80": {
+          "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+          "input_count": 80,
+          "min_input_tokens": 2360,
+          "max_input_tokens": 2593,
+          "max_input_plus_output": 3361,
+          "bundle_sha256": "4cd947414eb26e953fb55b37138c96cbab44359f1670b7e2d0cbe45bc6b511b8"
+        }
+      }
+    },
+    "new_cpu_executions": {
+      "native_public": 0,
+      "vocab": 0,
+      "context": 0,
+      "model_inference": 0,
+      "http": 0,
+      "gpu": 0
+    },
+    "sampling_behavior": {
+      "http_recipe_equal": true,
+      "full_sampling_equivalent": false,
+      "additional_suppressed_ids": [
+        258883,
+        258882
+      ],
+      "suppression_eog_disjoint": true,
+      "native_effect": "Model-owned negative-infinity logit bias before the unchanged HTTP sampling recipe"
+    },
+    "normalization_limitation": {
+      "official_hf_literal_u2581_raw_roundtrip": false,
+      "reference": "tokenizer_fixture.normalization_witness",
+      "global_unicode_roundtrip_guarantee": false,
+      "input_output_repair": false
+    },
+    "literal_u2581_witness_status": "FAIL_NATIVE_ORIGINAL_ROUNDTRIP",
+    "application_input_output_nfc_repair": false,
+    "cpu_proof_refs": {
+      "old_header": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/header-v2.json",
+        "sha256": "d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756"
+      },
+      "new_header": {
+        "path": "var/reports/gemma4-12b-gguf-header.json",
+        "sha256": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0"
+      },
+      "tokenizer_comparison": {
+        "path": "var/reports/gemma4-12b-saved-tokenizer-comparison.json",
+        "sha256": "a6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481"
+      },
+      "source_equivalence": {
+        "path": "var/research/gemma12-gemma-branch-source-equivalence.json",
+        "sha256": "c21cbd6102933e1511f51625a88471b85caf8d9192dd3fe01fcd4ac644a37f20"
+      },
+      "historical_aggregate": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/final-cpu-proof.json",
+        "sha256": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d"
+      },
+      "public_contract": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-proof.json",
+        "sha256": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334"
+      },
+      "vocab": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-vocab-v2-proof.json",
+        "sha256": "70886f2ad74ef3758fe839f13b4b6740e22cb749f8f0989a98ea376382cc09c6"
+      },
+      "vocab_context": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/vocab-context-v2-proof.json",
+        "sha256": "06ef550b4ea48b3c3c65d631dafca06c85bd3d350311888b9bc5c86630caf64a"
+      },
+      "tokenizer_fixture": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/tokenizer-fixture.json",
+        "sha256": "42b2a10fdc4ebc066acb878a5a9e0c9e407affe0b91bc7d32145d8d360dc13e5"
+      },
+      "normalization_witness": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/normalization-witness-proof.json",
+        "sha256": "bbb9ed28cdae06bb07a3f66949c2e23e59728324f74440be82b567f0a8662e73"
+      },
+      "historical_cpu_build": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/build-v2.json",
+        "sha256": "1b6dce0e85790b267ec2514da8c81158c76b9d01a27aa6c2e584787a160e67ee"
+      },
+      "historical_cpp": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/validator_v2.cpp",
+        "sha256": "fecf647d431a3af0137f5e9459ddd8afece4e571d4a6a240dc2f4929acf9f20d"
+      }
+    },
+    "cpu_source_sha256": {
+      "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+      "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+    },
+    "cpu_checks_rerun": false
+  },
+  "native_protocol": "llama_cpp_json_schema",
+  "source_snapshot_commit": "302edf1d4d7927ab502cec1971f41d64f4c9cc54",
+  "source_snapshot_sha256": "70796723f66fb967c1cf9d687ad22910faf852b91e19b134c42805081824c62e",
+  "source_hashes_verified": {
+    "dataset": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "prompt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schema": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "canonical_schema": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "generation_adapter": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "parser": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "client": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "scorer": "48b919e8ef9ec41ee2765c66fd5d752202248f53502616ec01d687be87f42f24",
+    "weight_manifest": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990"
+  },
+  "original_artifact_sha256": {
+    "/home/a202192020/NeuroBuild_v2/var/runs/20260920T155657Z-430e9203623a477eb655af9521bec051/manifest.json": "f45a608f7f0c34080c64c9fca05765a289d4e21ccfd45fba007fee5507567d9e",
+    "/home/a202192020/NeuroBuild_v2/evaluations/hardening_v1_exposed_native_gemma4_12b_diagnostic_freeze.json": "3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/runtime_metadata.json": "6efd2f49f7601ac80de0e0816d2cc5e2ed91c04ed7a211ea4d40bab87f2e5cd4",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/launch_config.json": "03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812",
+    "var/research/native-gemma4-12b-contract/cpu-carry-forward.json": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/final-cpu-proof.json": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-proof.json": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334",
+    "evaluations/results/phase5x/gemma4-cpu-preflight/contract/normalization-witness-proof.json": "bbb9ed28cdae06bb07a3f66949c2e23e59728324f74440be82b567f0a8662e73",
+    "var/reports/gemma4-12b-gguf-header.json": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0",
+    "var/reports/gemma4-12b-saved-tokenizer-comparison.json": "a6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/startup.json": "9949a39bb15dff4aa3d195f72f354b2055fb92407ab0a19b040f0f4842993213",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/resource_report.json": "cb35db98aae6b5bfcfd3c725f541418109f32e3824da03a2ce84226f8597604a",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/listeners.json": "056f5a0ae82d83502edf76b83835092fa53fca7623f5f105f31c67bdb6604076",
+    "evaluations/results/phase5x/gemma4-12b-native-public-smoke-epoch1/report.json": "042ed74b7c23ebcd084c36579fd39f4e5ca0680960a2b49da7d45f2e8b2d5e5f",
+    "evaluations/results/phase5x/gemma4-12b-native-resource-epoch1/report.json": "b2edfb4c0fc73615a456b97547690b75138f01310a042fb8141767d3388666c5",
+    "runtime/models/gemma4-12b-qat-q4-0.json": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990",
+    "evaluations/results/phase5x/gemma4-12b-preparation/regression/result.json": "f2b00ee159ab4f723f72af18d41413e54f8580a6e5af3f56a193e3f44e1c0988",
+    "evaluations/hardening_v2_dataset_freeze.json": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+    "/home/a202192020/NeuroBuild_v2/var/runs/20260920T155657Z-430e9203623a477eb655af9521bec051/results.json": "43d3fcd24d4606d8a7f3145ce8b350eb45e7af0a0acbb4dd7d4feb5a8e353d2c",
+    "/home/a202192020/NeuroBuild_v2/var/runs/20260920T155657Z-430e9203623a477eb655af9521bec051/dataset.json": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc"
+  },
+  "native_freeze_sha256": "3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c",
+  "cpu_context_proof_sha256": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f",
+  "normalization_limitation": {
+    "official_hf_literal_u2581_raw_roundtrip": false,
+    "reference": "tokenizer_fixture.normalization_witness",
+    "global_unicode_roundtrip_guarantee": false,
+    "input_output_repair": false
+  },
+  "v2_preservation": {
+    "artifacts_hashed_without_parsing": 9,
+    "freeze_sha256": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+    "input_exposure_addendum_sha256": "1d44048c86d3a26cec093e6f1d5748ed13e1283de6a4f73a28ba592dc103b682",
+    "model_output_exposure_record_sha256": "25c080827a6d57aa6bc864495e537490dc7fa48b3ccf91df297a47b9815d447b",
+    "limitation": "Prior V2 model outputs already exposed; no V2 result replay or input parsing in this Gemma12 exposed120 replay"
+  },
+  "replay_helper_sha256": "b96c007643e553bb99ad27d711dea62344976892dbd487419b400a280427ff49",
+  "replay_origin": {
+    "pre_run_frozen": true,
+    "source_copy_sha256": "386ba1d07bcba38c8d88509da5743443fb1330c3c866d39117f71195549f2576",
+    "core_functions_ast_unchanged": [
+      "load_snapshot",
+      "replay_row",
+      "replay_groups"
+    ],
+    "timeout_representation": "Finite numeric120 int/float accepted; bool/nonfinite rejected"
+  },
+  "latencies_and_token_usage": "Recorded observations only; no remeasurement",
+  "runtime_limit": "Archive hash/epoch binding, not new process/weight attestation or per-process VRAM",
+  "quality_limit": "Exposed synthetic regression, not human reviewed or independent unseen evaluation",
+  "model_calls": 0,
+  "network_calls": 0,
+  "gpu_calls": 0,
+  "weight_payload_reads": 0
+}

@@ -1,0 +1,140 @@
+{
+  "kind": "GEMMA12_OWN_EPOCH_STOP_DEFINITION_PREPARATION",
+  "status": "PREPARED_BLOCKED_ACTUAL_EPOCH_AND_FINAL_HELPER_PINS_PENDING",
+  "created_at_utc": "2026-09-20T15:47:22.851080+00:00",
+  "original_helper": {
+    "path": "var/research/stop_native_glm47_epoch2.py",
+    "sha256": "f7d27dede5f9eb860dd181620c03877b39c60f497a8c0cd907bcf5d26f1361b7"
+  },
+  "new_helper": {
+    "path": "var/research/stop_native_gemma12_epoch1.py",
+    "sha256": "04bb900cbff0b1fb136c77881056fc8f80dd3d3fb599c603772bdcb3abf76969"
+  },
+  "diff": {
+    "path": "var/research/stop_native_gemma12_epoch1.patch",
+    "sha256": "bfa69a51fae9a82576927c3c66952bf6236889c28dc53fcd2e0c2454b59e081e"
+  },
+  "changed_identity_fields": [
+    {
+      "before": "GLM47 Flash epoch2",
+      "after": "Gemma4 12B epoch1 (PREPARED: identity pins pending)",
+      "occurrences": 1
+    },
+    {
+      "before": "GUARD = 3683401",
+      "after": "GUARD = None",
+      "occurrences": 1
+    },
+    {
+      "before": "GUARD_TICKS = 479902187",
+      "after": "GUARD_TICKS = None",
+      "occurrences": 1
+    },
+    {
+      "before": "CHILD = 3683504",
+      "after": "CHILD = None",
+      "occurrences": 1
+    },
+    {
+      "before": "CHILD_TICKS = 479906575",
+      "after": "CHILD_TICKS = None",
+      "occurrences": 1
+    },
+    {
+      "before": "var/research/glm47_flash_runtime_probe_v2.py",
+      "after": "var/research/gemma4_12b_runtime_probe.py",
+      "occurrences": 1
+    },
+    {
+      "before": "HELPER_SHA = '4399c90d32e0e472455bae5e907c8a479fdac550fed46978d8001c6d894d69ea'",
+      "after": "HELPER_SHA = None",
+      "occurrences": 1
+    },
+    {
+      "before": "var/research/glm47-flash-native-launch-epoch2.json",
+      "after": "var/research/gemma4-12b-native-launch-epoch1.json",
+      "occurrences": 2
+    },
+    {
+      "before": "CONFIG_SHA = 'd0a5ae9663d9caf4420651a018ce687325b0e8fc7fb154963e948b4251e56994'",
+      "after": "CONFIG_SHA = '03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812'",
+      "occurrences": 1
+    },
+    {
+      "before": "var/reports/glm47-flash-epoch2-stop-request.json",
+      "after": "var/reports/gemma4-12b-epoch1-stop-request.json",
+      "occurrences": 1
+    },
+    {
+      "before": "var/research/glm47-native-epoch2-own-identity.json",
+      "after": "var/research/gemma4-12b-native-epoch1-own-identity.json",
+      "occurrences": 1
+    },
+    {
+      "before": "IDENTITY_SHA = 'b20bab7820b78bd9f7c35eb4f0eb311f6c2c495f7c0974e574afcf39b39b1ded'",
+      "after": "IDENTITY_SHA = None",
+      "occurrences": 1
+    },
+    {
+      "before": "'2026-09-20T14:43:57.927254+00:00'",
+      "after": "GUARD_STARTED_AT_UTC",
+      "occurrences": 2
+    },
+    {
+      "before": "glm47_pinned_stop_probe",
+      "after": "gemma12_pinned_stop_probe",
+      "occurrences": 1
+    },
+    {
+      "before": "probe.glm_binding(config)",
+      "after": "probe.gemma_binding(config)",
+      "occurrences": 1
+    }
+  ],
+  "additional_constant": {
+    "GUARD_STARTED_AT_UTC": null
+  },
+  "first_main_action": "OWN_EPOCH_PINS_PENDING check; None pins fail before identity file/helper/proc/pidfd/signals",
+  "inverse_identity_mapping_and_pending_check_removal_recovers_original_bytes": true,
+  "algorithm_preserved": [
+    "saved own identity hash/UID/PID/startticks/ppid/guard start",
+    "pinned helper/config/model guard binding",
+    "guard argv/exe/cwd plus child ppid and starttimes",
+    "verified x86_64 pidfd_open434/pidfd_send_signal424",
+    "identity recheck after acquiring guard pidfd",
+    "only SIGTERM to exact guard; no direct child or broad process signals",
+    "exclusive stop request receipt"
+  ],
+  "planned_paths": {
+    "runtime_helper": "var/research/gemma4_12b_runtime_probe.py",
+    "config": "var/research/gemma4-12b-native-launch-epoch1.json",
+    "guard_report_from_current_config": "var/reports/gemma4-12b-native-epoch1.json",
+    "saved_identity": "var/research/gemma4-12b-native-epoch1-own-identity.json",
+    "stop_receipt": "var/reports/gemma4-12b-epoch1-stop-request.json"
+  },
+  "current_config_sha256": "03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812",
+  "must_fill_after_actual_own_launch": [
+    "GUARD",
+    "GUARD_TICKS",
+    "CHILD",
+    "CHILD_TICKS",
+    "GUARD_STARTED_AT_UTC",
+    "IDENTITY_SHA",
+    "HELPER_SHA (final active runtime helper)"
+  ],
+  "must_reconfirm_if_configuration_changes": [
+    "CONFIG_SHA",
+    "exact CONFIG path and guard argv path",
+    "runtime helper gemma_binding API"
+  ],
+  "verification": "AST parse and mechanical inverse text comparison only; not an operational safety test",
+  "execution_counts": {
+    "helper_imports": 0,
+    "main_calls": 0,
+    "tests": 0,
+    "process_reads": 0,
+    "signals": 0,
+    "native_or_GPU_or_HTTP_calls": 0
+  },
+  "old_helper_unchanged": true
+}

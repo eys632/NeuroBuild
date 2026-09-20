@@ -1304,3 +1304,25 @@ Actual freezer1회 exit0, frozen67files, SHA3d8ef116b569d660926c42b8f84834bed61c
 Sourceancestorfa3d337, exactsource/datasetSHA/carry/new7sameepoch/418근거/1trial125calls/기존gate연결.
 Replaycore3 AST unchanged, finite120 int/float 유지. 품질응답 관측 전 정의를 고정했다.
 기존 평가·재생·startup/resource 반복0, 새 품질 호출은 아직0회다.
+
+
+### 2026-09-21 KST — Gemma12 첫 품질 실패·재검산·GPU3 반환
+
+302edf1d4d7927ab502cec1971f41d64f4c9cc54 push·원격일치·clean 및동결67hash와currentownepoch를확인했다.
+남은guard시간6710.309초에서`evaluate_requirements.py --trials 1 --warmups 5` 최초품질평가를실행했다.
+Run20260920T155657Z-430e9203623a477eb655af9521bec051,CLIexit0/stderr0,120trial+5warmup완료.
+Results43d3fcd24d4606d8a7f3145ce8b350eb45e7af0a0acbb4dd7d4feb5a8e353d2c,
+semantic112/rawFP3/unsafe1로1차FAIL. Mean2.577928829s/p952.946839637s,parser118,grounding1/invalid1.
+
+Exactown guard3697642에준비한stophelper7e23136e47f4dbf9be9480f64d583215f951a3561a3e88dfe6af5540a9014275를
+한번호출하여pidfdSIGTERM,child3697702 exit0/reaped/STOPPED를확인했다.
+Finalguard44ebe0f38b7ac554a3dbfa7092e6d24b5f74008275025ced88815e1b12f99929,
+862.954초/1553표본/aggregatepeak7724/minfree28650MiB. Poststopb7ebb2ab0c2dd5e9d311dc18a0e04e44f23813e7ee79d1160c79afdd7db2d9b1,
+5회free36373/used3965/util0,ownPID전후부재. 다른사용자process신호·광범위종료·GPU0/1/2 fallback없음.
+
+Frozenreplayb96c0076…를이번새125행에한번실행,exit0/0.365s/stderr0,proofa080e21f9c771ad4c7c768323cf496cdd6a99ab38571e8ddee0fe85a2ac7e99b.
+Source snapshot30 Gitblobs/record70796723… 및원본·동결67파일전후불변. AccountingPASS는qualityFAIL을바꾸지않는다.
+실패8건저장판정분석473443e33f5cf961073bd08425611ac3048e1827ef1beede6dadc8f08131539d,재채점없음.
+결과archive57entries/56exactcopies/859417B,integritye68714cd5de60c7bd77944eb47473f4147c721118a8ff690081c3663da1e19c0.
+Production418회귀근거를source/Git동등성으로재사용(bc4bdd6f…52254),suite재실행0.
+기존완료평가·재생·runtime/public/vocab/context반복0,같은실패후보repeat/V2/미사용80접근0.

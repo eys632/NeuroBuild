@@ -1,0 +1,297 @@
+{
+  "kind": "GEMMA12_FIRST_QUALITY_RESULT_ARCHIVE_INTEGRITY",
+  "quality_gate": "FAIL",
+  "files": {
+    "results.json": {
+      "original_path": "var/runs/20260920T155657Z-430e9203623a477eb655af9521bec051/results.json",
+      "bytes": 266241,
+      "sha256": "43d3fcd24d4606d8a7f3145ce8b350eb45e7af0a0acbb4dd7d4feb5a8e353d2c"
+    },
+    "manifest.json": {
+      "original_path": "var/runs/20260920T155657Z-430e9203623a477eb655af9521bec051/manifest.json",
+      "bytes": 6295,
+      "sha256": "f45a608f7f0c34080c64c9fca05765a289d4e21ccfd45fba007fee5507567d9e"
+    },
+    "dataset.json": {
+      "original_path": "var/runs/20260920T155657Z-430e9203623a477eb655af9521bec051/dataset.json",
+      "bytes": 92253,
+      "sha256": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc"
+    },
+    "evaluation_cli.json": {
+      "original_path": "var/research/gemma12-first-quality-cli.log",
+      "bytes": 250,
+      "sha256": "4217d60e42a99cfa0d2e5415355e5c64274a4e75ab30a00d1c35a247a8312144"
+    },
+    "evaluation_cli.stderr.txt": {
+      "original_path": "var/research/gemma12-first-quality-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "first_quality_pre_run_decision.json": {
+      "original_path": "var/research/gemma12-first-quality-pre-run-decision.json",
+      "bytes": 901,
+      "sha256": "f8ed8bbf166f63a4c06de40a9087803004b73b14ee1496079ad7c409606cb854"
+    },
+    "running_manifest_independent_review.json": {
+      "original_path": "var/research/gemma12-running-manifest-independent-review.json",
+      "bytes": 1837,
+      "sha256": "6f185e0c5a56b71b76e7bf2db032491c5c8f81b37a38fc7a2a61d5638650a534"
+    },
+    "runtime_saved_evidence_independent_review.json": {
+      "original_path": "var/research/gemma12-live-evidence-independent-review.json",
+      "bytes": 5056,
+      "sha256": "ddf92fbb049b24d54c2f716d79d84484c383c8ba0101c74812e3a030cf15774f"
+    },
+    "independent_replay.json": {
+      "original_path": "var/review-tools/gemma12-exposed-review/independent_replay.json",
+      "bytes": 39656,
+      "sha256": "a080e21f9c771ad4c7c768323cf496cdd6a99ab38571e8ddee0fe85a2ac7e99b"
+    },
+    "replay_invocation.json": {
+      "original_path": "var/review-tools/gemma12-exposed-review/replay_invocation.json",
+      "bytes": 2284,
+      "sha256": "64670f6d110f32f4fc64aabd4dc2fe6989cdcb5825fc7a933d0a86f25cc9ccb9"
+    },
+    "replay_preparation.json": {
+      "original_path": "var/review-tools/gemma12-exposed-review/replay_preparation.json",
+      "bytes": 10496,
+      "sha256": "e32886fcb19acbfb8ea39a571cd516995288c415597d35a5670af1f9ab479d2b"
+    },
+    "resource_report_final.json": {
+      "original_path": "var/reports/gemma4-12b-native-epoch1.json",
+      "bytes": 5379,
+      "sha256": "44ebe0f38b7ac554a3dbfa7092e6d24b5f74008275025ced88815e1b12f99929"
+    },
+    "post_stop_gpu3.json": {
+      "original_path": "var/reports/gemma4-12b-epoch1-post-stop-gpu3.json",
+      "bytes": 2904,
+      "sha256": "b7ebb2ab0c2dd5e9d311dc18a0e04e44f23813e7ee79d1160c79afdd7db2d9b1"
+    },
+    "own_epoch_identity.json": {
+      "original_path": "var/research/gemma4-12b-native-epoch1-own-identity.json",
+      "bytes": 2266,
+      "sha256": "d8c5ba5d9f32775522dc176e7cae291d2398f17e915741210189fa95a8e06aa3"
+    },
+    "stop_request.json": {
+      "original_path": "var/reports/gemma4-12b-epoch1-stop-request.json",
+      "bytes": 731,
+      "sha256": "d8318aa660551d9b019e228606a38d068ac604ff9b4d7b5b8167c6bdcddf874e"
+    },
+    "stop_native_gemma12_epoch1.py": {
+      "original_path": "var/research/stop_native_gemma12_epoch1.py",
+      "bytes": 5620,
+      "sha256": "7e23136e47f4dbf9be9480f64d583215f951a3561a3e88dfe6af5540a9014275"
+    },
+    "stop_helper_preparation.json": {
+      "original_path": "var/research/stop_native_gemma12_epoch1-preparation.json",
+      "bytes": 4790,
+      "sha256": "43a4306d1f2600c566d7580fc54a08bcbee41d070bf3043a82644cb1b85055fc"
+    },
+    "stop_helper_final_pins.json": {
+      "original_path": "var/research/stop_native_gemma12_epoch1-final-pins.json",
+      "bytes": 1756,
+      "sha256": "8fcf9e0cba72f5c4508628fab90e2745d0d08b53f65daacf03bbc5be84a4bb21"
+    },
+    "stop_cli.json": {
+      "original_path": "var/research/gemma12-epoch1-stop-cli.log",
+      "bytes": 61,
+      "sha256": "9a46701c1d78169446d2962c0b5e545110ee9d8b4eb170594a6f49482332ed07"
+    },
+    "stop_cli.stderr.txt": {
+      "original_path": "var/research/gemma12-epoch1-stop-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "guard_cli.json": {
+      "original_path": "var/research/gemma12-native-epoch1-launch-cli.log",
+      "bytes": 5379,
+      "sha256": "44ebe0f38b7ac554a3dbfa7092e6d24b5f74008275025ced88815e1b12f99929"
+    },
+    "guard_cli.stderr.txt": {
+      "original_path": "var/research/gemma12-native-epoch1-launch-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "regression_carry_forward.json": {
+      "original_path": "var/research/gemma12-result-regression-carry-forward.json",
+      "bytes": 1347,
+      "sha256": "bc4bdd6f4e648668b1bcd9380df3bc40f03060af88b0edd1564eaced8dc52254"
+    },
+    "source_snapshot/snapshot.json": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/snapshot.json",
+      "bytes": 6890,
+      "sha256": "70796723f66fb967c1cf9d687ad22910faf852b91e19b134c42805081824c62e"
+    },
+    "source_snapshot/schemas/requirement_generation_v2.schema.json": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/schemas/requirement_generation_v2.schema.json",
+      "bytes": 1057,
+      "sha256": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c"
+    },
+    "source_snapshot/schemas/semantic_requirement.schema.json": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/schemas/semantic_requirement.schema.json",
+      "bytes": 1703,
+      "sha256": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94"
+    },
+    "source_snapshot/schemas/requirement_generation_v2_decision_branches.schema.json": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/schemas/requirement_generation_v2_decision_branches.schema.json",
+      "bytes": 4176,
+      "sha256": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+    },
+    "source_snapshot/evaluations/requirement_hardening_v1_exposed_regression.jsonl": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/evaluations/requirement_hardening_v1_exposed_regression.jsonl",
+      "bytes": 69888,
+      "sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b"
+    },
+    "source_snapshot/evaluations/hardening_v1_exposed_native_gemma4_12b_diagnostic_freeze.json": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/evaluations/hardening_v1_exposed_native_gemma4_12b_diagnostic_freeze.json",
+      "bytes": 23984,
+      "sha256": "3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c"
+    },
+    "source_snapshot/scripts/gpu_preflight.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/scripts/gpu_preflight.py",
+      "bytes": 10153,
+      "sha256": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb"
+    },
+    "source_snapshot/scripts/verify_model_listeners.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/scripts/verify_model_listeners.py",
+      "bytes": 9550,
+      "sha256": "2d7771d414a7faae4138ea555349d1f7f111d36498ad9815f64ac51910d758dd"
+    },
+    "source_snapshot/scripts/model_guard.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/scripts/model_guard.py",
+      "bytes": 11948,
+      "sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528"
+    },
+    "source_snapshot/scripts/evaluate_requirements.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/scripts/evaluate_requirements.py",
+      "bytes": 43278,
+      "sha256": "48b919e8ef9ec41ee2765c66fd5d752202248f53502616ec01d687be87f42f24"
+    },
+    "source_snapshot/scripts/llama_server.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/scripts/llama_server.py",
+      "bytes": 24178,
+      "sha256": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed"
+    },
+    "source_snapshot/scripts/native_model_bootstrap.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/scripts/native_model_bootstrap.py",
+      "bytes": 4797,
+      "sha256": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf"
+    },
+    "source_snapshot/prompts/requirement_generation_v2_v2.txt": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/prompts/requirement_generation_v2_v2.txt",
+      "bytes": 8974,
+      "sha256": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6"
+    },
+    "source_snapshot/evaluations/results/phase5x/gemma4-12b-preparation/metadata/provenance.json": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/evaluations/results/phase5x/gemma4-12b-preparation/metadata/provenance.json",
+      "bytes": 12932,
+      "sha256": "f6fa18ab48e18ca77e4a802a57c7e797e32e229f007592c260bfae8f8cf1d801"
+    },
+    "source_snapshot/evaluations/results/phase5x/gemma4-12b-preparation/metadata/qat-unquantized/chat_template.jinja": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/evaluations/results/phase5x/gemma4-12b-preparation/metadata/qat-unquantized/chat_template.jinja",
+      "bytes": 18683,
+      "sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4"
+    },
+    "source_snapshot/src/neurobuild/__init__.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/__init__.py",
+      "bytes": 84,
+      "sha256": "43ba9f0b620ffa4f960f4d83a7ce7fd9fbae9b8de96d71535926f8a48dbc8461"
+    },
+    "source_snapshot/src/neurobuild/application/__init__.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/application/__init__.py",
+      "bytes": 85,
+      "sha256": "d393a04c8462e6e1a2bdc6e012639716d4b30aa18a15ec6fddf169aaedcbd359"
+    },
+    "source_snapshot/src/neurobuild/application/workflow.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/application/workflow.py",
+      "bytes": 16129,
+      "sha256": "aadf8f561a4d19ee301dcdaf985631a6f470d86d463aec4f7053dfac50dffdf5"
+    },
+    "source_snapshot/src/neurobuild/application/requirements.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/application/requirements.py",
+      "bytes": 12385,
+      "sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a"
+    },
+    "source_snapshot/src/neurobuild/application/requirement_generation.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/application/requirement_generation.py",
+      "bytes": 7055,
+      "sha256": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198"
+    },
+    "source_snapshot/src/neurobuild/application/requirement_facts.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/application/requirement_facts.py",
+      "bytes": 4976,
+      "sha256": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/__init__.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/infrastructure/__init__.py",
+      "bytes": 79,
+      "sha256": "a7cfa5c500a5a587d0fd48bdae32bb951769d7ca525b4b36b1dce6cc0f516739"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/local_model.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/infrastructure/local_model.py",
+      "bytes": 24256,
+      "sha256": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/artifacts.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/infrastructure/artifacts.py",
+      "bytes": 12722,
+      "sha256": "52edb48022d20eed6dff6d0b9d779ff25d03acbacb9764331dbb1945f740bbe9"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/staged_requirement.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/infrastructure/staged_requirement.py",
+      "bytes": 11980,
+      "sha256": "7e79b1c488a00e3f81b443fb32f86019f510a274228f56058c4eeae66038efee"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/persistence.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/infrastructure/persistence.py",
+      "bytes": 13732,
+      "sha256": "872ffe7c16ea7b098e6e4b076ce4ced35132987ff6df99701cc283f9485f154d"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/ifc_engine.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/infrastructure/ifc_engine.py",
+      "bytes": 16860,
+      "sha256": "13acf3bf932ca49d495f8e3e718e6de376237b31f2192eb92bc6ce0d61a7c608"
+    },
+    "source_snapshot/src/neurobuild/domain/__init__.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/domain/__init__.py",
+      "bytes": 86,
+      "sha256": "152b0592fd08f164e27f99228c033cf131916ddb7bd2b2124fba24511e19be75"
+    },
+    "source_snapshot/src/neurobuild/domain/contracts.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/domain/contracts.py",
+      "bytes": 13912,
+      "sha256": "107edcaec115d7dbada810ed83398a114b1958b8658bc704bf3e9f7ff6b8e458"
+    },
+    "source_snapshot/src/neurobuild/domain/errors.py": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/src/neurobuild/domain/errors.py",
+      "bytes": 310,
+      "sha256": "32bb3ba6da83a35706759fe288e41bd490b5c1d56c071b4ec3de67207848b8aa"
+    },
+    "source_snapshot/runtime/models/gemma4-12b-qat-q4-0.json": {
+      "original_path": "var/review-tools/gemma12-exposed-review/source_snapshot/runtime/models/gemma4-12b-qat-q4-0.json",
+      "bytes": 618,
+      "sha256": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990"
+    },
+    "failure_analysis.json": {
+      "original_path": "var/research/gemma12-first-diagnostic-failure-analysis.json",
+      "bytes": 14971,
+      "sha256": "473443e33f5cf961073bd08425611ac3048e1827ef1beede6dadc8f08131539d"
+    },
+    "independent_replay.stderr.txt": {
+      "original_path": "var/review-tools/gemma12-exposed-review/independent_replay.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "README.md": {
+      "original_path": null,
+      "bytes": 1484,
+      "sha256": "5bbbf5a75f753206b597e9a49ecec838a768e88e3aa448f0317d39562a8334da"
+    }
+  },
+  "freeze_path": "evaluations/hardening_v1_exposed_native_gemma4_12b_diagnostic_freeze.json",
+  "freeze_sha256": "3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c",
+  "freeze_bound_files": 67,
+  "prior_completed_evaluations_or_replays_repeated": 0,
+  "same_candidate_additional_repetitions": 0,
+  "unused80_accesses": 0
+}

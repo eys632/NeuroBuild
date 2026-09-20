@@ -232,3 +232,20 @@ Epoch2 own server STOPPED/exit0/reaped,991.825s/1789samples/aggregatepeak17962/m
 종료 후5회 free36373/used3965/util0. 기존 runtime검사·평가 재생·416회귀suite 반복0회.
 같은 후보 추가 반복·V2·미사용holdout0, 다른 모델 비교 및 접근 재검토로 진행한다.
 누적 **27run/2360평가trial/135warmup**이며 합산 정확도나 독립 표본 수로 해석하지 않는다.
+
+
+## Native Gemma4-12B QAT 첫120개 단회 — 의미·안전 gate FAIL
+
+Run`20260920T155657Z-430e9203623a477eb655af9521bec051`, clean/pushed`302edf1d4d7927ab502cec1971f41d64f4c9cc54`.
+공식12B/Q4_0/nativef072/원본template/Gemma nonthinking T1/P.95/K64, 추가suppression2개를명시했다.
+Single2.0/promptv2/branchschema/output768/timeout120,120×1+warmup5이며67파일사전동결이다.
+Schema120/parser118/semantic112(93.33%)/rawFP3/58/acceptedFP1/58/unsafe1/120/FN0/62/raw관측120.
+Mean2.577928829s/p952.946839637s/warmup5of5,UNGROUNDED1/INVALID_MODEL_OUTPUT1/timeout0/truncation0.
+ResultsSHA43d3fcd24d4606d8a7f3145ce8b350eb45e7af0a0acbb4dd7d4feb5a8e353d2c.
+오류8건 중 방화문READY가수용됐고다른rawREADY2건은downstream에서차단됐다. 실제IFC실행없음.
+새125행firstoffline재생PASS·qualityFAIL, 기존진단/재생/CPUcorpus/runtime검사반복0회.
+OwnserverSTOPPED/exit0/reaped,862.954s/1553samples/aggregatepeak7724/minfree28650MiB,
+종료후5×free36373/used3965/util0. 같은후보추가반복·V2·미사용holdout접근0.
+[원본](../evaluations/results/phase5x/exposed-native-gemma12-diagnostic/README.md),
+[보고서](reports/phase5x_native_gemma12_diagnostic_report.md),[재검토](reviews/phase5x_native_gemma12_exposed_review.md).
+누적 **28run/2480평가trial/140warmup**이며 합산정확도나독립표본수로해석하지않는다.

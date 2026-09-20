@@ -1,0 +1,22 @@
+{
+  "kind": "GEMMA12_FIRST_SINGLE_QUALITY_PRE_RUN_DECISION",
+  "at_utc": "2026-09-20T15:56:29.776396+00:00",
+  "commit": "302edf1d4d7927ab502cec1971f41d64f4c9cc54",
+  "git_clean": true,
+  "remote_exact_verified": true,
+  "freeze_sha256": "3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c",
+  "frozen_files_verified": 67,
+  "guard_report_sha256": "44044d93f913932e9f65288b74c3c9f8d6152e9e9d4f366ca062ae0bff359bac",
+  "guard_elapsed_seconds": 489.691,
+  "guard_remaining_seconds": 6710.309,
+  "pid": 3697702,
+  "start_ticks": 480288365,
+  "trials": 1,
+  "warmups": 5,
+  "planned_http_calls": 125,
+  "quality_calls_before_decision": 0,
+  "public_resource_repeated": false,
+  "runtime_epoch": "epoch1",
+  "decision": "RUN_FIRST_SINGLE_DIAGNOSTIC",
+  "time_estimate_notice": "Remaining guard lifetime exceeds public125x2.602s plus preparation margin; not a worst-case125x120s guarantee."
+}

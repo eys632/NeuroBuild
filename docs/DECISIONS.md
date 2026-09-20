@@ -491,3 +491,21 @@ D046 실제 CPU 후속: header97a9bd3c… PASS, 저장 tokenizer 비교a6d70d93�
 현재 검증된 batch64 공통 정책을 유지해 운영 admission 예산은28,672MiB로 둔다.
 조건부 모델 추정18,432MiB와 추가10,240MiB 여유를 구분한다. 예산 하향 조정은
 현재 admission을 막지 않는 한 future optimization이며 새로운 Phase gate를 만들지 않는다.
+
+
+## D047 — Gemma12 자원 이점과 품질 실패 분리
+
+Gemma4-12B QAT의 첫120×1+warmup5 결과는 schema120/parser118/semantic112,
+rawFP3/58/acceptedFP1/58/unsafe1/120/FN0/62다. 의미≥114와rawFP0/unsafe0을 만족하지 못했다.
+평균2.577928829s/p952.946839637s 및 aggregatepeak7724MiB의 자원 관측은 품질 기준을 대체하지 않는다.
+방화문 READY수용1과 downstream에서 차단된rawREADY2도 원본 분모·판정 그대로 유지한다.
+새125행의 동결 source 첫 재검산은 일치했고 같은 후보 추가 반복·V2·미사용80 접근은0회다.
+Own guard에만 pidfd SIGTERM을 보내 exit0/reaped/STOPPED,5×GPU3 free36373/used3965/util0 복귀를 확인했다.
+Production은418회귀 PASS와 동일해 suite를 반복하지 않는다. 비필수 runtime 최적화는futurework다.
+
+다음Qwen3.6-35B-A3B 후보는 다른checkpoint가 동일 strict 추출·안전 조건을 동시에 만족하는지를 묻는다.
+Qwen3.8의노출PASS/V2FAIL로 개선이나 새학습계열의 다양성을 추정하지 않는다.
+저장shortlist의원본995ad96eacd98c81ed38be0c5b274b04031597b0와GGUFbaec3ebee244827cda0f4557eafa8b28f7545fa6을
+작은metadata 원본으로 먼저 확인한다. 공식presence1.5와기존neutral0의차이를숨기지않는다.
+Tokenizer/template/context/전체VRAM PASS자동승계 금지, 아직다운로드·GPU실행계획확정없음이다.
+Phase5.x미완료·모델미채택·Phase6미시작이며 다른 후보 비교를계속한다.

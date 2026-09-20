@@ -1,0 +1,128 @@
+{
+  "kind": "GEMMA12_COMPLETED_RESULT_ARCHIVE_FINAL_INDEPENDENT_READ_REVIEW",
+  "status": "PASS_NO_MATERIAL_BLOCKERS",
+  "at_utc": "2026-09-20T16:10:59.617394+00:00",
+  "archive_path": "evaluations/results/phase5x/exposed-native-gemma12-diagnostic",
+  "archive_integrity_sha256": "e68714cd5de60c7bd77944eb47473f4147c721118a8ff690081c3663da1e19c0",
+  "archive_entries_checked": 57,
+  "exact_original_copies_checked": 56,
+  "listed_bytes_checked": 859417,
+  "original_result_sha256": "43d3fcd24d4606d8a7f3145ce8b350eb45e7af0a0acbb4dd7d4feb5a8e353d2c",
+  "replay_sha256": "a080e21f9c771ad4c7c768323cf496cdd6a99ab38571e8ddee0fe85a2ac7e99b",
+  "freeze_sha256": "3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c",
+  "frozen_references_unchanged": 67,
+  "scope_of_unchanged_claim": "The 67 frozen source/metadata/evidence files and this new run originals were hashed; no historical result bodies were parsed or replayed.",
+  "quality_gate": "FAIL",
+  "accounting_replay_status_preserved": "PASS",
+  "trial_count": 120,
+  "warmup_count": 5,
+  "stored_metric_counts": {
+    "schema": 120,
+    "parser": 118,
+    "semantic": 112,
+    "raw_fp": [
+      3,
+      58
+    ],
+    "accepted_fp": [
+      1,
+      58
+    ],
+    "unsafe": [
+      1,
+      120
+    ],
+    "false_negative": [
+      0,
+      62
+    ],
+    "raw_observed": [
+      120,
+      120
+    ]
+  },
+  "latency_all": {
+    "count": 120,
+    "mean_seconds": 2.5779288289447626,
+    "p95_seconds": 2.9468396371230483
+  },
+  "stored_error_codes": {
+    "UNGROUNDED_REQUIREMENT": 1,
+    "INVALID_MODEL_OUTPUT": 1
+  },
+  "eight_failed_records_exactly_match_saved_rows": true,
+  "failure_ids": [
+    "HD-H01",
+    "HH-B07",
+    "HH-C07",
+    "HH-G07",
+    "HH-H03",
+    "HH-H05",
+    "HH-I04",
+    "HH-I07"
+  ],
+  "failure_categories": {
+    "lookup_routed_to_unsupported": 3,
+    "nonfurniture_ready_accepted": 1,
+    "fraction_raw_ready_blocked": 1,
+    "correct_rejection_target_omitted": 2,
+    "cancelled_moves_raw_ready_malformed_blocked": 1
+  },
+  "final_guard_sha256": "44ebe0f38b7ac554a3dbfa7092e6d24b5f74008275025ced88815e1b12f99929",
+  "post_stop_sha256": "b7ebb2ab0c2dd5e9d311dc18a0e04e44f23813e7ee79d1160c79afdd7db2d9b1",
+  "shutdown": {
+    "state": "STOPPED",
+    "reason": "STOP_REQUESTED",
+    "child_exit_code": 0,
+    "term_sent": true,
+    "kill_sent": true,
+    "child_reaped": true
+  },
+  "guard_lifetime": {
+    "elapsed_seconds": 862.954,
+    "watchdog_samples": 1553,
+    "aggregate_peak_mib": 7724,
+    "minimum_free_mib": 28650,
+    "measurement": "PermittedGPU3aggregate; not a per-process peak or hardcap"
+  },
+  "post_stop_observation": {
+    "sample_count": 5,
+    "free_mib_each": 36373,
+    "used_mib_each": 3965,
+    "utilization_percent_each": 0,
+    "saved_exact_owned_pids_absent": true,
+    "fresh_query_in_this_review": false
+  },
+  "document_sha256_at_review": {
+    "docs/STATUS.md": "fec353bc12e9ba3c4f198accc13246861d52ba6aa7de1876b4150f429eac9a9b",
+    "docs/reports/phase5x_native_gemma12_diagnostic_report.md": "d2599af547e3299f974c41f062c13e37840a5e5c285255bf1affcab0fb1672dc",
+    "docs/reviews/phase5x_native_gemma12_exposed_review.md": "573c4c08b320b524335eb77e14597b6a284a3d1399469e60e7956e8f9e38f35e",
+    "docs/DECISIONS.md": "857bb888c6573e762ad3c335c4776236a6b017b57619ee8a7895f1940843991c",
+    "docs/phase5x_experiment_register.md": "b23ebd11196341050ce47e9e7457b045435f55facaa2e6cba91efa087984e77a",
+    "docs/EXECUTION_LOG.md": "45c7f1ce248474de6d245cf82714ac5e7a68ea4276f08db1c4ceef2edf88a422"
+  },
+  "register_totals": {
+    "runs": 28,
+    "evaluation_trials": 2480,
+    "warmups": 140
+  },
+  "document_result_and_stop_scopes_consistent": true,
+  "new_report_and_review_local_links_valid": true,
+  "nonblocking_editorial_observation": "STATUS line3 preparation headline still predates the completed result; body correctly states FAIL/STOPPED. Root informed; not an evidence or accounting discrepancy.",
+  "review_execution_counts": {
+    "tests": 0,
+    "replays": 0,
+    "parser_adapter_scorer_calls": 0,
+    "native_model_calls": 0,
+    "http_calls": 0,
+    "gpu_queries": 0,
+    "process_queries": 0,
+    "signals": 0,
+    "new_or_unused_corpus_body_reads": 0
+  },
+  "limitations": [
+    "Saved-result row-field consistency check only; no second semantic scoring or model inference.",
+    "No broad revalidation of every historical archive; only the requested frozen67 closure.",
+    "Document hashes identify versions read, not a promise that root will not make later editorial changes."
+  ]
+}

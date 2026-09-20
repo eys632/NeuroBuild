@@ -1,0 +1,37 @@
+{
+  "kind": "GEMMA12_OWN_EPOCH_STOP_FINAL_PIN_BINDING",
+  "status": "PREPARED_NOT_INVOKED",
+  "created_at_utc": "2026-09-20T15:50:07.345850+00:00",
+  "helper_path": "var/research/stop_native_gemma12_epoch1.py",
+  "helper_sha256": "7e23136e47f4dbf9be9480f64d583215f951a3561a3e88dfe6af5540a9014275",
+  "prepared_source_path": "var/research/stop_native_gemma12_epoch1-prepared.py",
+  "prepared_source_sha256": "04bb900cbff0b1fb136c77881056fc8f80dd3d3fb599c603772bdcb3abf76969",
+  "changed_constants": {
+    "GUARD": 3697642,
+    "GUARD_TICKS": 480286400,
+    "CHILD": 3697702,
+    "CHILD_TICKS": 480288365,
+    "GUARD_STARTED_AT_UTC": "2026-09-20T15:48:00.053772+00:00",
+    "IDENTITY_SHA": "d8c5ba5d9f32775522dc176e7cae291d2398f17e915741210189fa95a8e06aa3",
+    "HELPER_SHA": "69c90fbbab9ee2a5f9db45723be6be7ebc544f44622b191bba76f3a7afc62d4d"
+  },
+  "saved_identity_path": "var/research/gemma4-12b-native-epoch1-own-identity.json",
+  "saved_identity_sha256": "d8c5ba5d9f32775522dc176e7cae291d2398f17e915741210189fa95a8e06aa3",
+  "config_path": "var/research/gemma4-12b-native-launch-epoch1.json",
+  "config_sha256": "03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812",
+  "runtime_helper_path": "var/research/gemma4_12b_runtime_probe.py",
+  "runtime_helper_sha256": "69c90fbbab9ee2a5f9db45723be6be7ebc544f44622b191bba76f3a7afc62d4d",
+  "functions_AST_unchanged": true,
+  "changed_constant_count": 7,
+  "diff_path": "var/research/stop_native_gemma12_epoch1-final-pins.patch",
+  "diff_sha256": "edff4c54d4c4aa89c7c811ac69c0e97700ab304125eae93195f5c5fb2632b261",
+  "actual_process_identity_requeried": false,
+  "calls": {
+    "helper_import": 0,
+    "main": 0,
+    "tests": 0,
+    "proc_reads": 0,
+    "signals": 0,
+    "native_GPU_HTTP": 0
+  }
+}

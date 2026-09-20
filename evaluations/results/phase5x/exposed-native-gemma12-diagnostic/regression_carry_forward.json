@@ -1,0 +1,30 @@
+{
+  "kind": "GEMMA12_COMPLETED_RESULT_REGRESSION_CARRY_FORWARD",
+  "status": "UNCHANGED_PRODUCTION_REUSES_418_PASS",
+  "created_at_utc": "2026-09-20T16:04:38.383082+00:00",
+  "original_regression_receipt": "evaluations/results/phase5x/gemma4-12b-preparation/regression/result.json",
+  "original_regression_receipt_sha256": "f2b00ee159ab4f723f72af18d41413e54f8580a6e5af3f56a193e3f44e1c0988",
+  "test_count": 418,
+  "skips": 0,
+  "original_run_seconds": 21.412,
+  "current_source_sha256": {
+    "scripts/evaluate_requirements.py": "48b919e8ef9ec41ee2765c66fd5d752202248f53502616ec01d687be87f42f24",
+    "tests/test_native_requirement_evaluation.py": "1bb28fd6cc1b208e21a2693933febd337958055dc90d5d566c91dbdefb470fe7",
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780"
+  },
+  "git_comparison_base": "00c5a2fb593fff30fe5239781200a9b135fa94ab",
+  "git_comparison_head": "302edf1d4d7927ab502cec1971f41d64f4c9cc54",
+  "git_scope": [
+    "src",
+    "scripts",
+    "tests",
+    "prompts",
+    "schemas",
+    "configs",
+    "pyproject.toml",
+    "runtime/models/gemma4-12b-qat-q4-0.json"
+  ],
+  "changed_files": [],
+  "new_suite_executions": 0,
+  "new_proof_interface_controls": "Header8 + savedcarry5 + consumer4 ran once before runtime; saved in prior checkpoints, not repeated now."
+}
