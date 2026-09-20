@@ -1,8 +1,8 @@
 # Phase 5.x 실제 평가 실행 목록
 
-최신 누적은 **27 run /2360 평가 trial /135 warmup 사례**다. 아래 초기16개와 당시3회 규칙은
-역사 기록이며, 현재는 사용자 지시에 따라 자동 전체3회 반복을 폐지했다.
-GLM 첫120개도 semantic104/120·rawFP1·unsafe1로 FAIL하여 같은 후보 반복·V2 없이 종료했다. 최신 항목은 문서 끝에 있다.
+최신 누적은 **29 run /2600 평가 trial /145 warmup 사례**다. 아래 초기3회 규칙은
+역사 기록이며 사용자 지시로 자동 전체3회 반복을 폐지했다. Qwen3.6 첫120개는 의미106/120으로
+FAIL했고 같은 후보 반복·V2 없이 종료했다. 최신 항목은 문서 끝에 있다.
 
 2026-09-20 KST 작성. **AUTO-GENERATED / NOT HUMAN VERIFIED**. 작성 시 보존된 development 실행 **16개, 평가 응답 960개**를 모두 정리했다. Launch/runtime/shutdown 기록과 protocol smoke는 평가 run에서 제외했다. 각 run의 warmup 5개, 총80개도 아래 분모에 포함하지 않는다.
 
@@ -249,3 +249,20 @@ OwnserverSTOPPED/exit0/reaped,862.954s/1553samples/aggregatepeak7724/minfree2865
 [원본](../evaluations/results/phase5x/exposed-native-gemma12-diagnostic/README.md),
 [보고서](reports/phase5x_native_gemma12_diagnostic_report.md),[재검토](reviews/phase5x_native_gemma12_exposed_review.md).
 누적 **28run/2480평가trial/140warmup**이며 합산정확도나독립표본수로해석하지않는다.
+
+
+## Native Qwen3.6-35B-A3B Q4_K_M 첫120개 단회 — 의미 gate FAIL
+
+Run `20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8`, clean/pushed `23b8d018c184c96e72165d212b8e840e3a75206f`.
+전용 native profile T.7/P.8/K20/presence1.5/window64/seed42, 원본 template/nativef072,
+single2.0/promptv2/branchschema/output768/timeout120. 69파일 동결 뒤120×1+warmup5다.
+Schema120/parser119/semantic106(88.33%)/rawFP0/58/acceptedFP0/58/unsafe0/120/FN11/62/raw관측120.
+Mean2.765226808s/p953.142153062s/warmup4of5, UNGROUNDED1/timeout0/truncation0.
+ResultsSHA853665ad56a746055c46abd1d57bec7f84283dcb6296300bd7d21d5cd201ea80.
+오류14건: 없는조건7/위치와방향혼동2/승인분리오해1/폐기축인용grounding1/승인우회분류1/대상범위2.
+이번 새125개 독립 재검산1회PASS, 기존 완료 평가·재생·CPU/runtime 검사는 반복0회다.
+OwnserverSTOPPED/childexit0/reaped,1212.637s/2205samples/aggregatepeak19854/minfree16520MiB,
+종료후5×free36373/used3965/util0. 같은후보반복·V2·미사용80 접근0, 변경없는422회귀 반복0.
+[원본](../evaluations/results/phase5x/exposed-native-qwen36-diagnostic/README.md),
+[보고서](reports/phase5x_native_qwen36_diagnostic_report.md), [독립 검토](reviews/phase5x_native_qwen36_exposed_review.md).
+누적 **29run/2600평가trial/145warmup**이며 합산 정확도나 독립 표본 수로 해석하지 않는다.

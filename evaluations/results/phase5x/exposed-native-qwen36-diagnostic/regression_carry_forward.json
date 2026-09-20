@@ -1,0 +1,30 @@
+{
+  "kind": "QWEN36_RESULT_REGRESSION_CARRY_FORWARD",
+  "created_at_utc": "2026-09-20T17:09:52.229274+00:00",
+  "status": "UNCHANGED_PRODUCTION_REUSES_422_PASS",
+  "original_regression_receipt": "var/research/qwen36-binding-regression-v2.json",
+  "original_regression_receipt_sha256": "5b75b7f81c147691b82fefa1032f0d28ee345b331bd3f92688d414859259ea30",
+  "test_count": 422,
+  "skips": 0,
+  "original_test_seconds": 20.758,
+  "current_source_sha256": {
+    "scripts/evaluate_requirements.py": "1915ee707cb6dca4f9f6927b760b0bdce1c1c5d6929837be489dafc97fb0cbfd",
+    "src/neurobuild/infrastructure/local_model.py": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+    "tests/test_native_requirement_evaluation.py": "c350555aad68267de789a797824cc3cbe645b2ea00d68b53026f94b892f3397d",
+    "tests/test_local_model.py": "fef278522273e4fbe0819dc7702bebe26da4ca39b7912b6c1ce7c48a8975f859"
+  },
+  "git_comparison_base": "424abd8d976fcc3936c3376863a5a69469f44dc7",
+  "git_comparison_head": "23b8d018c184c96e72165d212b8e840e3a75206f",
+  "git_scope": [
+    "src",
+    "scripts",
+    "tests",
+    "prompts",
+    "schemas",
+    "configs",
+    "pyproject.toml",
+    "runtime/models/qwen36-35b-a3b-q4-k-m.json"
+  ],
+  "changed_files": [],
+  "new_suite_executions": 0
+}

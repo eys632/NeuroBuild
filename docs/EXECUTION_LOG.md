@@ -1398,3 +1398,32 @@ public2fcc64b9…/2.707237813초, resource93bfba95…/10.769428756초, tokens332
 Freeze57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074/69files,
 120×1+warmup5/기존4gate/동일own epoch/새CPU1+historicalexposed120승계/422회귀를 사전고정했다.
 Replay core3 AST/source와 finite120 처리 불변. 이 시점 신규품질요청0, replay0이며 clean/pushed 평가commit에서만실행한다.
+
+
+### 2026-09-21 KST — Qwen3.6 첫 단회 FAIL·원본 보존·GPU3 반환
+
+Clean/pushed23b8d018c184c96e72165d212b8e840e3a75206f와 freeze57c6af28…/69파일, own epoch신원 확인 뒤
+`evaluate_requirements.py --protocol llama_cpp_json_schema --sampling-profile qwen36_nonthinking_llama_cpp --generation-contract 2.0 --pipeline single --warmups 5 --trials 1 --max-tokens 768 --timeout 120` 실행.
+Model/revision/runtime/dataset/prompt/schema는 사전 freeze와 일치한다. Startdecision에 guard잔여6361.977초,
+GPU3free16520/used23819/util0을 기록했으며 worstcase125×120 시간보장으로 주장하지 않았다.
+Run20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8 exit0/stderr0,120trial+5warmup 완료.
+Schema120/parser119/semantic106/rawFP0/unsafe0/FN11/raw관측120,mean2.765226808s/p953.142153062s.
+Warmup4/5,UNGROUNDED1/timeout0/truncation0. Results853665ad56a746055c46abd1d57bec7f84283dcb6296300bd7d21d5cd201ea80.
+
+의미FAIL 직후 `stop_native_qwen36_epoch1.py` 1회 exit0로 exact own guard3716484에 pidfdSIGTERM 요청.
+Finalguard d4cd9d39273c3ff8fec51cd370ec2dbd75b2295fae2763113d9ece3a5eab78b9 STOPPED/child3716721exit0/reaped,
+자체 process-group cleanup term_sent/kill_sent true 보존. 1212.637초/2205표본,baseline-relativeaggregatepeak19854/minfree16520.
+Poststop aa069c0e8a7da606da333c0e5028ed53ecf7ffe443b11cab5d069fe9e82e3134:5×free36373/used3965/util0,ownPIDs부재.
+타인신호/프로세스내용/GPU0·1·2 접근0, 같은후보추가반복/V2/unused80접근0.
+
+Exact30Gitblob snapshot a04983bb0bdc441218ced733f1f0cbee241a966dbd313705baacf0144e09fa91로
+NEW125개 frozen replay1회 exit0/0.365555s/stderr0,proofbeaa7f64340c25d3379d6894dd4299762d7b32ecacfef77cfb519726d1dbccf3.
+모든 저장판정/집계일치. 원래125개와 다른완료결과 재생0, scorer/gold수정0.
+실패14개 설명9f0f068d3964317c963c4d89178fd2633db718b71304dc9b4d8f732de35a4330 저장.
+Production/test가424abd8 준비의422PASS와 동일함을 확인한 carry5772ee792f31685b90e992940170292f2227b06bba12fda7ca311f425b337e4a,
+변경없는 suite반복0. Phase5.x미완료/모델미채택/Phase6미시작이다.
+다음 공식 Ministral3-14B Instruct 후보는 작은 metadata/source만 조사하며 새weight/GPU실행을 아직 확정하지 않았다.
+
+결과 archive는54개 원본 사본842,847B와 integrity8734be6659379587f94d7ea49cea04a755c5823888e4bc418ba580eb8fe566cb를 보존한다.
+문서 diff whitespace 검사는 통과했다. 전체 staged diff 검사에서는 frozen model_guard.py 원본의 EOF 빈 줄1건만 표시됐으며
+Git blob 원본 SHA 보존을 위해 변경하지 않았다. 환경/weight/cache/secret 제외를 확인했다.

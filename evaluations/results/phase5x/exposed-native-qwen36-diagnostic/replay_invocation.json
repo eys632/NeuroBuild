@@ -1,0 +1,52 @@
+{
+  "kind": "QWEN36_COMPLETED_FIRST_EXPOSED_REPLAY_INVOCATION",
+  "run": "var/runs/20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8",
+  "started_at_utc": "2026-09-20T17:14:41.333497+00:00",
+  "finished_at_utc": "2026-09-20T17:14:41.699073+00:00",
+  "argv": [
+    "/home/a202192020/NeuroBuild_v2/.conda/bin/python",
+    "-B",
+    "var/research/qwen36-first-diagnostic-draft/replay_native_qwen36_exposed.py",
+    "var/runs/20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8",
+    "--freeze",
+    "evaluations/hardening_v1_exposed_native_qwen36_diagnostic_freeze.json",
+    "--freeze-sha256",
+    "57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074",
+    "--source-commit",
+    "23b8d018c184c96e72165d212b8e840e3a75206f",
+    "--snapshot",
+    "var/review-tools/qwen36-exposed-review/source_snapshot",
+    "--snapshot-sha256",
+    "a04983bb0bdc441218ced733f1f0cbee241a966dbd313705baacf0144e09fa91",
+    "--candidate-variant",
+    "qwen36-gguf-raw-unicode-v1",
+    "--completed-run"
+  ],
+  "cwd": "/home/a202192020/NeuroBuild_v2",
+  "environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "RLIMIT_CORE": 0
+  },
+  "timeout_seconds": 120,
+  "elapsed_seconds": 0.36555479373782873,
+  "exit_code": 0,
+  "error": null,
+  "input_sha256_before_invocation": {
+    "var/research/qwen36-first-diagnostic-draft/replay_native_qwen36_exposed.py": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5",
+    "evaluations/hardening_v1_exposed_native_qwen36_diagnostic_freeze.json": "57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074",
+    "var/review-tools/qwen36-exposed-review/source_snapshot/snapshot.json": "a04983bb0bdc441218ced733f1f0cbee241a966dbd313705baacf0144e09fa91",
+    "var/runs/20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8/results.json": "853665ad56a746055c46abd1d57bec7f84283dcb6296300bd7d21d5cd201ea80"
+  },
+  "stdout_path": "var/review-tools/qwen36-exposed-review/independent_replay.json",
+  "stdout_bytes": 37255,
+  "stdout_sha256": "beaa7f64340c25d3379d6894dd4299762d7b32ecacfef77cfb519726d1dbccf3",
+  "stderr_path": "var/review-tools/qwen36-exposed-review/independent_replay.stderr.txt",
+  "stderr_bytes": 0,
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "replay_attempts_for_this_new_run": 1,
+  "old_replays": 0,
+  "model_calls": 0,
+  "http_calls": 0,
+  "gpu_calls": 0
+}

@@ -1,0 +1,48 @@
+{
+  "kind": "QWEN36_FIRST_RUNNING_MANIFEST_INDEPENDENT_REVIEW",
+  "status": "PASS_READ_ONLY_CONFIG_NOT_COMPLETION_OR_QUALITY",
+  "run_id": "20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8",
+  "manifest_sha256": "254df7484851d5fcc387707bc6a9960cb100ce2d2ca0e8d93e1750e5ab5b3d04",
+  "freeze_sha256": "57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074",
+  "git": {
+    "commit": "23b8d018c184c96e72165d212b8e840e3a75206f",
+    "dirty": false
+  },
+  "freeze_precedes_run": true,
+  "freeze_bound_files": 69,
+  "bound_file_hash_mismatches_in_preceding_read_only_scan": [],
+  "manifest_source_hash_count": 9,
+  "manifest_sources_match_frozen_paths": true,
+  "runtime_metadata_sha256": "595a8a1e85759e0a28ad7d0cdfa2b425aebffdf2f622eeae5ae6721d6534230b",
+  "runtime_matches_manifest_exactly": true,
+  "runtime_epoch": {
+    "pid": 3716721,
+    "start_ticks": 480679676,
+    "guard_started_at_utc": "2026-09-20T16:52:44.502432+00:00"
+  },
+  "scope": {
+    "case_count": 120,
+    "trials_per_case": 1,
+    "warmups": 5,
+    "planned_http_calls": 125,
+    "timeout_seconds": 120.0,
+    "max_tokens": 768,
+    "concurrency": 1,
+    "candidate_variant": "qwen36-gguf-raw-unicode-v1",
+    "automatic_trials_or_retries": 0,
+    "automatic_v2_or_unused_holdout": false
+  },
+  "cpu_context_scope": "PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120",
+  "actions": {
+    "inference_calls": 0,
+    "http_calls": 0,
+    "gpu_calls": 0,
+    "process_queries": 0,
+    "test_or_regression_runs": 0,
+    "replays": 0,
+    "result_body_reads": 0,
+    "dataset_body_parses": 0,
+    "frozen_closure_byte_hash_scan": 1,
+    "file_edits_except_this_receipt": 0
+  }
+}

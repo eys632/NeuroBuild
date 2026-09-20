@@ -1,0 +1,298 @@
+{
+  "kind": "QWEN36_OFFLINE_REPLAY_PREPARATION",
+  "status": "PREPARED_AWAITING_ROOT_COMPLETION_AND_EXACT_RUN_PATH",
+  "at_utc": "2026-09-20T17:08:24.538071+00:00",
+  "freeze_path": "evaluations/hardening_v1_exposed_native_qwen36_diagnostic_freeze.json",
+  "freeze_sha256": "57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074",
+  "helper_path": "var/research/qwen36-first-diagnostic-draft/replay_native_qwen36_exposed.py",
+  "helper_sha256": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5",
+  "source_snapshot_path": "var/review-tools/qwen36-exposed-review/source_snapshot",
+  "snapshot_record_sha256": "a04983bb0bdc441218ced733f1f0cbee241a966dbd313705baacf0144e09fa91",
+  "source_commit": "23b8d018c184c96e72165d212b8e840e3a75206f",
+  "snapshot_files_verified": 30,
+  "snapshot_git_blob_bindings": [
+    {
+      "path": "evaluations/hardening_v1_exposed_native_qwen36_diagnostic_freeze.json",
+      "sha256": "57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "evaluations/requirement_hardening_v1_exposed_regression.jsonl",
+      "sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "evaluations/results/phase5x/qwen36-metadata/metadata/provenance.json",
+      "sha256": "df66f0638b58a07b90d97be61ef4bfdf984cb90d742e5e9e4dcc63403cb2a2eb",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "evaluations/results/phase5x/qwen36-metadata/metadata/upstream/chat_template.jinja",
+      "sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "prompts/requirement_generation_v2_v2.txt",
+      "sha256": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "runtime/models/qwen36-35b-a3b-q4-k-m.json",
+      "sha256": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "schemas/requirement_generation_v2.schema.json",
+      "sha256": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "schemas/requirement_generation_v2_decision_branches.schema.json",
+      "sha256": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "schemas/semantic_requirement.schema.json",
+      "sha256": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "scripts/evaluate_requirements.py",
+      "sha256": "1915ee707cb6dca4f9f6927b760b0bdce1c1c5d6929837be489dafc97fb0cbfd",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "scripts/gpu_preflight.py",
+      "sha256": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "scripts/llama_server.py",
+      "sha256": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "scripts/model_guard.py",
+      "sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "scripts/native_model_bootstrap.py",
+      "sha256": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "scripts/verify_model_listeners.py",
+      "sha256": "2d7771d414a7faae4138ea555349d1f7f111d36498ad9815f64ac51910d758dd",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "src/neurobuild/__init__.py",
+      "sha256": "43ba9f0b620ffa4f960f4d83a7ce7fd9fbae9b8de96d71535926f8a48dbc8461",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/application/__init__.py",
+      "sha256": "d393a04c8462e6e1a2bdc6e012639716d4b30aa18a15ec6fddf169aaedcbd359",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/application/requirement_facts.py",
+      "sha256": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/application/requirement_generation.py",
+      "sha256": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "src/neurobuild/application/requirements.py",
+      "sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "src/neurobuild/application/workflow.py",
+      "sha256": "aadf8f561a4d19ee301dcdaf985631a6f470d86d463aec4f7053dfac50dffdf5",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/domain/__init__.py",
+      "sha256": "152b0592fd08f164e27f99228c033cf131916ddb7bd2b2124fba24511e19be75",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/domain/contracts.py",
+      "sha256": "107edcaec115d7dbada810ed83398a114b1958b8658bc704bf3e9f7ff6b8e458",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/domain/errors.py",
+      "sha256": "32bb3ba6da83a35706759fe288e41bd490b5c1d56c071b4ec3de67207848b8aa",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/infrastructure/__init__.py",
+      "sha256": "a7cfa5c500a5a587d0fd48bdae32bb951769d7ca525b4b36b1dce6cc0f516739",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/infrastructure/artifacts.py",
+      "sha256": "52edb48022d20eed6dff6d0b9d779ff25d03acbacb9764331dbb1945f740bbe9",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/infrastructure/ifc_engine.py",
+      "sha256": "13acf3bf932ca49d495f8e3e718e6de376237b31f2192eb92bc6ce0d61a7c608",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/infrastructure/local_model.py",
+      "sha256": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+      "same_git_blob": true,
+      "same_freeze_if_listed": true
+    },
+    {
+      "path": "src/neurobuild/infrastructure/persistence.py",
+      "sha256": "872ffe7c16ea7b098e6e4b076ce4ced35132987ff6df99701cc283f9485f154d",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    },
+    {
+      "path": "src/neurobuild/infrastructure/staged_requirement.py",
+      "sha256": "7e79b1c488a00e3f81b443fb32f86019f510a274228f56058c4eeae66038efee",
+      "same_git_blob": true,
+      "same_freeze_if_listed": false
+    }
+  ],
+  "definition_import_closure": {
+    "var/research/qwen36-first-diagnostic-draft/contract.py": {
+      "sha256": "a723d9580403add09cc23b4ee8267783a6bbe6abc8200e05953b7f66623d04a0",
+      "ast_import_modules": [
+        "copy",
+        "pathlib",
+        "re"
+      ]
+    },
+    "var/research/qwen36-first-diagnostic-draft/evidence.py": {
+      "sha256": "becc7d4ce4f1c5e4736faa9d440f5e907b49c29a6350cd7f48d6041a7b32fb57",
+      "ast_import_modules": [
+        "contract",
+        "json",
+        "math",
+        "os",
+        "re"
+      ]
+    },
+    "var/research/qwen36-first-diagnostic-draft/freeze_native_qwen36_diagnostic.py": {
+      "sha256": "ff352e7d58a09d42d541bb0142e2722d1d41b716472ff872a1b02a55bd5e84ff",
+      "ast_import_modules": [
+        "argparse",
+        "contract",
+        "datetime",
+        "evidence",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "math",
+        "neurobuild.infrastructure.local_model",
+        "os",
+        "pathlib",
+        "re",
+        "stat",
+        "subprocess",
+        "sys"
+      ]
+    },
+    "var/research/qwen36-first-diagnostic-draft/replay_native_qwen36_exposed.py": {
+      "sha256": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5",
+      "ast_import_modules": [
+        "argparse",
+        "collections",
+        "contract",
+        "copy",
+        "datetime",
+        "evidence",
+        "hashlib",
+        "importlib",
+        "json",
+        "math",
+        "os",
+        "pathlib",
+        "re",
+        "socket",
+        "sys",
+        "types",
+        "uuid"
+      ]
+    }
+  },
+  "candidate_variant": "qwen36-gguf-raw-unicode-v1",
+  "required_environment": {
+    "CUDA_VISIBLE_DEVICES": "",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "planned_argv": [
+    ".conda/bin/python",
+    "-B",
+    "var/research/qwen36-first-diagnostic-draft/replay_native_qwen36_exposed.py",
+    null,
+    "--freeze",
+    "evaluations/hardening_v1_exposed_native_qwen36_diagnostic_freeze.json",
+    "--freeze-sha256",
+    "57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074",
+    "--source-commit",
+    "23b8d018c184c96e72165d212b8e840e3a75206f",
+    "--snapshot",
+    "var/review-tools/qwen36-exposed-review/source_snapshot",
+    "--snapshot-sha256",
+    "a04983bb0bdc441218ced733f1f0cbee241a966dbd313705baacf0144e09fa91",
+    "--candidate-variant",
+    "qwen36-gguf-raw-unicode-v1",
+    "--completed-run"
+  ],
+  "pending_argument": "Completed NEW Qwen36 run directory supplied by root and explicit replay instruction; no partial result access.",
+  "expected_trials": 120,
+  "expected_warmups": 5,
+  "planned_replay_attempts": 1,
+  "executed_replay_attempts": 0,
+  "old_replays": 0,
+  "result_body_reads": 0,
+  "dataset_body_parses": 0,
+  "helper_imports": 0,
+  "model_calls": 0,
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "limits": [
+    "Static hashes/Git blobs/import declarations only; not a completed replay or quality PASS.",
+    "Snapshot contains exposed120 bytes only; no V2 or unused holdout input copied or opened.",
+    "The completed Gemma12 snapshot record was used only as a path-format reference, not replayed."
+  ]
+}

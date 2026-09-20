@@ -1,66 +1,53 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-21 KST — Qwen3.6 실제 GGUF·단일 공개 CPU 검사 PASS, 완료 corpus 무반복 승계, GPU 기동 준비**.
-Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 미채택, Phase6 미시작**이다.
+갱신: **2026-09-21 KST — Qwen3.6 첫 단회 의미 gate FAIL, 원본·독립 재검산 보존, GPU3 반환 완료**.
+Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 모델 미채택, Phase6 미시작**이다.
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`; Qwen3.6 준비 `424abd8d976fcc3936c3376863a5a69469f44dc7` push·원격 일치 확인. Gemma12 실패·종료와 이전 원본 증거 보존 |
-| 현재 작업 | **Qwen3.6 GPU3 최초 startup/public/resource PASS, 첫120개 단회 평가 동결 완료** |
-| 최근 후보 | Gemma4-12B/GLM4.7 첫 의미·안전 gate FAIL, EXAONE4.5 첫 의미 gate FAIL, Gemma4-31B 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
-| Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
-| Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
-| EXAONE 1차 품질 결과 | 노출120×1: schema120, parser119, semantic106, rawFP0/58, unsafe0/120 — **FAIL** |
-| GLM 1차 품질 결과 | 노출120×1: schema120, parser118, semantic104, rawFP1/58, unsafe1/120 — **FAIL** |
-| Gemma12 1차 품질 결과 | 노출120×1: schema120, parser118, semantic112, rawFP3/58, unsafe1/120 — **FAIL** |
-| V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
-| 회귀 검증 | **422 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless20.758초. Qwen3.6 전용 sampling/exact identity binding 검증 |
-| Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
-| 모델 실행 | **Qwen3.6 own epoch1 RUNNING**. Guard3716484/child3716721, GPU3 기준선 대비 증가peak19854MiB/minfree16520MiB |
+| 평가 실행 기준 | clean/pushed `23b8d018c184c96e72165d212b8e840e3a75206f`, 공통 GitHub `v2` |
+| 현재 작업 | Qwen3.6 실패 결과 checkpoint 후, 다른 계열 후보의 공식 metadata/source 비교 |
+| Qwen3.8 보존 결과 | 첫120×1: schema120/parser119/semantic117, rawFP0/58, unsafe0/120 **PASS**. 이후 별도 V2 73/80·rawFP1·unsafe1 **FAIL** |
+| 다른 후보 보존 결과 | Gemma31 semantic115/120·rawFP1·unsafe2, EXAONE106·rawFP0·unsafe0, GLM104·rawFP1·unsafe1, Gemma12 112·rawFP3·unsafe1: 모두 첫 gate FAIL |
+| Qwen3.6 첫 결과 | schema120/parser119/**semantic106/120(88.33%)**, rawFP0/58, unsafe0/120, FN11/62 — **의미 gate FAIL** |
+| Qwen3.6 latency | 평가120개 평균 **2.765226808초**, p95 **3.142153062초**; warmup5개 별도 |
+| 회귀 검증 | **422 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless20.758초. 해당 production/test와 동일하므로 변경 없는 suite 반복0 |
+| Hard blocker | 없음. 품질 기준 미달로 Phase6는 진행하지 않으며 Phase5.x 후보 비교 계속 |
+| 모델 실행 | **NeuroBuild 모델 서버 STOPPED**. GPU3 종료 후5회 모두 free36373/used3965MiB/util0% |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | Qwen3.6 첫120×1+warmup5 동결·평가. FAIL 시 종료·무반복·무V2, PASS 후 최소 후속 판단 |
+| 다음 판단 | 공식 Ministral3-14B Instruct GGUF의 작은 metadata/source 검토. 다운로드·GPU 실행은 별도 자원·계약 근거 충족 뒤 판단 |
 
-## Qwen3.6 준비 — 아직 품질 미평가
+## Qwen3.6 첫 결과와 종료
 
-공식 원본995ad96e…와 GGUFbaec3eb…의 metadata13개를 확보했다. Apache2, `.src_sha` PRIMARY 연결과
-변환 log의 no-MTP/40층/733 tensors 기대값을 기록했으며 실제 GGUF 검증 전 PASS를 주장하지 않는다.
-새 `qwen36_nonthinking_llama_cpp`는 공식 T0.7/P0.8/K20/minP0/presence1.5/repeat1과
-프로젝트 window64/frequency0/seed42/native sampler order를 구분한다. 기존 Qwen3.8 설정은 유지한다.
-422회귀 첫 실행은 기존 protocol test matrix의 새 profile 누락1건으로 실패했고 수정 후422 PASS했다.
-초기 실패와 최종 로그 모두 보존한다. 완료한 품질 평가·재검산은 재실행하지 않았다.
+Run `20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8`은69파일 사전동결 아래 **120×1+warmup5**로 완료했다.
+Schema120/parser119/semantic106, rawFP0/58/acceptedFP0/58/unsafe0/120/FN11/62/raw관측120이다.
+Warmup은4/5 정답이며 평가 분모에서 제외한다. UNGROUNDED_REQUIREMENT1, timeout/truncation0이다.
+의미 기준114/120에 못 미치므로 같은 후보 추가 반복·V2·미사용80 접근은0회로 종료했다.
 
-전체 VRAM 정적 추정27,904MiB, 운영예산28,672MiB는 조건부 계획이다. 기동 시 별도 안전 margin과
-GPU3 실제 free/utilization으로 다시 admission하며, 실측이나 최대 할당 보장으로 쓰지 않는다.
-Tokenizer/template 차이를 실제 header로 확인한 뒤 동일 입력 근거가 있는 검증만 승계한다.
-기존200개 CPU corpus wrapper는 실행하지 않고, 필요한 경우 노출120개 길이만 검사한다.
+오류14건은 입력에 없는 충돌·개수 조건 추가7, 대상 위치를 이동 방향으로 오해2,
+별도 승인 요구를 승인 우회로 오해1, 폐기된 축을 현재 지시 인용에 포함해 grounding 거절1,
+승인 우회 CLARIFICATION 오분류1, 비실행 대상 범위 누락2다. 실제 IFC 동작은 없었다.
+새125개 final JSON의 독립 재검산은 한 번 PASS했고 원래 판정·집계와 일치했다.
+Results SHA `853665ad56a746055c46abd1d57bec7f84283dcb6296300bd7d21d5cd201ea80`,
+replay SHA `beaa7f64340c25d3379d6894dd4299762d7b32ecacfef77cfb519726d1dbccf3`.
 
-다운로드 후 디스크 floor20.5GiB를 확보하기 위해 종료·미사용·소유·전체SHA가 검증된 Gemma12
-cache 한 파일6,975,879,296B만 회수했다. 완료 후 free43,039,641,600B, 원본 평가/metadata/복원 manifest는 유지했다.
-Weight 다운로드/fullSHA, 실제 header 및 새 공개 CPU 연결 검증을 완료했다. GPU/품질 검증은 대기다. 첫 gate FAIL이면 반복/V2 없이 다음 판단을 한다.
-미사용80개는 first gate PASS 전 접근하지 않는다. 모델 미채택·Phase6 미시작이다.
+정확한 own guard3716484에 pidfd SIGTERM을 보냈고 child3716721은 exit0/reaped로 종료됐다.
+Guard 원본에는 자체 process-group 정리의 `kill_sent=true`도 보존한다. 다른 사용자 신호·광범위 kill은 없다.
+전체 epoch1212.637초/2205표본의 **GPU3 기준선 대비 전체사용 증가 peak19854MiB**, 최소free16520MiB다.
+개별 process VRAM 또는 전체 used peak로 해석하지 않는다. 종료 후5회 모두 baseline free36373/used3965/util0으로 복귀했다.
 
-Qwen3.6 다운로드는 fullSHA 검증 후 완료됐고 최소free22,601,879,552B로20.5GiB floor를 유지했다.
-Actual header7434158e…는733 tensors/F32301/Q4_K121/Q8_0310/Q6_K1/40층/noMTP가 공개 로그와 일치함을 확인했다.
-Typed tokenizer9개 metadata는 기존 Qwen3.8과 정확히 같고, template만 사전 기록한7764B로 다르다.
-Comparison81f7496d…, 새 public CPU proofc87d48d3…가 현재 profile의 전체 system/user/prefix/native sampling/parser를 확인했다.
-194개 기존 CPU 객체를 재사용한 build1회·새 공개 요청1회이며 기존 public30/parity20/context200 재실행은0회다.
+현재 code/test는422회귀 PASS 시점과 같아 suite를 반복하지 않았다. 원래 Qwen3.8의 완료125개·독립 재검산,
+다른 완료 후보의 평가/CPU corpus/runtime 검사는 재실행하지 않았다. 비필수 runtime 최적화는 future optimization이다.
+Gold는 **AUTO-GENERATED / NOT HUMAN VERIFIED**, RTX5090은 **PREDICTED / UNVERIFIED**다.
+[평가 보고서](reports/phase5x_native_qwen36_diagnostic_report.md),
+[독립 검토](reviews/phase5x_native_qwen36_exposed_review.md),
+[원본 보관본](../evaluations/results/phase5x/exposed-native-qwen36-diagnostic/README.md).
 
-Final CPU proof747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1은
-현재 입력 경로의 source/typed vocab/template 동등성으로 과거 노출120 길이2133–2409,최대출력 포함3177을 승계한다.
-새120회 측정이라고 표시하지 않는다. Explicit variant는 `qwen36-gguf-raw-unicode-v1`이며,
-과거 공식 HF NFC reference19/20 FAIL 및 명시 raw reference20/20 PASS를 구분하고 원문 정규화는 하지 않는다.
-Production이422회귀 시점과 같아 suite는 반복하지 않았다. GPU/품질 호출은 아직0회다.
-[CPU 검증 보고서](reports/phase5x_qwen36_cpu_report.md).
-
-CPU checkpoint **fdd4f01d09033e0d037f1ad6cdd44307500a080f** push 후 Qwen3.6을 GPU3에서 처음 기동했다.
-Fresh5 표본은 free36373/used3965/util0, margin7275, available29098MiB로 운영28672를 수용했다.
-동일 own epoch에서 startup GET3 PASS, 공개 production 요청1건 PASS **2.707237813초**,
-full context3328+768 요청1건 PASS **10.769428756초**다. 기준선 대비 GPU3 전체사용 증가peak19854MiB,
-minfree16520MiB이며 개별 process VRAM 측정으로 해석하지 않는다. 서버는 첫 진단 준비를 위해 RUNNING이다.
-사전 동결57c6af28…/69files를 완료했다. 새 평가 호출은 아직0회이며 기존 완료 runtime/평가/재생은 반복하지 않았다.
-[첫 runtime 기록](../evaluations/results/phase5x/qwen36-first-runtime-evidence/README.md).
+Qwen3.6 고정 weight/header와 새 공개 CPU1건, 기존 exposed120 길이 승계 및 최초 startup/public/resource는 완료 기록으로 보존한다.
+품질 결과를 얻기 위한 재기동이나 기존 startup/resource 반복은 없었다.
+[CPU 보고서](reports/phase5x_qwen36_cpu_report.md), [첫 runtime](../evaluations/results/phase5x/qwen36-first-runtime-evidence/README.md).
 
 ## Gemma4-12B 결과와 준비 기록
 

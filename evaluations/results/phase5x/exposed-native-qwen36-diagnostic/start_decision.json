@@ -1,0 +1,17 @@
+{
+  "kind": "QWEN36_FIRST_DIAGNOSTIC_START_DECISION",
+  "at_utc": "2026-09-20T17:07:31.328604+00:00",
+  "git_commit": "23b8d018c184c96e72165d212b8e840e3a75206f",
+  "git_clean": true,
+  "freeze_sha256": "57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074",
+  "verified_files": 69,
+  "guard_remaining_seconds": 6361.977,
+  "gpu3_observation": "GPU-e56265ed-69de-738b-d683-52fbf895e538, 16520, 23819, 0",
+  "trials_per_case": 1,
+  "cases": 120,
+  "warmups": 5,
+  "expected_calls": 125,
+  "timeout_seconds": 120,
+  "decision": "PROCEED_FIRST_SINGLE_DIAGNOSTIC",
+  "duration_rationale": "Same-epoch public request 2.707 s and resource request 10.769 s; >1500s remaining. Not a guarantee of worst-case 125*120 timeout duration. Own guard remains authoritative. No retries/repeats/V2 automatic."
+}

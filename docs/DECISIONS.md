@@ -529,3 +529,20 @@ Template bytes는 다르지만 현재 nonempty system/singleuser/nonthinking 선
 새 공개 연결1회만 실행하고 과거 노출120 길이를 승계한다. CPU final747af565…의 current/historical 구분을 유지한다.
 명시 variant `qwen36-gguf-raw-unicode-v1`를 채택하며 이는 tokenizer 계약 이름이지 모델 품질 채택이 아니다.
 공식 HF NFC parity의 과거19/20 FAIL을 지우거나 입력을 정규화하지 않는다. GPU/품질 gate는 별도로 남아 있다.
+
+
+## D049 — Qwen3.6 의미 실패와 다음 후보의 정보 가치
+
+Qwen3.6 첫120×1+warmup5는 schema120/parser119/semantic106, rawFP0/unsafe0/FN11이다.
+입력에 없는 조건 추가와 대상 위치 오해 등으로 의미≥114를 만족하지 못했다. 평균2.765초/p953.142초,
+aggregatepeak19854MiB의 자원 성능이나 안전 오판0은 의미 실패를 상쇄하지 않는다.
+새125개 독립 재검산은 한 번 PASS했으며 같은 후보 반복·V2·미사용80 접근 없이 own server를 종료했다.
+기존 완료 검사를 재실행하지 않고 현재 source와 동일한422회귀 PASS를 승계한다.
+
+기존 공식 shortlist 및 추가 GLM 후보는 비교를 마쳤다. 과거 staged/facts/thinking 실패를 새 가설로 재포장하지 않는다.
+다음은 미측정 Mistral 계열의 공식 Ministral3-14B Instruct GGUF에 대한 metadata/source 검토1건이다.
+원저자 양자화 배포와 다른 계열이라는 비교 가치만 인정하며 한국어·JSON 지원 표기를 과업 품질로 간주하지 않는다.
+전용 native parser의 JSON fence와 tokenizer를 현재 구현에 맞춰 먼저 확인한다. 새 GPU 실행은 확정하지 않는다.
+다운로드 전 디스크 floor와 비활성 cache 사용 여부, 기동 전 전체peak+freshGPU3 free/util+margin을 확인한다.
+또 실패하면 모델·seed·quant를 자동 순회하지 않고 기존과 다른 개선 근거를 먼저 세운다.
+Gate·raw분모·gold·사람검수 한계를 유지하며 Phase6를 우회하지 않는다.

@@ -1,0 +1,1259 @@
+{
+  "status": "PASS",
+  "meaning": "Saved-result replay/accounting consistency, not adoption",
+  "diagnostic_gate": "FAIL",
+  "diagnostic_gate_counts": {
+    "schema": 120,
+    "quote_adapter": 119,
+    "canonical_schema": 119,
+    "parser": 119,
+    "semantic": 106,
+    "raw_fp": 0,
+    "unsafe": 0,
+    "false_negative": 11,
+    "raw_observed": 120
+  },
+  "trials": 120,
+  "warmups": 5,
+  "retained_generation_json_replayed": {
+    "warmups": 5,
+    "trials": 120
+  },
+  "unretained_response_rows": {
+    "warmups": 0,
+    "trials": 0
+  },
+  "retained_stages_and_trial_metrics_exact": true,
+  "frozen_evaluate_trial_exact_on_retained_rows": true,
+  "metrics": {
+    "json_parse_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "schema_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "parser_accepted": {
+      "numerator": 119,
+      "denominator": 120,
+      "rate": 0.9916666666666667,
+      "wilson_95": [
+        0.9543037087549505,
+        0.998527444266658
+      ]
+    },
+    "semantic_rubric_correct": {
+      "numerator": 106,
+      "denominator": 120,
+      "rate": 0.8833333333333333,
+      "wilson_95": [
+        0.8136664838239611,
+        0.9292188219216995
+      ]
+    },
+    "generation_schema_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "adapter_accepted": {
+      "numerator": 119,
+      "denominator": 120,
+      "rate": 0.9916666666666667,
+      "wilson_95": [
+        0.9543037087549505,
+        0.998527444266658
+      ]
+    },
+    "legacy_schema_valid": {
+      "numerator": 119,
+      "denominator": 120,
+      "rate": 0.9916666666666667,
+      "wilson_95": [
+        0.9543037087549505,
+        0.998527444266658
+      ]
+    },
+    "critical_fp_model_ready": {
+      "numerator": 0,
+      "denominator": 58,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.062117855787202914
+      ]
+    },
+    "critical_fp_accepted_ready": {
+      "numerator": 0,
+      "denominator": 58,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.062117855787202914
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "nonready_gold_raw_decision_observed": {
+      "numerator": 58,
+      "denominator": 58,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9378821442127971,
+        1.0
+      ]
+    },
+    "critical_fn_accepted_ready": {
+      "numerator": 11,
+      "denominator": 62,
+      "rate": 0.1774193548387097,
+      "wilson_95": [
+        0.10206437766005086,
+        0.2904156688569637
+      ]
+    },
+    "accepted_incorrect_move_on_ready_gold": {
+      "numerator": 0,
+      "denominator": 62,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.058344072101372484
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 0,
+      "denominator": 120,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.031019166418703486
+      ]
+    },
+    "target_preservation": {
+      "numerator": 122,
+      "denominator": 125,
+      "rate": 0.976,
+      "wilson_95": [
+        0.9318110017162228,
+        0.9918047434734504
+      ]
+    },
+    "unit_value_extraction": {
+      "numerator": 102,
+      "denominator": 124,
+      "rate": 0.8225806451612904,
+      "wilson_95": [
+        0.7459599478681783,
+        0.8798151390088039
+      ]
+    },
+    "latency_all": {
+      "count": 120,
+      "mean_seconds": 2.7652268081748237,
+      "p95_seconds": 3.142153061926365
+    },
+    "latency_parser_accepted": {
+      "count": 119,
+      "mean_seconds": 2.7629217345017096,
+      "p95_seconds": 3.1777338925749063
+    },
+    "errors": {
+      "UNGROUNDED_REQUIREMENT": 1
+    },
+    "tool_execution": "NOT_PERFORMED",
+    "decode_tokens_per_second": null,
+    "ttft_seconds": null,
+    "clarification_detection": {
+      "precision": {
+        "numerator": 23,
+        "denominator": 33,
+        "rate": 0.696969696969697,
+        "wilson_95": [
+          0.5266186485419944,
+          0.8262446857594641
+        ]
+      },
+      "recall": {
+        "numerator": 23,
+        "denominator": 23,
+        "rate": 1.0,
+        "wilson_95": [
+          0.8568833815495731,
+          1.0
+        ]
+      },
+      "f1": 0.8214285714285715
+    },
+    "unsupported_detection": {
+      "precision": {
+        "numerator": 34,
+        "denominator": 35,
+        "rate": 0.9714285714285714,
+        "wilson_95": [
+          0.8546691276638632,
+          0.9949385081445556
+        ]
+      },
+      "recall": {
+        "numerator": 34,
+        "denominator": 35,
+        "rate": 0.9714285714285714,
+        "wilson_95": [
+          0.8546691276638632,
+          0.9949385081445556
+        ]
+      },
+      "f1": 0.9714285714285714
+    },
+    "completion_tokens_per_end_to_end_second": 30.14520656566094,
+    "token_timing_trial_count": 120,
+    "case_consistency": {
+      "A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-A03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-B05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-G05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-H03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-I05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-I08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      }
+    }
+  },
+  "warmup_metrics_separate": {
+    "json_parse_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "schema_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "parser_accepted": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "semantic_rubric_correct": {
+      "numerator": 4,
+      "denominator": 5,
+      "rate": 0.8,
+      "wilson_95": [
+        0.37553462976252533,
+        0.9637758913675698
+      ]
+    },
+    "generation_schema_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "adapter_accepted": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "legacy_schema_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "critical_fp_model_ready": {
+      "numerator": 0,
+      "denominator": 3,
+      "rate": 0.0,
+      "wilson_95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+      ]
+    },
+    "critical_fp_accepted_ready": {
+      "numerator": 0,
+      "denominator": 3,
+      "rate": 0.0,
+      "wilson_95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "nonready_gold_raw_decision_observed": {
+      "numerator": 3,
+      "denominator": 3,
+      "rate": 1.0,
+      "wilson_95": [
+        0.4385029682449546,
+        1.0
+      ]
+    },
+    "critical_fn_accepted_ready": {
+      "numerator": 1,
+      "denominator": 2,
+      "rate": 0.5,
+      "wilson_95": [
+        0.09453120573423074,
+        0.9054687942657693
+      ]
+    },
+    "accepted_incorrect_move_on_ready_gold": {
+      "numerator": 0,
+      "denominator": 2,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.6576197724933469
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 0,
+      "denominator": 5,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.43448246478317476
+      ]
+    },
+    "target_preservation": {
+      "numerator": 4,
+      "denominator": 4,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5101091635454027,
+        1.0
+      ]
+    },
+    "unit_value_extraction": {
+      "numerator": 2,
+      "denominator": 4,
+      "rate": 0.5,
+      "wilson_95": [
+        0.15003898915214947,
+        0.8499610108478506
+      ]
+    },
+    "latency_all": {
+      "count": 5,
+      "mean_seconds": 2.544366198964417,
+      "p95_seconds": 2.6907361689954996
+    },
+    "latency_parser_accepted": {
+      "count": 5,
+      "mean_seconds": 2.544366198964417,
+      "p95_seconds": 2.6907361689954996
+    },
+    "errors": {},
+    "tool_execution": "NOT_PERFORMED",
+    "decode_tokens_per_second": null,
+    "ttft_seconds": null,
+    "clarification_detection": {
+      "precision": {
+        "numerator": 2,
+        "denominator": 3,
+        "rate": 0.6666666666666666,
+        "wilson_95": [
+          0.2076596008020477,
+          0.9385080552796037
+        ]
+      },
+      "recall": {
+        "numerator": 2,
+        "denominator": 2,
+        "rate": 1.0,
+        "wilson_95": [
+          0.34238022750665303,
+          1.0
+        ]
+      },
+      "f1": 0.8
+    },
+    "unsupported_detection": {
+      "precision": {
+        "numerator": 1,
+        "denominator": 1,
+        "rate": 1.0,
+        "wilson_95": [
+          0.20654931437723745,
+          1.0
+        ]
+      },
+      "recall": {
+        "numerator": 1,
+        "denominator": 1,
+        "rate": 1.0,
+        "wilson_95": [
+          0.20654931437723745,
+          1.0
+        ]
+      },
+      "f1": 1.0
+    },
+    "completion_tokens_per_end_to_end_second": 25.6252421630727,
+    "token_timing_trial_count": 5,
+    "case_consistency": {
+      "A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      }
+    }
+  },
+  "raw_ready_observation_coverage": {
+    "all_trials": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "nonready_gold_trials": {
+      "numerator": 58,
+      "denominator": 58,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9378821442127971,
+        1.0
+      ]
+    },
+    "meaning": "Unknown is not safe non-READY; full denominators remain and unknown prevents gate PASS"
+  },
+  "unobserved_decisions_by_error": {
+    "warmups": {},
+    "trials": {}
+  },
+  "limitations": [],
+  "run_id": "20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8",
+  "runtime_variant": "qwen36-gguf-raw-unicode-v1",
+  "tokenizer_contract": {
+    "candidate_variant": "qwen36-gguf-raw-unicode-v1",
+    "model_id": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+    "model_revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+    "cpu_proof_sha256": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+    "cpu_proof_kind": "QWEN36_NATIVE_CONTRACT_CPU_PROOF",
+    "cpu_proof_status": "PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120",
+    "chat_template_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+    "tokenizer_json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+    "tokenizer_contract": "historical_raw_reference_by_exact_typed_metadata_and_restricted_input_equivalence",
+    "historical_hf_equivalence": {
+      "status": "FAIL",
+      "case_count": 20,
+      "id_match_count": 19,
+      "mismatch_indices": [
+        11
+      ],
+      "native_original_roundtrip_count": 20
+    },
+    "historical_raw_reference": {
+      "status": "PASS",
+      "case_count": 20,
+      "id_match_count": 20,
+      "reference_kind": "hf-tokenizer-json-with-nfc-normalizer-disabled"
+    },
+    "template_input_equivalence": {
+      "status": "PASS",
+      "scope": "nonempty_system_single_user_text_no_history_no_tools_nonthinking",
+      "byte_exact_public_native_render": true,
+      "proof_ref": "source_equivalence"
+    },
+    "exposed_context": {
+      "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+      "input_count": 120,
+      "min_input_tokens": 2133,
+      "max_input_tokens": 2409,
+      "max_input_plus_output": 3177,
+      "measurement_kind": "CARRIED_FORWARD",
+      "measured_model_id": "ggml-org/Qwen3.8-27B-GGUF"
+    },
+    "application_input_output_nfc_repair": false,
+    "sampling_equivalent": false,
+    "cpu_proof_refs": {
+      "header": {
+        "path": "var/reports/qwen36-gguf-header.json",
+        "sha256": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9"
+      },
+      "tokenizer_comparison": {
+        "path": "var/reports/qwen36-qwen38-saved-tokenizer-comparison.json",
+        "sha256": "81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f"
+      },
+      "public_contract": {
+        "path": "var/research/native-qwen36-contract/public-proof.json",
+        "sha256": "c87d48d3ce7a0621dfdbfcaa918e36664b88357a60e1dffb98e93c2dcdd0050c"
+      },
+      "public_build": {
+        "path": "var/research/native-qwen36-contract/build.json",
+        "sha256": "8d98d6d7e13e1fa597cc7e88b0c460ca7ebf6d713a94a99dc390f5798753e950"
+      },
+      "historical_header": {
+        "path": "var/reports/qwen38-gguf-header.json",
+        "sha256": "ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a"
+      },
+      "historical_context": {
+        "path": "var/reports/native-contract-raw-cpu-context.json",
+        "sha256": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be"
+      },
+      "historical_official": {
+        "path": "var/research/native-vocab-public-probe-v4.json",
+        "sha256": "b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0"
+      },
+      "historical_raw": {
+        "path": "var/research/native-vocab-public-probe-v4-raw-diagnostic.json",
+        "sha256": "12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d"
+      },
+      "historical_raw_fixture": {
+        "path": "var/research/native-tokenizer-public-parity-raw-diagnostic.json",
+        "sha256": "9658eb53fae81adee1b775b45f796f3484db69aea41e04a020765fa05d770514"
+      },
+      "source_equivalence": {
+        "path": "var/research/native-qwen36-contract/source-equivalence.json",
+        "sha256": "efd6529f1f2db9e7cdd4bd5fc24e8f31e0b8e87189ee1a8865c595d4e1bb2d66"
+      }
+    },
+    "cpu_source_sha256": {
+      "src/neurobuild/infrastructure/local_model.py": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+      "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+    },
+    "normalization_limitation": "Historical Qwen3.8 official HF NFC reference IDs matched 19/20 (index11 mismatch), while native raw original roundtrip and explicitly NFC-disabled reference matched 20/20. These measurements remain historical; actual typed native tokenizer equality and restricted effective-input equivalence support carry to the explicit Qwen3.6 raw-Unicode variant. Official HF equivalence is not newly measured or asserted; no application input/output normalization repair.",
+    "new_cpu_executions": {
+      "public_request_count": 1,
+      "native_compile_count": 1,
+      "context_request_count": 0,
+      "public_parity_cases": 0,
+      "old_corpus_replays": 0,
+      "model_inference": 0,
+      "http": 0,
+      "gpu": 0
+    },
+    "cpu_checks_rerun": false
+  },
+  "native_protocol": "llama_cpp_json_schema",
+  "source_snapshot_commit": "23b8d018c184c96e72165d212b8e840e3a75206f",
+  "source_snapshot_sha256": "a04983bb0bdc441218ced733f1f0cbee241a966dbd313705baacf0144e09fa91",
+  "source_hashes_verified": {
+    "dataset": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "prompt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schema": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "canonical_schema": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "generation_adapter": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "parser": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "client": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+    "scorer": "1915ee707cb6dca4f9f6927b760b0bdce1c1c5d6929837be489dafc97fb0cbfd",
+    "weight_manifest": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c"
+  },
+  "original_artifact_sha256": {
+    "/home/a202192020/NeuroBuild_v2/var/runs/20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8/manifest.json": "254df7484851d5fcc387707bc6a9960cb100ce2d2ca0e8d93e1750e5ab5b3d04",
+    "/home/a202192020/NeuroBuild_v2/evaluations/hardening_v1_exposed_native_qwen36_diagnostic_freeze.json": "57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/runtime_metadata.json": "595a8a1e85759e0a28ad7d0cdfa2b425aebffdf2f622eeae5ae6721d6534230b",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/launch_config.json": "91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb",
+    "var/research/native-qwen36-contract/final-cpu-proof.json": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+    "var/reports/qwen36-gguf-header.json": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/startup.json": "de2164b65aae1c814febc6aa24fb8f8ba3bb4cd1250c16ce30ad32b21eb02460",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/resource_report.json": "36de9d1715b46b40b79df953f641420dad49d11ec161028532b36ba19e4a730b",
+    "evaluations/results/phase5x/qwen36-native-startup-epoch1/listeners.json": "6fe1bb9b6ff6a04d67b9924b267b1741a9efcffa98442888f34b30a827c43588",
+    "evaluations/results/phase5x/qwen36-native-public-smoke-epoch1/report.json": "2fcc64b9f8d3d04fec44ae7d12a642d6fc49a84a38d23c0d07ba6c6b2ba3f2e1",
+    "evaluations/results/phase5x/qwen36-native-resource-epoch1/report.json": "93bfba9560c5411b02b6db228d4c46badf07f93a8adde542e7687e7468c22db7",
+    "runtime/models/qwen36-35b-a3b-q4-k-m.json": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c",
+    "evaluations/results/phase5x/qwen36-preparation/regression_final.json": "5b75b7f81c147691b82fefa1032f0d28ee345b331bd3f92688d414859259ea30",
+    "evaluations/hardening_v2_dataset_freeze.json": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+    "/home/a202192020/NeuroBuild_v2/var/runs/20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8/results.json": "853665ad56a746055c46abd1d57bec7f84283dcb6296300bd7d21d5cd201ea80",
+    "/home/a202192020/NeuroBuild_v2/var/runs/20260920T170742Z-38d6ce30e9cc4e939a93ccb8fbae3ef8/dataset.json": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc"
+  },
+  "native_freeze_sha256": "57c6af28c15fc879153d998968a007cfaa698bd4a1cea25da09dcaeeaaeaf074",
+  "cpu_context_proof_sha256": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+  "normalization_limitation": "Historical Qwen3.8 official HF NFC reference IDs matched 19/20 (index11 mismatch), while native raw original roundtrip and explicitly NFC-disabled reference matched 20/20. These measurements remain historical; actual typed native tokenizer equality and restricted effective-input equivalence support carry to the explicit Qwen3.6 raw-Unicode variant. Official HF equivalence is not newly measured or asserted; no application input/output normalization repair.",
+  "v2_preservation": {
+    "artifacts_hashed_without_parsing": 9,
+    "freeze_sha256": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+    "input_exposure_addendum_sha256": "1d44048c86d3a26cec093e6f1d5748ed13e1283de6a4f73a28ba592dc103b682",
+    "model_output_exposure_record_sha256": "25c080827a6d57aa6bc864495e537490dc7fa48b3ccf91df297a47b9815d447b",
+    "limitation": "Prior V2 model outputs already exposed; no V2 result replay or input parsing in this Qwen36 exposed120 replay"
+  },
+  "replay_helper_sha256": "e96948799d6d94ef8fb5f8c7e9530c15b1d70df3198bcd46b81b9bcece7795e5",
+  "replay_origin": {
+    "pre_run_frozen": true,
+    "source_copy_sha256": "b96c007643e553bb99ad27d711dea62344976892dbd487419b400a280427ff49",
+    "core_functions_ast_unchanged": [
+      "load_snapshot",
+      "replay_row",
+      "replay_groups"
+    ],
+    "timeout_representation": "Finite numeric120 int/float accepted; bool/nonfinite rejected"
+  },
+  "latencies_and_token_usage": "Recorded observations only; no remeasurement",
+  "runtime_limit": "Archive hash/epoch binding, not new process/weight attestation or per-process VRAM",
+  "quality_limit": "Exposed synthetic regression, not human reviewed or independent unseen evaluation",
+  "model_calls": 0,
+  "network_calls": 0,
+  "gpu_calls": 0,
+  "weight_payload_reads": 0
+}
