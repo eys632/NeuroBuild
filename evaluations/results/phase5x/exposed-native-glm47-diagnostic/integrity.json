@@ -1,0 +1,319 @@
+{
+  "kind": "GLM47_FAILED_ONE_PASS_ARCHIVE_INTEGRITY",
+  "run_id": "20260920T144956Z-b647a76e83aa491bb72badf4479441d1",
+  "source_commit": "750fe09a8b7955dfe8db25f0c2e0fc589e077f36",
+  "quality_gate": "FAIL",
+  "independent_replay": "PASS_ACCOUNTING_ONLY",
+  "files": {
+    "manifest.json": {
+      "bytes": 6290,
+      "sha256": "ec8b620b2c98f8780cdc8e5fe1e224d38a6920e95528e5a8cdc45a701e852833",
+      "original_path": "var/runs/20260920T144956Z-b647a76e83aa491bb72badf4479441d1/manifest.json"
+    },
+    "dataset.json": {
+      "bytes": 92253,
+      "sha256": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc",
+      "original_path": "var/runs/20260920T144956Z-b647a76e83aa491bb72badf4479441d1/dataset.json"
+    },
+    "results.json": {
+      "bytes": 265804,
+      "sha256": "8fcb3b4fe9c6e32dcb2b1cae04040127b054d1817219b7d969d1a86cef107505",
+      "original_path": "var/runs/20260920T144956Z-b647a76e83aa491bb72badf4479441d1/results.json"
+    },
+    "completion.json": {
+      "bytes": 809,
+      "sha256": "96ac99a32472ba62de3528d090462ceb54d95c9e646bdb93f7266fab9de754f8",
+      "original_path": "var/research/glm47-first-quality-completion.json"
+    },
+    "evaluation_cli.json": {
+      "bytes": 250,
+      "sha256": "f1460ed905a9af97055043a73937fe4222d797b78605e8ef725bfe733fedcc7d",
+      "original_path": "var/research/glm47-first-quality-cli.log"
+    },
+    "evaluation_cli.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/glm47-first-quality-cli.stderr"
+    },
+    "first_quality_pre_run_decision.json": {
+      "bytes": 890,
+      "sha256": "4d81d2052a8d8696800fa1112f0c6874605f7a3de86561db7268a72594c23d95",
+      "original_path": "var/research/glm47-first-quality-pre-run-decision.json"
+    },
+    "running_manifest_independent_review.json": {
+      "bytes": 3892,
+      "sha256": "6afa2a0439f66bad80a3d831a3c440f45c7be5e6ef0b145cb851ffc260a951cd",
+      "original_path": "var/research/glm47-running-manifest-independent-review.json"
+    },
+    "source_snapshot_preparation.json": {
+      "bytes": 1142,
+      "sha256": "a6ad235e96ed2e7a0d1ae9665cc3422c1ee3af2c15d177a10497f0010b58afb9",
+      "original_path": "var/review-tools/glm47-exposed-review/preparation.json"
+    },
+    "independent_replay.json": {
+      "bytes": 35542,
+      "sha256": "883854e2afa30a7c0c068ea24f3ec6e513eaaa5731963a8e1bb84a709754a34d",
+      "original_path": "var/review-tools/glm47-exposed-review/independent_replay.json"
+    },
+    "independent_replay.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/review-tools/glm47-exposed-review/independent_replay.stderr.txt"
+    },
+    "replay_invocation.json": {
+      "bytes": 975,
+      "sha256": "791725b7dfda4bc29c1e6931323861f6527590667b169dab1949d49a34fe76be",
+      "original_path": "var/review-tools/glm47-exposed-review/replay_invocation.json"
+    },
+    "own_epoch_identity.json": {
+      "bytes": 2128,
+      "sha256": "b20bab7820b78bd9f7c35eb4f0eb311f6c2c495f7c0974e574afcf39b39b1ded",
+      "original_path": "var/research/glm47-native-epoch2-own-identity.json"
+    },
+    "stop_request.json": {
+      "bytes": 731,
+      "sha256": "b7d55a1c5e751fbf2ee5241b73c600bbc1145014d80d01b3426702e17f2cbf30",
+      "original_path": "var/reports/glm47-flash-epoch2-stop-request.json"
+    },
+    "stop_native_glm47_epoch2.py": {
+      "bytes": 4944,
+      "sha256": "f7d27dede5f9eb860dd181620c03877b39c60f497a8c0cd907bcf5d26f1361b7",
+      "original_path": "var/research/stop_native_glm47_epoch2.py"
+    },
+    "stop_helper_preparation.json": {
+      "bytes": 2251,
+      "sha256": "b45848edae0934d19e9599aed4cae9e12d45a96d31c4f92d14a817798fa4f3c9",
+      "original_path": "var/research/glm47-epoch2-stop-helper-preparation.json"
+    },
+    "stop_cli.json": {
+      "bytes": 61,
+      "sha256": "7250ee790df4c06bc07b132b7cc0875f9676fc0c8f344f5ca3407252348e2c47",
+      "original_path": "var/research/glm47-epoch2-stop-cli.log"
+    },
+    "stop_cli.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/glm47-epoch2-stop-cli.stderr"
+    },
+    "resource_report_final.json": {
+      "bytes": 5365,
+      "sha256": "c0a3d7631f5dde15a87d0345ef84a3e79f181c4ef271b5c4b161dd894625c864",
+      "original_path": "var/reports/glm47-flash-native-epoch2.json"
+    },
+    "guard_cli_final.json": {
+      "bytes": 5365,
+      "sha256": "c0a3d7631f5dde15a87d0345ef84a3e79f181c4ef271b5c4b161dd894625c864",
+      "original_path": "var/research/glm47-native-epoch2-launch-cli.log"
+    },
+    "guard_cli.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/glm47-native-epoch2-launch-cli.stderr"
+    },
+    "post_stop_gpu3.json": {
+      "bytes": 2995,
+      "sha256": "805cee3c6495274ae6e135583421552b5a814fe8128d89389706a974dacfdf72",
+      "original_path": "var/reports/glm47-flash-epoch2-post-stop-gpu3.json"
+    },
+    "failure_analysis.json": {
+      "bytes": 24931,
+      "sha256": "e9ddabe658da5fddd3ca3c14f17184d767eafdc03f4d11f8a0c4f40cebcf3147",
+      "original_path": "var/research/glm47-completed-failure-analysis.json"
+    },
+    "regression_carryforward.json": {
+      "bytes": 895,
+      "sha256": "404f1950d98be0a061830d5f26adb252b69f3bdf1e669d43b4db132bef167364",
+      "original_path": "var/research/glm47-result-regression-carryforward.json"
+    },
+    "source_snapshot/snapshot.json": {
+      "bytes": 9109,
+      "sha256": "0ebf959ba0b7f1333b51b74d464323c98440848009ca50fb68ab97be7891f1b1",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/snapshot.json"
+    },
+    "source_snapshot/schemas/requirement_generation_v2.schema.json": {
+      "bytes": 1057,
+      "sha256": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/schemas/requirement_generation_v2.schema.json"
+    },
+    "source_snapshot/schemas/semantic_requirement.schema.json": {
+      "bytes": 1703,
+      "sha256": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/schemas/semantic_requirement.schema.json"
+    },
+    "source_snapshot/schemas/requirement_generation_v2_decision_branches.schema.json": {
+      "bytes": 4176,
+      "sha256": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/schemas/requirement_generation_v2_decision_branches.schema.json"
+    },
+    "source_snapshot/evaluations/hardening_v1_exposed_native_glm47_diagnostic_freeze.json": {
+      "bytes": 46165,
+      "sha256": "211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/evaluations/hardening_v1_exposed_native_glm47_diagnostic_freeze.json"
+    },
+    "source_snapshot/evaluations/requirement_hardening_v1_exposed_regression.jsonl": {
+      "bytes": 69888,
+      "sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/evaluations/requirement_hardening_v1_exposed_regression.jsonl"
+    },
+    "source_snapshot/scripts/gpu_preflight.py": {
+      "bytes": 10153,
+      "sha256": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/scripts/gpu_preflight.py"
+    },
+    "source_snapshot/scripts/verify_model_listeners.py": {
+      "bytes": 9550,
+      "sha256": "2d7771d414a7faae4138ea555349d1f7f111d36498ad9815f64ac51910d758dd",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/scripts/verify_model_listeners.py"
+    },
+    "source_snapshot/scripts/model_guard.py": {
+      "bytes": 11948,
+      "sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/scripts/model_guard.py"
+    },
+    "source_snapshot/scripts/evaluate_requirements.py": {
+      "bytes": 43170,
+      "sha256": "4fc1335e3372518c3534267613cbc4ad0d0cb0772a149ce286ce703f2b886048",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/scripts/evaluate_requirements.py"
+    },
+    "source_snapshot/scripts/llama_server.py": {
+      "bytes": 24178,
+      "sha256": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/scripts/llama_server.py"
+    },
+    "source_snapshot/scripts/native_model_bootstrap.py": {
+      "bytes": 4797,
+      "sha256": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/scripts/native_model_bootstrap.py"
+    },
+    "source_snapshot/prompts/requirement_generation_v2_v2.txt": {
+      "bytes": 8974,
+      "sha256": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/prompts/requirement_generation_v2_v2.txt"
+    },
+    "source_snapshot/evaluations/results/phase5x/glm47-flash-preparation/metadata/provenance.json": {
+      "bytes": 8314,
+      "sha256": "f2520d343bf75448d643fa41c7ccaa5c4066fd03aae13c3bad36865cf558426a",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/evaluations/results/phase5x/glm47-flash-preparation/metadata/provenance.json"
+    },
+    "source_snapshot/evaluations/results/phase5x/glm47-flash-preparation/metadata/upstream/chat_template.jinja": {
+      "bytes": 3120,
+      "sha256": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/evaluations/results/phase5x/glm47-flash-preparation/metadata/upstream/chat_template.jinja"
+    },
+    "source_snapshot/src/neurobuild/__init__.py": {
+      "bytes": 84,
+      "sha256": "43ba9f0b620ffa4f960f4d83a7ce7fd9fbae9b8de96d71535926f8a48dbc8461",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/__init__.py"
+    },
+    "source_snapshot/src/neurobuild/application/__init__.py": {
+      "bytes": 85,
+      "sha256": "d393a04c8462e6e1a2bdc6e012639716d4b30aa18a15ec6fddf169aaedcbd359",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/application/__init__.py"
+    },
+    "source_snapshot/src/neurobuild/application/workflow.py": {
+      "bytes": 16129,
+      "sha256": "aadf8f561a4d19ee301dcdaf985631a6f470d86d463aec4f7053dfac50dffdf5",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/application/workflow.py"
+    },
+    "source_snapshot/src/neurobuild/application/requirements.py": {
+      "bytes": 12385,
+      "sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/application/requirements.py"
+    },
+    "source_snapshot/src/neurobuild/application/requirement_generation.py": {
+      "bytes": 7055,
+      "sha256": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/application/requirement_generation.py"
+    },
+    "source_snapshot/src/neurobuild/application/requirement_facts.py": {
+      "bytes": 4976,
+      "sha256": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/application/requirement_facts.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/__init__.py": {
+      "bytes": 79,
+      "sha256": "a7cfa5c500a5a587d0fd48bdae32bb951769d7ca525b4b36b1dce6cc0f516739",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/infrastructure/__init__.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/local_model.py": {
+      "bytes": 24256,
+      "sha256": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/infrastructure/local_model.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/artifacts.py": {
+      "bytes": 12722,
+      "sha256": "52edb48022d20eed6dff6d0b9d779ff25d03acbacb9764331dbb1945f740bbe9",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/infrastructure/artifacts.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/staged_requirement.py": {
+      "bytes": 11980,
+      "sha256": "7e79b1c488a00e3f81b443fb32f86019f510a274228f56058c4eeae66038efee",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/infrastructure/staged_requirement.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/persistence.py": {
+      "bytes": 13732,
+      "sha256": "872ffe7c16ea7b098e6e4b076ce4ced35132987ff6df99701cc283f9485f154d",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/infrastructure/persistence.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/ifc_engine.py": {
+      "bytes": 16860,
+      "sha256": "13acf3bf932ca49d495f8e3e718e6de376237b31f2192eb92bc6ce0d61a7c608",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/infrastructure/ifc_engine.py"
+    },
+    "source_snapshot/src/neurobuild/domain/__init__.py": {
+      "bytes": 86,
+      "sha256": "152b0592fd08f164e27f99228c033cf131916ddb7bd2b2124fba24511e19be75",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/domain/__init__.py"
+    },
+    "source_snapshot/src/neurobuild/domain/contracts.py": {
+      "bytes": 13912,
+      "sha256": "107edcaec115d7dbada810ed83398a114b1958b8658bc704bf3e9f7ff6b8e458",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/domain/contracts.py"
+    },
+    "source_snapshot/src/neurobuild/domain/errors.py": {
+      "bytes": 310,
+      "sha256": "32bb3ba6da83a35706759fe288e41bd490b5c1d56c071b4ec3de67207848b8aa",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/src/neurobuild/domain/errors.py"
+    },
+    "source_snapshot/runtime/models/glm47-flash-q4-k.json": {
+      "bytes": 648,
+      "sha256": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+      "original_path": "var/review-tools/glm47-exposed-review/source_snapshot/runtime/models/glm47-flash-q4-k.json"
+    },
+    "frozen_docs/docs/glm47_flash_diagnostic_plan.md": {
+      "bytes": 5463,
+      "sha256": "abb6dfefeacfcff49c8ce6690c78bada7c14a0162908fdb034217c81a39a4816",
+      "original_path": "docs/glm47_flash_diagnostic_plan.md"
+    },
+    "frozen_docs/docs/hardening_v2_dataset.md": {
+      "bytes": 8597,
+      "sha256": "5f5865b314f419b26374b6047a6f1bef09901b3ac3c1b073f30109d10ea6e9b1",
+      "original_path": "docs/hardening_v2_dataset.md"
+    },
+    "frozen_docs/docs/reports/phase5x_glm47_flash_native_cpu_report.md": {
+      "bytes": 3943,
+      "sha256": "d83da8250ab9a68de7a60d9bd862d2d8e73fe7787d5d9089cd38c1e721b73dec",
+      "original_path": "docs/reports/phase5x_glm47_flash_native_cpu_report.md"
+    },
+    "frozen_docs/docs/reports/phase5x_glm47_flash_preparation_report.md": {
+      "bytes": 9066,
+      "sha256": "91a1d8026ba803762e4390f497a3fffd3c67ba4e52a505574df7f34d477c46a6",
+      "original_path": "docs/reports/phase5x_glm47_flash_preparation_report.md"
+    },
+    "frozen_docs/docs/reviews/phase5x_holdout_v2_gold_review.md": {
+      "bytes": 3266,
+      "sha256": "35a2649959be5bf22cf4ba23b244a95e9a8bee951b0c4f99c28bfd5231dab203",
+      "original_path": "docs/reviews/phase5x_holdout_v2_gold_review.md"
+    },
+    "references.json": {
+      "bytes": 1549,
+      "sha256": "1c6a6ff121b615d9d31c2613297fdbb041cfb132738873d00108b6c0c720de26",
+      "original_path": null
+    },
+    "README.md": {
+      "bytes": 2489,
+      "sha256": "d96ebc1a012ccd22f024c2c16add4309e743a96231322bcb9fc7809e0592a813",
+      "original_path": null
+    }
+  }
+}

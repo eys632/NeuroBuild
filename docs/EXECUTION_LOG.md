@@ -1204,3 +1204,33 @@ replay386ba1d07bcba38c8d88509da5743443fb1330c3c866d39117f71195549f2576.
 Root는 finalv3를 publication1회 호출했고239hash의 첫품질freeze를생성했다.
 SHA211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa, freeze시epoch2elapsed134.944/remaining7065.056s.
 중복dry-check없음, modelquality0. Epoch1완료검사/종료와epoch2현재신원을별도필드로보존하며source/profile/gates/분모변경없다.
+
+
+### 2026-09-21 KST — GLM 첫 단회 실패·독립 재검산·서버 종료
+
+Source750fe09a8b7955dfe8db25f0c2e0fc589e077f36 push·원격일치와 frozen239파일을 확인한 뒤
+GLM 첫120×1+warmup5 실행, run20260920T144956Z-b647a76e83aa491bb72badf4479441d1 CLI exit0/stderr0.
+`evaluate_requirements.py --sampling-profile glm47_flash_nonthinking_llama_cpp --trials 1 --warmups 5`
+전체 argv는 manifest에 보존했다. 기존 진단/정식3회/runtime benchmark 재실행 없음.
+Results8fcb3b4fe9c6e32dcb2b1cae04040127b054d1817219b7d969d1a86cef107505,
+schema120/parser118/semantic104/rawFP1unsafe1/FN6/raw관측120/UNGROUNDED2.
+Mean5.154172948s/p955.741005917s/warmup5of5, firstgateFAIL. 추가 반복/V2/미사용80개0.
+
+`stop_native_glm47_epoch2.py`가 exact owned guard3683401/start479902187의 pidfd에만SIGTERM,
+child3683504/start479906575 자체정리뒤STOPPED/STOP_REQUESTED/exit0/reaped. Guard tool exit0.
+Finalc0a3d7631f5dde15a87d0345ef84a3e79f181c4ef271b5c4b161dd894625c864,
+991.825s/1789samples/aggregatepeak17962/minfree18412MiB.
+Poststop5표본 free36373/used3965/util0, ownPID부재, SHA805cee3c6495274ae6e135583421552b5a814fe8128d89389706a974dacfdf72.
+다른사용자신호/killall/광범위pkill/GPU0·1·2 fallback0.
+
+사전고정v3 replay를 completedrun에1회호출, exit0/stderr0,
+proof883854e2afa30a7c0c068ea24f3ec6e513eaaa5731963a8e1bb84a709754a34d.
+새125행 단계·판정·전체집계 exact/qualityFAIL. Frozen239파일 및 source snapshot30 blobs 연결 일치.
+기존416회귀PASS source7pins는현재와동일; unchanged suite 및완료startup/resource 검사는반복하지않았다.
+문서의과거40×3/80×3절을역사프로토콜로표시하고현재D036무반복정책을연결했다.
+결과·원본freeze·독립검토·실패분석·종료증거를checkpoint하며 Phase6진행은하지않는다.
+
+최종 독립 보존 검토 PASS: archive62hash/60원본사본/30Gitblob과 보고수치·종료 일치,
+receipt f8ce55d5bdda7c3c1c7f1a0ae702926312640dcf990112b3e533c30665d61380.
+새 문서 링크·diff whitespace 확인. Snapshot model_guard.py EOF빈줄1개는원본Gitblob과exact이므로보존했다.
+Production/scripts/tests/configs/prompts/schemas/runtime의추가변경0.

@@ -10,7 +10,8 @@ Gold 상태는 **AUTO-GENERATED / NOT HUMAN VERIFIED**다. seed20은 공개 deve
 자료이며 9개 READY와 11개 non-READY rubric으로 구성된다. 기본 5회 warmup 후 각 case를
 파일 순서대로 3회 연속 호출한다. 집계 분모는 60회, READY gold 27회, non-READY gold
 33회다. warmup 응답은 별도 보존하며 품질/latency 분모에서 제외한다.
-Phase5.x의 development40/holdout80 구성과 gate는 아래 절차를 따른다. 도구의 exit0은
+Phase5.x의 development40/holdout80 반복 절차는 아래에 과거 프로토콜로 보존한다. 현재 평가 횟수는
+[D036](DECISIONS.md)과 [실행 상태](STATUS.md)의 최소 검증 정책을 따른다. 도구의 exit0은
 실행·저장 완료를 뜻하며 품질 gate 통과나 모델 자동 선정을 뜻하지 않는다.
 
 ## 실행과 기록
@@ -210,7 +211,17 @@ served model과 같아야 한다. 서버가 실제로 로드한 commit은 HTTP�
 원문 대신 판정/오류 코드만 저장한다. 유효한 최종 semantic JSON의 짧은 `reason`은
 명시적인 clarification/unsupported 사유이며 모델 내부 추론을 요청하지 않는다.
 
-## 정식 development와 holdout
+## 과거 정식 development와 holdout 프로토콜
+
+아래 40×3·80×3 절차는 과거 기록이며 현행 필수 실행 순서가 아니다. [D036](DECISIONS.md)이
+자동 전체3회 반복을 대체했다. 현재 조건은 [STATUS](STATUS.md)와
+[GLM 첫 단회 계획](glm47_flash_diagnostic_plan.md)을 따른다.
+Schema100%·semantic≥95%·raw READY FP0·unsafe accepted READY0 기준은 유지하며,
+모든 정식 trial의 raw decision 관측을 요구한다. 오류·미관측은 원래 분모에 남긴다.
+명백한 FAIL이면 같은 후보 반복·V2·미사용 holdout을 실행하지 않는다. 통과/경계선일 때만
+구체적인 불확실성을 해결할 최소 후속 검증 범위를 별도로 정하고 사전 동결한다.
+기존 V2는 현재 **MODEL_OUTPUT_SEEN / EXPOSED**이며 새 unseen 평가 자료가 아니다.
+[V2 작성·동결 문서](hardening_v2_dataset.md)의 미노출·3회 계획은 작성 당시 기록으로 보존한다.
 
 [Hardening 자료](hardening_dataset.md)와
 [holdout 사전 프로토콜](reviews/phase5x_holdout_protocol_review.md)을 따른다.

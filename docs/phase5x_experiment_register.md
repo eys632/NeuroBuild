@@ -1,8 +1,8 @@
 # Phase 5.x 실제 평가 실행 목록
 
-최신 누적은 **26 run /2240 평가 trial /130 warmup 사례**다. 아래 초기16개와 당시3회 규칙은
+최신 누적은 **27 run /2360 평가 trial /135 warmup 사례**다. 아래 초기16개와 당시3회 규칙은
 역사 기록이며, 현재는 사용자 지시에 따라 자동 전체3회 반복을 폐지했다.
-EXAONE 첫120개도 semantic106/120으로 FAIL하여 같은후보 반복·V2 없이 종료했다. 최신 항목은 문서 끝에 있다.
+GLM 첫120개도 semantic104/120·rawFP1·unsafe1로 FAIL하여 같은 후보 반복·V2 없이 종료했다. 최신 항목은 문서 끝에 있다.
 
 2026-09-20 KST 작성. **AUTO-GENERATED / NOT HUMAN VERIFIED**. 작성 시 보존된 development 실행 **16개, 평가 응답 960개**를 모두 정리했다. Launch/runtime/shutdown 기록과 protocol smoke는 평가 run에서 제외했다. 각 run의 warmup 5개, 총80개도 아래 분모에 포함하지 않는다.
 
@@ -213,3 +213,22 @@ ResultsSHA `fe13a08acad5a3e9cb03bdf2c3662cda5a087e68cb61aab18d938f89c7c92053`.
 OwnserverSTOPPED/exit0/reaped,1245.664s/2206samples/aggregatepeak19946/minfree16428MiB,
 종료후5회free36373/used3965/util0. 같은후보반복/V2/미사용holdout0, 다른모델비교로진행한다.
 누적 **26run/2240평가trial/130warmup**이며합산정확도나독립표본수로해석하지않는다.
+
+
+## Native GLM-4.7-Flash Q4_K_M 첫120개 단회 — 의미·안전 gate FAIL
+
+Run `20260920T144956Z-b647a76e83aa491bb72badf4479441d1`, clean pushed `750fe09a8b7955dfe8db25f0c2e0fc589e077f36`.
+47main/no-MTP/Q8 output·K_B, 원본template/nativef072, glm47_flash_nonthinking_llama_cpp,
+T1/P.95/K0/neutral penalties/seed42, single2.0/promptv2/branchschema/output768/timeout120.
+120×1+warmup5, schema120/parser118/semantic104(86.67%)/raw+acceptedFP1/58/unsafe1/120/FN6/62/raw관측120.
+Mean5.154172948s/p955.741005917s, warmup5/5별도, UNGROUNDED2/timeout0/truncation0이다.
+[원본](../evaluations/results/phase5x/exposed-native-glm47-diagnostic/results.json),
+[보고서](reports/phase5x_native_glm47_diagnostic_report.md), [독립 검토](reviews/phase5x_native_glm47_exposed_review.md).
+ResultsSHA `8fcb3b4fe9c6e32dcb2b1cae04040127b054d1817219b7d969d1a86cef107505`.
+
+16개 오류 중 HH-C07 방화문 READY가 rawFP/unsafe의 유일한 사례다. 실제 IFC 실행은 없다.
+새125개 저장 응답의 첫 독립 CPU재생 PASS, 품질 FAIL은 유지한다. Frozen239파일은 전후 일치했다.
+Epoch2 own server STOPPED/exit0/reaped,991.825s/1789samples/aggregatepeak17962/minfree18412MiB,
+종료 후5회 free36373/used3965/util0. 기존 runtime검사·평가 재생·416회귀suite 반복0회.
+같은 후보 추가 반복·V2·미사용holdout0, 다른 모델 비교 및 접근 재검토로 진행한다.
+누적 **27run/2360평가trial/135warmup**이며 합산 정확도나 독립 표본 수로 해석하지 않는다.

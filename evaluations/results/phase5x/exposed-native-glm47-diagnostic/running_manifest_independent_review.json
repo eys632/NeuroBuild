@@ -1,0 +1,74 @@
+{
+  "kind": "GLM47_IN_PROGRESS_MANIFEST_INDEPENDENT_READ_REVIEW",
+  "status": "PASS",
+  "at_utc": "2026-09-20T14:52:31.878222+00:00",
+  "run_id": "20260920T144956Z-b647a76e83aa491bb72badf4479441d1",
+  "run_completion_observed": false,
+  "checks": {
+    "manifest_run_id": true,
+    "clean_expected_checkpoint": true,
+    "snapshot_record_expected_sha": true,
+    "snapshot_commit_count": true,
+    "independent_freeze_link": true,
+    "final_replay_exact_frozen": true,
+    "final_freezer_exact_frozen": true,
+    "frozen_before_manifest": true,
+    "official_candidate_variant": true,
+    "official_model_revision": true,
+    "served_model": true,
+    "runtime_exact_manifest": true,
+    "epoch2_selected": true,
+    "epoch2_exact_saved_identity": true,
+    "epoch2_startup_link": true,
+    "epoch1_prerequisites_separate": true,
+    "protocol_fixed": true,
+    "one_call120_plus5": true,
+    "neutral_sampling_exact": true,
+    "generation_protocol": true,
+    "unchanged_four_gates": true,
+    "scope_exposed_only": true,
+    "manifest_snapshot_freeze_source_map": true,
+    "source_snapshot_non_dataset_byte_hashes": true,
+    "no_dataset_snapshot_hash_claim": true,
+    "native_identity": true,
+    "new_control_proof_exact": true,
+    "replay_native_glm47_exposed_v3_final_unchanged_other_function_asts": true,
+    "freeze_native_glm47_diagnostic_v3_final_unchanged_other_function_asts": true
+  },
+  "material_findings": [],
+  "evidence_sha256": {
+    "var/runs/20260920T144956Z-b647a76e83aa491bb72badf4479441d1/manifest.json": "ec8b620b2c98f8780cdc8e5fe1e224d38a6920e95528e5a8cdc45a701e852833",
+    "evaluations/hardening_v1_exposed_native_glm47_diagnostic_freeze.json": "211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa",
+    "var/review-tools/glm47-exposed-review/source_snapshot/snapshot.json": "0ebf959ba0b7f1333b51b74d464323c98440848009ca50fb68ab97be7891f1b1",
+    "var/research/replay_native_glm47_exposed_v3.py": "386ba1d07bcba38c8d88509da5743443fb1330c3c866d39117f71195549f2576",
+    "var/research/freeze_native_glm47_diagnostic_v3.py": "c4ff15f18cb14ff99a165963397b4360b7c4c43e22164b623f6fe6eed04a010f",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/runtime_metadata.json": "cf6c6d2b38be7607cc2103c9c7668dd4264570334c2b8a0466df242669971394",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/startup.json": "29f5443a8e2b9d1936801860d5776dc3014ba69ba6f73bc6a3407fb4ca9b098c",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/launch_config.json": "d0a5ae9663d9caf4420651a018ce687325b0e8fc7fb154963e948b4251e56994",
+    "var/research/glm47-epoch-transition-v3-proof.json": "fda7eae4d307dbb668868b71fed6a8b67aa92e97a2ded7217c2a298ef3d06fe5"
+  },
+  "runtime_epoch": {
+    "pid": 3683504,
+    "start_ticks": 479906575,
+    "guard_started_at_utc": "2026-09-20T14:43:57.927254+00:00"
+  },
+  "frozen_prerequisite_epoch": {
+    "pid": 3647152,
+    "start_ticks": 479062142,
+    "guard_started_at_utc": "2026-09-20T12:23:14.135579+00:00"
+  },
+  "limits": [
+    "Only setup metadata reviewed; no result/body/decision/quality observation.",
+    "Snapshot record30paths/maps verified;29non-JSONL copied files hashed. Dataset payload deliberately unopened; dataset identity is manifest/freeze/snapshot-record hash agreement only.",
+    "Case-order list has120 uniqueIDs; exact dataset-order comparison is deferred to the one authorized completed-run replay.",
+    "Float timeout120.0 matches frozen numeric120 and the final replay finite numeric rule.",
+    "Epoch1 public/resource prerequisites reused; current run metadata is epoch2. No inference/resource repetition inferred or performed by this review."
+  ],
+  "review_execution": {
+    "replay_or_helper_imports_or_main_calls": 0,
+    "tests": 0,
+    "dataset_or_results_or_weights_opened": 0,
+    "http_gpu_native_model_calls": 0,
+    "production_edits": 0
+  }
+}

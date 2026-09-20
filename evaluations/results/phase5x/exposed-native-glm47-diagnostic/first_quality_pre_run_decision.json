@@ -1,0 +1,21 @@
+{
+  "kind": "GLM47_FIRST_QUALITY_FRESH_EPOCH_DECISION",
+  "at_utc": "2026-09-20T14:49:56.474720+00:00",
+  "commit": "750fe09a8b7955dfe8db25f0c2e0fc589e077f36",
+  "git_clean": true,
+  "remote_exact_verified": true,
+  "freeze_sha256": "211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa",
+  "guard_report_sha256": "f2dbc3bc2fefec7f46251fb79ad52aee8a290a1edee69689a227083f2ca7f838",
+  "guard_elapsed_seconds": 314.062,
+  "guard_remaining_seconds": 6885.938,
+  "pid": 3683504,
+  "start_ticks": 479906575,
+  "trials": 1,
+  "warmups": 5,
+  "planned_http_calls": 125,
+  "quality_calls_before_decision": 0,
+  "public_resource_repeated": false,
+  "runtime_epoch": "epoch2",
+  "decision": "RUN_FIRST_SINGLE_DIAGNOSTIC",
+  "time_estimate_notice": "Remaining guard time comfortably exceeds125 times5.147s public observation plus preparation margin; not a worst-case125*120s guarantee."
+}

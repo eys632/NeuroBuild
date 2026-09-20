@@ -1,0 +1,20 @@
+{
+  "kind": "GLM47_FIRST_QUALITY_COMPLETION",
+  "recorded_at_utc": "2026-09-20T15:03:43.841140+00:00",
+  "run_id": "20260920T144956Z-b647a76e83aa491bb72badf4479441d1",
+  "cli_exit_code": 0,
+  "source_commit": "750fe09a8b7955dfe8db25f0c2e0fc589e077f36",
+  "trials": 120,
+  "warmups": 5,
+  "quality_gate": "FAIL",
+  "same_candidate_additional_model_runs": 0,
+  "v2_model_calls": 0,
+  "unused_holdout_access": 0,
+  "cli_stdout_sha256": "f1460ed905a9af97055043a73937fe4222d797b78605e8ef725bfe733fedcc7d",
+  "cli_stderr_bytes": 0,
+  "files": {
+    "manifest.json": "ec8b620b2c98f8780cdc8e5fe1e224d38a6920e95528e5a8cdc45a701e852833",
+    "dataset.json": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc",
+    "results.json": "8fcb3b4fe9c6e32dcb2b1cae04040127b054d1817219b7d969d1a86cef107505"
+  }
+}

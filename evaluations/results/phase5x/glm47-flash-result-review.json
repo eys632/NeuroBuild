@@ -1,0 +1,83 @@
+{
+  "kind": "GLM47_COMPLETED_CHECKPOINT_INDEPENDENT_READ_REVIEW",
+  "status": "PASS",
+  "blockers": [],
+  "archive_integrity_sha256": "33edd91922b99d8a9b362db61abb3b32b6d52b7d16dcb632a22161a5812c5250",
+  "archive_hash_entries": 62,
+  "exact_original_copies": 60,
+  "frozen_docs_compared_to_git_commit": 5,
+  "source_snapshot_git_blobs": 30,
+  "source_commit": "750fe09a8b7955dfe8db25f0c2e0fc589e077f36",
+  "current_source_snapshot_source_hashes_unchanged": 25,
+  "prior_reference_directories_exist": 11,
+  "results_sha256": "8fcb3b4fe9c6e32dcb2b1cae04040127b054d1817219b7d969d1a86cef107505",
+  "saved_replay_metrics_equal": true,
+  "metrics_consistency": {
+    "trials": 120,
+    "warmups": 5,
+    "schema": 120,
+    "parser": 118,
+    "semantic": 104,
+    "raw_fp": [
+      1,
+      58
+    ],
+    "unsafe": [
+      1,
+      120
+    ],
+    "fn": [
+      6,
+      62
+    ],
+    "raw_observed": [
+      120,
+      120
+    ],
+    "errors": {
+      "UNGROUNDED_REQUIREMENT": 2
+    },
+    "latency_all": {
+      "count": 120,
+      "mean_seconds": 5.154172947847595,
+      "p95_seconds": 5.741005917079747
+    },
+    "quality_gate": "FAIL"
+  },
+  "stop_consistency": {
+    "state": "STOPPED",
+    "reason": "STOP_REQUESTED",
+    "child_exit_code": 0,
+    "term_sent": true,
+    "kill_sent": true,
+    "child_reaped": true,
+    "elapsed_seconds": 991.825,
+    "aggregate_peak_mib": 17962,
+    "minimum_free_mib": 18412,
+    "post_stop_samples": 5,
+    "free_used_util_each": [
+      36373,
+      3965,
+      0
+    ]
+  },
+  "reviewed_doc_sha256": {
+    "docs/reports/phase5x_native_glm47_diagnostic_report.md": "ac0208b0fc8d870e6b065ec47342b0904fc71186f7a678f53c44a3f018758b5e",
+    "docs/reviews/phase5x_native_glm47_exposed_review.md": "f8d487cc5272d15d4e583b71c434f95e4aeed6c4d6382d738b4e3f5c5758920e",
+    "docs/STATUS.md": "0a58957d26df0b637ed57f9020072147f9244a672da2f3c3cbbcdc9708bc865e",
+    "docs/phase5x_experiment_register.md": "f129f84dfe0cce9ca38aa54e6ef4386dfb1eafba8ab2f5d6595b057810909091",
+    "evaluations/results/phase5x/exposed-native-glm47-diagnostic/README.md": "d96ebc1a012ccd22f024c2c16add4309e743a96231322bcb9fc7809e0592a813"
+  },
+  "historical_scope": "Epoch1 completed prerequisites carried forward; fresh epoch2 startup identity is documented separately. Source snapshot EOF blank retained exactly. Existing archives were not exhaustively reaudited.",
+  "limitations": "Case bodies and individual model outputs were not inspected; failure-case taxonomy not independently rederived. Saved metrics were compared, not rescored.",
+  "actions": {
+    "dataset_body_parsing": 0,
+    "model_output_row_inspection": 0,
+    "replay_runs": 0,
+    "tests_runs": 0,
+    "model_http_gpu_calls": 0,
+    "process_inspections": 0,
+    "signals": 0,
+    "tracked_edits": 0
+  }
+}

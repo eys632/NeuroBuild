@@ -1,0 +1,22 @@
+{
+  "kind": "GLM47_PRIOR_EVIDENCE_REFERENCES",
+  "source_commit": "750fe09a8b7955dfe8db25f0c2e0fc589e077f36",
+  "freeze_path": "evaluations/hardening_v1_exposed_native_glm47_diagnostic_freeze.json",
+  "freeze_sha256": "211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa",
+  "bound_file_count": 239,
+  "reference_policy": "Prior exact evidence remains in Git at the pinned source commit. The freeze records all239 bindings; this result archive does not duplicate those prior runtime archives. Current five frozen document versions and30 Git source blobs are also copied here for offline inspection.",
+  "prior_archive_directories": [
+    "evaluations/results/phase5x/glm47-flash-epoch1-time-limit-stop",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2",
+    "evaluations/results/phase5x/glm47-flash-preparation/download",
+    "evaluations/results/phase5x/glm47-flash-preparation/header",
+    "evaluations/results/phase5x/glm47-flash-preparation/regression",
+    "evaluations/results/phase5x/glm47-flash-preparation/resource_plan",
+    "evaluations/results/phase5x/glm47-flash-preparation/review",
+    "evaluations/results/phase5x/glm47-flash-preparation/selection",
+    "evaluations/results/phase5x/glm47-flash-runtime-definition",
+    "evaluations/results/phase5x/glm47-flash-runtime-observation-epoch1",
+    "evaluations/results/phase5x/glm47-flash-runtime-review"
+  ],
+  "replay_helper_exact_archive_path": "evaluations/results/phase5x/glm47-flash-epoch2-evaluation-definition/replay_native_glm47_exposed_v3.py"
+}

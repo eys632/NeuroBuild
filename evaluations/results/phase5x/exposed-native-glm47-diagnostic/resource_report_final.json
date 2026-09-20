@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "profile": "a100",
+  "state": "STOPPED",
+  "runtime_family": "llama_cpp",
+  "enable_reasoning": false,
+  "reasoning_parser": "deepseek",
+  "native_reasoning_format": "deepseek",
+  "native_identity_verified": true,
+  "native_output_policy": "DISCARD_STDOUT_STDERR",
+  "native_core_dump_limit_bytes": 0,
+  "native_all_tensor_gpu_residency_verified": false,
+  "native_allocation_policy": "EXPLICIT_CUDA0_ALL_LAYERS_FIT_OFF_NO_CAPACITY_FALLBACK",
+  "native_cpu_notice": "Fixed CPU input embeddings or unsupported operations may still exist; arguments do not prove every tensor is GPU resident.",
+  "ready": false,
+  "started_at_utc": "2026-09-20T14:43:57.927254+00:00",
+  "reason": "STOP_REQUESTED",
+  "memory_fit_guaranteed": false,
+  "inference_validation": "NOT_ESTABLISHED",
+  "measurement_scope": "permitted_GPU_aggregate_only",
+  "per_process_measurement": false,
+  "peak_attribution_notice": "Aggregate baseline-relative increase is not a guaranteed per-process upper bound: other workloads may release memory between samples.",
+  "poll_interval_seconds": 0.5,
+  "elapsed_seconds": 991.825,
+  "observed_baseline_relative_peak_mib": 17962,
+  "watchdog_sample_count": 1789,
+  "log_file": "/home/a202192020/NeuroBuild_v2/var/logs/glm47-flash-native-epoch2.log",
+  "model_path": "/home/a202192020/NeuroBuild_v2/var/models/ggml-org--GLM-4.7-Flash-GGUF/7559e96b7e324ab405897dc2b91492b0f376ad4a/GLM-4.7-Flash-Q4_K.gguf",
+  "served_model_name": "neurobuild-glm47-flash-q4-k",
+  "max_model_len": 4096,
+  "physical_gpu_index": 3,
+  "required_cuda_visible_devices": "3",
+  "peak_allowance_mib": 0,
+  "allocator_cap_kind": "NONE_VERIFIED",
+  "torch_allocator_fraction": null,
+  "gpu_memory_utilization": null,
+  "native_artifacts": {
+    "binary_sha256": "a0494b9885b25ba4cc2679dae5077e7ab18ad5baff161a7a152f19f43afdca0d",
+    "build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+    "source_report_sha256": "4802877b1f067c17a3fb2e4fe1cc0f3605773b6fba56900aa2c80699739751f6",
+    "source_commit": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+    "model_sha256": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2",
+    "model_revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+    "model_header_report_sha256": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef",
+    "project_library_count": 8
+  },
+  "max_num_seqs": 1,
+  "batch_size": 64,
+  "ubatch_size": 64,
+  "cache_type_k": "f16",
+  "cache_type_v": "f16",
+  "flash_attention": "off",
+  "skip_chat_parsing": false,
+  "preflight": {
+    "schema_version": 1,
+    "profile": "a100",
+    "physical_gpu_index": 3,
+    "required_cuda_visible_devices": "3",
+    "generated_at_utc": "2026-09-20T14:44:37.392554+00:00",
+    "policy": {
+      "profile": "a100",
+      "estimated_peak_mib": 28672,
+      "samples": 5,
+      "interval_seconds": 1.0,
+      "safety_margin_mib": 6144,
+      "safety_margin_fraction": 0.2,
+      "max_utilization_percent": 10,
+      "max_free_change_mib": 256
+    },
+    "samples": [
+      {
+        "total_mib": 40960,
+        "free_mib": 36373,
+        "used_mib": 3965,
+        "utilization_percent": 0
+      },
+      {
+        "total_mib": 40960,
+        "free_mib": 36373,
+        "used_mib": 3965,
+        "utilization_percent": 0
+      },
+      {
+        "total_mib": 40960,
+        "free_mib": 36373,
+        "used_mib": 3965,
+        "utilization_percent": 0
+      },
+      {
+        "total_mib": 40960,
+        "free_mib": 36373,
+        "used_mib": 3965,
+        "utilization_percent": 0
+      },
+      {
+        "total_mib": 40960,
+        "free_mib": 36373,
+        "used_mib": 3965,
+        "utilization_percent": 0
+      }
+    ],
+    "runtime_validation": "NOT_TESTED",
+    "memory_fit_guaranteed": false,
+    "notice": "Read-only measurement and estimate; no reservation, runtime launch, process query or termination.",
+    "allowed": true,
+    "decision": "BUDGET_FITS_ESTIMATE",
+    "reason_codes": [],
+    "measured": {
+      "total_mib": 40960,
+      "minimum_free_mib": 36373,
+      "maximum_used_mib": 3965,
+      "maximum_utilization_percent": 0,
+      "free_memory_swing_mib": 0,
+      "sample_count": 5
+    },
+    "budget": {
+      "estimated_startup_or_inference_peak_mib": 28672,
+      "estimate_must_include": [
+        "weights",
+        "KV_cache",
+        "workspace",
+        "CUDA_context",
+        "allocator_overhead"
+      ],
+      "required_safety_margin_mib": 7275,
+      "available_model_budget_mib": 29098,
+      "unallocated_budget_after_estimated_peak_mib": 426,
+      "estimate_is_measured_peak": false
+    },
+    "required_launch_limit": {
+      "maximum_total_runtime_peak_mib": 29098,
+      "maximum_fraction_of_total_vram": 0.7104,
+      "tensor_parallel_size": 1,
+      "process_device": "cuda:0",
+      "recheck_immediately_before_launch": true,
+      "runtime_must_enforce_its_own_memory_settings": true,
+      "hard_gpu_isolation": false
+    },
+    "completed_at_utc": "2026-09-20T14:44:41.724967+00:00"
+  },
+  "baseline_used_mib": 3965,
+  "required_free_floor_mib": 7275,
+  "aggregate_increment_limit_mib": 28672,
+  "minimum_observed_free_mib": 18412,
+  "child_pid": 3683504,
+  "shutdown": {
+    "term_sent": true,
+    "kill_sent": true,
+    "child_reaped": true
+  },
+  "child_exit_code": 0,
+  "completed_at_utc": "2026-09-20T15:01:13.554280+00:00"
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "GLM47_FIRST_COMPLETED_RESULT_REPLAY_INVOCATION",
+  "argv": [
+    ".conda/bin/python",
+    "-B",
+    "var/research/replay_native_glm47_exposed_v3.py",
+    "var/runs/20260920T144956Z-b647a76e83aa491bb72badf4479441d1",
+    "--freeze",
+    "evaluations/hardening_v1_exposed_native_glm47_diagnostic_freeze.json",
+    "--freeze-sha256",
+    "211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa",
+    "--source-commit",
+    "750fe09a8b7955dfe8db25f0c2e0fc589e077f36",
+    "--snapshot",
+    "var/review-tools/glm47-exposed-review/source_snapshot",
+    "--snapshot-sha256",
+    "0ebf959ba0b7f1333b51b74d464323c98440848009ca50fb68ab97be7891f1b1",
+    "--candidate-variant",
+    "glm47-flash-gguf-nonthinking-v1",
+    "--completed-run"
+  ],
+  "started_at_utc": "2026-09-20T15:01:37.737951+00:00",
+  "finished_at_utc": "2026-09-20T15:01:38.153878+00:00",
+  "exit_code": 0,
+  "model_replays": 0,
+  "completed_current_run_replays": 1,
+  "historical_replays": 0
+}

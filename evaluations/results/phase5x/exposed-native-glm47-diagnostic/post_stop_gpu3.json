@@ -1,0 +1,108 @@
+{
+  "kind": "GLM47_NATIVE_EPOCH2_POST_STOP_GPU3_OBSERVATION",
+  "status": "PASS",
+  "at_utc": "2026-09-20T15:03:04.379270+00:00",
+  "final_guard_report": "var/reports/glm47-flash-native-epoch2.json",
+  "final_guard_report_sha256": "c0a3d7631f5dde15a87d0345ef84a3e79f181c4ef271b5c4b161dd894625c864",
+  "final_guard_report_unchanged": true,
+  "guard_state": "STOPPED",
+  "guard_reason": "STOP_REQUESTED",
+  "guard_elapsed_seconds": 991.825,
+  "child_exit_code": 0,
+  "shutdown": {
+    "term_sent": true,
+    "kill_sent": true,
+    "child_reaped": true
+  },
+  "final_aggregate_peak_mib": 17962,
+  "final_minimum_free_mib": 18412,
+  "guard_pid": 3683401,
+  "child_pid": 3683504,
+  "pid_absence_before": {
+    "3683401": {
+      "absent": true,
+      "process_contents_read": false
+    },
+    "3683504": {
+      "absent": true,
+      "process_contents_read": false
+    }
+  },
+  "pid_absence_after": {
+    "3683401": {
+      "absent": true,
+      "process_contents_read": false
+    },
+    "3683504": {
+      "absent": true,
+      "process_contents_read": false
+    }
+  },
+  "gpu_query_argv": [
+    "nvidia-smi",
+    "-i",
+    "3",
+    "--query-gpu=index,uuid,memory.free,memory.used,utilization.gpu",
+    "--format=csv,noheader,nounits"
+  ],
+  "sample_count": 5,
+  "requested_interval_seconds": 1,
+  "baseline": {
+    "free_mib": 36373,
+    "used_mib": 3965
+  },
+  "baseline_recovered_all_samples": true,
+  "samples": [
+    {
+      "index": 1,
+      "at_utc": "2026-09-20T15:03:00.126032+00:00",
+      "physical_gpu_index": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "index": 2,
+      "at_utc": "2026-09-20T15:03:01.202187+00:00",
+      "physical_gpu_index": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "index": 3,
+      "at_utc": "2026-09-20T15:03:02.262155+00:00",
+      "physical_gpu_index": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "index": 4,
+      "at_utc": "2026-09-20T15:03:03.320839+00:00",
+      "physical_gpu_index": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    },
+    {
+      "index": 5,
+      "at_utc": "2026-09-20T15:03:04.378900+00:00",
+      "physical_gpu_index": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "free_mib": 36373,
+      "used_mib": 3965,
+      "utilization_percent": 0
+    }
+  ],
+  "observation_scope": "GPU3 aggregate free/used/utilization only; no GPU process list, other GPUs, process contents, model or HTTP calls. Does not attribute aggregate memory to individual processes.",
+  "other_process_contents_read": 0,
+  "signals_sent": 0,
+  "model_calls": 0,
+  "http_calls": 0,
+  "tests_run": 0
+}

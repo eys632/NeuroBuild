@@ -1,0 +1,72 @@
+{
+  "kind": "GLM47_EPOCH2_STOP_HELPER_PREPARATION",
+  "status": "PREPARED_NOT_EXECUTED",
+  "source_path": "var/research/stop_native_glm47_epoch1.py",
+  "source_sha256": "49e7c10a70869c61d5b07b8d4e9620c30d5812e7a52f70b79a5404384a0e5dc8",
+  "helper_path": "var/research/stop_native_glm47_epoch2.py",
+  "helper_sha256": "f7d27dede5f9eb860dd181620c03877b39c60f497a8c0cd907bcf5d26f1361b7",
+  "exact_replacements": [
+    {
+      "old": "epoch1",
+      "new": "epoch2",
+      "occurrences": 4
+    },
+    {
+      "old": "3646979",
+      "new": "3683401",
+      "occurrences": 1
+    },
+    {
+      "old": "479057809",
+      "new": "479902187",
+      "occurrences": 1
+    },
+    {
+      "old": "3647152",
+      "new": "3683504",
+      "occurrences": 1
+    },
+    {
+      "old": "479062142",
+      "new": "479906575",
+      "occurrences": 1
+    },
+    {
+      "old": "4824463fcabca13c2eaa07a9774c324b7980a2383915868f4f493b149dc245c4",
+      "new": "d0a5ae9663d9caf4420651a018ce687325b0e8fc7fb154963e948b4251e56994",
+      "occurrences": 1
+    },
+    {
+      "old": "var/research/glm47-native-own-epoch-identity.json",
+      "new": "var/research/glm47-native-epoch2-own-identity.json",
+      "occurrences": 1
+    },
+    {
+      "old": "7ef9e56d1e794ff44531a7565aaae215f2cdaabe42c8b7d14c457706ebff5833",
+      "new": "b20bab7820b78bd9f7c35eb4f0eb311f6c2c495f7c0974e574afcf39b39b1ded",
+      "occurrences": 1
+    },
+    {
+      "old": "2026-09-20T12:23:14.135579+00:00",
+      "new": "2026-09-20T14:43:57.927254+00:00",
+      "occurrences": 2
+    }
+  ],
+  "unlisted_changes": 0,
+  "saved_identity_sha256": "b20bab7820b78bd9f7c35eb4f0eb311f6c2c495f7c0974e574afcf39b39b1ded",
+  "configuration_sha256": "d0a5ae9663d9caf4420651a018ce687325b0e8fc7fb154963e948b4251e56994",
+  "collector_sha256": "4399c90d32e0e472455bae5e907c8a479fdac550fed46978d8001c6d894d69ea",
+  "guard_pid": 3683401,
+  "guard_start_ticks": 479902187,
+  "child_pid": 3683504,
+  "child_start_ticks": 479906575,
+  "guard_started_at_utc": "2026-09-20T14:43:57.927254+00:00",
+  "syntax_parsed_only": true,
+  "module_imported": false,
+  "proc_reads": 0,
+  "signals": 0,
+  "gpu_queries": 0,
+  "model_calls": 0,
+  "root_review_required_before_execution": true,
+  "active_quality_run_not_interrupted": true
+}

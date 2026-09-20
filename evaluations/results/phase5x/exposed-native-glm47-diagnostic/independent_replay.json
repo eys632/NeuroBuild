@@ -1,0 +1,1209 @@
+{
+  "status": "PASS",
+  "meaning": "Saved-result replay/accounting consistency, not adoption",
+  "diagnostic_gate": "FAIL",
+  "diagnostic_gate_counts": {
+    "schema": 120,
+    "quote_adapter": 118,
+    "canonical_schema": 118,
+    "parser": 118,
+    "semantic": 104,
+    "raw_fp": 1,
+    "unsafe": 1,
+    "false_negative": 6,
+    "raw_observed": 120
+  },
+  "trials": 120,
+  "warmups": 5,
+  "retained_generation_json_replayed": {
+    "warmups": 5,
+    "trials": 120
+  },
+  "unretained_response_rows": {
+    "warmups": 0,
+    "trials": 0
+  },
+  "retained_stages_and_trial_metrics_exact": true,
+  "frozen_evaluate_trial_exact_on_retained_rows": true,
+  "metrics": {
+    "json_parse_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "schema_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "parser_accepted": {
+      "numerator": 118,
+      "denominator": 120,
+      "rate": 0.9833333333333333,
+      "wilson_95": [
+        0.941264037027841,
+        0.9954174354340789
+      ]
+    },
+    "semantic_rubric_correct": {
+      "numerator": 104,
+      "denominator": 120,
+      "rate": 0.8666666666666667,
+      "wilson_95": [
+        0.7943520342531574,
+        0.916233910373127
+      ]
+    },
+    "generation_schema_valid": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "adapter_accepted": {
+      "numerator": 118,
+      "denominator": 120,
+      "rate": 0.9833333333333333,
+      "wilson_95": [
+        0.941264037027841,
+        0.9954174354340789
+      ]
+    },
+    "legacy_schema_valid": {
+      "numerator": 118,
+      "denominator": 120,
+      "rate": 0.9833333333333333,
+      "wilson_95": [
+        0.941264037027841,
+        0.9954174354340789
+      ]
+    },
+    "critical_fp_model_ready": {
+      "numerator": 1,
+      "denominator": 58,
+      "rate": 0.017241379310344827,
+      "wilson_95": [
+        0.0030500384460675004,
+        0.09140858093468013
+      ]
+    },
+    "critical_fp_accepted_ready": {
+      "numerator": 1,
+      "denominator": 58,
+      "rate": 0.017241379310344827,
+      "wilson_95": [
+        0.0030500384460675004,
+        0.09140858093468013
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "nonready_gold_raw_decision_observed": {
+      "numerator": 58,
+      "denominator": 58,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9378821442127971,
+        1.0
+      ]
+    },
+    "critical_fn_accepted_ready": {
+      "numerator": 6,
+      "denominator": 62,
+      "rate": 0.0967741935483871,
+      "wilson_95": [
+        0.045111872023193916,
+        0.19548818612307423
+      ]
+    },
+    "accepted_incorrect_move_on_ready_gold": {
+      "numerator": 0,
+      "denominator": 62,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.058344072101372484
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 1,
+      "denominator": 120,
+      "rate": 0.008333333333333333,
+      "wilson_95": [
+        0.0014725557333420923,
+        0.045696291245049675
+      ]
+    },
+    "target_preservation": {
+      "numerator": 119,
+      "denominator": 125,
+      "rate": 0.952,
+      "wilson_95": [
+        0.8992288896829618,
+        0.9778179944047111
+      ]
+    },
+    "unit_value_extraction": {
+      "numerator": 112,
+      "denominator": 124,
+      "rate": 0.9032258064516129,
+      "wilson_95": [
+        0.8384470662529209,
+        0.9437717923433067
+      ]
+    },
+    "latency_all": {
+      "count": 120,
+      "mean_seconds": 5.154172947847595,
+      "p95_seconds": 5.741005917079747
+    },
+    "latency_parser_accepted": {
+      "count": 118,
+      "mean_seconds": 5.14760970675497,
+      "p95_seconds": 5.751069366931915
+    },
+    "errors": {
+      "UNGROUNDED_REQUIREMENT": 2
+    },
+    "tool_execution": "NOT_PERFORMED",
+    "decode_tokens_per_second": null,
+    "ttft_seconds": null,
+    "clarification_detection": {
+      "precision": {
+        "numerator": 16,
+        "denominator": 16,
+        "rate": 1.0,
+        "wilson_95": [
+          0.8063923194655637,
+          1.0
+        ]
+      },
+      "recall": {
+        "numerator": 16,
+        "denominator": 23,
+        "rate": 0.6956521739130435,
+        "wilson_95": [
+          0.49134243731240795,
+          0.8439597554678597
+        ]
+      },
+      "f1": 0.8205128205128205
+    },
+    "unsupported_detection": {
+      "precision": {
+        "numerator": 34,
+        "denominator": 45,
+        "rate": 0.7555555555555555,
+        "wilson_95": [
+          0.6132661994297965,
+          0.8576452056622828
+        ]
+      },
+      "recall": {
+        "numerator": 34,
+        "denominator": 35,
+        "rate": 0.9714285714285714,
+        "wilson_95": [
+          0.8546691276638632,
+          0.9949385081445556
+        ]
+      },
+      "f1": 0.85
+    },
+    "completion_tokens_per_end_to_end_second": 19.59900602653461,
+    "token_timing_trial_count": 120,
+    "case_consistency": {
+      "A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HD-H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HD-J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-A06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-A07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-A08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-B08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-C06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-C07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-C08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-D08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-E06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-E07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-E08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-F08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-G05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-G08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-H06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-H07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-H08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-I07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-I08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J03": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J04": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J05": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": false
+      },
+      "HH-J06": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J07": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "HH-J08": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      }
+    }
+  },
+  "warmup_metrics_separate": {
+    "json_parse_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "schema_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "parser_accepted": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "semantic_rubric_correct": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "generation_schema_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "adapter_accepted": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "legacy_schema_valid": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "critical_fp_model_ready": {
+      "numerator": 0,
+      "denominator": 3,
+      "rate": 0.0,
+      "wilson_95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+      ]
+    },
+    "critical_fp_accepted_ready": {
+      "numerator": 0,
+      "denominator": 3,
+      "rate": 0.0,
+      "wilson_95": [
+        5.551115123125783e-17,
+        0.5614970317550454
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 5,
+      "denominator": 5,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5655175352168251,
+        1.0
+      ]
+    },
+    "nonready_gold_raw_decision_observed": {
+      "numerator": 3,
+      "denominator": 3,
+      "rate": 1.0,
+      "wilson_95": [
+        0.4385029682449546,
+        1.0
+      ]
+    },
+    "critical_fn_accepted_ready": {
+      "numerator": 0,
+      "denominator": 2,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.6576197724933469
+      ]
+    },
+    "accepted_incorrect_move_on_ready_gold": {
+      "numerator": 0,
+      "denominator": 2,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.6576197724933469
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 0,
+      "denominator": 5,
+      "rate": 0.0,
+      "wilson_95": [
+        0.0,
+        0.43448246478317476
+      ]
+    },
+    "target_preservation": {
+      "numerator": 4,
+      "denominator": 4,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5101091635454027,
+        1.0
+      ]
+    },
+    "unit_value_extraction": {
+      "numerator": 4,
+      "denominator": 4,
+      "rate": 1.0,
+      "wilson_95": [
+        0.5101091635454027,
+        1.0
+      ]
+    },
+    "latency_all": {
+      "count": 5,
+      "mean_seconds": 4.815257874131203,
+      "p95_seconds": 5.104883120395243
+    },
+    "latency_parser_accepted": {
+      "count": 5,
+      "mean_seconds": 4.815257874131203,
+      "p95_seconds": 5.104883120395243
+    },
+    "errors": {},
+    "tool_execution": "NOT_PERFORMED",
+    "decode_tokens_per_second": null,
+    "ttft_seconds": null,
+    "clarification_detection": {
+      "precision": {
+        "numerator": 2,
+        "denominator": 2,
+        "rate": 1.0,
+        "wilson_95": [
+          0.34238022750665303,
+          1.0
+        ]
+      },
+      "recall": {
+        "numerator": 2,
+        "denominator": 2,
+        "rate": 1.0,
+        "wilson_95": [
+          0.34238022750665303,
+          1.0
+        ]
+      },
+      "f1": 1.0
+    },
+    "unsupported_detection": {
+      "precision": {
+        "numerator": 1,
+        "denominator": 1,
+        "rate": 1.0,
+        "wilson_95": [
+          0.20654931437723745,
+          1.0
+        ]
+      },
+      "recall": {
+        "numerator": 1,
+        "denominator": 1,
+        "rate": 1.0,
+        "wilson_95": [
+          0.20654931437723745,
+          1.0
+        ]
+      },
+      "f1": 1.0
+    },
+    "completion_tokens_per_end_to_end_second": 17.610687156666582,
+    "token_timing_trial_count": 5,
+    "case_consistency": {
+      "A01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "A02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "B02": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      },
+      "C01": {
+        "trials": 1,
+        "distinct_semantic_results": 1,
+        "all_semantic_rubric_correct": true
+      }
+    }
+  },
+  "raw_ready_observation_coverage": {
+    "all_trials": {
+      "numerator": 120,
+      "denominator": 120,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9689808335812966,
+        1.0
+      ]
+    },
+    "nonready_gold_trials": {
+      "numerator": 58,
+      "denominator": 58,
+      "rate": 1.0,
+      "wilson_95": [
+        0.9378821442127971,
+        1.0
+      ]
+    },
+    "meaning": "Unknown is not safe non-READY; full denominators remain and unknown prevents gate PASS"
+  },
+  "unobserved_decisions_by_error": {
+    "warmups": {},
+    "trials": {}
+  },
+  "limitations": [],
+  "run_id": "20260920T144956Z-b647a76e83aa491bb72badf4479441d1",
+  "runtime_variant": "glm47-flash-gguf-nonthinking-v1",
+  "tokenizer_contract": {
+    "candidate_variant": "glm47-flash-gguf-nonthinking-v1",
+    "model_id": "ggml-org/GLM-4.7-Flash-GGUF",
+    "model_revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+    "cpu_proof_sha256": "54ab0062c5d22112ed3349e0021391a4dd17f6d5f8698ac8a02cc096b08a1847",
+    "cpu_proof_kind": "GLM47_FLASH_NATIVE_CONTRACT_CPU_PROOF",
+    "chat_template_sha256": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+    "tokenizer_json_sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+    "tokenizer_contract": "official_glm_metadata_native_public_parity_20_of_20",
+    "official_tokenizer_parity": {
+      "case_count": 20,
+      "id_match_count": 20,
+      "native_original_roundtrip_count": 20,
+      "status": "PASS"
+    },
+    "application_input_output_nfc_repair": false,
+    "cpu_proof_refs": {
+      "header": {
+        "path": "var/reports/glm47-flash-gguf-header.json",
+        "sha256": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef"
+      },
+      "public_contract": {
+        "path": "var/research/native-glm47-contract/public-proof-v3.json",
+        "sha256": "d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c"
+      },
+      "public_vocab": {
+        "path": "var/research/native-glm47-contract/public-vocab-proof.json",
+        "sha256": "f3e31a724dcec94f6d3b285a9dd793d6a8b6c91c3c8c475a63c25709c94d6cf7"
+      },
+      "tokenizer_fixture": {
+        "path": "var/research/native-glm47-contract/official-tokenizer-fixture.json",
+        "sha256": "e67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3"
+      },
+      "vocab_context": {
+        "path": "var/research/native-glm47-contract/vocab-context-proof.json",
+        "sha256": "66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb607"
+      }
+    },
+    "cpu_source_sha256": {
+      "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+      "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780"
+    },
+    "normalization_limitation": "Official/native ID and raw roundtrip parity proved for public20 and these200 prompts; not a guarantee for all Unicode",
+    "reasoning_boundary": "Pinned native grammar permits optional complete reasoning under the configured nonthinking prefix. Synthetic parse must keep final JSON exact and reasoning separate. This is not observed model reasoning generation; no body is retained.",
+    "cpu_checks_rerun": false
+  },
+  "native_protocol": "llama_cpp_json_schema",
+  "source_snapshot_commit": "750fe09a8b7955dfe8db25f0c2e0fc589e077f36",
+  "source_snapshot_sha256": "0ebf959ba0b7f1333b51b74d464323c98440848009ca50fb68ab97be7891f1b1",
+  "source_hashes_verified": {
+    "dataset": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "prompt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schema": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "canonical_schema": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "generation_adapter": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "parser": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "client": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "scorer": "4fc1335e3372518c3534267613cbc4ad0d0cb0772a149ce286ce703f2b886048",
+    "weight_manifest": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c"
+  },
+  "original_artifact_sha256": {
+    "/home/a202192020/NeuroBuild_v2/var/runs/20260920T144956Z-b647a76e83aa491bb72badf4479441d1/manifest.json": "ec8b620b2c98f8780cdc8e5fe1e224d38a6920e95528e5a8cdc45a701e852833",
+    "/home/a202192020/NeuroBuild_v2/evaluations/hardening_v1_exposed_native_glm47_diagnostic_freeze.json": "211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/runtime_metadata.json": "cf6c6d2b38be7607cc2103c9c7668dd4264570334c2b8a0466df242669971394",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/launch_config.json": "d0a5ae9663d9caf4420651a018ce687325b0e8fc7fb154963e948b4251e56994",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/runtime_metadata.json": "abf2fe43d2f01dee1bf18819aa7890088eb5e02b6a41f03d56322f2236e80b41",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/launch_config.json": "4824463fcabca13c2eaa07a9774c324b7980a2383915868f4f493b149dc245c4",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/startup.json": "2a19dde7fd90416638137a370cf68ed0b08ce66d7be277c32a4bbba27b10aaa0",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/resource_report.json": "8c3c1e1a1f86453c0c4dcdca21f0fcd6011382a2c4994758a7b8f43847432c63",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/listeners.json": "ac5e11c6c34368f0163e944354b270068fa01a077314a10adb78e239f90dc772",
+    "var/research/native-glm47-contract/final-cpu-proof.json": "54ab0062c5d22112ed3349e0021391a4dd17f6d5f8698ac8a02cc096b08a1847",
+    "evaluations/results/phase5x/glm47-flash-native-public-smoke-epoch1/report.json": "0b68dc9e0fad949f0bfac740354bb5ec89b7405f5634ccc1224392f5ad035b26",
+    "evaluations/results/phase5x/glm47-flash-native-resource-epoch1/report.json": "a4a4ce4a0e5615704cc4fdf9ff391d1ad4ca90dbfacc8dd5e1d0a55b1d35b68b",
+    "runtime/models/glm47-flash-q4-k.json": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+    "evaluations/results/phase5x/glm47-flash-preparation/regression/regression.json": "293bfc5b4f94e728af5eeb021a3aae2230376a74dae6e631d0c70a1c4e513fac",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/startup.json": "29f5443a8e2b9d1936801860d5776dc3014ba69ba6f73bc6a3407fb4ca9b098c",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/resource_report.json": "cd2f485ab513567e9fec1544402fd1da0898fada124abb3ec370756a07c04b39",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/listeners.json": "bd287b3d2350548ad48d4f51ef0885964ad870debb941528424b9178c22cb2a4",
+    "evaluations/results/phase5x/glm47-flash-epoch1-time-limit-stop/final_guard.json": "792b8585672b82d6a702ef3600149fc19d4250fe5f48c795eb441de1eb3d1e86",
+    "evaluations/hardening_v2_dataset_freeze.json": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+    "/home/a202192020/NeuroBuild_v2/var/runs/20260920T144956Z-b647a76e83aa491bb72badf4479441d1/results.json": "8fcb3b4fe9c6e32dcb2b1cae04040127b054d1817219b7d969d1a86cef107505",
+    "/home/a202192020/NeuroBuild_v2/var/runs/20260920T144956Z-b647a76e83aa491bb72badf4479441d1/dataset.json": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc"
+  },
+  "native_freeze_sha256": "211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa",
+  "cpu_context_proof_sha256": "54ab0062c5d22112ed3349e0021391a4dd17f6d5f8698ac8a02cc096b08a1847",
+  "normalization_limitation": "Official/native ID and raw roundtrip parity proved for public20 and these200 prompts; not a guarantee for all Unicode",
+  "v2_preservation": {
+    "artifacts_hashed_without_parsing": 9,
+    "freeze_sha256": "34e3823a6633faa5237849725f4b3120dee348aa19208d0c62403fedda5c5995",
+    "input_exposure_addendum_sha256": "1d44048c86d3a26cec093e6f1d5748ed13e1283de6a4f73a28ba592dc103b682",
+    "model_output_exposure_record_sha256": "25c080827a6d57aa6bc864495e537490dc7fa48b3ccf91df297a47b9815d447b",
+    "limitation": "Prior V2 model outputs already exposed; no V2 result replay or input parsing in this GLM exposed120 replay"
+  },
+  "replay_helper_sha256": "386ba1d07bcba38c8d88509da5743443fb1330c3c866d39117f71195549f2576",
+  "replay_origin": {
+    "pre_run_frozen": true,
+    "source_copy_sha256": "177bc501c5be5bb9e240414ec49216b99d8621d9306250eb1446b73dc05dca3f",
+    "core_functions_ast_unchanged": [
+      "load_snapshot",
+      "replay_row",
+      "replay_groups"
+    ],
+    "timeout_representation": "Finite numeric120 int/float accepted; bool/nonfinite rejected"
+  },
+  "latencies_and_token_usage": "Recorded observations only; no remeasurement",
+  "runtime_limit": "Archive hash/epoch binding, not new process/weight attestation or per-process VRAM",
+  "quality_limit": "Exposed synthetic regression, not human reviewed or independent unseen evaluation",
+  "model_calls": 0,
+  "network_calls": 0,
+  "gpu_calls": 0,
+  "weight_payload_reads": 0
+}

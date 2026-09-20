@@ -1,6 +1,6 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 KST — GLM 완료 검사 재사용, 새 평가 epoch2 신원 확인 PASS**.
+갱신: **2026-09-21 KST — GLM 첫 단회 Quality Gate FAIL, own server 종료·GPU3 반환 확인**.
 Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 미채택, Phase6 미시작**이다.
 
 | 항목 | 현재 상태 |
@@ -8,17 +8,42 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
 | GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 진단동결 `c466013439e6d202e627ed48c7a4ed1e45cf82c0` push·원격 일치 확인; EXAONE 실패·종료 `daeccacee7bb1912e03c8be696572b80b12c9f4c` push·원격 일치 확인 |
-| 현재 작업 | **GLM epoch1 검사·종료 증거를 새 epoch2에 연결한 첫120×1+warmup5 사전동결** |
-| 최근 후보 | EXAONE4.5-33B Q4_K_M: 첫 의미 정확도 gate FAIL. Gemma4-31B 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
+| 현재 작업 | **GLM 첫120×1+warmup5 실패·재검산·종료 증거 checkpoint, 다음 후보 비교 및 접근 재검토** |
+| 최근 후보 | GLM4.7-Flash 첫 의미·안전 gate FAIL. EXAONE4.5 첫 의미 gate FAIL, Gemma4 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
 | EXAONE 1차 품질 결과 | 노출120×1: schema120, parser119, semantic106, rawFP0/58, unsafe0/120 — **FAIL** |
+| GLM 1차 품질 결과 | 노출120×1: schema120, parser118, semantic104, rawFP1/58, unsafe1/120 — **FAIL** |
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
 | 회귀 검증 | **416 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless19.398초. GLM 명시 profile·실제 metadata의 정확한 모델/type 연결 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
-| 모델 실행 | 이전 서버와 GLM epoch1 STOPPED·GPU3 반환 확인. 새 GLM epoch2 own guard3683401/child3683504, GPU3만 감시 중 |
+| 모델 실행 | **NeuroBuild 모델 서버 STOPPED**. GLM epoch2 child exit0/reaped, GPU3 free36373/used3965/util0으로 반환 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | 새 GLM 첫120×1+warmup5 사전동결·commit/push 후 품질 평가. 현재 품질 호출0, 이전 실패 후보 반복0회 |
+| 다음 검증 | GLM 추가 반복·V2·미사용80개 접근0. 결과 checkpoint 후 다른 후보의 정보가치·자원을 비교 |
+
+## GLM 첫 단회 결과와 종료
+
+Clean/pushed `750fe09a8b7955dfe8db25f0c2e0fc589e077f36`에서 run
+`20260920T144956Z-b647a76e83aa491bb72badf4479441d1`의120×1+warmup5를 완료했다.
+Schema120/parser118/**semantic104/120(86.67%), rawFP1/58, unsafe1/120**으로 명백한 FAIL이다.
+FN6/62, raw관측120/120, UNGROUNDED_REQUIREMENT2, timeout/truncation0, warmup5/5다.
+평균 **5.154172948초**, p95 **5.741005917초**. 오류16건 중 HH-C07의 방화문 READY가 안전 gate를 위반했다.
+새125개 final JSON의 사전 동결 source 독립 재검산은 한 번 완료했고 모든 저장 판정·집계에 일치했다.
+Results SHA `8fcb3b4fe9c6e32dcb2b1cae04040127b054d1817219b7d969d1a86cef107505`,
+replay SHA `883854e2afa30a7c0c068ea24f3ec6e513eaaa5731963a8e1bb84a709754a34d`.
+기존125개 진단·독립 재생을 반복하지 않았고 같은 GLM 추가 반복·V2·미사용80개 접근도0회다.
+
+평가 직후 신원을 확인한 own guard에만 pidfd SIGTERM을 보냈고 자체 child는 exit0/reaped로 종료됐다.
+Epoch2 전체991.825초/1789표본에서 aggregate peak **17,962MiB**, 최소free **18,412MiB**였다.
+종료 후5회 모두 **free36,373MiB/used3,965MiB/util0%**로 복귀했다. 타인 프로세스와 GPU0/1/2는 건드리지 않았다.
+Production과 대응 test source가 기존416회귀 PASS 시점과 같아 변경 없는 suite는 반복하지 않았다.
+[평가 보고서](reports/phase5x_native_glm47_diagnostic_report.md),
+[독립 검토](reviews/phase5x_native_glm47_exposed_review.md),
+[원본 보관본](../evaluations/results/phase5x/exposed-native-glm47-diagnostic/README.md).
+
+## GLM 준비·기동 당시 기록
+
+아래 품질 호출0·사전동결 문구는 각 준비 시점의 기록이다. 현재 결과는 위의 완료 단회 항목을 따른다.
 
 GLM은 고정 다운로드와 실제47층/no-MTP/Q4_K_M/Q8 output·K_B 구조 감사, 공개 CPU 계약을 통과했다.
 Header SHA `595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef`,
@@ -90,7 +115,7 @@ H2-H05/J01/J05 non-READY 대상 범위 불일치3건이다. 마지막3건의 비
 [V2 보고서](reports/phase5x_native_qwen38_v2_minimal_report.md),
 [독립 검토](reviews/phase5x_native_qwen38_v2_minimal_review.md), [실험 목록](phase5x_experiment_register.md).
 
-완료 Phase5.x 기록은 **26 run /2,240 평가 trial /130 warmup 사례**다. 서로 다른 split·실행을
+완료 Phase5.x 기록은 **27 run /2,360 평가 trial /135 warmup 사례**다. 서로 다른 split·실행을
 합산 정확도나 독립 표본 수로 해석하지 않는다. V2는 이제 **MODEL_OUTPUT_SEEN / EXPOSED**다.
 이후 새 unseen 성공으로 표시하지 않는다. 이전 실패·기준·원본 freeze는 보존한다.
 

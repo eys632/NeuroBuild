@@ -446,3 +446,18 @@ D044 실제검증 후속: 배포파일은47main/no-MTP/splitMLA, file_type15(Q4_
 PublicCPU보조기대오류2건도보존했다. nonthinking요청과parseroptionalreasoning을분리해
 동일prefix에서finalJSON exact/reasoning분리를검증한v3가PASS했다. Production·품질gate는그대로이며
 실제nativevocab/길이/GPU/모델품질은이후별도gate다. GLM미채택/Phase6미시작을유지한다.
+
+
+## D045 — GLM 첫 품질 실패 보존과 무반복 종료
+
+GLM4.7-Flash 첫 노출120×1+warmup5 결과는 schema120/parser118/semantic104,
+rawFP1/58/unsafe1/120/FN6/62/raw관측120으로 1차 gate FAIL이다.
+방화문 READY1건이 안전 기준을 위반했으며 기준이나 분모를 수정하지 않는다.
+사전 동결한 source로 새125개 저장 응답을 한 번 재생해 원본 판정·집계 일치를 확인했다.
+같은 실패 후보 반복·V2·미사용80개 접근은0회다. 과거 완료125개 재생도 반복하지 않았다.
+Own guard3683401에 검증한 pidfd로만 SIGTERM을 보내 child3683504 exit0/reaped를 확인했다.
+GPU3 종료 후5회 free36373/used3965/util0, epoch aggregatepeak17962/minfree18412MiB다.
+Production이416회귀 PASS와 동일하므로 suite와 완료 runtime검사를 다시 실행하지 않는다.
+서로 다른 후보의 실패가 이어져 다음 후보의 정보가치와 공통 실패 양상을 함께 재검토한다.
+자동 전체반복으로 실패를 희석하거나 runtime 최적화를 품질 실패의 해결책으로 삼지 않는다.
+Phase5.x 미완료·모델 미채택·Phase6 미시작이며 Hard Blocker 없이 승인된 후보 비교를 계속한다.
