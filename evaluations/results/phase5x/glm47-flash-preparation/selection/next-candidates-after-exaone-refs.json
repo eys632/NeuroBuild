@@ -1,0 +1,264 @@
+{
+  "kind": "NEXT_CANDIDATE_PRIMARY_SOURCE_COMPARISON",
+  "status": "RESEARCH_ONLY_NOT_ADOPTED",
+  "observed_utc": "2026-09-20T11:03:25Z",
+  "bounds": {
+    "candidate_count": 3,
+    "model_weight_downloads": 0,
+    "GGUF_header_reads": 0,
+    "native_model_or_GPU_calls": 0,
+    "installs": 0,
+    "production_edits": 0,
+    "unused_holdout_body_reads": 0
+  },
+  "runtime_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "a100_budget_MiB": {
+    "baseline_free": 36373,
+    "safety_margin": 7275,
+    "max_whole_peak": 29098
+  },
+  "disk_observation": {
+    "free_bytes": 25654026240,
+    "reserve_GiB": 20.5,
+    "headroom_bytes": 3642318848,
+    "all_candidates_need_prior_authorized_cleanup": true,
+    "parent_reported_inactive_exaone_weight_bytes": 20047839424,
+    "cleanup_performed": false
+  },
+  "recommendation": "GLM CPU/header/resource prevalidation first; Gemma12 resource fallback; Qwen3.6 later. No quality ranking established.",
+  "candidates": [
+    {
+      "key": "gemma4_12b",
+      "priority": 2,
+      "base_repo": "google/gemma-4-12B-it-qat-q4_0-unquantized",
+      "base_revision": "b6ed86275a6a5735884e208bfed95b445a684ca2",
+      "base_license_card": "apache-2.0",
+      "gguf_repo": "google/gemma-4-12B-it-qat-q4_0-gguf",
+      "gguf_revision": "29d097773436b69ff9feafd636ab4cf873786537",
+      "file": "gemma-4-12b-it-qat-q4_0.gguf",
+      "bytes": 6975879296,
+      "lfs_sha256": "93567e57a8fe10b23569b9d9ec38cd005deedf71e29477c421a4b83f418a538b",
+      "publisher_relation": "original model developer Google; QAT GGUF",
+      "api_response_sha256": "959c3a66804b5c833cdcd95efd7f9214ab6f7ab02c9d44337ffb9fbbe593da5d",
+      "base_api_response_sha256": "0de6970d8a8bad6a48999358771c5a561fb0fb8e275b1824ab80c71bcddf02ca",
+      "config_sha256": "a323d02f68420f6fa3a3548130a0d36356075a4047a622e57148558f8eee7077",
+      "config_bytes": 4310,
+      "config_fields": {
+        "architecture": "Gemma4UnifiedForConditionalGeneration",
+        "hidden": 3840,
+        "vocab": 262144,
+        "layers": 48,
+        "sliding_layers": 40,
+        "full_layers": 8,
+        "sliding_heads_kv": 8,
+        "global_heads_kv": 1,
+        "sliding_head_dim": 256,
+        "global_head_dim": 512,
+        "sliding_window": 1024,
+        "tied_embeddings": true,
+        "per_layer_embedding_dim": 0
+      },
+      "quantization_label": "Q4_0 (actual mixed tensor types uninspected)",
+      "fixed_native_registration": "conversion/gemma.py:812-815; src/models/gemma4.cpp",
+      "screen_weight_MiB": 6652.7169189453125,
+      "screen_kv_MiB": 464,
+      "screen_one_vocab_f32_MiB": 3840,
+      "screen_remaining_MiB": 18141.283081054688,
+      "gguf_conversion_source_revision": "NOT_PUBLISHED_IN_INSPECTED_METADATA",
+      "nonthinking_evidence": "Google model card: omit thinking trigger; native template and final-content grammar still require new candidate CPU proof",
+      "api_url": "https://huggingface.co/api/models/google/gemma-4-12B-it-qat-q4_0-gguf/revision/29d097773436b69ff9feafd636ab4cf873786537?blobs=true",
+      "base_card_url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized/blob/b6ed86275a6a5735884e208bfed95b445a684ca2/README.md",
+      "config_url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-unquantized/resolve/b6ed86275a6a5735884e208bfed95b445a684ca2/config.json",
+      "gguf_file_metadata_url": "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf/blob/29d097773436b69ff9feafd636ab4cf873786537/gemma-4-12b-it-qat-q4_0.gguf",
+      "actual_gguf_header_read": false,
+      "quality_evaluated": false,
+      "whole_peak_validated": false,
+      "bytes_GiB": 6.496793866157532
+    },
+    {
+      "key": "glm47_flash",
+      "priority": 1,
+      "base_repo": "zai-org/GLM-4.7-Flash",
+      "base_revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "base_license_card": "mit",
+      "gguf_repo": "ggml-org/GLM-4.7-Flash-GGUF",
+      "gguf_revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+      "file": "GLM-4.7-Flash-Q4_K.gguf",
+      "bytes": 18244193920,
+      "lfs_sha256": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2",
+      "publisher_relation": "llama.cpp upstream organization; not original Z.ai model developer",
+      "gguf_license_card": null,
+      "api_response_sha256": "6e1f4a509be3bd882b8d37fb7e7ba002d242c663b06aa4d5736027f30324c600",
+      "base_api_response_sha256": "69fa53e7562068fcc887ccfdda4b0322c9e219987e9e064819a79b2cf983c7c0",
+      "config_sha256": "dc9b97c7c9bed726a2e6939da4234d5c43abb3edec8812068c9a1af1dbc13acb",
+      "config_bytes": 1070,
+      "template_sha256": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+      "template_bytes": 3120,
+      "config_fields": {
+        "architecture": "Glm4MoeLiteForCausalLM",
+        "hidden": 2048,
+        "vocab": 154880,
+        "layers": 47,
+        "mtp_layers": 1,
+        "attention_heads": 20,
+        "q_lora_rank": 768,
+        "kv_lora_rank": 512,
+        "qk_nope_head_dim": 192,
+        "qk_rope_head_dim": 64,
+        "v_head_dim": 256,
+        "routed_experts": 64,
+        "active_routed_experts": 4,
+        "shared_experts": 1,
+        "expert_intermediate": 1536,
+        "tied_embeddings": false
+      },
+      "quantization_label": "Q4_K filename only; actual general.file_type and mixed tensor roles uninspected; do not silently rename Q4_K_M",
+      "fixed_native_registration": "conversion/glm.py:247-252 -> DEEPSEEK2; src/models/deepseek2.cpp:24-29; tests/test-chat.cpp:4393-4409",
+      "screen_weight_MiB": 17399.019165039062,
+      "screen_expanded_kv_deliberate_overestimate_MiB": 3760,
+      "screen_one_vocab_f32_MiB": 1210,
+      "screen_remaining_using_expanded_kv_MiB": 6728.9808349609375,
+      "gguf_conversion_source_revision": "NOT_PUBLISHED_IN_INSPECTED_METADATA",
+      "nonthinking_evidence": "Official pinned template enable_thinking=false ends assistant prefix with </think>; pinned llama.cpp has corresponding tests (not executed here)",
+      "api_url": "https://huggingface.co/api/models/ggml-org/GLM-4.7-Flash-GGUF/revision/7559e96b7e324ab405897dc2b91492b0f376ad4a?blobs=true",
+      "base_card_url": "https://huggingface.co/zai-org/GLM-4.7-Flash/blob/7dd20894a642a0aa287e9827cb1a1f7f91386b67/README.md",
+      "config_url": "https://huggingface.co/zai-org/GLM-4.7-Flash/resolve/7dd20894a642a0aa287e9827cb1a1f7f91386b67/config.json",
+      "gguf_file_metadata_url": "https://huggingface.co/ggml-org/GLM-4.7-Flash-GGUF/blob/7559e96b7e324ab405897dc2b91492b0f376ad4a/GLM-4.7-Flash-Q4_K.gguf",
+      "actual_gguf_header_read": false,
+      "quality_evaluated": false,
+      "whole_peak_validated": false,
+      "bytes_GiB": 16.99122965335846,
+      "tokenizer_static_fingerprint": {
+        "source": "conversion/base.py:1588-1590",
+        "fingerprint": "cdf5f35325780597efd76153d4d1c16778f766173908894c04afc20108536267",
+        "pretype": "glm4",
+        "new_actual_tokenizer_check_performed": false
+      }
+    },
+    {
+      "key": "qwen36_35b_a3b",
+      "priority": 3,
+      "base_repo": "Qwen/Qwen3.6-35B-A3B",
+      "base_revision": "995ad96eacd98c81ed38be0c5b274b04031597b0",
+      "base_license_card": "apache-2.0",
+      "gguf_repo": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+      "gguf_revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+      "file": "Qwen3.6-35B-A3B-Q4_K_M.gguf",
+      "bytes": 20419565568,
+      "lfs_sha256": "671e47e0ec53c665d048b98c3ecbfd5236b5ca9c3e02ed19fc8f81f7b85140c7",
+      "publisher_relation": "llama.cpp upstream organization; not original Qwen model developer",
+      "api_response_sha256": "2cfa6a3eebc25fdc1e56b0e065730b6e0e644cc2cf24354b4f4c793301e30408",
+      "base_api_response_sha256": "4b61353e6b53715915493d9ddd62aca50cffc272c2b59491063b92ea32ec782e",
+      "config_sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "config_bytes": 3686,
+      "src_sha_file_sha256": "ec3a62c6b2e66aab222c8ea8d5aa426e4587625128d71b7267c8ac3eaf9e1a74",
+      "gguf_conversion_source_revision": "995ad96eacd98c81ed38be0c5b274b04031597b0",
+      "config_fields": {
+        "architecture": "Qwen3_5MoeForConditionalGeneration",
+        "hidden": 2048,
+        "vocab": 248320,
+        "layers": 40,
+        "linear_layers": 30,
+        "full_layers": 10,
+        "full_heads_kv": 2,
+        "head_dim": 256,
+        "linear_value_heads": 32,
+        "linear_key_heads": 16,
+        "linear_key_dim": 128,
+        "linear_value_dim": 128,
+        "routed_experts": 256,
+        "active_routed_experts": 8,
+        "shared_expert_intermediate": 512,
+        "mtp_layers": 1,
+        "tied_embeddings": false
+      },
+      "quantization_label": "Q4_K_M; actual mixed tensor roles uninspected",
+      "fixed_native_registration": "conversion/qwen.py:643-646; src/models/qwen35moe.cpp",
+      "screen_weight_MiB": 19473.615234375,
+      "screen_full_kv_MiB": 80,
+      "screen_one_f32_recurrent_state_MiB": 60,
+      "screen_one_vocab_f32_MiB": 1940,
+      "screen_remaining_before_recurrent_checkpoints_MiB": 7544.384765625,
+      "nonthinking_evidence": "Official card enable_thinking=false; recommended T0.7/P0.8/K20/min_p0/presence1.5/repetition1; not a frozen experiment profile",
+      "api_url": "https://huggingface.co/api/models/ggml-org/Qwen3.6-35B-A3B-GGUF/revision/baec3ebee244827cda0f4557eafa8b28f7545fa6?blobs=true",
+      "base_card_url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/blob/995ad96eacd98c81ed38be0c5b274b04031597b0/README.md",
+      "config_url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/resolve/995ad96eacd98c81ed38be0c5b274b04031597b0/config.json",
+      "gguf_file_metadata_url": "https://huggingface.co/ggml-org/Qwen3.6-35B-A3B-GGUF/blob/baec3ebee244827cda0f4557eafa8b28f7545fa6/Qwen3.6-35B-A3B-Q4_K_M.gguf",
+      "actual_gguf_header_read": false,
+      "quality_evaluated": false,
+      "whole_peak_validated": false,
+      "bytes_GiB": 19.017202377319336
+    }
+  ],
+  "local_pinned_primary_source_hashes": [
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/glm.py",
+      "sha256": "cbc38cb64a414079233b8ce10b9eb63c1f4814ab53f06ce578c44969dad7c377",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/glm.py"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/gemma.py",
+      "sha256": "872f3fea7496cefdcd39308ad02e2d30c9f507f68a18f8b4f6962995b09350f5",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/gemma.py"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/qwen.py",
+      "sha256": "b783f53598e1a65cb0ef7fbe0d0f52da472e2784f63acf13a5aea00f623cfaa6",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/qwen.py"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/deepseek2.cpp",
+      "sha256": "56b30a535507bc299a5128c076c01c4c3097230d4a6ad934015d4186745ed6ed",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/deepseek2.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/gemma4.cpp",
+      "sha256": "765ee856e30b3ddc126fa75c8252e5fbca6bae0e11abd9b71f4c21d911810ecb",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/gemma4.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/qwen35moe.cpp",
+      "sha256": "ada74c413bfda274f1ffe8c4c32dbd80e999c777a5888244cc118da832f635a7",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/qwen35moe.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-model.cpp",
+      "sha256": "530dff0cd544382346cc18520cbdb7d7a6f6743c35f7af52aae0bec11d18992a",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-model.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-hparams.cpp",
+      "sha256": "ef6fbef7d12a23441b42cfac8e3a3a3045c7d3123402351ba98e69702e193301",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-hparams.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/models/templates/GLM-4.7-Flash.jinja",
+      "sha256": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/models/templates/GLM-4.7-Flash.jinja"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/tests/test-chat.cpp",
+      "sha256": "0a38012b7bcf3aff5f805c742b5c3374d28c1626357d3482b5c3a5aebf0df2fd",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/tests/test-chat.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/base.py",
+      "sha256": "e0ae8621e67e8b8ea2682177b1f16adbe95b2c154ee8e2de975e942148d66575",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/base.py"
+    }
+  ],
+  "additional_primary_urls": [
+    "https://ai.google.dev/gemma/docs/core/model_card_4",
+    "https://ai.google.dev/gemma/docs/core/prompt-formatting-gemma4",
+    "https://huggingface.co/Qwen/Qwen3.6-35B-A3B",
+    "https://huggingface.co/zai-org/GLM-4.7-Flash",
+    "https://huggingface.co/google/gemma-4-12B-it-qat-q4_0-gguf"
+  ],
+  "limitations": [
+    "API hashes refer to observed main API response bytes; immutable revision endpoints are supplied separately and may have different response bytes.",
+    "No claim of original source-revision binding for Gemma/GLM GGUF from file digest alone.",
+    "Screening sums omit graph lifetimes, pool highwater, modules, handles, scratch, packed expert buffers, temporary copies and fragmentation; not upper bounds.",
+    "Current vLLM0.8.5 is not a verified route for any candidate. Existing SM80 native binary is not an RTX5090/SM120 binary.",
+    "All quality gates and original gold remain unchanged; no failed exact candidate or old125 was replayed."
+  ]
+}

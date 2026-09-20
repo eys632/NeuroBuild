@@ -1,0 +1,31 @@
+{
+  "kind": "GLM47_OBSERVED_HEADER_V2_CPU_PROOF",
+  "status": "PASS",
+  "scope": "Saved header metadata plus synthetic mutations, not full audit",
+  "tests_run": 7,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 1.28,
+  "generic_parser_ast_identical": 8,
+  "tokenizer_binding_ast_identical": true,
+  "original_v1_still_rejects_actual_header": true,
+  "actual_gguf_file_opens": 0,
+  "native_execution": false,
+  "gpu_calls": 0,
+  "dataset_reads": 0,
+  "source_sha256": {
+    "var/research/inspect_glm47_gguf_v2.py": "45085347d772eea13281636dc6604b77224ae04cce1a4b771dbb4df1c40a43b9",
+    "var/research/test_inspect_glm47_gguf_v2.py": "0b9238508f6b9bd759d93d7ba36e4fa78bbe3e92d4b10894fdccaa76552f1869",
+    "var/research/glm47_header_observed_layout_addendum.md": "8ca680af7594eb4e5ab1d68b8019bbe56b0c115aeedf17f27bcabf95593671d8",
+    "var/research/inspect_glm47_gguf.py": "d21a53b9588ffe1f73a3e86f0612b1b68b1a94b2b2413bd1adecbeff47146c69",
+    "var/reports/glm47-flash-gguf-header-diagnostic.json": "e97d4d6412ea35295961e024476d6c43b4ac9a7fc593e4d57c031b7a9a8e961b"
+  },
+  "artifact_layout_variant": "glm47-flash-q4-k-m-47main-no-mtp-q8-output-kb-v1",
+  "expected_tensor_count": 844,
+  "represented_upstream_names": 9491,
+  "omitted_mtp_upstream_names": 212,
+  "exact_tensor_payload_bytes": 18234718720,
+  "exact_header_and_alignment_bytes": 9475200,
+  "file_bytes": 18244193920,
+  "runtime_or_quality_eligibility": "NOT_CLAIMED"
+}

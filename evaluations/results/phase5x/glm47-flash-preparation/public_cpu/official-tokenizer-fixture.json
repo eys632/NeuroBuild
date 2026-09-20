@@ -1,0 +1,623 @@
+{
+  "kind": "GLM47_FLASH_PUBLIC_OFFICIAL_TOKENIZER_FIXTURE",
+  "status": "OFFICIAL_REFERENCE_RECORDED_NATIVE_PARITY_NOT_RUN",
+  "at_utc": "2026-09-20T11:43:17.002913+00:00",
+  "model_id": "zai-org/GLM-4.7-Flash",
+  "revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+  "tokenizer_path": "var/research/glm47-flash-candidate-metadata/upstream/tokenizer.json",
+  "tokenizer_sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+  "design_path": "var/research/glm47-flash-candidate-metadata/public_tokenizer_cases_design.json",
+  "design_sha256": "5c0e50fbd63b1b1c05883bbd96381f48237293a3c5cec9c6d48ffe1ad257dc13",
+  "reference_kind": "official_pinned_tokenizer_no_normalizer_change",
+  "tokenizers_version": "0.21.2",
+  "normalizer": null,
+  "add_special_tokens": false,
+  "decode_skip_special_tokens": false,
+  "native_expected_options": {
+    "add_special": false,
+    "parse_special": true
+  },
+  "case_count": 20,
+  "official_raw_roundtrip_count": 20,
+  "official_raw_mismatch_indices": [],
+  "tokenizer_parity": [
+    {
+      "text": " ",
+      "expected_token_ids": [
+        220
+      ]
+    },
+    {
+      "text": "A",
+      "expected_token_ids": [
+        32
+      ]
+    },
+    {
+      "text": "공개 토큰 검사: 도서관 가나다",
+      "expected_token_ids": [
+        77497,
+        59346,
+        10759,
+        228,
+        56776,
+        223,
+        108,
+        84620,
+        54685,
+        25,
+        135455,
+        26612,
+        133330,
+        35333,
+        59895,
+        13138
+      ]
+    },
+    {
+      "text": "BIM 공개 점검 — Room 27 / 의자",
+      "expected_token_ids": [
+        33,
+        1791,
+        132101,
+        59346,
+        18553,
+        238,
+        27548,
+        222,
+        1959,
+        10415,
+        220,
+        99951,
+        608,
+        133680,
+        25635
+      ]
+    },
+    {
+      "text": "X=-0.0625m; Y=+18cm; 0042mm",
+      "expected_token_ids": [
+        55,
+        10824,
+        15,
+        13,
+        100539,
+        17,
+        20,
+        76,
+        26,
+        809,
+        28,
+        10,
+        99243,
+        6226,
+        26,
+        220,
+        98503,
+        19,
+        17,
+        3821
+      ]
+    },
+    {
+      "text": "앞\t중간\n뒤",
+      "expected_token_ids": [
+        30278,
+        252,
+        197,
+        136749,
+        61836,
+        198,
+        167,
+        240,
+        97
+      ]
+    },
+    {
+      "text": "첫째\r\n둘째",
+      "expected_token_ids": [
+        34881,
+        104,
+        82976,
+        319,
+        167,
+        239,
+        246,
+        82976
+      ]
+    },
+    {
+      "text": "{\"label\":\"공개\",\"quote\":\"a\\\"b\",\"slash\":\"c\\\\d\"}",
+      "expected_token_ids": [
+        4913,
+        1502,
+        3252,
+        77497,
+        59346,
+        2198,
+        2949,
+        3252,
+        64,
+        2105,
+        65,
+        2198,
+        49934,
+        3252,
+        66,
+        3422,
+        67,
+        9204
+      ]
+    },
+    {
+      "text": "한글",
+      "expected_token_ids": [
+        23508,
+        82602
+      ]
+    },
+    {
+      "text": "한글",
+      "expected_token_ids": [
+        157,
+        226,
+        240,
+        157,
+        227,
+        94,
+        157,
+        228,
+        104,
+        157,
+        226,
+        222,
+        157,
+        227,
+        111,
+        157,
+        228,
+        107
+      ]
+    },
+    {
+      "text": "café",
+      "expected_token_ids": [
+        924,
+        58451
+      ]
+    },
+    {
+      "text": "café",
+      "expected_token_ids": [
+        924,
+        1859,
+        53481
+      ]
+    },
+    {
+      "text": "문자 ▁ 그대로",
+      "expected_token_ids": [
+        51248,
+        25635,
+        14510,
+        223,
+        54459,
+        66358,
+        17358
+      ]
+    },
+    {
+      "text": "ＡＢＣ１２３＋－",
+      "expected_token_ids": [
+        1540,
+        94,
+        1540,
+        95,
+        1540,
+        96,
+        20069,
+        24842,
+        33355,
+        110668,
+        88740
+      ]
+    },
+    {
+      "text": "a b c",
+      "expected_token_ids": [
+        64,
+        4102,
+        65,
+        139050,
+        66
+      ]
+    },
+    {
+      "text": "연구 🧑‍🔬 😀",
+      "expected_token_ids": [
+        134745,
+        87528,
+        11157,
+        100,
+        239,
+        124564,
+        152124,
+        89570
+      ]
+    },
+    {
+      "text": "[gMASK]<sop>",
+      "expected_token_ids": [
+        154822,
+        154824
+      ]
+    },
+    {
+      "text": "<|system|><|user|><|assistant|><|observation|>",
+      "expected_token_ids": [
+        154826,
+        154827,
+        154828,
+        154829
+      ]
+    },
+    {
+      "text": "<think>공개</think>/nothink",
+      "expected_token_ids": [
+        154841,
+        77497,
+        59346,
+        154842,
+        154851
+      ]
+    },
+    {
+      "text": "<tool_call>f<arg_key>x</arg_key><arg_value>1</arg_value></tool_call>",
+      "expected_token_ids": [
+        154843,
+        69,
+        154847,
+        87,
+        154848,
+        154849,
+        16,
+        154850,
+        154844
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "index": 0,
+      "token_count": 1,
+      "raw_original_roundtrip": true,
+      "source_sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068",
+      "decoded_sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+    },
+    {
+      "index": 1,
+      "token_count": 1,
+      "raw_original_roundtrip": true,
+      "source_sha256": "559aead08264d5795d3909718cdd05abd49572e84fe55590eef31a88a08fdffd",
+      "decoded_sha256": "559aead08264d5795d3909718cdd05abd49572e84fe55590eef31a88a08fdffd"
+    },
+    {
+      "index": 2,
+      "token_count": 16,
+      "raw_original_roundtrip": true,
+      "source_sha256": "8e2e5d1bd404da7729022e6592871e54de3f497aec590962380fa5d952d3f841",
+      "decoded_sha256": "8e2e5d1bd404da7729022e6592871e54de3f497aec590962380fa5d952d3f841"
+    },
+    {
+      "index": 3,
+      "token_count": 15,
+      "raw_original_roundtrip": true,
+      "source_sha256": "1b3cae32e5583a12146ba203ffd33131ab4370950071e06567d59607054fe5db",
+      "decoded_sha256": "1b3cae32e5583a12146ba203ffd33131ab4370950071e06567d59607054fe5db"
+    },
+    {
+      "index": 4,
+      "token_count": 20,
+      "raw_original_roundtrip": true,
+      "source_sha256": "66517ce30fb8b3b1c781dc2851170d16fb056940c4801d6785b9f12bc8fbccc6",
+      "decoded_sha256": "66517ce30fb8b3b1c781dc2851170d16fb056940c4801d6785b9f12bc8fbccc6"
+    },
+    {
+      "index": 5,
+      "token_count": 9,
+      "raw_original_roundtrip": true,
+      "source_sha256": "19b4c28d6923530a43244e619c15e1fce0cb3d10858acecfd93ba2553d6c2db8",
+      "decoded_sha256": "19b4c28d6923530a43244e619c15e1fce0cb3d10858acecfd93ba2553d6c2db8"
+    },
+    {
+      "index": 6,
+      "token_count": 8,
+      "raw_original_roundtrip": true,
+      "source_sha256": "9b06c5e736d032223af8357690920f361ac909c5f31486f272e2422d47ce2b5e",
+      "decoded_sha256": "9b06c5e736d032223af8357690920f361ac909c5f31486f272e2422d47ce2b5e"
+    },
+    {
+      "index": 7,
+      "token_count": 18,
+      "raw_original_roundtrip": true,
+      "source_sha256": "aa3f0b700e77c38adc60343da56e39388239c9db81f7b555ef52ddcbba3e69cb",
+      "decoded_sha256": "aa3f0b700e77c38adc60343da56e39388239c9db81f7b555ef52ddcbba3e69cb"
+    },
+    {
+      "index": 8,
+      "token_count": 2,
+      "raw_original_roundtrip": true,
+      "source_sha256": "bd87f9bb68b67d2fa1cb82b6751820e946d5b1316d25d5fd96512fb4be44a2a8",
+      "decoded_sha256": "bd87f9bb68b67d2fa1cb82b6751820e946d5b1316d25d5fd96512fb4be44a2a8"
+    },
+    {
+      "index": 9,
+      "token_count": 18,
+      "raw_original_roundtrip": true,
+      "source_sha256": "cf0273800fe12c2b4d3fd3c95d0bc94b6c64718221fb6d6e785153070f8decd9",
+      "decoded_sha256": "cf0273800fe12c2b4d3fd3c95d0bc94b6c64718221fb6d6e785153070f8decd9"
+    },
+    {
+      "index": 10,
+      "token_count": 2,
+      "raw_original_roundtrip": true,
+      "source_sha256": "850f7dc43910ff890f8879c0ed26fe697c93a067ad93a7d50f466a7028a9bf4e",
+      "decoded_sha256": "850f7dc43910ff890f8879c0ed26fe697c93a067ad93a7d50f466a7028a9bf4e"
+    },
+    {
+      "index": 11,
+      "token_count": 3,
+      "raw_original_roundtrip": true,
+      "source_sha256": "81ef060bcd98adc7824eb5c1ada83c32491b16018e11e79f00ab9d09e04b015a",
+      "decoded_sha256": "81ef060bcd98adc7824eb5c1ada83c32491b16018e11e79f00ab9d09e04b015a"
+    },
+    {
+      "index": 12,
+      "token_count": 7,
+      "raw_original_roundtrip": true,
+      "source_sha256": "7109b8f1171b15369192515349dc802e7acbd5e02576aa500489e45e604afe65",
+      "decoded_sha256": "7109b8f1171b15369192515349dc802e7acbd5e02576aa500489e45e604afe65"
+    },
+    {
+      "index": 13,
+      "token_count": 11,
+      "raw_original_roundtrip": true,
+      "source_sha256": "68bde12601a2a87d2a25d1f41f70d807ac7f5e5dd01367a44db73f891719f236",
+      "decoded_sha256": "68bde12601a2a87d2a25d1f41f70d807ac7f5e5dd01367a44db73f891719f236"
+    },
+    {
+      "index": 14,
+      "token_count": 5,
+      "raw_original_roundtrip": true,
+      "source_sha256": "3ea62fbf39e7246f248ee8ddab44bb92820e985ba9f1855bd70017deb76e01c8",
+      "decoded_sha256": "3ea62fbf39e7246f248ee8ddab44bb92820e985ba9f1855bd70017deb76e01c8"
+    },
+    {
+      "index": 15,
+      "token_count": 8,
+      "raw_original_roundtrip": true,
+      "source_sha256": "60804506da53a65dd9eab2aec62168319bb905e73e87851e300003e32c6ab8c4",
+      "decoded_sha256": "60804506da53a65dd9eab2aec62168319bb905e73e87851e300003e32c6ab8c4"
+    },
+    {
+      "index": 16,
+      "token_count": 2,
+      "raw_original_roundtrip": true,
+      "source_sha256": "02c6de1624024fa9774163873522eb7c1f669ace730000bb6b825fe1b5d16c54",
+      "decoded_sha256": "02c6de1624024fa9774163873522eb7c1f669ace730000bb6b825fe1b5d16c54"
+    },
+    {
+      "index": 17,
+      "token_count": 4,
+      "raw_original_roundtrip": true,
+      "source_sha256": "494826dc8d2c65cb75e1362ba9037cedadb6b0fe7cd3c348d7a0cc321e5c6221",
+      "decoded_sha256": "494826dc8d2c65cb75e1362ba9037cedadb6b0fe7cd3c348d7a0cc321e5c6221"
+    },
+    {
+      "index": 18,
+      "token_count": 5,
+      "raw_original_roundtrip": true,
+      "source_sha256": "e11db6dcea0cf4c6a267ffa17129703c270af6bb78261d8f527a032390993d9b",
+      "decoded_sha256": "e11db6dcea0cf4c6a267ffa17129703c270af6bb78261d8f527a032390993d9b"
+    },
+    {
+      "index": 19,
+      "token_count": 9,
+      "raw_original_roundtrip": true,
+      "source_sha256": "52f729937271a7c36946f71c01abb525e8d0d0b740359f355c7dc03133ded6ef",
+      "decoded_sha256": "52f729937271a7c36946f71c01abb525e8d0d0b740359f355c7dc03133ded6ef"
+    }
+  ],
+  "added_literal_checks": [
+    {
+      "id": 154820,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154821,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154822,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154823,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154824,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154825,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154826,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154827,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154828,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154829,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154830,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154831,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154832,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154833,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154834,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154835,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154836,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154837,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154838,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154839,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154840,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154841,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154842,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154843,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154844,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154845,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154846,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154847,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154848,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154849,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154850,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154851,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154852,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154853,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154854,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    },
+    {
+      "id": 154855,
+      "expected_single_id": true,
+      "raw_roundtrip": true
+    }
+  ],
+  "added_literal_single_id_count": 36,
+  "added_literal_raw_roundtrip_count": 36,
+  "corpus_text_sha256": "6cb24b3c82d07984a986335242abae7edf38e5501450d1eee9ff041f77f682de",
+  "helper_sha256": "eb0f67a6951188f6670d083e7c99e2d6278418b67a4c8df73bba85eb98e6a5c7",
+  "model_calls": 0,
+  "native_calls": 0,
+  "gpu_calls": 0,
+  "http_calls": 0,
+  "application_input_output_nfc_repair": false,
+  "scope": "Public synthetic strings and public tokenizer literals only. Every observed mismatch is retained. No global Unicode guarantee."
+}

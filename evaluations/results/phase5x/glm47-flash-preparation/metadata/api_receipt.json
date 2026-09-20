@@ -1,0 +1,25 @@
+{
+  "records": [
+    {
+      "label": "upstream",
+      "url": "https://huggingface.co/api/models/zai-org/GLM-4.7-Flash/revision/7dd20894a642a0aa287e9827cb1a1f7f91386b67?blobs=true",
+      "path": "var/research/glm47-flash-candidate-metadata/upstream-api.json",
+      "bytes": 19760,
+      "sha256": "a50910e744c18d42d58f3be3bf7337b28020967bcaeb1f90d1e2efd116337e50",
+      "revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "retrieved_at_utc": "2026-09-20T11:12:27.861260+00:00"
+    },
+    {
+      "label": "gguf",
+      "url": "https://huggingface.co/api/models/ggml-org/GLM-4.7-Flash-GGUF/revision/7559e96b7e324ab405897dc2b91492b0f376ad4a?blobs=true",
+      "path": "var/research/glm47-flash-candidate-metadata/gguf-api.json",
+      "bytes": 4651,
+      "sha256": "6e1f4a509be3bd882b8d37fb7e7ba002d242c663b06aa4d5736027f30324c600",
+      "revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+      "retrieved_at_utc": "2026-09-20T11:12:28.129593+00:00"
+    }
+  ],
+  "max_api_bytes_each": 2097152,
+  "weight_resolve_calls": 0,
+  "authorization_headers": false
+}

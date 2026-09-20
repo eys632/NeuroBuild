@@ -1,0 +1,13 @@
+{
+  "kind": "GLM47_REGRESSION_ARCHIVE",
+  "files": {
+    "focused_agent_observation.json": {
+      "bytes": 2199,
+      "sha256": "ed2b2602072828614a6aeb5242532a6931c424ae34448e0b770f037cf3891163"
+    },
+    "regression.json": {
+      "bytes": 1584,
+      "sha256": "293bfc5b4f94e728af5eeb021a3aae2230376a74dae6e631d0c70a1c4e513fac"
+    }
+  }
+}

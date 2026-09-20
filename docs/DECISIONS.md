@@ -409,3 +409,40 @@ aggregatepeak19946MiB/minfree16428MiB이며종료후5회free36373/used3965/util0
 Production은직전408회귀시점과같아suite/완료runtime검사를반복하지않는다.
 Reason길이표현등계약정비와비필수runtime성능튜닝은futurework이며같은실패후보반복의근거가아니다.
 Phase5.x미완료·모델미채택·Phase6미시작을유지한다.
+
+
+## D044 — 다른 계열 GLM-4.7-Flash의 조건부 사전검증
+
+EXAONE 실패 checkpoint daeccacee7bb1912e03c8be696572b80b12c9f4c 이후
+새 후보 GLM-4.7-Flash의 metadata·CPU계약·전체자원 계획을 먼저 검토한다.
+원본은 zai-org/GLM-4.7-Flash@7dd20894a642a0aa287e9827cb1a1f7f91386b67,
+변환본은 ggml-org/GLM-4.7-Flash-GGUF@7559e96b7e324ab405897dc2b91492b0f376ad4a다.
+파일GLM-4.7-Flash-Q4_K.gguf는18,244,193,920B, LFS SHA
+b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2다.
+원저자와quantpublisher를구분하고공개되지않은conversion원본revision을추정하지않는다.
+파일명Q4_K를Q4_K_M로자동승계하지않고실제header가필요하다. 원본card의MIT와
+변환본card license공란·원본provenance한계를그대로남긴다.
+
+다른학습계열의정보가치를우선할뿐한국어정확인용/안전/지연우위나채택을주장하지않는다.
+자원우선대안은Google공식Gemma4-12B QAT,후순위는별도checkpoint Qwen3.6-35B-A3B다.
+세후보공식출처와size/SHA/한계는evaluations/results/phase5x/glm47-flash-preparation/selection에보존한다.
+기존f072의DEEPSEEK2/GLMLite/MLA/MoE지원은static근거이며현재GPU실행PASS가아니다.
+전체weights/KV·state/expertworkspace/driver/pool/loading 여유가GPU3free−margin에맞는지확인한다.
+현재disk약23.9GiB는20.5GiB reserve를유지한다운로드에부족하다.
+비활성EXAONE weight20,047,839,424B만회수하는기존검증절차의준비본을만들었지만
+아직삭제/다운로드하지않았으며,실제실행은새자원·provenance검토뒤판단한다.
+완료된검사/기존125개진단·재생을반복하지않고새미사용80개도접근하지않는다.
+
+
+D044 후속: GLM 고정metadata와 fullVRAM 계획을 검토한 뒤 비활성 EXAONE weight 한 개를
+전체 SHA와 own FD/mapping 확인 후 회수했다. 종료/평가/재현 정보는 유지했다.
+20.5GiB disk floor를 유지하는 GLM guarded 다운로드를 시작했다. 실제 header·CPU 계약과
+기동 직전 GPU3 예산 확인을 통과하기 전에는 GPU를 사용하지 않는다.
+
+
+D044 실제검증 후속: 배포파일은47main/no-MTP/splitMLA, file_type15(Q4_K_M), output+K_B의Q8_0다.
+기본868/fullMTP 가정의metadata진단불일치를보존하고 고정source에서지원하는 실제844구조만감사했다.
+전체SHA/headerPASS이며 conversion명령등가성은주장하지않는다. 예상28,672MiB budget은변경하지않는다.
+PublicCPU보조기대오류2건도보존했다. nonthinking요청과parseroptionalreasoning을분리해
+동일prefix에서finalJSON exact/reasoning분리를검증한v3가PASS했다. Production·품질gate는그대로이며
+실제nativevocab/길이/GPU/모델품질은이후별도gate다. GLM미채택/Phase6미시작을유지한다.

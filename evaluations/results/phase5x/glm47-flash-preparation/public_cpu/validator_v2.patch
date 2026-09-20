@@ -1,0 +1,30 @@
+--- validator.cpp
++++ validator_v2.cpp
+@@ -300,21 +300,20 @@
+             valid_json + "<tool_call>"
+         };
+         for (const auto & text : bad_native) ensure(!accepts(native_grammar, final_parser.generation_prompt + text));
+-        auto thought_parser = final_parser;
+-        thought_parser.generation_prompt = "<|assistant|>";
++        // The eager grammar belongs to this exact nonthinking generation
++        // prefix. Do not substitute a different mode's prefix and then demand
++        // acceptance. A complete thought block after the configured closed
++        // prefix must be rejected; this is observed, not inferred from tags.
+         const std::string public_thought = "PUBLIC_SYNTHETIC_BOUNDARY";
+         const auto thought_wire = "<think>" + public_thought + "</think>" + valid_json;
+-        ensure(accepts(native_grammar, thought_parser.generation_prompt + thought_wire));
+-        const auto separated = common_chat_parse(thought_wire, false, thought_parser);
+-        ensure(separated.content == valid_json && separated.reasoning_content == public_thought && separated.tool_calls.empty());
+-        ensure(separated.to_json_oaicompat().at("content") == valid_json);
++        ensure(!accepts(native_grammar, final_parser.generation_prompt + thought_wire));
+         json result = {{"kind", "GLM47_FLASH_NATIVE_PUBLIC_CONTRACT_CPU_PREFLIGHT"}, {"status", "PASS"},
+                        {"reference_kind", "official_pinned_tokenizer_no_normalizer_change"},
+                        {"public_template_reference_cases", render_equal}, {"native_full_official_prompt_exact", true},
+                        {"native_system_user_bytes_exact", true}, {"template_override_used", false},
+                        {"schema_cases_accepted", passing}, {"schema_cases_rejected", rejecting},
+                        {"native_final_content_exact_cases", exact_final}, {"native_protocol_rejection_cases", bad_native.size()},
+-                       {"artificial_thought_split_cases", 1}, {"native_grammar_generation_prompt_prefilled", true},
++                       {"configured_nonthinking_thought_rejection_cases", 1}, {"alternate_thinking_mode_tested", false}, {"native_grammar_generation_prompt_prefilled", true},
+                        {"native_grammar_prefill_bytes", final_parser.generation_prompt.size()},
+                        {"native_sampling_schema_binding", true}, {"grammar_lazy", false},
+                        {"core_dump_limit_zero", true}, {"final_json_bytes_unchanged", true},

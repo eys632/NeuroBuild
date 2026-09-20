@@ -1,0 +1,59 @@
+{
+  "kind": "GLM47_FLASH_PROFILE_EVALUATOR_INDEPENDENT_SOURCE_REVIEW",
+  "status": "PASS_NO_MATERIAL_BLOCKER",
+  "at_utc": "2026-09-20T11:46:02.283714+00:00",
+  "baseline_commit": "daeccacee7bb1912e03c8be696572b80b12c9f4c",
+  "reviewed_sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "scripts/evaluate_requirements.py": "4fc1335e3372518c3534267613cbc4ad0d0cb0772a149ce286ce703f2b886048",
+    "tests/test_local_model.py": "d76731e5ee613ef664f76d078caf5b775c65b265c63913eaf527f40010e41510",
+    "tests/test_native_requirement_evaluation.py": "f52d284fd62d78e8e41e8b32b883d6865f8978346257b2b0c8f3ed703fde4a04",
+    "var/research/glm47_flash_runtime_probe.py": "1a744590b130c4a728b9d9398ce397cf6da0003042e41c4c5981ce9f1ddc8ca6"
+  },
+  "production_scope": {
+    "evaluator_change": "One exact native_candidates entry in build_manifest only.",
+    "evaluator_inverse_single_line_byte_identity": true,
+    "evaluator_top_level_functions": 20,
+    "evaluator_changed_function_asts": [
+      "build_manifest"
+    ],
+    "client_inverse_enum_allowlist_recipe_byte_identity": true,
+    "exact_pair": [
+      "glm47_flash_nonthinking_llama_cpp",
+      "ggml-org/GLM-4.7-Flash-GGUF",
+      "Q4_K_M"
+    ],
+    "publisher_filename_preserved": "GLM-4.7-Flash-Q4_K.gguf",
+    "quantization_basis": "Root-reported actual metadata-only general.file_type=15; full structural/header/vocab validation still pending.",
+    "no_automatic_model_name_or_protocol_inference": true,
+    "existing_complete_transport_reasoning_discard_and_no_retry_unchanged": true,
+    "row_scoring_raw_ready_denominators_and_summary_function_asts_unchanged": true,
+    "parser_adapter_prompt_schema_bytes_unchanged": {
+      "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+    }
+  },
+  "test_source_review": {
+    "new_evaluator_test_methods": 2,
+    "cross_pair_rejection_controls": 8,
+    "manifest_test_retains_Q4_K_filename": true,
+    "fake_completion_not_called_asserted": true,
+    "tests_executed_by_this_review": 0,
+    "full_regression_status_at_request": "ROOT_RUNNING_NOT_ATTESTED_BY_THIS_REVIEW"
+  },
+  "runtime_ready": false,
+  "runtime_pending_boundary": "Unconditional require_ready raises; header/final CPU/quantization/variant constants in preparation helper remain None.",
+  "activity": {
+    "tests_run": 0,
+    "module_imports_or_helper_execution": 0,
+    "model_calls": 0,
+    "http_calls": 0,
+    "gpu_or_native_calls": 0,
+    "weights_read": 0,
+    "datasets_read": 0,
+    "production_edits": 0
+  },
+  "findings": []
+}

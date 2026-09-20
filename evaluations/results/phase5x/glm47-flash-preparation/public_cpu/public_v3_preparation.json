@@ -1,0 +1,43 @@
+{
+  "kind": "GLM47_FLASH_PUBLIC_V3_PREPARATION",
+  "status": "PREPARED_NOT_COMPILED_OR_EXECUTED",
+  "at_utc": "2026-09-20T11:53:51.163842+00:00",
+  "originals_sha256": {
+    "validator.cpp": "c99c5759b65a4ae4a4f31df9f3fda75cdcd454771b126683afe7c75d7707edf9",
+    "build.py": "5c2a98c7aa2f86e293ec3bd5ff37ddaa9c7cd3fa461e7ccb8065289bacb08e86",
+    "public_check.py": "2ee13e3092232beecfdf0a550de2bd5ba18e1935901ec8d406303cc06722e43b",
+    "build.json": "fe348c07e21c1c601e1a48a529cd5a8de00938b647da9dd926480b9e0d213c74",
+    "glm47-cpu-validator": "4bcff0326ead4a3572394cf8fb701aea78e77586ea15bbec32dfb4e4f498ba83",
+    "public-proof.json": "7eba381e83c09f14d9dcfaf898e20dd02badc3cc02362ac5e8eab5d9eb9b5b43",
+    "official-tokenizer-fixture.json": "e67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3",
+    "validator_v2.cpp": "d206571cdc4b6893a1bf6565a260303b6d5c1ea1fb7b4e7efba46d60b0046d29",
+    "build_v2.py": "18f1af03d12c4e0fa4353e48bd935dcc11a1009b987d2359cb4a57d640910f26",
+    "public_check_v2.py": "1f138f3cd54b0f3e660c0f0afe866b31db2f4c06d4d86646cdada249f504c996",
+    "build-v2.json": "62d6f9eee9857f985248f2c744199a189dd13d8c2b73229b83cb248b3688fd15",
+    "glm47-cpu-validator-v2": "07da57f39ef3d68f9b59e46ffb41d7c416d58c8a444e81b594623c4d2f892e1f",
+    "public-proof-v2.json": "534f6aba740056ea8f959a1834bf6ce66f299952bfbe26c35d19b9f71385ae01"
+  },
+  "new_files_sha256": {
+    "validator_v3.cpp": "c0676b4c6f4bb962bc228cc041ee3fba85fdcd1824e68d17ab7a2c7eb4adf272",
+    "validator_v3.patch": "241705cf4991713fca56b545107dac054f6181dc53408cc5acc872cc9f258bb8",
+    "build_v3.py": "d4fc565e3cac0f49b949fba9d059a166805d4befc0a6e7d7a96139a3b522efc4",
+    "public_check_v3.py": "06dc94dc5211e84c91fedde470ea5aebbc11bd93f1bd83e6a3b3aae85f8ffc45",
+    "public_v3_amendment.md": "99ffdd23bd80a19567c62329431dbf87bd48474131006a795b9b907ddc792b5e"
+  },
+  "cpp_inverse_byte_identity_except_declared_boundary_block_and_scalars": true,
+  "public_wrapper_unchanged_function_ast": [
+    "capture_request",
+    "corpus",
+    "inspect_cpu_binary",
+    "prepare_child",
+    "invoke",
+    "run_binary",
+    "template_variables",
+    "official_reference"
+  ],
+  "criterion": "Same configured prefix: observed native optional-reasoning acceptance plus exact final JSON, exact separate public reasoning, no tools and unchanged OAI content. Wrong-prefix acceptance is observation only.",
+  "model_reasoning_generation_observed": false,
+  "compile_native_encode_render_data_calls_this_task": 0,
+  "official_fixture_reexecuted": false,
+  "production_files_changed": false
+}

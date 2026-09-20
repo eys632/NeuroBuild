@@ -1,0 +1,20 @@
+{
+  "kind": "GLM47_FLASH_PREPARATION_REVIEW_ARCHIVE",
+  "files": {
+    "independent_review.json": {
+      "bytes": 3769,
+      "sha256": "cc1e85b03fa2c65f4035f018b4fe7d098f6afbeee174d2cc419226858ae1d18e",
+      "original_path": "var/research/glm47-flash-preparation-independent-review.json"
+    },
+    "profile_evaluator_review.json": {
+      "bytes": 3041,
+      "sha256": "95db508b3ab6a38103e78472dda16171008a0851b53daa7af9936ff95ef78321",
+      "original_path": "var/research/glm47-profile-evaluator-independent-review.json"
+    },
+    "public_contract_review.json": {
+      "bytes": 9339,
+      "sha256": "59c9fded41f02f991a3a8aee52217ebef7eb2d2eeb1f740ddf4cac92f144eba8",
+      "original_path": "var/research/glm47-public-contract-independent-review.json"
+    }
+  }
+}

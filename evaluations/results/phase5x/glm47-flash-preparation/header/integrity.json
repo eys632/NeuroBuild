@@ -1,0 +1,103 @@
+{
+  "kind": "GLM47_ACTUAL_GGUF_HEADER_ARCHIVE",
+  "files": {
+    "inspect_glm47_gguf_pre_description_types.py": {
+      "bytes": 32201,
+      "sha256": "a27af1f961af71fcfd49d2c94e5b7df2de74cbd50362bf94a64248054d9bedcb",
+      "original_path": "var/research/inspect_glm47_gguf_pre_description_types.py"
+    },
+    "test_inspect_glm47_gguf_pre_description_types.py": {
+      "bytes": 10788,
+      "sha256": "7be9e54a4ef97561ef296b4a18e64f625a0a52516d2963da2f3d273a94fe7207",
+      "original_path": "var/research/test_inspect_glm47_gguf_pre_description_types.py"
+    },
+    "glm47-header-auditor-cpu-proof.json": {
+      "bytes": 958,
+      "sha256": "419564ec64ae331c8fcdb473c70cfebc50e95cdab54f648a4deecf1997036807",
+      "original_path": "var/research/glm47-header-auditor-cpu-proof.json"
+    },
+    "inspect_glm47_gguf.py": {
+      "bytes": 32325,
+      "sha256": "d21a53b9588ffe1f73a3e86f0612b1b68b1a94b2b2413bd1adecbeff47146c69",
+      "original_path": "var/research/inspect_glm47_gguf.py"
+    },
+    "test_inspect_glm47_gguf.py": {
+      "bytes": 11206,
+      "sha256": "731461923e6b378bbd50020c132fc9dadd5793b613e8600e59cf7d3c50446ff1",
+      "original_path": "var/research/test_inspect_glm47_gguf.py"
+    },
+    "glm47-header-auditor-final-cpu-proof.json": {
+      "bytes": 1498,
+      "sha256": "68903e802bb2013753363b3494e3b605935209b78404fcfd3e2a975d9cd81b1b",
+      "original_path": "var/research/glm47-header-auditor-final-cpu-proof.json"
+    },
+    "glm47_header_preparation_notes.md": {
+      "bytes": 5421,
+      "sha256": "7fff46c8719c052f96a912de97b45ea10d19f8dab1772e46a74527648da593e4",
+      "original_path": "var/research/glm47_header_preparation_notes.md"
+    },
+    "glm47_header_description_addendum.md": {
+      "bytes": 1187,
+      "sha256": "f5d2e249d1724fb9116731bc6434baa995b974b3ed5697a73bb0aa61738da265",
+      "original_path": "var/research/glm47_header_description_addendum.md"
+    },
+    "glm47-flash-gguf-header-diagnostic.json": {
+      "bytes": 280270,
+      "sha256": "e97d4d6412ea35295961e024476d6c43b4ac9a7fc593e4d57c031b7a9a8e961b",
+      "original_path": "var/reports/glm47-flash-gguf-header-diagnostic.json"
+    },
+    "glm47-header-diagnostic-cli.json": {
+      "bytes": 321,
+      "sha256": "cab298655e4eb65a8210a627251cef32ed2f36af229b03537e1698ea57d79063",
+      "original_path": "var/research/glm47-header-diagnostic-cli.json"
+    },
+    "glm47-header-diagnostic-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/glm47-header-diagnostic-cli.stderr"
+    },
+    "inspect_glm47_gguf_v2.py": {
+      "bytes": 34373,
+      "sha256": "45085347d772eea13281636dc6604b77224ae04cce1a4b771dbb4df1c40a43b9",
+      "original_path": "var/research/inspect_glm47_gguf_v2.py"
+    },
+    "test_inspect_glm47_gguf_v2.py": {
+      "bytes": 6930,
+      "sha256": "0b9238508f6b9bd759d93d7ba36e4fa78bbe3e92d4b10894fdccaa76552f1869",
+      "original_path": "var/research/test_inspect_glm47_gguf_v2.py"
+    },
+    "glm47-header-v2-cpu-proof.json": {
+      "bytes": 1438,
+      "sha256": "0c3a5c4f1d2a7b353bd0a42d8274997ad61404977e3f879a14e9e8ac29752c09",
+      "original_path": "var/research/glm47-header-v2-cpu-proof.json"
+    },
+    "glm47_header_observed_layout_addendum.md": {
+      "bytes": 5743,
+      "sha256": "8ca680af7594eb4e5ab1d68b8019bbe56b0c115aeedf17f27bcabf95593671d8",
+      "original_path": "var/research/glm47_header_observed_layout_addendum.md"
+    },
+    "glm47-flash-gguf-header.json": {
+      "bytes": 282729,
+      "sha256": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef",
+      "original_path": "var/reports/glm47-flash-gguf-header.json"
+    },
+    "glm47-header-v2-cli.json": {
+      "bytes": 270,
+      "sha256": "8efc825022f6fc70e7318781bbd393af524632d272f275bd570c911cdc9849ab",
+      "original_path": "var/research/glm47-header-v2-cli.json"
+    },
+    "glm47-header-v2-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/glm47-header-v2-cli.stderr"
+    },
+    "static_vocab_expectation.json": {
+      "bytes": 1763,
+      "sha256": "60278f9c4379d3fea820ecfd852015bdeadcf5071e39da1846b89bc1ebdedf28",
+      "original_path": "var/research/native-glm47-contract/static_vocab_expectation.json"
+    }
+  },
+  "original_diagnostic_status": "DIAGNOSTIC_NOT_PASS",
+  "actual_strict_v2_status": "PASS",
+  "native_gpu_model_calls": 0
+}

@@ -1,0 +1,66 @@
+{
+  "kind": "GLM47_FLASH_PREPARATION_INDEPENDENT_READ_REVIEW",
+  "status": "PASS_NO_MATERIAL_BLOCKER_WITH_DOCUMENTATION_NOTE",
+  "at_utc": "2026-09-20T11:36:34.185251+00:00",
+  "scope": "Read-only archive/provenance/source derivation/arithmetic review; no helper imports or execution.",
+  "reviewed_sha256": {
+    "docs/reports/phase5x_glm47_flash_preparation_report.md": "b8a476f3ee417735611329aaaceaee5cce5a1c2cf90886140ec83fbe24d76c0f",
+    "runtime/models/glm47-flash-q4-k.json": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+    "evaluations/results/phase5x/glm47-flash-preparation/metadata/archive_integrity.json": "02538db1a7d930aabde340faf6ed78cc6ec94076513990852b5041b712647a35",
+    "evaluations/results/phase5x/glm47-flash-preparation/resource_plan/integrity.json": "b79a21feda8a344c6812739e772d0e7fee7718535b4f95c76b6dbf34bc97cfb0",
+    "evaluations/results/phase5x/glm47-flash-preparation/selection/integrity.json": "3af3a3fe60c6acb0ed5e29b500e9b99df54552ff95c57f4eb930bdc341003dbb",
+    "var/research/glm47-flash-download-preparation.json": "d3e8c1da7b8b88fc00a9667334c266b7f25f0a0a9b329616ad057bbd34a79baf",
+    "var/reports/unused-exaone45-weight-cache-cleanup.json": "8258aa8628740c6f3427f00f49263690666ac040b098d6a14e7e4ae7103d2756",
+    "evaluations/results/phase5x/exposed-native-exaone45-diagnostic/resource_report_final.json": "c6c409a2adcfaa9dad0dbbe3c24e355caf0b7361914a923b85569914d5730e0e",
+    "var/reports/exaone45-gguf-header-v2.json": "fb5260c6e1e3356741f7728e4077f771763ea39affd77e8ac9772e417aa70c12"
+  },
+  "verification": {
+    "metadata_hash_ast_comparisons_passed": 103,
+    "metadata_hash_ast_comparisons_failed": 0,
+    "archive_hashed_files": 30,
+    "archive_hashed_bytes": 160316,
+    "exact_original_copies": 29,
+    "public_metadata_files_git_or_lfs_verified": 8,
+    "public_metadata_plus_api_bytes": 21133497,
+    "weight_manifest_matches_public_api_without_weight_read": true,
+    "download_parent_identity_replacements_exact": true,
+    "download_unchanged_core_function_asts": 7,
+    "cleanup_unchanged_core_function_asts": 4,
+    "download_pinned_inputs_unchanged": 5,
+    "native_generic_ac100df_unchanged": true,
+    "cleanup_shutdown_header_exact_hashes": true,
+    "cleanup_removed_bytes": 20047839424,
+    "cleanup_free_after_bytes": 45663219712,
+    "whole_peak_estimate_mib": 28672,
+    "separate_margin_mib": 7275,
+    "headroom_to_reference_budget_mib": 426
+  },
+  "documentation_notes": [
+    {
+      "severity": "CLARIFICATION_ONLY_NOT_LAUNCH_BLOCKER",
+      "file": "docs/reports/phase5x_glm47_flash_preparation_report.md",
+      "section": "디스크와 보존",
+      "finding": "The cleanup receipt records 27 same-UID processes inspected and 2 exact session-infrastructure permission exceptions; add this scope to the summary.",
+      "receipt_already_preserves_limit": true
+    }
+  ],
+  "limitations": [
+    "Static whole-peak estimates and allowances are not measured GLM runtime success or an allocator cap.",
+    "Upstream MIT card declaration, missing standalone LICENSE files, GGUF license/conversion-revision gaps are preserved.",
+    "Q4_K filename is not treated as proof of Q4_K_M or tensor dtype.",
+    "Historical PREPARED_NOT_EXECUTED receipts remain immutable; current report separately describes completed cleanup and ongoing download.",
+    "Download completion/live report was not inspected; no download PASS, header PASS, GLM CPU PASS or quality PASS is asserted."
+  ],
+  "activity": {
+    "tests_run": 0,
+    "old_evaluation_replays": 0,
+    "model_or_native_calls": 0,
+    "gpu_queries": 0,
+    "http_calls": 0,
+    "download_control": 0,
+    "process_queries_or_signals": 0,
+    "weights_read": 0,
+    "future_holdout_read": 0,
+    "tracked_file_edits": 0
+  }
+}

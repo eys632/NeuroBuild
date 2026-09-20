@@ -1,0 +1,1 @@
+{"kind": "GGUF_METADATA_DIAGNOSTIC", "status": "DIAGNOSTIC_NOT_PASS", "report": "var/reports/glm47-flash-gguf-header-diagnostic.json", "report_sha256": "e97d4d6412ea35295961e024476d6c43b4ac9a7fc593e4d57c031b7a9a8e961b", "tensor_count": 844, "quantization": null, "candidate_validation_error": "CONFIG_METADATA_MISMATCH"}

@@ -1,0 +1,63 @@
+{
+  "kind": "GLM47_FLASH_CPU_PREPARATION_INTEGRITY",
+  "status": "DEFINITIONS_ONLY",
+  "files": {
+    "README.md": {
+      "bytes": 5115,
+      "sha256": "17349159b1cc877498ce85a9429a903f5e26c6ad08d5bb0673783b136f143d51"
+    },
+    "build.py": {
+      "bytes": 8989,
+      "sha256": "5c2a98c7aa2f86e293ec3bd5ff37ddaa9c7cd3fa461e7ccb8065289bacb08e86"
+    },
+    "preparation.json": {
+      "bytes": 2235,
+      "sha256": "fd14275d763414b98fea7b19908faa783f018cffb64f5015bec3045a4d49ca41"
+    },
+    "prepare_tokenizer.py": {
+      "bytes": 5233,
+      "sha256": "eb0f67a6951188f6670d083e7c99e2d6278418b67a4c8df73bba85eb98e6a5c7"
+    },
+    "public_check.py": {
+      "bytes": 12939,
+      "sha256": "2ee13e3092232beecfdf0a550de2bd5ba18e1935901ec8d406303cc06722e43b"
+    },
+    "render_official.py": {
+      "bytes": 2167,
+      "sha256": "fcfce9d2167a73d3a0e99332f430026aff2f1b7ba10df0cf3eb7d0778ad4af2c"
+    },
+    "static_vocab_expectation.json": {
+      "bytes": 1763,
+      "sha256": "60278f9c4379d3fea820ecfd852015bdeadcf5071e39da1846b89bc1ebdedf28"
+    },
+    "validator.cpp": {
+      "bytes": 23557,
+      "sha256": "c99c5759b65a4ae4a4f31df9f3fda75cdcd454771b126683afe7c75d7707edf9"
+    }
+  },
+  "external_inputs_sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "var/research/run_llama_build.py": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+    "var/research/relink_llama_rpath.py": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0",
+    "var/research/verify_llama_build.py": "81285c40d1ee3862f747bbbc32fc9868d7a0604b4ea402dc8a8b5e9a1a06573e",
+    "var/research/build_native_contract_cpu.py": "0f46ea1d2009d882077a5735aef17a62ad6cd9d327e5635c32081b7f82299510",
+    "var/reports/llama-native-contract-cpu-build-v4.json": "f149c7eda01dda9b36f4dba9327cb368bbdf2e3c591fa7db287b47787be7aea0",
+    "var/research/native-contract-validator/validator.cpp": "92ed10acd9be33d02d4cc6ea446dc2bea93ffb60b7d17ffc3c0f0268aab6c6b2",
+    "var/research/native-glm47-contract/validator.cpp": "c99c5759b65a4ae4a4f31df9f3fda75cdcd454771b126683afe7c75d7707edf9",
+    "var/research/glm47-flash-candidate-metadata/integrity.json": "761800d652cdaa6565f6b4bfc3ea5ac597cc4a92ed593c72ad44e42af10f4d73",
+    "var/research/glm47-flash-candidate-metadata/provenance.json": "f2520d343bf75448d643fa41c7ccaa5c4066fd03aae13c3bad36865cf558426a",
+    "var/research/glm47-flash-candidate-metadata/public_tokenizer_cases_design.json": "5c0e50fbd63b1b1c05883bbd96381f48237293a3c5cec9c6d48ffe1ad257dc13",
+    "var/research/glm47-flash-candidate-metadata/upstream/chat_template.jinja": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+    "var/research/glm47-flash-candidate-metadata/upstream/tokenizer.json": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+    "var/research/glm47-flash-candidate-metadata/upstream/tokenizer_config.json": "31a173e2797ddc8b72ac996803513e627fc28d7aad02cfcce321a431d865c86d",
+    "var/research/native-exaone45-contract/build_v5.py": "9a9467dc6f062f3ae3d695dd4bc638b065b5b9a21bf5b7799a292ea3bef6a208",
+    "var/research/native-exaone45-contract/validator_v5.cpp": "3229773054eda0fd5e55e8e8f6a57021ebf4c4ece425ad5ec8043869161dcc90",
+    "var/research/native-exaone45-contract/public_check_v3.py": "803767732db366774600f2521eb39db475e8c1d587ba28e9680a0be3a47deb74"
+  },
+  "integrity_self_excluded": true,
+  "no_binaries_objects_environments_or_dataset_payloads": true
+}

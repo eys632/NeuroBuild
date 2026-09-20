@@ -1045,3 +1045,82 @@ Source snapshot30Git blobs/frozen_docs5는c466013원본과일치한다.
 공백예외11건은exactpatch2/template8/원본model_guardEOF1에한정하며원본bytes를유지했다.
 새문서링크유효/환경·weight·nativebinary제외/현재408source6pins동일을확인했다.
 독립archive검토receiptSHA6fc1aff73a200dd4a1e0fa8cabc77b19792abb77c8577c01e0f9e486e38578b8.
+
+
+### 2026-09-20 — EXAONE 실패 원격 checkpoint와 GLM 조건부 조사
+
+실패보존commitdaeccacee7bb1912e03c8be696572b80b12c9f4c push/ls-remoteexact/clean확인.
+공식primary 최대3후보 재조사에서 GLM-4.7-Flash를다음metadata/CPU/resource 대상으로선택했다.
+NoteSHA97bba4e86c9f263ee0c4a76a58db679b17df487d9e3cd40967c9a94c28d8de7d,
+refsSHA464691073f5628a5bd9f691a9cfe67fb0d642a493e1972c8426f807e057dbee2를선택archive에exactcopy했다.
+Smallpinnedmetadata수집/고정native경로·sampling명세/전체MLA·MoE자원검토를분리진행한다.
+No modelserver현재실행/GPU0/1/2fallback/환경변경/weightdownload/삭제/품질호출.
+비활성EXAONEcleanuphelper는Gemma동일검증로직·4함수AST불변/identity상수만변경한준비본이다.
+실행하지않았고resource/provenance gate 이후에만검토한다.
+
+
+### 2026-09-20 — GLM 자료 검토와 공간 확보·다운로드
+
+고정 GLM metadata21파일 integrity761800d652cdaa6565f6b4bfc3ea5ac597cc4a92ed593c72ad44e42af10f4d73을 대조했다.
+큰 tokenizer/index는 ignored에 유지하고 고정 API·SHA·fetch code와 나머지 원본을 metadata archive에 보존했다.
+전체 VRAM 계획59249262e01c2588e1ac39f999d0bdb920b08213b555ba11c8c7989387fe3f58은 조건부28,672MiB이며
+actual header/CPU/fresh GPU3 확인 전 runtime PASS가 아니다.
+
+`CUDA_VISIBLE_DEVICES='' .conda/bin/python var/research/cleanup_unused_exaone45_cache.py --remove` 완료.
+종료 증거·manifest·전체 SHA·소유권·mapping/FD를 대조한 EXAONE weight 한 개20,047,839,424B만 제거했다.
+영수증8258aa8628740c6f3427f00f49263690666ac040b098d6a14e7e4ae7103d2756,
+free45,663,219,712B, 타인 파일/process 변경0. 평가·metadata·재현 정보는 보존했다.
+
+`download_glm47_flash_guarded.py --build-report-sha256 ee6004… --cleanup-report-sha256 8258aa…`로
+GLM 고정 manifest8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c 다운로드를 시작했다.
+HelperSHAa822c564c018fefbdd9f4cd515b8119cc736673a2627381d92bc9f838345996b,
+기존7함수 AST 동일·model/cleanup identity만 변경, CPU emptyCUDA, 2초 disk감시/20.5GiB floor/1800초다.
+신규 명시 profile 구현과 실제 header/공개 CPU 검사 준비는 병렬 진행하며, GPU/model/기존평가 재실행은0이다.
+[준비 보고서](reports/phase5x_glm47_flash_preparation_report.md).
+
+
+GLM guarded download는11:35:35UTC에2파일 full size/SHA 검증과 own child 회수를 마쳤다.
+ReceiptSHA2427b4c1be87ad5717613c55ef47d429cad85defabf9fad79378ca8d6f4daf62,
+`PASS_DOWNLOAD_ONLY_NOT_RUNTIME_VALIDATED`를 그대로 보존했다. Native/GPU/model 호출은0이다.
+Cleanup검토에서 own27개 mapping/FD 확인과2개 session infrastructure EACCES 한계를 문서에도 명시했다.
+
+
+### 2026-09-20 — GLM 실제 header와416 회귀
+
+첫 metadata-only e97d4d6412ea35295961e024476d6c43b4ac9a7fc593e4d57c031b7a9a8e961b는
+DIAGNOSTIC_NOT_PASS/CONFIG_METADATA_MISMATCH다. 기본868/fullMTP 가정과 실제844/47main/noMTP 차이를 보존했다.
+별도 지원 구조 감사 v2는 source의 no-MTP/splitMLA와 실제Q8 output+47K_B 역할만 허용했다.
+Upstream9703names=main9491+omittedMTP212, dtypeF32281/Q4_K470/Q6_K45/Q8_048,
+payload18,234,718,720B+header/alignment9,475,200B=18,244,193,920B다.
+실제 singleFD fullSHA/header PASS595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef.
+Originaltemplate/tokenizer metadata wire는동일하며 unpublishedconversioncommand는계속미확정이다.
+
+ProductionGLMprofile/modeltuple 변경 뒤416tests/skip0/19.398s PASS.
+LogSHA c342132012c9d6192164b09ddf3c806b82faaaaec3cc8be99379f2cea2e0463d,
+receipt293bfc5b4f94e728af5eeb021a3aae2230376a74dae6e631d0c70a1c4e513fac.
+독립source검토95db508b3ab6a38103e78472dda16171008a0851b53daa7af9936ff95ef78321도PASS.
+기존19개평가함수/채점/분모/parser/adapter/prompt/schema 불변이며 실제GPU/model/기존재생0이다.
+
+### 2026-09-20 — GLM CPU 공개 reference와 보조 기대값 실패 보존
+
+공식tokenizer20개raw왕복20/20/added36왕복36/36, fixtureSHAe67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3.
+최초build fe348c07e21c1c601e1a48a529cd5a8de00938b647da9dd926480b9e0d213c74는194objects재사용/newTU1이다.
+Publicv1은 stage70/line307 FAIL7eba381e83c09f14d9dcfaf898e20dd02badc3cc02362ac5e8eab5d9eb9b5b43:
+다른prefix로바꾼thinking경로를허용해야한다는보조가정이틀렸다.
+별도v2build62d6f9eee9857f985248f2c744199a189dd13d8c2b73229b83cb248b3688fd15 뒤,
+configuredprefix에서도complete thought를거절해야한다는기대가실패했다.
+Publicv2 FAIL534f6aba740056ea8f959a1834bf6ce66f299952bfbe26c35d19b9f71385ae01/line309를보존했다.
+
+Source재검토에서 DEEPSEEK+detectedtag parser는enable_thinking과별도로optionalreasoning을허용함을확인했다.
+비활성thinking은요청/렌더설정이고parserreasoning금지보장이아니다.
+따라서원래prefix로parse한finalJSON exact/reasoning별도분리/tools0/OAIcontent exact가맞는검사기준이다.
+이를확인하는v3를별도로준비했으며원본두FAIL/정의/build/binary/fixture는유지한다.
+Production변경없음/416회귀재실행없음/GPU·modelcalls0, 실제nativevocab20과200길이는아직미실행이다.
+
+
+Publicv3 actualPASS d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c,
+buildbefeeb0c258f9c570b6c148e78e426979811a1b628090bf0ad1bc25ceac2cbef/binary19e5641f0e6051348a96f06fe6986cb40c5228e83bb352a2c21ea9317fcad3cb.
+Template20/fullsystem·user/sampling/10schema허용·20거절/finalJSON20/protocol4/동일prefixreasoning분리1을확인했다.
+Actualnativevocab/context/GPU/품질은아직미실행이다. 원본두FAIL을포함한publicCPU45개자료와
+외부재사용7정의·sourceclosure, header19개자료를exactcopy했다. 독립실제receipt검토
+59c9fded41f02f991a3a8aee52217ebef7eb2d2eeb1f740ddf4cac92f144eba8도범위한정PASS.

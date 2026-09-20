@@ -1,0 +1,137 @@
+{
+  "kind": "GLM47_PUBLIC_CONTRACT_INDEPENDENT_REVIEW",
+  "status": "PASS_WITH_LIMITED_SCOPE",
+  "created_utc": "2026-09-20T11:56:52.835641+00:00",
+  "review_scope": "Read-only source/diff/receipt/hash audit of completed public CPU v3; no reenactment",
+  "material_blockers": [],
+  "preserved_history": [
+    {
+      "version": 1,
+      "status": "FAIL",
+      "stage": 70,
+      "line": 307,
+      "cause": "Wrong generation prefix was substituted into the configured grammar and incorrectly required to accept a thought block."
+    },
+    {
+      "version": 2,
+      "status": "FAIL",
+      "stage": 70,
+      "line": 309,
+      "cause": "Configured nonthinking prefix was incorrectly assumed to prohibit optional complete reasoning in the boundary parser."
+    },
+    {
+      "version": 3,
+      "status": "PASS",
+      "cause": "Same configured prefix; grammar acceptance and native final JSON/reasoning separation match the pinned source contract."
+    }
+  ],
+  "unchanged_request_and_public_corpus_hashes_across_three_versions": true,
+  "observed_public_counts": {
+    "official_jinja_native_render_exact": 20,
+    "schema_accept": 10,
+    "schema_reject": 20,
+    "plain_fenced_final_json_exact": 20,
+    "protocol_reject": 4,
+    "complete_artificial_reasoning_split": 1,
+    "native_prompt_bytes": 9146,
+    "generation_prefix_bytes": 21
+  },
+  "boundary_conclusion": "enable_thinking=false selects the rendered generation prefix; DEEPSEEK reasoning_format plus detected TAG_BASED capability independently constructs optional complete reasoning. Same-prefix parsing separates reasoning_content while retaining final JSON content bytes.",
+  "source_functions": {
+    "common/chat-auto-parser-generator.cpp:105": "autoparser::build_parser chooses reasoning extraction from reasoning_format and detected mode, not enable_thinking",
+    "common/chat-auto-parser-generator.cpp:122": "Response-format grammar places optional reasoning before schema-tagged final JSON",
+    "common/chat-auto-parser-generator.cpp:141": "analyze_reasoning::build_parser constructs optional complete tag block",
+    "common/chat-peg-parser.cpp:869": "prefix retains configured closed prefix when start delimiter is absent",
+    "common/chat.cpp:1457": "common_chat_peg_parse prepends the actual generation_prompt",
+    "common/chat-peg-parser.cpp:315": "mapper appends reasoning/content AST text to separate fields",
+    "common/chat.cpp:233": "OAI serialization exposes reasoning_content as a separate field"
+  },
+  "cpu_isolation_receipt": {
+    "native_model_context_created": false,
+    "backend_init_called": false,
+    "weights_loaded": false,
+    "gguf_loaded": false,
+    "native_tokenization": "NOT_RUN",
+    "gpu_calls": 0,
+    "http_calls": 0,
+    "model_calls": 0,
+    "core_limit_zero": true,
+    "stderr_bytes": 0,
+    "old_static_inventory_count": 194,
+    "old_static_inventory_unchanged": true,
+    "compile_link_reaped": true,
+    "cpu_binary_hash_verified": true
+  },
+  "header_evidence": {
+    "status": "PASS",
+    "sha256": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef",
+    "file_sha256": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2",
+    "tensor_count": 844,
+    "quantization": "Q4_K_M",
+    "runtime_load_proved": false
+  },
+  "limitations": [
+    "Synthetic complete-thought parsing is not observed model reasoning generation.",
+    "Nonthinking mode does not prove reasoning tokens are impossible; the same total completion cap still applies.",
+    "Official/native vocabulary IDs, arbitrary Unicode roundtrip and input context are not covered by public v3.",
+    "No actual model loading, GPU startup/resource peak, inference quality, raw FP or unsafe gate is established.",
+    "Client final-content strict parsing, separate reasoning discard, stop-only requirement and unknown accounting remain unchanged.",
+    "Both earlier helper expectation failures remain immutable evidence; no production prompt/template/parser/gold/scorer gate was patched to obtain v3."
+  ],
+  "checked_hashes": {
+    "var/research/native-glm47-contract/public-proof.json": "7eba381e83c09f14d9dcfaf898e20dd02badc3cc02362ac5e8eab5d9eb9b5b43",
+    "var/research/native-glm47-contract/public-proof-v2.json": "534f6aba740056ea8f959a1834bf6ce66f299952bfbe26c35d19b9f71385ae01",
+    "var/research/native-glm47-contract/public-proof-v3.json": "d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c",
+    "var/research/native-glm47-contract/build-v3.json": "befeeb0c258f9c570b6c148e78e426979811a1b628090bf0ad1bc25ceac2cbef",
+    "var/reports/glm47-flash-gguf-header.json": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef"
+  },
+  "source_dependency_hashes_checked_count": 29,
+  "source_dependency_hashes_checked": {
+    "var/research/glm47-flash-candidate-metadata/upstream/chat_template.jinja": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+    "var/research/native-glm47-contract/render_official.py": "fcfce9d2167a73d3a0e99332f430026aff2f1b7ba10df0cf3eb7d0778ad4af2c",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "var/research/native-glm47-contract/validator.cpp": "c99c5759b65a4ae4a4f31df9f3fda75cdcd454771b126683afe7c75d7707edf9",
+    "var/research/native-glm47-contract/build.py": "5c2a98c7aa2f86e293ec3bd5ff37ddaa9c7cd3fa461e7ccb8065289bacb08e86",
+    "var/research/native-glm47-contract/public_check.py": "2ee13e3092232beecfdf0a550de2bd5ba18e1935901ec8d406303cc06722e43b",
+    "var/research/native-glm47-contract/build.json": "fe348c07e21c1c601e1a48a529cd5a8de00938b647da9dd926480b9e0d213c74",
+    "var/research/native-glm47-contract/glm47-cpu-validator": "4bcff0326ead4a3572394cf8fb701aea78e77586ea15bbec32dfb4e4f498ba83",
+    "var/research/native-glm47-contract/public-proof.json": "7eba381e83c09f14d9dcfaf898e20dd02badc3cc02362ac5e8eab5d9eb9b5b43",
+    "var/research/native-glm47-contract/official-tokenizer-fixture.json": "e67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3",
+    "var/research/native-glm47-contract/validator_v2.cpp": "d206571cdc4b6893a1bf6565a260303b6d5c1ea1fb7b4e7efba46d60b0046d29",
+    "var/research/native-glm47-contract/build_v2.py": "18f1af03d12c4e0fa4353e48bd935dcc11a1009b987d2359cb4a57d640910f26",
+    "var/research/native-glm47-contract/public_check_v2.py": "1f138f3cd54b0f3e660c0f0afe866b31db2f4c06d4d86646cdada249f504c996",
+    "var/research/native-glm47-contract/build-v2.json": "62d6f9eee9857f985248f2c744199a189dd13d8c2b73229b83cb248b3688fd15",
+    "var/research/native-glm47-contract/glm47-cpu-validator-v2": "07da57f39ef3d68f9b59e46ffb41d7c416d58c8a444e81b594623c4d2f892e1f",
+    "var/research/native-glm47-contract/public-proof-v2.json": "534f6aba740056ea8f959a1834bf6ce66f299952bfbe26c35d19b9f71385ae01",
+    "var/research/native-glm47-contract/validator_v3.cpp": "c0676b4c6f4bb962bc228cc041ee3fba85fdcd1824e68d17ab7a2c7eb4adf272",
+    "var/research/run_llama_build.py": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+    "var/research/relink_llama_rpath.py": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0",
+    "var/research/verify_llama_build.py": "81285c40d1ee3862f747bbbc32fc9868d7a0604b4ea402dc8a8b5e9a1a06573e",
+    "var/research/build_native_contract_cpu.py": "0f46ea1d2009d882077a5735aef17a62ad6cd9d327e5635c32081b7f82299510",
+    "var/reports/llama-native-contract-cpu-build-v4.json": "f149c7eda01dda9b36f4dba9327cb368bbdf2e3c591fa7db287b47787be7aea0",
+    "var/research/native-contract-validator/validator.cpp": "92ed10acd9be33d02d4cc6ea446dc2bea93ffb60b7d17ffc3c0f0268aab6c6b2",
+    "var/research/native-glm47-contract/build_v3.py": "d4fc565e3cac0f49b949fba9d059a166805d4befc0a6e7d7a96139a3b522efc4",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528"
+  },
+  "native_parser_source_hashes": {
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat-auto-parser-generator.cpp": "9f76ec58eb8e7aa8d2c40df1be0a75ba2e90a0486fc347f6a00e73b4457d1df4",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat-peg-parser.cpp": "a069958a4967609f67a3feea22a37dd3a8d712687eb37c56d75ea078aac540e3",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat.cpp": "ed5db316e93459c6528526633b11943f4b4611634c773b4eab30a66c1f4a91b3",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/sampling.cpp": "f23f8d663932bfd73abac1bd5e99055fc6efb07e21ef27dd7e25af2f2da40bff"
+  },
+  "reviewer_actions": {
+    "helper_main_invocations": 0,
+    "tests": 0,
+    "replays": 0,
+    "native_executions": 0,
+    "gpu_calls": 0,
+    "http_calls": 0,
+    "model_or_weight_file_reads": 0,
+    "dataset_body_reads": 0,
+    "production_edits": 0
+  }
+}

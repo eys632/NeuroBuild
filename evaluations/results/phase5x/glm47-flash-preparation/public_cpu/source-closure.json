@@ -1,0 +1,284 @@
+{
+  "kind": "GLM47_PUBLIC_CPU_SOURCE_CLOSURE",
+  "exact_copies": {
+    "README.md": {
+      "bytes": 5115,
+      "sha256": "17349159b1cc877498ce85a9429a903f5e26c6ad08d5bb0673783b136f143d51",
+      "original_path": "var/research/native-glm47-contract/README.md"
+    },
+    "preparation.json": {
+      "bytes": 2235,
+      "sha256": "fd14275d763414b98fea7b19908faa783f018cffb64f5015bec3045a4d49ca41",
+      "original_path": "var/research/native-glm47-contract/preparation.json"
+    },
+    "original_preparation_integrity.json": {
+      "bytes": 4029,
+      "sha256": "4215284dfad983705d07d79b3ef62742933a9979edfb737dc597d120335b09c2",
+      "original_path": "var/research/native-glm47-contract/integrity.json"
+    },
+    "static_vocab_expectation.json": {
+      "bytes": 1763,
+      "sha256": "60278f9c4379d3fea820ecfd852015bdeadcf5071e39da1846b89bc1ebdedf28",
+      "original_path": "var/research/native-glm47-contract/static_vocab_expectation.json"
+    },
+    "prepare_tokenizer.py": {
+      "bytes": 5233,
+      "sha256": "eb0f67a6951188f6670d083e7c99e2d6278418b67a4c8df73bba85eb98e6a5c7",
+      "original_path": "var/research/native-glm47-contract/prepare_tokenizer.py"
+    },
+    "render_official.py": {
+      "bytes": 2167,
+      "sha256": "fcfce9d2167a73d3a0e99332f430026aff2f1b7ba10df0cf3eb7d0778ad4af2c",
+      "original_path": "var/research/native-glm47-contract/render_official.py"
+    },
+    "official-tokenizer-fixture.json": {
+      "bytes": 14689,
+      "sha256": "e67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3",
+      "original_path": "var/research/native-glm47-contract/official-tokenizer-fixture.json"
+    },
+    "validator.cpp": {
+      "bytes": 23557,
+      "sha256": "c99c5759b65a4ae4a4f31df9f3fda75cdcd454771b126683afe7c75d7707edf9",
+      "original_path": "var/research/native-glm47-contract/validator.cpp"
+    },
+    "build.py": {
+      "bytes": 8989,
+      "sha256": "5c2a98c7aa2f86e293ec3bd5ff37ddaa9c7cd3fa461e7ccb8065289bacb08e86",
+      "original_path": "var/research/native-glm47-contract/build.py"
+    },
+    "public_check.py": {
+      "bytes": 12939,
+      "sha256": "2ee13e3092232beecfdf0a550de2bd5ba18e1935901ec8d406303cc06722e43b",
+      "original_path": "var/research/native-glm47-contract/public_check.py"
+    },
+    "build.json": {
+      "bytes": 9522,
+      "sha256": "fe348c07e21c1c601e1a48a529cd5a8de00938b647da9dd926480b9e0d213c74",
+      "original_path": "var/research/native-glm47-contract/build.json"
+    },
+    "build.log.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-glm47-contract/build.log"
+    },
+    "build-cli.log.txt": {
+      "bytes": 269,
+      "sha256": "c9cf5b8e60b2d01f38c6824784c4e9bdbc82a440a7940c467383d561dc17775b",
+      "original_path": "var/research/native-glm47-contract/build-cli.log"
+    },
+    "build-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-glm47-contract/build-cli.stderr"
+    },
+    "public-proof.json": {
+      "bytes": 2841,
+      "sha256": "7eba381e83c09f14d9dcfaf898e20dd02badc3cc02362ac5e8eab5d9eb9b5b43",
+      "original_path": "var/research/native-glm47-contract/public-proof.json"
+    },
+    "public-cli.log.txt": {
+      "bytes": 184,
+      "sha256": "be57795159f6468063809dbdf210b40e4c5a30d9e3bb7a6aee01520ced9de6f8",
+      "original_path": "var/research/native-glm47-contract/public-cli.log"
+    },
+    "public-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-glm47-contract/public-cli.stderr"
+    },
+    "validator_v2.cpp": {
+      "bytes": 23526,
+      "sha256": "d206571cdc4b6893a1bf6565a260303b6d5c1ea1fb7b4e7efba46d60b0046d29",
+      "original_path": "var/research/native-glm47-contract/validator_v2.cpp"
+    },
+    "validator_v2.patch": {
+      "bytes": 2512,
+      "sha256": "c2340db3acbbdd29a0651f7bb80e7d814bf6208d08399f5a3e8d42a011d897aa",
+      "original_path": "var/research/native-glm47-contract/validator_v2.patch"
+    },
+    "build_v2.py": {
+      "bytes": 10113,
+      "sha256": "18f1af03d12c4e0fa4353e48bd935dcc11a1009b987d2359cb4a57d640910f26",
+      "original_path": "var/research/native-glm47-contract/build_v2.py"
+    },
+    "public_check_v2.py": {
+      "bytes": 14291,
+      "sha256": "1f138f3cd54b0f3e660c0f0afe866b31db2f4c06d4d86646cdada249f504c996",
+      "original_path": "var/research/native-glm47-contract/public_check_v2.py"
+    },
+    "build-v2.json": {
+      "bytes": 10548,
+      "sha256": "62d6f9eee9857f985248f2c744199a189dd13d8c2b73229b83cb248b3688fd15",
+      "original_path": "var/research/native-glm47-contract/build-v2.json"
+    },
+    "build-v2.log.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-glm47-contract/build-v2.log"
+    },
+    "build-v2-cli.log.txt": {
+      "bytes": 272,
+      "sha256": "01f84a36f2bab83f34879d2aa8178ebe923f6c8e851d9f0e9bd72cefc03793cb",
+      "original_path": "var/research/native-glm47-contract/build-v2-cli.log"
+    },
+    "build-v2-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-glm47-contract/build-v2-cli.stderr"
+    },
+    "public-proof-v2.json": {
+      "bytes": 4206,
+      "sha256": "534f6aba740056ea8f959a1834bf6ce66f299952bfbe26c35d19b9f71385ae01",
+      "original_path": "var/research/native-glm47-contract/public-proof-v2.json"
+    },
+    "public-v2-cli.log.txt": {
+      "bytes": 187,
+      "sha256": "0b4b04db1d95336f32367c81d121aa7fd8d582fb6758240bf58f689b01f502f0",
+      "original_path": "var/research/native-glm47-contract/public-v2-cli.log"
+    },
+    "public-v2-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-glm47-contract/public-v2-cli.stderr"
+    },
+    "public_v2_amendment.md": {
+      "bytes": 2760,
+      "sha256": "331cf32447fea64f0051de0012f2ea0f91895cf7696ca6ae4c7ab8f2ef2636a5",
+      "original_path": "var/research/native-glm47-contract/public_v2_amendment.md"
+    },
+    "public_v2_preparation.json": {
+      "bytes": 2134,
+      "sha256": "70f794d16dd0111ec4009481468b2afb78924f73278f095f6452a7f05772084c",
+      "original_path": "var/research/native-glm47-contract/public_v2_preparation.json"
+    },
+    "validator_v3.cpp": {
+      "bytes": 24297,
+      "sha256": "c0676b4c6f4bb962bc228cc041ee3fba85fdcd1824e68d17ab7a2c7eb4adf272",
+      "original_path": "var/research/native-glm47-contract/validator_v3.cpp"
+    },
+    "validator_v3.patch": {
+      "bytes": 3261,
+      "sha256": "241705cf4991713fca56b545107dac054f6181dc53408cc5acc872cc9f258bb8",
+      "original_path": "var/research/native-glm47-contract/validator_v3.patch"
+    },
+    "build_v3.py": {
+      "bytes": 11093,
+      "sha256": "d4fc565e3cac0f49b949fba9d059a166805d4befc0a6e7d7a96139a3b522efc4",
+      "original_path": "var/research/native-glm47-contract/build_v3.py"
+    },
+    "public_check_v3.py": {
+      "bytes": 15373,
+      "sha256": "06dc94dc5211e84c91fedde470ea5aebbc11bd93f1bd83e6a3b3aae85f8ffc45",
+      "original_path": "var/research/native-glm47-contract/public_check_v3.py"
+    },
+    "build-v3.json": {
+      "bytes": 11421,
+      "sha256": "befeeb0c258f9c570b6c148e78e426979811a1b628090bf0ad1bc25ceac2cbef",
+      "original_path": "var/research/native-glm47-contract/build-v3.json"
+    },
+    "build-v3.log.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-glm47-contract/build-v3.log"
+    },
+    "build-v3-cli.log.txt": {
+      "bytes": 272,
+      "sha256": "d58282189acaac73f3342644c7be77e654f6eaba79e926d85eeb8ab209cb1952",
+      "original_path": "var/research/native-glm47-contract/build-v3-cli.log"
+    },
+    "build-v3-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-glm47-contract/build-v3-cli.stderr"
+    },
+    "public-proof-v3.json": {
+      "bytes": 6271,
+      "sha256": "d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c",
+      "original_path": "var/research/native-glm47-contract/public-proof-v3.json"
+    },
+    "public-v3-cli.log.txt": {
+      "bytes": 187,
+      "sha256": "9f09a1206dc4ada524868f5faa1e4aaebdb86260618fa366997aeb44d5e3c408",
+      "original_path": "var/research/native-glm47-contract/public-v3-cli.log"
+    },
+    "public-v3-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-glm47-contract/public-v3-cli.stderr"
+    },
+    "public_v3_amendment.md": {
+      "bytes": 2798,
+      "sha256": "99ffdd23bd80a19567c62329431dbf87bd48474131006a795b9b907ddc792b5e",
+      "original_path": "var/research/native-glm47-contract/public_v3_amendment.md"
+    },
+    "public_v3_preparation.json": {
+      "bytes": 2574,
+      "sha256": "bbd9d95a5339390a4014dbb1e68a3723940ef8e8a97112b7d3d6417a4450d06f",
+      "original_path": "var/research/native-glm47-contract/public_v3_preparation.json"
+    }
+  },
+  "historical_and_external_pins": {
+    "var/research/run_llama_build.py": {
+      "sha256": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+      "bytes": 15117,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/helpers/run_llama_build.py"
+      ],
+      "reproduction": "Restore exact archived definition to original project relative path; rebuild outputs with new receipts if hashes differ."
+    },
+    "var/research/relink_llama_rpath.py": {
+      "sha256": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0",
+      "bytes": 14356,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/helpers/relink_llama_rpath.py"
+      ],
+      "reproduction": "Restore exact archived definition to original project relative path; rebuild outputs with new receipts if hashes differ."
+    },
+    "var/research/verify_llama_build.py": {
+      "sha256": "81285c40d1ee3862f747bbbc32fc9868d7a0604b4ea402dc8a8b5e9a1a06573e",
+      "bytes": 19770,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/helpers/verify_llama_build.py"
+      ],
+      "reproduction": "Restore exact archived definition to original project relative path; rebuild outputs with new receipts if hashes differ."
+    },
+    "var/research/build_native_contract_cpu.py": {
+      "sha256": "0f46ea1d2009d882077a5735aef17a62ad6cd9d327e5635c32081b7f82299510",
+      "bytes": 11498,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/helpers/build_native_contract_cpu.py"
+      ],
+      "reproduction": "Restore exact archived definition to original project relative path; rebuild outputs with new receipts if hashes differ."
+    },
+    "var/reports/llama-native-contract-cpu-build-v4.json": {
+      "sha256": "f149c7eda01dda9b36f4dba9327cb368bbdf2e3c591fa7db287b47787be7aea0",
+      "bytes": 9340,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/prior-proofs/llama-native-contract-cpu-build-v4.json"
+      ],
+      "reproduction": "Restore exact archived definition to original project relative path; rebuild outputs with new receipts if hashes differ."
+    },
+    "var/research/native-contract-validator/validator.cpp": {
+      "sha256": "92ed10acd9be33d02d4cc6ea446dc2bea93ffb60b7d17ffc3c0f0268aab6c6b2",
+      "bytes": 22456,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/native-contract-validator/validator.cpp"
+      ],
+      "reproduction": "Restore exact archived definition to original project relative path; rebuild outputs with new receipts if hashes differ."
+    },
+    "scripts/model_guard.py": {
+      "sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+      "bytes": 11948,
+      "tracked_exact_copies": [
+        "scripts/model_guard.py"
+      ],
+      "reproduction": "Restore exact archived definition to original project relative path; rebuild outputs with new receipts if hashes differ."
+    }
+  },
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "native_foundation": "runtime/native/a100-llama-f072/",
+  "metadata_archive": "evaluations/results/phase5x/glm47-flash-preparation/metadata/",
+  "omitted": "All executables/objects/archives/environments/full tokenizer and model weights remain ignored; their pinned source/build/fetch definitions are preserved.",
+  "quality_model_calls": 0,
+  "old_evaluation_replays": 0
+}

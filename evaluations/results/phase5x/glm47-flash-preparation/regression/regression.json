@@ -1,0 +1,29 @@
+{
+  "kind": "GLM47_EXPLICIT_NATIVE_PROFILE_REGRESSION",
+  "status": "PASS",
+  "tests_run": 416,
+  "skipped": 0,
+  "duration_seconds": 19.398,
+  "real_postgresql": true,
+  "real_ifcopenshell": true,
+  "headless": true,
+  "cuda_visible_devices": "",
+  "command": "env -u DISPLAY -u WAYLAND_DISPLAY CUDA_VISIBLE_DEVICES= bash scripts/test_backend.sh; NEUROBUILD_TEST_DSN from scripts/postgres.py dsn",
+  "log_path": "var/phase5x-glm47-profile-regression.log",
+  "log_sha256": "c342132012c9d6192164b09ddf3c806b82faaaaec3cc8be99379f2cea2e0463d",
+  "source_sha256": {
+    "scripts/evaluate_requirements.py": "4fc1335e3372518c3534267613cbc4ad0d0cb0772a149ce286ce703f2b886048",
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "tests/test_local_model.py": "d76731e5ee613ef664f76d078caf5b775c65b265c63913eaf527f40010e41510",
+    "tests/test_native_requirement_evaluation.py": "f52d284fd62d78e8e41e8b32b883d6865f8978346257b2b0c8f3ed703fde4a04",
+    "scripts/llama_server.py": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "scripts/native_model_bootstrap.py": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf"
+  },
+  "evaluator_changed_definitions": [
+    "build_manifest"
+  ],
+  "quality_model_calls": 0,
+  "old_evaluation_replay": 0,
+  "scope": "Production regression for explicit GLM profile and observed metadata model/type binding, not a GLM native/runtime/quality gate."
+}

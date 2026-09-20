@@ -1,0 +1,117 @@
+{
+  "kind": "GLM47_FLASH_PUBLIC_TOKENIZER_CORPUS_DESIGN",
+  "status": "DESIGN_ONLY_IDS_AND_ROUNDTRIPS_NOT_EXECUTED",
+  "case_count": 20,
+  "reference_tokenizer_sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+  "encode_options": {
+    "add_special_tokens": false
+  },
+  "decode_options": {
+    "skip_special_tokens": false
+  },
+  "normalization_or_application_repair": "NONE",
+  "native_reference_kind": "Exact official pinned tokenizer; no alternative reference adopted",
+  "cases": [
+    {
+      "id": "GLM-P01",
+      "category": "space",
+      "text": " "
+    },
+    {
+      "id": "GLM-P02",
+      "category": "ascii_single",
+      "text": "A"
+    },
+    {
+      "id": "GLM-P03",
+      "category": "korean",
+      "text": "공개 토큰 검사: 도서관 가나다"
+    },
+    {
+      "id": "GLM-P04",
+      "category": "mixed_script",
+      "text": "BIM 공개 점검 — Room 27 / 의자"
+    },
+    {
+      "id": "GLM-P05",
+      "category": "numbers_units",
+      "text": "X=-0.0625m; Y=+18cm; 0042mm"
+    },
+    {
+      "id": "GLM-P06",
+      "category": "tabs_lf",
+      "text": "앞\t중간\n뒤"
+    },
+    {
+      "id": "GLM-P07",
+      "category": "crlf",
+      "text": "첫째\r\n둘째"
+    },
+    {
+      "id": "GLM-P08",
+      "category": "json_literals",
+      "text": "{\"label\":\"공개\",\"quote\":\"a\\\"b\",\"slash\":\"c\\\\d\"}"
+    },
+    {
+      "id": "GLM-P09",
+      "category": "hangul_nfc",
+      "text": "한글"
+    },
+    {
+      "id": "GLM-P10",
+      "category": "hangul_nfd",
+      "text": "한글"
+    },
+    {
+      "id": "GLM-P11",
+      "category": "accent_nfc",
+      "text": "café"
+    },
+    {
+      "id": "GLM-P12",
+      "category": "accent_nfd",
+      "text": "café"
+    },
+    {
+      "id": "GLM-P13",
+      "category": "literal_sentencepiece_marker",
+      "text": "문자 ▁ 그대로"
+    },
+    {
+      "id": "GLM-P14",
+      "category": "fullwidth",
+      "text": "ＡＢＣ１２３＋－"
+    },
+    {
+      "id": "GLM-P15",
+      "category": "nonbreaking_spaces",
+      "text": "a b c"
+    },
+    {
+      "id": "GLM-P16",
+      "category": "emoji_zwj",
+      "text": "연구 🧑‍🔬 😀"
+    },
+    {
+      "id": "GLM-P17",
+      "category": "glm_prefix",
+      "text": "[gMASK]<sop>"
+    },
+    {
+      "id": "GLM-P18",
+      "category": "glm_roles",
+      "text": "<|system|><|user|><|assistant|><|observation|>"
+    },
+    {
+      "id": "GLM-P19",
+      "category": "thinking_tokens",
+      "text": "<think>공개</think>/nothink"
+    },
+    {
+      "id": "GLM-P20",
+      "category": "tool_tags",
+      "text": "<tool_call>f<arg_key>x</arg_key><arg_value>1</arg_value></tool_call>"
+    }
+  ],
+  "future_evidence": "Record exact IDs internally for public-only fixture and every original-byte roundtrip mismatch; native parity only after separately authorized full header/vocab-only gate. No expected IDs or PASS asserted now."
+}

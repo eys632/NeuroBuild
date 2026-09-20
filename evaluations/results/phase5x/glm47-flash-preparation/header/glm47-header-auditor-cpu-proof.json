@@ -1,0 +1,21 @@
+{
+  "kind": "GLM47_HEADER_AUDITOR_SYNTHETIC_CPU_PROOF",
+  "status": "PASS",
+  "helper_sha256": "a27af1f961af71fcfd49d2c94e5b7df2de74cbd50362bf94a64248054d9bedcb",
+  "tests_sha256": "7be9e54a4ef97561ef296b4a18e64f625a0a52516d2963da2f3d273a94fe7207",
+  "new_tests_run": 10,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 1.121,
+  "generic_parser_definitions_ast_identical": 8,
+  "parser_baseline_sha256": "cb8ef9e58aea7066c050d3e96da24708b4be4eae0c7c7498f879e2dddc41940c",
+  "reference_scope": "Pinned public config/tokenizer/index and source only; synthetic header bytes",
+  "actual_model_or_header_read": false,
+  "weight_payload_read": false,
+  "native_execution": false,
+  "gpu_calls": 0,
+  "dataset_reads": 0,
+  "old_candidate_tests_or_replays": 0,
+  "actual_artifact_default_recipe_match": "NOT_POSSIBLE_WITH_CURRENT_DEFAULT_PAYLOAD_SIZE; diagnostic required",
+  "notes_sha256": "7fff46c8719c052f96a912de97b45ea10d19f8dab1772e46a74527648da593e4"
+}

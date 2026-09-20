@@ -1,0 +1,26 @@
+{
+  "kind": "GLM47_HEADER_AUDITOR_SYNTHETIC_CPU_PROOF",
+  "status": "PASS",
+  "new_tests_run": 11,
+  "failures": 0,
+  "errors": 0,
+  "elapsed_seconds": 3.03,
+  "generic_parser_definitions_ast_identical": 8,
+  "changed_scope": "Three known metadata-description dtypes added; candidate acceptance unchanged",
+  "source_sha256": {
+    "var/research/inspect_glm47_gguf.py": "d21a53b9588ffe1f73a3e86f0612b1b68b1a94b2b2413bd1adecbeff47146c69",
+    "var/research/test_inspect_glm47_gguf.py": "731461923e6b378bbd50020c132fc9dadd5793b613e8600e59cf7d3c50446ff1",
+    "var/research/glm47_header_preparation_notes.md": "7fff46c8719c052f96a912de97b45ea10d19f8dab1772e46a74527648da593e4",
+    "var/research/glm47_header_description_addendum.md": "f5d2e249d1724fb9116731bc6434baa995b974b3ed5697a73bb0aa61738da265",
+    "var/research/inspect_glm47_gguf_pre_description_types.py": "a27af1f961af71fcfd49d2c94e5b7df2de74cbd50362bf94a64248054d9bedcb",
+    "var/research/test_inspect_glm47_gguf_pre_description_types.py": "7be9e54a4ef97561ef296b4a18e64f625a0a52516d2963da2f3d273a94fe7207",
+    "var/research/glm47-header-auditor-cpu-proof.json": "419564ec64ae331c8fcdb473c70cfebc50e95cdab54f648a4deecf1997036807"
+  },
+  "actual_model_or_header_read": false,
+  "weight_payload_read": false,
+  "native_execution": false,
+  "gpu_calls": 0,
+  "dataset_reads": 0,
+  "old_candidate_tests_or_replays": 0,
+  "actual_artifact_default_recipe_match": "UNRESOLVED; current default payload bytes cannot match published file size"
+}

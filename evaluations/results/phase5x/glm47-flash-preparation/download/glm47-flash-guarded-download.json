@@ -1,0 +1,67 @@
+{
+  "kind": "GUARDED_PINNED_PUBLIC_MODEL_DOWNLOAD",
+  "status": "PASS_DOWNLOAD_ONLY_NOT_RUNTIME_VALIDATED",
+  "created_at_utc": "2026-09-20T11:27:04.064279+00:00",
+  "helper_sha256": "a822c564c018fefbdd9f4cd515b8119cc736673a2627381d92bc9f838345996b",
+  "model_id": "ggml-org/GLM-4.7-Flash-GGUF",
+  "revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "input_sha256": {
+    "runtime/models/glm47-flash-q4-k.json": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+    "scripts/download_model.py": "eea7da3f210addeaece15cb2a7072145cb9c380bd475c4a4f92292df78b88353",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "var/research/run_llama_build.py": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+    "var/research/relink_llama_rpath.py": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0"
+  },
+  "build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "cleanup_report_sha256": "8258aa8628740c6f3427f00f49263690666ac040b098d6a14e7e4ae7103d2756",
+  "cuda_visible_devices": "",
+  "disk_floor_bytes": 22011707392,
+  "disk_poll_seconds": 2,
+  "max_phase_seconds": 1800,
+  "termination_grace_is_additional": true,
+  "initial_free_bytes": 45662633984,
+  "conservative_remaining_bytes": 18244193963,
+  "child_stdout_stderr": "DISCARDED; supervisor emits only fixed metadata",
+  "gpu_or_native_execution": false,
+  "phases": [
+    {
+      "name": "download-glm47-flash",
+      "command": [
+        "/home/a202192020/NeuroBuild_v2/.conda/bin/python",
+        "-I",
+        "-B",
+        "/home/a202192020/NeuroBuild_v2/scripts/download_model.py",
+        "/home/a202192020/NeuroBuild_v2/runtime/models/glm47-flash-q4-k.json"
+      ],
+      "started_at_utc": "2026-09-20T11:27:04.078745+00:00",
+      "max_seconds": 1800,
+      "budget_bytes": 18781064875,
+      "reserve_bytes": 21474836480,
+      "own_child_pid": 3634837,
+      "guardian_shutdown": {
+        "term_sent": true,
+        "kill_sent": true,
+        "child_reaped": true
+      },
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-20T11:35:35.697430+00:00",
+      "native_cleanup": {
+        "guardian_pid": 3634837,
+        "native_pid": 3634838,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": 0,
+        "stop_requested": false
+      }
+    }
+  ],
+  "minimum_free_bytes": 27412078592,
+  "maximum_own_allocated_bytes": 18244218880,
+  "verified_files": 2,
+  "model_path": "var/models/ggml-org--GLM-4.7-Flash-GGUF/7559e96b7e324ab405897dc2b91492b0f376ad4a",
+  "downloaded_manifest_sha256": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+  "finished_at_utc": "2026-09-20T11:35:35.712489+00:00"
+}

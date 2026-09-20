@@ -1,0 +1,18 @@
+{
+  "model_id": "ggml-org/GLM-4.7-Flash-GGUF",
+  "revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+  "license": "UNDECLARED_IN_GGUF_REPOSITORY; upstream model card declares MIT",
+  "source": "https://huggingface.co/api/models/ggml-org/GLM-4.7-Flash-GGUF/revision/7559e96b7e324ab405897dc2b91492b0f376ad4a?blobs=true",
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 43,
+      "sha256": "db863cd2bb4739a5e87706721db933e9421cd7a359e5ccd12de59b29f5fc060d"
+    },
+    {
+      "name": "GLM-4.7-Flash-Q4_K.gguf",
+      "bytes": 18244193920,
+      "sha256": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2"
+    }
+  ]
+}

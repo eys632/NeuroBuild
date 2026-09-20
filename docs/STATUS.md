@@ -1,24 +1,32 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 KST — EXAONE 첫 단회 의미 정확도 gate FAIL, 자체 서버 종료·GPU3 반환**.
+갱신: **2026-09-20 KST — EXAONE 실패 원격 보존, GLM-4.7-Flash 후보 준비**.
 Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 미채택, Phase6 미시작**이다.
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 진단동결 `c466013439e6d202e627ed48c7a4ed1e45cf82c0` push·원격 일치 확인; 이번 checkpoint는 EXAONE 실패·종료 보존 |
-| 현재 작업 | **EXAONE 실패 증거 보존·독립 검산, 다른 모델 후보 비교** |
+| GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 진단동결 `c466013439e6d202e627ed48c7a4ed1e45cf82c0` push·원격 일치 확인; EXAONE 실패·종료 `daeccacee7bb1912e03c8be696572b80b12c9f4c` push·원격 일치 확인 |
+| 현재 작업 | **GLM 실제 header·공개 CPU 계약 PASS 보존, 실제 vocabulary 검사 준비** |
 | 최근 후보 | EXAONE4.5-33B Q4_K_M: 첫 의미 정확도 gate FAIL. Gemma4-31B 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
 | EXAONE 1차 품질 결과 | 노출120×1: schema120, parser119, semantic106, rawFP0/58, unsafe0/120 — **FAIL** |
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
-| 회귀 검증 | **408 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless21.330초. EXAONE 명시profile·pinned template override 검증 |
+| 회귀 검증 | **416 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless19.398초. GLM 명시 profile·실제 metadata의 정확한 모델/type 연결 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
 | 모델 실행 | Qwen/Gemma/EXAONE 자체 서버 모두 STOPPED·exit0/reaped. EXAONE 종료 후5회 GPU3 free36,373MiB/used3,965MiB/util0% |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | EXAONE 새125개 독립 검산 PASS·품질 FAIL 보존 후 다른 모델 후보 비교. 동일 실패 후보 반복·V2·새 holdout0회 |
+| 다음 검증 | GLM 실제 GGUF vocabulary의 공개20 token ID/원문 일치와 새 길이 검사. GPU 실행·품질 평가 전이며 이전 실패 후보 반복0회 |
+
+GLM은 고정 다운로드와 실제47층/no-MTP/Q4_K_M/Q8 output·K_B 구조 감사, 공개 CPU 계약을 통과했다.
+Header SHA `595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef`,
+public CPU SHA `d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c`다.
+처음 두 CPU 보조 기대값 FAIL은 보존했다. Nonthinking 요청과 별도로 native parser가 허용하는
+optional reasoning의 분리와 final JSON byte 일치를 실제 prefix에서 확인했다.
+공식 HF 원문 왕복20/20은 actual native token ID 비교와 구분한다. 아직 GPU/model 품질 호출0이며
+미사용80개도 접근하지 않았다. [준비 보고서](reports/phase5x_glm47_flash_preparation_report.md).
 
 ## 보존한 단회 결과와 오류3건
 

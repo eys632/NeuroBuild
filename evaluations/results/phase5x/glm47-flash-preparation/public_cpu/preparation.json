@@ -1,0 +1,63 @@
+{
+  "kind": "GLM47_FLASH_CPU_IMPLEMENTATION_PREPARATION",
+  "status": "PREPARED_NOT_EXECUTED",
+  "at_utc": "2026-09-20T11:42:03.276863+00:00",
+  "python_ast_files": [
+    "build.py",
+    "prepare_tokenizer.py",
+    "public_check.py",
+    "render_official.py"
+  ],
+  "build_pinned_inputs_current": true,
+  "public_wrapper_cannot_supply_gguf": true,
+  "cpp_context_backend_decode_api_calls_absent": true,
+  "future_vocab_noalloc_parameters_present": true,
+  "actual_output_artifacts_absent": [
+    "build.json",
+    "build.log",
+    "glm47-cpu-validator",
+    "validator.o",
+    "official-tokenizer-fixture.json",
+    "public-proof.json"
+  ],
+  "source_sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+  },
+  "prepared_coverage": {
+    "public_tokenizer_cases": 20,
+    "public_added_literal_checks": 36,
+    "public_template_reference_cases": 20,
+    "schema_accept_cases": 10,
+    "schema_reject_cases": 20,
+    "native_wire_forms": [
+      "plain_json",
+      "json_fenced"
+    ],
+    "native_eog_ids": [
+      154820,
+      154827,
+      154829
+    ]
+  },
+  "execution_counts": {
+    "compile": 0,
+    "tokenizer_encode": 0,
+    "template_render": 0,
+    "native": 0,
+    "gguf_open": 0,
+    "evaluation_input_read": 0,
+    "gpu": 0,
+    "http": 0,
+    "model_inference": 0
+  },
+  "limits": [
+    "Python AST and metadata/source reads only; no actual compatibility PASS.",
+    "Existing full SHA/header approval required before optional vocab phase; no wrapper currently enables it.",
+    "No global Unicode or quality claim from normalizer null.",
+    "Existing candidate helpers, source, datasets, prompts and earlier proofs were not edited."
+  ]
+}

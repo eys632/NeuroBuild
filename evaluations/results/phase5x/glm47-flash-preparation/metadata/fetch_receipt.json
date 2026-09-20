@@ -1,0 +1,99 @@
+{
+  "kind": "GLM47_FLASH_PINNED_METADATA_FETCH",
+  "status": "PASS",
+  "records": [
+    {
+      "path": "upstream/config.json",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7-Flash/resolve/7dd20894a642a0aa287e9827cb1a1f7f91386b67/config.json",
+      "source_revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "bytes": 1070,
+      "sha256": "dc9b97c7c9bed726a2e6939da4234d5c43abb3edec8812068c9a1af1dbc13acb",
+      "api_blob_id": "6637ccbc226eb78776af6a66b6558ce6421be20e",
+      "verification": "REUSED_FIRST_FETCH_BYTES_REVERIFIED_AGAINST_PINNED_API",
+      "retrieved_at_utc": "first_attempt_preserved_mtime_not_authoritative_http_timestamp"
+    },
+    {
+      "path": "upstream/generation_config.json",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7-Flash/resolve/7dd20894a642a0aa287e9827cb1a1f7f91386b67/generation_config.json",
+      "source_revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "bytes": 181,
+      "sha256": "e19f4eb8be12cdb62a3737b52a332c7c142cbf5ee24a5de7d806f6132b782425",
+      "api_blob_id": "1dfa4cbf88115f19b4c6fcb086cc5669d2ce5e57",
+      "verification": "REUSED_FIRST_FETCH_BYTES_REVERIFIED_AGAINST_PINNED_API",
+      "retrieved_at_utc": "first_attempt_preserved_mtime_not_authoritative_http_timestamp"
+    },
+    {
+      "path": "upstream/chat_template.jinja",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7-Flash/resolve/7dd20894a642a0aa287e9827cb1a1f7f91386b67/chat_template.jinja",
+      "source_revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "bytes": 3120,
+      "sha256": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+      "api_blob_id": "2ab98ef068d62829d17c5ade1827b9f013fa2bbf",
+      "verification": "REUSED_FIRST_FETCH_BYTES_REVERIFIED_AGAINST_PINNED_API",
+      "retrieved_at_utc": "first_attempt_preserved_mtime_not_authoritative_http_timestamp"
+    },
+    {
+      "path": "upstream/tokenizer_config.json",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7-Flash/resolve/7dd20894a642a0aa287e9827cb1a1f7f91386b67/tokenizer_config.json",
+      "source_revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "bytes": 7226,
+      "sha256": "31a173e2797ddc8b72ac996803513e627fc28d7aad02cfcce321a431d865c86d",
+      "api_blob_id": "f6d3074564f6dd3a9431bd43b968cef999d58c54",
+      "verification": "REUSED_FIRST_FETCH_BYTES_REVERIFIED_AGAINST_PINNED_API",
+      "retrieved_at_utc": "first_attempt_preserved_mtime_not_authoritative_http_timestamp"
+    },
+    {
+      "path": "upstream/README.md",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7-Flash/resolve/7dd20894a642a0aa287e9827cb1a1f7f91386b67/README.md",
+      "source_revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "bytes": 8174,
+      "sha256": "7bfcbced42741ceb3fff8809f8d6c84ada9696850e257c4e53e6c2fe9ef4f9bf",
+      "api_blob_id": "08ba74499e9f19eb5c5c77cbe4538b3164fa521b",
+      "verification": "REUSED_FIRST_FETCH_BYTES_REVERIFIED_AGAINST_PINNED_API",
+      "retrieved_at_utc": "first_attempt_preserved_mtime_not_authoritative_http_timestamp"
+    },
+    {
+      "path": "upstream/model.safetensors.index.json",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7-Flash/resolve/7dd20894a642a0aa287e9827cb1a1f7f91386b67/model.safetensors.index.json",
+      "source_revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "bytes": 871830,
+      "sha256": "91e6e95ca21700f50904a680c8c4212f5aa16dc7c10a013f01c906957c889791",
+      "api_blob_id": "215064e6cfa2a56b41b5ef618d82b802a103cdfc",
+      "verification": "REUSED_FIRST_FETCH_BYTES_REVERIFIED_AGAINST_PINNED_API",
+      "retrieved_at_utc": "first_attempt_preserved_mtime_not_authoritative_http_timestamp"
+    },
+    {
+      "path": "upstream/tokenizer.json",
+      "source_url": "https://huggingface.co/zai-org/GLM-4.7-Flash/resolve/7dd20894a642a0aa287e9827cb1a1f7f91386b67/tokenizer.json",
+      "source_revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "bytes": 20217442,
+      "sha256": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+      "api_blob_id": "aba40197a4cdb5607f4ab7a05fb0a4ee8054fd6d",
+      "verification": "LFS_SHA256_AND_SIZE",
+      "final_host": "us.aws.cdn.hf.co",
+      "retrieved_at_utc": "2026-09-20T11:15:19.673388+00:00"
+    },
+    {
+      "path": "gguf/README.md",
+      "source_url": "https://huggingface.co/ggml-org/GLM-4.7-Flash-GGUF/resolve/7559e96b7e324ab405897dc2b91492b0f376ad4a/README.md",
+      "source_revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+      "bytes": 43,
+      "sha256": "db863cd2bb4739a5e87706721db933e9421cd7a359e5ccd12de59b29f5fc060d",
+      "api_blob_id": "f55634d10d65e0b762a5e93dc0a4da51e7ec0c83",
+      "verification": "GIT_BLOB_SHA1_AND_SIZE_PLUS_LOCAL_SHA256",
+      "final_host": "huggingface.co",
+      "retrieved_at_utc": "2026-09-20T11:15:20.129097+00:00"
+    }
+  ],
+  "metadata_payload_bytes": 21109086,
+  "api_payload_bytes": 24411,
+  "total_downloaded_bytes": 21133497,
+  "total_cap_bytes": 52428800,
+  "individual_file_cap_bytes": 25165824,
+  "authorization_headers": false,
+  "model_weight_resolve_calls": 0,
+  "model_weight_bytes": 0,
+  "gpu_calls": 0,
+  "model_inference_calls": 0,
+  "installs": 0
+}

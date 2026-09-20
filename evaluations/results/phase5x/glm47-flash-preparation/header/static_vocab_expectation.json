@@ -1,0 +1,42 @@
+{
+  "kind": "GLM47_STATIC_GGUF_TOKENIZER_EXPECTATION",
+  "status": "METADATA_DERIVED_NOT_ENCODED_OR_NATIVE_VERIFIED",
+  "tokens": {
+    "count": 154880,
+    "string_wire_sha256": "3899fd45ebdb1a0aad252c2280b349f0844287e45c7e3be763844cf01dace5cc",
+    "padding_count": 24,
+    "padding_first": "[PAD154856]",
+    "padding_last": "[PAD154879]"
+  },
+  "types": {
+    "count": 154880,
+    "i32_wire_sha256": "dee3060106b017abcc4a2fa9ba429287b0cc246eeb00fc2a38fe6c1ad4274b3a",
+    "counts": {
+      "1": 154820,
+      "3": 25,
+      "4": 11,
+      "5": 24
+    }
+  },
+  "merges": {
+    "count": 321649,
+    "string_wire_sha256": "d6d25b0c72b21425ceb7f6b92bb56b05ef24b61ea3dbb45b037880f41933bc43",
+    "source_format": "pair arrays; same space-to-U+0120 conversion and pair joining as pinned SpecialVocab"
+  },
+  "special_token_ids": {
+    "bos": 154822,
+    "eos": 154820,
+    "pad": 154820,
+    "unk": 154820,
+    "eot": 154827,
+    "eom": 154829
+  },
+  "add_bos_or_eos_metadata": "not emitted by these configs/ByteLevel postprocessor; native defaults must be separately observed",
+  "tokenizer_model": "gpt2",
+  "tokenizer_pre": "glm4",
+  "normalizer": null,
+  "fingerprint_source_constant": "cdf5f35325780597efd76153d4d1c16778f766173908894c04afc20108536267",
+  "fingerprint_executed": false,
+  "wire_definition": "STRING items are consecutive little-endian uint64 UTF8 length + bytes; types consecutive little-endian int32; excludes GGUF array type/count headers",
+  "limitation": "get_vocab_base normalizes added tokens by encode/decode; no tokenizer encode is authorized in this preparation. These expectations assume all 36 added literals are byte-stable (null normalizer and no U+2581 in literals); actual public/added-literal verification remains mandatory."
+}

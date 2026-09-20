@@ -1,0 +1,54 @@
+{
+  "kind": "REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_EXAONE45_WEIGHT_CACHE",
+  "state": "COMPLETE",
+  "started_at_utc": "2026-09-20T11:25:44.599109+00:00",
+  "model_id": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+  "revision": "0e969634ef24db05151b435970297a6dee634b7e",
+  "manifest_sha256": "98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8",
+  "shutdown_report_sha256": "c6c409a2adcfaa9dad0dbbe3c24e355caf0b7361914a923b85569914d5730e0e",
+  "native_build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "own_process_inspection": {
+    "maps_and_descriptors_checked": 27,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3313268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "free_before_bytes": 25616412672,
+  "removed_files": [
+    {
+      "name": "EXAONE-4.5-33B-Q4_K_M.gguf",
+      "bytes": 20047839424,
+      "sha256": "5ba3839b67dcee5618ea7b2206cedc8f9e2ec90fbcec3c95a8cc8b33967f6baf"
+    }
+  ],
+  "restore_command": ".conda/bin/python scripts/download_model.py runtime/models/exaone45-33b-q4-k-m.json",
+  "scope": "One same-UID regular single-link cache file only; all metadata, manifests and evaluation results retained",
+  "foreign_processes_or_files_changed": false,
+  "own_process_inspection_before_unlink": {
+    "maps_and_descriptors_checked": 27,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3313268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "removed_bytes": 20047839424,
+  "free_after_bytes": 45663219712,
+  "finished_at_utc": "2026-09-20T11:26:32.053681+00:00"
+}

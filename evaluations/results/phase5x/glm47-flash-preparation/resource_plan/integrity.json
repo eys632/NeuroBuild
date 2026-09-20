@@ -1,0 +1,40 @@
+{
+  "kind": "GLM47_FLASH_RESOURCE_PREPARATION_ARCHIVE",
+  "files": {
+    "glm47_flash_whole_vram_plan.md": {
+      "bytes": 11387,
+      "sha256": "d5dd88745fb6d861bc015346e9d8affc0c9e61b41c5548c7b48ff1fcbe1a4fa9",
+      "original_path": "var/research/glm47_flash_whole_vram_plan.md"
+    },
+    "glm47_flash_whole_vram_plan.json": {
+      "bytes": 8618,
+      "sha256": "59249262e01c2588e1ac39f999d0bdb920b08213b555ba11c8c7989387fe3f58",
+      "original_path": "var/research/glm47_flash_whole_vram_plan.json"
+    },
+    "cleanup_unused_exaone45_cache.py": {
+      "bytes": 7588,
+      "sha256": "7b7fa410f3200573e4daec3413e83b5edbda12a802cf2305f296a6960e3e3e86",
+      "original_path": "var/research/cleanup_unused_exaone45_cache.py"
+    },
+    "exaone45-cache-cleanup-preparation.json": {
+      "bytes": 1294,
+      "sha256": "c38ed5dec226b6ee21cfe9aa61501f0a8b214996f0bb54325fa037e0cc11a91b",
+      "original_path": "var/research/exaone45-cache-cleanup-preparation.json"
+    },
+    "download_glm47_flash_guarded.py": {
+      "bytes": 10731,
+      "sha256": "a822c564c018fefbdd9f4cd515b8119cc736673a2627381d92bc9f838345996b",
+      "original_path": "var/research/download_glm47_flash_guarded.py"
+    },
+    "glm47-flash-download-preparation.json": {
+      "bytes": 1628,
+      "sha256": "d3e8c1da7b8b88fc00a9667334c266b7f25f0a0a9b329616ad057bbd34a79baf",
+      "original_path": "var/research/glm47-flash-download-preparation.json"
+    },
+    "unused-exaone45-weight-cache-cleanup.json": {
+      "bytes": 2007,
+      "sha256": "8258aa8628740c6f3427f00f49263690666ac040b098d6a14e7e4ae7103d2756",
+      "original_path": "var/reports/unused-exaone45-weight-cache-cleanup.json"
+    }
+  }
+}

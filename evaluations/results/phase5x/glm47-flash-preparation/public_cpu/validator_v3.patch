@@ -1,0 +1,36 @@
+--- validator_v2.cpp
++++ validator_v3.cpp
+@@ -300,20 +300,27 @@
+             valid_json + "<tool_call>"
+         };
+         for (const auto & text : bad_native) ensure(!accepts(native_grammar, final_parser.generation_prompt + text));
+-        // The eager grammar belongs to this exact nonthinking generation
+-        // prefix. Do not substitute a different mode's prefix and then demand
+-        // acceptance. A complete thought block after the configured closed
+-        // prefix must be rejected; this is observed, not inferred from tags.
++        // Pinned native response-format grammar has optional reasoning even
++        // when the request disables thinking. Observe the configured prefix;
++        // do not replace it with a different mode's generation prefix.
+         const std::string public_thought = "PUBLIC_SYNTHETIC_BOUNDARY";
+         const auto thought_wire = "<think>" + public_thought + "</think>" + valid_json;
+-        ensure(!accepts(native_grammar, final_parser.generation_prompt + thought_wire));
++        const bool configured_thought_accepted = accepts(native_grammar, final_parser.generation_prompt + thought_wire);
++        const bool wrong_prefix_thought_accepted = accepts(native_grammar, "<|assistant|>" + thought_wire);
++        ensure(configured_thought_accepted);
++        const auto separated = common_chat_parse(thought_wire, false, final_parser);
++        ensure(separated.content == valid_json && separated.reasoning_content == public_thought && separated.tool_calls.empty());
++        ensure(separated.to_json_oaicompat().at("content") == valid_json);
+         json result = {{"kind", "GLM47_FLASH_NATIVE_PUBLIC_CONTRACT_CPU_PREFLIGHT"}, {"status", "PASS"},
+                        {"reference_kind", "official_pinned_tokenizer_no_normalizer_change"},
+                        {"public_template_reference_cases", render_equal}, {"native_full_official_prompt_exact", true},
+                        {"native_system_user_bytes_exact", true}, {"template_override_used", false},
+                        {"schema_cases_accepted", passing}, {"schema_cases_rejected", rejecting},
+                        {"native_final_content_exact_cases", exact_final}, {"native_protocol_rejection_cases", bad_native.size()},
+-                       {"configured_nonthinking_thought_rejection_cases", 1}, {"alternate_thinking_mode_tested", false}, {"native_grammar_generation_prompt_prefilled", true},
++                       {"artificial_thought_split_cases", 1}, {"configured_prefix_optional_reasoning_accepted", configured_thought_accepted},
++                       {"wrong_prefix_thought_grammar_accepted", wrong_prefix_thought_accepted}, {"other_runtime_mode_executed", false},
++                       {"artificial_thought_final_json_exact", true}, {"artificial_thought_reasoning_separated_exact", true},
++                       {"artificial_thought_tool_call_count", separated.tool_calls.size()}, {"native_grammar_generation_prompt_prefilled", true},
+                        {"native_grammar_prefill_bytes", final_parser.generation_prompt.size()},
+                        {"native_sampling_schema_binding", true}, {"grammar_lazy", false},
+                        {"core_dump_limit_zero", true}, {"final_json_bytes_unchanged", true},

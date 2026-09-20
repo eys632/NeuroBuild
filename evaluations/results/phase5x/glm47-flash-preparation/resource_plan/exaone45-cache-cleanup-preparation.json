@@ -1,0 +1,33 @@
+{
+  "kind": "EXAONE45_CACHE_CLEANUP_PREPARATION",
+  "status": "PREPARED_NOT_EXECUTED",
+  "source_sha256": "9daa7da50c5010caf775f10a12fa7abf4e62571a8fecb1cc8c555666b49db2fc",
+  "helper_sha256": "7b7fa410f3200573e4daec3413e83b5edbda12a802cf2305f296a6960e3e3e86",
+  "identity_only_replacements": [
+    "Gemma GGUF",
+    "gemma4-31b-qat-q4-0.json",
+    "16d471fc5bb8ae266015d73b0a648e2b576dab6e6e453de8c28fdc0f1a8a6e3c",
+    "59dde24573e7e61570dba08b18a2e1fe246955ed",
+    "google--gemma-4-31B-it-qat-q4_0-gguf",
+    "unused-gemma4-weight-cache-cleanup.json",
+    "exposed-native-gemma4-diagnostic/resource_final.json",
+    "526e5247cc6eb881a0ef364f5e97a9c5bc7e8732224cf5796b0264174e2501ed",
+    "gemma4-gguf-header-v2.json",
+    "d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756",
+    "gemma-4-31B_q4_0-it.gguf",
+    "17651001568",
+    "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+    "UNUSED_GEMMA4_WEIGHT_CACHE"
+  ],
+  "unchanged_function_asts": [
+    "sha",
+    "own",
+    "free",
+    "no_own_users"
+  ],
+  "removed_files": 0,
+  "model_gpu_calls": 0,
+  "target_cache_bytes": 20047839424,
+  "evidence_checkpoint": "daeccacee7bb1912e03c8be696572b80b12c9f4c",
+  "next_gate": "Root GLM resource/provenance plan before any cache cleanup or weight download."
+}

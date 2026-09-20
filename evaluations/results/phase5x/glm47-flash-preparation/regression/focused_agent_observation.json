@@ -1,0 +1,52 @@
+{
+  "kind": "GLM47_FLASH_PROFILE_FOCUSED_TEST_AGENT_OBSERVATION",
+  "status": "PASS_AGENT_OBSERVED",
+  "recorded_at_utc": "2026-09-20T11:41:41.294769+00:00",
+  "execution_time_utc": null,
+  "command": "CUDA_VISIBLE_DEVICES='' PYTHONPATH=src .conda/bin/python -m unittest tests.test_local_model.GlmFlashNativeProfileTests -v",
+  "cwd": "/home/a202192020/NeuroBuild_v2",
+  "observed_test_runner_summary": {
+    "tests_run": 6,
+    "duration_seconds": 0.088,
+    "result": "OK",
+    "exit_code": 0
+  },
+  "test_names": [
+    "test_glm_failure_and_nonfinal_content_never_retry",
+    "test_glm_inline_thinking_is_rejected_without_repair_or_retry",
+    "test_glm_profile_is_native_only_and_never_selected_by_name",
+    "test_glm_sampler_copy_cannot_change_next_request",
+    "test_glm_separate_reasoning_is_discarded_without_logging",
+    "test_glm_wire_and_quote_conversion_are_explicit"
+  ],
+  "evidence_basis": "Original functions.exec/exec_command tool output observed by runtime_skeleton; recorded afterward without rerunning tests.",
+  "raw_log_path": null,
+  "raw_log_saved": false,
+  "raw_log_reconstructed": false,
+  "source_sha256_at_original_run": {
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "tests/test_local_model.py": "d76731e5ee613ef664f76d078caf5b775c65b265c63913eaf527f40010e41510"
+  },
+  "same_source_hashes_rechecked_when_recording": true,
+  "original_run_scope": {
+    "new_focused_fake_tests_only": true,
+    "existing_tests_run": 0,
+    "http_calls": 0,
+    "native_executions": 0,
+    "model_inference_calls": 0,
+    "gpu_queries": 0,
+    "fake_transport": "unittest.mock opener + in-memory BytesIO; no listener/server used"
+  },
+  "recording_scope": {
+    "tests_rerun": 0,
+    "helper_imports": 0,
+    "native_executions": 0,
+    "gpu_queries": 0,
+    "http_calls": 0
+  },
+  "limitations": [
+    "This receipt is an agent observation, not a retained raw stdout/stderr log.",
+    "The tests verify client wire and rejection behavior; native tokenizer, grammar, GGUF quantization and model quality were not tested.",
+    "Evaluator exact quantization tuple remains pending actual GGUF header."
+  ]
+}

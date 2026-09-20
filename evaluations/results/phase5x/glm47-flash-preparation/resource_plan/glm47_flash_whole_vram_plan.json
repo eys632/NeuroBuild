@@ -1,0 +1,173 @@
+{
+  "kind": "GLM47_FLASH_STATIC_WHOLE_VRAM_PLAN",
+  "status": "CONDITIONAL_PREVALIDATION_CANDIDATE_NOT_RUNTIME_PASS",
+  "model_revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+  "source_revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+  "gguf_bytes": 18244193920,
+  "gguf_sha256": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "config_path": "var/research/glm47-flash-candidate-metadata/upstream/config.json",
+  "config_sha256": "dc9b97c7c9bed726a2e6939da4234d5c43abb3edec8812068c9a1af1dbc13acb",
+  "execution_profile": {
+    "physical_gpu": 3,
+    "visible_gpu_count": 1,
+    "logical_gpu": 0,
+    "tensor_parallel": 1,
+    "context": 4096,
+    "seq": 1,
+    "batch": 64,
+    "ubatch": 64,
+    "cache_k": "f16",
+    "cache_v": "f16",
+    "flash": false,
+    "cuda_graphs": false,
+    "mtp": false,
+    "fit": false,
+    "context_shift": false,
+    "all_model_layers_gpu": true,
+    "kqv_gpu": true
+  },
+  "safety": {
+    "baseline_free_MiB": 36373,
+    "separate_margin_MiB": 7275,
+    "maximum_candidate_peak_MiB": 29098,
+    "planned_whole_peak_MiB": 28672,
+    "headroom_to_maximum_MiB": 426,
+    "predicted_free_at_planned_peak_MiB": 7701,
+    "strict_allocator_cap": false
+  },
+  "terms_MiB": {
+    "whole_weight_with_padding": 17536,
+    "expanded48_cache": 3840,
+    "largest_dequant_cast": 1536,
+    "compute_graph_logits_scheduler": 2048,
+    "driver_modules_handles": 1024,
+    "additional_pool_fragmentation": 1024,
+    "loading_init": 256,
+    "uncertainty": 1408
+  },
+  "dimension_formulas_MiB": {
+    "file_proxy": 17399.019165039062,
+    "padding_above_file": 136.9808349609375,
+    "compressed47_K_only": 211.5,
+    "compressed48_K_only": 216.0,
+    "expanded47_KV": 3760.0,
+    "expanded48_KV": 3840.0,
+    "all_experts_single_gate_or_up_f32": 768.0,
+    "all_experts_fused_gate_up_f32": 1536.0,
+    "vocab_f32": 1210.0,
+    "first_dense_f32": 80.0,
+    "MLA_V_B_f32": 10.0,
+    "MLA_K_B_f32": 7.5,
+    "attention_scores64_f32": 20.0,
+    "logits64_f32": 37.8125
+  },
+  "build_evidence": {
+    "path": "var/reports/llama-cuda-build-verified.json",
+    "sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+    "force_mmq": "OFF",
+    "force_cublas": "OFF",
+    "cuda_graphs": "OFF",
+    "architecture": "80-real",
+    "compile_commands_path": "var/runtime-build/llama-f072-sm80-cu118/compile_commands.json",
+    "compile_commands_sha256": "6a5827b8602dc24570005ca483336b8023995daa09823ba1866f380c0b52fb3c",
+    "cuda_compile_command_count": 143,
+    "all_cuda_commands_no_NO_VMM_and_no_HIP": true,
+    "VMM_definition_source": "ggml/src/ggml-cuda/common.cuh:263-265 (not a command-line -DGGML_USE_VMM claim)"
+  },
+  "retained_device_metadata_refs": [
+    {
+      "path": "var/reports/gpu3-vmm-capability.json",
+      "sha256": "df019ecec2d0f07227be3612445d4893f793bd1d79af487b7eddb64795c0e2d6"
+    },
+    {
+      "path": "var/reports/gpu3-vmm-granularity.json",
+      "sha256": "6f2a34f83dcb284de6ed8451dac4e2268e60102ae381a47146d3ca2e22bb8033"
+    }
+  ],
+  "source_refs": [
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/glm.py",
+      "sha256": "cbc38cb64a414079233b8ce10b9eb63c1f4814ab53f06ce578c44969dad7c377",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/glm.py"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/deepseek.py",
+      "sha256": "09ba15cefd9448d13f27eb0b46462d1a845d7576a6b401f0bf81d73e0419d655",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/deepseek.py"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/deepseek2.cpp",
+      "sha256": "56b30a535507bc299a5128c076c01c4c3097230d4a6ad934015d4186745ed6ed",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/deepseek2.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-hparams.cpp",
+      "sha256": "ef6fbef7d12a23441b42cfac8e3a3a3045c7d3123402351ba98e69702e193301",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-hparams.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-kv-cache.cpp",
+      "sha256": "16b40ff274e5aed3827f0d1c13a04f4f44c4d800c4eecbb5294b04127ab213c3",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-kv-cache.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-graph.cpp",
+      "sha256": "90f5c6f082790599124630680ba1293d702b369e9ce9088680d210b69905c8d3",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-graph.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-model.cpp",
+      "sha256": "530dff0cd544382346cc18520cbdb7d7a6f6743c35f7af52aae0bec11d18992a",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-model.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-model-loader.cpp",
+      "sha256": "efdb5f273bd1ab77301f2cadea1a5a804bafb28040aca033e45605a97a450242",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-model-loader.cpp"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/ggml-cuda.cu",
+      "sha256": "af947e45946d0c47cfae9e056f589a25b61892e4273decf0a893e2dcad48d065",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/ggml-cuda.cu"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/mmq.cu",
+      "sha256": "a35bb96dfc917c9026023482e24dcf47539fc08ccee1bb4236f40932e9fe540e",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/mmq.cu"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/common.cuh",
+      "sha256": "a210a71f965419ab55cce071b900df118c2520c1566ea5e068d8be07805644a2",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/common.cuh"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-alloc.c",
+      "sha256": "213b48d6ef6d6ffef55c438db837116105de72cdae3dd152673035e61508d384",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-alloc.c"
+    },
+    {
+      "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-backend.cpp",
+      "sha256": "2dd6a572f087a1fddaa52dbf2378b777cd21752f4b2a1292c8da3bcb05fbcfd9",
+      "url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-backend.cpp"
+    }
+  ],
+  "actual_GGUF_header_observed": false,
+  "required_before_startup": [
+    "actual header dimensions/types/roles/coverage and full SHA match",
+    "both untied input and output vocab matrices present",
+    "MTP disabled; main47/optionalMTP1 and actual legacy/MLA metadata accounted",
+    "expert slab dimensions no larger than planned",
+    "same verified binary/dependencies/source/VMM/device; no unplanned stream/graph/pool settings",
+    "all CPU tokenizer/template/grammar gates PASS",
+    "fresh own GPU3 identity/free/separate margin/guard/lifecycle PASS"
+  ],
+  "limitations": [
+    "Numbers are component-informed estimate plus allowances, not a proven allocation upper bound.",
+    "Actual MLA path cannot be inferred solely from current upstream converter when original GGUF conversion revision is missing.",
+    "Expanded cache allowance retained even if compressed is later confirmed; no automatic budget reduction.",
+    "Legacy pool, unknown dtype/shape, missing output duplication or incompatible device requires review.",
+    "Original index metadata.total_size is excluded from byte arithmetic.",
+    "No source build/native/model/GPU/header/weight/dataset/oldtests calls; old comparison artifacts unchanged."
+  ]
+}

@@ -1,0 +1,1 @@
+{"status": "FAIL", "phase": "FINISHED", "report": "var/research/native-glm47-contract/public-proof.json", "sha256": "7eba381e83c09f14d9dcfaf898e20dd02badc3cc02362ac5e8eab5d9eb9b5b43"}

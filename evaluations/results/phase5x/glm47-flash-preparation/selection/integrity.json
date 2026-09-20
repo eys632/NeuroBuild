@@ -1,0 +1,19 @@
+{
+  "kind": "POST_EXAONE_PRIMARY_CANDIDATE_SELECTION_ARCHIVE",
+  "status": "METADATA_RESEARCH_ONLY",
+  "files": {
+    "next-candidates-after-exaone.md": {
+      "bytes": 12200,
+      "sha256": "97bba4e86c9f263ee0c4a76a58db679b17df487d9e3cd40967c9a94c28d8de7d",
+      "original_path": "var/research/next-candidates-after-exaone.md"
+    },
+    "next-candidates-after-exaone-refs.json": {
+      "bytes": 14548,
+      "sha256": "464691073f5628a5bd9f691a9cfe67fb0d642a493e1972c8426f807e057dbee2",
+      "original_path": "var/research/next-candidates-after-exaone-refs.json"
+    }
+  },
+  "selected_conditional_candidate": "GLM-4.7-Flash",
+  "weights_downloaded": false,
+  "quality_pass": false
+}

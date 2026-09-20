@@ -1,0 +1,1 @@
+{"status": "PASS_DOWNLOAD_ONLY_NOT_RUNTIME_VALIDATED", "report": "var/reports/glm47-flash-guarded-download.json", "model_path": "var/models/ggml-org--GLM-4.7-Flash-GGUF/7559e96b7e324ab405897dc2b91492b0f376ad4a"}

@@ -1,0 +1,1 @@
+{"kind": "GGUF_HEADER_AUDIT", "status": "PASS", "report": "var/reports/glm47-flash-gguf-header.json", "report_sha256": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef", "tensor_count": 844, "quantization": "Q4_K_M", "candidate_validation_error": null}

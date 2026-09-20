@@ -1,0 +1,18 @@
+{
+  "upstream_repository": "zai-org/GLM-4.7-Flash",
+  "upstream_revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+  "upstream_model_card_license": "mit",
+  "upstream_license_file_present": false,
+  "gguf_repository": "ggml-org/GLM-4.7-Flash-GGUF",
+  "gguf_revision": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+  "gguf_card_license": null,
+  "gguf_license_file_present": false,
+  "license_text_obtained_from_these_pinned_repositories": false,
+  "evidence": {
+    "upstream_card_sha256": "7bfcbced42741ceb3fff8809f8d6c84ada9696850e257c4e53e6c2fe9ef4f9bf",
+    "gguf_card_sha256": "db863cd2bb4739a5e87706721db933e9421cd7a359e5ccd12de59b29f5fc060d",
+    "upstream_api_sha256": "a50910e744c18d42d58f3be3bf7337b28020967bcaeb1f90d1e2efd116337e50",
+    "gguf_api_sha256": "6e1f4a509be3bd882b8d37fb7e7ba002d242c663b06aa4d5736027f30324c600"
+  },
+  "scope": "Preserves publisher statements and absence in exact file listings; does not invent a GGUF license grant or conversion attribution."
+}

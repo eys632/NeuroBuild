@@ -1,0 +1,33 @@
+{
+  "kind": "GLM47_FLASH_DOWNLOAD_PREPARATION",
+  "status": "PREPARED_NOT_EXECUTED",
+  "metadata_files_verified": 21,
+  "metadata_integrity_sha256": "761800d652cdaa6565f6b4bfc3ea5ac597cc4a92ed593c72ad44e42af10f4d73",
+  "manifest_sha256": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+  "parent_helper_sha256": "5899fddcd789aa0aeb356d2f66f4d6c0dcceb1e2a6e3960330dd16fb19df49b1",
+  "helper_sha256": "a822c564c018fefbdd9f4cd515b8119cc736673a2627381d92bc9f838345996b",
+  "identity_only_replacements": {
+    "LGAI-EXAONE/EXAONE-4.5-33B-GGUF": "ggml-org/GLM-4.7-Flash-GGUF",
+    "0e969634ef24db05151b435970297a6dee634b7e": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+    "exaone45-33b-q4-k-m.json": "glm47-flash-q4-k.json",
+    "LGAI-EXAONE--EXAONE-4.5-33B-GGUF": "ggml-org--GLM-4.7-Flash-GGUF",
+    "unused-gemma4-weight-cache-cleanup.json": "unused-exaone45-weight-cache-cleanup.json",
+    "exaone45-33b-guarded-download": "glm47-flash-guarded-download",
+    "98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+    "UNUSED_GEMMA4_WEIGHT_CACHE": "UNUSED_EXAONE45_WEIGHT_CACHE",
+    "59dde24573e7e61570dba08b18a2e1fe246955ed": "0e969634ef24db05151b435970297a6dee634b7e",
+    "17651001568": "20047839424",
+    "download-exaone45-33b": "download-glm47-flash"
+  },
+  "unchanged_function_asts": [
+    "require",
+    "digest",
+    "own",
+    "proof",
+    "module",
+    "environment",
+    "publisher"
+  ],
+  "whole_vram_plan_sha256": "59249262e01c2588e1ac39f999d0bdb920b08213b555ba11c8c7989387fe3f58",
+  "gpu_native_model_calls": 0
+}
