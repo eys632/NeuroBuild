@@ -1,0 +1,15 @@
+{
+  "kind": "OWN_NATIVE_EPOCH_STOP_REQUEST",
+  "at_utc": "2026-09-20T10:55:14.685640+00:00",
+  "guard_pid": 3622309,
+  "guard_start_ticks": 478399607,
+  "child_pid": 3622453,
+  "child_start_ticks": 478405342,
+  "uid": 1003,
+  "pidfd_signal": "SIGTERM",
+  "pidfd_method": "verified x86_64 syscalls434/424; exact owned guard only",
+  "guard_before_sha256": "28ee1dd34a96e5cae95a2ba79e3f3c5cdceaad820c25f5a3ceca79f0eb3a47db",
+  "foreign_process_signals": 0,
+  "broad_process_matching_used": false,
+  "child_signals_sent_by_this_helper": 0
+}

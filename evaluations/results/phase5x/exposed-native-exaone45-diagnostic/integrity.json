@@ -1,0 +1,353 @@
+{
+  "kind": "EXAONE45_FAILED_ONE_PASS_ARCHIVE_INTEGRITY",
+  "run_id": "20260920T104448Z-10236a5d12bd48f099a4a4688ef29515",
+  "source_commit": "c466013439e6d202e627ed48c7a4ed1e45cf82c0",
+  "quality_gate": "FAIL",
+  "independent_replay": "PASS_ACCOUNTING_ONLY",
+  "files": {
+    "manifest.json": {
+      "bytes": 6317,
+      "sha256": "f6ec7c0abbdfe070c0bfbb43e864cc15bba7f6b75dd81d7370742320a57f394d",
+      "original_path": "var/runs/20260920T104448Z-10236a5d12bd48f099a4a4688ef29515/manifest.json"
+    },
+    "dataset.json": {
+      "bytes": 92253,
+      "sha256": "174783772ae29325c63b41d44d7d5fe4904dc568ac08e8c3484bc369aa28a6bc",
+      "original_path": "var/runs/20260920T104448Z-10236a5d12bd48f099a4a4688ef29515/dataset.json"
+    },
+    "results.json": {
+      "bytes": 272160,
+      "sha256": "fe13a08acad5a3e9cb03bdf2c3662cda5a087e68cb61aab18d938f89c7c92053",
+      "original_path": "var/runs/20260920T104448Z-10236a5d12bd48f099a4a4688ef29515/results.json"
+    },
+    "first_quality_preflight.json": {
+      "bytes": 2088,
+      "sha256": "abf105ec3b4f5fb9b9b0532540130d5441dcbab01dc884e83b81b83f25da0ea1",
+      "original_path": "var/reports/exaone45-first-quality-preflight.json"
+    },
+    "evaluation_cli.json": {
+      "bytes": 250,
+      "sha256": "1fa1af0fcb00716eb4e7e22415f7925257060c509ac7b5452b54678aeb408695",
+      "original_path": "var/reports/exaone45-first-quality-cli.json"
+    },
+    "evaluation_cli.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/reports/exaone45-first-quality-cli.stderr"
+    },
+    "own_guard_identity.json": {
+      "bytes": 465,
+      "sha256": "f8e8e07888b0877e9337a3bf6e3dd95b20b5c90db19eec3041dd11c5d0bebe0a",
+      "original_path": "var/reports/exaone45-own-guard-identity.json"
+    },
+    "stop_request.json": {
+      "bytes": 538,
+      "sha256": "7015b9ee05814c16d5c73ca5118aae744d8622d1cffe59ad41c5c4c275783348",
+      "original_path": "var/reports/exaone45-epoch1-stop-request.json"
+    },
+    "stop_cli.json": {
+      "bytes": 61,
+      "sha256": "7f256cc490582d1dc349bfb6d59a088a0303068d6085ef943913f74f0577e26a",
+      "original_path": "var/reports/exaone45-epoch1-stop-cli.json"
+    },
+    "stop_cli.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/reports/exaone45-epoch1-stop-cli.stderr"
+    },
+    "resource_report_final.json": {
+      "bytes": 5559,
+      "sha256": "c6c409a2adcfaa9dad0dbbe3c24e355caf0b7361914a923b85569914d5730e0e",
+      "original_path": "var/reports/exaone45-native-epoch1.json"
+    },
+    "guard_cli_final.json": {
+      "bytes": 5559,
+      "sha256": "c6c409a2adcfaa9dad0dbbe3c24e355caf0b7361914a923b85569914d5730e0e",
+      "original_path": "var/reports/exaone45-native-epoch1-cli.json"
+    },
+    "guard.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/logs/exaone45-native-epoch1-guard.stderr"
+    },
+    "post_stop_gpu3.json": {
+      "bytes": 1377,
+      "sha256": "5ca57b88791262830a850bc881c0b2808af490cc2b374415250486564287f8b4",
+      "original_path": "var/reports/exaone45-post-stop-gpu3.json"
+    },
+    "stop_native_exaone45_epoch1.py": {
+      "bytes": 3966,
+      "sha256": "f2219d367e44591b68dc4274e39fd66f058b5054656e982c03370a549f8ef429",
+      "original_path": "var/research/stop_native_exaone45_epoch1.py"
+    },
+    "live_evidence_review.json": {
+      "bytes": 4471,
+      "sha256": "e116d09953183a00e92ad3a008bab865f8ad431aa517262a91b9ef9f2e70dd6a",
+      "original_path": "var/research/exaone45-live-evidence-review.json"
+    },
+    "post_evaluation_freeze_check.json": {
+      "bytes": 335,
+      "sha256": "9fe49eb1a4b5ca3b54800e688b25ccb62c895b2d4feaa6fe131290e04d8a8f25",
+      "original_path": "var/reports/exaone45-post-evaluation-freeze-check.json"
+    },
+    "independent_replay.json": {
+      "bytes": 37775,
+      "sha256": "bfd67e3c0fe86affb17e42d0b1a19b4222d96b9dbe0ca14abda4795e04b8b6b3",
+      "original_path": "var/review-tools/exaone45-exposed-review/independent_replay_v4.json"
+    },
+    "independent_replay.stderr.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/review-tools/exaone45-exposed-review/independent_replay_v4.stderr.txt"
+    },
+    "replay_invocation.json": {
+      "bytes": 1421,
+      "sha256": "034502c66213d57e66696b2da1ea81f40f9a5e538294370d82d5f1ed066105fd",
+      "original_path": "var/review-tools/exaone45-exposed-review/replay_invocation_v4.json"
+    },
+    "source_snapshot_preparation.json": {
+      "bytes": 1256,
+      "sha256": "01b950fe4b5d5a3a8b4f525da489fa8e32fc4627bfeca7fa480e64ff42dd65ce",
+      "original_path": "var/review-tools/exaone45-exposed-review/preparation.json"
+    },
+    "replay_first_failure/empty_stdout.json": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/review-tools/exaone45-exposed-review/independent_replay.json"
+    },
+    "replay_first_failure/stderr.txt": {
+      "bytes": 56,
+      "sha256": "29637794724a0dcfca7f5201f4ea95059f28917970917d01493c3423c99bf5ed",
+      "original_path": "var/review-tools/exaone45-exposed-review/independent_replay.stderr.txt"
+    },
+    "replay_first_failure/invocation.json": {
+      "bytes": 1350,
+      "sha256": "add92c7cb1e4a9b7fe7f068d95b41ff7afe0a42f05bc15f62c5b81a4373b6e9e",
+      "original_path": "var/review-tools/exaone45-exposed-review/replay_invocation.json"
+    },
+    "replay_native_exaone45_exposed_v3.py": {
+      "bytes": 45626,
+      "sha256": "47981646b4efe96ba7b7f85c991fad526b287f5c64407102aefcd2d8bbee30e4",
+      "original_path": "var/review-tools/replay_native_exaone45_exposed_v3.py"
+    },
+    "replay_native_exaone45_exposed_v4.py": {
+      "bytes": 46803,
+      "sha256": "177bc501c5be5bb9e240414ec49216b99d8621d9306250eb1446b73dc05dca3f",
+      "original_path": "var/review-tools/replay_native_exaone45_exposed_v4.py"
+    },
+    "test_exaone45_replay_timeout_v4.py": {
+      "bytes": 3870,
+      "sha256": "7274221eb46ca2176305766b77a88b958adbd6de5b662be5c374473663732d13",
+      "original_path": "var/review-tools/test_exaone45_replay_timeout_v4.py"
+    },
+    "replay_timeout_fix.patch": {
+      "bytes": 4752,
+      "sha256": "be41a4cdff1febf3c0dfbf432cd84877c384d14aa7752dffd2b39c8001fab981",
+      "original_path": "var/research/exaone45-replay-timeout-v4.patch"
+    },
+    "replay_timeout_fix_receipt.json": {
+      "bytes": 3690,
+      "sha256": "fbde9123a1b7b5dd0878b6aa4770eceb0985bd0a06d8f7ab5a18253eafeff12f",
+      "original_path": "var/research/exaone45-replay-timeout-fix-receipt.json"
+    },
+    "source_snapshot/evaluations/hardening_v1_exposed_native_exaone45_diagnostic_freeze.json": {
+      "bytes": 39629,
+      "sha256": "fdec20e52ac3e7e9940e830ff78599e019bfaf75cca6f28d761809970f973cd6",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/evaluations/hardening_v1_exposed_native_exaone45_diagnostic_freeze.json"
+    },
+    "source_snapshot/evaluations/requirement_hardening_v1_exposed_regression.jsonl": {
+      "bytes": 69888,
+      "sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/evaluations/requirement_hardening_v1_exposed_regression.jsonl"
+    },
+    "source_snapshot/prompts/requirement_generation_v2_v2.txt": {
+      "bytes": 8974,
+      "sha256": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/prompts/requirement_generation_v2_v2.txt"
+    },
+    "source_snapshot/runtime/models/exaone45-33b-q4-k-m.json": {
+      "bytes": 772,
+      "sha256": "98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/runtime/models/exaone45-33b-q4-k-m.json"
+    },
+    "source_snapshot/runtime/models/exaone45-33b-q4-k-m.provenance.json": {
+      "bytes": 12934,
+      "sha256": "74ed2ba7b8b4e21c83269d795d8983a487c75b3f2e25865fc25c9143ccab09f8",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/runtime/models/exaone45-33b-q4-k-m.provenance.json"
+    },
+    "source_snapshot/runtime/templates/exaone45-continue-free.jinja": {
+      "bytes": 5829,
+      "sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/runtime/templates/exaone45-continue-free.jinja"
+    },
+    "source_snapshot/schemas/requirement_generation_v2.schema.json": {
+      "bytes": 1057,
+      "sha256": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/schemas/requirement_generation_v2.schema.json"
+    },
+    "source_snapshot/schemas/requirement_generation_v2_decision_branches.schema.json": {
+      "bytes": 4176,
+      "sha256": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/schemas/requirement_generation_v2_decision_branches.schema.json"
+    },
+    "source_snapshot/schemas/semantic_requirement.schema.json": {
+      "bytes": 1703,
+      "sha256": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/schemas/semantic_requirement.schema.json"
+    },
+    "source_snapshot/scripts/evaluate_requirements.py": {
+      "bytes": 43064,
+      "sha256": "48734d5fda8069efe9bd927387cf6cf04fa4167f7a4d028f13509476a0511fef",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/scripts/evaluate_requirements.py"
+    },
+    "source_snapshot/scripts/gpu_preflight.py": {
+      "bytes": 10153,
+      "sha256": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/scripts/gpu_preflight.py"
+    },
+    "source_snapshot/scripts/llama_server.py": {
+      "bytes": 24178,
+      "sha256": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/scripts/llama_server.py"
+    },
+    "source_snapshot/scripts/model_guard.py": {
+      "bytes": 11948,
+      "sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/scripts/model_guard.py"
+    },
+    "source_snapshot/scripts/native_model_bootstrap.py": {
+      "bytes": 4797,
+      "sha256": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/scripts/native_model_bootstrap.py"
+    },
+    "source_snapshot/scripts/verify_model_listeners.py": {
+      "bytes": 9550,
+      "sha256": "2d7771d414a7faae4138ea555349d1f7f111d36498ad9815f64ac51910d758dd",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/scripts/verify_model_listeners.py"
+    },
+    "source_snapshot/snapshot.json": {
+      "bytes": 8941,
+      "sha256": "3345d27ff433d849c3b1d3105d0f9c0fde9380277f9bb58116f958d6c239a48b",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/snapshot.json"
+    },
+    "source_snapshot/src/neurobuild/__init__.py": {
+      "bytes": 84,
+      "sha256": "43ba9f0b620ffa4f960f4d83a7ce7fd9fbae9b8de96d71535926f8a48dbc8461",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/__init__.py"
+    },
+    "source_snapshot/src/neurobuild/application/__init__.py": {
+      "bytes": 85,
+      "sha256": "d393a04c8462e6e1a2bdc6e012639716d4b30aa18a15ec6fddf169aaedcbd359",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/application/__init__.py"
+    },
+    "source_snapshot/src/neurobuild/application/requirement_facts.py": {
+      "bytes": 4976,
+      "sha256": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/application/requirement_facts.py"
+    },
+    "source_snapshot/src/neurobuild/application/requirement_generation.py": {
+      "bytes": 7055,
+      "sha256": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/application/requirement_generation.py"
+    },
+    "source_snapshot/src/neurobuild/application/requirements.py": {
+      "bytes": 12385,
+      "sha256": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/application/requirements.py"
+    },
+    "source_snapshot/src/neurobuild/application/workflow.py": {
+      "bytes": 16129,
+      "sha256": "aadf8f561a4d19ee301dcdaf985631a6f470d86d463aec4f7053dfac50dffdf5",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/application/workflow.py"
+    },
+    "source_snapshot/src/neurobuild/domain/__init__.py": {
+      "bytes": 86,
+      "sha256": "152b0592fd08f164e27f99228c033cf131916ddb7bd2b2124fba24511e19be75",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/domain/__init__.py"
+    },
+    "source_snapshot/src/neurobuild/domain/contracts.py": {
+      "bytes": 13912,
+      "sha256": "107edcaec115d7dbada810ed83398a114b1958b8658bc704bf3e9f7ff6b8e458",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/domain/contracts.py"
+    },
+    "source_snapshot/src/neurobuild/domain/errors.py": {
+      "bytes": 310,
+      "sha256": "32bb3ba6da83a35706759fe288e41bd490b5c1d56c071b4ec3de67207848b8aa",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/domain/errors.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/__init__.py": {
+      "bytes": 79,
+      "sha256": "a7cfa5c500a5a587d0fd48bdae32bb951769d7ca525b4b36b1dce6cc0f516739",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/infrastructure/__init__.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/artifacts.py": {
+      "bytes": 12722,
+      "sha256": "52edb48022d20eed6dff6d0b9d779ff25d03acbacb9764331dbb1945f740bbe9",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/infrastructure/artifacts.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/ifc_engine.py": {
+      "bytes": 16860,
+      "sha256": "13acf3bf932ca49d495f8e3e718e6de376237b31f2192eb92bc6ce0d61a7c608",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/infrastructure/ifc_engine.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/local_model.py": {
+      "bytes": 23481,
+      "sha256": "48276a8f9cb7a2a818a9f12e7f86b2b53f525a37de61a1be70fe73648f07c151",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/infrastructure/local_model.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/persistence.py": {
+      "bytes": 13732,
+      "sha256": "872ffe7c16ea7b098e6e4b076ce4ced35132987ff6df99701cc283f9485f154d",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/infrastructure/persistence.py"
+    },
+    "source_snapshot/src/neurobuild/infrastructure/staged_requirement.py": {
+      "bytes": 11980,
+      "sha256": "7e79b1c488a00e3f81b443fb32f86019f510a274228f56058c4eeae66038efee",
+      "original_path": "var/review-tools/exaone45-exposed-review/source_snapshot/src/neurobuild/infrastructure/staged_requirement.py"
+    },
+    "frozen_docs/docs/DECISIONS.md": {
+      "bytes": 42119,
+      "sha256": "a07b69010db9b85e95ccc635dfe67dc4d23402472dbb84c9becbe1423b425733",
+      "original_path": "docs/DECISIONS.md",
+      "original_commit": "c466013439e6d202e627ed48c7a4ed1e45cf82c0"
+    },
+    "frozen_docs/docs/exaone45_33b_diagnostic_plan.md": {
+      "bytes": 4462,
+      "sha256": "a86ac979137b48b66311594fdfbb310af5688c17ae65f33601b89b8e62f29369",
+      "original_path": "docs/exaone45_33b_diagnostic_plan.md",
+      "original_commit": "c466013439e6d202e627ed48c7a4ed1e45cf82c0"
+    },
+    "frozen_docs/docs/exaone45_33b_resource_plan.md": {
+      "bytes": 6988,
+      "sha256": "d799b4df66cc88aa7393bd7810dbafd0646c7bd259623098784bc85ce752a890",
+      "original_path": "docs/exaone45_33b_resource_plan.md",
+      "original_commit": "c466013439e6d202e627ed48c7a4ed1e45cf82c0"
+    },
+    "frozen_docs/docs/reports/phase5x_exaone45_cpu_preflight_report.md": {
+      "bytes": 3170,
+      "sha256": "e37735781ac83b064dc0402bb02af563d4d8fd1add66cecc6b612bef76aef640",
+      "original_path": "docs/reports/phase5x_exaone45_cpu_preflight_report.md",
+      "original_commit": "c466013439e6d202e627ed48c7a4ed1e45cf82c0"
+    },
+    "frozen_docs/docs/reports/phase5x_exaone45_runtime_preflight_report.md": {
+      "bytes": 3674,
+      "sha256": "d7e87165077f2898700e0b4a9faa51e6ecaa3817f3928e590d2bd3a8ee19192a",
+      "original_path": "docs/reports/phase5x_exaone45_runtime_preflight_report.md",
+      "original_commit": "c466013439e6d202e627ed48c7a4ed1e45cf82c0"
+    },
+    "failure_analysis_before_replay.json": {
+      "bytes": 7264,
+      "sha256": "0543cad403f698d7eb2ae7c41e91e156c1e370dd2ea9da779e4b4da4d779bfa9",
+      "original_path": "var/review-tools/exaone45-exposed-review/failure_analysis.json"
+    },
+    "failure_analysis.json": {
+      "bytes": 7939,
+      "sha256": "9b88b43b90afadc3a6e02cc54665df683246c91d2d87a7826287a91e3d8b4aa5",
+      "original_path": "var/review-tools/exaone45-exposed-review/failure_analysis_final.json"
+    },
+    "README.md": {
+      "bytes": 3343,
+      "sha256": "5b463e8fa70218575d2bfc52430be0fc30dfc617fcaad606747bd671ab48eba1"
+    }
+  }
+}

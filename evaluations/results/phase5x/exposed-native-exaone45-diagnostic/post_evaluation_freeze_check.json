@@ -1,0 +1,8 @@
+{
+  "kind": "EXAONE45_POST_EVALUATION_FROZEN_INPUT_CHECK",
+  "status": "PASS",
+  "freeze_sha256": "fdec20e52ac3e7e9940e830ff78599e019bfaf75cca6f28d761809970f973cd6",
+  "bound_files_verified": 179,
+  "original_results_sha256": "fe13a08acad5a3e9cb03bdf2c3662cda5a087e68cb61aab18d938f89c7c92053",
+  "old_evaluation_or_replay_reruns": 0
+}

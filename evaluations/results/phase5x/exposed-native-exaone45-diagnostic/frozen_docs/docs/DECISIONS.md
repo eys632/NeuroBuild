@@ -384,28 +384,3 @@ native 원문roundtrip은20/20이다. 공식reference 자체는분해형한글/c
 모델본체·sampling·정책prompt·schema·gold·canonicalparser·평가기준은변경하지않는다.
 공식HF동등성이아닌현native실행구성의품질을비교하는한계와별도variant이름을manifest/freeze에남긴다.
 공식18/20FAIL과별도reference결과는함께보고하며, 안전gate실패시반복0/V2미실행원칙은동일하다.
-
-
-## D043 — EXAONE 의미 gate 실패 보존과 숫자 표현만 고친 독립 검산
-
-EXAONE4.5-33B의첫노출120단회는schema120/parser119, semantic106/120(88.33%),
-rawFP0/58/unsafe0/120/FN9/62다. Raw decision은120/120관찰했고오류14건은비실행/거절이다.
-안전READY오판0이더라도고정semantic≥95%조건을통과하지못하므로미채택이다.
-비실행분류오류5건을모두인정하는가정에서도111/120으로미달이다. Gold/scorer/분모/출력을수정하지않는다.
-같은후보반복·V2·미사용holdout을수행하지않고다른모델후보비교로이동한다.
-
-독립검산v3는timeout120(int)와actualCLI120.0(float)의타입동일성검사에서행읽기전에실패했다.
-이는유한수치가같은데검산도구가잘못거절한것이며실제평가조건위반이아니다. 원본v3와FAIL기록을유지한다.
-별도v4에서timeout만유한int/float120을허용하며bool/비유한/다른값을거절한다.
-원래v3의file/frozenhash를계속확인하고actualv4가post-freeze검산수정본임을명시한다.
-채점/행재생/증거검증함수는불변이며3개신규합성검사뒤이번125개의첫전체CPU재생이PASS했다.
-원본c466013/source snapshot/freeze/manifest/results는변경하지않았고기존125개를재생하지않았다.
-Accounting PASS는semantic품질FAIL을바꾸지않는다.
-
-Own guard3622309와child3622453 identity를확인하고guardpidfd에만SIGTERM,
-자체TERM/잔여KILL정리뒤STOPPED/exit0/reaped를확인했다. Epoch1245.664초/2206표본,
-aggregatepeak19946MiB/minfree16428MiB이며종료후5회free36373/used3965/util0으로복귀했다.
-다른사용자프로세스/GPU0/1/2/시스템환경은변경하지않았다.
-Production은직전408회귀시점과같아suite/완료runtime검사를반복하지않는다.
-Reason길이표현등계약정비와비필수runtime성능튜닝은futurework이며같은실패후보반복의근거가아니다.
-Phase5.x미완료·모델미채택·Phase6미시작을유지한다.

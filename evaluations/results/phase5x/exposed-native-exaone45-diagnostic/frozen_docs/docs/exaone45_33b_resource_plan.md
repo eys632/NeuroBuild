@@ -1,9 +1,5 @@
 # EXAONE4.5-33B Q4_K_M 조건부 자원·계약 계획
 
-> 후속 결과: 사전 CPU/GPU 검증 뒤 첫120개는 semantic106/120으로 FAIL했다.
-> 자체 서버를 종료하고 GPU3 반환을 확인했다. 같은 후보 반복·V2는 하지 않는다.
-> [최종 진단 보고서](reports/phase5x_native_exaone45_diagnostic_report.md). 아래는 선택 당시 계획이다.
-
 2026-09-20. **새 후보 사전 검증 단계, 미채택·품질 미검증.**
 
 후속 상태: 다운로드/strict header와 continue-free template의 공개CPU검증을 완료했다.

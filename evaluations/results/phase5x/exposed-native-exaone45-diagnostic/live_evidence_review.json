@@ -1,0 +1,81 @@
+{
+  "kind": "EXAONE45_SAVED_LIVE_EVIDENCE_INDEPENDENT_REVIEW",
+  "status": "PASS",
+  "reviewed_at_utc": "2026-09-20T10:44:55.822629+00:00",
+  "scope": "Saved runtime metadata and report read-review with current small source-file SHA comparisons only; no current live health or allocation guarantee.",
+  "material_blockers": [],
+  "runtime_evidence_sha256": {
+    "evaluations/results/phase5x/exaone45-native-startup-epoch1/launch_config.json": "1e872da88b6d00750447dd7c39213d7a4ce19b161fa64cb4c51cab1f7b8b7761",
+    "evaluations/results/phase5x/exaone45-native-startup-epoch1/resource_report.json": "0cde4855930c6d380075284fe018f2809dd1091636945a61a1f04595258b287f",
+    "evaluations/results/phase5x/exaone45-native-startup-epoch1/listeners.json": "692e1037a8a339cc1a1e64e5448f3f0e2ba4e122a9a0d85dc9d22b7dedf0df36",
+    "evaluations/results/phase5x/exaone45-native-startup-epoch1/startup.json": "45033eec4a82cec67635a102f2f50ce42126c70d12131e30e90c2c39636de5c1",
+    "evaluations/results/phase5x/exaone45-native-startup-epoch1/runtime_metadata.json": "11b210707d4428aa4c9831c238a9dc1e4ac23314f02f452fcfb8754eea5fa4e6",
+    "evaluations/results/phase5x/exaone45-native-public-smoke-epoch1/report.json": "8c70cbcc12ba9bfeb7cc38b5842e23b62010be4b07e82bb790b9872bf3fa9484",
+    "evaluations/results/phase5x/exaone45-native-resource-epoch1/report.json": "4eb66aa2351d05edb65192d1fb4b44e8427b64711c0c37a669828ef46dcb59b0"
+  },
+  "report": {
+    "path": "docs/reports/phase5x_exaone45_runtime_preflight_report.md",
+    "sha256": "d7e87165077f2898700e0b4a9faa51e6ecaa3817f3928e590d2bd3a8ee19192a"
+  },
+  "regression": {
+    "path": "evaluations/results/phase5x/exaone45-template-header-preflight/regression.json",
+    "sha256": "15ed600049b27c1b32400e95e4d42c78a7501d1352d821dab300a2369135930b",
+    "tests_recorded": 408,
+    "skipped_recorded": 0,
+    "rerun": false,
+    "current_pins_match": true,
+    "production_paths": 5,
+    "test_paths": 1,
+    "source_sha256": {
+      "scripts/llama_server.py": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+      "tests/test_llama_server.py": "e5cb6fb1e6471f7730ecdd54144d9c393ff7fb260c2131794344df8fd76fbcd6",
+      "src/neurobuild/infrastructure/local_model.py": "48276a8f9cb7a2a818a9f12e7f86b2b53f525a37de61a1be70fe73648f07c151",
+      "scripts/evaluate_requirements.py": "48734d5fda8069efe9bd927387cf6cf04fa4167f7a4d028f13509476a0511fef",
+      "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+      "scripts/native_model_bootstrap.py": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf"
+    }
+  },
+  "cpu_aggregate_sha256": "2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209",
+  "cpu_source_pins_match": true,
+  "epoch": {
+    "child_pid": 3622453,
+    "process_start_ticks": 478405342,
+    "guard_started_at_utc": "2026-09-20T10:33:32.120893+00:00",
+    "launch_config_sha256": "1e872da88b6d00750447dd7c39213d7a4ce19b161fa64cb4c51cab1f7b8b7761"
+  },
+  "checked": {
+    "same_epoch_runtime_config_and_variant": true,
+    "original_embedded_effective_and_props_templates_distinct_and_bound": true,
+    "official_hf_failure_and_derived_raw_reference_distinct": true,
+    "loopback_saved_snapshot": true,
+    "startup_gets": 3,
+    "public_generation_posts": 1,
+    "resource_generation_posts": 1,
+    "resource_prompt_tokens": 3328,
+    "resource_generated_tokens": 768,
+    "resource_cached_positions": 4095,
+    "aggregate_peak_mib": 19946,
+    "minimum_free_mib": 16428,
+    "free_floor_mib": 7275,
+    "inference_config_batch_and_ubatch": 64,
+    "context_tokens": 4096,
+    "quality_evidence": false
+  },
+  "limitations": [
+    "Resource probe is grammar-off greedy capacity evidence, distinct from the Korean production sampling profile used by the public production smoke.",
+    "VRAM figures are lifetime aggregate observations, not an isolated request or per-process peak bound.",
+    "The report guard PID is root-supplied session provenance; these seven JSON files independently bind child PID/startticks and guard start time, not the guard PID.",
+    "Hardware facts are root-supplied measurements; HTTP does not attest hardware.",
+    "Saved readiness does not establish future process liveness."
+  ],
+  "review_actions": {
+    "tests_run": 0,
+    "model_calls": 0,
+    "http_calls": 0,
+    "gpu_queries": 0,
+    "native_invocations": 0,
+    "dataset_reads": 0,
+    "model_payload_reads": 0,
+    "source_edits": 0
+  }
+}

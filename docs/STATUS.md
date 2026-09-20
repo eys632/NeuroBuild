@@ -1,23 +1,24 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 KST — 기존 평가 보존, EXAONE 별도 원문 보존 variant CPU 검증 완료**.
+갱신: **2026-09-20 KST — EXAONE 첫 단회 의미 정확도 gate FAIL, 자체 서버 종료·GPU3 반환**.
 Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 미채택, Phase6 미시작**이다.
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE template/header `91ec570d0924ec600c35bc636df8903c1ad616ba` push·원격 일치 확인 |
-| 현재 작업 | **EXAONE4.5-33B Q4_K_M의 별도 template/raw-Unicode variant 사전 검증** |
-| 최근 후보 | Gemma4-31B QAT Q4_0 / pinned llama.cpp: 첫 품질 gate FAIL, 미채택. Qwen3.8도 V2 FAIL |
+| GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 진단동결 `c466013439e6d202e627ed48c7a4ed1e45cf82c0` push·원격 일치 확인; 이번 checkpoint는 EXAONE 실패·종료 보존 |
+| 현재 작업 | **EXAONE 실패 증거 보존·독립 검산, 다른 모델 후보 비교** |
+| 최근 후보 | EXAONE4.5-33B Q4_K_M: 첫 의미 정확도 gate FAIL. Gemma4-31B 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
+| EXAONE 1차 품질 결과 | 노출120×1: schema120, parser119, semantic106, rawFP0/58, unsafe0/120 — **FAIL** |
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
 | 회귀 검증 | **408 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless21.330초. EXAONE 명시profile·pinned template override 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
-| 모델 실행 | 이전 Qwen/Gemma STOPPED·GPU3 반환 보존. EXAONE Epoch1 GPU3에서 startup/public/resource 각1회 PASS, 첫 품질 평가 전 |
+| 모델 실행 | Qwen/Gemma/EXAONE 자체 서버 모두 STOPPED·exit0/reaped. EXAONE 종료 후5회 GPU3 free36,373MiB/used3,965MiB/util0% |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | EXAONE 179파일 사전freeze 완료, checkpoint push 뒤 첫120×1+warmup5. 동일 실패 후보 반복 및 새 holdout 호출0회 |
+| 다음 검증 | EXAONE 새125개 독립 검산 PASS·품질 FAIL 보존 후 다른 모델 후보 비교. 동일 실패 후보 반복·V2·새 holdout0회 |
 
 ## 보존한 단회 결과와 오류3건
 
@@ -48,7 +49,7 @@ H2-H05/J01/J05 non-READY 대상 범위 불일치3건이다. 마지막3건의 비
 [V2 보고서](reports/phase5x_native_qwen38_v2_minimal_report.md),
 [독립 검토](reviews/phase5x_native_qwen38_v2_minimal_review.md), [실험 목록](phase5x_experiment_register.md).
 
-완료 Phase5.x 기록은 **25 run /2,120 평가 trial /125 warmup 사례**다. 서로 다른 split·실행을
+완료 Phase5.x 기록은 **26 run /2,240 평가 trial /130 warmup 사례**다. 서로 다른 split·실행을
 합산 정확도나 독립 표본 수로 해석하지 않는다. V2는 이제 **MODEL_OUTPUT_SEEN / EXPOSED**다.
 이후 새 unseen 성공으로 표시하지 않는다. 이전 실패·기준·원본 freeze는 보존한다.
 
@@ -127,3 +128,24 @@ epoch aggregate peak19946MiB/최소free16428MiB로안전floor7275MiB를유지했
 예상whole peak28672MiB는실측상한이아니다.
 미사용80개 초안은 ignored var에서 보존하며, 미래 후보도 1차 gate를 통과해야 후속 평가를 결정한다.
 비필수 runtime 최적화는 future optimization이다. Phase5.x 미완료·모델 미채택·Phase6 미시작을 유지한다.
+
+
+## EXAONE 첫 단회 결과
+
+Clean/pushed `c466013439e6d202e627ed48c7a4ed1e45cf82c0`에서 첫120×1+warmup5를 완료했다.
+Run `20260920T104448Z-10236a5d12bd48f099a4a4688ef29515`는 schema120/parser119,
+semantic106/120(88.33%), rawFP0/58, unsafe0/120, FN9/62, raw관측120/120이다.
+Warmup4/5는 분모 제외. 평균4.754919165초/p955.192200454초, INVALID_MODEL_OUTPUT1건이다.
+오류14건은 READY과잉확인9(그중reason595자→adapter512자한도거절1),
+조회·취소 CLARIFICATION→UNSUPPORTED4, 승인우회 UNSUPPORTED→CLARIFICATION1이다.
+명백한 기준미달이므로 같은후보반복·V2·미사용holdout0회로 종료했다.
+[평가 보고서](reports/phase5x_native_exaone45_diagnostic_report.md).
+
+Own guard3622309/child3622453만 pidfdSIGTERM으로 종료했고 guard자체정리뒤exit0/reaped다.
+최종1245.664초/2206표본에서 aggregatepeak19946/minfree16428MiB,
+종료후5회 free36373/used3965/util0으로반환됐다. 타인프로세스·GPU0/1/2변경0이다.
+179파일freeze와원본결과는보존했다. 독립검산 첫호출은 행읽기전에120(int)/120.0(float)
+동일값의타입검사에서거절되어실패를보존했다. 별도v4에서해당숫자표현검사만수정하고
+신규125개첫전체재생PASS/품질FAIL을확인했다. ReplaySHA `bfd67e3c0fe86affb17e42d0b1a19b4222d96b9dbe0ca14abda4795e04b8b6b3`.
+채점·원본freeze·manifest·결과를변경하지않았으며모델호출/기존125재생은없다.
+Production source가408회귀시점과동일하여suite를반복하지않는다. Phase5.x미완료·Phase6미시작이다.

@@ -1,0 +1,71 @@
+--- var/review-tools/replay_native_exaone45_exposed_v3.py
++++ var/review-tools/replay_native_exaone45_exposed_v4.py
+@@ -5,6 +5,8 @@
+ Main requires independent frozen evidence pins and explicit completed-run input.
+ No completed historical result, private dataset, GGUF or native call is needed to
+ exercise the synthetic preparation controls. Never import this as adoption proof.
++Post-freeze offline amendment: accept timeout120 as finite int or float only.
++The original v3 file and frozen v3 hash remain required. This v4 was not pre-run frozen.
+ Main requires the completed new run and all exact frozen saved evidence; no live probes.
+ """
+ import argparse
+@@ -37,7 +39,9 @@
+ PROFILE = "exaone45_nonthinking_llama_cpp"
+ LIFECYCLE = "FROZEN_BEFORE_NATIVE_EXAONE45_EXPOSED_DIAGNOSTIC"
+ ORIGINAL_REPLAY_SHA = "c1f063fe4a6ea14c9eaa57bb6e10467460f6765d9a3b4fce67a6fca0f69ac592"
+-PREPARATION_STATUS = "IMPLEMENTED_AWAITING_COMPLETED_EXAONE_RUN"
++PREPARATION_STATUS = "POST_FREEZE_OFFLINE_TIMEOUT_REPRESENTATION_FIX"
++FROZEN_PARENT_PATH = "var/review-tools/replay_native_exaone45_exposed_v3.py"
++FROZEN_PARENT_SHA = "47981646b4efe96ba7b7f85c991fad526b287f5c64407102aefcd2d8bbee30e4"
+ VARIANT = "exaone45-gguf-continue-free-raw-unicode-korean-v1"
+ CPU_SHA = "2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209"
+ HEADER_SHA = "fb5260c6e1e3356741f7728e4077f771763ea39affd77e8ac9772e417aa70c12"
+@@ -196,8 +200,12 @@
+                           "sampling_request_parameters": SAMPLING, "max_tokens": 768,
+                           "timeout_seconds": 120, "concurrency": 1, "enable_thinking": False,
+                           "reasoning_parser": "deepseek"}.items():
+-        check(type(p[key]) is type(expected) and type(freeze[key]) is type(expected)
+-              and p[key] == freeze[key] == expected, "protocol_" + key)
++        if key == "timeout_seconds":
++            check(all(type(value) in (int, float) and value == expected and math.isfinite(value)
++                      for value in (p[key], freeze[key])), "protocol_" + key)
++        else:
++            check(type(p[key]) is type(expected) and type(freeze[key]) is type(expected)
++                  and p[key] == freeze[key] == expected, "protocol_" + key)
+     check(all(type(p["sampling_request_parameters"][key]) is type(value)
+               and type(freeze["sampling_request_parameters"][key]) is type(value)
+               for key,value in SAMPLING.items()), "sampling_value_types")
+@@ -556,6 +564,13 @@
+           and hashes[RUNTIME_HELPER] == RUNTIME_HELPER_SHA, 'runtime_source_helper_pins')
+ 
+ 
++def validate_frozen_parent(freeze):
++    """v4 is an explicit post-freeze amendment, never a substituted frozen helper."""
++    check(freeze['sha256'].get(FROZEN_PARENT_PATH) == FROZEN_PARENT_SHA
++          and digest(project_path(FROZEN_PARENT_PATH)) == FROZEN_PARENT_SHA,
++          'original_frozen_replay_parent_changed')
++
++
+ def main():
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("run")
+@@ -593,7 +608,7 @@
+     validate_identity(manifest, freeze, runtime, launch, args.source_commit, expected_variant=args.candidate_variant)
+     core.native_runtime_metadata(runtime)
+     check(freeze["runtime_metadata"] == start + "runtime_metadata.json", "runtime_archive_path")
+-    check(freeze["sha256"].get("var/review-tools/replay_native_exaone45_exposed_v3.py") == digest(Path(__file__)), "replay_helper_frozen")
++    validate_frozen_parent(freeze)
+     check(manifest["sha256"]["runtime_metadata"] == artifact_hashes[start + "runtime_metadata.json"], "runtime_hash")
+     for key, name in PATHS.items():
+         check(snapshot["sha256"][name] == manifest["sha256"][key] == freeze["sha256"][name], "source_binding_" + key)
+@@ -643,6 +658,10 @@
+             "model_output_exposure_record_sha256": freeze["sha256"][V2_OUTPUT_EXPOSURE],
+             "limitation": "Prior V2 model outputs already exposed; no V2 result replay or input parsing in this EXAONE exposed120 replay"},
+         "replay_helper_sha256": digest(Path(__file__)),
++        "offline_validator_amendment": {"pre_run_frozen": False,
++            "frozen_parent_path": FROZEN_PARENT_PATH, "frozen_parent_sha256": FROZEN_PARENT_SHA,
++            "change": "Only timeout_seconds accepts finite numeric120 as int or float; boolean/nonfinite/other values rejected.",
++            "core_functions_ast_unchanged": ["load_snapshot", "replay_row", "replay_groups"]},
+         "latencies_and_token_usage": "Recorded observations only; no remeasurement",
+         "runtime_limit": "Archive hash/epoch binding, not new process/weight attestation or per-process VRAM",
+         "quality_limit": "Exposed synthetic regression, not human reviewed or independent unseen evaluation",

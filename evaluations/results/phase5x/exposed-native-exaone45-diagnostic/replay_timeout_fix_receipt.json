@@ -1,0 +1,59 @@
+{
+  "kind": "EXAONE45_OFFLINE_REPLAY_TIMEOUT_REPRESENTATION_AMENDMENT",
+  "status": "PASS_METADATA_CONTROLS_ONLY_NOT_FULL_REPLAY",
+  "pre_run_frozen": false,
+  "actual_run": "20260920T104448Z-10236a5d12bd48f099a4a4688ef29515",
+  "source_snapshot_commit": "c466013439e6d202e627ed48c7a4ed1e45cf82c0",
+  "finding": "Original v3 required type identity for timeout_seconds. Evaluator argparse --timeout type=float records client.timeout120.0 while freeze writes120 integer. Same finite numeric protocol was rejected before result/dataset replay.",
+  "observed_manifest_timeout": {
+    "value": 120.0,
+    "python_type": "float"
+  },
+  "observed_freeze_timeout": {
+    "value": 120,
+    "python_type": "int"
+  },
+  "production_source_evidence": [
+    "scripts/evaluate_requirements.py:624 argparse --timeout type=float",
+    "scripts/evaluate_requirements.py:555 build_manifest timeout_seconds=client.timeout"
+  ],
+  "first_failure_stderr_exact": "{\"status\": \"FAIL\", \"check\": \"protocol_timeout_seconds\"}\n",
+  "first_failure_result_rows_replayed": 0,
+  "preserved_sha256": {
+    "var/review-tools/replay_native_exaone45_exposed_v3.py": "47981646b4efe96ba7b7f85c991fad526b287f5c64407102aefcd2d8bbee30e4",
+    "evaluations/results/phase5x/exaone45-runtime-preflight/replay/replay_native_exaone45_exposed_v3.py": "47981646b4efe96ba7b7f85c991fad526b287f5c64407102aefcd2d8bbee30e4",
+    "var/runs/20260920T104448Z-10236a5d12bd48f099a4a4688ef29515/manifest.json": "f6ec7c0abbdfe070c0bfbb43e864cc15bba7f6b75dd81d7370742320a57f394d",
+    "evaluations/hardening_v1_exposed_native_exaone45_diagnostic_freeze.json": "fdec20e52ac3e7e9940e830ff78599e019bfaf75cca6f28d761809970f973cd6",
+    "var/review-tools/exaone45-exposed-review/independent_replay.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "var/review-tools/exaone45-exposed-review/independent_replay.stderr.txt": "29637794724a0dcfca7f5201f4ea95059f28917970917d01493c3423c99bf5ed",
+    "var/review-tools/exaone45-exposed-review/replay_invocation.json": "add92c7cb1e4a9b7fe7f068d95b41ff7afe0a42f05bc15f62c5b81a4373b6e9e"
+  },
+  "new_sha256": {
+    "var/review-tools/replay_native_exaone45_exposed_v4.py": "177bc501c5be5bb9e240414ec49216b99d8621d9306250eb1446b73dc05dca3f",
+    "var/review-tools/test_exaone45_replay_timeout_v4.py": "7274221eb46ca2176305766b77a88b958adbd6de5b662be5c374473663732d13",
+    "var/research/exaone45-replay-timeout-v4.patch": "be41a4cdff1febf3c0dfbf432cd84877c384d14aa7752dffd2b39c8001fab981"
+  },
+  "new_validator_rules": "Only timeout accepts finite int/float numerically120. Boolean, nonfinite, strings and different numeric values rejected. Other protocol type checks unchanged. Original v3 file and freeze hash remain mandatory; actualv4 hash and amendment reported separately.",
+  "tests": {
+    "passed": 3,
+    "seconds": 0.034,
+    "valid_int_float_combinations": 4,
+    "invalid_timeout_cases": 22,
+    "other_protocol_type_rejection": 1,
+    "parent_hash_rejection_cases": 2,
+    "original_failure_reproduced": true,
+    "core_functions_ast_exact": [
+      "load_snapshot",
+      "replay_row",
+      "replay_groups"
+    ],
+    "validate_evidence_ast_exact": true,
+    "command": "CUDA_VISIBLE_DEVICES='' .conda/bin/python -B -W error::ResourceWarning var/review-tools/test_exaone45_replay_timeout_v4.py -v"
+  },
+  "actual_completed_results_read": false,
+  "dataset_bodies_read": 0,
+  "full_replay_executed": false,
+  "http_gpu_native_model_calls": 0,
+  "manifest_freeze_result_edits": 0,
+  "limits": "This receipt fixes offline metadata validation only. It does not claim original frozen helper PASS, change the actual evaluation protocol, or alter quality scores/gates."
+}

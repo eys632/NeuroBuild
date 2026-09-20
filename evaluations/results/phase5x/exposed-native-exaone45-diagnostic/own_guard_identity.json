@@ -1,0 +1,17 @@
+{
+  "kind": "EXAONE45_OWN_GUARD_IDENTITY",
+  "uid": 1003,
+  "guard_pid": 3622309,
+  "guard_start_ticks": 478399607,
+  "child_pid": 3622453,
+  "child_start_ticks": 478405342,
+  "guard_argv": [
+    ".conda/bin/python",
+    "scripts/llama_server.py",
+    "--config",
+    "var/research/exaone45-native-launch-epoch1.json"
+  ],
+  "guard_exe": "/home/a202192020/NeuroBuild_v2/.conda/bin/python3.12",
+  "guard_cwd": "/home/a202192020/NeuroBuild_v2",
+  "signals_sent": 0
+}

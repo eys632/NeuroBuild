@@ -1013,3 +1013,35 @@ Resource시점aggregate최대19946/minfree16428MiB, requiredfloor7275MiB.
 Root actual --dry-check PASS뒤exclusive-create 사전동결을발행했다.
 Freeze SHA fdec20e52ac3e7e9940e830ff78599e019bfaf75cca6f28d761809970f973cd6, bound179files, expected125calls/trials1.
 Runtime+CPU+freezer 재현소스/증거를별도archive에보존했다. 아직품질호출0이며clean checkpoint/push 후시작한다.
+
+
+### 2026-09-20 — EXAONE 첫120개 의미 gate FAIL, 독립 검산·GPU3 반환
+
+Checkpoint c466013439e6d202e627ed48c7a4ed1e45cf82c0 push/ls-remoteexact/clean확인.
+179개freeze/ownPID·listener·guard남은시간6582.103s/free16428·util0을확인한뒤
+첫run20260920T104448Z-10236a5d12bd48f099a4a4688ef29515을120×1+warmup5로실행했다.
+CLI명령은first_quality_preflight.json에보존. Manifest는timeout120.0, 원본freeze는동일값120이다.
+Exit0/schema120/parser119/semantic106/rawFP0/unsafe0/FN9/raw관측120, warmup4/5다.
+Mean4.7549191652564335s/p955.192200453951955s, INVALID_MODEL_OUTPUT1(reason595>512).
+ResultsSHAfe13a08acad5a3e9cb03bdf2c3662cda5a087e68cb61aab18d938f89c7c92053.
+
+Rootownstophelper는UID1003/guard3622309(ticks478399607)/child3622453(ticks478405342)
+및parent/argv/exe/cwd/epoch를pidfd획득전후검증한뒤guard에만SIGTERM1회전달.
+종료STOP_REQUESTED/exit0/reaped, 자체childgroupTERM과잔여KILL정리.
+Final1245.664s/2206samples/aggregatepeak19946/minfree16428MiB, GPU3후5회free36373/used3965/util0.
+FinalguardSHAc6c409a2adcfaa9dad0dbbe3c24e355caf0b7361914a923b85569914d5730e0e.
+
+독립검산첫v3는protocol_timeout_seconds에서본문/행읽기전실패하여그대로보존.
+별도v4 timeout수치표현한정수정/3focusedtestsPASS0.034s, originalparentpin유지/행채점3함수AST동일.
+V4 SHA177bc501c5be5bb9e240414ec49216b99d8621d9306250eb1446b73dc05dca3f, pre-runfrozen아님을명시.
+c466013의30source snapshotSHA3345d27ff433d849c3b1d3105d0f9c0fde9380277f9bb58116f958d6c239a48b로
+이번125개첫전체재생PASS/원본집계exact, proofSHAbfd67e3c0fe86affb17e42d0b1a19b4222d96b9dbe0ca14abda4795e04b8b6b3.
+기존진단/재생·같은모델추가평가/V2/미사용holdout0. 타인process/GPUfallback0.
+408회귀source6pins가동일하므로suite를반복하지않았다. 완료당시179freeze검사PASS와
+원본c466013문서를보존한뒤현재상태문서를갱신했다.
+
+실패archive67원본/68hash를stageindex와대조했고, 독립검토도동일범위PASS.
+Source snapshot30Git blobs/frozen_docs5는c466013원본과일치한다.
+공백예외11건은exactpatch2/template8/원본model_guardEOF1에한정하며원본bytes를유지했다.
+새문서링크유효/환경·weight·nativebinary제외/현재408source6pins동일을확인했다.
+독립archive검토receiptSHA6fc1aff73a200dd4a1e0fa8cabc77b19792abb77c8577c01e0f9e486e38578b8.

@@ -1,9 +1,5 @@
 # EXAONE4.5-33B 첫 단회 진단 계획
 
-> 후속 결과: 동결한 첫120×1+warmup5는 의미 정확도106/120으로 FAIL했다.
-> 추가 반복·V2 없이 종료했고 새125개 독립 재생과 GPU3 반환을 보존했다.
-> [결과 보고서](reports/phase5x_native_exaone45_diagnostic_report.md). 아래는 사전동결 당시 계획이다.
-
 상태: **DRAFT — 별도 원문 보존 variant CPU·GPU runtime 검증 완료, 사전동결 전, 품질 호출0.**
 [자원·계약 계획](exaone45_33b_resource_plan.md)의 선행 gate를 통과한 뒤 별도 freeze를 만든다.
 이 문서나 metadata 다운로드만으로 실제 품질 평가를 시작하지 않는다.

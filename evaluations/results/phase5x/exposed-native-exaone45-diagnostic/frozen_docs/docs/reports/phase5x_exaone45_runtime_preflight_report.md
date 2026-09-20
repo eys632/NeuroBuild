@@ -1,9 +1,5 @@
 # EXAONE4.5 GPU3 사전 실행 결과
 
-> 후속 단회 품질 결과는 semantic106/120으로 FAIL했다. 같은 후보 반복 없이 자체 서버를 종료했고
-> GPU3 반환을 확인했다. [최종 진단 보고서](phase5x_native_exaone45_diagnostic_report.md).
-> 아래 수치와 미평가 표시는 사전 실행 당시의 기록이다.
-
 2026-09-20, 내부 비상업 연구용 `exaone45-gguf-continue-free-raw-unicode-korean-v1`의
 첫 native 실행이다. **기동·공개입력·최대문맥 자원 검사 PASS이며 품질 gate는 아직 평가하지 않았다.**
 공통 runtime의 완료 검사를 다시 수행하지 않고 이 새 모델에서 미실행한 세 항목만 확인했다.

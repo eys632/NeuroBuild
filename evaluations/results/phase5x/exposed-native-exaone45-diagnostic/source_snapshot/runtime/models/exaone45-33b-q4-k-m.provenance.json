@@ -1,0 +1,267 @@
+{
+  "kind": "EXAONE45_CANDIDATE_METADATA_ONLY",
+  "status": "NOT_SELECTED_RUNTIME_AND_QUALITY_UNVERIFIED",
+  "recorded_at_utc": "2026-09-20T09:41:19.572135+00:00",
+  "model_id": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+  "model_revision": "0e969634ef24db05151b435970297a6dee634b7e",
+  "original_model_id": "LGAI-EXAONE/EXAONE-4.5-33B",
+  "original_model_revision": "570aa4b15a4f45ba1133072b45f50198f6e3b4fd",
+  "current_revisions_equal_pinned": true,
+  "official_repository_gated": false,
+  "manifest_sha256": "98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8",
+  "manifest_total_bytes": 20047878049,
+  "weight_payload_bytes_downloaded": 0,
+  "weight_range_requests": 0,
+  "weight_sha256_evidence": "Official HF pinned API LFS metadata only, not actual local payload validation",
+  "quantization": "Official Q4_K_M GGUF; QAT not established by retained primary artifacts; mixed per-tensor types and actual embedded tokenizer/template unknown until header validation",
+  "metadata_fetched_bytes_total": 12389867,
+  "metadata_cap_bytes": 52428800,
+  "fetches": [
+    {
+      "file": "gguf-current-api.json",
+      "url": "https://huggingface.co/api/models/LGAI-EXAONE/EXAONE-4.5-33B-GGUF?blobs=true",
+      "bytes": 10734,
+      "sha256": "387651b8762c433109c3fcd91af5c931dd70cdc8277eadbefad1e4257e3a0adc",
+      "retrieved_at_utc": "2026-09-20T09:36:47.479120+00:00"
+    },
+    {
+      "file": "gguf-pinned-api.json",
+      "url": "https://huggingface.co/api/models/LGAI-EXAONE/EXAONE-4.5-33B-GGUF/revision/0e969634ef24db05151b435970297a6dee634b7e?blobs=true",
+      "bytes": 10734,
+      "sha256": "387651b8762c433109c3fcd91af5c931dd70cdc8277eadbefad1e4257e3a0adc",
+      "retrieved_at_utc": "2026-09-20T09:36:47.861658+00:00"
+    },
+    {
+      "file": "upstream-current-api.json",
+      "url": "https://huggingface.co/api/models/LGAI-EXAONE/EXAONE-4.5-33B?blobs=true",
+      "bytes": 10156,
+      "sha256": "be771976b8957271062630bd1110970e52bb42bd076a2abf9fe767700197f00c",
+      "retrieved_at_utc": "2026-09-20T09:36:48.097479+00:00"
+    },
+    {
+      "file": "upstream-pinned-api.json",
+      "url": "https://huggingface.co/api/models/LGAI-EXAONE/EXAONE-4.5-33B/revision/570aa4b15a4f45ba1133072b45f50198f6e3b4fd?blobs=true",
+      "bytes": 10156,
+      "sha256": "be771976b8957271062630bd1110970e52bb42bd076a2abf9fe767700197f00c",
+      "retrieved_at_utc": "2026-09-20T09:36:48.338969+00:00"
+    },
+    {
+      "path": "gguf/LICENSE",
+      "requested_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B-GGUF/resolve/0e969634ef24db05151b435970297a6dee634b7e/LICENSE",
+      "repository": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+      "revision": "0e969634ef24db05151b435970297a6dee634b7e",
+      "bytes": 13288,
+      "sha256": "8c1762fb4bd94c8f17e114c5caa567e0948e1da7d02b79b55e99be9616e0f9e3",
+      "git_blob_sha1": "44b160bfa60ecc5accc8382fc44262d3eda46ffb",
+      "retrieved_at_utc": "2026-09-20T09:37:42.713605+00:00"
+    },
+    {
+      "path": "gguf/README.md",
+      "requested_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B-GGUF/resolve/0e969634ef24db05151b435970297a6dee634b7e/README.md",
+      "repository": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+      "revision": "0e969634ef24db05151b435970297a6dee634b7e",
+      "bytes": 25337,
+      "sha256": "7616b420f4f3861ae28d4eb8acbc0ac9f004fa4e33ea82b061579409ccc4cdba",
+      "git_blob_sha1": "ec40961d81efa41470ba7890f1f12b400b38bb48",
+      "retrieved_at_utc": "2026-09-20T09:37:42.971727+00:00"
+    },
+    {
+      "path": "upstream/LICENSE",
+      "requested_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/LICENSE",
+      "repository": "LGAI-EXAONE/EXAONE-4.5-33B",
+      "revision": "570aa4b15a4f45ba1133072b45f50198f6e3b4fd",
+      "bytes": 13288,
+      "sha256": "8c1762fb4bd94c8f17e114c5caa567e0948e1da7d02b79b55e99be9616e0f9e3",
+      "git_blob_sha1": "44b160bfa60ecc5accc8382fc44262d3eda46ffb",
+      "retrieved_at_utc": "2026-09-20T09:37:43.226781+00:00"
+    },
+    {
+      "path": "upstream/README.md",
+      "requested_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/README.md",
+      "repository": "LGAI-EXAONE/EXAONE-4.5-33B",
+      "revision": "570aa4b15a4f45ba1133072b45f50198f6e3b4fd",
+      "bytes": 26632,
+      "sha256": "a455cae241e67e729eda685541ba13ad4850430937065d482a8532a2a408b4c6",
+      "git_blob_sha1": "5578c47168408e01f0a58d18a923eaf3a622187d",
+      "retrieved_at_utc": "2026-09-20T09:37:43.481272+00:00"
+    },
+    {
+      "path": "upstream/config.json",
+      "requested_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/config.json",
+      "repository": "LGAI-EXAONE/EXAONE-4.5-33B",
+      "revision": "570aa4b15a4f45ba1133072b45f50198f6e3b4fd",
+      "bytes": 3537,
+      "sha256": "29e21fcbfe95268e11a151577b6440d77385064b41c960aceff83a2b70eea090",
+      "git_blob_sha1": "b5080d1f00c9f61f02eac59340d7f050a8287ed2",
+      "retrieved_at_utc": "2026-09-20T09:37:43.721115+00:00"
+    },
+    {
+      "path": "upstream/generation_config.json",
+      "requested_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/generation_config.json",
+      "repository": "LGAI-EXAONE/EXAONE-4.5-33B",
+      "revision": "570aa4b15a4f45ba1133072b45f50198f6e3b4fd",
+      "bytes": 308,
+      "sha256": "3d8c4567a8962ae9c8ba8fad85b8c2c3d8451a68b54fe88f81d79a9468012190",
+      "git_blob_sha1": "4f58cb544fb5ed2e02e9fdebd0314914ac7ec96d",
+      "retrieved_at_utc": "2026-09-20T09:37:43.990224+00:00"
+    },
+    {
+      "path": "upstream/chat_template.jinja",
+      "requested_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/chat_template.jinja",
+      "repository": "LGAI-EXAONE/EXAONE-4.5-33B",
+      "revision": "570aa4b15a4f45ba1133072b45f50198f6e3b4fd",
+      "bytes": 5930,
+      "sha256": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+      "git_blob_sha1": "7118b95635331d0a85b2a1a0a20ad36ca0de490c",
+      "retrieved_at_utc": "2026-09-20T09:37:44.246122+00:00"
+    },
+    {
+      "path": "upstream/tokenizer_config.json",
+      "requested_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/tokenizer_config.json",
+      "repository": "LGAI-EXAONE/EXAONE-4.5-33B",
+      "revision": "570aa4b15a4f45ba1133072b45f50198f6e3b4fd",
+      "bytes": 526,
+      "sha256": "41fd7d740786df4f0a2edbe58d74341c4b83556b185b698e5b4d177a56e7b5e9",
+      "git_blob_sha1": "1b4afa1f6aed92449e452ba7642341da66101ebf",
+      "retrieved_at_utc": "2026-09-20T09:37:44.499593+00:00"
+    },
+    {
+      "path": "upstream/model.safetensors.index.json",
+      "requested_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/model.safetensors.index.json",
+      "repository": "LGAI-EXAONE/EXAONE-4.5-33B",
+      "revision": "570aa4b15a4f45ba1133072b45f50198f6e3b4fd",
+      "bytes": 99036,
+      "sha256": "fb5d6e4ec8c9c86a2c50c562c29724b911effe90272a6921552f71fe92c9a00c",
+      "git_blob_sha1": "ff67023e236321b52ef37fa46ca4a6491bec983c",
+      "retrieved_at_utc": "2026-09-20T09:37:44.760579+00:00"
+    },
+    {
+      "path": "upstream/tokenizer.json",
+      "requested_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/tokenizer.json",
+      "repository": "LGAI-EXAONE/EXAONE-4.5-33B",
+      "revision": "570aa4b15a4f45ba1133072b45f50198f6e3b4fd",
+      "bytes": 12160205,
+      "sha256": "0bd798efa30739e209d51f36cfc2f0a636711e37ad9d69b77e4e5c8ca5f09fab",
+      "lfs_sha256_verified": true,
+      "retrieved_at_utc": "2026-09-20T09:38:50.717306+00:00"
+    }
+  ],
+  "license": {
+    "name": "EXAONE AI Model License Agreement 1.2 - NC",
+    "gguf_and_original_exact_equal": true,
+    "sha256": "8c1762fb4bd94c8f17e114c5caa567e0948e1da7d02b79b55e99be9616e0f9e3",
+    "scope": "Conditional noncommercial research/education evaluation only; commercial product/service and competing-model use not authorized by this assessment",
+    "sections_reviewed": [
+      "2.1",
+      "2.2",
+      "3.1",
+      "3.2",
+      "4.3",
+      "9.1"
+    ]
+  },
+  "official_sampling": {
+    "general": {
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "presence_penalty": 1.5
+    },
+    "korean_ocr_document": {
+      "temperature": 0.6,
+      "top_p": 0.95,
+      "top_k": 20,
+      "presence_penalty": 1.5
+    },
+    "text_only": {
+      "temperature": 1.0,
+      "top_p": 0.95
+    },
+    "thinking_default": true,
+    "nonthinking_requires_enable_thinking_false": true,
+    "no_unique_complete_nonthinking_only_profile_asserted": true,
+    "frequency_penalty_repetition_penalty_min_p_seed_not_specified_by_card": true,
+    "generation_config": {
+      "_from_model_config": true,
+      "bos_token_id": 1,
+      "do_sample": true,
+      "eos_token_id": 53,
+      "output_attentions": false,
+      "output_hidden_states": false,
+      "pad_token_id": 0,
+      "presence_penalty": 1.5,
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "transformers_version": "5.3.0.dev0",
+      "use_cache": true
+    },
+    "native_penalty_history_caveat": "llama.cpp presence penalties can include prompt/source tokens; a neutral-penalty recipe would be an explicit experimental deviation, not exact official recommendations"
+  },
+  "architecture": {
+    "model_type": "exaone4_5",
+    "architectures": [
+      "Exaone4_5_ForConditionalGeneration"
+    ],
+    "text_model_type": "exaone4_5_text",
+    "hidden_size": 5120,
+    "intermediate_size": 27392,
+    "vocab_size": 153600,
+    "main_layers": 64,
+    "mtp_layers": 1,
+    "attention_heads": 40,
+    "kv_heads": 8,
+    "head_dim": 128,
+    "sliding_window_config": 4096,
+    "sliding_window_card": 128,
+    "tie_word_embeddings": false,
+    "text_only_no_mmproj": true
+  },
+  "native_static_support": {
+    "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+    "text_converter_registered": true,
+    "graph": "exaone4",
+    "mtp_tensors_skipped_and_not_executed": true,
+    "chat_dispatch": "Template appears to use generic automatic parser; no explicit exaone specialized dispatch found; actual grammar/final-content checks pending",
+    "source_files_sha256": {
+      "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/exaone.py": "9f3dd7859cf59bcf6e900560954fb094e931d603cd3d8b1300ec664ad778b356",
+      "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/base.py": "e0ae8621e67e8b8ea2682177b1f16adbe95b2c154ee8e2de975e942148d66575",
+      "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/exaone4.cpp": "6b71eec534bf3f56c25e67c1046f32c4eb598442fc441ded16e1d13cf38582f3",
+      "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-vocab.cpp": "82e8996cbbd81c1648b1f4946b5f481138aa897a1343dcd8b1a4abe8cff0b5fc",
+      "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat.cpp": "ed5db316e93459c6528526633b11943f4b4611634c773b4eab30a66c1f4a91b3",
+      "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/ggml-cuda.cu": "af947e45946d0c47cfae9e056f589a25b61892e4273decf0a893e2dcad48d065"
+    }
+  },
+  "tokenizer": {
+    "official_normalizer": "NFC",
+    "native_normalization_parity": "UNVERIFIED: pinned BPE path does not establish NFC equivalence",
+    "actual_gguf_preidentifier": "UNKNOWN_NO_HEADER_READ",
+    "official_regex_matches_native_exaone_moe_pattern": true,
+    "preidentifier_caveat": "Native exaone4 maps to GPT2, exaone-moe maps to the regex matching this official tokenizer; inspect actual artifact rather than infer from model architecture",
+    "application_source_repair_proposed": false
+  },
+  "memory_partial_arithmetic_mib": {
+    "baseline_free": 36373,
+    "safety_margin": 7275,
+    "whole_peak_budget": 29098,
+    "whole_gguf_bytes_as_mib": 19119.10955810547,
+    "f16_kv_full_65_layers_4096_context": 1040.0,
+    "largest_single_f32_vocab_matrix": 3000.0,
+    "ffn_single_f32_matrix": 535.0,
+    "remaining_after_weight_kv_single_f32": 5938.890441894531,
+    "complete_peak_verified": false,
+    "remaining_costs": "Pool retention/growth, graph/output/attention buffers, CUDA modules/handles, allocator fragmentation, loading temporaries; no hard upper bound from metadata alone"
+  },
+  "disk_observation": {
+    "available_bytes": 28136112128,
+    "manifest_download_bytes": 20047878049,
+    "reserve_bytes": 22011707392,
+    "would_remain_bytes": 8088234079,
+    "additional_reclamation_needed_bytes": 13923473313,
+    "weight_download_current_disk_gate_pass": false,
+    "no_deletions_performed": true
+  },
+  "native_execution_calls": 0,
+  "model_inference_calls": 0,
+  "gpu_calls": 0,
+  "packages_installed": 0,
+  "production_files_modified": false
+}

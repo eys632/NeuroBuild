@@ -1,5 +1,9 @@
 # Phase 5.x 실제 평가 실행 목록
 
+최신 누적은 **26 run /2240 평가 trial /130 warmup 사례**다. 아래 초기16개와 당시3회 규칙은
+역사 기록이며, 현재는 사용자 지시에 따라 자동 전체3회 반복을 폐지했다.
+EXAONE 첫120개도 semantic106/120으로 FAIL하여 같은후보 반복·V2 없이 종료했다. 최신 항목은 문서 끝에 있다.
+
 2026-09-20 KST 작성. **AUTO-GENERATED / NOT HUMAN VERIFIED**. 작성 시 보존된 development 실행 **16개, 평가 응답 960개**를 모두 정리했다. Launch/runtime/shutdown 기록과 protocol smoke는 평가 run에서 제외했다. 각 run의 warmup 5개, 총80개도 아래 분모에 포함하지 않는다.
 
 **MoE generation2/분기 schema/v2의 greedy 정식 development120/120, raw FP0/60, unsafe0/120으로 정식 gate를 통과했다.** 이전 neutral 정식119/120/unsafe1 등 모든 실패를 보존했다. 정식 development와 holdout을 통과하기 전에는 Phase5.x 완료나 최종 모델 채택을 선언하지 않는다. 고정 gate는 schema100%, 의미 정확도95% 이상, raw FP0, unsafe accepted0이다. 단회 진단40개는 정식 development40×3 평가나 holdout80×3 평가를 대신하지 않는다. **첫 holdout80×3은 완료했으나211/240,raw9/114,unsafe12/240으로 FAIL이다. 아래 별도 기록하며 이후 같은80개는 exposed regression 자료다.**
@@ -189,3 +193,23 @@ Epoch1 final GPU3 aggregate peak18864/minfree17510MiB/1702.239s/3023표본,
 own STOPPED/exit0/reaped 후5회 free36373/used3965/util0으로 반환됐다.
 같은 실패 후보 반복·V2·미사용 holdout 호출0회. 다른 공식 후보 비교로 넘어간다.
 완료 누적은 **25 run/2120 formal 또는 diagnostic trial/125 warmup 사례**다. 합산 정확도는 만들지 않는다.
+
+
+## Native EXAONE4.5 Q4_K_M 첫120개 단회 — 의미 gate FAIL
+
+Run `20260920T104448Z-10236a5d12bd48f099a4a4688ef29515`, clean pushed `c466013439e6d202e627ed48c7a4ed1e45cf82c0`.
+33B Q4_K_M/nativef072/별도continue-free rawUnicode/한국어T.6 P.95 K20 presence1.5 window64 seed42.
+Single2.0/promptv2/branchschema/output768/timeout120,120×1+warmup5이며동결179파일전후동일이다.
+Schema120/parser119/semantic106(88.33%)/raw+acceptedFP0/58/unsafe0/120/FN9/62/raw관측120.
+Mean4.754919165s/p955.192200454s; warmup4/5분모제외. INVALID_MODEL_OUTPUT1(reason595>512),잘림/timeout0.
+[원본](../evaluations/results/phase5x/exposed-native-exaone45-diagnostic/results.json),
+[보고서](reports/phase5x_native_exaone45_diagnostic_report.md),
+[독립검토](reviews/phase5x_native_exaone45_exposed_review.md).
+ResultsSHA `fe13a08acad5a3e9cb03bdf2c3662cda5a087e68cb61aab18d938f89c7c92053`.
+
+오류14건은READY과잉확인9/조회·취소CLF→UNSUP4/승인우회UNSUP→CLF1이다.
+최초replay메타검사는120int/120.0float같은값의타입가정으로행읽기전FAIL.
+원본보존뒤별도v4로숫자표현만수정하여이번125개첫전체CPU재생PASS, 품질FAIL은유지했다.
+OwnserverSTOPPED/exit0/reaped,1245.664s/2206samples/aggregatepeak19946/minfree16428MiB,
+종료후5회free36373/used3965/util0. 같은후보반복/V2/미사용holdout0, 다른모델비교로진행한다.
+누적 **26run/2240평가trial/130warmup**이며합산정확도나독립표본수로해석하지않는다.

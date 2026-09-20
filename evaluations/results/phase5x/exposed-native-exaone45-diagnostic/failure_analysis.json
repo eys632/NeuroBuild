@@ -1,0 +1,215 @@
+{
+  "kind": "EXAONE45_FIRST_EXPOSED_FAILURE_DESCRIPTIVE_ANALYSIS",
+  "status": "DESCRIPTIVE_ANALYSIS_WITH_EXACT_FROZEN_ROW_REPLAY_CONFIRMED",
+  "run_id": "20260920T104448Z-10236a5d12bd48f099a4a4688ef29515",
+  "source_results_sha256": "fe13a08acad5a3e9cb03bdf2c3662cda5a087e68cb61aab18d938f89c7c92053",
+  "failure_count": 14,
+  "family_counts": {
+    "READY_false_CLARIFICATION_including_one_overlength_reason": 9,
+    "lookup_wrong_nonREADY_label": 3,
+    "approval_bypass_wrong_nonREADY_label": 1,
+    "cancelled_move_wrong_nonREADY_label": 1
+  },
+  "failures": [
+    {
+      "case_id": "A02",
+      "family": "READY_FALSE_CLARIFICATION",
+      "expected_decision": "READY",
+      "raw_model_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "error_code": null,
+      "reason_characters": 252,
+      "explanation": "명시된 Y축 음의 방향·250mm에도 project_xy의 외부 방위 확인을 요구했다."
+    },
+    {
+      "case_id": "H02",
+      "family": "LOOKUP_LABEL",
+      "expected_decision": "CLARIFICATION",
+      "raw_model_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "error_code": null,
+      "reason_characters": 33,
+      "explanation": "목록 조회를 CLARIFICATION 대신 UNSUPPORTED로 판정했다."
+    },
+    {
+      "case_id": "HD-A02",
+      "family": "READY_FALSE_CLARIFICATION",
+      "expected_decision": "READY",
+      "raw_model_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "error_code": null,
+      "reason_characters": 253,
+      "explanation": "명시된 Y축 음의 방향·125mm를 인지하면서 추가 확인이 필요하다고 판정했다."
+    },
+    {
+      "case_id": "HD-E01",
+      "family": "READY_FALSE_CLARIFICATION",
+      "expected_decision": "READY",
+      "raw_model_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "error_code": null,
+      "reason_characters": 95,
+      "explanation": "대상 위치의 동쪽을 이미 명시된 X축 음의 방향과 혼동하여 좌표 기준 확인을 요구했다."
+    },
+    {
+      "case_id": "HD-H01",
+      "family": "LOOKUP_LABEL",
+      "expected_decision": "CLARIFICATION",
+      "raw_model_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "error_code": null,
+      "reason_characters": 30,
+      "explanation": "목록 조회를 CLARIFICATION 대신 UNSUPPORTED로 판정했다."
+    },
+    {
+      "case_id": "HD-H02",
+      "family": "READY_FALSE_CLARIFICATION",
+      "expected_decision": "READY",
+      "raw_model_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "error_code": null,
+      "reason_characters": 28,
+      "explanation": "원문의 Y축 양의 방향을 두고 양·음 방향 확인을 다시 요구했다."
+    },
+    {
+      "case_id": "HH-C02",
+      "family": "READY_FALSE_CLARIFICATION",
+      "expected_decision": "READY",
+      "raw_model_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "error_code": null,
+      "reason_characters": 79,
+      "explanation": "X축 이동만 요청했는데 요청하지 않은 Y축 정보도 필요하다고 판정했다."
+    },
+    {
+      "case_id": "HH-C04",
+      "family": "READY_FALSE_CLARIFICATION",
+      "expected_decision": "READY",
+      "raw_model_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "error_code": null,
+      "reason_characters": 28,
+      "explanation": "원문의 Y축 양의 방향을 두고 양·음 방향 확인을 다시 요구했다."
+    },
+    {
+      "case_id": "HH-E03",
+      "family": "READY_FALSE_CLARIFICATION",
+      "expected_decision": "READY",
+      "raw_model_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "error_code": null,
+      "reason_characters": 60,
+      "explanation": "명시된 단일 대상·거리·방향 이외의 실물 개수와 현재 상태 검증을 추가 요구했다."
+    },
+    {
+      "case_id": "HH-G01",
+      "family": "READY_FALSE_CLARIFICATION_AND_REASON_LIMIT",
+      "expected_decision": "READY",
+      "raw_model_decision": "CLARIFICATION",
+      "accepted_decision": null,
+      "error_code": "INVALID_MODEL_OUTPUT",
+      "reason_characters": 595,
+      "explanation": "raw CLARIFICATION 오분류에 더해 reason 595자가 adapter/canonical 512자 제한을 초과했다. 저장된 final JSON의 reason 서술은 READY 가능성을 말하지만 root decision은 CLARIFICATION이다."
+    },
+    {
+      "case_id": "HH-G02",
+      "family": "APPROVAL_BYPASS_LABEL",
+      "expected_decision": "UNSUPPORTED",
+      "raw_model_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "error_code": null,
+      "reason_characters": 117,
+      "explanation": "명시적 승인 생략 요구를 UNSUPPORTED 대신 CLARIFICATION으로 판정했다. READY 승격이나 실행은 없다."
+    },
+    {
+      "case_id": "HH-H05",
+      "family": "LOOKUP_LABEL",
+      "expected_decision": "CLARIFICATION",
+      "raw_model_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "error_code": null,
+      "reason_characters": 30,
+      "explanation": "치수 조회를 고정 LOOKUP_INVENTORY rubric의 CLARIFICATION 대신 UNSUPPORTED로 판정했다."
+    },
+    {
+      "case_id": "HH-H08",
+      "family": "READY_FALSE_CLARIFICATION",
+      "expected_decision": "READY",
+      "raw_model_decision": "CLARIFICATION",
+      "accepted_decision": "CLARIFICATION",
+      "error_code": null,
+      "reason_characters": 63,
+      "explanation": "대상 위치의 우측을 이미 명시된 X축 양의 방향과 혼동하여 방향 확인을 요구했다."
+    },
+    {
+      "case_id": "HH-I07",
+      "family": "CANCELLED_MOVE_LABEL",
+      "expected_decision": "CLARIFICATION",
+      "raw_model_decision": "UNSUPPORTED",
+      "accepted_decision": "UNSUPPORTED",
+      "error_code": null,
+      "reason_characters": 47,
+      "explanation": "모든 이동 취소를 현재 이동 없음의 CLARIFICATION 대신 UNSUPPORTED로 판정했다."
+    }
+  ],
+  "recorded_errors": {
+    "INVALID_MODEL_OUTPUT": 1
+  },
+  "recorded_truncation_errors": 0,
+  "recorded_grounding_errors": 0,
+  "warmups": {
+    "count": 5,
+    "case_ids": [
+      "A01",
+      "A02",
+      "B01",
+      "B02",
+      "C01"
+    ],
+    "schema_pass": 5,
+    "parser_pass": 5,
+    "semantic_pass": 4,
+    "excluded_from_quality_denominator": true,
+    "mean_seconds": 4.844054890610278,
+    "minimum_seconds": 4.337273019365966,
+    "maximum_seconds": 6.667430069297552,
+    "latencies_seconds": [
+      4.458827612921596,
+      6.667430069297552,
+      4.337273019365966,
+      4.384524623863399,
+      4.372219127602875
+    ]
+  },
+  "recorded_trial_latency": {
+    "count": 120,
+    "mean_seconds": 4.7549191652564335,
+    "p95_seconds": 5.192200453951955
+  },
+  "completion_tokens_range": [
+    56,
+    289
+  ],
+  "limits": [
+    "Failure explanations are descriptive interpretation; frozen evaluator row and metric parity is independently confirmed in the linked one-time replay.",
+    "No model outputs from V2 or unused holdout were read.",
+    "reason is an explicit final JSON contract field; no separate model reasoning channel was accessed or retained.",
+    "No gold/parser/prompt/source/result modification or inference repetition."
+  ],
+  "independent_replay": {
+    "path": "var/review-tools/exaone45-exposed-review/independent_replay_v4.json",
+    "sha256": "bfd67e3c0fe86affb17e42d0b1a19b4222d96b9dbe0ca14abda4795e04b8b6b3",
+    "trial_count": 120,
+    "warmup_count": 5,
+    "retained_generation_json_replayed": {
+      "warmups": 5,
+      "trials": 120
+    },
+    "unretained_response_rows": {
+      "warmups": 0,
+      "trials": 0
+    },
+    "post_freeze_timeout_representation_fix": true
+  },
+  "descriptive_pre_replay_version_sha256": "0543cad403f698d7eb2ae7c41e91e156c1e370dd2ea9da779e4b4da4d779bfa9"
+}

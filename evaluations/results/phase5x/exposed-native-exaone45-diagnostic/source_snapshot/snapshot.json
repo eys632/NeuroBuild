@@ -1,0 +1,190 @@
+{
+  "source_snapshot_commit": "c466013439e6d202e627ed48c7a4ed1e45cf82c0",
+  "provenance": "Exact git show blob bytes from pinned commit; prior 29-file Gemma replay source closure adapted to EXAONE manifest/provenance/freeze plus effective template (30 files). Exposed120 dataset copied as opaque bytes only, without parsing or output. No result, V2/unused holdout body, weight, binary, environment or model invocation.",
+  "native_diagnostic_freeze_sha256": "fdec20e52ac3e7e9940e830ff78599e019bfaf75cca6f28d761809970f973cd6",
+  "replay_helper_sha256": "47981646b4efe96ba7b7f85c991fad526b287f5c64407102aefcd2d8bbee30e4",
+  "sha256": {
+    "evaluations/hardening_v1_exposed_native_exaone45_diagnostic_freeze.json": "fdec20e52ac3e7e9940e830ff78599e019bfaf75cca6f28d761809970f973cd6",
+    "evaluations/requirement_hardening_v1_exposed_regression.jsonl": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "runtime/models/exaone45-33b-q4-k-m.json": "98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8",
+    "runtime/models/exaone45-33b-q4-k-m.provenance.json": "74ed2ba7b8b4e21c83269d795d8983a487c75b3f2e25865fc25c9143ccab09f8",
+    "runtime/templates/exaone45-continue-free.jinja": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+    "schemas/requirement_generation_v2.schema.json": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "scripts/evaluate_requirements.py": "48734d5fda8069efe9bd927387cf6cf04fa4167f7a4d028f13509476a0511fef",
+    "scripts/gpu_preflight.py": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb",
+    "scripts/llama_server.py": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "scripts/native_model_bootstrap.py": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf",
+    "scripts/verify_model_listeners.py": "2d7771d414a7faae4138ea555349d1f7f111d36498ad9815f64ac51910d758dd",
+    "src/neurobuild/__init__.py": "43ba9f0b620ffa4f960f4d83a7ce7fd9fbae9b8de96d71535926f8a48dbc8461",
+    "src/neurobuild/application/__init__.py": "d393a04c8462e6e1a2bdc6e012639716d4b30aa18a15ec6fddf169aaedcbd359",
+    "src/neurobuild/application/requirement_facts.py": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/workflow.py": "aadf8f561a4d19ee301dcdaf985631a6f470d86d463aec4f7053dfac50dffdf5",
+    "src/neurobuild/domain/__init__.py": "152b0592fd08f164e27f99228c033cf131916ddb7bd2b2124fba24511e19be75",
+    "src/neurobuild/domain/contracts.py": "107edcaec115d7dbada810ed83398a114b1958b8658bc704bf3e9f7ff6b8e458",
+    "src/neurobuild/domain/errors.py": "32bb3ba6da83a35706759fe288e41bd490b5c1d56c071b4ec3de67207848b8aa",
+    "src/neurobuild/infrastructure/__init__.py": "a7cfa5c500a5a587d0fd48bdae32bb951769d7ca525b4b36b1dce6cc0f516739",
+    "src/neurobuild/infrastructure/artifacts.py": "52edb48022d20eed6dff6d0b9d779ff25d03acbacb9764331dbb1945f740bbe9",
+    "src/neurobuild/infrastructure/ifc_engine.py": "13acf3bf932ca49d495f8e3e718e6de376237b31f2192eb92bc6ce0d61a7c608",
+    "src/neurobuild/infrastructure/local_model.py": "48276a8f9cb7a2a818a9f12e7f86b2b53f525a37de61a1be70fe73648f07c151",
+    "src/neurobuild/infrastructure/persistence.py": "872ffe7c16ea7b098e6e4b076ce4ced35132987ff6df99701cc283f9485f154d",
+    "src/neurobuild/infrastructure/staged_requirement.py": "7e79b1c488a00e3f81b443fb32f86019f510a274228f56058c4eeae66038efee"
+  },
+  "git_blobs": {
+    "evaluations/hardening_v1_exposed_native_exaone45_diagnostic_freeze.json": {
+      "oid": "a640c00a2981d4c7a36540fa17aa42f4fee67b00",
+      "mode": "100644",
+      "bytes": 39629
+    },
+    "evaluations/requirement_hardening_v1_exposed_regression.jsonl": {
+      "oid": "97234e712ba520855c25bd4e163538c125d2043f",
+      "mode": "100644",
+      "bytes": 69888
+    },
+    "prompts/requirement_generation_v2_v2.txt": {
+      "oid": "89499ea9d1f8613c27b477f2a643dc067d60638b",
+      "mode": "100644",
+      "bytes": 8974
+    },
+    "runtime/models/exaone45-33b-q4-k-m.json": {
+      "oid": "e7a0cdfde5790ab45a6df19a3603ee4420190f94",
+      "mode": "100644",
+      "bytes": 772
+    },
+    "runtime/models/exaone45-33b-q4-k-m.provenance.json": {
+      "oid": "b3e1e3524637e6f0dfef7a9f8bd88ace673a12e4",
+      "mode": "100644",
+      "bytes": 12934
+    },
+    "runtime/templates/exaone45-continue-free.jinja": {
+      "oid": "161b21f92266f2ba0ad1eeaba1effab7f0dd79d7",
+      "mode": "100644",
+      "bytes": 5829
+    },
+    "schemas/requirement_generation_v2.schema.json": {
+      "oid": "a05637fe9e0ffface8fae28f22088535d7533c76",
+      "mode": "100644",
+      "bytes": 1057
+    },
+    "schemas/requirement_generation_v2_decision_branches.schema.json": {
+      "oid": "ed4f3031bef99a210a2dfda996695c31a9d7f6b6",
+      "mode": "100644",
+      "bytes": 4176
+    },
+    "schemas/semantic_requirement.schema.json": {
+      "oid": "b3cca4ca3cd0e868036d00bea2671c984213cbce",
+      "mode": "100644",
+      "bytes": 1703
+    },
+    "scripts/evaluate_requirements.py": {
+      "oid": "a8b5602bec0d39e3dded99462591a1997c6fa2f0",
+      "mode": "100644",
+      "bytes": 43064
+    },
+    "scripts/gpu_preflight.py": {
+      "oid": "bd24f2483e18c0457716d53e36b75a7f9d193109",
+      "mode": "100644",
+      "bytes": 10153
+    },
+    "scripts/llama_server.py": {
+      "oid": "2751f7c48c4d223738ed8d8cec5a1d657dca6c99",
+      "mode": "100644",
+      "bytes": 24178
+    },
+    "scripts/model_guard.py": {
+      "oid": "4f7db28c9cd800f2f9430fcb8590d7108fbfa66a",
+      "mode": "100644",
+      "bytes": 11948
+    },
+    "scripts/native_model_bootstrap.py": {
+      "oid": "699be15a1a56a0a66b0afa481143286b96408416",
+      "mode": "100644",
+      "bytes": 4797
+    },
+    "scripts/verify_model_listeners.py": {
+      "oid": "57d04ba4c956db8971ba2bac116c02e3b68119bf",
+      "mode": "100644",
+      "bytes": 9550
+    },
+    "src/neurobuild/__init__.py": {
+      "oid": "8bb07a57a5f9b27ed203576ca7f44bfb5970cd2c",
+      "mode": "100644",
+      "bytes": 84
+    },
+    "src/neurobuild/application/__init__.py": {
+      "oid": "423b3c8f8f54f5dbfeec1753fc2bc75640808088",
+      "mode": "100644",
+      "bytes": 85
+    },
+    "src/neurobuild/application/requirement_facts.py": {
+      "oid": "3a65e0ff49589aba84c8f3289f65f4370f03a323",
+      "mode": "100644",
+      "bytes": 4976
+    },
+    "src/neurobuild/application/requirement_generation.py": {
+      "oid": "90f4aa00de9e3ffd68269b1a273dfc6c899f66ae",
+      "mode": "100644",
+      "bytes": 7055
+    },
+    "src/neurobuild/application/requirements.py": {
+      "oid": "4cc952edba91a8755cf0c56e18cb2b625d6153c0",
+      "mode": "100644",
+      "bytes": 12385
+    },
+    "src/neurobuild/application/workflow.py": {
+      "oid": "5efc3ca6f901120cf2dfa9011c1a66d798388a83",
+      "mode": "100644",
+      "bytes": 16129
+    },
+    "src/neurobuild/domain/__init__.py": {
+      "oid": "038c1c6ccd6cb9cc11105db69f9034eca24615c2",
+      "mode": "100644",
+      "bytes": 86
+    },
+    "src/neurobuild/domain/contracts.py": {
+      "oid": "565104e1c905ffde4d71f44263e281ddcac3dbd3",
+      "mode": "100644",
+      "bytes": 13912
+    },
+    "src/neurobuild/domain/errors.py": {
+      "oid": "040f7856674d9e102d90226fd689d3333a3cf021",
+      "mode": "100644",
+      "bytes": 310
+    },
+    "src/neurobuild/infrastructure/__init__.py": {
+      "oid": "87e351806c96c914cc95361f75f0963ca6583653",
+      "mode": "100644",
+      "bytes": 79
+    },
+    "src/neurobuild/infrastructure/artifacts.py": {
+      "oid": "5ebe0b81644fdc467bc66b37663be543096171d2",
+      "mode": "100644",
+      "bytes": 12722
+    },
+    "src/neurobuild/infrastructure/ifc_engine.py": {
+      "oid": "bf2bace4607a24bb68350e5bd35d71d94c61ba93",
+      "mode": "100644",
+      "bytes": 16860
+    },
+    "src/neurobuild/infrastructure/local_model.py": {
+      "oid": "7acc557b4ca26c794f4e31e1fba573c1f1d4d6d4",
+      "mode": "100644",
+      "bytes": 23481
+    },
+    "src/neurobuild/infrastructure/persistence.py": {
+      "oid": "32ead3b0e10dd93bcc3130cd6d88aa3959e9b9f2",
+      "mode": "100644",
+      "bytes": 13732
+    },
+    "src/neurobuild/infrastructure/staged_requirement.py": {
+      "oid": "54a0ff802044e8319bfe239267f970b7ce58f7fb",
+      "mode": "100644",
+      "bytes": 11980
+    }
+  }
+}

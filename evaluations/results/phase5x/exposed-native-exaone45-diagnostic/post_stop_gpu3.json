@@ -1,0 +1,52 @@
+{
+  "kind": "EXAONE45_POST_STOP_GPU3_OBSERVATION",
+  "own_guard_pid": 3622309,
+  "own_child_pid": 3622453,
+  "samples": [
+    {
+      "at_utc": "2026-09-20T10:55:50.441551+00:00",
+      "gpu": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T10:55:51.017954+00:00",
+      "gpu": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T10:55:51.574534+00:00",
+      "gpu": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T10:55:52.130160+00:00",
+      "gpu": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T10:55:52.685644+00:00",
+      "gpu": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    }
+  ],
+  "baseline_used_mib": 3965,
+  "baseline_free_mib": 36373,
+  "own_vram_returned_to_baseline": true,
+  "other_process_changes": 0,
+  "gpu_fallback": false
+}

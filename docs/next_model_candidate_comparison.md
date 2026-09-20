@@ -2,7 +2,9 @@
 
 > 후속 상태: Gemma4-31B 사전 검증 뒤 첫120개 품질 gate가 rawFP1/unsafe2로 실패했다.
 > 아래 내용은 선택 당시의 비교 기록이다. 현재는 같은 후보 반복·V2 없이 EXAONE4.5의 조건부
-> metadata/source 검토를 진행한다. [최신 상태](STATUS.md), [Gemma 결과](reports/phase5x_native_gemma4_diagnostic_report.md).
+> metadata/source 검토와 첫 단회까지 완료했으나 EXAONE도 semantic106/120으로 FAIL했다.
+> 같은 후보 반복·V2 없이 다른 모델을 비교한다. [최신 상태](STATUS.md),
+> [EXAONE 결과](reports/phase5x_native_exaone45_diagnostic_report.md), [Gemma 결과](reports/phase5x_native_gemma4_diagnostic_report.md).
 
 상태: **METADATA/SOURCE_REVIEW_ONLY — 미채택, 다운로드·설치·기동·품질 호출 없음.**
 Qwen3.8-27B의 첫 V2 결과는 semantic 73/80, raw READY FP 1/40,
