@@ -1165,3 +1165,21 @@ resourcea4a4ce4a0e5615704cc4fdf9ff391d1ad4ca90dbfacc8dd5e1d0a55b1d35b68b/17.2571
 3328uncached+768/cached4095/limit, epochaggregatepeak17960/minfree18414/floor7275를 유지했다.
 Startup HTTP생성0과 내부 native기본warmup을 구분해 기록했다. 품질호출0/미사용80접근0.
 Guard는 현재 같은 epoch로 감시 중이며 첫120×1+warmup5 동결·push를 준비한다.
+
+
+### 2026-09-20 — GLM epoch1 시간 제한 종료와 평가0회 보존
+
+Runtime checkpointc57489f48559b7a61af2c96c9ace01ddae4f19be push·원격일치 확인.
+단회 freezer/replay의12개 새 metadata 변조 거절 검사는 PASS이며 기존 replay3함수 AST는 불변이다.
+Runtime README 수정으로 바뀐 integrity pin1곳만58fb→368f로 갱신했다.
+기존 helper1a794/원본metadata60cca를 별도 보존하고 b5def/metadata2bb329의 pin-only 변경을 기록했다.
+독립 최종 변경 검토66d68c2740d681903ea62628aebc808878d990879a8c8cd8183fed1cc2bbe2c6 PASS.
+평가 freeze publication과 첫 품질 호출은 아직 수행하지 않았다.
+
+그동안 epoch1 own guard가 TIME_LIMIT7200.766s에서 자체 child TERM/잔여KILL 정리 후exit0/reaped로 종료됐다.
+Finalguard792b8585672b82d6a702ef3600149fc19d4250fe5f48c795eb441de1eb3d1e86,
+13042표본/aggregatepeak17960/minfree18414MiB. 별도 stophelper는 실행하지 않았다.
+종료후5표본 모두free36373/used3965/util0, own guard/child PID부재,
+poststopad2757dad2b86663e54291570097dc4755437a28a55a8c839305da08b0491023.
+품질호출0/다른사용자신호0/GPU0·1·2 fallback0.
+완료 public/resource/CPU 검사를 재실행하지 않고 새epoch2 identity/현재예산만 연결해 첫단회를 준비한다.

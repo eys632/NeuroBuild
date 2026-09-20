@@ -1,0 +1,41 @@
+{
+  "status": "DRAFT_STATIC_CHECK_PASS_NOT_EXECUTION_READY",
+  "kind": "GLM47_FIRST_DIAGNOSTIC_DRAFT_STATIC_REVIEW",
+  "source_sha256": {
+    "var/research/freeze_native_exaone45_diagnostic_v2.py": "268a3437cfe09494e6b39252c7c1a837ec3c099eba1e30b4c812f95b7aac6d82",
+    "var/review-tools/replay_native_exaone45_exposed_v4.py": "177bc501c5be5bb9e240414ec49216b99d8621d9306250eb1446b73dc05dca3f",
+    "var/research/freeze_native_glm47_diagnostic.py": "70e947834a6df59b57af22d17b348b225db5a7dfd9bcd56406b50c7e3c58757f",
+    "var/research/replay_native_glm47_exposed.py": "05fc26e1986ab08ae364a4981c8f67f6c999fb4b9adf5aeb18d15eee6e2813cf"
+  },
+  "syntax_compile_only": true,
+  "replay_core_ast_exact": [
+    "load_snapshot",
+    "replay_row",
+    "replay_groups"
+  ],
+  "freezer_helpers_ast_exact": [
+    "require",
+    "checked",
+    "digest",
+    "load",
+    "validate_current"
+  ],
+  "expected_candidate_specific_difference": "cpu_references removes EXAONE template override and raw Unicode references; uses new GLM proof_refs only. An initial overbroad AST equality assertion included this changed function and failed; this was a review check correction, not code or runtime behavior change.",
+  "gate_targets_exact_original": true,
+  "unconditional_main_first_statement_pending": true,
+  "artifact_schemas_pending": [
+    "saved GLM aggregate archive",
+    "final runtime collector/config",
+    "startup5/public1/resource1",
+    "final stable archive inventory",
+    "new replay evidence checks"
+  ],
+  "helper_imports": 0,
+  "helper_main_calls": 0,
+  "core_replay_calls": 0,
+  "testsuite_runs": 0,
+  "dataset_or_result_reads": 0,
+  "weight_reads": 0,
+  "native_gpu_http_model_calls": 0,
+  "claims": "Source syntax/AST and fail-closed draft structure only. No actual prerequisite validation or eligibility."
+}

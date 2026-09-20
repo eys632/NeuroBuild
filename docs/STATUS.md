@@ -1,6 +1,6 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 KST — GLM 실제 CPU·GPU 실행 PASS, 첫 단회 평가 동결 준비**.
+갱신: **2026-09-20 KST — GLM 최초 실행 PASS 보존, epoch1 시간 제한 종료·GPU3 반환 확인**.
 Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 미채택, Phase6 미시작**이다.
 
 | 항목 | 현재 상태 |
@@ -8,7 +8,7 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
 | GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 진단동결 `c466013439e6d202e627ed48c7a4ed1e45cf82c0` push·원격 일치 확인; EXAONE 실패·종료 `daeccacee7bb1912e03c8be696572b80b12c9f4c` push·원격 일치 확인 |
-| 현재 작업 | **GLM startup·공개입력·최대문맥 자원 검사 PASS 보존, 첫120×1+warmup5 동결 준비** |
+| 현재 작업 | **GLM 완료 검사와 epoch1 자동 종료 보존, 검사 재사용을 명시한 첫120×1+warmup5 동결 준비** |
 | 최근 후보 | EXAONE4.5-33B Q4_K_M: 첫 의미 정확도 gate FAIL. Gemma4-31B 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
@@ -16,7 +16,7 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
 | 회귀 검증 | **416 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless19.398초. GLM 명시 profile·실제 metadata의 정확한 모델/type 연결 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
-| 모델 실행 | Qwen/Gemma/EXAONE 서버 STOPPED. 새 GLM own guard3646979/child3647152, GPU3만 사용하며 자원 감시 중 |
+| 모델 실행 | Qwen/Gemma/EXAONE/GLM epoch1 모두 STOPPED. GLM TIME_LIMIT7200.766초, child exit0/reaped; 반환 후5회 free36373/used3965/util0 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
 | 다음 검증 | 새 GLM 첫120×1+warmup5 사전동결·commit/push 후 품질 평가. 현재 품질 호출0, 이전 실패 후보 반복0회 |
 
@@ -42,9 +42,13 @@ Vocab proof SHA `f3e31a724dcec94f6d3b285a9dd793d6a8b6c91c3c8c475a63c25709c94d6cf
 새 GLM 최초 startup/public1/resource1 모두 PASS: 공개5.146885855초,
 문맥3328+768 경계17.257125599초, epoch aggregate peak17960/minfree18414MiB다.
 기동 직전5회 free36373/util0에서 예상28672+margin7275가 들어갔고 안전 floor를 유지했다.
-이후 guard가 자체 서버만 감시한다. 아직 품질 호출0이며 미사용80개는 접근하지 않았다.
+사전동결 준비 중 guard가7200초 한도에 도달해 자체 서버를 종료했다. 최종13042표본에서
+peak17960/minfree18414MiB, child exit0/reaped였다. 반환 후5회 free36373/used3965/util0을 확인했다.
+아직 품질 호출0이며 미사용80개는 접근하지 않았다. 완료한 공개입력·자원·CPU 검사는 반복하지 않고,
+새 평가 epoch의 자체 process identity·현재 GPU 예산만 연결한 뒤 첫 단회를 시작한다.
 [실행 보고서](reports/phase5x_glm47_flash_runtime_preflight_report.md),
 [첫 단회 계획](glm47_flash_diagnostic_plan.md). 비필수 최적화는 future optimization이다.
+[Epoch1 종료 증거](../evaluations/results/phase5x/glm47-flash-epoch1-time-limit-stop/README.md).
 
 ## 보존한 단회 결과와 오류3건
 

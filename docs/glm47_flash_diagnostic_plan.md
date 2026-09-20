@@ -1,7 +1,8 @@
 # GLM-4.7-Flash 첫 단회 진단 계획
 
-상태: CPU 계약 PASS, GPU 실행 전, 사전동결 전, 품질 호출0. Phase5.x 미완료·모델 미채택이다.
-실제 모델별 runtime 검증과 동결 commit/push가 끝난 뒤에만 최초 평가를 시작한다.
+상태: CPU·최초 GPU runtime 계약 PASS, epoch1 시간 제한 종료, 사전동결 전, 품질 호출0.
+Phase5.x 미완료·모델 미채택이다. 완료한 runtime 증거를 재사용하고 새 own epoch와
+현재 GPU 예산을 연결한 동결 commit/push 뒤에만 최초 평가를 시작한다.
 
 기존 노출120개에 새 GLM 후보를 한 번 적용해 1차 Quality Gate를 확인한다.
 Dataset은 `requirement_hardening_v1_exposed_regression.jsonl`이며 unseen이 아니다.
@@ -40,8 +41,11 @@ Native parser는 nonthinking 요청에서도 완결된 reasoning을 별도 필�
 Warmup5는 별도 기록하고 평가120×1만 수행한다. CLI 기본 trials3을 사용하지 않고
 `--trials 1 --warmups 5`를 명시한다. 첫 warmup 전 source/profile/sampling/model/tokenizer/
 runtime epoch/prompt/schema/dataset/scorer/gate를 해시로 동결하고 clean commit/push·원격 일치를 확인한다.
-이미 완료한 공통 runtime 검사는 반복하지 않는다. 새 GLM의 startup/public1/resource1을 확인하고
-같은 epoch의 identity·남은 시간·resource guard 상태를 평가 직전에 연결한다.
+이미 완료한 공통 runtime 검사와 GLM epoch1의 startup/public1/resource1을 반복하지 않는다.
+Epoch1은 평가 전7200초 제한으로 자체 종료했다. 새 epoch2는 동일 model/source/template/profile/
+메모리 설정을 유지하고 log/report 경로와 process identity만 구분한다. 새 startup의 자체 listener와
+health/models/props를 확인해 epoch1의 완료 public/resource 증거에 명시적으로 연결한다.
+새 평가 epoch의 identity·남은 시간·resource guard 상태를 첫 요청 직전에 확인한다.
 평가 warmup5는 HTTP 평가 요청이다. 별도로 native 기본 startup empty-run warmup이 켜져 있으며
 이는 평가 호출 수나 품질 분모에 포함하지 않는다. Startup의 HTTP 생성0회는 내부 decode0회를 뜻하지 않는다.
 

@@ -1,0 +1,30 @@
+{
+  "kind": "GLM47_EPOCH1_TIME_LIMIT_STOP_ARCHIVE",
+  "quality_calls": 0,
+  "files": {
+    "final_guard.json": {
+      "source_path": "var/reports/glm47-flash-native-epoch1.json",
+      "bytes": 5363,
+      "sha256": "792b8585672b82d6a702ef3600149fc19d4250fe5f48c795eb441de1eb3d1e86"
+    },
+    "post_stop_gpu3.json": {
+      "source_path": "var/reports/glm47-flash-epoch1-post-stop-gpu3.json",
+      "bytes": 1504,
+      "sha256": "ad2757dad2b86663e54291570097dc4755437a28a55a8c839305da08b0491023"
+    },
+    "launch-cli.log.txt": {
+      "source_path": "var/research/glm47-native-launch-cli.log",
+      "bytes": 5363,
+      "sha256": "792b8585672b82d6a702ef3600149fc19d4250fe5f48c795eb441de1eb3d1e86"
+    },
+    "launch-cli.stderr.txt": {
+      "source_path": "var/research/glm47-native-launch-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "README.md": {
+      "bytes": 824,
+      "sha256": "c9de5c59bf94c4d2cf99bccae1aec5e5f1d3340e514a64439878aa2b895bae86"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "kind": "GLM47_EPOCH1_POST_AUTOMATIC_STOP_GPU3",
+  "samples": [
+    {
+      "at_utc": "2026-09-20T14:38:39.999453+00:00",
+      "physical_gpu": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "total_mib": 40960,
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T14:38:41.077145+00:00",
+      "physical_gpu": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "total_mib": 40960,
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T14:38:42.136387+00:00",
+      "physical_gpu": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "total_mib": 40960,
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T14:38:43.215160+00:00",
+      "physical_gpu": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "total_mib": 40960,
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T14:38:44.272553+00:00",
+      "physical_gpu": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "total_mib": 40960,
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    }
+  ],
+  "own_guard_pid_absent": true,
+  "own_child_pid_absent": true,
+  "foreign_process_signals": 0,
+  "quality_calls_before_stop": 0,
+  "stop_reason": "TIME_LIMIT"
+}

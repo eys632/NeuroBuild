@@ -1,0 +1,47 @@
+{
+  "kind": "GLM47_DIAGNOSTIC_METADATA_CONTROLS",
+  "status": "PASS_NEW_METADATA_CONTROLS_ONLY",
+  "helper_sha256": "b5defcb12bbab663fb95284e2e7048a80eb7a10a8604fadef0fd87b46405f903",
+  "replay_sha256": "077ea06179ae4504e803ece33c87da8638c3f413e59fd8f6d5a3c269788f4ff0",
+  "selfcheck_sha256": "ab36916efa4d3d5203f4369e1aa0241050800a56f47d680321da74f1b701bff7",
+  "core_ast_exact": [
+    "load_snapshot",
+    "replay_row",
+    "replay_groups"
+  ],
+  "core_functions_invoked": 0,
+  "saved_new_runtime_metadata_validation": "PASS",
+  "tampering_rejected": [
+    "wrong_variant",
+    "official_parity19",
+    "cpu_source_changed",
+    "public_vocab_missing",
+    "input_repair",
+    "context_overflow",
+    "wrong_resource_token",
+    "sampler_order",
+    "wrong_epoch",
+    "wrong_props_template",
+    "missing_internal_warmup_scope",
+    "resource_wrong_count"
+  ],
+  "dataset_result_body_reads": 0,
+  "public20_reruns": 0,
+  "test_suite_reruns": 0,
+  "native_gpu_http_model_calls": 0,
+  "freeze_created": false,
+  "scope": "Passed maps and saved small CPU/runtime metadata only; no live guard, no result replay, no candidate quality claim.",
+  "original_controls_helper_sha256": "1a794268e053020fb76679a8da3131a1ba68bfe0286ac0338713082530d52628",
+  "post_control_change": {
+    "kind": "ARCHIVE_INTEGRITY_PIN_ONLY",
+    "old_pin": "58fb3f435f021a763e20ddfdfdb42e47dbe981ef96e552fd4b00bdc6566a8b5c",
+    "new_pin": "368f53421a45e8ab99f1e0f44a37045cd2f47258797fbf84677aa27854a49bc3",
+    "reason": "Archive README launch-approval wording changed to historical root resource decision; exact originals unchanged.",
+    "controls_rerun": false,
+    "changed_function": "validate_fixed",
+    "tested_metadata_validation_functions_unchanged": true,
+    "original_proof_path": "var/research/glm47-freeze-before-integrity-pin-update/glm47-diagnostic-v2-metadata-proof.json",
+    "original_proof_sha256": "60cca3af1481770be6ebf7ad57af8f2c794de951998750babc527feb65fa11a0",
+    "updated_at_utc": "2026-09-20T14:36:37.744873+00:00"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "kind": "GLM47_DIAGNOSTIC_DEFINITION_ARCHIVE",
+  "original_exact_copies": 11,
+  "files": {
+    "freeze_native_glm47_diagnostic.py": {
+      "source_path": "var/research/freeze_native_glm47_diagnostic.py",
+      "bytes": 16511,
+      "sha256": "70e947834a6df59b57af22d17b348b225db5a7dfd9bcd56406b50c7e3c58757f"
+    },
+    "replay_native_glm47_exposed.py": {
+      "source_path": "var/research/replay_native_glm47_exposed.py",
+      "bytes": 28459,
+      "sha256": "05fc26e1986ab08ae364a4981c8f67f6c999fb4b9adf5aeb18d15eee6e2813cf"
+    },
+    "glm47-diagnostic-draft-static-proof.json": {
+      "source_path": "var/research/glm47-diagnostic-draft-static-proof.json",
+      "bytes": 1811,
+      "sha256": "0e0072e31ebcb2ebf08a1f7c3dd1f1a692956f199f17880322470bb96d28b774"
+    },
+    "glm47-diagnostic-draft-evidence-plan.md": {
+      "source_path": "var/research/glm47-diagnostic-draft-evidence-plan.md",
+      "bytes": 5263,
+      "sha256": "261aec939950b561b9be0c3a83178ed93948a4d7b17de49e725d0ed58b68ea2e"
+    },
+    "freeze_native_glm47_diagnostic_v2.py": {
+      "source_path": "var/research/freeze_native_glm47_diagnostic_v2.py",
+      "bytes": 25447,
+      "sha256": "b5defcb12bbab663fb95284e2e7048a80eb7a10a8604fadef0fd87b46405f903"
+    },
+    "replay_native_glm47_exposed_v2.py": {
+      "source_path": "var/research/replay_native_glm47_exposed_v2.py",
+      "bytes": 41144,
+      "sha256": "077ea06179ae4504e803ece33c87da8638c3f413e59fd8f6d5a3c269788f4ff0"
+    },
+    "check_glm47_diagnostic_v2.py": {
+      "source_path": "var/research/check_glm47_diagnostic_v2.py",
+      "bytes": 5158,
+      "sha256": "ab36916efa4d3d5203f4369e1aa0241050800a56f47d680321da74f1b701bff7"
+    },
+    "glm47-diagnostic-v2-metadata-proof.json": {
+      "source_path": "var/research/glm47-diagnostic-v2-metadata-proof.json",
+      "bytes": 2025,
+      "sha256": "2bb329a77856fbc6ce40f46772ea8600e065944139a6cced164cceb9d7985e6f"
+    },
+    "before-integrity-pin-update/freeze_native_glm47_diagnostic_v2.py": {
+      "source_path": "var/research/glm47-freeze-before-integrity-pin-update/freeze_native_glm47_diagnostic_v2.py",
+      "bytes": 25447,
+      "sha256": "1a794268e053020fb76679a8da3131a1ba68bfe0286ac0338713082530d52628"
+    },
+    "before-integrity-pin-update/glm47-diagnostic-v2-metadata-proof.json": {
+      "source_path": "var/research/glm47-freeze-before-integrity-pin-update/glm47-diagnostic-v2-metadata-proof.json",
+      "bytes": 1142,
+      "sha256": "60cca3af1481770be6ebf7ad57af8f2c794de951998750babc527feb65fa11a0"
+    },
+    "README.md": {
+      "bytes": 1166,
+      "sha256": "b67b983dcec7f1963c2e1ae47ebc67ce6d5fe1b09e175b6732ba65c5e590c319"
+    },
+    "glm47-diagnostic-final-independent-review.json": {
+      "source_path": "var/research/glm47-diagnostic-final-independent-review.json",
+      "bytes": 1483,
+      "sha256": "66d68c2740d681903ea62628aebc808878d990879a8c8cd8183fed1cc2bbe2c6"
+    }
+  }
+}

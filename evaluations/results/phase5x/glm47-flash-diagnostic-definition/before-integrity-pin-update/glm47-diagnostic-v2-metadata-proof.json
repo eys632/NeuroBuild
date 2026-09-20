@@ -1,0 +1,34 @@
+{
+  "kind": "GLM47_DIAGNOSTIC_METADATA_CONTROLS",
+  "status": "PASS_NEW_METADATA_CONTROLS_ONLY",
+  "helper_sha256": "1a794268e053020fb76679a8da3131a1ba68bfe0286ac0338713082530d52628",
+  "replay_sha256": "077ea06179ae4504e803ece33c87da8638c3f413e59fd8f6d5a3c269788f4ff0",
+  "selfcheck_sha256": "ab36916efa4d3d5203f4369e1aa0241050800a56f47d680321da74f1b701bff7",
+  "core_ast_exact": [
+    "load_snapshot",
+    "replay_row",
+    "replay_groups"
+  ],
+  "core_functions_invoked": 0,
+  "saved_new_runtime_metadata_validation": "PASS",
+  "tampering_rejected": [
+    "wrong_variant",
+    "official_parity19",
+    "cpu_source_changed",
+    "public_vocab_missing",
+    "input_repair",
+    "context_overflow",
+    "wrong_resource_token",
+    "sampler_order",
+    "wrong_epoch",
+    "wrong_props_template",
+    "missing_internal_warmup_scope",
+    "resource_wrong_count"
+  ],
+  "dataset_result_body_reads": 0,
+  "public20_reruns": 0,
+  "test_suite_reruns": 0,
+  "native_gpu_http_model_calls": 0,
+  "freeze_created": false,
+  "scope": "Passed maps and saved small CPU/runtime metadata only; no live guard, no result replay, no candidate quality claim."
+}

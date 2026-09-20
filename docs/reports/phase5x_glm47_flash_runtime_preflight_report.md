@@ -1,5 +1,9 @@
 # GLM-4.7-Flash GPU3 최초 실행
 
+> 후속 상태: 첫 품질 평가 전 epoch1이7200초 제한으로 자동 종료됐다. Child exit0/reaped,
+> GPU3 반환 후5회 free36373/used3965/util0을 확인했다. 품질 호출0이며 아래 완료 검사는 재사용한다.
+> [종료 기록](../../evaluations/results/phase5x/glm47-flash-epoch1-time-limit-stop/README.md).
+
 2026-09-20. 새 GLM 후보의 startup·공개 입력1건·최대 문맥 자원 검사1건은 PASS다.
 품질 평가 호출은 아직0이며 Phase5.x 미완료·모델 미채택·Phase6 미시작이다.
 완료한 이전 모델 검사와 평가·독립 재생은 반복하지 않았다.
@@ -44,7 +48,11 @@ identity receipt `7ef9e56d1e794ff44531a7565aaae215f2cdaabe42c8b7d14c457706ebff58
 Resource의 truncated=true는4096 경계에서 limit까지 생성한 의도된 자원 검사 결과다.
 품질 응답의 잘림 PASS로 해석하지 않는다. 공개/resource 응답 본문은 저장하지 않았다.
 수치는 epoch 전체 aggregate 변화이며 이 POST만의 VRAM이나 process별 peak가 아니다.
-종료 후 최종 관측값과 VRAM 반환을 별도로 보존한다.
+Epoch1 최종7200.766초/13042표본에서도 peak17960/minfree18414MiB였다.
+감시기가 자신의 child group만 TERM/잔여 KILL 정리했고 exit0/reaped로 회수했다.
+Final guard SHA `792b8585672b82d6a702ef3600149fc19d4250fe5f48c795eb441de1eb3d1e86`,
+반환5표본 SHA `ad2757dad2b86663e54291570097dc4755437a28a55a8c839305da08b0491023`다.
+준비한 별도 stop-request helper는 실행하지 않았다. 다른 process 신호는0이다.
 
 Native 기본 empty-run startup warmup은 켜져 있다. Source의 기본값과 launch argv로 확인한 것이며
 실제 decode counter 측정은 아니다. Startup의 model_inference_calls0은 명시적 HTTP 생성0회라는 범위다.

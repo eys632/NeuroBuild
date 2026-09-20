@@ -1,0 +1,38 @@
+{
+  "kind": "GLM47_DIAGNOSTIC_FREEZER_REPLAY_FINAL_READ_REVIEW",
+  "status": "PASS",
+  "review_scope": "Static source/hash/AST and saved metadata only; no helper import/main or tests/replay/data bodies/model/native/HTTP/GPU execution",
+  "freezer_sha256": "b5defcb12bbab663fb95284e2e7048a80eb7a10a8604fadef0fd87b46405f903",
+  "replay_sha256": "077ea06179ae4504e803ece33c87da8638c3f413e59fd8f6d5a3c269788f4ff0",
+  "metadata_controls_receipt_sha256": "2bb329a77856fbc6ce40f46772ea8600e065944139a6cced164cceb9d7985e6f",
+  "previous_freezer_sha256": "1a794268e053020fb76679a8da3131a1ba68bfe0286ac0338713082530d52628",
+  "exact_delta": {
+    "old_pin": "58fb3f435f021a763e20ddfdfdb42e47dbe981ef96e552fd4b00bdc6566a8b5c",
+    "new_pin": "368f53421a45e8ab99f1e0f44a37045cd2f47258797fbf84677aa27854a49bc3",
+    "occurrences": 1,
+    "other_byte_changes": 0
+  },
+  "tested_metadata_functions_unchanged": true,
+  "replay_core_ast_unchanged": [
+    "load_snapshot",
+    "replay_row",
+    "replay_groups"
+  ],
+  "protocol_review": {
+    "trials": 120,
+    "trials_per_case": 1,
+    "warmups": 5,
+    "expected_http_calls": 125,
+    "ready_denominator": 62,
+    "nonready_denominator": 58,
+    "schema_required": 120,
+    "semantic_required_at_least": 114,
+    "raw_ready_fp_required": 0,
+    "unsafe_required": 0,
+    "unknown_prevents_pass": true
+  },
+  "actual_cpu_and_seven_runtime_receipts_bound": true,
+  "freeze_published_by_reviewer": false,
+  "controls_rerun": false,
+  "blockers": []
+}
