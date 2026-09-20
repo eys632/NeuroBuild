@@ -1,0 +1,125 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/README.md": {
+      "sha256": "d3f5cd8d3cbd1e82a0be56197b74f72cb5e59a8b8033186232c4658bfa8336e3",
+      "bytes": 2771
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/backend-regression.json": {
+      "sha256": "f0a3c3aea4821e96522c0a84668f913111b36164bb5e163770021aedd1f732d6",
+      "bytes": 681
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/gpu3-vmm-capability.json": {
+      "sha256": "df019ecec2d0f07227be3612445d4893f793bd1d79af487b7eddb64795c0e2d6",
+      "bytes": 3250
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/gpu3-vmm-granularity.json": {
+      "sha256": "6f2a34f83dcb284de6ed8451dac4e2268e60102ae381a47146d3ca2e22bb8033",
+      "bytes": 3295
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/llama-cuda-build-verified.json": {
+      "sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+      "bytes": 62325
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/llama-cuda-build.json": {
+      "sha256": "0c78c5b9a927408986e024d3ef5adad6cb420d3a9aaae8d88be89a8eb2f19654",
+      "bytes": 7296
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/llama-native-contract-cpu-build-v2.json": {
+      "sha256": "ccb6a99305f9a62c1e2f9d1572380e428d20341a73f5dd65af4222f8b850aa36",
+      "bytes": 8803
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/llama-native-contract-cpu-build-v3.json": {
+      "sha256": "8b1bb3639ef691ea0464965ead142743f743004f2fb7ac9200ad136752733b16",
+      "bytes": 9071
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/llama-native-contract-cpu-build-v4.json": {
+      "sha256": "f149c7eda01dda9b36f4dba9327cb368bbdf2e3c591fa7db287b47787be7aea0",
+      "bytes": 9340
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/llama-rpath-relink.json": {
+      "sha256": "ab91dd1f2f39a07f4f5fd7d652a98db30225fa4c60fbcae03a6ecf208efa46c5",
+      "bytes": 22767
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/llama-source-bootstrap.json": {
+      "sha256": "4802877b1f067c17a3fb2e4fe1cc0f3605773b6fba56900aa2c80699739751f6",
+      "bytes": 2989
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native-client-legacy-wire-proof.json": {
+      "sha256": "12dca2839f71b0b5e006760013379595c2cd81b7cc26e38eb9a2d34a3a70184e",
+      "bytes": 5396
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native-context-raw-wrapper-cpu-proof.json": {
+      "sha256": "a17979d0c0fb3843e88fa3105bf1e6f1d7c2e91280469efdbc0d818a831837a6",
+      "bytes": 1216
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native-contract-cpu-public.json": {
+      "sha256": "31e9288bf9c6c6411d507073f57c10090fcf9d9b2dff797e32e962b2b3922547",
+      "bytes": 2031
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native-contract-raw-cpu-context.json": {
+      "sha256": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be",
+      "bytes": 7163
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native-runtime-probe-preparation-raw-v2.json": {
+      "sha256": "a1498cd945e0232473816c74dfcac3b2edfabd4130c42b0e029927d32676c1ab",
+      "bytes": 1057
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native-vocab-public-probe-v4-raw-diagnostic.json": {
+      "sha256": "12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d",
+      "bytes": 2535
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native-vocab-public-probe-v4.json": {
+      "sha256": "b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0",
+      "bytes": 1878
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native_contract_cpu_independent_review.md": {
+      "sha256": "9b008bb801c5c31d96790850f926de85883388fd5b698fe8e6476d88f9617c85",
+      "bytes": 6913
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native_guard_cpu_proof_v2.json": {
+      "sha256": "84b403e36beea1337433be6d2c3b7b9bca1bd563ab1a7eb38c42cfba80624c3f",
+      "bytes": 3100
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native_guard_independent_review.md": {
+      "sha256": "711eaaccf0febd323ded8c82698d902ac5d61bbce6eda0b7a5923b13c61d401d",
+      "bytes": 7461
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native_raw_unicode_candidate_review.md": {
+      "sha256": "21f1fadaa224360f263d6f60a3821d3d2cc472afb9dd51ca32e7b3d07946e9b5",
+      "bytes": 7511
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native_tokenizer_parity_review.md": {
+      "sha256": "f2d9e8908d58eb70b9d22a80e5e5f248533809a188a2738974cd83e7422e2c2f",
+      "bytes": 4585
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native_transport_review.md": {
+      "sha256": "e8fd9b0a56ce530623e34334df232d045c89602082413965798a4456d9c8a190",
+      "bytes": 6195
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/native_whole_vram_budget_review.md": {
+      "sha256": "174df65b33a92504ff981b069abb44559ce74ddf83ff8b3d752c3ad6eb0eee81",
+      "bytes": 16950
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/qwen38-download-guard-cpu-proof.json": {
+      "sha256": "d7f89ebb9047becd8033390da406e4e63431af0fb1f8cbc685e6b03789519683",
+      "bytes": 3055
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/qwen38-gguf-header.json": {
+      "sha256": "ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a",
+      "bytes": 270543
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/qwen38-guarded-download.json": {
+      "sha256": "19d37f9ec0b121e391877d6f414d94b90d3a06576ffae22beb7872f0b4419201",
+      "bytes": 2875
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/qwen38-header-inspector-selftest-final.json": {
+      "sha256": "858ce493cf8c73fffd9a5d178b833494b4b85191d542c68f6f72204d8d08f8c6",
+      "bytes": 838
+    },
+    "evaluations/results/phase5x/native-runtime-cpu-preflight/unused-moe-weight-cache-cleanup.json": {
+      "sha256": "7e6024c2cbc148eec7861fd97da531c324bfd98706919407b1699d32b5652ee8",
+      "bytes": 2126
+    }
+  }
+}

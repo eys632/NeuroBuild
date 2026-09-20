@@ -1,0 +1,29 @@
+{
+  "kind": "CPU_VALIDATOR_RESUME_PREPARATION",
+  "status": "PASS_STATIC_AND_PURE_VALIDATORS_ONLY",
+  "checks": [
+    "actual_pinned_previous_failure_valid",
+    "rejected_status",
+    "rejected_helper_sha256",
+    "rejected_cuda_visible_devices",
+    "rejected_native_validator_executed",
+    "rejected_model_or_weights_loaded",
+    "rejected_cpp_pin",
+    "rejected_GPU_flag",
+    "rejected_phase_exit",
+    "rejected_cleanup",
+    "actual_cpu_cache_commands_valid"
+  ],
+  "check_count": 11,
+  "main_executed": false,
+  "build_native_gpu_model_network_calls": 0,
+  "helper_sha256": "e28444627ebd1b739c7503555025696aaccee46b1803a03f79cc250a6f5c6f8f",
+  "active_builder_sha256": "fc9a7aa5af9a1cb1d9a3808ef9ce631fec5bd45a6d0c2f93f21989dbef1b08c0",
+  "corrected_cpp_sha256": "4cb5fe54e3b69ca6769601dd4a2ee2e845b5c4430d1b8660374daaa25ae5e918",
+  "original_failure_inputs": {
+    "var/reports/llama-native-contract-cpu-build.json": "e85d4027ba0e01f14ff70e5a2b7325a916d46ef736a0401374b79801553910ad",
+    "var/logs/llama-native-contract-cpu-build.log": "bea58437fdb12008d805a174edd877d53fd7f0d58b2c6cfc6ffdbfece875c2bf",
+    "var/runtime-build/llama-native-contract-cpu/CMakeCache.txt": "f8c7d2c39cfa01c078b0eaeb618e6b0e91fa67f00771d4b1f9106f9b72909138",
+    "var/runtime-build/llama-native-contract-cpu/compile_commands.json": "83051d57e1a71be7ebd18be8b97bd64e4d43bd4ff11e1cb532891b212a341aeb"
+  }
+}

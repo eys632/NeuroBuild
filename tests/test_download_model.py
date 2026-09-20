@@ -206,6 +206,52 @@ class DownloadModelTests(unittest.TestCase):
         self.assertFalse(self.target.exists())
         self.network.assert_not_called()
 
+    def test_completed_partial_publishes_without_overwrite_and_retains_resume_arguments(self):
+        self.destination.mkdir(parents=True)
+        self.partial.write_bytes(self.content[:5])
+
+        def transfer(command, **kwargs):
+            self.assertIn('--continue-at', command)
+            self.assertEqual(command[command.index('--continue-at') + 1], '-')
+            self.assertEqual(command[command.index('--output') + 1], str(self.partial))
+            self.partial.write_bytes(self.content)
+
+        self.network.side_effect = transfer
+        self.call()
+        self.assertEqual(self.target.read_bytes(), self.content)
+        self.assertEqual(self.target.stat().st_nlink, 1)
+        self.assertFalse(self.partial.exists())
+        self.assertEqual(json.loads(self.metadata.read_text()), self.manifest)
+
+    def test_target_created_after_download_never_gets_replaced_and_partial_survives(self):
+        competing = b'new independent target'
+
+        def transfer(*args, **kwargs):
+            self.partial.write_bytes(self.content)
+            self.target.write_bytes(competing)
+
+        self.network.side_effect = transfer
+        with self.assertRaises(FileExistsError):
+            self.call()
+        self.assertEqual(self.target.read_bytes(), competing)
+        self.assertEqual(self.partial.read_bytes(), self.content)
+        self.assertFalse(self.metadata.exists())
+
+    def test_target_symlink_created_after_download_is_not_followed_or_replaced(self):
+        sentinel = self.outside / 'weight-sentinel'
+
+        def transfer(*args, **kwargs):
+            self.partial.write_bytes(self.content)
+            self.target.symlink_to(sentinel)
+
+        self.network.side_effect = transfer
+        with self.assertRaises(FileExistsError):
+            self.call()
+        self.assertTrue(self.target.is_symlink())
+        self.assertFalse(sentinel.exists())
+        self.assertEqual(self.partial.read_bytes(), self.content)
+        self.assertFalse(self.metadata.exists())
+
 
 if __name__ == "__main__":
     unittest.main()

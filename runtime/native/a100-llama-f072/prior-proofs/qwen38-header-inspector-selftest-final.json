@@ -1,0 +1,24 @@
+{
+  "kind": "GGUF_HEADER_INSPECTOR_SYNTHETIC_SELFTEST",
+  "status": "PASS",
+  "created_utc": "2026-09-20T05:20:38.447748+00:00",
+  "tests": 16,
+  "candidate_binding_mutations_rejected": 8,
+  "actual_gguf_opened": false,
+  "network_calls": 0,
+  "native_execution": false,
+  "gpu_calls": 0,
+  "guards": [
+    "sameUID root/each directory/leaf",
+    "regular leaf single hardlink",
+    "nonblocking open rejects FIFO without waiting"
+  ],
+  "sha256": {
+    "var/research/inspect_qwen38_gguf.py": "cb8ef9e58aea7066c050d3e96da24708b4be4eae0c7c7498f879e2dddc41940c",
+    "var/research/test_inspect_qwen38_gguf.py": "e2ab35f0c9838963b852d4b7881a8d08f0f1a1c4f26a114a68a8401d5bae2d12"
+  },
+  "prior_selftests_preserved": [
+    "var/research/qwen38-header-inspector-selftest.json",
+    "var/research/qwen38-header-inspector-selftest-v2.json"
+  ]
+}

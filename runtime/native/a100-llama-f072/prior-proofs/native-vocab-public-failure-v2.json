@@ -1,0 +1,19 @@
+{
+  "kind": "PUBLIC_SYNTHETIC_OPTIONAL_VOCAB_DIAGNOSTIC",
+  "binary_sha256": "142e5ed957ced9b83a4389d77d79cdd518c79859bae24f2988913be914e0d32e",
+  "header_proof_sha256": "ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a",
+  "public_cases": 30,
+  "tokenizer_parity_cases": 20,
+  "context_requests": 1,
+  "exit_code": 1,
+  "stderr_bytes": 0,
+  "native": {
+    "kind": "NATIVE_CONTRACT_CPU_PREFLIGHT",
+    "status": "FAIL",
+    "code": "CHECK_FAILED",
+    "discarded_stderr_bytes": 0
+  },
+  "real_model_inference": false,
+  "gpu_calls": 0,
+  "v2_or_exposed_inputs_read": false
+}

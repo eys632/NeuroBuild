@@ -1,0 +1,154 @@
+{
+  "status": "PASS",
+  "comparison_commit": "52ffb5a2847e15ef79678fce54625dfb7f59841e",
+  "legacy_client_sha256": "9bdb19a65ba79e253afe262a72e2dc4ecfcaacbc33ca9588c940f553be58123f",
+  "current_client_sha256": "3ebef3a1b3cf16b577566c7644952ac5da0def1d1dc11cc0d0b01c581b9d9f1c",
+  "identical_legacy_payloads": [
+    {
+      "contract": "1.0",
+      "protocol": "legacy_guided_json",
+      "profile": "legacy_greedy",
+      "payload_sha256": "38605db27e40d147bd621bc1252bf1e55e1c8725468eb7e7d895e26829949cf0"
+    },
+    {
+      "contract": "1.0",
+      "protocol": "legacy_guided_json",
+      "profile": "qwen3_nonthinking",
+      "payload_sha256": "e02f61fc41a09dd4640101c7dbf2f180b290c98f8cd7c79e535bd369b6dd8391"
+    },
+    {
+      "contract": "1.0",
+      "protocol": "legacy_guided_json",
+      "profile": "qwen3_nonthinking_awq",
+      "payload_sha256": "8e6c7ede595bedad8de472c35897e87bdf9338beb048ccd96d3a2cea4577dfea"
+    },
+    {
+      "contract": "1.0",
+      "protocol": "legacy_guided_json",
+      "profile": "qwen3_thinking_awq",
+      "payload_sha256": "34fde3573ad9ed51ea00f7445c2e1314f5a2255e3d916132335281ead64a2afa"
+    },
+    {
+      "contract": "1.0",
+      "protocol": "structured_outputs",
+      "profile": "legacy_greedy",
+      "payload_sha256": "a5cad2a42f13064dafee32c073de63e10925a5a7ecf8cc0efcf873b9e0bf8825"
+    },
+    {
+      "contract": "1.0",
+      "protocol": "structured_outputs",
+      "profile": "qwen3_nonthinking",
+      "payload_sha256": "cfd3ac0e1c7a691609fd31bbf20a6cce50505f1b83b80a3f7e4c20a625726abc"
+    },
+    {
+      "contract": "1.0",
+      "protocol": "structured_outputs",
+      "profile": "qwen3_nonthinking_awq",
+      "payload_sha256": "cdc7f557401410dcabf80e0121c0e646ed94b3fa7b665e6f03250bcacc4d2e39"
+    },
+    {
+      "contract": "1.0",
+      "protocol": "structured_outputs",
+      "profile": "qwen3_thinking_awq",
+      "payload_sha256": "67df6f21dd55f8e7a3b392d7c429fcb7d1b26b4fa2a7cc37dda12fa2996d226a"
+    },
+    {
+      "contract": "2.0",
+      "protocol": "legacy_guided_json",
+      "profile": "legacy_greedy",
+      "payload_sha256": "82c7859948c02834ebb828e8d27464f4a8166e4ee5cffef829770fc8e72a429e"
+    },
+    {
+      "contract": "2.0",
+      "protocol": "legacy_guided_json",
+      "profile": "qwen3_nonthinking",
+      "payload_sha256": "fa6c84e8fb6f405a1d8aab563b9e1f0da647ec6e0ebeecb3455b27e8a02128ad"
+    },
+    {
+      "contract": "2.0",
+      "protocol": "legacy_guided_json",
+      "profile": "qwen3_nonthinking_awq",
+      "payload_sha256": "121dd33b6a9d749761c281a3b4ee0f3cf24aa8ac9a0acf1352f549c88ac4d7b2"
+    },
+    {
+      "contract": "2.0",
+      "protocol": "legacy_guided_json",
+      "profile": "qwen3_thinking_awq",
+      "payload_sha256": "d8e872f80ca91041bea7b9514a676aa983d069b97a0d85859478247d96a003c9"
+    },
+    {
+      "contract": "2.0",
+      "protocol": "structured_outputs",
+      "profile": "legacy_greedy",
+      "payload_sha256": "ac8196c90bc0993172026b9cb061f54f059c357b29f35996b32b454a8403a025"
+    },
+    {
+      "contract": "2.0",
+      "protocol": "structured_outputs",
+      "profile": "qwen3_nonthinking",
+      "payload_sha256": "c857b960de8309ab6b412399029c3a2d6009f5eedbe54778f7a87cf2cd5fb8c2"
+    },
+    {
+      "contract": "2.0",
+      "protocol": "structured_outputs",
+      "profile": "qwen3_nonthinking_awq",
+      "payload_sha256": "ab0118d2d530ef9c7a67330e1bab09a4edb7332ca854d01c1b890226f3a38cbb"
+    },
+    {
+      "contract": "2.0",
+      "protocol": "structured_outputs",
+      "profile": "qwen3_thinking_awq",
+      "payload_sha256": "461695b7efbdf70aba8fc7d336de4181829123f6ceead0cd16f7a3502860d8a4"
+    },
+    {
+      "contract": "3.0",
+      "protocol": "legacy_guided_json",
+      "profile": "legacy_greedy",
+      "payload_sha256": "1e342781e525b59a3cb30ac26912bcd66d7ddbed9cfc6488cfc8c3b92a829479"
+    },
+    {
+      "contract": "3.0",
+      "protocol": "legacy_guided_json",
+      "profile": "qwen3_nonthinking",
+      "payload_sha256": "ca07a074911dd5bb8dcea898a39b2d015a495c5077602beb6e0f84d19f1d94c3"
+    },
+    {
+      "contract": "3.0",
+      "protocol": "legacy_guided_json",
+      "profile": "qwen3_nonthinking_awq",
+      "payload_sha256": "3dd36ffbdde255e92fa5edca6b46a4ea0de8b826cc85031bda536ed8d155a1f8"
+    },
+    {
+      "contract": "3.0",
+      "protocol": "legacy_guided_json",
+      "profile": "qwen3_thinking_awq",
+      "payload_sha256": "5e014767bb0cbcce8616bba1a9790cd7286381e49ceafcbd5ca6f41385cb589d"
+    },
+    {
+      "contract": "3.0",
+      "protocol": "structured_outputs",
+      "profile": "legacy_greedy",
+      "payload_sha256": "4a8329b23ec28ede4b2be8d54dc0ca9ef45e74efbb727e857d98e4adbc91ffed"
+    },
+    {
+      "contract": "3.0",
+      "protocol": "structured_outputs",
+      "profile": "qwen3_nonthinking",
+      "payload_sha256": "c642796385da1a20485287df9fa28d13e519dd6808c0c741e76bf61744da9319"
+    },
+    {
+      "contract": "3.0",
+      "protocol": "structured_outputs",
+      "profile": "qwen3_nonthinking_awq",
+      "payload_sha256": "2f49706c6f0b8dcf170a4c6e641c3b9b24460b10cd01f2f2ff63c4712b58f82c"
+    },
+    {
+      "contract": "3.0",
+      "protocol": "structured_outputs",
+      "profile": "qwen3_thinking_awq",
+      "payload_sha256": "5823acf63405e23605fa6f30c889adb517ad1422406690b64c09dfc4be3a07dd"
+    }
+  ],
+  "canonical_parser_unchanged": true,
+  "scope": "CPU payload capture; no HTTP, GPU or model invocation"
+}

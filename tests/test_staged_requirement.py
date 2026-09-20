@@ -101,11 +101,19 @@ class StagedRequirementTests(unittest.TestCase):
                     self.assertEqual(first["guided_json"], client.classification_schema)
                     self.assertEqual(second["guided_json"], client.schema_for_decision("READY"))
                     self.assertNotIn("structured_outputs", second)
-                else:
+                elif protocol is StructuredOutputProtocol.STRUCTURED_OUTPUTS:
                     self.assertEqual(second["structured_outputs"]["json"], client.schema_for_decision("READY"))
                     self.assertNotIn("guided_json", second)
                     self.assertNotIn("guided_decoding_backend", second)
-        self.assertEqual(len(self.server.requests), 4)
+                else:
+                    self.assertEqual(first["response_format"], {
+                        "type": "json_schema", "json_schema": {"schema": client.classification_schema}})
+                    self.assertEqual(second["response_format"], {
+                        "type": "json_schema", "json_schema": {"schema": client.schema_for_decision("READY")}})
+                    for request in (first, second):
+                        for absent in ("guided_json", "guided_decoding_backend", "structured_outputs"):
+                            self.assertNotIn(absent, request)
+        self.assertEqual(len(self.server.requests), 6)
 
     def test_both_nonready_decisions_remain_bound_and_have_no_operation(self):
         for decision, status in (("CLARIFICATION", RequirementStatus.CLARIFICATION),

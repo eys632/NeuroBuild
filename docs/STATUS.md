@@ -1,19 +1,19 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 13:28 KST**. **Phase 0~5 원격 checkpoint 완료. Phase5.x 품질 gate는 미통과이며 Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 15:33 KST**. **Phase 0~5 원격 checkpoint 완료. Phase5.x 품질 gate는 미통과이며 Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`, 마지막 원격 확인 `59e9b64312e32582371553a3a243bd566a72c845` |
-| 회귀 검증 | **346 tests PASS**, skip 0, 실제 PostgreSQL/IfcOpenShell, headless 18.730초 |
-| 현재 작업 | **32B thinking FAIL 보존, 현대 모델용 local runtime 검증 계획**. 최종 모델 미채택, Phase6 시작 전 |
+| GitHub | 공통 `v2`, 마지막 원격 확인 `52ffb5a2847e15ef79678fce54625dfb7f59841e` |
+| 회귀 검증 | **382 tests PASS**, skip 0, 실제 PostgreSQL/IfcOpenShell, headless 20.178초 |
+| 현재 작업 | **Native runtime 첫 GPU3 startup SIGABRT 원인 진단**. 최종 모델 미채택, Phase6 시작 전 |
 | 잠정 모델 | Phase5 작은 seed 범위의 Qwen3-14B-AWQ/v3. 확대 gate 통과를 뜻하지 않음 |
-| Hard blocker | 없음. 품질 문제를 해결 중. 새 후보는 build·disk·전체 peak·native guard 검증 전이며 아직 GPU 실행 가능 판정이 아님 |
+| Hard blocker | 없음. 품질 문제를 해결 중. CUDA 빌드·정적 검사 및 native guard CPU 검증 통과. GGUF/header·raw-native context200 통과. 첫 GPU startup은 SIGABRT로 실패, 자체 정리 완료; 원인 진단 중 |
 | Backend | `.conda`: Python3.12.14 / PostgreSQL17.11 / psycopg3.2.10 / IfcOpenShell0.8.5 |
 | Model runtime | `.conda-vllm`: Python3.12.14 / cu118 vLLM0.8.5 / Torch2.6.0. 모든 자체 model server STOPPED |
-| 다음 검증 | pinned llama.cpp의 HOME 내 CUDA11.8/SM80 source build 가능성부터 검증. 모델 채택과 구분, gold·parser·gate 유지 |
+| 다음 검증 | 시작 실패의 제한된 진단 후 fresh GPU3 예산 재검사. 공식 HF19/20 FAIL과 raw variant를 분리하며 gold·parser·gate 유지 |
 
 ## 최근 품질 결과
 
@@ -49,12 +49,23 @@ Epoch3144.173초 동안 GPU 전체 baseline 대비 증가 최대22,542MiB, 최�
 다른 사용자의 process와 GPU0/1/2는 변경하지 않았다.
 
 Private PostgreSQL은 project 안의0700 Unix socket과 peer 인증을 사용하며 TCP는 비활성이다.
-Root disk는 마지막 확인 약27.5GiB free(df28G/99%)이며 새로운 설치·다운로드는 없었다.
-환경·weight·cache는 Git에서 제외한다. 사용을 마친4B weight 정리 이력과 복원 manifest는 보존했고
-14B/MoE/32B weight는 아직 보존 중이다.
-새 runtime의 build와 weight를 함께 확보하기에는 공간이 부족하므로 별도 예산과 비활성 cache 검증이 필요하다.
-[다음 후보 계획](modern_local_runtime_candidate.md)은 아직 build/GPU runtime/품질 성공을 뜻하지 않는다.
-이번 문서·평가 기록 변경에서346개 회귀를 새로 실행했다고 주장하지 않는다.
+CUDA11.8/SM80 source build와 `$ORIGIN` relink, source3,607개/ELF/library 정적 검사를 통과했다.
+GPU startup 성공은 아직 아니다. 단일 후보 다운로드·헤더 검사와 독립 CPU helper 빌드는 완료했다.
+공개 CPU 문법30개 및 native final-content/sampling 검사는 통과했다. 공식 HF와의 NFC 차이로
+19/20 동등성 검사는 FAIL이며 raw variant의20/20 공개 비교와 실제 native context200개는 PASS다.
+노출120 input+768 최대3177/v2길이80 최대3133으로4096 이내다. 입력·출력 보정은 없다.
+382개 회귀 검사가 native guard 및 다운로드 파일 덮어쓰기 방지 수정까지 포함한다.
+
+종료된 MoE의 검증된 가중치4개(16,809,467,824 bytes)를 정리했고 당시 free는 약42.4GiB였다.
+기존4B 정리와 이번 MoE의 manifest·복원 명령·평가 자료는 보존한다. 14B/32B 가중치는 유지했다.
+Qwen3.8 GGUF17.67GiB의 전체 SHA/851 tensor 검사를 통과했다. 다운로드 후 약24.65GiB free로
+20GiB+512MiB reserve를 유지했다. GPU3 드라이버 metadata만 조회해 VMM/2MiB granularity를
+확인했으며 context/메모리 할당은 요청하지 않았다. 전체 예상 peak28GiB와 별도 margin을
+[자원 검증 계획](native_qwen38_resource_plan.md)에 기록했다. CPU gate와 fresh5회 검사를 통과한 첫 시작은7.781초 만에SIGABRT(-6)로 종료했다.
+관측 최소 free18,084MiB/aggregate 증가18,290MiB였으며 자체 child 정리 후36,373MiB로 복귀했다.
+HTTP 평가 요청0, stdout/stderr 폐기·core0이며 원인을 단정하지 않고 제한된 진단을 준비한다.
+[후보와 현재 검증](modern_local_runtime_candidate.md)은 모델 품질 또는 GPU 실행 성공을 뜻하지 않는다.
+환경·weight·cache·binary는 Git에서 제외한다.
 
 Phase4 human review는 아직 메모리에만 보존한다. Object resolution/API/browser는 미구현이며
 영속 review/queue/worker는 Phase7 예정이다. **RTX5090은 PREDICTED_UNVERIFIED**다.

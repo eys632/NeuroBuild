@@ -1,0 +1,17 @@
+{
+  "kind": "EXACT_ARTIFACT_INTEGRITY",
+  "files": {
+    "evaluations/results/phase5x/qwen38-native-startup-epoch1-failed/README.md": {
+      "sha256": "3ad03581001f53cf3f1ffab74214fed1f64a6ca4ead0c5a262507ba66af0bbd9",
+      "bytes": 1145
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch1-failed/launch_config.json": {
+      "sha256": "c92048ae165dc62f4548e30a294459d5ed1c2e07d2a934c495a39517ccb6510e",
+      "bytes": 1316
+    },
+    "evaluations/results/phase5x/qwen38-native-startup-epoch1-failed/resource_report.json": {
+      "sha256": "efee63cb6579ae36ae8046f30e4b8fada2be75fd23c109a43acf9415ad4e82d5",
+      "bytes": 5352
+    }
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "case": "blank_comments_uninitialized_all_types",
+      "status": "PASS"
+    },
+    {
+      "parser": "postcompile",
+      "case": "duplicate",
+      "status": "PASS"
+    },
+    {
+      "parser": "postcompile",
+      "case": "duplicate_across_type",
+      "status": "PASS"
+    },
+    {
+      "parser": "postcompile",
+      "case": "multiline_key",
+      "status": "PASS"
+    },
+    {
+      "parser": "postcompile",
+      "case": "multiline_type",
+      "status": "PASS"
+    },
+    {
+      "parser": "postcompile",
+      "case": "bad_type",
+      "status": "PASS"
+    },
+    {
+      "parser": "postcompile",
+      "case": "leading_key_space",
+      "status": "PASS"
+    },
+    {
+      "parser": "cpu",
+      "case": "duplicate",
+      "status": "PASS"
+    },
+    {
+      "parser": "cpu",
+      "case": "duplicate_across_type",
+      "status": "PASS"
+    },
+    {
+      "parser": "cpu",
+      "case": "multiline_key",
+      "status": "PASS"
+    },
+    {
+      "parser": "cpu",
+      "case": "multiline_type",
+      "status": "PASS"
+    },
+    {
+      "parser": "cpu",
+      "case": "bad_type",
+      "status": "PASS"
+    },
+    {
+      "parser": "cpu",
+      "case": "leading_key_space",
+      "status": "PASS"
+    },
+    {
+      "case": "actual_cache_build_number_and_rpath_exact_cpu_rejects_gpu",
+      "status": "PASS"
+    }
+  ],
+  "check_count": 14,
+  "verifier_sha256": "81285c40d1ee3862f747bbbc32fc9868d7a0604b4ea402dc8a8b5e9a1a06573e",
+  "cpu_runner_sha256": "e88d840d669df2762db823de914739efb31c345743201aea1b090886babe7f2e",
+  "checker_sha256": "cabb5e12eaf7a694c968304fd1ceb37c2344da4f00777ed371d41e5f4abfbe4f",
+  "actual_cache_sha256": "c456e964f4bf310932fb8ace22a06ed69bf8980819f0fdbe634c2d558e5ab001",
+  "main_executed": false,
+  "subprocesses_or_gpu_calls": 0
+}

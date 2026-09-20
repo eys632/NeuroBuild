@@ -21,6 +21,14 @@ def digest(path):
         return hashlib.file_digest(stream, 'sha256').hexdigest()
 
 
+def sync_directory(path):
+    descriptor = os.open(path, os.O_RDONLY | os.O_DIRECTORY)
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)
+
+
 def download(manifest_path):
     manifest = json.loads(manifest_path.read_text())
     model, revision = manifest['model_id'], manifest['revision']
@@ -73,7 +81,11 @@ def download(manifest_path):
                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         if partial.stat().st_size != entry['bytes'] or digest(partial) != entry['sha256']:
             raise ValueError('Downloaded model file failed size or SHA256 verification')
-        partial.replace(target)
+        with partial.open('rb') as stream:
+            os.fsync(stream.fileno())
+        os.link(partial, target)  # Atomic no-clobber, including a raced-in target/symlink.
+        partial.unlink()
+        sync_directory(destination)
         print(json.dumps({'verified': entry['name'], 'sha256': entry['sha256']}), flush=True)
     if not metadata.exists():
         fd, name = tempfile.mkstemp(prefix='.manifest-', dir=destination)
@@ -86,6 +98,7 @@ def download(manifest_path):
             os.link(name, metadata)  # no overwrite, including a competing symlink
         finally:
             os.unlink(name)
+        sync_directory(destination)
     print(json.dumps({'model_path': str(destination), 'verified_files': len(files)}), flush=True)
 
 

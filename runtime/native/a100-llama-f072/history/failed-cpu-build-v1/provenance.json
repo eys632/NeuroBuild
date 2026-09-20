@@ -1,0 +1,95 @@
+{
+  "kind": "NATIVE_BUILD_DEFINITION_PROVENANCE",
+  "created_at_utc": "2026-09-20T05:46:00.881394+00:00",
+  "workspace_root": "/home/a202192020/NeuroBuild_v2",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "source_verification": {
+    "extra_or_missing_paths": 0,
+    "git_modes": {
+      "100644": 3482,
+      "100755": 125
+    },
+    "verification": "GIT_BLOB_SHA1_SIZE_MODE",
+    "verified_blob_bytes": 172243701,
+    "verified_blobs": 3607
+  },
+  "bootstrap_report_sha256": "4802877b1f067c17a3fb2e4fe1cc0f3605773b6fba56900aa2c80699739751f6",
+  "downloads": [
+    {
+      "bytes": 2205,
+      "path": "var/runtime-downloads/llama-f072b103714dfa1eee531f80b24512faf38e3dd2/commit.json",
+      "sha256": "c77c8db9bcefd4f4c158b201605b2ca97223951d7c1777076523f8b27d9667ef",
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/git/commits/f072b103714dfa1eee531f80b24512faf38e3dd2"
+    },
+    {
+      "bytes": 994927,
+      "path": "var/runtime-downloads/llama-f072b103714dfa1eee531f80b24512faf38e3dd2/tree.json",
+      "sha256": "0ef293835188e9ac0b16d98cdd6f995bd2b34c40efb1b7d180cc6d6bec2ff9a1",
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/git/trees/4d2277baaa4550aa122ac6767b8f1a4d6c9918f0?recursive=1"
+    },
+    {
+      "bytes": 37504804,
+      "path": "var/runtime-downloads/llama-f072b103714dfa1eee531f80b24512faf38e3dd2/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2.tar.gz",
+      "sha256": "016e1eb898fbf045d764d7e0140857de384a7fb7d6d00fee93fd8199c6f6712e",
+      "url": "https://codeload.github.com/ggml-org/llama.cpp/tar.gz/f072b103714dfa1eee531f80b24512faf38e3dd2"
+    },
+    {
+      "bytes": 46031464,
+      "path": "var/runtime-downloads/llama-f072b103714dfa1eee531f80b24512faf38e3dd2/cmake-3.23.5-linux-x86_64.tar.gz",
+      "sha256": "bbd7ad93d2a14ed3608021a9466ae63db76a24efd1fae7a5f7798c1de7ab9344",
+      "url": "https://github.com/Kitware/CMake/releases/download/v3.23.5/cmake-3.23.5-linux-x86_64.tar.gz"
+    }
+  ],
+  "cmake_executable_identity_at_bootstrap": {
+    "bytes": 13513496,
+    "executed": false,
+    "path": "var/tools/cmake-3.23.5-linux-x86_64/bin/cmake",
+    "sha256": "055306bf4b381456c172226eed0f6f3392e863293d471a71fcdafe211cd7384e"
+  },
+  "cmake_official_checksum_url": "https://github.com/Kitware/CMake/releases/download/v3.23.5/cmake-3.23.5-SHA-256.txt",
+  "license_source_url": "https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/LICENSE",
+  "status_observed_at_snapshot": {
+    "var/reports/llama-native-contract-cpu-build.json": {
+      "status": "RUNNING",
+      "kind": "NATIVE_CONTRACT_CPU_BUILD",
+      "native_validator_executed": false
+    },
+    "var/reports/qwen38-guarded-download.json": {
+      "status": "RUNNING",
+      "kind": "GUARDED_PINNED_PUBLIC_MODEL_DOWNLOAD"
+    },
+    "var/reports/llama-cuda-build-verified.json": {
+      "status": "COMPILE_PASS_NOT_RUNTIME_VALIDATED",
+      "kind": "LLAMA_SOURCE_IMMUTABLE_RPATH_RELINK",
+      "verification_kind": "LLAMA_POSTCOMPILE_STATIC_VERIFICATION",
+      "native_binary_executed": false,
+      "weights_read": false
+    }
+  },
+  "external_tracked_dependencies": {
+    "scripts/model_guard.py": {
+      "bytes": 11948,
+      "sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+      "storage": "same_git_checkout_tracked_dependency_not_duplicated"
+    },
+    "scripts/download_model.py": {
+      "bytes": 5065,
+      "sha256": "eea7da3f210addeaece15cb2a7072145cb9c380bd475c4a4f92292df78b88353",
+      "storage": "same_git_checkout_tracked_dependency_not_duplicated"
+    },
+    "runtime/models/qwen38-27b-q4-k-m.json": {
+      "bytes": 740,
+      "sha256": "e67de5e421d7de1b2c332506474bc96812b9450a4fe56438b9eb3f64d9d554ed",
+      "storage": "same_git_checkout_tracked_dependency_not_duplicated"
+    }
+  },
+  "excluded": [
+    "native binaries/static archives",
+    "native source tree and source/tool tarballs",
+    "model GGUF/tensors",
+    "Python/Conda environments",
+    "tokenizer.json/vocab/merges and other large public metadata",
+    "evaluation cases/gold/model outputs/reasoning",
+    "pending run_native_contract_cpu.py and native context invocation wrapper"
+  ]
+}

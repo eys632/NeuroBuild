@@ -1,0 +1,24 @@
+Consolidate compiler generated dependencies of target vendor-hash
+[  2%] Built target vendor-hash
+Consolidate compiler generated dependencies of target ggml-base
+Consolidate compiler generated dependencies of target cpp-httplib
+[  7%] Built target ggml-base
+[  7%] Built target cpp-httplib
+Consolidate compiler generated dependencies of target llama-common-base
+[  9%] Built target llama-common-base
+Consolidate compiler generated dependencies of target ggml-cpu
+[ 17%] Built target ggml-cpu
+Consolidate compiler generated dependencies of target ggml
+[ 18%] Built target ggml
+Consolidate compiler generated dependencies of target llama
+[ 40%] Built target llama
+Consolidate compiler generated dependencies of target llama-common
+Consolidate compiler generated dependencies of target mtmd
+[ 67%] Built target llama-common
+[ 93%] Built target mtmd
+Consolidate compiler generated dependencies of target server-context
+[ 98%] Built target server-context
+Consolidate compiler generated dependencies of target nb-native-contract-validator
+[ 98%] Building CXX object CMakeFiles/nb-native-contract-validator.dir/validator.cpp.o
+[100%] Linking CXX executable nb-native-contract-validator
+[100%] Built target nb-native-contract-validator

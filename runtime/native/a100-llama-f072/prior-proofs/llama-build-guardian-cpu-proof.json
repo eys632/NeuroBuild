@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "supervisor_sha256": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+  "cases": [
+    {
+      "case": "normal",
+      "status": "PASS",
+      "supervisor_exit": 0,
+      "guardian_cleanup": {
+        "guardian_pid": 3501430,
+        "native_pid": 3501431,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": 0,
+        "stop_requested": false
+      },
+      "all_owned_fixture_processes_stopped": true
+    },
+    {
+      "case": "supervisor_sigkill",
+      "status": "PASS",
+      "supervisor_exit": -9,
+      "guardian_cleanup": {
+        "guardian_pid": 3501434,
+        "native_pid": 3501435,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": -9,
+        "stop_requested": true
+      },
+      "all_owned_fixture_processes_stopped": true
+    },
+    {
+      "case": "supervisor_sigterm",
+      "status": "PASS",
+      "supervisor_exit": -15,
+      "guardian_cleanup": {
+        "guardian_pid": 3501439,
+        "native_pid": 3501441,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": -9,
+        "stop_requested": true
+      },
+      "all_owned_fixture_processes_stopped": true
+    },
+    {
+      "case": "parent_mismatch",
+      "status": "PASS",
+      "guardian_exit": 143,
+      "native_started": false
+    },
+    {
+      "case": "spawn_error",
+      "status": "PASS",
+      "guardian_exit": 1,
+      "native_started": false
+    }
+  ],
+  "native_flag_env_names_removed": [
+    "NVCC_PREPEND_FLAGS",
+    "NVCC_APPEND_FLAGS"
+  ],
+  "scope": "Synthetic new same-UID CPU process trees only; no cmake, source download, build, GPU query or model call. Guardian itself SIGKILL or kernel uninterruptible task is not an absolute cleanup guarantee."
+}

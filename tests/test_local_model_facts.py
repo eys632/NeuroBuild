@@ -69,7 +69,7 @@ class LocalModelFactsClientTests(unittest.TestCase):
     def extract(self, client, source=SOURCE):
         return client.extract(source, axis_convention="project_xy", **self.ids)
 
-    def test_actual_extract_uses_facts_contract_and_one_request_in_both_protocols(self):
+    def test_actual_extract_uses_facts_contract_and_one_request_in_all_protocols(self):
         prompt = (ROOT / "prompts/requirement_generation_v3_v1.txt").read_bytes()
         schema = (ROOT / "schemas/requirement_generation_v3.schema.json").read_bytes()
         results = []
@@ -104,14 +104,21 @@ class LocalModelFactsClientTests(unittest.TestCase):
                         self.assertEqual(request["guided_json"], json.loads(schema))
                         self.assertEqual(request["guided_decoding_backend"], "xgrammar:no-fallback")
                         self.assertNotIn("structured_outputs", request)
-                    else:
+                    elif protocol is StructuredOutputProtocol.STRUCTURED_OUTPUTS:
                         self.assertEqual(request["structured_outputs"], {"json": json.loads(schema)})
                         self.assertNotIn("guided_json", request)
                         self.assertNotIn("guided_decoding_backend", request)
-                    for absent in ("generation_contract", "response_format", "classified_decision",
+                    else:
+                        self.assertEqual(request["response_format"], {
+                            "type": "json_schema", "json_schema": {"schema": json.loads(schema)}})
+                        for absent in ("guided_json", "guided_decoding_backend", "structured_outputs"):
+                            self.assertNotIn(absent, request)
+                    if protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA:
+                        self.assertNotIn("response_format", request)
+                    for absent in ("generation_contract", "classified_decision",
                                    "top_p", "top_k", "presence_penalty", "repetition_penalty"):
                         self.assertNotIn(absent, request)
-        self.assertEqual(len(results), 4)
+        self.assertEqual(len(results), 6)
         self.assertTrue(all(result == results[0] for result in results))
         result = results[0]
         self.assertEqual(result.status.value, "READY")

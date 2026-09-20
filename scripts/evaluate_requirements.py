@@ -397,8 +397,52 @@ def run_evaluation(client, cases, schema, *, run_id, warmups=5, trials=3, clock=
     return {"warmups": warmup_rows, "trials": rows, "metrics": summarize(rows)}
 
 
+def native_runtime_metadata(data):
+    """Validate declared native evidence without inventing vLLM dependencies.
+
+    Hashes bind the separately reviewed build/header/launch records. This does
+    not remotely attest a live process or replace those records' verification.
+    """
+    strings = {"compiler", "cmake", "cuda", "driver", "gpu", "quantization"}
+    integers = {"physical_gpu", "logical_gpu", "max_model_len", "max_sequences"}
+    hashes = {"binary_sha256", "source_provenance_sha256", "build_report_sha256",
+              "gguf_sha256", "gguf_header_sha256", "chat_template_sha256",
+              "launch_config_sha256", "startup_report_sha256", "listener_report_sha256"}
+    required = strings | integers | hashes | {
+        "runtime_kind", "profile", "llama_cpp_commit", "cuda_architecture", "gpu_uuid",
+        "enable_reasoning", "reasoning_parser",
+    }
+    if type(data) is not dict or set(data) != required or data["runtime_kind"] != "llama_cpp":
+        raise ValueError("Native runtime metadata fields do not match the documented contract")
+    if any(type(data[key]) is not str or re.fullmatch(r"[A-Za-z0-9_ .+:/-]{1,128}", data[key]) is None
+           for key in strings):
+        raise ValueError("Invalid native runtime metadata")
+    if any(type(data[key]) is not int for key in integers):
+        raise ValueError("Native runtime counts must be exact integers")
+    if any(type(data[key]) is not str or re.fullmatch(r"[a-f0-9]{64}", data[key]) is None for key in hashes):
+        raise ValueError("Exact native runtime evidence hashes are required")
+    if (type(data["llama_cpp_commit"]) is not str
+            or re.fullmatch(r"[a-f0-9]{40}", data["llama_cpp_commit"]) is None
+            or type(data["gpu_uuid"]) is not str
+            or re.fullmatch(r"GPU-[a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}", data["gpu_uuid"]) is None):
+        raise ValueError("Exact native source commit and GPU UUID are required")
+    profiles = {"a100": (3, "80-real"), "rtx5090": (1, "120-real")}
+    if (type(data["profile"]) is not str or data["profile"] not in profiles
+            or (data["physical_gpu"], data["cuda_architecture"]) != profiles[data["profile"]]
+            or data["logical_gpu"] != 0 or data["max_sequences"] != 1
+            or data["max_model_len"] != 4096 or data["quantization"] != "Q4_K_M"):
+        raise ValueError("Native runtime profile or fixed single GPU configuration mismatch")
+    # Parsing a possible reasoning field is distinct from enabling generation
+    # of reasoning. This bounded native candidate is explicitly non-thinking.
+    if data["enable_reasoning"] is not False or data["reasoning_parser"] != "deepseek":
+        raise ValueError("Native non-thinking mode requires the explicit deepseek output splitter")
+    return data
+
+
 def runtime_metadata(path):
     data = strict_json(path.read_text(encoding="utf-8"))
+    if type(data) is dict and "runtime_kind" in data:
+        return native_runtime_metadata(data)
     strings = {"python", "vllm", "torch", "cuda", "transformers", "xgrammar", "driver", "gpu", "quantization", "dtype"}
     integers = {"physical_gpu", "max_model_len", "tensor_parallel_size"}
     hashes = {"chat_template_sha256", "launch_config_sha256"}
@@ -474,6 +518,17 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
         raise ValueError("Client prompt/schema differs from recorded files")
     sampling = client.sampling_parameters
     runtime_info = runtime_metadata(runtime)
+    native = runtime_info.get("runtime_kind") == "llama_cpp"
+    native_protocol = client.protocol is StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA
+    if native != native_protocol:
+        raise ValueError("Native runtime metadata and native JSON protocol must be selected together")
+    if native:
+        if client.sampling_profile is not SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP:
+            raise ValueError("Native evaluation requires the explicitly planned native sampling profile")
+        gguf_files = [entry for entry in weight_data["files"] if entry["name"].endswith(".gguf")]
+        if (len(gguf_files) != 1 or gguf_files[0]["sha256"] != runtime_info["gguf_sha256"]
+                or tokenizer_revision != revision):
+            raise ValueError("Native GGUF identity and embedded tokenizer revision must match the weight manifest")
     if runtime_info["enable_reasoning"] != client.enable_thinking:
         raise ValueError("Client thinking mode and declared server reasoning mode must match")
     manifest = {"run_id": run_id, "created_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -504,6 +559,15 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
             projection_chain=["3.0", "2.0", "1.0"],
             facts_validation="Exact source quotes and declared-fact consistency; no semantic entailment proof or decision correction",
             raw_ready_metric="Root model decision observed before generation schema, facts projection and all downstream validation",
+        )
+    if native:
+        manifest["runtime_identity_evidence"] = (
+            "OPERATOR_SUPPLIED_NATIVE_EVIDENCE_HASHES; build/shared-library, GGUF/header, template and "
+            "launch/listener records require separate verification; HTTP model name is not remote attestation")
+        manifest["protocol"].update(
+            required_server_structured_backend="llama_cpp_gbnf",
+            response_format_type="json_schema",
+            reasoning_disposition="Separate reasoning field discarded; only final content is evaluated",
         )
     if getattr(client, "pipeline", None) == "staged_v1":
         manifest["sha256"].update(

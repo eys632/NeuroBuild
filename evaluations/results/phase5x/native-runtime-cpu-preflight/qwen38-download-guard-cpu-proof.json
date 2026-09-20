@@ -1,0 +1,55 @@
+{
+  "kind": "GUARDED_QWEN38_DOWNLOAD_CPU_PREPARATION",
+  "status": "PASS_CPU_ONLY_NOT_EXECUTED",
+  "created_at_utc": "2026-09-20T05:40:28.200750+00:00",
+  "files_sha256": {
+    "var/research/download_qwen38_guarded.py": "65cebb3202fb2873609cb9edf1f6e1c0fc7de0e445e4d9609c8660b9b54e2648",
+    "var/research/test_download_qwen38_guarded.py": "e1aaecb19ed06f0a0108d565fecc8f27afb5729305e75c358c1a075834d26246",
+    "scripts/download_model.py": "eea7da3f210addeaece15cb2a7072145cb9c380bd475c4a4f92292df78b88353",
+    "tests/test_download_model.py": "f3c7cba0bd94074d7c780501ff2940b92436a84d78496bd1aefe55f9332d92c0",
+    "var/research/relink_llama_rpath.py": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0",
+    "var/research/run_llama_build.py": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "runtime/models/qwen38-27b-q4-k-m.json": "e67de5e421d7de1b2c332506474bc96812b9450a4fe56438b9eb3f64d9d554ed",
+    "var/research/llama-build-guardian-cpu-proof.json": "4e70148644c22bbc5229cab956d2b35a9694f384f33ed71454582c938bb19272"
+  },
+  "fake_supervisor_tests": {
+    "count": 8,
+    "seconds": 0.031,
+    "failures": 0,
+    "errors": 0,
+    "command": ".conda/bin/python -B -W error::ResourceWarning var/research/test_download_qwen38_guarded.py -q"
+  },
+  "downloader_regression": {
+    "count": 16,
+    "seconds": 0.065,
+    "failures": 0,
+    "errors": 0,
+    "command": "PYTHONPATH=src .conda/bin/python -B -W error::ResourceWarning -m unittest tests.test_download_model -q"
+  },
+  "guardian_reuse": {
+    "path": "var/research/llama-build-guardian-cpu-proof.json",
+    "matching_supervisor_sha256": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+    "existing_own_cpu_process_cases": 5,
+    "rerun_for_this_helper": false
+  },
+  "execution_contract": {
+    "empty_cuda_mask": true,
+    "phase_timeout_seconds": 1800,
+    "additional_shutdown_grace_seconds_max_typical": 15,
+    "disk_floor_bytes": 22011707392,
+    "disk_poll_seconds": 2,
+    "initial_required_free": "conservative missing manifest bytes + 20GiB + 512MiB",
+    "stdout_stderr": "child and curl discarded; fixed supervisor metadata only",
+    "pins": "manifest/downloader/guardian/supervisor/shared cleanup exact source hashes; final postbuild proof required, cleanup proof required if present"
+  },
+  "no_actual_download_or_cleanup": true,
+  "no_native_or_gpu_or_model_execution": true,
+  "limitations": [
+    "Disk watcher is sampled; it does not reserve shared disk space.",
+    "Supervisor death uses reviewed guardian SIGTERM cleanup; guardian SIGKILL or uninterruptible kernel tasks are not an absolute guarantee.",
+    "No inference-quality, runtime or VRAM claim.",
+    "Fixed report/temp output paths are exclusive; interrupted-run artifacts are preserved rather than automatically deleted.",
+    "A crash between final hardlink publication and .part unlink may leave both names; neither is silently overwritten."
+  ]
+}

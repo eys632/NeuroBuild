@@ -1,0 +1,62 @@
+{
+  "kind": "NATIVE_SHARED_GUARD_CPU_VERIFICATION",
+  "status": "PASS_CPU_ONLY",
+  "created_at_utc": "2026-09-20T05:25:08.505826+00:00",
+  "sources": {
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "scripts/model_server.py": "4d734424f2d6b766f8fb8ed303d1320425f0297c32a8bc7d9e848bca8b82352a",
+    "scripts/llama_server.py": "c87f52735d620adc839102b2a68ebb2844b5608a711f83c4f127fdbaf16af2b1",
+    "scripts/native_model_bootstrap.py": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf",
+    "scripts/gpu_preflight.py": "988d9493dd73d0e00b039f7d050f3ae52a4073833de23fc58eabc20ee58163fb",
+    "tests/test_model_server.py": "38a6a6bd16cfafa6481c4a59a47b85068318c609c8b1f88fc34b941c9de7cd6f",
+    "tests/test_llama_server.py": "e774a1a7c5e547deb1e40ab178eff75f71b2d54023481958bb328b08db6b11b9",
+    "tests/test_native_model_bootstrap.py": "fd32c260d969fe2d5564bd98011cd9e46ce2e6a758578b0719ded16032137368",
+    "tests/test_gpu_preflight.py": "3b25315dd8090f0857e76bbc57c76a9e4d61d01483ee9c87c5d70ab14aa7cb62"
+  },
+  "command": "PYTHONPATH=src .conda/bin/python -B -W error::ResourceWarning -m unittest tests.test_llama_server tests.test_native_model_bootstrap tests.test_model_server tests.test_gpu_preflight -q",
+  "result": {
+    "tests": 60,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 2.588
+  },
+  "legacy_argv_environment": {
+    "baseline_path": "var/research/model_server.before_shared.py",
+    "baseline_sha256": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab",
+    "reasoning_false_exact_match": true,
+    "reasoning_true_exact_match": true
+  },
+  "cpu_process_probe": {
+    "owned_processes_only": true,
+    "same_pid_exec": true,
+    "parent_sigkill_child_sigkill_reaped": true,
+    "core_limit_after_exec": [
+      0,
+      0
+    ],
+    "cuda_visible_devices": "",
+    "driver_probe_injected_noop": true
+  },
+  "boundaries": [
+    "fresh five-sample allowed GPU preflight fake readings",
+    "shared project lock",
+    "aggregate free floor and increment limit own group cleanup",
+    "mandatory whole-peak no default or allowance",
+    "binary/library/SONAME/header/model SHA pins",
+    "scrubbed native environment",
+    "CUDA3 count1 UUID match metadata API fakes",
+    "unknown identity bounded fail closed",
+    "stdout/stderr DEVNULL and safe status pipe",
+    "native readiness and all-tensor GPU residency explicitly unproved",
+    "native report/log cannot collide with config, binary, model, build/source/header proof, dependency or SONAME input; before query/write/spawn"
+  ],
+  "actual_native_binary_execution": false,
+  "actual_gpu_query_or_model_execution": false,
+  "limits": [
+    "CPU/fake proof does not validate native CUDA kernel, numerical correctness, all-layer placement, inference, listeners or resource fit.",
+    "Native has no Torch allocator cap; aggregate watchdog is sampled, not hard GPU isolation.",
+    "No adopted model or Phase5.x quality pass is asserted."
+  ],
+  "supersedes_for_current_source": "var/research/native_guard_cpu_proof.json"
+}

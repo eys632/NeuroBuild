@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "checks": 14,
+  "helper_sha256": "d0c7521a06ed82801a2d9609e19d962bd78c5836ff50c25e5795313e169bddaf",
+  "input_pins_checked": 6,
+  "main_executed": false,
+  "actual_processes": 0,
+  "model_gpu_or_native_binary_calls": 0
+}

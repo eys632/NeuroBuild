@@ -1,0 +1,23 @@
+{
+  "kind": "NATIVE_RUNTIME_PROBE_RAW_VARIANT_PREPARATION",
+  "status": "CPU_FAKE_TESTS_AND_ACTUAL_REPORT_CONSUMER_PASS_NOT_RUNTIME_EXECUTED",
+  "runtime_variant": "qwen38-gguf-raw-unicode-v1",
+  "official_hf_parity": "FAIL_19_OF_20_INDEX11_PRESERVED",
+  "tests": 14,
+  "elapsed_seconds": 0.018,
+  "http_calls": 0,
+  "model_inference_calls": 0,
+  "gpu_calls": 0,
+  "native_binary_executions": 0,
+  "foreign_process_reads": 0,
+  "evaluation_inputs_read": 0,
+  "completed_context_report_consumer": "PASS",
+  "completed_context_report_sha256": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be",
+  "sha256": {
+    "var/research/native_runtime_probe.py": "498ad6b9b9452c76224343e2a10a3cfa998b78e354ec4368cb584671eeadc62c",
+    "var/research/test_native_runtime_probe.py": "45de20b0cacd2496a53a74c5bb09b608f090b88675b142df398711655e6de6b6",
+    "var/research/native_runtime_smoke_plan.md": "9de1f88db3653fd81bff82215b6b5ad2c03da9a0caafc057c9df75d2023d2ab0"
+  },
+  "prior_preparation_proofs_preserved": true,
+  "production_files_changed": false
+}

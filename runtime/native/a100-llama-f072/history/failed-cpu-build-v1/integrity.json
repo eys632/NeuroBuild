@@ -1,0 +1,219 @@
+{
+  "kind": "NATIVE_BUILD_DEFINITION_ARCHIVE",
+  "created_at_utc": "2026-09-20T05:46:00.881649+00:00",
+  "files": {
+    "runtime/native/a100-llama-f072/helpers/bootstrap_llama_source.py": {
+      "original_path": "var/research/bootstrap_llama_source.py",
+      "restore_path": "var/research/bootstrap_llama_source.py",
+      "bytes": 27128,
+      "sha256": "5a261566bff684e90c984f25674ff778080b60dce8637f5fecc6ccac42933c75",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/run_llama_build.py": {
+      "original_path": "var/research/run_llama_build.py",
+      "restore_path": "var/research/run_llama_build.py",
+      "bytes": 15117,
+      "sha256": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/relink_llama_rpath.py": {
+      "original_path": "var/research/relink_llama_rpath.py",
+      "restore_path": "var/research/relink_llama_rpath.py",
+      "bytes": 14356,
+      "sha256": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/verify_llama_build.py": {
+      "original_path": "var/research/verify_llama_build.py",
+      "restore_path": "var/research/verify_llama_build.py",
+      "bytes": 19770,
+      "sha256": "81285c40d1ee3862f747bbbc32fc9868d7a0604b4ea402dc8a8b5e9a1a06573e",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/build_native_contract_cpu.py": {
+      "original_path": "var/research/build_native_contract_cpu.py",
+      "restore_path": "var/research/build_native_contract_cpu.py",
+      "bytes": 11498,
+      "sha256": "e88d840d669df2762db823de914739efb31c345743201aea1b090886babe7f2e",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/inspect_qwen38_gguf.py": {
+      "original_path": "var/research/inspect_qwen38_gguf.py",
+      "restore_path": "var/research/inspect_qwen38_gguf.py",
+      "bytes": 18677,
+      "sha256": "cb8ef9e58aea7066c050d3e96da24708b4be4eae0c7c7498f879e2dddc41940c",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/download_qwen38_guarded.py": {
+      "original_path": "var/research/download_qwen38_guarded.py",
+      "restore_path": "var/research/download_qwen38_guarded.py",
+      "bytes": 10704,
+      "sha256": "65cebb3202fb2873609cb9edf1f6e1c0fc7de0e445e4d9609c8660b9b54e2648",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/prepare_native_tokenizer_parity.py": {
+      "original_path": "var/research/prepare_native_tokenizer_parity.py",
+      "restore_path": "var/research/prepare_native_tokenizer_parity.py",
+      "bytes": 3587,
+      "sha256": "dbcf5505161469ad02e5e3826634c93ac9e30961fc04e7164b82d949c1dc8165",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/native-contract-validator/CMakeLists.txt": {
+      "original_path": "var/research/native-contract-validator/CMakeLists.txt",
+      "restore_path": "var/research/native-contract-validator/CMakeLists.txt",
+      "bytes": 2466,
+      "sha256": "9dede1e5ac9ee2f9b46f81e655e801e1b3ac2a57132dece6291cd9bb5f9860b5",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/native-contract-validator/validator.cpp": {
+      "original_path": "var/research/native-contract-validator/validator.cpp",
+      "restore_path": "var/research/native-contract-validator/validator.cpp",
+      "bytes": 19242,
+      "sha256": "19921771c0f559268868d01ec5327ab859e35c379e727841cb11b6d58a82bb42",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/native-contract-validator/README.md": {
+      "original_path": "var/research/native-contract-validator/README.md",
+      "restore_path": "var/research/native-contract-validator/README.md",
+      "bytes": 5130,
+      "sha256": "04ac8482f501fe2a4ac13cb29efb31af49cfe8ee311a9d85d79b30e12e395b27",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/selftests/check_llama_build_boundaries.py": {
+      "original_path": "var/research/check_llama_build_boundaries.py",
+      "restore_path": "var/research/check_llama_build_boundaries.py",
+      "bytes": 5223,
+      "sha256": "978aa1814b5d5f158536023ac792bfed7bba267aadf732bcaf3a311cd67d8ec9",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/selftests/check_llama_build_guardian.py": {
+      "original_path": "var/research/check_llama_build_guardian.py",
+      "restore_path": "var/research/check_llama_build_guardian.py",
+      "bytes": 5568,
+      "sha256": "082a46bd13447f4915bc2ca417123095aff48471782ebc8b29ffb91412e11fba",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/selftests/check_llama_relink.py": {
+      "original_path": "var/research/check_llama_relink.py",
+      "restore_path": "var/research/check_llama_relink.py",
+      "bytes": 5595,
+      "sha256": "f0784789bba2155b183246cebd9d31908efa79d72ef87fd7f0a5e40ed0e57c44",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/selftests/check_cmake_cache_parsers.py": {
+      "original_path": "var/research/check_cmake_cache_parsers.py",
+      "restore_path": "var/research/check_cmake_cache_parsers.py",
+      "bytes": 3854,
+      "sha256": "cabb5e12eaf7a694c968304fd1ceb37c2344da4f00777ed371d41e5f4abfbe4f",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/selftests/test_inspect_qwen38_gguf.py": {
+      "original_path": "var/research/test_inspect_qwen38_gguf.py",
+      "restore_path": "var/research/test_inspect_qwen38_gguf.py",
+      "bytes": 11109,
+      "sha256": "e2ab35f0c9838963b852d4b7881a8d08f0f1a1c4f26a114a68a8401d5bae2d12",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/selftests/test_download_qwen38_guarded.py": {
+      "original_path": "var/research/test_download_qwen38_guarded.py",
+      "restore_path": "var/research/test_download_qwen38_guarded.py",
+      "bytes": 8420,
+      "sha256": "e1aaecb19ed06f0a0108d565fecc8f27afb5729305e75c358c1a075834d26246",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/llama-build-boundary-cpu-proof.json": {
+      "original_path": "var/research/llama-build-boundary-cpu-proof.json",
+      "restore_path": "var/research/llama-build-boundary-cpu-proof.json",
+      "bytes": 426,
+      "sha256": "83f86b6d0a67026d8af0764f4c52e271b7feea74a150433bc2af57650ff2f5cc",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/llama-build-guardian-cpu-proof.json": {
+      "original_path": "var/research/llama-build-guardian-cpu-proof.json",
+      "restore_path": "var/research/llama-build-guardian-cpu-proof.json",
+      "bytes": 1979,
+      "sha256": "4e70148644c22bbc5229cab956d2b35a9694f384f33ed71454582c938bb19272",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/llama-rpath-relink-cpu-proof.json": {
+      "original_path": "var/research/llama-rpath-relink-cpu-proof.json",
+      "restore_path": "var/research/llama-rpath-relink-cpu-proof.json",
+      "bytes": 2014,
+      "sha256": "7f065822545ada679eb88468e4c9053d5446cfc68100b85785955eaa06ed157c",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/cmake-cache-parser-proof.json": {
+      "original_path": "var/research/cmake-cache-parser-proof.json",
+      "restore_path": "var/research/cmake-cache-parser-proof.json",
+      "bytes": 1822,
+      "sha256": "afada6cde48d1769798dde84a2fe69f6a050ae08657d7fd82ea3d95537e7c3fd",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/native-contract-cpu-build-fake-proof.json": {
+      "original_path": "var/research/native-contract-cpu-build-fake-proof.json",
+      "restore_path": "var/research/native-contract-cpu-build-fake-proof.json",
+      "bytes": 245,
+      "sha256": "0a7de3d2204ce0394b5a505c4529202a9f5beb38b3c83e5c4afc2bb5e646360b",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/qwen38-header-inspector-selftest-final.json": {
+      "original_path": "var/research/qwen38-header-inspector-selftest-final.json",
+      "restore_path": "var/research/qwen38-header-inspector-selftest-final.json",
+      "bytes": 838,
+      "sha256": "858ce493cf8c73fffd9a5d178b833494b4b85191d542c68f6f72204d8d08f8c6",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/qwen38-download-guard-cpu-proof.json": {
+      "original_path": "var/research/qwen38-download-guard-cpu-proof.json",
+      "restore_path": "var/research/qwen38-download-guard-cpu-proof.json",
+      "bytes": 3055,
+      "sha256": "d7f89ebb9047becd8033390da406e4e63431af0fb1f8cbc685e6b03789519683",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/reviews/native_contract_cpu_independent_review.md": {
+      "original_path": "var/research/native_contract_cpu_independent_review.md",
+      "restore_path": "var/research/native_contract_cpu_independent_review.md",
+      "bytes": 6913,
+      "sha256": "9b008bb801c5c31d96790850f926de85883388fd5b698fe8e6476d88f9617c85",
+      "kind": "static_review"
+    },
+    "runtime/native/a100-llama-f072/support-metadata/metadata_inventory.json": {
+      "original_path": "var/research/qwen38-candidate-metadata/metadata_inventory.json",
+      "restore_path": "var/research/qwen38-candidate-metadata/metadata_inventory.json",
+      "bytes": 9727,
+      "sha256": "3e3e54a24cc09c2a6669dc94b0b28f7793a98e553c777197767c58f7d0596732",
+      "kind": "public_metadata_manifest"
+    },
+    "runtime/native/a100-llama-f072/support-metadata/template_and_conversion_provenance.json": {
+      "original_path": "var/research/qwen38-candidate-metadata/template_and_conversion_provenance.json",
+      "restore_path": "var/research/qwen38-candidate-metadata/template_and_conversion_provenance.json",
+      "bytes": 165932,
+      "sha256": "3cf9d3ceab25e02b24373f0c7e0929b1e7fcea7eb2f511be9280bfbdb506a4bd",
+      "kind": "public_metadata_manifest"
+    },
+    "runtime/licenses/llama-f072.LICENSE": {
+      "original_path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/LICENSE",
+      "restore_path": null,
+      "bytes": 1078,
+      "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+      "kind": "exact_upstream_MIT_license"
+    },
+    "runtime/native/a100-llama-f072/provenance.json": {
+      "original_path": null,
+      "restore_path": null,
+      "bytes": 4186,
+      "sha256": "e342a5e1645024cd7151660394c7ff9f77c9020eb8e894604da807508a783d31",
+      "kind": "generated_provenance_summary"
+    },
+    "runtime/native/a100-llama-f072/README.md": {
+      "original_path": null,
+      "restore_path": null,
+      "bytes": 6626,
+      "sha256": "08e7660fd8074f2d98d6a0cedc4e1aa69ab3563e45684e2f5860d5001070d9b8",
+      "kind": "generated_restore_documentation"
+    }
+  },
+  "integrity_file_itself_excluded": true,
+  "definitions_only": true,
+  "runtime_model_gpu_validation": "NOT_CLAIMED"
+}

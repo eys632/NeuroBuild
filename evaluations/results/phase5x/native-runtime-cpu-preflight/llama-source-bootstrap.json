@@ -1,0 +1,72 @@
+{
+  "available_bytes_after": 29115641856,
+  "available_bytes_before": 29530988544,
+  "bootstrap_storage_limit_bytes": 1073741824,
+  "charged_storage_bytes_before_report": 428409725,
+  "created_at_utc": "2026-09-20T04:46:12.788356+00:00",
+  "disk_reserve_bytes": 21474836480,
+  "downloads": [
+    {
+      "bytes": 2205,
+      "path": "var/runtime-downloads/llama-f072b103714dfa1eee531f80b24512faf38e3dd2/commit.json",
+      "sha256": "c77c8db9bcefd4f4c158b201605b2ca97223951d7c1777076523f8b27d9667ef",
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/git/commits/f072b103714dfa1eee531f80b24512faf38e3dd2"
+    },
+    {
+      "bytes": 994927,
+      "path": "var/runtime-downloads/llama-f072b103714dfa1eee531f80b24512faf38e3dd2/tree.json",
+      "sha256": "0ef293835188e9ac0b16d98cdd6f995bd2b34c40efb1b7d180cc6d6bec2ff9a1",
+      "url": "https://api.github.com/repos/ggml-org/llama.cpp/git/trees/4d2277baaa4550aa122ac6767b8f1a4d6c9918f0?recursive=1"
+    },
+    {
+      "bytes": 37504804,
+      "path": "var/runtime-downloads/llama-f072b103714dfa1eee531f80b24512faf38e3dd2/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2.tar.gz",
+      "sha256": "016e1eb898fbf045d764d7e0140857de384a7fb7d6d00fee93fd8199c6f6712e",
+      "url": "https://codeload.github.com/ggml-org/llama.cpp/tar.gz/f072b103714dfa1eee531f80b24512faf38e3dd2"
+    },
+    {
+      "bytes": 46031464,
+      "path": "var/runtime-downloads/llama-f072b103714dfa1eee531f80b24512faf38e3dd2/cmake-3.23.5-linux-x86_64.tar.gz",
+      "sha256": "bbd7ad93d2a14ed3608021a9466ae63db76a24efd1fae7a5f7798c1de7ab9344",
+      "url": "https://github.com/Kitware/CMake/releases/download/v3.23.5/cmake-3.23.5-linux-x86_64.tar.gz"
+    }
+  ],
+  "elapsed_seconds": 57.815,
+  "kind": "LLAMA_SOURCE_TOOL_BOOTSTRAP",
+  "llama_commit": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "no_build": true,
+  "no_gpu_calls": true,
+  "no_tool_execution": true,
+  "no_weights": true,
+  "report_path": "var/reports/llama-source-bootstrap.json",
+  "source_extraction": {
+    "archive_member_count": 3982,
+    "path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2",
+    "payload_bytes": 172243701
+  },
+  "source_path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "source_tree_sha1": "4d2277baaa4550aa122ac6767b8f1a4d6c9918f0",
+  "source_verification": {
+    "extra_or_missing_paths": 0,
+    "git_modes": {
+      "100644": 3482,
+      "100755": 125
+    },
+    "verification": "GIT_BLOB_SHA1_SIZE_MODE",
+    "verified_blob_bytes": 172243701,
+    "verified_blobs": 3607
+  },
+  "status": "PASS",
+  "tool_extraction": {
+    "archive_member_count": 6935,
+    "path": "var/tools/cmake-3.23.5-linux-x86_64",
+    "payload_bytes": 126879728
+  },
+  "tool_identity": {
+    "bytes": 13513496,
+    "executed": false,
+    "path": "var/tools/cmake-3.23.5-linux-x86_64/bin/cmake",
+    "sha256": "055306bf4b381456c172226eed0f6f3392e863293d471a71fcdafe211cd7384e"
+  },
+  "tool_path": "var/tools/cmake-3.23.5-linux-x86_64"
+}

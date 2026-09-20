@@ -143,14 +143,21 @@ class LocalModelClientTests(unittest.TestCase):
                         self.assertEqual(request["guided_json"], expected_schema)
                         self.assertEqual(request["guided_decoding_backend"], "xgrammar:no-fallback")
                         self.assertNotIn("structured_outputs", request)
-                    else:
+                    elif protocol is StructuredOutputProtocol.STRUCTURED_OUTPUTS:
                         self.assertEqual(request["structured_outputs"], {"json": expected_schema})
                         self.assertNotIn("guided_json", request)
                         self.assertNotIn("guided_decoding_backend", request)
-                    self.assertNotIn("response_format", request)
+                    else:
+                        self.assertEqual(request["response_format"], {
+                            "type": "json_schema", "json_schema": {"schema": expected_schema}})
+                        self.assertNotIn("guided_json", request)
+                        self.assertNotIn("guided_decoding_backend", request)
+                        self.assertNotIn("structured_outputs", request)
+                    if protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA:
+                        self.assertNotIn("response_format", request)
                     self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
                     self.assertEqual(request["temperature"], 0)
-        self.assertEqual(len(self.server.requests), 4)
+        self.assertEqual(len(self.server.requests), 6)
         self.assertTrue(all(result == results[0] for result in results))
 
     def test_unknown_protocol_never_reaches_http(self):
@@ -186,7 +193,7 @@ class LocalModelClientTests(unittest.TestCase):
                 self.assertEqual(self.server.request_bodies[-1], json.dumps(expected, ensure_ascii=False).encode("utf-8"))
         self.assertEqual(len(self.server.requests), 5)
 
-    def test_generation_contract_defaults_and_domain_conversion_are_explicit_in_both_protocols(self):
+    def test_generation_contract_defaults_and_domain_conversion_are_explicit_in_all_protocols(self):
         root = Path(__file__).resolve().parents[1]
         ids = {"requirement_id": uuid4(), "project_id": uuid4(), "base_revision_id": uuid4()}
         results = []
@@ -213,11 +220,12 @@ class LocalModelClientTests(unittest.TestCase):
                         request = self.server.requests[-1][2]
                         self.assertEqual(request["messages"][0]["content"], prompt_bytes.decode())
                         sent_schema = (request["guided_json"] if protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON
-                                       else request["structured_outputs"]["json"])
+                                       else request["structured_outputs"]["json"] if protocol is StructuredOutputProtocol.STRUCTURED_OUTPUTS
+                                       else request["response_format"]["json_schema"]["schema"])
                         self.assertEqual(sent_schema, json.loads(schema_bytes))
                         self.assertNotIn("generation_contract", request)
                         self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
-        self.assertEqual(len(self.server.requests), 8)
+        self.assertEqual(len(self.server.requests), 12)
         self.assertTrue(all(result == results[0] for result in results))
         self.assertEqual(results[0].base_revision_id, ids["base_revision_id"])
         self.assertEqual(results[0].operation.dx.metres, 1)
@@ -308,7 +316,7 @@ class LocalModelClientTests(unittest.TestCase):
                     "presence_penalty": 1.5, "frequency_penalty": 0.0,
                     "repetition_penalty": 1.0, "seed": 42}
         schema = json.loads((Path(__file__).resolve().parents[1] / "schemas/semantic_requirement.schema.json").read_text())
-        for protocol in StructuredOutputProtocol:
+        for protocol in (StructuredOutputProtocol.LEGACY_GUIDED_JSON, StructuredOutputProtocol.STRUCTURED_OUTPUTS):
             for profile in (SamplingProfile.QWEN3_NONTHINKING_AWQ, "qwen3_nonthinking_awq"):
                 with self.subTest(protocol=protocol, profile_type=type(profile).__name__):
                     client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
@@ -345,11 +353,102 @@ class LocalModelClientTests(unittest.TestCase):
             self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
         self.assertEqual(self.server.requests, [])
 
+    def test_native_profile_sends_native_sampling_and_branch_schema_without_changing_conversion(self):
+        root = Path(__file__).resolve().parents[1]
+        schema_path = root / "schemas/requirement_generation_v2_decision_branches.schema.json"
+        expected_sampling = {
+            "temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
+            "presence_penalty": 0.0, "frequency_penalty": 0.0,
+            "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
+            "samplers": ["temperature", "top_k", "top_p", "min_p"],
+        }
+        for profile in (SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP, "qwen38_nonthinking_llama_cpp"):
+            self.respond(envelope(json.dumps(QUOTE_FINAL, ensure_ascii=False)))
+            client = LocalRequirementClient(
+                self.base, "synthetic-test-model", protocol="llama_cpp_json_schema",
+                sampling_profile=profile, generation_contract="2.0", schema_path=schema_path,
+            )
+            result = client.extract(SOURCE, axis_convention="project_xy", requirement_id=uuid4(),
+                                    project_id=uuid4(), base_revision_id=uuid4())
+            self.assertEqual(result.operation.dx.metres, 1)
+            self.assertEqual(client.sampling_parameters, expected_sampling)
+            request = self.server.requests[-1][2]
+            self.assertEqual({key: request[key] for key in expected_sampling}, expected_sampling)
+            self.assertEqual(request["response_format"], {
+                "type": "json_schema", "json_schema": {"schema": json.loads(schema_path.read_text())}})
+            self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
+            self.assertIs(client.enable_thinking, False)
+            for absent in ("guided_json", "guided_decoding_backend", "structured_outputs",
+                           "repetition_penalty", "tools", "reasoning_parser"):
+                self.assertNotIn(absent, request)
+        self.assertEqual(len(self.server.requests), 2)
+
+    def test_native_and_vllm_sampling_profiles_cannot_be_mixed(self):
+        for protocol in StructuredOutputProtocol:
+            for profile in SamplingProfile:
+                invalid = ((protocol is StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA
+                            and profile not in (SamplingProfile.LEGACY_GREEDY,
+                                                SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP))
+                           or (protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA
+                               and profile is SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP))
+                if invalid:
+                    with self.subTest(protocol=protocol, profile=profile), self.assertRaises(DomainError) as caught:
+                        LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
+                                               sampling_profile=profile)
+                    self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
+        self.assertEqual(self.server.requests, [])
+
+    def test_native_sampler_list_copy_cannot_mutate_next_request(self):
+        client = LocalRequirementClient(self.base, "synthetic-test-model", protocol="llama_cpp_json_schema",
+                                        sampling_profile="qwen38_nonthinking_llama_cpp")
+        saved = client.sampling_parameters
+        saved["samplers"].clear()
+        saved["repeat_last_n"] = 4096
+        client.complete(SOURCE)
+        request = self.server.requests[-1][2]
+        self.assertEqual(request["samplers"], ["temperature", "top_k", "top_p", "min_p"])
+        self.assertEqual(request["repeat_last_n"], 0)
+
+    def test_native_transport_discards_reasoning_even_with_nonthinking_requested(self):
+        response = envelope()
+        response["choices"][0]["message"]["reasoning_content"] = "DO_NOT_ECHO_SECRET_REASONING"
+        self.respond(response)
+        client = LocalRequirementClient(self.base, "synthetic-test-model", protocol="llama_cpp_json_schema",
+                                        sampling_profile="qwen38_nonthinking_llama_cpp")
+        out, err = StringIO(), StringIO()
+        with redirect_stdout(out), redirect_stderr(err):
+            completion = client.complete(SOURCE)
+        self.assertEqual(json.loads(completion.content), FINAL)
+        self.assertNotIn("DO_NOT_ECHO_SECRET", repr(completion))
+        self.assertFalse(hasattr(completion, "reasoning_content"))
+        self.assertEqual(out.getvalue() + err.getvalue(), "")
+
+    def test_native_rejection_and_truncation_never_retry_or_switch_protocol(self):
+        client = LocalRequirementClient(self.base, "synthetic-test-model", protocol="llama_cpp_json_schema",
+                                        sampling_profile="qwen38_nonthinking_llama_cpp")
+        invalid = envelope()
+        invalid["choices"][0]["finish_reason"] = "length"
+        for status, body, code in (
+            (400, {"error": "DO_NOT_ECHO_SECRET"}, "LOCAL_MODEL_HTTP_ERROR"),
+            (200, invalid, "LOCAL_MODEL_TRUNCATED"),
+            (200, envelope("<think>DO_NOT_ECHO_SECRET</think>" + json.dumps(FINAL)), "LOCAL_MODEL_REASONING_CONTENT"),
+        ):
+            with self.subTest(status=status, code=code):
+                self.server.status = status
+                self.respond(body)
+                before = len(self.server.requests)
+                self.reject(code, client)
+                self.assertEqual(len(self.server.requests), before + 1)
+                request = self.server.requests[-1][2]
+                self.assertIn("response_format", request)
+                self.assertNotIn("guided_json", request)
+                self.assertNotIn("structured_outputs", request)
+
     def test_neutral_nonthinking_profile_sends_explicit_values_without_awq_penalty(self):
         expected = {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
                     "presence_penalty": 0.0, "frequency_penalty": 0.0,
                     "repetition_penalty": 1.0, "seed": 42}
-        for protocol in StructuredOutputProtocol:
+        for protocol in (StructuredOutputProtocol.LEGACY_GUIDED_JSON, StructuredOutputProtocol.STRUCTURED_OUTPUTS):
             for profile in (SamplingProfile.QWEN3_NONTHINKING, "qwen3_nonthinking"):
                 with self.subTest(protocol=protocol, profile_type=type(profile).__name__):
                     client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
@@ -404,7 +503,7 @@ class LocalModelClientTests(unittest.TestCase):
         expected = {"temperature": 0.6, "top_p": 0.95, "top_k": 20, "min_p": 0.0,
                     "presence_penalty": 1.5, "frequency_penalty": 0.0,
                     "repetition_penalty": 1.0, "seed": 42}
-        for protocol in StructuredOutputProtocol:
+        for protocol in (StructuredOutputProtocol.LEGACY_GUIDED_JSON, StructuredOutputProtocol.STRUCTURED_OUTPUTS):
             for profile in (SamplingProfile.QWEN3_THINKING_AWQ, "qwen3_thinking_awq"):
                 with self.subTest(protocol=protocol, profile_type=type(profile).__name__):
                     client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
@@ -464,7 +563,7 @@ class LocalModelClientTests(unittest.TestCase):
         response = envelope()
         response["choices"][0]["message"]["reasoning_content"] = "x" * MAX_HTTP_RESPONSE_BYTES
         cases.append((response, "LOCAL_MODEL_RESPONSE_TOO_LARGE"))
-        for protocol in StructuredOutputProtocol:
+        for protocol in (StructuredOutputProtocol.LEGACY_GUIDED_JSON, StructuredOutputProtocol.STRUCTURED_OUTPUTS):
             client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
                                             sampling_profile="qwen3_thinking_awq", max_tokens=2048, timeout=120)
             for response, code in cases:
@@ -495,7 +594,7 @@ class LocalModelClientTests(unittest.TestCase):
         for status, error in ((400, "LOCAL_MODEL_HTTP_ERROR"), (200, "LOCAL_MODEL_RESPONSE_INVALID")):
             self.server.status = status
             self.server.body = b'{"error":"sampling rejected DO_NOT_ECHO_SECRET"}'
-            for protocol in StructuredOutputProtocol:
+            for protocol in (StructuredOutputProtocol.LEGACY_GUIDED_JSON, StructuredOutputProtocol.STRUCTURED_OUTPUTS):
                 with self.subTest(status=status, protocol=protocol):
                     before = len(self.server.requests)
                     client = LocalRequirementClient(self.base, "synthetic-test-model", protocol=protocol,
@@ -519,7 +618,9 @@ class LocalModelClientTests(unittest.TestCase):
                 self.assertEqual(len(self.server.requests), before + 1)
                 self.assertIs(client.protocol, protocol)
                 request = self.server.requests[-1][2]
-                selected = "guided_json" if protocol is StructuredOutputProtocol.LEGACY_GUIDED_JSON else "structured_outputs"
+                selected = {StructuredOutputProtocol.LEGACY_GUIDED_JSON: "guided_json",
+                            StructuredOutputProtocol.STRUCTURED_OUTPUTS: "structured_outputs",
+                            StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA: "response_format"}[protocol]
                 self.assertIn(selected, request)
 
     def test_invalid_success_response_does_not_trigger_dialect_detection_or_retry(self):

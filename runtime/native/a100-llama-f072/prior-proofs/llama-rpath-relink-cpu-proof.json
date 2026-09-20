@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "kind": "FAKE_CPU_RELINK_SUPERVISION",
+  "cases": [
+    {
+      "case": "success",
+      "status": "PASS",
+      "expected_error": null,
+      "real_processes_or_signals": 0
+    },
+    {
+      "case": "nonzero_exit",
+      "status": "PASS",
+      "expected_error": "CPU_PHASE_FAILED",
+      "real_processes_or_signals": 0
+    },
+    {
+      "case": "initial_stop",
+      "status": "PASS",
+      "expected_error": "CPU_PHASE_INITIAL_DISK_OR_STOP",
+      "real_processes_or_signals": 0
+    },
+    {
+      "case": "initial_disk",
+      "status": "PASS",
+      "expected_error": "CPU_PHASE_INITIAL_DISK_OR_STOP",
+      "real_processes_or_signals": 0
+    },
+    {
+      "case": "postspawn_stop",
+      "status": "PASS",
+      "expected_error": "CPU_PHASE_DISK_TIME_OR_STOP_LIMIT",
+      "real_processes_or_signals": 0
+    },
+    {
+      "case": "postspawn_disk",
+      "status": "PASS",
+      "expected_error": "CPU_PHASE_DISK_TIME_OR_STOP_LIMIT",
+      "real_processes_or_signals": 0
+    },
+    {
+      "case": "postspawn_allocation",
+      "status": "PASS",
+      "expected_error": "CPU_PHASE_DISK_TIME_OR_STOP_LIMIT",
+      "real_processes_or_signals": 0
+    },
+    {
+      "case": "timeout",
+      "status": "PASS",
+      "expected_error": "CPU_PHASE_DISK_TIME_OR_STOP_LIMIT",
+      "real_processes_or_signals": 0
+    },
+    {
+      "case": "cleanup_incomplete",
+      "status": "PASS",
+      "expected_error": "CPU_PHASE_NATIVE_CLEANUP_UNCONFIRMED",
+      "real_processes_or_signals": 0
+    },
+    {
+      "case": "spawn_failure",
+      "status": "PASS",
+      "expected_error": "fake spawn",
+      "real_processes_or_signals": 0
+    }
+  ],
+  "helper_sha256": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0",
+  "shared_shutdown_sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+  "checker_sha256": "f0784789bba2155b183246cebd9d31908efa79d72ef87fd7f0a5e40ed0e57c44",
+  "main_or_cmake_called": false,
+  "native_executable_or_gpu_called": false
+}

@@ -533,3 +533,85 @@ Epoch3144.173초/minfree13832MiB/aggregatepeak22542MiB, shutdown SHA
 2026-09-20T04:23:30Z 종료 뒤 GPU3 used3965/free36373/util0이었다. 다른process/GPU 변경은 없다.
 Formal 반복과 Phase6는 시작하지 않는다. 다음은 pinned llama.cpp/Qwen3.8-27B의
 HOME 내 CPU source-build 가능성과 별도 안전 경계를 먼저 검증하는 계획이다.
+
+## Native runtime source build와 CPU 계약 준비
+
+고정 llama.cpp f072b103714dfa1eee531f80b24512faf38e3dd2와 CMake3.23.5를 project의
+ignored var 아래 준비했다. Bootstrap에서3,607 Git blobs/172,243,701 bytes와 파일 mode,
+archive 및 tool digest를 확인했다. 시스템 CUDA/Driver/Python과 기존 두 Conda 환경은 변경하지 않았다.
+CUDA mask를 비우고 GCC9.5/nvcc11.8/명시80-real/parallel2, 낮은 disk budget과 자체 child guardian으로
+configure→ggml-cuda→llama-server를 수행했다. 2026-09-20T04:56:31Z~05:17:17Z, 세 단계exit0,
+child group cleanup/reaped 모두 true. 원본 report SHA0c78c5b9a927408986e024d3ef5adad6cb420d3a9aaae8d88be89a8eb2f19654.
+
+정적 ELF 검사에서 빈 RUNPATH tail을 발견해 source/object를 바꾸지 않고 `$ORIGIN`으로 relink했다.
+334개 object inventory와 compile commands는 동일했다. 최종 binary SHA
+a0494b9885b25ba4cc2679dae5077e7ab18ad5baff161a7a152f19f43afdca0d.
+후속 verifier의 CMake cache regex가 빈 줄/주석을 key에 포함하는 오류를 고쳤으며 물리 행 단위와
+중복 key 거절14개 검사를 통과했다. 최종 정적 report는
+ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37,
+runtime libraries8/aliases14/source3,607/SM80 CUDA commands143 확인이다.
+GGML build string unknown은 source archive의 Git history 부재이며 전체 tree hash 검증과 구분한다.
+Native executable/GPU 모델은 이 단계에서 실행하지 않았다.
+
+Native client의 기존 wire24개를52ffb5a checkpoint와 byte 비교했고 동일했다. Canonical parser 불변.
+독립 launcher 검토에서 output이 native proof를 덮어쓸 수 있는 충돌을 발견해 실행 전 거절로 수정했다.
+다운로드 완료 순간 경쟁 target을 덮어쓰는 기존 replace도 atomic link publication으로 고쳤다.
+실제 private PostgreSQL DSN/headless 전체 회귀382tests PASS/skip0/20.178s,
+log var/phase5x-native-runtime-regression-v3.log. 기존376/379회 결과와 최종382회를 구분한다.
+
+MoE cache 정리 첫 시도는 같은UID nondumpable 로그인서비스 maps 접근 거절로 삭제 전에 중단됐다.
+정확한 sd-pam/sshd cmdline·comm만 확인 가능한 예외를 명시하고 다른 접근 거절은 계속 차단했다.
+자기27개 process maps/FD 검사 및 종료증거/project lock/각 shard size·SHA 확인 후4개를 제거했다.
+16,809,467,824B 회수, free45,528,395,776B. Report SHA
+7e6024c2cbc148eec7861fd97da531c324bfd98706919407b1699d32b5652ee8.
+두 로그인서비스 메모리/FD는 미확인으로 남겼고 다른 사용자 process는 읽거나 변경하지 않았다.
+Metadata/manifests/results와 복원 명령은 보존했다.
+
+단일 Qwen3.8-27B-Q4_K_M guarded download를 시작했다. 당시 free42.4GiB에서 weight17.67GiB와
+CPU build3GiB 상한을 모두 차감해도21.73GiB가 남아20.5GiB floor를 충족했다.
+Download는2초 disk poll/1800초 phase timeout/자체 descendant 정리로 보호한다.
+별도 CPU-only native contract helper도 같은 source와 guardian으로 build를 시작했다.
+실제 tokenizer JSON을 읽는 CPU-only tokenizers library로 공개 합성20개 fixture를 만들었다.
+이는 native tokenizer parity PASS가 아니며 실제 helper/header/전체 VRAM 검증이 남아 있다.
+
+
+### 2026-09-20 — GGUF 검증 완료와 CPU tokenizer 원인 분리
+
+Guarded download는 PASS, GGUF18,973,870,528B/SHA c600de0300ae8a0eb3a6c0b8b96f16bd2c863c2a66c42de29d391a747이다.
+다운로드 최소 free24.65356GiB로20.5GiB floor를 유지했고 자체 curl descendant를 reaped했다.
+전체 GGUFv3/header851 tensor/packed coverage/metadata/template 검사는 PASS,
+report SHA ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a.
+이는 weight 수치 검증이나 GPU tensor 배치 확인이 아니다.
+
+CPU helper 첫 compile에서 custom JSON 정수 비교 오류가 발생했다. 타입 확인 후 int64 비교로
+수정한v2 build는 PASS, upstream194 object/static library는 불변이었다. 공개 grammar10accept/
+20reject, final content10개, generation prefix41bytes, sampling/schema 연결과 stderr0을 확인했다.
+Vocab/context 시도는 실패했다. 본문을 출력하지 않는 공개 합성 진단v3/v4로 원인을 분리했다.
+공식 HF reference19/20 FAIL(index11), native raw roundtrip20/20, NFC만 끈 별도 reference20/20이다.
+원래 fixture SHA79c4448b7ee949add0a80e8a7f0fc0d73575aaf01ff6e52beb3cfae8434ea1bd 불변.
+실패/이전 binary·source·report를 보존했고 D033에 raw-Unicode 실험 후보와 한계를 명시했다.
+
+GPU3 driver metadata만 별도 조회해 UUID/count1, VMM 지원과2MiB allocation granularity를 확인했다.
+Context 생성이나 할당은 요청하지 않았고 조회 전후 free36,373MiB/util0%였다.
+CUDA-linked llama binary/model inference는 아직0회다. Native 전체 peak 예산28GiB의 독립
+source/VRAM 검토를 마쳤으며 fresh GPU3 측정과 별도 실제 raw-native context 검증이 남아 있다.
+
+
+### 2026-09-20 15:30 KST — Raw native context PASS와 첫 GPU startup FAIL
+
+별도 CPU raw context wrapper는13개 fake 검사를 통과하고 독립 읽기 검토를 마쳤다.
+실행에서 exposed120 native input2133~2409/+768최대3177,
+v2길이80 input2154~2365/+768최대3133 PASS, model inference0.
+보고서 SHA5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be.
+공식 HF19/20 FAIL과 rawreference20/20/원문roundtrip20/20을 함께 고정했다.
+
+`CUDA_VISIBLE_DEVICES=3 CUDA_DEVICE_ORDER=PCI_BUS_ID .conda/bin/python -B scripts/llama_server.py
+--config var/research/qwen38-native-launch-epoch1.json`으로 첫 시작을 실행했다.
+Config SHAc92048ae165dc62f4548e30a294459d5ed1c2e07d2a934c495a39517ccb6510e.
+전체GGUF/hash검증 후 fresh5회 free36373/util0/swing0으로 예산28672+margin7275를 통과했다.
+Child3527525의 허용장치UUID/count 확인 후7.781초에SIGABRT(-6) CHILD_EXITED.
+STOPPED/TERM+KILL/reaped, observedaggregatepeak18290/minfree18084이다.
+종료 후 nvidia-smi -i3 free36373/used3965/util0. HTTP/model evaluation 요청은0회다.
+Startup 내부 warmup 실행 여부는 미확인이고 runtime readiness PASS를 주장하지 않는다.
+원래 stdout/stderr는폐기되어 원인미상이며 OOM이라단정하지 않는다. raw본문저장 없는 제한된
+stderr code/source 위치 진단을 준비한다. 실패config/report는 epoch1-failed archive에 보존했다.

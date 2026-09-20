@@ -1,0 +1,54 @@
+{
+  "kind": "REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_MOE_WEIGHT_CACHE",
+  "state": "COMPLETE",
+  "started_at_utc": "2026-09-20T05:37:14.047382+00:00",
+  "model_id": "ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ",
+  "revision": "9f41ff709102dbe73e614f9365f8280170db268e",
+  "manifest_sha256": "32ff8e507fb4b25f5e67da2d03ba898d52467d653eb55c4c1cc906ee2738939c",
+  "shutdown_report_sha256": "7156ac98c1d216dd7b71e63d423080d7c045e0f8948100c379e5b8abebc83283",
+  "native_build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "own_process_inspection": {
+    "maps_and_descriptors_checked": 27,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3313268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "free_before_bytes": 28719767552,
+  "removed_files": [
+    {
+      "name": "model-00001-of-00004.safetensors",
+      "bytes": 5001815024,
+      "sha256": "dded37cd3936271f93655917a55634553c41679a467d97ce2004cdfff20a718e"
+    },
+    {
+      "name": "model-00002-of-00004.safetensors",
+      "bytes": 5002166720,
+      "sha256": "28c8065b1f3fe82bceae32aece99b404ef4f06e9be7d93e1a5028b7dd330c591"
+    },
+    {
+      "name": "model-00003-of-00004.safetensors",
+      "bytes": 5001879600,
+      "sha256": "53ef6b077e5bc0bd3cd4d799ac839a79a2688b3242384c129e781934cd6e9462"
+    },
+    {
+      "name": "model-00004-of-00004.safetensors",
+      "bytes": 1803606480,
+      "sha256": "df81a01f3d039cdc0b7d212608590884404b85825438078fce2e8cf7d68c6ecf"
+    }
+  ],
+  "restore_command": ".conda/bin/python scripts/download_model.py runtime/models/qwen3-30b-a3b-instruct-2507-awq.json",
+  "scope": "Four same-UID regular single-link cache shards only; all metadata, manifests and evaluation results retained",
+  "foreign_processes_or_files_changed": false,
+  "removed_bytes": 16809467824,
+  "free_after_bytes": 45528395776,
+  "finished_at_utc": "2026-09-20T05:37:58.351070+00:00"
+}

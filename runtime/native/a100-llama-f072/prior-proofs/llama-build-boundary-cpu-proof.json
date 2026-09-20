@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "supervisor_sha256": "2d2bfa7f677c95c5b6da194e4dd62f48e9af65fc8487bcbdd9b3bb19c4b3ec29",
+  "checks": [
+    "bootstrap_valid_and_13_tampered_rejections",
+    "25_inherited_override_names_removed",
+    "initial_report_no_clobber_and_owned_live_update",
+    "insufficient_disk_rejected_before_process_creation"
+  ],
+  "actual_builds": 0,
+  "source_downloads": 0,
+  "gpu_calls": 0,
+  "process_spawns": 0
+}

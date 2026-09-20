@@ -1,0 +1,37 @@
+{
+  "kind": "PUBLIC_SYNTHETIC_OPTIONAL_VOCAB_DIAGNOSTIC",
+  "native": {
+    "kind": "NATIVE_CONTRACT_CPU_PREFLIGHT",
+    "status": "FAIL",
+    "code": "CHECK_FAILED",
+    "stage": 111,
+    "check_line": 321,
+    "discarded_stderr_bytes": 0
+  },
+  "exit_code": 1,
+  "stderr_bytes": 0,
+  "binary_sha256": "7bae5301d123788cfac025a768ab06c3547ee382ae8137bc1fb15f9ed7025c94",
+  "build_report_sha256": "8b1bb3639ef691ea0464965ead142743f743004f2fb7ac9200ad136752733b16",
+  "cpp_sha256": "fb9c2873ee4040de3c63e621393c15cc8b88eb1358e288d3f6da8fd00f4e69ee",
+  "header_proof_sha256": "ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a",
+  "public_helper_sha256": "bc441dbcb6f86106d47f7a87364f0008d793d78ae0d04795e57f7ec441f193df",
+  "parity_fixture_sha256": "79c4448b7ee949add0a80e8a7f0fc0d73575aaf01ff6e52beb3cfae8434ea1bd",
+  "helper_sha256": "98c45046639d1936b878cde8511194aaff7918642611210e2e28d361685c5ba0",
+  "public_cases": 30,
+  "tokenizer_parity_cases": 20,
+  "context_requests": 1,
+  "elf_needed": [
+    "libdl.so.2",
+    "libstdc++.so.6",
+    "libm.so.6",
+    "libgcc_s.so.1",
+    "libpthread.so.0",
+    "libc.so.6",
+    "ld-linux-x86-64.so.2"
+  ],
+  "public_bundle_sha256": "f28b00b809361dc2e4df4a51000542e42d80463b27d34b30db620f4a31d302fb",
+  "gpu_calls": 0,
+  "model_inference_calls": 0,
+  "v2_or_exposed_inputs_read": false,
+  "stderr_text_saved": false
+}

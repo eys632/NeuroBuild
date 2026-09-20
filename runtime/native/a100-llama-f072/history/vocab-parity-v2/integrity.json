@@ -1,0 +1,37 @@
+{
+  "var/research/native-contract-validator/validator.cpp": {
+    "copy": "var/research/native-contract-history/v2/validator.cpp",
+    "bytes": 19331,
+    "sha256": "4cb5fe54e3b69ca6769601dd4a2ee2e845b5c4430d1b8660374daaa25ae5e918"
+  },
+  "var/research/build_native_contract_cpu.py": {
+    "copy": "var/research/native-contract-history/v2/build_native_contract_cpu.py",
+    "bytes": 11498,
+    "sha256": "fc9a7aa5af9a1cb1d9a3808ef9ce631fec5bd45a6d0c2f93f21989dbef1b08c0"
+  },
+  "var/research/resume_native_contract_cpu.py": {
+    "copy": "var/research/native-contract-history/v2/resume_native_contract_cpu.py",
+    "bytes": 12181,
+    "sha256": "e28444627ebd1b739c7503555025696aaccee46b1803a03f79cc250a6f5c6f8f"
+  },
+  "var/reports/llama-native-contract-cpu-build-v2.json": {
+    "copy": "var/research/native-contract-history/v2/llama-native-contract-cpu-build-v2.json",
+    "bytes": 8803,
+    "sha256": "ccb6a99305f9a62c1e2f9d1572380e428d20341a73f5dd65af4222f8b850aa36"
+  },
+  "var/logs/llama-native-contract-cpu-build-v2.log": {
+    "copy": "var/research/native-contract-history/v2/llama-native-contract-cpu-build-v2.log",
+    "bytes": 1228,
+    "sha256": "86243521a8add3ff22fb1f2354d1aced4652a47ecb825a83e51e17e3cd2b8796"
+  },
+  "var/reports/native-contract-cpu-public.json": {
+    "copy": "var/research/native-contract-history/v2/native-contract-cpu-public.json",
+    "bytes": 2031,
+    "sha256": "31e9288bf9c6c6411d507073f57c10090fcf9d9b2dff797e32e962b2b3922547"
+  },
+  "var/runtime-build/llama-native-contract-cpu/nb-native-contract-validator": {
+    "copy": "var/research/native-contract-history/v2/nb-native-contract-validator",
+    "bytes": 11313592,
+    "sha256": "142e5ed957ced9b83a4389d77d79cdd518c79859bae24f2988913be914e0d32e"
+  }
+}

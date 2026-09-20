@@ -8,7 +8,7 @@ runtime의 HTTP payload 차이를 기록한다. 공통 client의 명시적 diale
 ## 명시적인 dialect 설정
 
 공통 [LocalRequirementClient](../src/neurobuild/infrastructure/local_model.py)는
-`StructuredOutputProtocol` enum 또는 같은 문자열로 다음 두 dialect를 명시적으로
+`StructuredOutputProtocol` enum 또는 같은 문자열로 다음 세 dialect를 명시적으로
 선택한다. 모델명·GPU·응답으로 자동 판별하거나 다른 dialect로 재시도하지 않는다.
 Application/schema/parser/Domain/승인 로직은 공통이며, 서버별 차이는 transport 요청
 필드와 runtime launch 설정에 한정한다. 별도의 `generation_contract` 선택은 어느
@@ -18,6 +18,7 @@ dialect에서도 같은 출력 계약을 사용하며 하드웨어에 따른 bus
 |---|---|---|
 | `legacy_guided_json` | `"guided_json": schema`, `"guided_decoding_backend": "xgrammar:no-fallback"` | 현재 A100 v0.8.5 경로 |
 | `structured_outputs` | `"structured_outputs": {"json": schema}` | 현대 runtime의 launch 설정에서 `xgrammar` 명시 |
+| `llama_cpp_json_schema` | `"response_format": {"type": "json_schema", "json_schema": {"schema": schema}}` | 고정 llama.cpp의 schema→GBNF 경로; 실제 native 검증 별도 |
 
 [v0.8.5 공식 요청 계약](https://github.com/vllm-project/vllm/blob/v0.8.5/vllm/entrypoints/openai/protocol.py)은
 legacy 필드를 지원한다. 실제 A100 평가는 client의 이 dialect를 사용한다.
@@ -69,7 +70,7 @@ API 필드 보존만을 이유로 RTX runtime을 오래된 버전에 고정하�
 driver/OS와 SM120·선정 모델·quantization에 맞는 runtime을 고른 뒤 dialect를
 설정하는 방식이 작은 변경으로 runtime 선택의 여지를 보존한다.
 
-두 payload와 unknown dialect 거절·자동 fallback 부재는
+두 vLLM payload와 unknown dialect 거절·자동 fallback 부재는
 [fake HTTP 회귀](../tests/test_local_model.py)로 검증하며, 실제 선택은 run manifest에
 기록한다. A100 legacy 경로에는 실제 평가 근거가 있지만 modern payload의 fake 서버
 검증만으로 RTX 서버의 grammar 적용을 입증하지 않는다. RTX 사용이 가능해지면
@@ -204,3 +205,38 @@ physical GPU1만 예산 검증 후 사용하고, V1 프로세스·socket·종료
 `qwen3` parser 이름은 runtime 설정/metadata에만 둔다. 실제 통합에서는 final-only
 반환과 reasoning 미보존, reasoning 종료 후 JSON 제약, truncation/미완료 거절,
 동일 synthetic 의미 회귀를 확인해야 하며 A100 실측 수치를 대입하지 않는다.
+
+## 별도 native 후보의 명시적 계약
+
+2026-09-20. `llama_cpp_json_schema`는 pinned llama.cpp
+`f072b103714dfa1eee531f80b24512faf38e3dd2`의
+[실제 요청 parser](https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/tools/server/server-common.cpp)에
+맞춘 추가 dialect다. Client의 실제 loopback fake HTTP 검증은 native grammar 적용이나
+모델 품질 성공을 뜻하지 않는다. 자동 감지·schema 제거·다른 dialect 재시도는 없다.
+
+첫 후보 `qwen38_nonthinking_llama_cpp`의 sampling은 temperature0.7/top_p0.8/top_k20/min_p0,
+presence0/frequency0/repeat_penalty1/repeat_last_n0/seed42 및
+`[temperature,top_k,top_p,min_p]` 순서다. Native 이름은 `repeat_penalty`이며 vLLM의
+`repetition_penalty`와 구분한다. 고정 소스는 prompt 토큰까지 penalty history에 넣으므로,
+이번 원문 인용 과제에서는 패널티를 끄는 실험 조건을 모델 출력 전에 선택했다.
+공식 model card의 presence1.5를 그대로 따랐다고 주장하지 않는다.
+[History 공급](https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/tools/server/server-context.cpp),
+[Sampler 순서](https://github.com/ggml-org/llama.cpp/blob/f072b103714dfa1eee531f80b24512faf38e3dd2/common/sampling.cpp).
+
+이 native recipe와 vLLM dialect의 혼합, 기존 Qwen3 recipe와 native dialect의 혼합은
+HTTP 전에 거절한다. Transport의 native `legacy_greedy`는 CPU control에 사용할 수 있지만,
+현재 native 평가 manifest는 사전 계획한 새 recipe만 허용한다. 기존 세 generation과
+두 vLLM dialect·네 recipe의 24개 요청은 변경 전과 byte 단위로 같음을 확인했다.
+Canonical parser, 기존 adapter, prompt, schema, scoring 분모는 이 변경에서 유지했다.
+
+새 metadata는 `runtime_kind=llama_cpp`로 분리하고 실제 source/build/binary/shared-library/
+GGUF/header/template/launch/startup/listener 증거 hash를 요구한다. Native 환경에 가상의
+vLLM/Torch/xgrammar 버전을 넣지 않는다. GGUF SHA와 embedded tokenizer revision을
+weight manifest와 묶는다. 이 operator-supplied metadata 자체는 live model의 원격 증명이
+아니며 각 artifact와 서버 epoch를 별도로 검증해야 한다.
+
+`enable_thinking=false`와 server의 `--reasoning off --reasoning-format deepseek`는 별도
+설정이다. `deepseek`는 final/reasoning 분리 경계이며 vLLM `deepseek_r1`과 다른 이름이다.
+Native raw stdout/stderr는 버리고 client는 final content와 숫자 usage만 반환한다.
+Length 종료·tool call·최종 content의 thinking tag는 실패이며 원래 평가 분모에 남는다.
+모델 채택과 Phase5.x gate 상태는 [STATUS](STATUS.md)를 따른다.

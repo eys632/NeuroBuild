@@ -1,4 +1,4 @@
-"""Loopback-only final-completion transport with explicit vLLM dialects.
+"""Loopback-only final-completion transport with explicit local server dialects.
 
 No external fallback, redirects, environment proxies, response logging or stored
 reasoning. This transport performs no IFC/approval operation.
@@ -105,6 +105,7 @@ class Completion:
 class StructuredOutputProtocol(StrEnum):
     LEGACY_GUIDED_JSON = "legacy_guided_json"
     STRUCTURED_OUTPUTS = "structured_outputs"
+    LLAMA_CPP_JSON_SCHEMA = "llama_cpp_json_schema"
 
 
 class SamplingProfile(StrEnum):
@@ -112,6 +113,7 @@ class SamplingProfile(StrEnum):
     QWEN3_NONTHINKING = "qwen3_nonthinking"
     QWEN3_NONTHINKING_AWQ = "qwen3_nonthinking_awq"
     QWEN3_THINKING_AWQ = "qwen3_thinking_awq"
+    QWEN38_NONTHINKING_LLAMA_CPP = "qwen38_nonthinking_llama_cpp"
 
 
 class LocalJSONCompletionClient:
@@ -135,6 +137,13 @@ class LocalJSONCompletionClient:
         try:
             self._sampling_profile = SamplingProfile(sampling_profile)
         except ValueError:
+            _error("LOCAL_MODEL_CONFIG_INVALID")
+        if (self._sampling_profile is SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP
+                and self._protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA):
+            _error("LOCAL_MODEL_CONFIG_INVALID")
+        if (self._protocol is StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA
+                and self._sampling_profile not in (SamplingProfile.LEGACY_GREEDY,
+                                                   SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP)):
             _error("LOCAL_MODEL_CONFIG_INVALID")
         if not _clean_text(expected_schema_version, 64):
             _error("LOCAL_MODEL_CONFIG_INVALID")
@@ -189,7 +198,7 @@ class LocalJSONCompletionClient:
         return self.sampling_profile is SamplingProfile.QWEN3_THINKING_AWQ
 
     @property
-    def sampling_parameters(self) -> dict[str, int | float]:
+    def sampling_parameters(self) -> dict[str, int | float | list[str]]:
         """Fresh copy of exactly the sampling fields sent, also for manifests.
 
         Legacy omitted fields remain omitted; their server defaults are not
@@ -209,6 +218,14 @@ class LocalJSONCompletionClient:
             return {"temperature": 0.6, "top_p": 0.95, "top_k": 20, "min_p": 0.0,
                     "presence_penalty": 1.5, "frequency_penalty": 0.0,
                     "repetition_penalty": 1.0, "seed": 42}
+        if self.sampling_profile is SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP:
+            # Native penalties include prompt tokens. Keep them disabled for
+            # exact quote extraction; this is an explicit experimental recipe,
+            # not the model card's presence-penalty recommendation.
+            return {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
+                    "presence_penalty": 0.0, "frequency_penalty": 0.0,
+                    "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
+                    "samplers": ["temperature", "top_k", "top_p", "min_p"]}
         _error("LOCAL_MODEL_CONFIG_INVALID")
 
     def complete(self, source_text: str, *, axis_convention: str | None = None) -> Completion:
@@ -262,6 +279,8 @@ class LocalJSONCompletionClient:
             # Modern backend selection belongs to pinned server launch config.
             # Never add legacy fields, infer support, or retry without a schema.
             payload["structured_outputs"] = {"json": selected_schema}
+        elif self.protocol is StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA:
+            payload["response_format"] = {"type": "json_schema", "json_schema": {"schema": selected_schema}}
         else:
             _error("LOCAL_MODEL_CONFIG_INVALID")
         request = Request(self.endpoint, data=json.dumps(payload, ensure_ascii=False).encode("utf-8"),

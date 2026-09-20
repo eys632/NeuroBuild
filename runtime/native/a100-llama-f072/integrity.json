@@ -1,0 +1,501 @@
+{
+  "kind": "NATIVE_BUILD_DEFINITION_ARCHIVE",
+  "created_at_utc": "2026-09-20T05:46:00.881649+00:00",
+  "files": {
+    "runtime/native/a100-llama-f072/helpers/bootstrap_llama_source.py": {
+      "original_path": "var/research/bootstrap_llama_source.py",
+      "restore_path": "var/research/bootstrap_llama_source.py",
+      "bytes": 27128,
+      "sha256": "5a261566bff684e90c984f25674ff778080b60dce8637f5fecc6ccac42933c75",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/run_llama_build.py": {
+      "original_path": "var/research/run_llama_build.py",
+      "restore_path": "var/research/run_llama_build.py",
+      "bytes": 15117,
+      "sha256": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/relink_llama_rpath.py": {
+      "original_path": "var/research/relink_llama_rpath.py",
+      "restore_path": "var/research/relink_llama_rpath.py",
+      "bytes": 14356,
+      "sha256": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/verify_llama_build.py": {
+      "original_path": "var/research/verify_llama_build.py",
+      "restore_path": "var/research/verify_llama_build.py",
+      "bytes": 19770,
+      "sha256": "81285c40d1ee3862f747bbbc32fc9868d7a0604b4ea402dc8a8b5e9a1a06573e",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/build_native_contract_cpu.py": {
+      "original_path": "var/research/build_native_contract_cpu.py",
+      "restore_path": "var/research/build_native_contract_cpu.py",
+      "bytes": 11498,
+      "sha256": "0f46ea1d2009d882077a5735aef17a62ad6cd9d327e5635c32081b7f82299510",
+      "kind": "active_diagnostic_definition_exact"
+    },
+    "runtime/native/a100-llama-f072/helpers/inspect_qwen38_gguf.py": {
+      "original_path": "var/research/inspect_qwen38_gguf.py",
+      "restore_path": "var/research/inspect_qwen38_gguf.py",
+      "bytes": 18677,
+      "sha256": "cb8ef9e58aea7066c050d3e96da24708b4be4eae0c7c7498f879e2dddc41940c",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/download_qwen38_guarded.py": {
+      "original_path": "var/research/download_qwen38_guarded.py",
+      "restore_path": "var/research/download_qwen38_guarded.py",
+      "bytes": 10704,
+      "sha256": "65cebb3202fb2873609cb9edf1f6e1c0fc7de0e445e4d9609c8660b9b54e2648",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/helpers/prepare_native_tokenizer_parity.py": {
+      "original_path": "var/research/prepare_native_tokenizer_parity.py",
+      "restore_path": "var/research/prepare_native_tokenizer_parity.py",
+      "bytes": 3587,
+      "sha256": "dbcf5505161469ad02e5e3826634c93ac9e30961fc04e7164b82d949c1dc8165",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/native-contract-validator/CMakeLists.txt": {
+      "original_path": "var/research/native-contract-validator/CMakeLists.txt",
+      "restore_path": "var/research/native-contract-validator/CMakeLists.txt",
+      "bytes": 2466,
+      "sha256": "9dede1e5ac9ee2f9b46f81e655e801e1b3ac2a57132dece6291cd9bb5f9860b5",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/native-contract-validator/validator.cpp": {
+      "original_path": "var/research/native-contract-validator/validator.cpp",
+      "restore_path": "var/research/native-contract-validator/validator.cpp",
+      "bytes": 22456,
+      "sha256": "92ed10acd9be33d02d4cc6ea446dc2bea93ffb60b7d17ffc3c0f0268aab6c6b2",
+      "kind": "active_diagnostic_definition_exact"
+    },
+    "runtime/native/a100-llama-f072/native-contract-validator/README.md": {
+      "original_path": "var/research/native-contract-validator/README.md",
+      "restore_path": "var/research/native-contract-validator/README.md",
+      "bytes": 5130,
+      "sha256": "04ac8482f501fe2a4ac13cb29efb31af49cfe8ee311a9d85d79b30e12e395b27",
+      "kind": "definition"
+    },
+    "runtime/native/a100-llama-f072/selftests/check_llama_build_boundaries.py": {
+      "original_path": "var/research/check_llama_build_boundaries.py",
+      "restore_path": "var/research/check_llama_build_boundaries.py",
+      "bytes": 5223,
+      "sha256": "978aa1814b5d5f158536023ac792bfed7bba267aadf732bcaf3a311cd67d8ec9",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/selftests/check_llama_build_guardian.py": {
+      "original_path": "var/research/check_llama_build_guardian.py",
+      "restore_path": "var/research/check_llama_build_guardian.py",
+      "bytes": 5568,
+      "sha256": "082a46bd13447f4915bc2ca417123095aff48471782ebc8b29ffb91412e11fba",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/selftests/check_llama_relink.py": {
+      "original_path": "var/research/check_llama_relink.py",
+      "restore_path": "var/research/check_llama_relink.py",
+      "bytes": 5595,
+      "sha256": "f0784789bba2155b183246cebd9d31908efa79d72ef87fd7f0a5e40ed0e57c44",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/selftests/check_cmake_cache_parsers.py": {
+      "original_path": "var/research/check_cmake_cache_parsers.py",
+      "restore_path": "var/research/check_cmake_cache_parsers.py",
+      "bytes": 3854,
+      "sha256": "cabb5e12eaf7a694c968304fd1ceb37c2344da4f00777ed371d41e5f4abfbe4f",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/selftests/test_inspect_qwen38_gguf.py": {
+      "original_path": "var/research/test_inspect_qwen38_gguf.py",
+      "restore_path": "var/research/test_inspect_qwen38_gguf.py",
+      "bytes": 11109,
+      "sha256": "e2ab35f0c9838963b852d4b7881a8d08f0f1a1c4f26a114a68a8401d5bae2d12",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/selftests/test_download_qwen38_guarded.py": {
+      "original_path": "var/research/test_download_qwen38_guarded.py",
+      "restore_path": "var/research/test_download_qwen38_guarded.py",
+      "bytes": 8420,
+      "sha256": "e1aaecb19ed06f0a0108d565fecc8f27afb5729305e75c358c1a075834d26246",
+      "kind": "synthetic_selftest"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/llama-build-boundary-cpu-proof.json": {
+      "original_path": "var/research/llama-build-boundary-cpu-proof.json",
+      "restore_path": "var/research/llama-build-boundary-cpu-proof.json",
+      "bytes": 426,
+      "sha256": "83f86b6d0a67026d8af0764f4c52e271b7feea74a150433bc2af57650ff2f5cc",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/llama-build-guardian-cpu-proof.json": {
+      "original_path": "var/research/llama-build-guardian-cpu-proof.json",
+      "restore_path": "var/research/llama-build-guardian-cpu-proof.json",
+      "bytes": 1979,
+      "sha256": "4e70148644c22bbc5229cab956d2b35a9694f384f33ed71454582c938bb19272",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/llama-rpath-relink-cpu-proof.json": {
+      "original_path": "var/research/llama-rpath-relink-cpu-proof.json",
+      "restore_path": "var/research/llama-rpath-relink-cpu-proof.json",
+      "bytes": 2014,
+      "sha256": "7f065822545ada679eb88468e4c9053d5446cfc68100b85785955eaa06ed157c",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/cmake-cache-parser-proof.json": {
+      "original_path": "var/research/cmake-cache-parser-proof.json",
+      "restore_path": "var/research/cmake-cache-parser-proof.json",
+      "bytes": 1822,
+      "sha256": "afada6cde48d1769798dde84a2fe69f6a050ae08657d7fd82ea3d95537e7c3fd",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/native-contract-cpu-build-fake-proof.json": {
+      "original_path": "var/research/native-contract-cpu-build-fake-proof.json",
+      "restore_path": "var/research/native-contract-cpu-build-fake-proof.json",
+      "bytes": 245,
+      "sha256": "0a7de3d2204ce0394b5a505c4529202a9f5beb38b3c83e5c4afc2bb5e646360b",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/qwen38-header-inspector-selftest-final.json": {
+      "original_path": "var/research/qwen38-header-inspector-selftest-final.json",
+      "restore_path": "var/research/qwen38-header-inspector-selftest-final.json",
+      "bytes": 838,
+      "sha256": "858ce493cf8c73fffd9a5d178b833494b4b85191d542c68f6f72204d8d08f8c6",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/qwen38-download-guard-cpu-proof.json": {
+      "original_path": "var/research/qwen38-download-guard-cpu-proof.json",
+      "restore_path": "var/research/qwen38-download-guard-cpu-proof.json",
+      "bytes": 3055,
+      "sha256": "d7f89ebb9047becd8033390da406e4e63431af0fb1f8cbc685e6b03789519683",
+      "kind": "historical_cpu_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/reviews/native_contract_cpu_independent_review.md": {
+      "original_path": "var/research/native_contract_cpu_independent_review.md",
+      "restore_path": "var/research/native_contract_cpu_independent_review.md",
+      "bytes": 6913,
+      "sha256": "9b008bb801c5c31d96790850f926de85883388fd5b698fe8e6476d88f9617c85",
+      "kind": "static_review"
+    },
+    "runtime/native/a100-llama-f072/support-metadata/metadata_inventory.json": {
+      "original_path": "var/research/qwen38-candidate-metadata/metadata_inventory.json",
+      "restore_path": "var/research/qwen38-candidate-metadata/metadata_inventory.json",
+      "bytes": 9727,
+      "sha256": "3e3e54a24cc09c2a6669dc94b0b28f7793a98e553c777197767c58f7d0596732",
+      "kind": "public_metadata_manifest"
+    },
+    "runtime/native/a100-llama-f072/support-metadata/template_and_conversion_provenance.json": {
+      "original_path": "var/research/qwen38-candidate-metadata/template_and_conversion_provenance.json",
+      "restore_path": "var/research/qwen38-candidate-metadata/template_and_conversion_provenance.json",
+      "bytes": 165932,
+      "sha256": "3cf9d3ceab25e02b24373f0c7e0929b1e7fcea7eb2f511be9280bfbdb506a4bd",
+      "kind": "public_metadata_manifest"
+    },
+    "runtime/licenses/llama-f072.LICENSE": {
+      "original_path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/LICENSE",
+      "restore_path": null,
+      "bytes": 1078,
+      "sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+      "kind": "exact_upstream_MIT_license"
+    },
+    "runtime/native/a100-llama-f072/provenance.json": {
+      "original_path": null,
+      "restore_path": null,
+      "bytes": 7581,
+      "sha256": "95599df9b0b941467895927a4feda353ecffc5f88f87feeb89fb7be25246bb34",
+      "kind": "generated_provenance_summary"
+    },
+    "runtime/native/a100-llama-f072/README.md": {
+      "original_path": null,
+      "restore_path": null,
+      "bytes": 11266,
+      "sha256": "2db1005bee6a5b8f4b9a9c23c905ccdb4274158250399e7f302543f108878682",
+      "kind": "generated_restore_documentation"
+    },
+    "runtime/native/a100-llama-f072/history/failed-cpu-build-v1/validator.cpp": {
+      "original_path": "var/research/native-contract-validator/validator.cpp",
+      "restore_path": null,
+      "bytes": 19242,
+      "sha256": "19921771c0f559268868d01ec5327ab859e35c379e727841cb11b6d58a82bb42",
+      "kind": "historical_failed_build_definition_or_initial_ledger"
+    },
+    "runtime/native/a100-llama-f072/history/failed-cpu-build-v1/build_native_contract_cpu.py": {
+      "original_path": "var/research/build_native_contract_cpu.py",
+      "restore_path": null,
+      "bytes": 11498,
+      "sha256": "e88d840d669df2762db823de914739efb31c345743201aea1b090886babe7f2e",
+      "kind": "historical_failed_build_definition_or_initial_ledger"
+    },
+    "runtime/native/a100-llama-f072/history/failed-cpu-build-v1/integrity.json": {
+      "original_path": "runtime/native/a100-llama-f072/integrity.json",
+      "restore_path": null,
+      "bytes": 11194,
+      "sha256": "bf5d3c7ed71e4b0466573441f5e11e4b60bf24c7a81d81433e07b1347ca00b28",
+      "kind": "historical_failed_build_definition_or_initial_ledger"
+    },
+    "runtime/native/a100-llama-f072/history/failed-cpu-build-v1/README.md": {
+      "original_path": "runtime/native/a100-llama-f072/README.md",
+      "restore_path": null,
+      "bytes": 6626,
+      "sha256": "08e7660fd8074f2d98d6a0cedc4e1aa69ab3563e45684e2f5860d5001070d9b8",
+      "kind": "historical_failed_build_definition_or_initial_ledger"
+    },
+    "runtime/native/a100-llama-f072/history/failed-cpu-build-v1/provenance.json": {
+      "original_path": "runtime/native/a100-llama-f072/provenance.json",
+      "restore_path": null,
+      "bytes": 4186,
+      "sha256": "e342a5e1645024cd7151660394c7ff9f77c9020eb8e894604da807508a783d31",
+      "kind": "historical_failed_build_definition_or_initial_ledger"
+    },
+    "runtime/native/a100-llama-f072/history/failed-cpu-build-v1/failed-report.json": {
+      "original_path": "var/reports/llama-native-contract-cpu-build.json",
+      "restore_path": null,
+      "bytes": 9344,
+      "sha256": "e85d4027ba0e01f14ff70e5a2b7325a916d46ef736a0401374b79801553910ad",
+      "kind": "immutable_actual_compile_failure_evidence"
+    },
+    "runtime/native/a100-llama-f072/helpers/resume_native_contract_cpu.py": {
+      "original_path": "var/research/resume_native_contract_cpu.py",
+      "restore_path": "var/research/resume_native_contract_cpu.py",
+      "bytes": 12181,
+      "sha256": "e28444627ebd1b739c7503555025696aaccee46b1803a03f79cc250a6f5c6f8f",
+      "kind": "bounded_same_tree_resume_definition"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/native-contract-cpu-resume-preparation.json": {
+      "original_path": "var/research/native-contract-cpu-resume-preparation.json",
+      "restore_path": "var/research/native-contract-cpu-resume-preparation.json",
+      "bytes": 1396,
+      "sha256": "6761fde17093eeaf587b38e00047d84ab2bc22c4d1ec0a9d5e9e87af3f0cf6ea",
+      "kind": "static_pure_validator_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/history/failed-cpu-build-v1/failed-build-log.txt": {
+      "original_path": "var/logs/llama-native-contract-cpu-build.log",
+      "restore_path": null,
+      "bytes": 22652,
+      "sha256": "bea58437fdb12008d805a174edd877d53fd7f0d58b2c6cfc6ffdbfece875c2bf",
+      "kind": "immutable_actual_compile_failure_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v2/build_native_contract_cpu.py": {
+      "original_path": "var/research/native-contract-history/v2/build_native_contract_cpu.py",
+      "restore_path": null,
+      "bytes": 11498,
+      "sha256": "fc9a7aa5af9a1cb1d9a3808ef9ce631fec5bd45a6d0c2f93f21989dbef1b08c0",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v2/resume_native_contract_cpu.py": {
+      "original_path": "var/research/native-contract-history/v2/resume_native_contract_cpu.py",
+      "restore_path": null,
+      "bytes": 12181,
+      "sha256": "e28444627ebd1b739c7503555025696aaccee46b1803a03f79cc250a6f5c6f8f",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v2/llama-native-contract-cpu-build-v2-log.txt": {
+      "original_path": "var/research/native-contract-history/v2/llama-native-contract-cpu-build-v2.log",
+      "restore_path": null,
+      "bytes": 1228,
+      "sha256": "86243521a8add3ff22fb1f2354d1aced4652a47ecb825a83e51e17e3cd2b8796",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v2/integrity.json": {
+      "original_path": "var/research/native-contract-history/v2/integrity.json",
+      "restore_path": null,
+      "bytes": 1747,
+      "sha256": "136a8f9bf8a55abb42a5e01e294beee004e2445efc4410a0eda0c4e131e95c09",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v2/validator.cpp": {
+      "original_path": "var/research/native-contract-history/v2/validator.cpp",
+      "restore_path": null,
+      "bytes": 19331,
+      "sha256": "4cb5fe54e3b69ca6769601dd4a2ee2e845b5c4430d1b8660374daaa25ae5e918",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v2/llama-native-contract-cpu-build-v2.json": {
+      "original_path": "var/research/native-contract-history/v2/llama-native-contract-cpu-build-v2.json",
+      "restore_path": null,
+      "bytes": 8803,
+      "sha256": "ccb6a99305f9a62c1e2f9d1572380e428d20341a73f5dd65af4222f8b850aa36",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v2/native-contract-cpu-public.json": {
+      "original_path": "var/research/native-contract-history/v2/native-contract-cpu-public.json",
+      "restore_path": null,
+      "bytes": 2031,
+      "sha256": "31e9288bf9c6c6411d507073f57c10090fcf9d9b2dff797e32e962b2b3922547",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v3/build_native_contract_cpu.py": {
+      "original_path": "var/research/native-contract-history/v3/build_native_contract_cpu.py",
+      "restore_path": null,
+      "bytes": 11498,
+      "sha256": "1e60456f429ea500657f2638a0ef525fc62823950fa7085ef891340785089506",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v3/rebuild_native_contract_cpu.py": {
+      "original_path": "var/research/native-contract-history/v3/rebuild_native_contract_cpu.py",
+      "restore_path": null,
+      "bytes": 12846,
+      "sha256": "054bee0e7442151ed5a62a804647d075b03b3b95d85a06e7531122bdacac77d2",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v3/integrity.json": {
+      "original_path": "var/research/native-contract-history/v3/integrity.json",
+      "restore_path": null,
+      "bytes": 1753,
+      "sha256": "bf0557451fd4a8401bee88d9452ccb2e6607dc058ce52b2d3e6ed9d01e2ad396",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v3/native-vocab-public-probe-v3.json": {
+      "original_path": "var/research/native-contract-history/v3/native-vocab-public-probe-v3.json",
+      "restore_path": null,
+      "bytes": 1375,
+      "sha256": "5a739934f0814a1b3037bfc44c59c54c46ddb84322ac5f650a892f2387168382",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v3/llama-native-contract-cpu-build-v3-log.txt": {
+      "original_path": "var/research/native-contract-history/v3/llama-native-contract-cpu-build-v3.log",
+      "restore_path": null,
+      "bytes": 583,
+      "sha256": "f2945996844b9eb1748a6f7282d3523c792e0bbc7f7b798c7b36c7f940ce7cef",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v3/validator.cpp": {
+      "original_path": "var/research/native-contract-history/v3/validator.cpp",
+      "restore_path": null,
+      "bytes": 19833,
+      "sha256": "fb9c2873ee4040de3c63e621393c15cc8b88eb1358e288d3f6da8fd00f4e69ee",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/history/vocab-parity-v3/llama-native-contract-cpu-build-v3.json": {
+      "original_path": "var/research/native-contract-history/v3/llama-native-contract-cpu-build-v3.json",
+      "restore_path": null,
+      "bytes": 9071,
+      "sha256": "8b1bb3639ef691ea0464965ead142743f743004f2fb7ac9200ad136752733b16",
+      "kind": "historical_cpu_parity_diagnostic_inputs_and_evidence"
+    },
+    "runtime/native/a100-llama-f072/helpers/rebuild_native_contract_cpu.py": {
+      "original_path": "var/research/rebuild_native_contract_cpu.py",
+      "restore_path": "var/research/rebuild_native_contract_cpu.py",
+      "bytes": 12846,
+      "sha256": "054bee0e7442151ed5a62a804647d075b03b3b95d85a06e7531122bdacac77d2",
+      "kind": "bounded_cpu_diagnostic_helper"
+    },
+    "runtime/native/a100-llama-f072/helpers/rebuild_native_contract_cpu_v4.py": {
+      "original_path": "var/research/rebuild_native_contract_cpu_v4.py",
+      "restore_path": "var/research/rebuild_native_contract_cpu_v4.py",
+      "bytes": 13110,
+      "sha256": "1cfa3a72e2f75ceafebdb7b24d6a9667bad1e38c6c714211643b6721d468d06c",
+      "kind": "bounded_cpu_diagnostic_helper"
+    },
+    "runtime/native/a100-llama-f072/helpers/probe_native_public_vocab.py": {
+      "original_path": "var/research/probe_native_public_vocab.py",
+      "restore_path": "var/research/probe_native_public_vocab.py",
+      "bytes": 6552,
+      "sha256": "80567fe90d20d334d4d5b89456be9d9eaec28a490e7a6d0c818031a3f2061285",
+      "kind": "bounded_cpu_diagnostic_helper"
+    },
+    "runtime/native/a100-llama-f072/helpers/prepare_native_raw_tokenizer_diagnostic.py": {
+      "original_path": "var/research/prepare_native_raw_tokenizer_diagnostic.py",
+      "restore_path": "var/research/prepare_native_raw_tokenizer_diagnostic.py",
+      "bytes": 3701,
+      "sha256": "10f0a38b239a869376813574b9606a46fc3d6b1c6c67ebc4575fb0df6226ae98",
+      "kind": "bounded_cpu_diagnostic_helper"
+    },
+    "runtime/native/a100-llama-f072/public-fixtures/native-tokenizer-public-parity.json": {
+      "original_path": "var/research/native-tokenizer-public-parity.json",
+      "restore_path": "var/research/native-tokenizer-public-parity.json",
+      "bytes": 4927,
+      "sha256": "79c4448b7ee949add0a80e8a7f0fc0d73575aaf01ff6e52beb3cfae8434ea1bd",
+      "kind": "explicit_public_synthetic_tokenizer_fixture"
+    },
+    "runtime/native/a100-llama-f072/public-fixtures/native-tokenizer-public-parity-raw-diagnostic.json": {
+      "original_path": "var/research/native-tokenizer-public-parity-raw-diagnostic.json",
+      "restore_path": "var/research/native-tokenizer-public-parity-raw-diagnostic.json",
+      "bytes": 4993,
+      "sha256": "9658eb53fae81adee1b775b45f796f3484db69aea41e04a020765fa05d770514",
+      "kind": "explicit_public_synthetic_tokenizer_fixture"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/native-vocab-public-failure-v2.json": {
+      "original_path": "var/research/native-vocab-public-failure-v2.json",
+      "restore_path": "var/research/native-vocab-public-failure-v2.json",
+      "bytes": 592,
+      "sha256": "3a5ff7582c0d81b9d377179a4420e372e50f18ad61cd7a882e2023adc5b131bf",
+      "kind": "actual_public_cpu_parity_probe"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/native-vocab-public-probe-v4.json": {
+      "original_path": "var/research/native-vocab-public-probe-v4.json",
+      "restore_path": "var/research/native-vocab-public-probe-v4.json",
+      "bytes": 1878,
+      "sha256": "b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0",
+      "kind": "actual_public_cpu_parity_probe"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/native-vocab-public-probe-v4-raw-diagnostic.json": {
+      "original_path": "var/research/native-vocab-public-probe-v4-raw-diagnostic.json",
+      "restore_path": "var/research/native-vocab-public-probe-v4-raw-diagnostic.json",
+      "bytes": 2535,
+      "sha256": "12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d",
+      "kind": "actual_public_cpu_parity_probe"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/llama-native-contract-cpu-build-v4.json": {
+      "original_path": "var/reports/llama-native-contract-cpu-build-v4.json",
+      "restore_path": null,
+      "bytes": 9340,
+      "sha256": "f149c7eda01dda9b36f4dba9327cb368bbdf2e3c591fa7db287b47787be7aea0",
+      "kind": "actual_static_cpu_compile_proof"
+    },
+    "runtime/native/a100-llama-f072/reviews/native_tokenizer_parity_review.md": {
+      "original_path": "var/research/native_tokenizer_parity_review.md",
+      "restore_path": "var/research/native_tokenizer_parity_review.md",
+      "bytes": 4585,
+      "sha256": "f2d9e8908d58eb70b9d22a80e5e5f248533809a188a2738974cd83e7422e2c2f",
+      "kind": "actual_public_cpu_review"
+    },
+    "runtime/native/a100-llama-f072/helpers/run_native_context_raw_cpu.py": {
+      "original_path": "var/research/run_native_context_raw_cpu.py",
+      "restore_path": "var/research/run_native_context_raw_cpu.py",
+      "bytes": 20254,
+      "sha256": "4ab1dcf73d983c35dcd3c5006bbfecbb3594c6ff865fa8c2f77fee3dfdd31153",
+      "kind": "prepared_raw_variant_context_wrapper"
+    },
+    "runtime/native/a100-llama-f072/selftests/test_native_context_raw_cpu_wrapper.py": {
+      "original_path": "var/research/test_native_context_raw_cpu_wrapper.py",
+      "restore_path": "var/research/test_native_context_raw_cpu_wrapper.py",
+      "bytes": 9790,
+      "sha256": "913c70a2570070269599a25ad4777ae378ad451fa0526281e37390073471ee3a",
+      "kind": "raw_variant_fake_selftests"
+    },
+    "runtime/native/a100-llama-f072/prior-proofs/native-context-raw-wrapper-cpu-proof.json": {
+      "original_path": "var/research/native-context-raw-wrapper-cpu-proof.json",
+      "restore_path": "var/research/native-context-raw-wrapper-cpu-proof.json",
+      "bytes": 1216,
+      "sha256": "a17979d0c0fb3843e88fa3105bf1e6f1d7c2e91280469efdbc0d818a831837a6",
+      "kind": "fake_only_preparation_proof"
+    },
+    "runtime/native/a100-llama-f072/helpers/run_native_contract_cpu.py": {
+      "original_path": "var/research/run_native_contract_cpu.py",
+      "restore_path": "var/research/run_native_contract_cpu.py",
+      "bytes": 7340,
+      "sha256": "bc441dbcb6f86106d47f7a87364f0008d793d78ae0d04795e57f7ec441f193df",
+      "kind": "public_cpu_contract_definition_exact"
+    },
+    "runtime/native/a100-llama-f072/history/official-hf-context/run_native_context_cpu.py": {
+      "original_path": "var/research/run_native_context_cpu.py",
+      "restore_path": null,
+      "bytes": 13494,
+      "sha256": "f28ffef99de68437e8f8e1cd15da5229d53aff024567e00ab0850c2fb3c7b29f",
+      "kind": "historical_official_hf_context_definition"
+    },
+    "runtime/native/a100-llama-f072/history/official-hf-context/test_native_context_cpu_wrapper.py": {
+      "original_path": "var/research/test_native_context_cpu_wrapper.py",
+      "restore_path": null,
+      "bytes": 4906,
+      "sha256": "fce3d2b7da486d63e700fe2d9bf2be18b2a0debae5adf71b2b37b6a9dcadb9b3",
+      "kind": "historical_official_hf_context_fake_tests"
+    }
+  },
+  "integrity_file_itself_excluded": true,
+  "definitions_only": true,
+  "runtime_model_gpu_validation": "NOT_CLAIMED",
+  "updated_at_utc": "2026-09-20T06:32:34.290629+00:00",
+  "history_preserved": true
+}

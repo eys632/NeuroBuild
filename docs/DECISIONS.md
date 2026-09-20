@@ -157,3 +157,54 @@ allocator cap이 없다는 차이를 숨기지 않는다. Disk20GiB reserve도 �
 검증된 비활성·재다운로드 가능한 weight만 정리한다. 아직 설치·정리·다운로드·native GPU
 실행은 하지 않았다. [후보와 검증 순서](modern_local_runtime_candidate.md)를 따른다.
 이는 Phase5.x 안의 전략 변경이며 최종 모델 채택이나 Phase6 시작이 아니다.
+
+## D032 — Native runtime의 명시적 계약과 실행 전 검증
+
+기존 vLLM 환경과 두 HTTP dialect를 유지하고 llama.cpp용 `llama_cpp_json_schema`를
+별도로 추가한다. 실패 시 schema 없는 요청이나 다른 dialect로 자동 재시도하지 않는다.
+기존 generation2 branch schema/원문 prompt/quote adapter/canonical parser/품질 gate를 보존한다.
+첫 실험 sampling은 T0.7/P0.8/K20/minP0/seed42, presence·frequency0/repeat1/window0,
+samplers temperature→top_k→top_p→min_p다. Native runtime은 prompt token도 penalty에
+포함하므로 인용문 복사를 불필요하게 억제하지 않도록 모델 출력 관측 전에 정했다.
+공식 card의 presence1.5를 그대로 따랐다고 주장하지 않는다.
+
+공통 lifecycle guard를 공유하되 native binary/source/library/GGUF/header proof를 별도로
+검증한다. 다른 프로세스의 존재 자체는 거절 사유가 아니다. 허용 GPU3에서 fresh free/utilization을
+측정하고 전체 startup/inference peak와 안전 margin이 맞을 때만 실행한다. 실제 child에서
+노출 장치 수1과 허용 UUID를 확인한 뒤 같은 PID로 native exec한다. Parent death/core dump0,
+자체 process group 정리, project lock, timeout/free-floor 감시와 localhost listener 검사를 유지한다.
+다른 사용자나 GPU0/1/2는 변경하지 않는다. Native allocator의 hard cap은 검증되지 않았으며
+watchdog가 사전 VRAM 예산이나 하드웨어 격리를 대신한다고 주장하지 않는다.
+
+HOME 내 고정 source/CMake의 CUDA11.8/SM80 build 및 `$ORIGIN` relink를 통과했다.
+CUDA-linked tokenize 도구를 CPU 검사에 사용하지 않고 모든 GPU backend가 꺼진 별도 helper로
+실제 native chat/schema/grammar/prefix prefill/sampling을 확인한다. GGUF header/SHA 확인 후에만
+vocab-only tokenization/context 검사를 추가한다. Runtime의 stdout/stderr와 reasoning 원문은
+보존하지 않으며 평가기는 final content만 기존 parser로 전달한다.
+
+평가를 끝내고 종료한 MoE의 재다운로드 가능한 가중치4개만 hash 확인 후 정리했다.
+단일 새 후보 다운로드에는 기존 size/SHA 확인과 atomic no-clobber publication,
+20GiB+512MiB free 감시 및 자체 curl descendant 정리를 적용한다.
+새로운382개 회귀 검사 통과는 이 plumbing의 검증이며 모델 품질 gate 통과가 아니다.
+
+
+## D033 — 공식 NFC 동등성 실패와 원문 보존 GGUF 후보의 구분
+
+공식 tokenizer의 NFC 정규화와 pinned llama.cpp의 raw UTF-8 BPE 경로가 다르다.
+공개20개 중 공식 HF token ID 일치는19/20으로 **FAIL**이며 원래 fixture와 실패 증거를
+그대로 보존한다. Native의 원문 byte roundtrip은20/20이고, 동일20문자열과 tokenizer의
+나머지 설정을 유지한 채 NFC만 메모리에서 끈 별도 진단 reference와는20/20 일치했다.
+이 파생 결과를 공식 HF tokenizer 동등성 PASS라고 부르지 않는다.
+
+다음 실험 후보를 `qwen38-gguf-raw-unicode-v1`로 명시한다. 정확한 HF token ID 동등성은
+내부 호환성 가정이었고 제품의 요구사항은 원문 보존과 strict quote/schema/semantic 안전성이다.
+원문을 보존하는 실제 native 경로를 별도 후보로 검증할 수 있다고 판단한다. 입력 또는 모델
+출력을 NFC로 고치지 않으며, 원문 인용 검사와 canonical parser, raw READY 오판·unsafe·
+semantic 품질 gate는 그대로다. 학습 시 token sequence와의 차이로 품질이 달라질 수 있고
+공개20개가 전체 Unicode 동작의 증명은 아니다. 실제 평가 전 모델 채택은 하지 않는다.
+
+이 후보의 문맥 증거는 official FAIL과 raw reference를 모두 hash로 연결하고 실제 native
+vocab-only token 수를 사용한다. 기존 HF 동등성을 요구한 검사 기록을 덮어쓰지 않고 별도
+helper/report에서 reference 종류를 명시한다. 공개 grammar/EOG 검증과 최대 context4096,
+completion768, 원문 roundtrip 조건은 유지한다. 이후 GPU3 실행에는 D032와 전체 peak·margin
+조건이 그대로 적용된다. 이번 결정은 Phase5.x의 실험 전략이며 품질 gate 통과가 아니다.

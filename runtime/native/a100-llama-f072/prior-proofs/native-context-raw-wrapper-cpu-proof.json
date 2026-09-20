@@ -1,0 +1,26 @@
+{
+  "kind": "NATIVE_RAW_CONTEXT_WRAPPER_CPU_PREPARATION",
+  "status": "PASS_FAKE_TESTS_ONLY_NOT_EXECUTED",
+  "runtime_variant": "qwen38-gguf-raw-unicode-v1",
+  "hf_equivalence": "FAIL_19_OF_20_INDEX_11",
+  "test_count": 13,
+  "test_seconds": 0.029,
+  "resource_warning_as_error": true,
+  "wrapper_sha256": "4ab1dcf73d983c35dcd3c5006bbfecbb3594c6ff865fa8c2f77fee3dfdd31153",
+  "test_sha256": "913c70a2570070269599a25ad4777ae378ad451fa0526281e37390073471ee3a",
+  "original_wrapper_sha256": "f28ffef99de68437e8f8e1cd15da5229d53aff024567e00ab0850c2fb3c7b29f",
+  "original_tests_sha256": "fce3d2b7da486d63e700fe2d9bf2be18b2a0debae5adf71b2b37b6a9dcadb9b3",
+  "actual_context_wrapper_main_executed": false,
+  "actual_private_dataset_inputs_read": false,
+  "actual_native_model_gpu_network_calls": 0,
+  "checks": [
+    "originalHFfail19of20/index11 binding",
+    "same20source text/order in explicit derivedreference",
+    "native originalrawroundtrip20 evidence",
+    "v4build/binary/CPP identity",
+    "fullnativegrammar/parity/contextbounds",
+    "fakeHTTP sourcebyte preservation includingdecomposedunicode",
+    "invalidproofreject beforedataset/subprocess",
+    "unknownoutput/partialcoverage/ctxoverflowreject"
+  ]
+}

@@ -1,0 +1,649 @@
+{
+  "status": "COMPILE_PASS_NOT_RUNTIME_VALIDATED",
+  "started_at_utc": "2026-09-20T04:56:31.670853+00:00",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "bootstrap_report_sha256": "4802877b1f067c17a3fb2e4fe1cc0f3605773b6fba56900aa2c80699739751f6",
+  "cmake_binary_sha256": "055306bf4b381456c172226eed0f6f3392e863293d471a71fcdafe211cd7384e",
+  "helper_sha256": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+  "cuda_visible_devices": "",
+  "settings": {
+    "LLAMA_BUILD_NUMBER": "0",
+    "LLAMA_BUILD_COMMIT": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+    "CMAKE_BUILD_TYPE": "Release",
+    "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+    "CMAKE_C_COMPILER": "/usr/local/bin/gcc",
+    "CMAKE_CXX_COMPILER": "/usr/local/bin/g++",
+    "CMAKE_CUDA_COMPILER": "/usr/local/cuda/bin/nvcc",
+    "CMAKE_CUDA_HOST_COMPILER": "/usr/local/bin/g++",
+    "CUDAToolkit_ROOT": "/usr/local/cuda",
+    "CMAKE_CUDA_ARCHITECTURES": "80-real",
+    "GGML_CUDA": "ON",
+    "GGML_NATIVE": "OFF",
+    "GGML_CCACHE": "OFF",
+    "GGML_LTO": "OFF",
+    "GGML_CUDA_CUB_3DOT2": "OFF",
+    "GGML_CUDA_NCCL": "OFF",
+    "GGML_CUDA_GRAPHS": "OFF",
+    "GGML_CUDA_FORCE_CUBLAS": "OFF",
+    "GGML_CUDA_FORCE_MMQ": "OFF",
+    "GGML_BLAS": "OFF",
+    "GGML_OPENMP": "OFF",
+    "GGML_OPENMP_FETCH": "OFF",
+    "GGML_CPU_KLEIDIAI": "OFF",
+    "GGML_LLAMAFILE": "OFF",
+    "GGML_BACKEND_DL": "OFF",
+    "LLAMA_BUILD_COMMON": "ON",
+    "LLAMA_BUILD_TOOLS": "ON",
+    "LLAMA_BUILD_SERVER": "ON",
+    "LLAMA_BUILD_TESTS": "OFF",
+    "LLAMA_BUILD_EXAMPLES": "OFF",
+    "LLAMA_BUILD_APP": "OFF",
+    "LLAMA_BUILD_UI": "OFF",
+    "LLAMA_USE_PREBUILT_UI": "OFF",
+    "LLAMA_OPENSSL": "OFF",
+    "LLAMA_BUILD_BORINGSSL": "OFF",
+    "LLAMA_BUILD_LIBRESSL": "OFF",
+    "LLAMA_LLGUIDANCE": "OFF",
+    "LLAMA_SUBPROCESS": "OFF",
+    "FETCHCONTENT_FULLY_DISCONNECTED": "ON",
+    "FETCHCONTENT_UPDATES_DISCONNECTED": "ON",
+    "CMAKE_BUILD_WITH_INSTALL_RPATH": "ON",
+    "CMAKE_INSTALL_RPATH": "$ORIGIN",
+    "CMAKE_INSTALL_RPATH_USE_LINK_PATH": "OFF"
+  },
+  "disk_reserve_bytes": 21474836480,
+  "own_allocation_budget_bytes": 6442450944,
+  "gpu_queries_or_execution": "NOT_REQUESTED",
+  "model_weights_downloaded": false,
+  "phases": [
+    {
+      "name": "configure",
+      "command": [
+        "/home/a202192020/NeuroBuild_v2/var/tools/cmake-3.23.5-linux-x86_64/bin/cmake",
+        "-S",
+        "/home/a202192020/NeuroBuild_v2/var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2",
+        "-B",
+        "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118",
+        "-G",
+        "Unix Makefiles",
+        "-DLLAMA_BUILD_NUMBER=0",
+        "-DLLAMA_BUILD_COMMIT=f072b103714dfa1eee531f80b24512faf38e3dd2",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DCMAKE_C_COMPILER=/usr/local/bin/gcc",
+        "-DCMAKE_CXX_COMPILER=/usr/local/bin/g++",
+        "-DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc",
+        "-DCMAKE_CUDA_HOST_COMPILER=/usr/local/bin/g++",
+        "-DCUDAToolkit_ROOT=/usr/local/cuda",
+        "-DCMAKE_CUDA_ARCHITECTURES=80-real",
+        "-DGGML_CUDA=ON",
+        "-DGGML_NATIVE=OFF",
+        "-DGGML_CCACHE=OFF",
+        "-DGGML_LTO=OFF",
+        "-DGGML_CUDA_CUB_3DOT2=OFF",
+        "-DGGML_CUDA_NCCL=OFF",
+        "-DGGML_CUDA_GRAPHS=OFF",
+        "-DGGML_CUDA_FORCE_CUBLAS=OFF",
+        "-DGGML_CUDA_FORCE_MMQ=OFF",
+        "-DGGML_BLAS=OFF",
+        "-DGGML_OPENMP=OFF",
+        "-DGGML_OPENMP_FETCH=OFF",
+        "-DGGML_CPU_KLEIDIAI=OFF",
+        "-DGGML_LLAMAFILE=OFF",
+        "-DGGML_BACKEND_DL=OFF",
+        "-DLLAMA_BUILD_COMMON=ON",
+        "-DLLAMA_BUILD_TOOLS=ON",
+        "-DLLAMA_BUILD_SERVER=ON",
+        "-DLLAMA_BUILD_TESTS=OFF",
+        "-DLLAMA_BUILD_EXAMPLES=OFF",
+        "-DLLAMA_BUILD_APP=OFF",
+        "-DLLAMA_BUILD_UI=OFF",
+        "-DLLAMA_USE_PREBUILT_UI=OFF",
+        "-DLLAMA_OPENSSL=OFF",
+        "-DLLAMA_BUILD_BORINGSSL=OFF",
+        "-DLLAMA_BUILD_LIBRESSL=OFF",
+        "-DLLAMA_LLGUIDANCE=OFF",
+        "-DLLAMA_SUBPROCESS=OFF",
+        "-DFETCHCONTENT_FULLY_DISCONNECTED=ON",
+        "-DFETCHCONTENT_UPDATES_DISCONNECTED=ON"
+      ],
+      "started_at_utc": "2026-09-20T04:56:31.769666+00:00",
+      "own_child_pid": 3501822,
+      "own_child_role": "build_guardian",
+      "guardian_report": "/home/a202192020/NeuroBuild_v2/var/tmp/llama-f072-sm80-cu118/guardian-configure.json",
+      "guardian_shutdown": {
+        "term_sent": true,
+        "kill_sent": true,
+        "reaped": true
+      },
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-20T04:56:36.075327+00:00",
+      "native_cleanup": {
+        "guardian_pid": 3501822,
+        "native_pid": 3501823,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": 0,
+        "stop_requested": false
+      }
+    },
+    {
+      "name": "ggml-cuda",
+      "command": [
+        "/home/a202192020/NeuroBuild_v2/var/tools/cmake-3.23.5-linux-x86_64/bin/cmake",
+        "--build",
+        "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118",
+        "--target",
+        "ggml-cuda",
+        "--parallel",
+        "2"
+      ],
+      "started_at_utc": "2026-09-20T04:56:36.151078+00:00",
+      "own_child_pid": 3502019,
+      "own_child_role": "build_guardian",
+      "guardian_report": "/home/a202192020/NeuroBuild_v2/var/tmp/llama-f072-sm80-cu118/guardian-ggml-cuda.json",
+      "guardian_shutdown": {
+        "term_sent": true,
+        "kill_sent": true,
+        "reaped": true
+      },
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-20T05:13:02.172539+00:00",
+      "native_cleanup": {
+        "guardian_pid": 3502019,
+        "native_pid": 3502020,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": 0,
+        "stop_requested": false
+      }
+    },
+    {
+      "name": "llama-server",
+      "command": [
+        "/home/a202192020/NeuroBuild_v2/var/tools/cmake-3.23.5-linux-x86_64/bin/cmake",
+        "--build",
+        "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118",
+        "--target",
+        "llama-server",
+        "--parallel",
+        "2"
+      ],
+      "started_at_utc": "2026-09-20T05:13:02.248226+00:00",
+      "own_child_pid": 3508897,
+      "own_child_role": "build_guardian",
+      "guardian_report": "/home/a202192020/NeuroBuild_v2/var/tmp/llama-f072-sm80-cu118/guardian-llama-server.json",
+      "guardian_shutdown": {
+        "term_sent": true,
+        "kill_sent": true,
+        "reaped": true
+      },
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-20T05:17:17.285373+00:00",
+      "native_cleanup": {
+        "guardian_pid": 3508897,
+        "native_pid": 3508898,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": 0,
+        "stop_requested": false
+      }
+    }
+  ],
+  "minimum_free_bytes": 28728508416,
+  "maximum_own_allocated_bytes": 785080320,
+  "finished_at_utc": "2026-09-20T05:17:17.285891+00:00",
+  "log_sha256": "2c2a8e794e5bac42be36cc93d8b4188f7f330bcd59de0857303297e18df91387",
+  "binary_sha256": "a0494b9885b25ba4cc2679dae5077e7ab18ad5baff161a7a152f19f43afdca0d",
+  "compile_commands_sha256": "6a5827b8602dc24570005ca483336b8023995daa09823ba1866f380c0b52fb3c",
+  "kind": "LLAMA_SOURCE_IMMUTABLE_RPATH_RELINK",
+  "original_compile_report_sha256": "0c78c5b9a927408986e024d3ef5adad6cb420d3a9aaae8d88be89a8eb2f19654",
+  "relink_started_at_utc": "2026-09-20T05:23:26.587581+00:00",
+  "relink_helper_sha256": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0",
+  "reused_guardian_helper_sha256": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+  "shared_shutdown_module_sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+  "verifier_helper_sha256": "925a63ed1d59c20e3f9afabbdfd4cc547f67a6c77859b35950dcebaccf8bca8f",
+  "original_runtime_dependencies": [
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-base.so.0.24.0",
+      "bytes": 911872,
+      "sha256": "ea2ff138d82d00df043009f955513c8500055a9b7aabb2423c72ad87fb3f0c07"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cpu.so.0.24.0",
+      "bytes": 1100896,
+      "sha256": "424510aa422d96b64d7ee31e62b4cdab7a8beb39675ac91596efe0f0f8f45496"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cuda.so.0.24.0",
+      "bytes": 137862584,
+      "sha256": "e26c05de58365a0924fa16449e2d30cb5897dc91318cf8996a53df1858828982"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml.so.0.24.0",
+      "bytes": 56064,
+      "sha256": "86704cbe9604eb16b201d6045d9634558c2c191c4a4c78f3b786d15b7fcdad31"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama-common.so.0.4.1",
+      "bytes": 5773448,
+      "sha256": "f9ab8f93ac553336a8d48f7920d07bb920050a2d4e875ba48fc9ee137fb3762c"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama-server-impl.so",
+      "bytes": 3682224,
+      "sha256": "3b16bf99044d741c173a1935805df21632c5a349facd57360f9325a65a0b001b"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama.so.0.4.1",
+      "bytes": 4481584,
+      "sha256": "4464634f5d897ea22a0564570bc27beec95ec2e420a2e491b19c8aa51ec92ad9"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libmtmd.so.0.4.1",
+      "bytes": 1724648,
+      "sha256": "b217059a87d1a9aa22880b818ab7b6c82838b86b0c77ed5d4accd16b351f1408"
+    }
+  ],
+  "original_runtime_dependency_symlinks": [
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-base.so",
+      "target": "libggml-base.so.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-base.so.0.24.0"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-base.so.0",
+      "target": "libggml-base.so.0.24.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-base.so.0.24.0"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cpu.so",
+      "target": "libggml-cpu.so.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cpu.so.0.24.0"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cpu.so.0",
+      "target": "libggml-cpu.so.0.24.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cpu.so.0.24.0"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cuda.so",
+      "target": "libggml-cuda.so.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cuda.so.0.24.0"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cuda.so.0",
+      "target": "libggml-cuda.so.0.24.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cuda.so.0.24.0"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml.so",
+      "target": "libggml.so.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml.so.0.24.0"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml.so.0",
+      "target": "libggml.so.0.24.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml.so.0.24.0"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama-common.so",
+      "target": "libllama-common.so.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama-common.so.0.4.1"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama-common.so.0",
+      "target": "libllama-common.so.0.4.1",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama-common.so.0.4.1"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama.so",
+      "target": "libllama.so.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama.so.0.4.1"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama.so.0",
+      "target": "libllama.so.0.4.1",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama.so.0.4.1"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libmtmd.so",
+      "target": "libmtmd.so.0",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libmtmd.so.0.4.1"
+    },
+    {
+      "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libmtmd.so.0",
+      "target": "libmtmd.so.0.4.1",
+      "real_path": "var/runtime-build/llama-f072-sm80-cu118/bin/libmtmd.so.0.4.1"
+    }
+  ],
+  "source_before_relink": {
+    "verified_blobs": 3607,
+    "verified_blob_bytes": 172243701,
+    "git_modes": {
+      "100644": 3482,
+      "100755": 125
+    },
+    "extra_or_missing_paths": 0,
+    "verification": "GIT_BLOB_SHA1_SIZE_MODE"
+  },
+  "object_inventory_before": {
+    "count": 334,
+    "inventory_sha256": "54f47c3086f478bf5ffdf83303fe8237924f3274d48e62a1408159e6065eba20"
+  },
+  "rpath_selection": {
+    "original_elf_objects": [
+      {
+        "path": "var/runtime-build/llama-f072-sm80-cu118/bin/llama-server",
+        "needed": [
+          "libllama-server-impl.so",
+          "libllama-common.so.0",
+          "libmtmd.so.0",
+          "libllama.so.0",
+          "libggml.so.0",
+          "libggml-cpu.so.0",
+          "libggml-cuda.so.0",
+          "libggml-base.so.0",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118/bin:"
+        ],
+        "soname": null,
+        "interpreter": "/lib64/ld-linux-x86-64.so.2"
+      },
+      {
+        "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-base.so.0.24.0",
+        "needed": [
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [],
+        "soname": "libggml-base.so.0",
+        "interpreter": null
+      },
+      {
+        "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cpu.so.0.24.0",
+        "needed": [
+          "libggml-base.so.0",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118/bin:"
+        ],
+        "soname": "libggml-cpu.so.0",
+        "interpreter": null
+      },
+      {
+        "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml-cuda.so.0.24.0",
+        "needed": [
+          "libggml-base.so.0",
+          "libcudart.so.11.0",
+          "libcublas.so.11",
+          "libcuda.so.1",
+          "libcublasLt.so.11",
+          "librt.so.1",
+          "libpthread.so.0",
+          "libdl.so.2",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118/bin:"
+        ],
+        "soname": "libggml-cuda.so.0",
+        "interpreter": null
+      },
+      {
+        "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libggml.so.0.24.0",
+        "needed": [
+          "libdl.so.2",
+          "libggml-cpu.so.0",
+          "libggml-cuda.so.0",
+          "libggml-base.so.0",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6"
+        ],
+        "rpath": [],
+        "runpath": [
+          "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118/bin:"
+        ],
+        "soname": "libggml.so.0",
+        "interpreter": null
+      },
+      {
+        "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama-common.so.0.4.1",
+        "needed": [
+          "libllama.so.0",
+          "libggml.so.0",
+          "libggml-cpu.so.0",
+          "libggml-cuda.so.0",
+          "libggml-base.so.0",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ],
+        "rpath": [],
+        "runpath": [
+          "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118/bin:"
+        ],
+        "soname": "libllama-common.so.0",
+        "interpreter": null
+      },
+      {
+        "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama-server-impl.so",
+        "needed": [
+          "libllama-common.so.0",
+          "libmtmd.so.0",
+          "libllama.so.0",
+          "libggml.so.0",
+          "libggml-cpu.so.0",
+          "libggml-cuda.so.0",
+          "libggml-base.so.0",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ],
+        "rpath": [],
+        "runpath": [
+          "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118/bin:"
+        ],
+        "soname": "libllama-server-impl.so",
+        "interpreter": null
+      },
+      {
+        "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libllama.so.0.4.1",
+        "needed": [
+          "libggml.so.0",
+          "libggml-cpu.so.0",
+          "libggml-cuda.so.0",
+          "libggml-base.so.0",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ],
+        "rpath": [],
+        "runpath": [
+          "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118/bin:"
+        ],
+        "soname": "libllama.so.0",
+        "interpreter": null
+      },
+      {
+        "path": "var/runtime-build/llama-f072-sm80-cu118/bin/libmtmd.so.0.4.1",
+        "needed": [
+          "libllama.so.0",
+          "libggml.so.0",
+          "libggml-cpu.so.0",
+          "libggml-cuda.so.0",
+          "libggml-base.so.0",
+          "libstdc++.so.6",
+          "libm.so.6",
+          "libgcc_s.so.1",
+          "libpthread.so.0",
+          "libc.so.6",
+          "ld-linux-x86-64.so.2"
+        ],
+        "rpath": [],
+        "runpath": [
+          "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118/bin:"
+        ],
+        "soname": "libmtmd.so.0",
+        "interpreter": null
+      }
+    ],
+    "missing_cuda_cache_names": [],
+    "explicit_toolkit_fallback_directory": null,
+    "selection": "Literal $ORIGIN; append only verified existing system toolkit directory if cache lacks a toolkit SONAME"
+  },
+  "relink_phases": [
+    {
+      "name": "reconfigure-rpath",
+      "command": [
+        "/home/a202192020/NeuroBuild_v2/var/tools/cmake-3.23.5-linux-x86_64/bin/cmake",
+        "-S",
+        "/home/a202192020/NeuroBuild_v2/var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2",
+        "-B",
+        "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118",
+        "-G",
+        "Unix Makefiles",
+        "-DLLAMA_BUILD_NUMBER=0",
+        "-DLLAMA_BUILD_COMMIT=f072b103714dfa1eee531f80b24512faf38e3dd2",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+        "-DCMAKE_C_COMPILER=/usr/local/bin/gcc",
+        "-DCMAKE_CXX_COMPILER=/usr/local/bin/g++",
+        "-DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc",
+        "-DCMAKE_CUDA_HOST_COMPILER=/usr/local/bin/g++",
+        "-DCUDAToolkit_ROOT=/usr/local/cuda",
+        "-DCMAKE_CUDA_ARCHITECTURES=80-real",
+        "-DGGML_CUDA=ON",
+        "-DGGML_NATIVE=OFF",
+        "-DGGML_CCACHE=OFF",
+        "-DGGML_LTO=OFF",
+        "-DGGML_CUDA_CUB_3DOT2=OFF",
+        "-DGGML_CUDA_NCCL=OFF",
+        "-DGGML_CUDA_GRAPHS=OFF",
+        "-DGGML_CUDA_FORCE_CUBLAS=OFF",
+        "-DGGML_CUDA_FORCE_MMQ=OFF",
+        "-DGGML_BLAS=OFF",
+        "-DGGML_OPENMP=OFF",
+        "-DGGML_OPENMP_FETCH=OFF",
+        "-DGGML_CPU_KLEIDIAI=OFF",
+        "-DGGML_LLAMAFILE=OFF",
+        "-DGGML_BACKEND_DL=OFF",
+        "-DLLAMA_BUILD_COMMON=ON",
+        "-DLLAMA_BUILD_TOOLS=ON",
+        "-DLLAMA_BUILD_SERVER=ON",
+        "-DLLAMA_BUILD_TESTS=OFF",
+        "-DLLAMA_BUILD_EXAMPLES=OFF",
+        "-DLLAMA_BUILD_APP=OFF",
+        "-DLLAMA_BUILD_UI=OFF",
+        "-DLLAMA_USE_PREBUILT_UI=OFF",
+        "-DLLAMA_OPENSSL=OFF",
+        "-DLLAMA_BUILD_BORINGSSL=OFF",
+        "-DLLAMA_BUILD_LIBRESSL=OFF",
+        "-DLLAMA_LLGUIDANCE=OFF",
+        "-DLLAMA_SUBPROCESS=OFF",
+        "-DFETCHCONTENT_FULLY_DISCONNECTED=ON",
+        "-DFETCHCONTENT_UPDATES_DISCONNECTED=ON",
+        "-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON",
+        "-DCMAKE_INSTALL_RPATH=$ORIGIN",
+        "-DCMAKE_INSTALL_RPATH_USE_LINK_PATH=OFF"
+      ],
+      "started_at_utc": "2026-09-20T05:23:26.677331+00:00",
+      "max_seconds": 1800,
+      "budget_bytes": 6442450944,
+      "reserve_bytes": 21474836480,
+      "own_child_pid": 3513119,
+      "guardian_shutdown": {
+        "term_sent": true,
+        "kill_sent": true,
+        "child_reaped": true
+      },
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-20T05:23:28.763780+00:00",
+      "native_cleanup": {
+        "guardian_pid": 3513119,
+        "native_pid": 3513120,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": 0,
+        "stop_requested": false
+      }
+    },
+    {
+      "name": "relink-server",
+      "command": [
+        "/home/a202192020/NeuroBuild_v2/var/tools/cmake-3.23.5-linux-x86_64/bin/cmake",
+        "--build",
+        "/home/a202192020/NeuroBuild_v2/var/runtime-build/llama-f072-sm80-cu118",
+        "--target",
+        "llama-server",
+        "--parallel",
+        "2"
+      ],
+      "started_at_utc": "2026-09-20T05:23:28.874580+00:00",
+      "max_seconds": 1800,
+      "budget_bytes": 6442450944,
+      "reserve_bytes": 21474836480,
+      "own_child_pid": 3513147,
+      "guardian_shutdown": {
+        "term_sent": true,
+        "kill_sent": true,
+        "child_reaped": true
+      },
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-20T05:23:33.070603+00:00",
+      "native_cleanup": {
+        "guardian_pid": 3513147,
+        "native_pid": 3513148,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": 0,
+        "stop_requested": false
+      }
+    }
+  ],
+  "relink_finished_at_utc": "2026-09-20T05:23:33.544205+00:00",
+  "object_inventory_after": {
+    "count": 334,
+    "inventory_sha256": "54f47c3086f478bf5ffdf83303fe8237924f3274d48e62a1408159e6065eba20"
+  }
+}
