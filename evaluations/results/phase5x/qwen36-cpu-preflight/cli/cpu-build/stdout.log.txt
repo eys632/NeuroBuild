@@ -1,0 +1,1 @@
+{"status": "COMPILE_PASS_NOT_EXECUTED", "report": "var/research/native-qwen36-contract/build.json", "report_sha256": "8d98d6d7e13e1fa597cc7e88b0c460ca7ebf6d713a94a99dc390f5798753e950", "binary_sha256": "30adde0d8b87e397aba014ec7be0daf159a4ab65a8e24cacf0dd8757cb8afe65"}

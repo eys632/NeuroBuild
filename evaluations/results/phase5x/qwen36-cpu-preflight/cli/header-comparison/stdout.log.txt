@@ -1,0 +1,1 @@
+{"status": "PASS_EXACT_TYPED_TOKENIZER_EXCEPT_DECLARED_TEMPLATE", "report": "var/reports/qwen36-qwen38-saved-tokenizer-comparison.json", "report_sha256": "81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f", "candidate_context_route": "PENDING_EFFECTIVE_INPUT_EQUIVALENCE_FOR_CARRY"}

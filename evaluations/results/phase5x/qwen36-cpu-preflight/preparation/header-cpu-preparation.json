@@ -1,0 +1,210 @@
+{
+  "kind": "QWEN36_HEADER_AND_MINIMAL_CPU_DEFINITION_PREPARATION",
+  "status": "DEFINITIONS_ONLY_NOT_EXECUTED_ACTUAL_HEADER_REQUIRED",
+  "model_id": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+  "revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "definition_sha256": {
+    "var/research/inspect_qwen36_gguf.py": "6e19db06be126b95ec619d434b7230a88dc4542d10d506c026f9cebb71114d97",
+    "var/research/compare_qwen36_qwen38_saved_headers.py": "e4325ae6f952f5aaf8b277b75af33da835b8e2fe01834c69cc0b5cf66042b756"
+  },
+  "original_auditor_sha256": "cb8ef9e58aea7066c050d3e96da24708b4be4eae0c7c7498f879e2dddc41940c",
+  "source_only_ast_inspection": {
+    "syntax_parsed_not_executed": [
+      "var/research/inspect_qwen36_gguf.py",
+      "var/research/compare_qwen36_qwen38_saved_headers.py"
+    ],
+    "unchanged_generic_nodes": [
+      "AuditError",
+      "require",
+      "safe_open",
+      "read_bound",
+      "stat_key",
+      "Reader",
+      "parse_header",
+      "finish_hash"
+    ],
+    "native_helper_imports": 0,
+    "test_functions_called": 0
+  },
+  "planned_header_report": "var/reports/qwen36-gguf-header.json",
+  "planned_metadata_comparison_report": "var/reports/qwen36-qwen38-saved-tokenizer-comparison.json",
+  "root_future_commands_not_executed": [
+    [
+      ".conda/bin/python",
+      "-I",
+      "-B",
+      "var/research/inspect_qwen36_gguf.py",
+      "--model",
+      "var/models/ggml-org--Qwen3.6-35B-A3B-GGUF/baec3ebee244827cda0f4557eafa8b28f7545fa6/Qwen3.6-35B-A3B-Q4_K_M.gguf",
+      "--report",
+      "var/reports/qwen36-gguf-header.json"
+    ],
+    [
+      ".conda/bin/python",
+      "-I",
+      "-B",
+      "var/research/compare_qwen36_qwen38_saved_headers.py",
+      "--candidate-report",
+      "var/reports/qwen36-gguf-header.json",
+      "--candidate-report-sha256",
+      "REQUIRED_ACTUAL_FULL_AUDIT_SHA",
+      "--report",
+      "var/reports/qwen36-qwen38-saved-tokenizer-comparison.json"
+    ]
+  ],
+  "root_production_status_observed_only": {
+    "src/neurobuild/infrastructure/local_model.py": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+    "scripts/evaluate_requirements.py": "1915ee707cb6dca4f9f6927b760b0bdce1c1c5d6929837be489dafc97fb0cbfd",
+    "regression_path": "var/research/qwen36-binding-regression-v2.json",
+    "regression_sha256": "5b75b7f81c147691b82fefa1032f0d28ee345b331bd3f92688d414859259ea30",
+    "note": "Root owns final source/profile freeze. New CPU proof must bind finalized current hashes; no old live hash is accepted by adaptation."
+  },
+  "current_missing_actual_pins": {
+    "header_sha256": null,
+    "typed_comparison_sha256": null,
+    "new_public_contract_sha256": null,
+    "effective_input_equivalence_sha256": null,
+    "root_approved_candidate_variant": null
+  },
+  "cpu_order": [
+    {
+      "stage": "HEADER_FIRST",
+      "execution": "Root only, after pinned complete download. Single full audit; reject unexpected inventory/type/config and preserve failure. No native code invoked."
+    },
+    {
+      "stage": "SAVED_COMPARISON",
+      "execution": "Saved JSON only. Exact all tokenizer.* types/values/hashes except explicitly different chat_template. A differing key returns DELTA_REQUIRED_NOT_EQUIVALENT; no relaxed PASS."
+    },
+    {
+      "stage": "NEW_PUBLIC_WIRE_AND_TEMPLATE",
+      "execution": "After root reviews actual header/comparison, prepare one new public request native CPU path with fixed full system+user. Capture actual new profile using fake opener (HTTP0), no old corpus loop. Assert whole system/user preservation, native prefix, exact effective template bytes and final/schema parser. Bind actual new sampling recipe through server-schema, no fallback/repair."
+    },
+    {
+      "stage": "TOKENIZER_DELTA_ONLY",
+      "execution": "If typed tokenizer equal, reference historical Qwen38 official19/20FAIL/raw20PASS without re-executing20. Otherwise only inspect precise differing metadata and plan changed7/special/EOG/NFC witness controls, no automatic20 rerun. Root must explicitly choose raw variant; original official FAIL is never relabeled."
+    },
+    {
+      "stage": "CONTEXT_CARRY_OR_EXPOSED120",
+      "execution": "Carry old exposed120 lengths only with actual typed equality plus reviewed all-valid-selected-path template/request source equivalence and new public native binding. If insufficient, one exposed120-only vocab pass. Decide after actual header; do not prepare a blanket200 runner."
+    }
+  ],
+  "required_new_public_proof_contract": {
+    "kind": "QWEN36_NATIVE_RESTRICTED_TEMPLATE_CPU_PROOF",
+    "status": "PASS only after actual approved new CPU execution",
+    "exact_model_header_template_source_binding": true,
+    "protocol": "llama_cpp_json_schema",
+    "sampling_profile": "qwen36_nonthinking_llama_cpp",
+    "sampling_request_parameters": {
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "min_p": 0.0,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "seed": 42,
+      "samplers": [
+        "penalties",
+        "top_k",
+        "top_p",
+        "min_p",
+        "temperature"
+      ]
+    },
+    "enable_thinking": false,
+    "reasoning_parser": "deepseek",
+    "max_output_tokens": 768,
+    "max_context_tokens": 4096,
+    "required_checks": [
+      "exact current fake-opener wire",
+      "full frozen system and public user exact in native prompt",
+      "official selected template expression equals native for actual request",
+      "nonthinking generation prefix",
+      "schema grammar nonlazy/no tools",
+      "native parsed sampling matches new presence/window/order",
+      "final-only output and explicit reasoning separation"
+    ],
+    "old_public30_reexecutions": 0,
+    "old_parity20_reexecutions": 0,
+    "input_output_nfc_repair": false
+  },
+  "carry_required_fields": {
+    "kind": "QWEN36_EXPOSED120_CONTEXT_CARRY_FORWARD",
+    "status": "CARRIED_FORWARD_BY_EXACT_TYPED_TOKENIZER_AND_EFFECTIVE_INPUT_EQUIVALENCE",
+    "historical_model_id": "ggml-org/Qwen3.8-27B-GGUF",
+    "historical_context_path": "var/reports/native-contract-raw-cpu-context.json",
+    "historical_context_sha256": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be",
+    "historical_exposed120": {
+      "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+      "input_count": 120,
+      "min_input_tokens": 2133,
+      "max_input_tokens": 2409,
+      "max_input_plus_output": 3177
+    },
+    "caps": {
+      "max_output_tokens": 768,
+      "max_context_tokens": 4096
+    },
+    "must_bind": [
+      "new model/revision/GGUF/header",
+      "typed comparison report SHA",
+      "reviewed effective-input equivalence receipt SHA",
+      "new public native template/sampling receipt SHA",
+      "frozen production request-path source hashes",
+      "historical official FAIL and raw-reference PASS"
+    ],
+    "sampling_equivalent": false,
+    "new_context_executions": 0,
+    "v2_and_unused80": "Omitted from carry output, never opened or executed."
+  },
+  "fallback_context_entry_contract": {
+    "status": "NOT_IMPLEMENTED_BEFORE_HEADER_ROUTE_DECISION",
+    "allowed_dataset": "evaluations/requirement_hardening_v1_exposed_regression.jsonl",
+    "exact_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+    "expected_cases": 120,
+    "vocab_only_load_count": 1,
+    "native_context_created": false,
+    "stdin_keys": [
+      "context_requests",
+      "max_output_tokens"
+    ],
+    "forbidden_stdin_keys": [
+      "cases",
+      "tokenizer_parity"
+    ],
+    "no_paths_or_modes_for": [
+      "v2_length80",
+      "unused80",
+      "arbitrary datasets",
+      "legacy full context main"
+    ],
+    "summary_only": [
+      "input_count",
+      "min_input_tokens",
+      "max_input_tokens",
+      "max_input_plus_output",
+      "dataset/source/header/binary SHA"
+    ],
+    "gold_scoring": false,
+    "raw_inputs_or_token_ids_persisted": false
+  },
+  "operations_performed": {
+    "native_imports": 0,
+    "native_calls": 0,
+    "model_calls": 0,
+    "gpu_calls": 0,
+    "http_calls": 0,
+    "weight_header_or_payload_reads": 0,
+    "dataset_body_reads": 0,
+    "tests_run": 0,
+    "old_public_parity_context_replays": 0
+  },
+  "notes": [
+    "No actual PASS header/comparison/carry was created.",
+    "Both helpers publish xmode reports; input proofs are not overwritten.",
+    "Source-only syntax/AST analysis is not an execution test.",
+    "Old helpers and reports remain unchanged."
+  ]
+}

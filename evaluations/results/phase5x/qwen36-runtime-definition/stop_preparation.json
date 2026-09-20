@@ -1,0 +1,11 @@
+{
+  "kind": "QWEN36_STOP_DEFINITION_PREPARATION",
+  "state": "BLOCKED_ACTUAL_OWN_EPOCH_PINS_PENDING",
+  "source_sha256": "7e23136e47f4dbf9be9480f64d583215f951a3561a3e88dfe6af5540a9014275",
+  "helper_sha256": "7133109057463230fb865c851e3b37ef02ecaaa7666a937af1a3945c68a37056",
+  "inverse_substitution_exact": true,
+  "proc_reads": 0,
+  "signals": 0,
+  "imports": 0,
+  "actions": "Identity/binding names only; exact pidfd SIGTERM after actual owned epoch capture; main validates required pins before process access"
+}

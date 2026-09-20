@@ -1,0 +1,80 @@
+{
+  "kind": "QWEN36_QWEN38_SAVED_TYPED_TOKENIZER_COMPARISON",
+  "status": "PASS_EXACT_TYPED_TOKENIZER_EXCEPT_DECLARED_TEMPLATE",
+  "new_model_id": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+  "new_revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+  "new_gguf_sha256": "671e47e0ec53c665d048b98c3ecbfd5236b5ca9c3e02ed19fc8f81f7b85140c7",
+  "old_model_id": "ggml-org/Qwen3.8-27B-GGUF",
+  "old_revision": "efbb3b1f70a21d97fd4495240648405f7228554f",
+  "old_gguf_sha256": "c600de0300ae8a0eb3a6c0b8b5561b8b96f16bd2c863c2a66c42de29d391a747",
+  "runtime_source_revision": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "typed_tokenizer_equal_excluding_template": true,
+  "old_tokenizer_metadata_key_count": 9,
+  "new_tokenizer_metadata_key_count": 9,
+  "differing_tokenizer_metadata_keys": [],
+  "typed_tokenizer_hashes": {
+    "old": "75b1d357c6e9abd1ac28fbec67e73b3d3344804119508fbc22148c6a60f2b8ea",
+    "new": "75b1d357c6e9abd1ac28fbec67e73b3d3344804119508fbc22148c6a60f2b8ea"
+  },
+  "template_change": {
+    "old_sha256": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+    "new_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+    "effective_input_equivalence": "PENDING_NEW_RESTRICTED_TEMPLATE_PUBLIC_PROOF"
+  },
+  "historical_measurements": {
+    "measured_model_id": "ggml-org/Qwen3.8-27B-GGUF",
+    "measured_revision": "efbb3b1f70a21d97fd4495240648405f7228554f",
+    "measured_gguf_sha256": "c600de0300ae8a0eb3a6c0b8b5561b8b96f16bd2c863c2a66c42de29d391a747",
+    "exposed120": {
+      "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+      "input_count": 120,
+      "min_input_tokens": 2133,
+      "max_input_tokens": 2409,
+      "max_input_plus_output": 3177
+    },
+    "official_hf_id_equivalence": {
+      "status": "FAIL",
+      "case_count": 20,
+      "id_match_count": 19,
+      "mismatch_indices": [
+        11
+      ],
+      "native_original_roundtrip_count": 20
+    },
+    "raw_reference": {
+      "status": "PASS",
+      "case_count": 20,
+      "id_match_count": 20,
+      "reference_kind": "hf-tokenizer-json-with-nfc-normalizer-disabled"
+    }
+  },
+  "candidate_context_route": "PENDING_EFFECTIVE_INPUT_EQUIVALENCE_FOR_CARRY",
+  "candidate_official_hf_equivalence": "NOT_NEWLY_MEASURED_OR_ASSERTED",
+  "candidate_raw_unicode_variant": "ROOT_EXPLICIT_DECISION_REQUIRED",
+  "sampling_recipe_equivalent": false,
+  "new_sampling_binding": "REQUIRED_PRESENCE_WINDOW_ORDER_CHANGED",
+  "new_native_public_or_vocab_or_context_executions": 0,
+  "weight_accesses": 0,
+  "model_inference_calls": 0,
+  "gpu_calls": 0,
+  "http_calls": 0,
+  "evaluation_dataset_bodies_read": 0,
+  "application_input_output_nfc_repair": false,
+  "carry_forward_status": "NOT_YET_AUTHORIZED_OR_PROVED_BY_THIS_METADATA_COMPARISON",
+  "limitations": [
+    "A typed metadata match does not establish new effective-template execution or quality.",
+    "Historical official NFC failure remains FAIL; a raw-reference PASS is not official equivalence.",
+    "Only saved exposed120 measurements are projected; old V2/unused80 are never requested.",
+    "No native process, tokenizer encode/decode or template renderer is called by this helper."
+  ],
+  "created_utc": "2026-09-20T16:43:48.879027+00:00",
+  "proof_refs": {
+    "var/reports/qwen38-gguf-header.json": "ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a",
+    "var/reports/qwen36-gguf-header.json": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9",
+    "var/reports/native-contract-raw-cpu-context.json": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be",
+    "var/research/native-vocab-public-probe-v4.json": "b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0",
+    "var/research/native-vocab-public-probe-v4-raw-diagnostic.json": "12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d"
+  },
+  "auditor_sha256": "6e19db06be126b95ec619d434b7230a88dc4542d10d506c026f9cebb71114d97",
+  "helper_sha256": "e4325ae6f952f5aaf8b277b75af33da835b8e2fe01834c69cc0b5cf66042b756"
+}

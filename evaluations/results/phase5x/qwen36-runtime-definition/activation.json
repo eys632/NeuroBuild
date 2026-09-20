@@ -1,0 +1,53 @@
+{
+  "kind": "QWEN36_RUNTIME_DEFINITION_ACTIVATION_BINDING",
+  "status": "DEFINITIONS_ACTIVATED_FOR_ROOT_ACTION_NOT_RUNTIME_PASS",
+  "before_files_sha256": {
+    "var/research/qwen36_runtime_probe.py": "03e3de45d58688b4cc78ac691e306e7086861014acf5de3e8126b73d324cba09",
+    "var/research/qwen36-native-launch-epoch1.json": "4ba0534766bad9542d96f2dc08cf1a13f07d99dafb46c44a67eb2102e6d715ac",
+    "var/research/run_native_qwen36_epoch1_probe.py": "3f97af890d62f24fe9b39749601db6deaaf5a63473a25155f99ea228bc337619"
+  },
+  "preserved_before_directory": "var/research/qwen36-runtime-before-activation",
+  "after_files_sha256": {
+    "var/research/qwen36_runtime_probe.py": "ea121357ca95b34d9b7e0443dc0b5810128705ef9ca3cf87c333fbf5150b7572",
+    "var/research/qwen36-native-launch-epoch1.json": "91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb",
+    "var/research/run_native_qwen36_epoch1_probe.py": "ef13331c745ef78351c51bcf7bce4e5998cfce9768ad65c04472beb0bd1a9247"
+  },
+  "patch_sha256": "23ac6ae01d9577d0f19ef8105dd4260b1d26a6de77decee031ff39624b336986",
+  "cpu_proof": {
+    "path": "var/research/native-qwen36-contract/final-cpu-proof.json",
+    "sha256": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1"
+  },
+  "header_sha256": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9",
+  "proof_ref_count": 10,
+  "proof_refs_saved_hashes_match": true,
+  "current_source_pin_count": 5,
+  "candidate_variant": "qwen36-gguf-raw-unicode-v1",
+  "unchanged_collector_function_AST_except_readiness": {
+    "qwen_binding": true,
+    "cpu_provenance": true,
+    "validate_health_models_props": true,
+    "make_metadata": true,
+    "begin": true,
+    "finish": true,
+    "capture_startup": true,
+    "public_smoke": true,
+    "run_resource_smoke": true
+  },
+  "controller_main_AST_exact_after_removing_initial_unconditional_raise": true,
+  "config_changed_fields": [
+    "model_header_report_sha256"
+  ],
+  "scope": "Saved proof/source hashes and AST parsed only; no consumer function, imports, tests or runtime calls. Root owns actual consumer check and live execution.",
+  "actions": {
+    "helper_imports": 0,
+    "consumer_calls": 0,
+    "tests": 0,
+    "native_calls": 0,
+    "gpu_calls": 0,
+    "http_calls": 0,
+    "process_reads": 0,
+    "weight_reads": 0,
+    "dataset_reads": 0,
+    "production_edits": 0
+  }
+}

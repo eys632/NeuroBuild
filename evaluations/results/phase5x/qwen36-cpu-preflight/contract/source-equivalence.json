@@ -1,0 +1,63 @@
+{
+  "kind": "QWEN36_QWEN38_SELECTED_INPUT_SOURCE_EQUIVALENCE",
+  "status": "PASS_STATIC_RESTRICTED_INPUT_PATH",
+  "scope": "nonempty_system_single_user_text_no_history_no_tools_nonthinking",
+  "old_context_source_client_sha256": "3ebef3a1b3cf16b577566c7644952ac5da0def1d1dc11cc0d0b01c581b9d9f1c",
+  "current_source_sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+  },
+  "request_construction_through_Request_AST_equal": true,
+  "request_construction_AST_sha256": "35615b3ec20f548ce9ed34fd1ce144f64191544c8c8713c75c39db41550bbae5",
+  "historical_context_sha256": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be",
+  "historical_public_runner_sha256": "bc441dbcb6f86106d47f7a87364f0008d793d78ae0d04795e57f7ec441f193df",
+  "fixed_prompt_and_schema_match_historical_public_runner": true,
+  "template_source_reasoning": {
+    "qwen36_lines": "3-5,62-65,67-88,147-154",
+    "qwen38_lines": "3-5,45-56,77-85,88-109,163-170",
+    "same_render_content_string_identity": true,
+    "same_system_and_user_trim": true,
+    "reasoning_instructions_empty_when_enable_thinking_false": true,
+    "same_nonempty_system_wrapper": true,
+    "same_user_wrapper": true,
+    "same_nonthinking_assistant_prefix": true,
+    "excluded_branches": [
+      "empty or missing system",
+      "assistant history",
+      "tools",
+      "multimodal content",
+      "thinking mode"
+    ],
+    "expression": "<|im_start|>system\\n + trim(system) + <|im_end|>\\n + <|im_start|>user\\n + trim(user) + <|im_end|>\\n + <|im_start|>assistant\\n<think>\\n\\n</think>\\n\\n"
+  },
+  "native_selected_parser": {
+    "source": "common/chat.cpp:1213-1217",
+    "implementation": "common/parsers/qwen3-coder.cpp",
+    "same_branch": true,
+    "qwen35_bpe_no_nfc": "src/llama-vocab.cpp:392-399,619-621,3479-3513"
+  },
+  "tokenizer_and_effective_prompt_equivalence_condition": "Requires exact actual typed tokenizer metadata comparison plus one new candidate public native prompt render; neither was executed for this static receipt.",
+  "new_sampling_same_as_old": false,
+  "model_identity_same_as_old": false,
+  "new_native_template_checks": 0,
+  "new_context_requests": 0,
+  "native_calls": 0,
+  "dataset_bodies_read": 0,
+  "input_output_nfc_repair": false,
+  "reference_sha256": {
+    "evaluations/results/phase5x/exposed-native-qwen38-diagnostic/source_snapshot/src/neurobuild/infrastructure/local_model.py": "3ebef3a1b3cf16b577566c7644952ac5da0def1d1dc11cc0d0b01c581b9d9f1c",
+    "var/research/native_tokenizer_parity_review.md": "f2d9e8908d58eb70b9d22a80e5e5f248533809a188a2738974cd83e7422e2c2f",
+    "var/research/run_native_context_raw_cpu.py": "4ab1dcf73d983c35dcd3c5006bbfecbb3594c6ff865fa8c2f77fee3dfdd31153",
+    "var/research/run_native_contract_cpu.py": "bc441dbcb6f86106d47f7a87364f0008d793d78ae0d04795e57f7ec441f193df",
+    "var/reports/native-contract-raw-cpu-context.json": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be",
+    "var/research/qwen36-candidate-metadata/upstream/chat_template.jinja": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+    "var/research/qwen38-candidate-metadata/upstream/chat_template.jinja": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat.cpp": "ed5db316e93459c6528526633b11943f4b4611634c773b4eab30a66c1f4a91b3",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/parsers/qwen3-coder.cpp": "510676168b6e36884f911152094632f218b27df4a277e2e2de61b4c682943630",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-vocab.cpp": "82e8996cbbd81c1648b1f4946b5f481138aa897a1343dcd8b1a4abe8cff0b5fc",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/jinja/lexer.cpp": "3d6774bc2dac477e10ddbee69eff403df36f5925c8512ccf8a249bde5c26dbd7"
+  }
+}

@@ -1350,3 +1350,32 @@ Generic downloader가 허용하지 않는 `.src_sha`만 원본4-file draft에서
 `download_qwen36_guarded.py`51e839682581bdbcd27634c0e31b616d005e1dbfc883aaa6fd49fe96c62a3e75로
 고정 manifest 다운로드를 시작했다. 최초 free43,038,355,456B,20.5GiB floor/2초 watcher/1800초 own-child 제한이다.
 이 checkpoint의 다운로드 상태는 RUNNING이며 완료/fullSHA/header PASS를 주장하지 않는다.
+
+
+### 2026-09-21 KST — Qwen3.6 full download·실제 header·최소 CPU 검증
+
+준비 checkpoint424abd8d976fcc3936c3376863a5a69469f44dc7 push·원격일치 확인.
+Guarded download exit0/stderr0, receipt56d7d312500f8bd90e11a65fa445844217cac8327bb62dd685aad6a34aa97b48.
+최소free22,601,879,552B/floor22,011,707,392B. 3파일20,420,045,894B 크기·fullSHA 검증 완료.
+
+`inspect_qwen36_gguf.py`를 처음 실행해 header7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9 PASS.
+733tensor/payload20,408,576,512B/Q4_K_M/noMTP40층, 공개 inventory·official config와 일치했다.
+Saved header 비교81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f PASS,
+9개 typed tokenizer metadata exact/template 차이만 유지한다. 이전 GGUF는 다시 읽지 않았다.
+
+194개 기존 CPU 객체를 재사용한 새 single-public TU compile/link1회 exit0, build8d98d6d7e13e1fa597cc7e88b0c460ca7ebf6d713a94a99dc390f5798753e950.
+Binary30adde0d8b87e397aba014ec7be0daf159a4ab65a8e24cacf0dd8757cb8afe65, GPU dependency0, 기존objects/source/binary불변.
+`public_check.py` 1회 exit0/0.134초/stderr0, proofc87d48d3ce7a0621dfdbfcaa918e36664b88357a60e1dffb98e93c2dcdd0050c.
+현재 request의 fullprompt9182B/prefix41B/native sampler/grammar/parser 최종본문 연결PASS; 모델·GGUF 로드0.
+
+Savedproof producer만 한 번 실행해 finalCPU747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1 생성.
+New public1/compile1, historical exposed120 길이승계, 새context/parity/oldcorpus실행0. 원본NFC19/20FAIL/raw20PASS명시.
+GPU3 읽기 관측 free36373/used3965/util0, 운영28672+margin7275 조건부수용. 실제기동전 fresh5표본은별도guard가판정한다.
+이 시점GPU/품질 호출0, 이전125평가·독립재생·완료startup/resource검사·변경없는422회귀반복0.
+
+ActualCPU747a/header7434를 runtimecollector ea121357ca95b34d9b7e0443dc0b5810128705ef9ca3cf87c333fbf5150b7572,
+launchconfig91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb,
+controlleref13331c745ef78351c51bcf7bce4e5998cfce9768ad65c04472beb0bd1a9247에 결합했다.
+초기 blocked3개와diff를 보존했고 lifecycle AST는 변경하지 않았다. Saved consumer1회 PASS,
+receipt91125088b96840a73953e407072be9dbe9ba0723181cb80968280168fc768684, provenance20keys/space220 확인.
+GPU·HTTP·native·corpus 호출0. Own stop 도구는 live epoch PID/tick를 채우기 전 차단 상태로 준비했다.

@@ -1,0 +1,1 @@
+{"kind": "GGUF_HEADER_AUDIT", "status": "PASS", "report": "var/reports/qwen36-gguf-header.json", "report_sha256": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9", "file_sha256": "671e47e0ec53c665d048b98c3ecbfd5236b5ca9c3e02ed19fc8f81f7b85140c7", "tensor_count": 733}

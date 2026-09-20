@@ -1,0 +1,95 @@
+--- var/research/qwen36-runtime-before-activation/qwen36_runtime_probe.py
++++ var/research/qwen36_runtime_probe.py
+@@ -1,4 +1,4 @@
+-"""Qwen3.6 BLOCKED runtime definitions; no current candidate runtime eligibility.
++"""Qwen3.6 reviewed CPU contract; explicit root-owned runtime actions only.
+ 
+ Import checks the historical generic helper hash, but never contacts a server,
+ reads a process, loads a model, runs native code or creates a proof. No CLI/main.
+@@ -35,7 +35,7 @@
+ MODEL_BYTES = 20419565568
+ TEMPLATE_SHA = 'e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259'
+ # Saved source has zero CR and no terminal LF. Pinned jinja/lexer.cpp:42-58
+-# therefore preserves its bytes; the actual GGUF and live props remain pending.
++# therefore preserves its bytes. Actual GGUF matches; live props not yet observed.
+ PROPS_TEMPLATE_SHA = TEMPLATE_SHA
+ PROPS_TEMPLATE_BYTES = 7764
+ EMBEDDED_TEMPLATE_BYTES = 7764
+@@ -47,13 +47,13 @@
+     'repeat_penalty': 1.0, 'repeat_last_n': 64, 'seed': 42,
+     'samplers': ['penalties', 'top_k', 'top_p', 'min_p', 'temperature'],
+ }
+-HEADER_SHA = None
+-FINAL_CPU_SHA = None
+-CPU_REFS = None
+-TEMPLATE_INPUT_EQUIVALENCE = None
+-CANDIDATE_VARIANT = None  # Root must explicitly decide the raw-Unicode contract.
+-QUANTIZATION = 'Q4_K_M'  # Published-log expectation; actual header gate remains pending.
+-PREPARATION_STATUS = 'BLOCKED_HEADER_CPU_CONTRACT_AND_ROOT_ACTIVATION_PENDING'
++HEADER_SHA = '7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9'
++FINAL_CPU_SHA = '747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1'
++CPU_REFS = {'header': {'path': 'var/reports/qwen36-gguf-header.json', 'sha256': '7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9'}, 'tokenizer_comparison': {'path': 'var/reports/qwen36-qwen38-saved-tokenizer-comparison.json', 'sha256': '81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f'}, 'public_contract': {'path': 'var/research/native-qwen36-contract/public-proof.json', 'sha256': 'c87d48d3ce7a0621dfdbfcaa918e36664b88357a60e1dffb98e93c2dcdd0050c'}, 'public_build': {'path': 'var/research/native-qwen36-contract/build.json', 'sha256': '8d98d6d7e13e1fa597cc7e88b0c460ca7ebf6d713a94a99dc390f5798753e950'}, 'historical_header': {'path': 'var/reports/qwen38-gguf-header.json', 'sha256': 'ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a'}, 'historical_context': {'path': 'var/reports/native-contract-raw-cpu-context.json', 'sha256': '5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be'}, 'historical_official': {'path': 'var/research/native-vocab-public-probe-v4.json', 'sha256': 'b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0'}, 'historical_raw': {'path': 'var/research/native-vocab-public-probe-v4-raw-diagnostic.json', 'sha256': '12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d'}, 'historical_raw_fixture': {'path': 'var/research/native-tokenizer-public-parity-raw-diagnostic.json', 'sha256': '9658eb53fae81adee1b775b45f796f3484db69aea41e04a020765fa05d770514'}, 'source_equivalence': {'path': 'var/research/native-qwen36-contract/source-equivalence.json', 'sha256': 'efd6529f1f2db9e7cdd4bd5fc24e8f31e0b8e87189ee1a8865c595d4e1bb2d66'}}
++TEMPLATE_INPUT_EQUIVALENCE = {'status': 'PASS', 'scope': 'nonempty_system_single_user_text_no_history_no_tools_nonthinking', 'byte_exact_public_native_render': True, 'proof_ref': 'source_equivalence'}
++CANDIDATE_VARIANT = 'qwen36-gguf-raw-unicode-v1'
++QUANTIZATION = 'Q4_K_M'  # Actual full-SHA header audit confirms published layout.
++PREPARATION_STATUS = 'REVIEWED_CPU_BINDING_READY_FOR_ROOT_RUNTIME_ACTION'
+ CPU_KIND = 'QWEN36_NATIVE_CONTRACT_CPU_PROOF'
+ CPU_STATUS = 'PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120'
+ RUNTIME_LAUNCHER_SHA = '6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed'
+@@ -77,7 +77,19 @@
+ 
+ 
+ def require_ready():
+-    raise ValueError('QWEN36_HEADER_CPU_CONTRACT_ROOT_ACTIVATION_PENDING')
++    require(HEADER_SHA == '7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9'
++            and FINAL_CPU_SHA == '747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1'
++            and CANDIDATE_VARIANT == 'qwen36-gguf-raw-unicode-v1'
++            and CPU_KIND == 'QWEN36_NATIVE_CONTRACT_CPU_PROOF'
++            and CPU_STATUS == 'PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120'
++            and PROFILE == 'qwen36_nonthinking_llama_cpp' and QUANTIZATION == 'Q4_K_M'
++            and PREPARATION_STATUS == 'REVIEWED_CPU_BINDING_READY_FOR_ROOT_RUNTIME_ACTION'
++            and type(CPU_REFS) is dict and set(CPU_REFS) == CPU_REF_KEYS and len(CPU_REFS) == 10
++            and CPU_REFS['header']['sha256'] == HEADER_SHA
++            and TEMPLATE_INPUT_EQUIVALENCE == {'status': 'PASS',
++                'scope': 'nonempty_system_single_user_text_no_history_no_tools_nonthinking',
++                'byte_exact_public_native_render': True, 'proof_ref': 'source_equivalence'},
++            'QWEN36_FINAL_RUNTIME_BINDING_INCOMPLETE')
+ 
+ 
+ PUBLIC_SOURCE = '검사실 책상을 X축 양의 방향으로 1m 옮겨줘.'
+--- var/research/qwen36-runtime-before-activation/qwen36-native-launch-epoch1.json
++++ var/research/qwen36-native-launch-epoch1.json
+@@ -11,7 +11,7 @@
+   "model_sha256": "671e47e0ec53c665d048b98c3ecbfd5236b5ca9c3e02ed19fc8f81f7b85140c7",
+   "model_revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+   "model_header_report": "var/reports/qwen36-gguf-header.json",
+-  "model_header_report_sha256": null,
++  "model_header_report_sha256": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9",
+   "estimated_peak_mib": 28672,
+   "log_file": "var/logs/qwen36-native-epoch1.log",
+   "report_file": "var/reports/qwen36-native-epoch1.json",
+--- var/research/qwen36-runtime-before-activation/run_native_qwen36_epoch1_probe.py
++++ var/research/run_native_qwen36_epoch1_probe.py
+@@ -1,4 +1,4 @@
+-"""Qwen3.6 BLOCKED controller definition; root owns any later explicit activation."""
++"""Qwen3.6 reviewed CPU contract; root-owned explicit startup/public/resource actions."""
+ import argparse
+ import hashlib
+ import json
+@@ -9,14 +9,13 @@
+ 
+ ROOT = Path('/home/a202192020/NeuroBuild_v2')
+ HELPER = ROOT / 'var/research/qwen36_runtime_probe.py'
+-HELPER_SHA = '03e3de45d58688b4cc78ac691e306e7086861014acf5de3e8126b73d324cba09'
++HELPER_SHA = 'ea121357ca95b34d9b7e0443dc0b5810128705ef9ca3cf87c333fbf5150b7572'
+ CONFIG = ROOT / 'var/research/qwen36-native-launch-epoch1.json'
+-CONFIG_SHA = '4ba0534766bad9542d96f2dc08cf1a13f07d99dafb46c44a67eb2102e6d715ac'
++CONFIG_SHA = '91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb'
+ CPU_PROOF = ROOT / 'var/research/native-qwen36-contract/final-cpu-proof.json'
+ 
+ 
+ def main():
+-    raise ValueError("QWEN36_RUNTIME_ACTIVATION_PENDING")
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument('action', choices=('startup', 'public', 'resource'))
+     parser.add_argument('--cpu-proof-sha256', required=True)

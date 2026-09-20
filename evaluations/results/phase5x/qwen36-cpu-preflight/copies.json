@@ -1,0 +1,215 @@
+{
+  "kind": "QWEN36_CPU_EXACT_SOURCE_COPIES",
+  "entries": [
+    {
+      "archive_path": "download/report.json",
+      "original_path": "var/reports/qwen36-guarded-download.json",
+      "bytes": 2891,
+      "sha256": "56d7d312500f8bd90e11a65fa445844217cac8327bb62dd685aad6a34aa97b48",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "header/inspect_qwen36_gguf.py",
+      "original_path": "var/research/inspect_qwen36_gguf.py",
+      "bytes": 20929,
+      "sha256": "6e19db06be126b95ec619d434b7230a88dc4542d10d506c026f9cebb71114d97",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "header/header.json",
+      "original_path": "var/reports/qwen36-gguf-header.json",
+      "bytes": 238590,
+      "sha256": "7434158edf19cfc7f178496b38655031abed3793ae4f3e994b171426af68fed9",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "header/compare_qwen36_qwen38_saved_headers.py",
+      "original_path": "var/research/compare_qwen36_qwen38_saved_headers.py",
+      "bytes": 10174,
+      "sha256": "e4325ae6f952f5aaf8b277b75af33da835b8e2fe01834c69cc0b5cf66042b756",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "header/tokenizer-comparison.json",
+      "original_path": "var/reports/qwen36-qwen38-saved-tokenizer-comparison.json",
+      "bytes": 4058,
+      "sha256": "81f7496d8f484f82e7fdb6c01f566a543ef24ff6e7ac6b013dfcb59c77ceb82f",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "preparation/header-cpu-preparation.json",
+      "original_path": "var/research/qwen36_header_cpu_preparation.json",
+      "bytes": 8569,
+      "sha256": "1bacd6cfaa90167b0211c7437b6951b625d1ea694fd5826b757ace25b6d9e34b",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "reviews/header-independent-review.json",
+      "original_path": "var/research/qwen36-header-definition-independent-review.json",
+      "bytes": 1693,
+      "sha256": "5f25e66baf0082eea0cffe86ffe7b8a39b8c2b163b71199b878c6e9bd60f8e59",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "reviews/comparator-independent-review.json",
+      "original_path": "var/research/qwen36-saved-comparator-independent-review.json",
+      "bytes": 2433,
+      "sha256": "60d577d8c3e03e7b2d67b711d5882290bee59383db8042e10b4213e9c27db841",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "reviews/cpu-reuse-review.json",
+      "original_path": "var/research/qwen36_cpu_contract_reuse_review.json",
+      "bytes": 11635,
+      "sha256": "723b3864fc8911d44767b5141af6cae9b1605ba0980a4778e28a9a7e7aa8f28e",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/validator.cpp",
+      "original_path": "var/research/native-qwen36-contract/validator.cpp",
+      "bytes": 6306,
+      "sha256": "c55f66ab7909a921bdf8c429151cf71eb4cc17cc34a0578e65b709eae4c41ec8",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/build.py",
+      "original_path": "var/research/native-qwen36-contract/build.py",
+      "bytes": 9003,
+      "sha256": "61760634036bd94e1922d6cb022ab6c2ffaf3cb30dc1c54d6bd2813a31196a0b",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/build.json",
+      "original_path": "var/research/native-qwen36-contract/build.json",
+      "bytes": 9534,
+      "sha256": "8d98d6d7e13e1fa597cc7e88b0c460ca7ebf6d713a94a99dc390f5798753e950",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/public_check.py",
+      "original_path": "var/research/native-qwen36-contract/public_check.py",
+      "bytes": 12367,
+      "sha256": "7bb13bb7abd0fc596194d592d9f17b1ba5d5103d15dfae3193a0dd2c181f98fc",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/public-proof.json",
+      "original_path": "var/research/native-qwen36-contract/public-proof.json",
+      "bytes": 5264,
+      "sha256": "c87d48d3ce7a0621dfdbfcaa918e36664b88357a60e1dffb98e93c2dcdd0050c",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/source-equivalence.json",
+      "original_path": "var/research/native-qwen36-contract/source-equivalence.json",
+      "bytes": 4460,
+      "sha256": "efd6529f1f2db9e7cdd4bd5fc24e8f31e0b8e87189ee1a8865c595d4e1bb2d66",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/produce_final.py",
+      "original_path": "var/research/native-qwen36-contract/produce_final.py",
+      "bytes": 9961,
+      "sha256": "ac904566519ccdf4d392dac17404ecf797286f5833963864a4c448d2eaa01301",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/final-cpu-proof.json",
+      "original_path": "var/research/native-qwen36-contract/final-cpu-proof.json",
+      "bytes": 6280,
+      "sha256": "747af5656057ebfbe0779a8931f95047f20e1812779097dfe35d8759a12120d1",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/build.log.txt",
+      "original_path": "var/research/native-qwen36-contract/build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/guardian-compile.json",
+      "original_path": "var/research/native-qwen36-contract/tmp/guardian-compile-qwen36-cpu.json",
+      "bytes": 184,
+      "sha256": "9111b86da3e7043c6ca6d80c8cba1a3b1264ea88c1092d9ce2a010ee2be5f902",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "contract/guardian-link.json",
+      "original_path": "var/research/native-qwen36-contract/tmp/guardian-link-qwen36-cpu.json",
+      "bytes": 184,
+      "sha256": "56b8ba79f3b1bd765185c0f74f316cb362660f2df40e4478e5ac21b6bdd90f40",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "cli/download/stdout.log.txt",
+      "original_path": "var/research/qwen36-download-cli.log",
+      "bytes": 209,
+      "sha256": "012530ff657a8f9c6cb532ab56e6dad2091bc45155bb153af31a8d268bcc74e4",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "cli/download/stderr.log.txt",
+      "original_path": "var/research/qwen36-download-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "cli/header/stdout.log.txt",
+      "original_path": "var/research/qwen36-header-cli.log",
+      "bytes": 286,
+      "sha256": "af678673ebbea871493b7058fa9eb92b06220ff51637edcb5850d6594d6880ad",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "cli/header/stderr.log.txt",
+      "original_path": "var/research/qwen36-header-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "cli/header-comparison/stdout.log.txt",
+      "original_path": "var/research/qwen36-header-comparison-cli.log",
+      "bytes": 298,
+      "sha256": "a093e7963ffe2d1a13a8937422a9aec336609965811023b56a1fe7429c70fc47",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "cli/header-comparison/stderr.log.txt",
+      "original_path": "var/research/qwen36-header-comparison-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "cli/cpu-build/stdout.log.txt",
+      "original_path": "var/research/qwen36-cpu-build-cli.log",
+      "bytes": 270,
+      "sha256": "43b3686a374d0af4c35d36f943e0ae15bc1ca2470378b9ccfb95e13bffdc0596",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "cli/cpu-build/stderr.log.txt",
+      "original_path": "var/research/qwen36-cpu-build-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "cli/public-cpu/stdout.log.txt",
+      "original_path": "var/research/qwen36-public-cpu-cli.log",
+      "bytes": 202,
+      "sha256": "e0ac089395881ca6f12bdf268d069c7fb2ab94da8192a748c5b5c86873194376",
+      "copy_kind": "EXACT_BYTES"
+    },
+    {
+      "archive_path": "cli/public-cpu/stderr.log.txt",
+      "original_path": "var/research/qwen36-public-cpu-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_kind": "EXACT_BYTES"
+    }
+  ]
+}

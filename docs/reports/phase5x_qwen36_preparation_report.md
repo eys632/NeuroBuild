@@ -1,6 +1,6 @@
 # Qwen3.6-35B-A3B metadata 사전 준비
 
-지정된 공식 원본/GGUF revision의 공개 metadata **13개,13,530,452B**를 보존하고 소스·조건부 자원을 검토했다. **Weight 다운로드·actual header·새 CPU 계약·GPU runtime·품질은 모두 대기**다. 이 보고서는 metadata 준비 범위이며 별도 production profile 구현이나 회귀 실행 결과를 포함하지 않는다. [후보 계획](../qwen36_candidate.md).
+지정된 공식 원본/GGUF revision의 공개 metadata **13개,13,530,452B**를 보존하고 소스·조건부 자원을 검토했다. **이 metadata 준비 시점에는 weight 다운로드·actual header·새 CPU 계약·GPU runtime·품질이 모두 대기**였다. 이후 완료된 다운로드/header/최소 CPU 계약은 [별도 CPU 보고서](phase5x_qwen36_cpu_report.md)에 기록하며, 아래 원본 metadata 관측과 구분한다. 이 보고서는 metadata 준비 범위이며 별도 production profile 구현이나 회귀 실행 결과를 포함하지 않는다. [후보 계획](../qwen36_candidate.md).
 
 ## 원본과 재현 정보
 

@@ -1,0 +1,67 @@
+{
+  "kind": "GUARDED_PINNED_PUBLIC_MODEL_DOWNLOAD",
+  "status": "PASS_DOWNLOAD_ONLY_NOT_RUNTIME_VALIDATED",
+  "created_at_utc": "2026-09-20T16:33:16.374541+00:00",
+  "helper_sha256": "51e839682581bdbcd27634c0e31b616d005e1dbfc883aaa6fd49fe96c62a3e75",
+  "model_id": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+  "revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "input_sha256": {
+    "runtime/models/qwen36-35b-a3b-q4-k-m.json": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c",
+    "scripts/download_model.py": "eea7da3f210addeaece15cb2a7072145cb9c380bd475c4a4f92292df78b88353",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "var/research/run_llama_build.py": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+    "var/research/relink_llama_rpath.py": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0"
+  },
+  "build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "cleanup_report_sha256": "1509a5bb62e42655f14802e8d36ee1132b615114e8e1fd39df159a0ff0edb01a",
+  "cuda_visible_devices": "",
+  "disk_floor_bytes": 22011707392,
+  "disk_poll_seconds": 2,
+  "max_phase_seconds": 1800,
+  "termination_grace_is_additional": true,
+  "initial_free_bytes": 43038355456,
+  "conservative_remaining_bytes": 20420045894,
+  "child_stdout_stderr": "DISCARDED; supervisor emits only fixed metadata",
+  "gpu_or_native_execution": false,
+  "phases": [
+    {
+      "name": "download-qwen36",
+      "command": [
+        "/home/a202192020/NeuroBuild_v2/.conda/bin/python",
+        "-I",
+        "-B",
+        "/home/a202192020/NeuroBuild_v2/scripts/download_model.py",
+        "/home/a202192020/NeuroBuild_v2/runtime/models/qwen36-35b-a3b-q4-k-m.json"
+      ],
+      "started_at_utc": "2026-09-20T16:33:16.388898+00:00",
+      "max_seconds": 1800,
+      "budget_bytes": 20956916806,
+      "reserve_bytes": 21474836480,
+      "own_child_pid": 3712953,
+      "guardian_shutdown": {
+        "term_sent": true,
+        "kill_sent": true,
+        "child_reaped": true
+      },
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-20T16:42:16.255286+00:00",
+      "native_cleanup": {
+        "guardian_pid": 3712953,
+        "native_pid": 3712954,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": 0,
+        "stop_requested": false
+      }
+    }
+  ],
+  "minimum_free_bytes": 22601879552,
+  "maximum_own_allocated_bytes": 20420075520,
+  "verified_files": 3,
+  "model_path": "var/models/ggml-org--Qwen3.6-35B-A3B-GGUF/baec3ebee244827cda0f4557eafa8b28f7545fa6",
+  "downloaded_manifest_sha256": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c",
+  "finished_at_utc": "2026-09-20T16:42:16.263035+00:00"
+}

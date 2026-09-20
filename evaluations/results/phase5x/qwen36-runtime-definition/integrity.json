@@ -1,0 +1,78 @@
+{
+  "kind": "QWEN36_RUNTIME_DEFINITION_ARCHIVE",
+  "stage": "PRE_FIRST_GPU_RUN",
+  "entries": [
+    {
+      "archive": "probe.py",
+      "source": "var/research/qwen36_runtime_probe.py",
+      "bytes": 23687,
+      "sha256": "ea121357ca95b34d9b7e0443dc0b5810128705ef9ca3cf87c333fbf5150b7572"
+    },
+    {
+      "archive": "launch_config.json",
+      "source": "var/research/qwen36-native-launch-epoch1.json",
+      "bytes": 1368,
+      "sha256": "91c651088a9cbdebb35b294ec5fa71df0cda451dff99fdab4fe7f463cd9e70bb"
+    },
+    {
+      "archive": "controller.py",
+      "source": "var/research/run_native_qwen36_epoch1_probe.py",
+      "bytes": 2975,
+      "sha256": "ef13331c745ef78351c51bcf7bce4e5998cfce9768ad65c04472beb0bd1a9247"
+    },
+    {
+      "archive": "preparation.json",
+      "source": "var/research/qwen36-runtime-definition-preparation.json",
+      "bytes": 4624,
+      "sha256": "44d77767e68db2de5f272cba522c55ecf2fb61a38ce9bc1f144526acbebb7483"
+    },
+    {
+      "archive": "activation.json",
+      "source": "var/research/qwen36-runtime-activation-binding.json",
+      "bytes": 2355,
+      "sha256": "84de8d4e98309bbfd9d44c5e8a8ec61825bc8a854121173a9a53b4699241ed9b"
+    },
+    {
+      "archive": "activation.patch",
+      "source": "var/research/qwen36-runtime-activation.patch",
+      "bytes": 6982,
+      "sha256": "23ac6ae01d9577d0f19ef8105dd4260b1d26a6de77decee031ff39624b336986"
+    },
+    {
+      "archive": "saved_consumer_check.json",
+      "source": "var/research/qwen36-runtime-saved-consumer-check.json",
+      "bytes": 6368,
+      "sha256": "91125088b96840a73953e407072be9dbe9ba0723181cb80968280168fc768684"
+    },
+    {
+      "archive": "stop_prepared.py",
+      "source": "var/research/stop_native_qwen36_epoch1.py",
+      "bytes": 5363,
+      "sha256": "7133109057463230fb865c851e3b37ef02ecaaa7666a937af1a3945c68a37056"
+    },
+    {
+      "archive": "stop_preparation.json",
+      "source": "var/research/qwen36-stop-definition-preparation.json",
+      "bytes": 516,
+      "sha256": "d7752e5813e644c3692b23590ebcd56946bca460dbb096a582c1d10b5cbf48a9"
+    },
+    {
+      "archive": "blocked/run_native_qwen36_epoch1_probe.py",
+      "source": "var/research/qwen36-runtime-before-activation/run_native_qwen36_epoch1_probe.py",
+      "bytes": 3029,
+      "sha256": "3f97af890d62f24fe9b39749601db6deaaf5a63473a25155f99ea228bc337619"
+    },
+    {
+      "archive": "blocked/qwen36-native-launch-epoch1.json",
+      "source": "var/research/qwen36-runtime-before-activation/qwen36-native-launch-epoch1.json",
+      "bytes": 1306,
+      "sha256": "4ba0534766bad9542d96f2dc08cf1a13f07d99dafb46c44a67eb2102e6d715ac"
+    },
+    {
+      "archive": "blocked/qwen36_runtime_probe.py",
+      "source": "var/research/qwen36-runtime-before-activation/qwen36_runtime_probe.py",
+      "bytes": 20862,
+      "sha256": "03e3de45d58688b4cc78ac691e306e7086861014acf5de3e8126b73d324cba09"
+    }
+  ]
+}

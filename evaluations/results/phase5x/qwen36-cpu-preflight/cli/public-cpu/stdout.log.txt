@@ -1,0 +1,1 @@
+{"status": "PASS", "report": "var/research/native-qwen36-contract/public-proof.json", "report_sha256": "c87d48d3ce7a0621dfdbfcaa918e36664b88357a60e1dffb98e93c2dcdd0050c", "new_public_request_count": 1}

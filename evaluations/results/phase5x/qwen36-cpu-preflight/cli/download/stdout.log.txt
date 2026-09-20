@@ -1,0 +1,1 @@
+{"status": "PASS_DOWNLOAD_ONLY_NOT_RUNTIME_VALIDATED", "report": "var/reports/qwen36-guarded-download.json", "model_path": "var/models/ggml-org--Qwen3.6-35B-A3B-GGUF/baec3ebee244827cda0f4557eafa8b28f7545fa6"}

@@ -1,0 +1,135 @@
+{
+  "kind": "QWEN36_RUNTIME_COLLECTOR_CONTROLLER_DEFINITION_PREPARATION",
+  "status": "BLOCKED_PENDING_ACTUAL_HEADER_CPU_AND_ROOT_ACTIVATION",
+  "source_parent": {
+    "path": "var/research/glm47_flash_runtime_probe_v2.py",
+    "sha256": "4399c90d32e0e472455bae5e907c8a479fdac550fed46978d8001c6d894d69ea"
+  },
+  "generic_helper": {
+    "path": "var/research/native_runtime_probe.py",
+    "sha256": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63"
+  },
+  "files_sha256": {
+    "var/research/qwen36_runtime_probe.py": "03e3de45d58688b4cc78ac691e306e7086861014acf5de3e8126b73d324cba09",
+    "var/research/qwen36-native-launch-epoch1.json": "4ba0534766bad9542d96f2dc08cf1a13f07d99dafb46c44a67eb2102e6d715ac",
+    "var/research/run_native_qwen36_epoch1_probe.py": "3f97af890d62f24fe9b39749601db6deaaf5a63473a25155f99ea228bc337619"
+  },
+  "lifecycle_functions_AST_exact_after_candidate_binding_function_and_error_kind_renames": {
+    "begin": true,
+    "finish": true,
+    "capture_startup": true,
+    "public_smoke": true,
+    "run_resource_smoke": true,
+    "make_metadata": true,
+    "validate_health_models_props": true
+  },
+  "unconditional_blocks": {
+    "require_ready": true,
+    "controller_main_first_statement": true,
+    "launch_config_actual_header_sha_is_null": true
+  },
+  "pending_pins": [
+    "HEADER_SHA",
+    "FINAL_CPU_SHA",
+    "CPU_REFS",
+    "TEMPLATE_INPUT_EQUIVALENCE",
+    "CANDIDATE_VARIANT"
+  ],
+  "contract_route": "Draft for actual single-public + carried exposed120; any typed-vocab/template-input delta requires separate review.",
+  "cpu_aggregate_path": "var/research/native-qwen36-contract/final-cpu-proof.json",
+  "cpu_kind": "QWEN36_NATIVE_CONTRACT_CPU_PROOF",
+  "cpu_status": "PASS_CURRENT_PUBLIC_AND_CARRIED_EXPOSED120",
+  "cpu_ref_keys": [
+    "header",
+    "tokenizer_comparison",
+    "public_contract",
+    "public_build",
+    "historical_header",
+    "historical_context",
+    "historical_official",
+    "historical_raw",
+    "historical_raw_fixture",
+    "source_equivalence"
+  ],
+  "expected_template_input_equivalence": {
+    "status": "PASS",
+    "scope": "nonempty_system_single_user_text_no_history_no_tools_nonthinking",
+    "byte_exact_public_native_render": true,
+    "proof_ref": "source_equivalence"
+  },
+  "provenance_keys": [
+    "candidate_variant",
+    "model_id",
+    "model_revision",
+    "cpu_proof_sha256",
+    "cpu_proof_kind",
+    "cpu_proof_status",
+    "chat_template_sha256",
+    "tokenizer_json_sha256",
+    "tokenizer_contract",
+    "historical_hf_equivalence",
+    "historical_raw_reference",
+    "template_input_equivalence",
+    "exposed_context",
+    "application_input_output_nfc_repair",
+    "sampling_equivalent",
+    "cpu_proof_refs",
+    "cpu_source_sha256",
+    "normalization_limitation",
+    "new_cpu_executions",
+    "cpu_checks_rerun"
+  ],
+  "template_props_derivation": {
+    "source_path": "var/research/qwen36-candidate-metadata/upstream/chat_template.jinja",
+    "source_bytes": 7764,
+    "source_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+    "cr_count": 0,
+    "terminal_lf_count": 0,
+    "props_expected_bytes": 7764,
+    "props_expected_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+    "pinned_lexer": "common/jinja/lexer.cpp:42-58",
+    "live_props_observed": false
+  },
+  "planned_runtime_outputs": {
+    "startup": "var/reports/qwen36-native-startup-epoch1/",
+    "public": "var/reports/qwen36-native-public-smoke-epoch1/report.json",
+    "resource": "var/reports/qwen36-native-resource-epoch1/report.json"
+  },
+  "planned_http_counts": {
+    "startup_get": 3,
+    "public_post": 1,
+    "resource_post": 1
+  },
+  "resource_boundary": {
+    "context": 4096,
+    "prompt_integer_tokens": 3328,
+    "n_predict": 768,
+    "actual_cache_stop_expected": 4095,
+    "native_resource_payload_reused_unchanged": true
+  },
+  "resource_policy": {
+    "estimated_peak_mib": 28672,
+    "peak_allowance_mib": 0,
+    "max_seconds": 7200,
+    "physical_gpu": 3,
+    "batch": 64,
+    "ubatch": 64,
+    "sequences": 1
+  },
+  "remaining_consumer_checks": [
+    "After actual proofs, exactpins+rootvariant+template-input scope may be filled; currentrequire_ready must remainblocked before rootreview.",
+    "Only new consumer mismatches need focused metadata controls, no unchanged generic tests/public20/old200 replay."
+  ],
+  "actions": {
+    "helper_imports": 0,
+    "function_calls": 0,
+    "tests": 0,
+    "native_calls": 0,
+    "gpu_calls": 0,
+    "http_calls": 0,
+    "process_reads": 0,
+    "weight_reads": 0,
+    "dataset_reads": 0,
+    "production_edits": 0
+  }
+}

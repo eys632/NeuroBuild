@@ -523,3 +523,9 @@ Native penalty는 prompt tokens도 포함한다. 새 code binding의422회귀 PA
 새 sampling/template 연결은 필요한 최소 공개 요청만 확인한다. 기존200 corpus 및 미사용80 자동 검사는 금지한다.
 전체 VRAM 추정27,904MiB와 운영28,672MiB는 freshGPU3 free/util+별도 margin 및 자체 watchdog을 전제로 한다.
 불필요한 runtime 최적화는 future optimization이다. First gate FAIL이면 같은 후보 반복/V2 없이 종료한다.
+
+D048 실제 검증 후속: 고정 fullSHA/733tensor/40main/noMTP header PASS와 typed tokenizer9키 exact 동등성을 확인했다.
+Template bytes는 다르지만 현재 nonempty system/singleuser/nonthinking 선택 경로의 source와 새 공개 native render가 일치했다.
+새 공개 연결1회만 실행하고 과거 노출120 길이를 승계한다. CPU final747af565…의 current/historical 구분을 유지한다.
+명시 variant `qwen36-gguf-raw-unicode-v1`를 채택하며 이는 tokenizer 계약 이름이지 모델 품질 채택이 아니다.
+공식 HF NFC parity의 과거19/20 FAIL을 지우거나 입력을 정규화하지 않는다. GPU/품질 gate는 별도로 남아 있다.

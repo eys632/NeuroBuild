@@ -1,0 +1,42 @@
+{
+  "kind": "QWEN36_SAVED_HEADER_COMPARATOR_INDEPENDENT_STATIC_REVIEW",
+  "status": "PASS_READ_REVIEW_NOT_CANDIDATE_EQUIVALENCE",
+  "helper": "var/research/compare_qwen36_qwen38_saved_headers.py",
+  "helper_sha256": "e4325ae6f952f5aaf8b277b75af33da835b8e2fe01834c69cc0b5cf66042b756",
+  "header_inspector_sha256": "6e19db06be126b95ec619d434b7230a88dc4542d10d506c026f9cebb71114d97",
+  "historical_refs_read_hash_and_metadata_only": {
+    "var/reports/qwen38-gguf-header.json": "ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a",
+    "var/reports/native-contract-raw-cpu-context.json": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be",
+    "var/research/native-vocab-public-probe-v4.json": "b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0",
+    "var/research/native-vocab-public-probe-v4-raw-diagnostic.json": "12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d"
+  },
+  "material_findings": [],
+  "boundaries_verified": [
+    "New report must be a full-SHA verified audit for exactQwen36 identity and exact inspector hash; old header pins exactQwen38 identity.",
+    "Every tokenizer.* metadata key participates except one declared original chat_template; unknown flags/extra keys are not silently omitted.",
+    "Template hashes8952\u21927764 and upstream tokenizer/config differences are separately bound.",
+    "Any typed tokenizer delta yields DELTA_REQUIRED_NOT_EQUIVALENT, not carry PASS.",
+    "Only historical exposed120 aggregate counts are projected; no dataset files or oldV2/unused80 bodies are opened.",
+    "Original official19/20 mismatchindex11 remains FAIL; rawreference20/20 remains historical and explicitly distinct.",
+    "Matching metadata does not prove effective newtemplate/input equivalence, nativepublic/context, currentpenaltysampling, newrawvariant or quality; all remain explicit pending gates.",
+    "Outputs exclusive owned files through reused safe_open, fixed sanitized exception output."
+  ],
+  "saved_historical_exposed_counts": {
+    "input_count": 120,
+    "min_input_tokens": 2133,
+    "max_input_tokens": 2409,
+    "max_input_plus_output": 3177
+  },
+  "actions": {
+    "reviewed_source_AST_syntax": true,
+    "helper_imports": 0,
+    "compare_calls": 0,
+    "tests": 0,
+    "candidate_header_reads": 0,
+    "weights_reads": 0,
+    "native_calls": 0,
+    "gpu_calls": 0,
+    "dataset_body_reads": 0,
+    "old_replay_calls": 0
+  }
+}
