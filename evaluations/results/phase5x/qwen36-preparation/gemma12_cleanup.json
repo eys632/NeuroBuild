@@ -1,0 +1,54 @@
+{
+  "kind": "REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_GEMMA12_WEIGHT_CACHE",
+  "state": "COMPLETE",
+  "started_at_utc": "2026-09-20T16:29:47.233985+00:00",
+  "model_id": "google/gemma-4-12B-it-qat-q4_0-gguf",
+  "revision": "29d097773436b69ff9feafd636ab4cf873786537",
+  "manifest_sha256": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990",
+  "shutdown_report_sha256": "44ebe0f38b7ac554a3dbfa7092e6d24b5f74008275025ced88815e1b12f99929",
+  "native_build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "own_process_inspection": {
+    "maps_and_descriptors_checked": 31,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3680268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "free_before_bytes": 36063907840,
+  "removed_files": [
+    {
+      "name": "gemma-4-12b-it-qat-q4_0.gguf",
+      "bytes": 6975879296,
+      "sha256": "93567e57a8fe10b23569b9d9ec38cd005deedf71e29477c421a4b83f418a538b"
+    }
+  ],
+  "restore_command": ".conda/bin/python scripts/download_model.py runtime/models/gemma4-12b-qat-q4-0.json",
+  "scope": "One same-UID regular single-link cache file only; all metadata, manifests and evaluation results retained",
+  "foreign_processes_or_files_changed": false,
+  "own_process_inspection_before_unlink": {
+    "maps_and_descriptors_checked": 31,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3680268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "removed_bytes": 6975879296,
+  "free_after_bytes": 43039641600,
+  "finished_at_utc": "2026-09-20T16:30:03.380473+00:00"
+}

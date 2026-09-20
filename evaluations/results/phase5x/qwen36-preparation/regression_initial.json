@@ -1,0 +1,19 @@
+{
+  "kind": "QWEN36_EXPLICIT_NATIVE_PROFILE_REGRESSION",
+  "exit_code": 1,
+  "started_at_utc": "2026-09-20T16:29:23.640033+00:00",
+  "elapsed_wall_seconds": 21.16409018728882,
+  "log_path": "var/phase5x-qwen36-binding-regression.log",
+  "log_sha256": "071b5acaf9dcd496bb9352d90e477dc50c36fad35aa0147790007d555ecc84b7",
+  "real_postgresql": true,
+  "real_ifcopenshell": true,
+  "headless": true,
+  "cuda_visible_devices": "",
+  "source_sha256": {
+    "scripts/evaluate_requirements.py": "1915ee707cb6dca4f9f6927b760b0bdce1c1c5d6929837be489dafc97fb0cbfd",
+    "src/neurobuild/infrastructure/local_model.py": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+    "tests/test_native_requirement_evaluation.py": "c350555aad68267de789a797824cc3cbe645b2ea00d68b53026f94b892f3397d",
+    "tests/test_local_model.py": "0f379cd1180a1b535c6c753fe8f27bffea9aa5e2bebb8625a8bfb53951b1f36b"
+  },
+  "reason": "First regression after explicit Qwen36 profile and exact candidate binding; no completed model evaluation or native corpus repeated."
+}

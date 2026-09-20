@@ -525,6 +525,7 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
     if native:
         native_candidates = {
             SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP: {("ggml-org/Qwen3.8-27B-GGUF", "Q4_K_M")},
+            SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP: {("ggml-org/Qwen3.6-35B-A3B-GGUF", "Q4_K_M")},
             SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP: {
                 ("google/gemma-4-31B-it-qat-q4_0-gguf", "Q4_0"),
                 ("google/gemma-4-12B-it-qat-q4_0-gguf", "Q4_0"),

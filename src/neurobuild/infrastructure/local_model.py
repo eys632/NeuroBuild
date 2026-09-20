@@ -114,6 +114,7 @@ class SamplingProfile(StrEnum):
     QWEN3_NONTHINKING_AWQ = "qwen3_nonthinking_awq"
     QWEN3_THINKING_AWQ = "qwen3_thinking_awq"
     QWEN38_NONTHINKING_LLAMA_CPP = "qwen38_nonthinking_llama_cpp"
+    QWEN36_NONTHINKING_LLAMA_CPP = "qwen36_nonthinking_llama_cpp"
     GEMMA4_NONTHINKING_LLAMA_CPP = "gemma4_nonthinking_llama_cpp"
     EXAONE45_NONTHINKING_LLAMA_CPP = "exaone45_nonthinking_llama_cpp"
     GLM47_FLASH_NONTHINKING_LLAMA_CPP = "glm47_flash_nonthinking_llama_cpp"
@@ -142,6 +143,7 @@ class LocalJSONCompletionClient:
         except ValueError:
             _error("LOCAL_MODEL_CONFIG_INVALID")
         native_profiles = (SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP,
+                           SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP,
                            SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP,
                            SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP,
                            SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP)
@@ -232,6 +234,15 @@ class LocalJSONCompletionClient:
                     "presence_penalty": 0.0, "frequency_penalty": 0.0,
                     "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
                     "samplers": ["temperature", "top_k", "top_p", "min_p"]}
+        if self.sampling_profile is SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP:
+            # Official non-thinking recommendation includes presence 1.5.
+            # Window 64, seed and native sampler order are project settings;
+            # native penalties include prompt tokens. Keep this distinct from
+            # the earlier Qwen3.8 neutral-penalty experiment.
+            return {"temperature": 0.7, "top_p": 0.8, "top_k": 20, "min_p": 0.0,
+                    "presence_penalty": 1.5, "frequency_penalty": 0.0,
+                    "repeat_penalty": 1.0, "repeat_last_n": 64, "seed": 42,
+                    "samplers": ["penalties", "top_k", "top_p", "min_p", "temperature"]}
         if self.sampling_profile is SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP:
             # Official Gemma4 recommendation: temperature/top_p/top_k. The
             # disabled penalties, seed and sampler order are our explicit recipe.

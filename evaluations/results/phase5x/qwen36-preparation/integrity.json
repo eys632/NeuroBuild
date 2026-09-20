@@ -1,0 +1,65 @@
+{
+  "kind": "QWEN36_PREPARATION_EXACT_COPIES",
+  "entries": [
+    {
+      "archive": "regression_initial.json",
+      "source": "var/research/qwen36-binding-regression.json",
+      "bytes": 1047,
+      "sha256": "d77fc4d5bb51cfa2c43b413c06a5bc5cc8b909c358c0cf5325f278b405d25982"
+    },
+    {
+      "archive": "regression_initial.log.txt",
+      "source": "var/phase5x-qwen36-binding-regression.log",
+      "bytes": 76121,
+      "sha256": "071b5acaf9dcd496bb9352d90e477dc50c36fad35aa0147790007d555ecc84b7"
+    },
+    {
+      "archive": "regression_final.json",
+      "source": "var/research/qwen36-binding-regression-v2.json",
+      "bytes": 1095,
+      "sha256": "5b75b7f81c147691b82fefa1032f0d28ee345b331bd3f92688d414859259ea30"
+    },
+    {
+      "archive": "regression_final.log.txt",
+      "source": "var/phase5x-qwen36-binding-regression-v2.log",
+      "bytes": 74998,
+      "sha256": "9d58d99b1a14b13072f819aa6588483e577248c022431031c289f5409823e68b"
+    },
+    {
+      "archive": "gemma12_cleanup.json",
+      "source": "var/reports/unused-gemma12-weight-cache-cleanup.json",
+      "bytes": 2010,
+      "sha256": "1509a5bb62e42655f14802e8d36ee1132b615114e8e1fd39df159a0ff0edb01a"
+    },
+    {
+      "archive": "gemma12_cleanup_definition.py",
+      "source": "var/research/cleanup_unused_gemma12_cache.py",
+      "bytes": 7590,
+      "sha256": "45a65baf764c061e3bca8115cd1598d4975e1ff7d5a659263dcccc6aef3519b4"
+    },
+    {
+      "archive": "gemma12_cleanup_preparation.json",
+      "source": "var/research/gemma12-cleanup-definition-preparation.json",
+      "bytes": 4875,
+      "sha256": "f0996d7362f0a042cc6ec27a7cfa17870b75659db0c6d14450bb23e645daebd0"
+    },
+    {
+      "archive": "profile_static_review.json",
+      "source": "var/research/qwen36-profile-independent-static-review.json",
+      "bytes": 2788,
+      "sha256": "fc84a36a48b58121f683fa2ce07488f11154a98e5d8ba708c5cef5d4a7b58835"
+    },
+    {
+      "archive": "download_definition.py",
+      "source": "var/research/download_qwen36_guarded.py",
+      "bytes": 10727,
+      "sha256": "51e839682581bdbcd27634c0e31b616d005e1dbfc883aaa6fd49fe96c62a3e75"
+    },
+    {
+      "archive": "download_preparation.json",
+      "source": "var/research/qwen36-guarded-download-preparation.json",
+      "bytes": 3651,
+      "sha256": "1079ff8db3420632930caaee19fed387f4a6614d49867c02d4adb03acabcd7cb"
+    }
+  ]
+}

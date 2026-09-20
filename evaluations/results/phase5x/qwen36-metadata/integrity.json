@@ -1,0 +1,216 @@
+{
+  "kind": "QWEN36_METADATA_ARCHIVE_INTEGRITY",
+  "created_at_utc": "2026-09-20T16:34:06.804392+00:00",
+  "status": "METADATA_ONLY_DOWNLOAD_HEADER_CPU_GPU_QUALITY_PENDING",
+  "files": {
+    "README.md": {
+      "original_path": null,
+      "bytes": 3534,
+      "sha256": "2cdede4759a7178492249d6dad8cdb68834de943bd5a073f71fb9498e1e4390c",
+      "copy_kind": "NEW_ARCHIVE_DESCRIPTION_OR_PROJECTION_RECEIPT"
+    },
+    "manifest_projection.json": {
+      "original_path": null,
+      "bytes": 1296,
+      "sha256": "9b26abdeb511c43495b494f356931600e78fe88f15f6ed7edbb613740c3f687b",
+      "copy_kind": "NEW_ARCHIVE_DESCRIPTION_OR_PROJECTION_RECEIPT"
+    },
+    "metadata/README.md": {
+      "original_path": "var/research/qwen36-candidate-metadata/README.md",
+      "bytes": 8451,
+      "sha256": "38df5f4d02f834a2c63b4947a72479da9106e09430c9a41fa6fa653b7c5a8542",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/analyze_metadata.py": {
+      "original_path": "var/research/qwen36-candidate-metadata/analyze_metadata.py",
+      "bytes": 13997,
+      "sha256": "3578009ef19493acb495c58a24c0fd570b924edb683e2313c19a7192eac98f32",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/candidate_download_manifest_draft.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/candidate_download_manifest_draft.json",
+      "bytes": 893,
+      "sha256": "8a76837977b190b6e516fe7ed9cbf877f8890a086685b222c4bf7c1f790938cd",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/chat_template_vs_qwen38.diff": {
+      "original_path": "var/research/qwen36-candidate-metadata/chat_template_vs_qwen38.diff",
+      "bytes": 3891,
+      "sha256": "8e1c7d30b86673e344fca1488cbd64e36010649f1a60ed00faf083fe4bac93c9",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/conversion_summary.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/conversion_summary.json",
+      "bytes": 990,
+      "sha256": "5de0b56202633f041e61e6217fb1205eb2da4eba25584d1df66996064bb73b7a",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/conversion_tensor_inventory.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/conversion_tensor_inventory.json",
+      "bytes": 172338,
+      "sha256": "3ff6982c5e43040975a7daea3cefe8e0e9709a82df16b5651ad819f81608c196",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/download_ledger.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/download_ledger.json",
+      "bytes": 8234,
+      "sha256": "d4b2c30577f27dca2610a993536c81911572f216c16df4211cae03c8f6ea1530",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/fetch_metadata.py": {
+      "original_path": "var/research/qwen36-candidate-metadata/fetch_metadata.py",
+      "bytes": 6654,
+      "sha256": "f2f38134f443cb9b574a53223d817bc9acbee48684e96d4eb271318bb63e5826",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/gguf/.src_sha": {
+      "original_path": "var/research/qwen36-candidate-metadata/gguf/.src_sha",
+      "bytes": 97,
+      "sha256": "ec3a62c6b2e66aab222c8ea8d5aa426e4587625128d71b7267c8ac3eaf9e1a74",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/gguf/README.md": {
+      "original_path": "var/research/qwen36-candidate-metadata/gguf/README.md",
+      "bytes": 467,
+      "sha256": "703ff0f6c1c055d806b52aef68fc5f64fd57f8f75a674c25da89db58c8024964",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/gguf-api.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/gguf-api.json",
+      "bytes": 11911,
+      "sha256": "2cfa6a3eebc25fdc1e56b0e065730b6e0e644cc2cf24354b4f4c793301e30408",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/independent_cpu_reuse_review.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/independent_cpu_reuse_review.json",
+      "bytes": 11635,
+      "sha256": "723b3864fc8911d44767b5141af6cae9b1605ba0980a4778e28a9a7e7aa8f28e",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/independent_whole_vram_review.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/independent_whole_vram_review.json",
+      "bytes": 9201,
+      "sha256": "b578f52588e1313f56f427a03d10aa1bb3b5117a9f03b7f2003d9b348e3b388d",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/independent_whole_vram_review.md": {
+      "original_path": "var/research/qwen36-candidate-metadata/independent_whole_vram_review.md",
+      "bytes": 9428,
+      "sha256": "21ffee7c175f9f0a68925ed746f9ed977e0a97f7987e7a4e21e510aa7de3217a",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/integrity.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/integrity.json",
+      "bytes": 5387,
+      "sha256": "46864dc747003e7ac4751b8fad9fe53ec57b96fb138d66a71e4f6e0c84f94698",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/metadata_comparison_qwen38.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/metadata_comparison_qwen38.json",
+      "bytes": 5478,
+      "sha256": "774ec0e57f461bf740585bd6ad0a2d983faaff03492a74233c26d719a8a7d91b",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/provenance.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/provenance.json",
+      "bytes": 6426,
+      "sha256": "df66f0638b58a07b90d97be61ef4bfdf984cb90d742e5e9e4dcc63403cb2a2eb",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/resource_plan.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/resource_plan.json",
+      "bytes": 6376,
+      "sha256": "bcad9874e6416c3a5af4a530afd1b16acaa2516ce16fa45512b962cffa51092e",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/sampling_profile_proposal.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/sampling_profile_proposal.json",
+      "bytes": 2227,
+      "sha256": "f00ae55a7147cd2c5dd5e4c3b90a68ae22b0088ba69836437174b5a2201bfae4",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/scope_receipt.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/scope_receipt.json",
+      "bytes": 1375,
+      "sha256": "5aaad584998b76e23cdf269809dfa57f546594a9e4c690cd253540f25e3728ed",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/upstream/LICENSE": {
+      "original_path": "var/research/qwen36-candidate-metadata/upstream/LICENSE",
+      "bytes": 11343,
+      "sha256": "50cbab8a892c5f2993b8c7351a99182507472def3b1374558308605d99b86b32",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/upstream/README.md": {
+      "original_path": "var/research/qwen36-candidate-metadata/upstream/README.md",
+      "bytes": 64550,
+      "sha256": "c4ddaa065649ff6352648f64747a16eda31726f3e34add94ce04abb461c77b75",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/upstream/chat_template.jinja": {
+      "original_path": "var/research/qwen36-candidate-metadata/upstream/chat_template.jinja",
+      "bytes": 7764,
+      "sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/upstream/config.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/upstream/config.json",
+      "bytes": 3686,
+      "sha256": "93a4693fa9d8392fbfccd4b3c9873f4bfdcb14fdede978b123d07d19675efe99",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/upstream/generation_config.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/upstream/generation_config.json",
+      "bytes": 202,
+      "sha256": "e70c136c1b78ddc1fb0905bac8e733a4dc448d4f852a5dd75143fffc70be550e",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/upstream/model.safetensors.index.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/upstream/model.safetensors.index.json",
+      "bytes": 98383,
+      "sha256": "41b9356101ebf8e7519e150dc811f80c4226e727301fbb032b890f006ed0be83",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/upstream/tokenizer_config.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/upstream/tokenizer_config.json",
+      "bytes": 16718,
+      "sha256": "5186f0defcd7f232382c7f0aebcd2252d073bb921ab240e407b7ae8745d2b29b",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/upstream-api.json": {
+      "original_path": "var/research/qwen36-candidate-metadata/upstream-api.json",
+      "bytes": 27490,
+      "sha256": "c64525727082282a562e5e0b5efbdd67dd58cadde45cff57abfdedaaed13b8cb",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    },
+    "metadata/gguf/convert.log.txt": {
+      "original_path": "var/research/qwen36-candidate-metadata/gguf/convert.log",
+      "bytes": 479859,
+      "sha256": "8dc2a7f833e7421fa1bae8e206930bf4ab3dda9d1f705ed4b7294abc98c5db22",
+      "copy_kind": "EXACT_ORIGINAL_COPY"
+    }
+  },
+  "entry_count": 31,
+  "exact_copy_count": 29,
+  "archive_payload_bytes_excluding_integrity": 1000219,
+  "excluded_originals": [
+    {
+      "original_path": "var/research/qwen36-candidate-metadata/upstream/tokenizer.json",
+      "bytes": 12807982,
+      "sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/resolve/995ad96eacd98c81ed38be0c5b274b04031597b0/tokenizer.json?download=true",
+      "reason": "Large tokenizer payload retained in ignored project metadata cache; immutable URL/size/SHA and reference structure are preserved."
+    }
+  ],
+  "external_runtime_manifest": {
+    "path": "runtime/models/qwen36-35b-a3b-q4-k-m.json",
+    "bytes": 752,
+    "sha256": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c",
+    "source_draft_sha256": "8a76837977b190b6e516fe7ed9cbf877f8890a086685b222c4bf7c1f790938cd",
+    "transformation": "Omit only .src_sha files entry; remaining entries/metadata equal the preserved draft.",
+    "projection_receipt_sha256": "9b26abdeb511c43495b494f356931600e78fe88f15f6ed7edbb613740c3f687b"
+  },
+  "preserved_original_local_integrity_sha256": "46864dc747003e7ac4751b8fad9fe53ec57b96fb138d66a71e4f6e0c84f94698",
+  "contains_weights_binaries_envs_evaluation_bodies": false,
+  "integrity_self_excluded": true
+}

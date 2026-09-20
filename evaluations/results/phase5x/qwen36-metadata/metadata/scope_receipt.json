@@ -1,0 +1,35 @@
+{
+  "kind": "QWEN36_METADATA_PREPARATION_SCOPE_RECEIPT",
+  "status": "METADATA_AND_STATIC_ANALYSIS_COMPLETE_RUNTIME_PENDING",
+  "created_at_utc": "2026-09-20T16:22:24.078723+00:00",
+  "original_count": 13,
+  "original_total_bytes": 13530452,
+  "tokenizer_first_attempt": {
+    "received_body_bytes": 0,
+    "failure_kind": "DNS_URLError",
+    "successful_followup": "same pinned official resolve URL with download=true"
+  },
+  "bounded_inputs": {
+    "individual_bytes": 67108864,
+    "network_total_bytes": 134217728
+  },
+  "published_log_contains_entire_official_template_bytes_count": 3,
+  "scope_exclusions": {
+    "weight_or_range_requests": 0,
+    "cleanup_or_installs": 0,
+    "native_compile_or_execution": 0,
+    "tokenizer_encode_or_template_render": 0,
+    "tests_or_evaluation_replays": 0,
+    "GPU_or_model_HTTP": 0,
+    "evaluation_dataset_or_unused_holdout_access": 0,
+    "tracked_source_changes": 0
+  },
+  "state": "No new runtime/quality/tokenizer parity PASS or adopted Unicode variant is created by this metadata closure.",
+  "root_selected_profile_name": "qwen36_nonthinking_llama_cpp",
+  "official_recipe_selected_but_project_window_order_not_official": true,
+  "new_context_scope_if_later_authorized": "exposed120 only, never automatic oldV280 or unused80",
+  "metadata_reproduction_scripts": [
+    "fetch_metadata.py",
+    "analyze_metadata.py"
+  ]
+}

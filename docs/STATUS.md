@@ -1,14 +1,14 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-21 KST — Gemma4-12B 첫 품질 FAIL·재검산 완료·GPU3 반환, 418회귀 근거 보존**.
+갱신: **2026-09-21 KST — Gemma12 실패 checkpoint push 완료, Qwen3.6 metadata·전용 sampling 준비, 422회귀 PASS**.
 Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 미채택, Phase6 미시작**이다.
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`; Gemma12 CPU `fa3d337`, 첫 진단 동결 `302edf1` push·원격 일치 확인. 이전 후보 checkpoint와 원본 증거 보존 |
-| 현재 작업 | **Gemma4-12B 첫 의미·안전 gate FAIL 보존·종료, 다음 후보 비교 준비** |
+| GitHub | 공통 `v2`; Gemma12 실패·종료 `3d419fcb830020712711b3f2fd523fab5696cabf` push·원격 일치 확인. 이전 후보 checkpoint와 원본 증거 보존 |
+| 현재 작업 | **Qwen3.6-35B-A3B 공식 metadata·전용 sampling 및 다운로드 준비** |
 | 최근 후보 | Gemma4-12B/GLM4.7 첫 의미·안전 gate FAIL, EXAONE4.5 첫 의미 gate FAIL, Gemma4-31B 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
@@ -16,11 +16,30 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | GLM 1차 품질 결과 | 노출120×1: schema120, parser118, semantic104, rawFP1/58, unsafe1/120 — **FAIL** |
 | Gemma12 1차 품질 결과 | 노출120×1: schema120, parser118, semantic112, rawFP3/58, unsafe1/120 — **FAIL** |
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
-| 회귀 검증 | **418 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless21.412초. 새 공식Gemma12/Q4_0 exact identity binding 검증 |
+| 회귀 검증 | **422 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless20.758초. Qwen3.6 전용 sampling/exact identity binding 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
 | 모델 실행 | **NeuroBuild 모델 서버 STOPPED**. Gemma12 child exit0/reaped, GPU3 free36373/used3965/util0 복귀 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | 다른 후보의 새 가설·비용·공식 metadata 비교. 같은 실패 후보 반복·V2 없음 |
+| 다음 검증 | Qwen3.6 실제 GGUF header·최소 CPU 연결 검증, 이후 fresh GPU3 admission. 같은 실패 후보 반복·V2 없음 |
+
+## Qwen3.6 준비 — 아직 품질 미평가
+
+공식 원본995ad96e…와 GGUFbaec3eb…의 metadata13개를 확보했다. Apache2, `.src_sha` PRIMARY 연결과
+변환 log의 no-MTP/40층/733 tensors 기대값을 기록했으며 실제 GGUF 검증 전 PASS를 주장하지 않는다.
+새 `qwen36_nonthinking_llama_cpp`는 공식 T0.7/P0.8/K20/minP0/presence1.5/repeat1과
+프로젝트 window64/frequency0/seed42/native sampler order를 구분한다. 기존 Qwen3.8 설정은 유지한다.
+422회귀 첫 실행은 기존 protocol test matrix의 새 profile 누락1건으로 실패했고 수정 후422 PASS했다.
+초기 실패와 최종 로그 모두 보존한다. 완료한 품질 평가·재검산은 재실행하지 않았다.
+
+전체 VRAM 정적 추정27,904MiB, 운영예산28,672MiB는 조건부 계획이다. 기동 시 별도 안전 margin과
+GPU3 실제 free/utilization으로 다시 admission하며, 실측이나 최대 할당 보장으로 쓰지 않는다.
+Tokenizer/template 차이를 실제 header로 확인한 뒤 동일 입력 근거가 있는 검증만 승계한다.
+기존200개 CPU corpus wrapper는 실행하지 않고, 필요한 경우 노출120개 길이만 검사한다.
+
+다운로드 후 디스크 floor20.5GiB를 확보하기 위해 종료·미사용·소유·전체SHA가 검증된 Gemma12
+cache 한 파일6,975,879,296B만 회수했다. 완료 후 free43,039,641,600B, 원본 평가/metadata/복원 manifest는 유지했다.
+Weight는 고정 manifest와 disk watcher 아래 다운로드 중이다. 실제 header·새 CPU/GPU/품질 검증은 대기다. 첫 gate FAIL이면 반복/V2 없이 다음 판단을 한다.
+미사용80개는 first gate PASS 전 접근하지 않는다. 모델 미채택·Phase6 미시작이다.
 
 ## Gemma4-12B 결과와 준비 기록
 

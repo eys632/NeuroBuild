@@ -1,0 +1,120 @@
+{
+  "kind": "QWEN36_PRE_DOWNLOAD_WHOLE_RESOURCE_PLAN",
+  "status": "CONDITIONAL_SOURCE_ESTIMATE_NOT_LAUNCH_APPROVAL",
+  "created_at_utc": "2026-09-20T16:21:29.510125+00:00",
+  "candidate_model": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+  "candidate_revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+  "weight_file_bytes": 20419565568,
+  "weight_sha256": "671e47e0ec53c665d048b98c3ecbfd5236b5ca9c3e02ed19fc8f81f7b85140c7",
+  "source_commit": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "source_sha256": {
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/qwen.py": "b783f53598e1a65cb0ef7fbe0d0f52da472e2784f63acf13a5aea00f623cfaa6",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/qwen35moe.cpp": "ada74c413bfda274f1ffe8c4c32dbd80e999c777a5888244cc118da832f635a7",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-memory-recurrent.cpp": "35903c832ba321aad3fca8b2adf2d481f6ba41196478c6c8f248ffe2bd7d9d51",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-memory-recurrent.h": "2b2b6e8afeab4a13e71409b04df80d16c8f0797667c823e953c88406fc85a02c",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-model.cpp": "530dff0cd544382346cc18520cbdb7d7a6f6743c35f7af52aae0bec11d18992a",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-hparams.cpp": "ef6fbef7d12a23441b42cfac8e3a3a3045c7d3123402351ba98e69702e193301",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/sampling.cpp": "f23f8d663932bfd73abac1bd5e99055fc6efb07e21ef27dd7e25af2f2da40bff",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/tools/server/server-schema.cpp": "0bab859883207554fb724774892e8756ec0c956252b7653424756a0ee582efa8",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/tools/server/server-context.cpp": "2f5d65ce6ef0504b5c8cf55a74c68d3959c49784ba380ef836566b7a7d5fa12b"
+  },
+  "assumed_runtime": {
+    "physical_gpu": 3,
+    "logical_device": "cuda:0",
+    "tensor_parallel_or_sequences": 1,
+    "context_tokens": 4096,
+    "output_cap": 768,
+    "logical_batch": 64,
+    "physical_ubatch": 64,
+    "kv_types": [
+      "f16",
+      "f16"
+    ],
+    "flash_attention": "off",
+    "cuda_graphs": "off",
+    "context_shift": false,
+    "speculative_or_mtp_decoding": false,
+    "recurrent_snapshots_n_rs_seq": 0,
+    "server_checkpoint_slots": 0,
+    "fit_auto_offload_or_capacity_fallback": false
+  },
+  "terms_MiB": {
+    "full_published_weight_file": 19473.615234375,
+    "full_attention_f16_kv": 80.0,
+    "f32_gdn_recurrent_state": 60.0,
+    "f32_gdn_convolution_state": 2.8125,
+    "largest_conversion_scratch_defensive": 2048,
+    "graph_scheduler_logits_allowance": 2048,
+    "driver_modules_handles_allowance": 1024,
+    "other_pool_workspace_fragmentation_allowance": 1024,
+    "loading_overlap_allowance": 1024,
+    "unquantified_uncertainty_allowance": 1024
+  },
+  "sum_MiB": 27808.427734375,
+  "rounded_candidate_estimate_MiB": 27904,
+  "proposed_operational_watchdog_increment_MiB": 28672,
+  "unallocated_operational_minus_sum_MiB": 863.572265625,
+  "previous_saved_gpu_policy_not_fresh": {
+    "free_MiB": 36373,
+    "safety_margin_MiB": 7275,
+    "whole_budget_MiB": 29098,
+    "operational_remaining_MiB": 426
+  },
+  "matrix_expansion_reference_MiB": {
+    "one_vocab_f32": 1940.0,
+    "one_all_256_expert_pack_f32": 1024.0,
+    "selected_8_expert_pack_f32": 32.0,
+    "one_expert_f32_fallback_slice": 4.0
+  },
+  "matrix_scope": "All 256 experts are already counted as stored weights; active8 is not a weight-size proxy. Published expert tensors are separate gate/up/down packs and native direct MMQ handles them; the fallback dequantizes one expert slice (4MiB), not all256 at once. Scratch2048 is the largest whole-vocabulary F32 expansion1940 rounded up. It does not assert a simultaneous two-pack materialization or a source-proven upper bound. Graph/pool/loading retention is separately budgeted.",
+  "actual_header_required": {
+    "tensor_count_from_public_log": 733,
+    "dtype_counts_from_public_log": {
+      "q6_K": 1,
+      "f32": 301,
+      "q4_K": 121,
+      "q8_0": 310
+    },
+    "primary_main_layers": 40,
+    "primary_mtp_layers": 0,
+    "native_architecture": "qwen35moe",
+    "all_shapes_offsets_and_byte_coverage": true,
+    "config_tokenizer_template_and_flags": true,
+    "whole_file_sha256": true
+  },
+  "disk": {
+    "initial_observed_free_bytes": 36746940416,
+    "end_metadata_observed_free_bytes": 36671741952,
+    "observation_source": "df -B1 /home/a202192020/NeuroBuild_v2; shared-filesystem point samples, not attributable exclusively to this task",
+    "required_floor_bytes": 22011707392,
+    "candidate_weight_only_remaining_bytes": 16252176384,
+    "candidate_weight_only_floor_shortfall_bytes": 5759531008,
+    "candidate_manifest_total_bytes": 20420045991,
+    "cleanup_performed": false,
+    "weight_download_authorized_or_performed": false,
+    "separate_future_exact_inactive_cleanup_required": true,
+    "candidate_full_manifest_remaining_bytes": 16251695961,
+    "candidate_full_manifest_floor_shortfall_bytes": 5760011431
+  },
+  "limitations": [
+    "Graph/driver/pool/loading/uncertainty allowances are conservative choices, not source-proven hard upper bounds.",
+    "The source evidence is not an actual candidate header, startup, resource probe, inference or quality result.",
+    "GDN checkpoint count must be rechecked against the eventual exact launch arguments; hidden extra snapshots would change this estimate.",
+    "CPU input-embedding residency is not used to reduce the full-file weight term.",
+    "All-expert warmup path existence does not establish activation by current flags; actual startup behavior still must be checked.",
+    "Fresh permitted GPU policy and guarded aggregate measurement remain required; no live GPU/process query was made here.",
+    "Old Qwen3.8 memory/tokenizer/context proofs do not automatically become new-candidate PASS."
+  ],
+  "execution_counts": {
+    "weights_or_ranges": 0,
+    "native": 0,
+    "GPU": 0,
+    "model": 0,
+    "tests": 0,
+    "corpus": 0
+  },
+  "independent_source_review": {
+    "path": "independent_whole_vram_review.json",
+    "sha256": "b578f52588e1313f56f427a03d10aa1bb3b5117a9f03b7f2003d9b348e3b388d"
+  }
+}

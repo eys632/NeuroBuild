@@ -1,0 +1,17 @@
+# Qwen3.6 pinned metadata and source feasibility
+
+This archive records metadata preparation only. Weight download, actual GGUF header, new CPU contract, GPU/runtime and quality validation are pending. No model is adopted or automatically queued. Production-profile implementation and regression receipts are outside this archive.
+
+`metadata/` contains29 exact copies from `var/research/qwen36-candidate-metadata/`: original pinned API/card/LICENSE/config/index/template/generation/tokenizer-config files; GGUF README/`.src_sha`/conversion log (archived as `convert.log.txt` to avoid ignored runtime logs); fetch/analysis definitions; provenance, expected tensor inventory, sampling proposal, conditional resource plan and independent source reviews. No weights, executables, environments, model outputs or evaluation input bodies are included.
+
+The12,807,982-byte `upstream/tokenizer.json` is deliberately excluded; its original path, immutable source URL and SHA256 `5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42` are recorded in this archive's integrity and download ledger. `metadata/integrity.json` remains the original local29-entry closure, including that payload and excluding itself. This archive's top-level `integrity.json` separately maps copied paths to originals and records the omission; do not expect the historical local inventory to describe archive membership.
+
+The original metadata set totals13 files/13,530,452 bytes, within64MiB individual and128MiB total bounds. A first tokenizer DNS failure received0 body bytes and remains in the ledger; the successful public pinned retry is recorded separately. All original file sizes and Git-blob/LFS hashes were verified. `.src_sha` binds the original revision, while the converter's short build `b15ca93` is distinct from local runtime f072. Published733-tensor rows are expectations, not actual-header observations.
+
+The existing3.8 base BPE model matches but added-token and template differences prevent an automatic complete CPU-proof transfer. Official presence1.5 is retained; history window/order/seed are explicit project choices. The27904MiB model estimate and28672MiB operational proposal are conditional source estimates, not hard allocation bounds. Disk still requires separate admission/cleanup decisions. Completed public/parity/context/evaluations were not rerun, and no oldV2/unused holdout input was opened.
+
+The final manifest at `runtime/models/qwen36-35b-a3b-q4-k-m.json`, SHA256 `70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c`, contains README/convert.log/weight3 files totaling20,420,045,894 bytes. It is a documented projection of the preserved4-file draft: only `.src_sha` is omitted because the unchanged generic downloader requires an alphanumeric starting filename. The already verified `.src_sha` original, URL and SHA remain in metadata; `manifest_projection.json` records the exact transformation. No source provenance is discarded and the draft stays byte-identical.
+
+Historical metadata disk observations remain unchanged. Root separately completed the inactive Gemma12 weight cleanup afterward; that subsequent action, production regression and any future download evidence belong to separate root receipts, not this metadata-only collection.
+
+Restore small artifacts to their recorded original project paths; fetch the excluded tokenizer only under separate authorization using the pinned URL and verify its recorded size/SHA. The recorded scripts do not install packages or fetch weight payloads.

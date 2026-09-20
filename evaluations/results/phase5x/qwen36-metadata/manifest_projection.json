@@ -1,0 +1,27 @@
+{
+  "kind": "QWEN36_DOWNLOAD_MANIFEST_PROJECTION",
+  "status": "READY_NOT_EXECUTED",
+  "created_at_utc": "2026-09-20T16:31:31.533960+00:00",
+  "source_draft": {
+    "path": "var/research/qwen36-candidate-metadata/candidate_download_manifest_draft.json",
+    "sha256": "8a76837977b190b6e516fe7ed9cbf877f8890a086685b222c4bf7c1f790938cd"
+  },
+  "final_manifest": {
+    "path": "runtime/models/qwen36-35b-a3b-q4-k-m.json",
+    "bytes": 752,
+    "sha256": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c",
+    "file_count": 3,
+    "total_download_bytes": 20420045894
+  },
+  "excluded_file": {
+    "name": ".src_sha",
+    "bytes": 97,
+    "sha256": "ec3a62c6b2e66aab222c8ea8d5aa426e4587625128d71b7267c8ac3eaf9e1a74"
+  },
+  "reason": "Existing generic downloader accepts alphanumeric-start filenames; .src_sha is already downloaded and verified metadata, so omit it from future model-file download rather than changing the downloader.",
+  "source_revision_provenance_retained_at": "evaluations/results/phase5x/qwen36-metadata/metadata/gguf/.src_sha",
+  "only_change_from_draft": "Delete the .src_sha files entry; all remaining metadata and file entries retain their values.",
+  "raw_draft_unchanged": true,
+  "generic_downloader_unchanged": true,
+  "weight_download_executed": false
+}

@@ -1,0 +1,73 @@
+{
+  "kind": "QWEN36_PRODUCTION_DIFF_INDEPENDENT_STATIC_REVIEW",
+  "status": "PASS_READ_REVIEW_NOT_EXECUTION",
+  "head": "3d419fcb830020712711b3f2fd523fab5696cabf",
+  "sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+    "scripts/evaluate_requirements.py": "1915ee707cb6dca4f9f6927b760b0bdce1c1c5d6929837be489dafc97fb0cbfd",
+    "tests/test_local_model.py": "fef278522273e4fbe0819dc7702bebe26da4ca39b7912b6c1ce7c48a8975f859",
+    "tests/test_native_requirement_evaluation.py": "c350555aad68267de789a797824cc3cbe645b2ea00d68b53026f94b892f3397d"
+  },
+  "production_AST_exact_after_removing_only_new_enum_tuple_profile_recipe_and_candidate_map": {
+    "src/neurobuild/infrastructure/local_model.py": true,
+    "scripts/evaluate_requirements.py": true
+  },
+  "new_test_methods_read": [
+    "test_qwen36_profile_requires_native_protocol_and_explicit_selection",
+    "test_qwen36_wire_keeps_presence_active_and_extracts_exact_quotes",
+    "test_qwen36_identity_cannot_reuse_qwen38_or_other_candidate_recipe",
+    "test_qwen36_manifest_binds_new_checkpoint_to_non_neutral_recipe"
+  ],
+  "fixed_finding": "Existing all-profiles compatibility matrix initially omitted QWEN36; root added it to both native tuples. Static count2 confirmed. Root owns regression execution.",
+  "profile": {
+    "name": "qwen36_nonthinking_llama_cpp",
+    "protocol": "llama_cpp_json_schema",
+    "thinking": false,
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "frequency_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "repeat_last_n": 64,
+    "seed": 42,
+    "samplers": [
+      "penalties",
+      "top_k",
+      "top_p",
+      "min_p",
+      "temperature"
+    ]
+  },
+  "identity": {
+    "model_id": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+    "quantization": "Q4_K_M"
+  },
+  "official_sampling_source": {
+    "path": "var/research/qwen36-candidate-metadata/upstream/README.md",
+    "sha256": "c4ddaa065649ff6352648f64747a16eda31726f3e34add94ce04abb461c77b75",
+    "lines": "1008-1010",
+    "project_defined_parts": [
+      "repeat_last_n64",
+      "seed42",
+      "native sampler ordering"
+    ],
+    "native_presence_window_includes_prompt_tokens": true
+  },
+  "preserved_boundaries": [
+    "default remains legacy; no implicit model-name profile inference",
+    "Qwen36 requires native protocol",
+    "other profiles preserve exact prior recipe/identity",
+    "newwrongpublisher/suffix/quant/profile pairs reject before completion",
+    "prompt/schema/scorer/parser source unchanged by normalizedproduction AST"
+  ],
+  "actions": {
+    "test_execution": 0,
+    "project_imports": 0,
+    "requests": 0,
+    "model_calls": 0,
+    "gpu_calls": 0,
+    "production_edits": 0
+  }
+}

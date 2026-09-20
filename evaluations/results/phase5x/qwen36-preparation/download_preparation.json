@@ -1,0 +1,112 @@
+{
+  "kind": "QWEN36_GUARDED_DOWNLOAD_DEFINITION_PREPARATION",
+  "status": "PREPARED_NOT_EXECUTED",
+  "original_helper": "var/research/download_gemma4_12b_guarded.py",
+  "original_sha256": "dc46839113a3317ba9af6eaefbd3f591b151d03a738aeac9910ac701586eb637",
+  "new_helper": "var/research/download_qwen36_guarded.py",
+  "new_sha256": "51e839682581bdbcd27634c0e31b616d005e1dbfc883aaa6fd49fe96c62a3e75",
+  "diff": "var/research/download_qwen36_guarded.patch",
+  "diff_sha256": "fcf22598e336693ecf03e456bd3036547abae077acf31d0effb687793ad18596",
+  "manifest_sha256": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c",
+  "manifest_file_count": 3,
+  "manifest_total_bytes": 20420045894,
+  "raw_src_sha_retained_in_metadata_not_download_manifest": true,
+  "identity_substitutions": [
+    {
+      "before": "google/gemma-4-12B-it-qat-q4_0-gguf",
+      "after": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+      "count": 1
+    },
+    {
+      "before": "29d097773436b69ff9feafd636ab4cf873786537",
+      "after": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+      "count": 1
+    },
+    {
+      "before": "runtime/models/gemma4-12b-qat-q4-0.json",
+      "after": "runtime/models/qwen36-35b-a3b-q4-k-m.json",
+      "count": 2
+    },
+    {
+      "before": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990",
+      "after": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c",
+      "count": 1
+    },
+    {
+      "before": "var/models/google--gemma-4-12B-it-qat-q4_0-gguf",
+      "after": "var/models/ggml-org--Qwen3.6-35B-A3B-GGUF",
+      "count": 1
+    },
+    {
+      "before": "gemma4-12b-guarded-download",
+      "after": "qwen36-guarded-download",
+      "count": 2
+    },
+    {
+      "before": "download-gemma4-12b",
+      "after": "download-qwen36",
+      "count": 1
+    },
+    {
+      "before": "unused-glm47-weight-cache-cleanup",
+      "after": "unused-gemma12-weight-cache-cleanup",
+      "count": 1
+    },
+    {
+      "before": "REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_GLM47_WEIGHT_CACHE",
+      "after": "REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_GEMMA12_WEIGHT_CACHE",
+      "count": 1
+    },
+    {
+      "before": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+      "after": "29d097773436b69ff9feafd636ab4cf873786537",
+      "count": 1
+    },
+    {
+      "before": "18244193920",
+      "after": "6975879296",
+      "count": 1
+    }
+  ],
+  "reverse_substitution_byte_exact": true,
+  "unchanged_function_AST": [
+    "require",
+    "digest",
+    "own",
+    "proof",
+    "module",
+    "environment",
+    "publisher"
+  ],
+  "changed_functions_identity_only": [
+    "precheck",
+    "main"
+  ],
+  "safety_unchanged": {
+    "reserve_bytes": 21474836480,
+    "buffer_bytes": 536870912,
+    "disk_poll_seconds": 2,
+    "max_phase_seconds": 1800,
+    "empty_cuda_required": true,
+    "pinned_reused_guard_supervisor": true,
+    "exclusive_project_lock": true,
+    "stdout_stderr_discarded": true,
+    "owned_no_symlink_no_hardlink_collision_checks": true,
+    "completed_cleanup_required_if_proof_present_or_supplied": true,
+    "partial_files_preserved": true,
+    "atomic_exclusive_publish_and_fsync": true
+  },
+  "future_cleanup_proof": "var/reports/unused-gemma12-weight-cache-cleanup.json",
+  "future_command": "CUDA_VISIBLE_DEVICES= .conda/bin/python -B var/research/download_qwen36_guarded.py --build-report-sha256 <EXACT_BUILD_REPORT_SHA> --cleanup-report-sha256 <EXACT_COMPLETED_GEMMA12_CLEANUP_SHA>",
+  "actions": {
+    "helper_imports": 0,
+    "precheck_calls": 0,
+    "tests": 0,
+    "download_calls": 0,
+    "cleanup_calls": 0,
+    "proc_reads": 0,
+    "weight_reads": 0,
+    "gpu_calls": 0,
+    "production_edits": 0
+  }
+}

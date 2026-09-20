@@ -1,0 +1,27 @@
+{
+  "status": "PUBLISHED_LOG_NOT_ACTUAL_GGUF",
+  "tensor_count": 733,
+  "destination_dtype_counts": {
+    "q6_K": 1,
+    "f32": 301,
+    "q4_K": 121,
+    "q8_0": 310
+  },
+  "expected_tensor_payload_bytes": 20408576512,
+  "published_file_bytes": 20419565568,
+  "file_minus_expected_payload_bytes": 10989056,
+  "primary_no_mtp": true,
+  "primary_block_count": 40,
+  "quantizer_build_short_commit": "b15ca93",
+  "quantizer_compiler": "GNU 14.2.0 Linux x86_64",
+  "full_converter_commit_verified": false,
+  "local_runtime_source_commit": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "runtime_equals_converter_build_claimed": false,
+  "gguf_header_read": false,
+  "warning": "Loader dump describes input BF16 file_type32; final Q4_K_M header is not observed. Actual quantized rows, not command override names, define expected mixed tensor types.",
+  "source_log_sha256": "8dc2a7f833e7421fa1bae8e206930bf4ab3dda9d1f705ed4b7294abc98c5db22",
+  "source_lines_inclusive": [
+    2875,
+    3973
+  ]
+}

@@ -390,11 +390,13 @@ class LocalModelClientTests(unittest.TestCase):
                 invalid = ((protocol is StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA
                             and profile not in (SamplingProfile.LEGACY_GREEDY,
                                                 SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP,
+                                                SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP,
                                                 SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP,
                                                 SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP,
                                                 SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP))
                            or (protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA
                                and profile in (SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP,
+                                               SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP,
                                                SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP,
                                                SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP,
                                                SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP)))
@@ -1044,6 +1046,62 @@ class ExaoneNativeProfileTests(unittest.TestCase):
                 with self.assertRaises(DomainError):
                     client.extract(SOURCE, requirement_id=uuid4(), project_id=uuid4(), base_revision_id=uuid4())
                 transport.assert_called_once()
+
+
+class Qwen36NativeProfileTests(unittest.TestCase):
+    root = Path(__file__).resolve().parents[1]
+    fake_response = GemmaNativeProfileTests.fake_response
+
+    def client(self, profile=SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP):
+        return LocalRequirementClient(
+            "http://127.0.0.1:8003", "synthetic-test-model", protocol="llama_cpp_json_schema",
+            sampling_profile=profile, generation_contract="2.0",
+            prompt_path=self.root / "prompts/requirement_generation_v2_v2.txt",
+            schema_path=self.root / "schemas/requirement_generation_v2_decision_branches.schema.json")
+
+    def test_qwen36_wire_keeps_presence_active_and_extracts_exact_quotes(self):
+        for profile in (SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP, "qwen36_nonthinking_llama_cpp"):
+            with self.subTest(profile=profile):
+                client = self.client(profile)
+                # Mutating returned metadata must not silently disable penalties.
+                copied = client.sampling_parameters
+                copied["samplers"].clear()
+                copied["repeat_last_n"] = 0
+                transport = self.fake_response(client)
+                result = client.extract(SOURCE, axis_convention="project_xy", requirement_id=uuid4(),
+                                        project_id=uuid4(), base_revision_id=uuid4())
+                transport.assert_called_once()
+                request = json.loads(transport.call_args.args[0].data)
+                self.assertEqual(request["temperature"], 0.7)
+                self.assertEqual(request["top_p"], 0.8)
+                self.assertEqual(request["top_k"], 20)
+                self.assertEqual(request["min_p"], 0.0)
+                self.assertEqual(request["presence_penalty"], 1.5)
+                self.assertEqual(request["frequency_penalty"], 0.0)
+                self.assertEqual(request["repeat_penalty"], 1.0)
+                self.assertEqual(request["repeat_last_n"], 64)
+                self.assertEqual(request["seed"], 42)
+                self.assertEqual(request["samplers"], ["penalties", "top_k", "top_p", "min_p", "temperature"])
+                self.assertEqual(request["chat_template_kwargs"], {"enable_thinking": False})
+                self.assertEqual(request["response_format"]["json_schema"]["schema"], client.schema)
+                self.assertFalse(client.enable_thinking)
+                self.assertEqual(result.operation.dx.metres, 1)
+                self.assertEqual(result.target_description, "회의실 책상")
+                self.assertNotIn("repetition_penalty", request)
+
+    def test_qwen36_profile_requires_native_protocol_and_explicit_selection(self):
+        with patch("neurobuild.infrastructure.local_model.build_opener") as opener:
+            for protocol in ("legacy_guided_json", "structured_outputs"):
+                with self.subTest(protocol=protocol), self.assertRaises(DomainError) as caught:
+                    LocalRequirementClient("http://127.0.0.1:8003", "model", protocol=protocol,
+                                           sampling_profile="qwen36_nonthinking_llama_cpp")
+                self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
+            opener.assert_not_called()
+        default = LocalRequirementClient("http://127.0.0.1:8003", "ggml-org/Qwen3.6-35B-A3B-GGUF")
+        self.assertIs(default.sampling_profile, SamplingProfile.LEGACY_GREEDY)
+        previous = self.client(SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP)
+        self.assertEqual(previous.sampling_parameters["presence_penalty"], 0.0)
+        self.assertEqual(previous.sampling_parameters["repeat_last_n"], 0)
 
 
 class GlmFlashNativeProfileTests(unittest.TestCase):

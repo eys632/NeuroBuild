@@ -509,3 +509,17 @@ Qwen3.8의노출PASS/V2FAIL로 개선이나 새학습계열의 다양성을 추�
 작은metadata 원본으로 먼저 확인한다. 공식presence1.5와기존neutral0의차이를숨기지않는다.
 Tokenizer/template/context/전체VRAM PASS자동승계 금지, 아직다운로드·GPU실행계획확정없음이다.
 Phase5.x미완료·모델미채택·Phase6미시작이며 다른 후보 비교를계속한다.
+
+
+## D048 — Qwen3.6 명시적 sampling과 검증 재사용 범위
+
+Qwen3.6-35B-A3B의 다른 checkpoint와 공식 nonthinking presence1.5를 새 후보 가설로 등록한다.
+기존 Qwen3.8 neutral recipe로 묵시적 대체하지 않고 전용 profile과 정확 publisher/model/Q4_K_M 조합을 묶는다.
+공식 T0.7/P0.8/K20/minP0/presence1.5/repeat1, 프로젝트 frequency0/window64/seed42/penalty-first 순서를 분리한다.
+Native penalty는 prompt tokens도 포함한다. 새 code binding의422회귀 PASS는 모델 품질이나 native 실행 증거가 아니다.
+
+원본 metadata와 변환 log는 실제 header를 대체하지 않는다. Native tokenizer typed 값과 실제 요청 입력이 같을 때만
+기존 raw parity/NFC 한계/노출120 길이 증거를 승계하며, 새 실행 PASS라고 바꾸지 않는다.
+새 sampling/template 연결은 필요한 최소 공개 요청만 확인한다. 기존200 corpus 및 미사용80 자동 검사는 금지한다.
+전체 VRAM 추정27,904MiB와 운영28,672MiB는 freshGPU3 free/util+별도 margin 및 자체 watchdog을 전제로 한다.
+불필요한 runtime 최적화는 future optimization이다. First gate FAIL이면 같은 후보 반복/V2 없이 종료한다.

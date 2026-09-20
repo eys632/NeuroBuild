@@ -1,0 +1,122 @@
+{
+  "kind": "GEMMA12_INACTIVE_SINGLE_WEIGHT_CLEANUP_DEFINITION_PREPARATION",
+  "status": "PREPARED_NOT_EXECUTED",
+  "source_helper": "var/research/cleanup_unused_glm47_cache.py",
+  "source_sha256": "d4bc9908196db16c8b97c32835c3b6f89840762d1527c87e0044abcf5598af8c",
+  "new_helper": "var/research/cleanup_unused_gemma12_cache.py",
+  "new_sha256": "45a65baf764c061e3bca8115cd1598d4975e1ff7d5a659263dcccc6aef3519b4",
+  "patch_path": "var/research/cleanup_unused_gemma12_cache.patch",
+  "patch_sha256": "79c9cb7249f6a7845b1d35a9981ccfd2ae4082aaf663d0e00bb1313679ab38a6",
+  "allowed_identity_substitutions": [
+    {
+      "before": "GLM47",
+      "after": "GEMMA12",
+      "replacements": 2
+    },
+    {
+      "before": "runtime/models/glm47-flash-q4-k.json",
+      "after": "runtime/models/gemma4-12b-qat-q4-0.json",
+      "replacements": 2
+    },
+    {
+      "before": "8f2c13b9fad51c6d65588a2b2b70ed966168259eaa42e2f997c59dd97be1814c",
+      "after": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990",
+      "replacements": 1
+    },
+    {
+      "before": "7559e96b7e324ab405897dc2b91492b0f376ad4a",
+      "after": "29d097773436b69ff9feafd636ab4cf873786537",
+      "replacements": 1
+    },
+    {
+      "before": "var/models/ggml-org--GLM-4.7-Flash-GGUF",
+      "after": "var/models/google--gemma-4-12B-it-qat-q4_0-gguf",
+      "replacements": 1
+    },
+    {
+      "before": "var/reports/unused-glm47-weight-cache-cleanup.json",
+      "after": "var/reports/unused-gemma12-weight-cache-cleanup.json",
+      "replacements": 1
+    },
+    {
+      "before": "evaluations/results/phase5x/exposed-native-glm47-diagnostic/resource_report_final.json",
+      "after": "evaluations/results/phase5x/exposed-native-gemma12-diagnostic/resource_report_final.json",
+      "replacements": 1
+    },
+    {
+      "before": "c0a3d7631f5dde15a87d0345ef84a3e79f181c4ef271b5c4b161dd894625c864",
+      "after": "44ebe0f38b7ac554a3dbfa7092e6d24b5f74008275025ced88815e1b12f99929",
+      "replacements": 1
+    },
+    {
+      "before": "var/reports/glm47-flash-gguf-header.json",
+      "after": "var/reports/gemma4-12b-gguf-header.json",
+      "replacements": 1
+    },
+    {
+      "before": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef",
+      "after": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0",
+      "replacements": 1
+    },
+    {
+      "before": "GLM-4.7-Flash-Q4_K.gguf",
+      "after": "gemma-4-12b-it-qat-q4_0.gguf",
+      "replacements": 2
+    },
+    {
+      "before": "18244193920",
+      "after": "6975879296",
+      "replacements": 1
+    },
+    {
+      "before": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2",
+      "after": "93567e57a8fe10b23569b9d9ec38cd005deedf71e29477c421a4b83f418a538b",
+      "replacements": 1
+    }
+  ],
+  "reverse_identity_substitution_byte_exact": true,
+  "safety_function_AST_identical": [
+    "sha",
+    "own",
+    "free",
+    "no_own_users"
+  ],
+  "syntax_only": true,
+  "target": {
+    "model_id": "google/gemma-4-12B-it-qat-q4_0-gguf",
+    "revision": "29d097773436b69ff9feafd636ab4cf873786537",
+    "filename": "gemma-4-12b-it-qat-q4_0.gguf",
+    "bytes": 6975879296,
+    "sha256": "93567e57a8fe10b23569b9d9ec38cd005deedf71e29477c421a4b83f418a538b"
+  },
+  "evidence_sha256": {
+    "runtime/models/gemma4-12b-qat-q4-0.json": "7c14b3edaa691341c8759300e81825a8b0c9bf4924dec240df35be648c7b3990",
+    "evaluations/results/phase5x/exposed-native-gemma12-diagnostic/resource_report_final.json": "44ebe0f38b7ac554a3dbfa7092e6d24b5f74008275025ced88815e1b12f99929",
+    "var/reports/gemma4-12b-gguf-header.json": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0"
+  },
+  "execution_checks_preserved": [
+    "pinned exact manifest/revision/size/SHA/header and final STOPPED/exit0/reaped model path",
+    "owned non-symlink paths and exact copied manifest",
+    "exclusive own server lock",
+    "UID checked before opening /proc contents; directory-FD anchored second UID check",
+    "own cmdline/maps/descriptors only; explicit inherited limited login-service maps exception",
+    "regular file, single link, exact inode/size/mtime/ctime snapshot",
+    "new full content hash immediately before unlink",
+    "own fd/maps recheck and inode/UID/nlink recheck before relative-directory unlink",
+    "exclusive fsynced IN_PROGRESS receipt before deletion; fsynced atomic step/completion receipts"
+  ],
+  "scope": "Only the single weight may be removed by a future explicit root execution; all metadata/results/replays/manifests remain.",
+  "restore_command": ".conda/bin/python scripts/download_model.py runtime/models/gemma4-12b-qat-q4-0.json",
+  "actions": {
+    "helper_imports": 0,
+    "helper_execution": 0,
+    "tests": 0,
+    "proc_reads": 0,
+    "weight_reads": 0,
+    "signals": 0,
+    "deletions": 0,
+    "gpu_calls": 0,
+    "http_calls": 0,
+    "tracked_edits": 0
+  }
+}

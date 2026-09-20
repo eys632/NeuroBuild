@@ -1,0 +1,170 @@
+{
+  "kind": "QWEN36_PINNED_CANDIDATE_METADATA",
+  "status": "METADATA_VERIFIED_NOT_RUNTIME_OR_QUALITY_VALIDATED",
+  "upstream": {
+    "model_id": "Qwen/Qwen3.6-35B-A3B",
+    "revision": "995ad96eacd98c81ed38be0c5b274b04031597b0",
+    "api_ref": {
+      "path": "upstream-api.json",
+      "source_url": "https://huggingface.co/api/models/Qwen/Qwen3.6-35B-A3B/revision/995ad96eacd98c81ed38be0c5b274b04031597b0?blobs=true",
+      "final_host": "huggingface.co",
+      "bytes": 27490,
+      "sha256": "c64525727082282a562e5e0b5efbdd67dd58cadde45cff57abfdedaaed13b8cb",
+      "git_blob_sha1": "c0b7d49ea9771cbf97bbe6df71a9ce147ea8236a",
+      "expected_hf_metadata": null,
+      "retrieved_at_utc": "2026-09-20T16:09:46Z"
+    }
+  },
+  "gguf": {
+    "model_id": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+    "revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+    "api_ref": {
+      "path": "gguf-api.json",
+      "source_url": "https://huggingface.co/api/models/ggml-org/Qwen3.6-35B-A3B-GGUF/revision/baec3ebee244827cda0f4557eafa8b28f7545fa6?blobs=true",
+      "final_host": "huggingface.co",
+      "bytes": 11911,
+      "sha256": "2cfa6a3eebc25fdc1e56b0e065730b6e0e644cc2cf24354b4f4c793301e30408",
+      "git_blob_sha1": "bc3c26b73891928e4fa3a135db986c24fb2f3abe",
+      "expected_hf_metadata": null,
+      "retrieved_at_utc": "2026-09-20T16:09:47Z"
+    },
+    "selected_weight_metadata": {
+      "rfilename": "Qwen3.6-35B-A3B-Q4_K_M.gguf",
+      "blobId": "0582665a37dd1d972d772d693d69746bb326cc12",
+      "size": 20419565568,
+      "lfs": {
+        "sha256": "671e47e0ec53c665d048b98c3ecbfd5236b5ca9c3e02ed19fc8f81f7b85140c7",
+        "size": 20419565568,
+        "pointerSize": 136
+      }
+    },
+    "payload_downloaded": false,
+    "header_observed": false
+  },
+  "conversion_source": {
+    "src_sha_entries": {
+      "DFLASH": "f181eece646affea2c38b2765f1aaa01a9734ccd",
+      "PRIMARY": "995ad96eacd98c81ed38be0c5b274b04031597b0"
+    },
+    "primary_revision_matches_pinned_upstream": true,
+    "source_revision_ref": {
+      "path": "gguf/.src_sha",
+      "source_url": "https://huggingface.co/ggml-org/Qwen3.6-35B-A3B-GGUF/resolve/baec3ebee244827cda0f4557eafa8b28f7545fa6/.src_sha",
+      "final_host": "huggingface.co",
+      "bytes": 97,
+      "sha256": "ec3a62c6b2e66aab222c8ea8d5aa426e4587625128d71b7267c8ac3eaf9e1a74",
+      "git_blob_sha1": "34783e06a12c9a5ac49629e10f9aeb27dd641362",
+      "expected_hf_metadata": {
+        "rfilename": ".src_sha",
+        "blobId": "34783e06a12c9a5ac49629e10f9aeb27dd641362",
+        "size": 97
+      },
+      "retrieved_at_utc": "2026-09-20T16:10:54Z"
+    },
+    "public_log_ref": {
+      "path": "gguf/convert.log",
+      "source_url": "https://huggingface.co/ggml-org/Qwen3.6-35B-A3B-GGUF/resolve/baec3ebee244827cda0f4557eafa8b28f7545fa6/convert.log",
+      "final_host": "huggingface.co",
+      "bytes": 479859,
+      "sha256": "8dc2a7f833e7421fa1bae8e206930bf4ab3dda9d1f705ed4b7294abc98c5db22",
+      "git_blob_sha1": "fed49d02c5b9be9505c49b0b8acea8df78fbe20b",
+      "expected_hf_metadata": {
+        "rfilename": "convert.log",
+        "blobId": "fed49d02c5b9be9505c49b0b8acea8df78fbe20b",
+        "size": 479859
+      },
+      "retrieved_at_utc": "2026-09-20T16:10:55Z"
+    },
+    "quantizer_short_commit": "b15ca93",
+    "full_conversion_source_commit_verified": false,
+    "local_runtime_same_conversion_build_claimed": false,
+    "imatrix_calibration_not_documented_in_preserved_log": true,
+    "no_mtp_primary": true,
+    "mmproj_mtp_dflash_excluded": true
+  },
+  "license": {
+    "upstream_api_card": "apache-2.0",
+    "gguf_api_card": "apache-2.0",
+    "upstream_license_original": {
+      "path": "upstream/LICENSE",
+      "source_url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/resolve/995ad96eacd98c81ed38be0c5b274b04031597b0/LICENSE",
+      "final_host": "huggingface.co",
+      "bytes": 11343,
+      "sha256": "50cbab8a892c5f2993b8c7351a99182507472def3b1374558308605d99b86b32",
+      "git_blob_sha1": "1d5180a42f1c3383ba7c7bd0a50f0837ef0168df",
+      "expected_hf_metadata": {
+        "rfilename": "LICENSE",
+        "blobId": "1d5180a42f1c3383ba7c7bd0a50f0837ef0168df",
+        "size": 11343
+      },
+      "retrieved_at_utc": "2026-09-20T16:10:00Z"
+    },
+    "copyright_notice": "Copyright 2026 Alibaba Cloud",
+    "gguf_standalone_license_published": false
+  },
+  "metadata_download": {
+    "original_file_count": 13,
+    "network_payload_bytes": 13530452,
+    "individual_cap_bytes": 67108864,
+    "total_cap_bytes": 134217728,
+    "preserved_failures": [
+      {
+        "path": "upstream/tokenizer.json",
+        "received_bytes": 0,
+        "error_type": "URLError"
+      }
+    ],
+    "disk_free_before_bytes": 36746395648
+  },
+  "architecture": {
+    "hf_architecture": [
+      "Qwen3_5MoeForConditionalGeneration"
+    ],
+    "native_expected_architecture": "qwen35moe",
+    "hidden_size": 2048,
+    "vocab_size": 248320,
+    "layers": 40,
+    "layer_type_counts": {
+      "linear_attention": 30,
+      "full_attention": 10
+    },
+    "routed_experts": 256,
+    "active_experts": 8,
+    "expert_intermediate": 512,
+    "shared_expert_intermediate": 512,
+    "config_mtp_layers": 1,
+    "published_primary_conversion_mtp_layers": 0,
+    "tied_embeddings": false
+  },
+  "template": {
+    "official_sha256": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+    "bytes": 7764,
+    "tokenizer_config_inline_exact": true,
+    "equals_qwen38_bytes": false,
+    "actual_embedded_verified": false
+  },
+  "tokenizer": {
+    "json_sha256": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+    "normalizer": {
+      "type": "NFC"
+    },
+    "public_native_parity_observed": false,
+    "qwen38_metadata_comparison": "metadata_comparison_qwen38.json"
+  },
+  "scope": {
+    "weights_or_ranges": 0,
+    "installs": 0,
+    "native_or_GPU": 0,
+    "tokenizer_encode_or_render": 0,
+    "corpus_or_heldout_reads": 0,
+    "model_calls": 0,
+    "production_edits": 0
+  },
+  "limits": [
+    "Published conversion metadata is not an actual header/payload audit.",
+    "Equal base BPE model does not prove entire tokenizer equality: added token inventories differ.",
+    "Restricted template source equivalence has not been rendered or measured.",
+    "NFC normalizer is retained; no old raw-reference variant is automatically adopted.",
+    "The explicit candidate recipe remains a proposal until separately implemented and frozen."
+  ]
+}

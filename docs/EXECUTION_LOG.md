@@ -1326,3 +1326,27 @@ Source snapshot30 Gitblobs/record70796723… 및원본·동결67파일전후불�
 결과archive57entries/56exactcopies/859417B,integritye68714cd5de60c7bd77944eb47473f4147c721118a8ff690081c3663da1e19c0.
 Production418회귀근거를source/Git동등성으로재사용(bc4bdd6f…52254),suite재실행0.
 기존완료평가·재생·runtime/public/vocab/context반복0,같은실패후보repeat/V2/미사용80접근0.
+
+
+### 2026-09-21 KST — Qwen3.6 metadata 및 명시적 profile 준비
+
+Gemma12 실패·재검산·GPU3 반환 checkpoint3d419fcb830020712711b3f2fd523fab5696cabf GitHub v2 push·원격 일치 완료.
+공식 metadata13개13,530,452B 확보, 첫 tokenizer CDN DNS 실패0B와 성공 fallback을 원본 ledger에 보존했다.
+Metadata integrity46864dc747003e7ac4751b8fad9fe53ec57b96fb138d66a71e4f6e0c84f94698.
+Independent whole-VRAM b578f525…/CPU reuse723b3864… 정적 검토는 GPU/native/코퍼스 실행 없이 완료했다.
+
+전용 Qwen36 native profile/exactpair와 경계 test4개 추가. `.conda`의 headless/빈 CUDA visibility 및
+private PostgreSQL DSN으로 `scripts/test_backend.sh`를 실행했다. 첫422개는 기존 protocol testmatrix
+누락1건으로 실패, 두 explicit native tuple 수정 후422 PASS/skip0/20.758초다. 초기·최종 receipt/log 보존.
+Production client0814c6a5…/evaluator1915ee70…, 기존 parser/prompt/schema/gate는 변경하지 않았다.
+
+`cleanup_unused_gemma12_cache.py --remove` 한 번 실행. 소유·전체SHA·inode·own FD/maps·lock·STOPPED 증거 확인 후
+종료된 Gemma12 weight 한 파일6,975,879,296B만 회수했다. Cleanup1509a5bb62e42655f14802e8d36ee1132b615114e8e1fd39df159a0ff0edb01a,
+free_after43,039,641,600B. 다른 사용자 내용 열람·신호·파일변경 없고 원본 metadata/evaluation/restoremanifest 보존.
+이 단계 새 GPU/품질 호출0, 과거 완료125 평가·재검산·startup/resource 재실행0.
+
+Qwen36 최종 runtime manifest70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c는3파일20,420,045,894B다.
+Generic downloader가 허용하지 않는 `.src_sha`만 원본4-file draft에서 제외했고 metadata 원본·URL·SHA는 보존했다.
+`download_qwen36_guarded.py`51e839682581bdbcd27634c0e31b616d005e1dbfc883aaa6fd49fe96c62a3e75로
+고정 manifest 다운로드를 시작했다. 최초 free43,038,355,456B,20.5GiB floor/2초 watcher/1800초 own-child 제한이다.
+이 checkpoint의 다운로드 상태는 RUNNING이며 완료/fullSHA/header PASS를 주장하지 않는다.

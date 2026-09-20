@@ -1,0 +1,186 @@
+{
+  "kind": "QWEN36_QWEN38_CPU_CONTRACT_REUSE_SOURCE_REVIEW",
+  "status": "SOURCE_METADATA_REVIEW_ONLY_ACTUAL_QWEN36_GGUF_PENDING",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "operations": {
+    "project_or_helper_imports": 0,
+    "tokenizer_encode_decode_calls": 0,
+    "template_render_calls": 0,
+    "native_calls": 0,
+    "model_inference_calls": 0,
+    "gpu_calls": 0,
+    "http_calls": 0,
+    "weight_accesses": 0,
+    "evaluation_dataset_bodies_read": 0,
+    "old_public_suite_or_parity_executions": 0
+  },
+  "metadata_comparison": {
+    "tokenizer_top_level_changed_keys": [
+      "added_tokens"
+    ],
+    "unchanged_components": [
+      "model (248044 BPE entries, 247587 merges)",
+      "normalizer NFC",
+      "pre_tokenizer",
+      "post_processor",
+      "decoder",
+      "padding",
+      "truncation",
+      "version"
+    ],
+    "added_token_counts": {
+      "qwen36_tokenizer_json": 26,
+      "qwen38_tokenizer_json": 33,
+      "both_tokenizer_config_added_tokens_decoder": 33
+    },
+    "qwen38_only_added_tokens": [
+      {
+        "id": 248070,
+        "content": "<|audio_start|>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 248071,
+        "content": "<|audio_end|>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 248072,
+        "content": "<tts_pad>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 248073,
+        "content": "<tts_text_bos>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 248074,
+        "content": "<tts_text_eod>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 248075,
+        "content": "<tts_text_bos_single>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      },
+      {
+        "id": 248076,
+        "content": "<|audio_pad|>",
+        "single_word": false,
+        "lstrip": false,
+        "rstrip": false,
+        "normalized": false,
+        "special": true
+      }
+    ],
+    "tokenizer_config_only_changed_key": "chat_template",
+    "old_public_fixture_read_mode": "Public synthetic text/expected IDs inspected only for changed-token literals/IDs; no encoding/rendering/execution.",
+    "old_public_fixture_cases": 20,
+    "changed_literals_in_old_public_fixture": 0,
+    "changed_ids_in_old_public_fixture_expected_ids": 0,
+    "conversion_caveat": "conversion/base.py:1513-1552 uses AutoTokenizer.vocab/get_added_vocab/added_tokens_decoder; tokenizer.json alone does not establish emitted GGUF special-token inventory. Actual GGUF/header, converter lineage and typed token metadata must settle the 26 versus 33 discrepancy."
+  },
+  "selected_template_path": {
+    "scope": "Nonempty string system, one string user from json.dumps, no history/tools/media/continuation, enable_thinking=false, add_generation_prompt=true.",
+    "static_output_expression_equal": true,
+    "expression": "<|im_start|>system\\n + trim(system) + <|im_end|>\\n + <|im_start|>user\\n + trim(user) + <|im_end|>\\n + <|im_start|>assistant\\n<think>\\n\\n</think>\\n\\n",
+    "new_template_render_measured": false,
+    "unselected_differences": [
+      "reasoning_effort instructions",
+      "empty/missing system handling",
+      "assistant history thinking preservation/extraction",
+      "empty tool arguments"
+    ],
+    "native_parser": "Both templates contain <tool_call>, <function= and <parameter=; common/chat.cpp:1213-1217 selects common/parsers/qwen3-coder.cpp, not differential autoparser.",
+    "reasoning_boundary": "qwen3-coder.cpp:74-86 separates optional reasoning and schema final content; client local_model.py:389-395 rejects inline think markers. Nonthinking request does not by itself assert that no reasoning bytes can ever be emitted."
+  },
+  "historical_facts_referenceable": [
+    "Qwen3.8 official HF public20 ID agreement19/20 FAIL(index11), native original roundtrip20/20; keep as historical model-specific evidence, not new Qwen3.6 executed observations.",
+    "Qwen3.8 derived reference with only NFC disabled ID agreement20/20 PASS; this is not official HF equivalence and cannot silently select the new candidate variant.",
+    "f072 QWEN35 regex handles combining marks but BPE path is raw UTF8 without NFC: llama-vocab.cpp:392-399,619-621,3479-3513. Same upstream NFC therefore predicts the same normalization hazard; it is a source inference until new metadata/vocab binding is established.",
+    "Old public schema10accept/20reject and native final parser/grammar/EOG facts remain valid for their pinned source/schema/prefix/vocab. Carry only those unchanged domains, explicitly historical; no need to rerun the standalone schema corpus.",
+    "Old exposed120 token lengths may be carried only after exact native typed tokenizer/input-path equivalence. Old V2-80 is outside this task and must not be opened or rerun."
+  ],
+  "minimal_new_work_after_root_authorization": [
+    {
+      "step": 1,
+      "scope": "Actual new GGUF header audit and typed comparison",
+      "checks": "Bind new model/revision/file/source; all tokenizer.* values/types including tokens/order/types/scores/merges/preidentifier/model/addBOS/addEOS/special IDs/EOG/flags and raw embedded template. Resolve added7 specifically. Do not infer from filename or upstream tokenizer.json alone."
+    },
+    {
+      "step": 2,
+      "scope": "One new public transport/template/native sampling integration",
+      "checks": "Capture one actual new profile request with fake opener; native CPU render its full frozen system plus public user, assert exact system/user retention and selected nonthinking prefix. Assert response_format/schema, nonlazy grammar, final-only parser and no tools. T0.7/P0.8/K20/minP0/presence1.5/repeat1 are official nonthinking; frequency0/window64/seed42/order penalties,top_k,top_p,min_p,temperature are project choices. Changed presence/window/order invalidate old neutral sampling proof. Reuse grammar routines; do not rerun old30 wholesale."
+    },
+    {
+      "step": 3,
+      "scope": "Only tokenizer delta checks if not fully carryable",
+      "checks": "If actual typed native vocab is identical, bind old raw20/NFC failure as historical and run no20 loop. Otherwise use only the seven changed literal witnesses, unchanged chat delimiters/resource-space binding and a single decomposed-NFC witness (paired original/reference views in one probe). Compare official and explicit NFC-off diagnostic separately; no silent input repair. Any unpredicted token metadata difference stops the bounded plan rather than broadening acceptance."
+    },
+    {
+      "step": 4,
+      "scope": "At most one exposed120 context-only pass",
+      "checks": "If exact typed vocab and effective-input equivalence establish old length carry, no new length pass is logically necessary. Otherwise run only exposed120 once, caps768/4096, one vocab-only load, scalar min/max/count/source/hash receipt, no gold scoring/raw text/token IDs. Dedicated entry must accept no public cases/parity bundle and no V2/unused80 path. Do not invoke old context main, whose 120+80 split loop reruns public30+parity20 twice."
+    }
+  ],
+  "old_wrapper_hazards": {
+    "file": "var/research/run_native_context_raw_cpu.py",
+    "lines": "39-42,265-281",
+    "behavior": "Both exposed120 and v2_length80 are hardcoded; each child bundle contains public corpus and tokenizer_parity. validator.cpp:251/305/314/355 executes public char grammar, public vocab grammar, parity and context in that order. A new context-only entry is necessary to prevent accidental old-suite repetitions."
+  },
+  "future_receipt_labels": {
+    "historical_measurements": "Old model identity, original FAIL and raw-reference PASS hashes/counts; never rewritten as new PASS.",
+    "new_executions": "Separate counts for public request, delta witnesses, context120 (0 if exact carry).",
+    "official_hf_equivalence": "Historical observed19/20 FAIL plus new inference/measurement scope; never unconditional PASS.",
+    "sampling_behavior": "Different presence/window/order; not equivalent to old Qwen38 recipe.",
+    "application_input_output_nfc_repair": false
+  },
+  "source_sha256": {
+    "var/research/qwen36-candidate-metadata/upstream/tokenizer.json": "5f9e4d4901a92b997e463c1f46055088b6cca5ca61a6522d1b9f64c4bb81cb42",
+    "var/research/qwen36-candidate-metadata/upstream/tokenizer_config.json": "5186f0defcd7f232382c7f0aebcd2252d073bb921ab240e407b7ae8745d2b29b",
+    "var/research/qwen36-candidate-metadata/upstream/chat_template.jinja": "e84f32a23fdda27689f868aa4a1a5621f41133e51a48d7f3efcbea2839574259",
+    "var/research/qwen38-candidate-metadata/upstream/tokenizer.json": "0997f410c57a1f4e53b09e4be8f4a172d90edd9564368fb0847030937229b9f3",
+    "var/research/qwen38-candidate-metadata/upstream/tokenizer_config.json": "b11349aafa7cdc6a320767cf7ceb29ed82f7eda5d65e8e0819e76f0ce947bf27",
+    "var/research/qwen38-candidate-metadata/upstream/chat_template.jinja": "c3cf9e34abf4f9e36c2d72165aa9c132d3e2a725b6c2586aaa3a8af9d7a81041",
+    "var/research/native-vocab-public-probe-v4.json": "b537545d26a876a1496c2f85ad979330eba938f2880aae49190640b2404c63e0",
+    "var/research/native-vocab-public-probe-v4-raw-diagnostic.json": "12a5ebeafc16969f36435d9bb9e933ba12197d01ba05e8f26df41114f4e01d2d",
+    "var/research/native-tokenizer-public-parity.json": "79c4448b7ee949add0a80e8a7f0fc0d73575aaf01ff6e52beb3cfae8434ea1bd",
+    "var/research/native-tokenizer-public-parity-raw-diagnostic.json": "9658eb53fae81adee1b775b45f796f3484db69aea41e04a020765fa05d770514",
+    "var/reports/qwen38-gguf-header.json": "ff168aeee125b2934b8b5204c14971915c7555c5dfc660d6fda46c2bf7fc810a",
+    "var/reports/native-contract-raw-cpu-context.json": "5d37568d7b51d1b689b168f0e9fa6fb46ac487b70f451c82611c146f978e59be",
+    "var/research/run_native_context_raw_cpu.py": "4ab1dcf73d983c35dcd3c5006bbfecbb3594c6ff865fa8c2f77fee3dfdd31153",
+    "var/research/native-contract-validator/validator.cpp": "92ed10acd9be33d02d4cc6ea446dc2bea93ffb60b7d17ffc3c0f0268aab6c6b2",
+    "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat.cpp": "ed5db316e93459c6528526633b11943f4b4611634c773b4eab30a66c1f4a91b3",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/parsers/qwen3-coder.cpp": "510676168b6e36884f911152094632f218b27df4a277e2e2de61b4c682943630",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-vocab.cpp": "82e8996cbbd81c1648b1f4946b5f481138aa897a1343dcd8b1a4abe8cff0b5fc",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/sampling.cpp": "f23f8d663932bfd73abac1bd5e99055fc6efb07e21ef27dd7e25af2f2da40bff",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/base.py": "e0ae8621e67e8b8ea2682177b1f16adbe95b2c154ee8e2de975e942148d66575",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/qwen.py": "b783f53598e1a65cb0ef7fbe0d0f52da472e2784f63acf13a5aea00f623cfaa6"
+  }
+}

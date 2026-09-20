@@ -1,0 +1,78 @@
+{
+  "status": "METADATA_AND_SOURCE_REVIEW_ONLY_NOT_IMPLEMENTED",
+  "profile_name": "qwen36_nonthinking_llama_cpp",
+  "protocol": "llama_cpp_json_schema",
+  "official_card_nonthinking": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "repetition_penalty": 1.0
+  },
+  "official_generation_config_defaults": {
+    "bos_token_id": 248044,
+    "do_sample": true,
+    "eos_token_id": [
+      248046,
+      248044
+    ],
+    "pad_token_id": 248044,
+    "temperature": 1.0,
+    "top_k": 20,
+    "top_p": 0.95
+  },
+  "explicit_project_request_proposal": {
+    "temperature": 0.7,
+    "top_p": 0.8,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "frequency_penalty": 0.0,
+    "repeat_penalty": 1.0,
+    "repeat_last_n": 64,
+    "seed": 42,
+    "samplers": [
+      "penalties",
+      "top_k",
+      "top_p",
+      "min_p",
+      "temperature"
+    ]
+  },
+  "enable_thinking": false,
+  "enable_reasoning": false,
+  "reasoning_parser": "deepseek",
+  "max_output_tokens": 768,
+  "max_context_tokens": 4096,
+  "not_fully_specified_by_official_card": [
+    "repeat_last_n",
+    "frequency_penalty",
+    "seed",
+    "sampler_order",
+    "output_context_caps"
+  ],
+  "prior_project_basis": "Existing EXAONE native presence1.5 profile uses window64 and this active sampler order; this is a project choice, not extra official Qwen recommendations.",
+  "prompt_and_generated_tokens_both_contribute_to_presence_history": true,
+  "zero_history_window_would_disable_presence_penalty": true,
+  "application_input_output_normalization_or_repair": false,
+  "automatic_raw_unicode_variant_inheritance": false,
+  "old_v2_context_automatically_requested": false,
+  "future_context_scope_if_needed": "exposed120 only after separate authorization",
+  "source_refs": [
+    "tools/server/server-schema.cpp:126",
+    "common/sampling.cpp:346",
+    "common/sampling.cpp:380",
+    "common/sampling.cpp:496",
+    "tools/server/server-context.cpp:424",
+    "src/llama-sampler.cpp:2885"
+  ],
+  "official_card_ref": {
+    "path": "upstream/README.md",
+    "sha256": "c4ddaa065649ff6352648f64747a16eda31726f3e34add94ce04abb461c77b75",
+    "lines": [
+      1008,
+      1009
+    ]
+  }
+}

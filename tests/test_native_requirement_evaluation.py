@@ -305,6 +305,48 @@ class NativeRequirementEvaluationTests(unittest.TestCase):
                         build_manifest(client, **self.kwargs)
                 transport.assert_not_called()
 
+    def qwen36_client(self):
+        return LocalRequirementClient(
+            "http://127.0.0.1:8003", "synthetic-native", generation_contract=GenerationContract.QUOTES,
+            prompt_path=self.kwargs["prompt"], schema_path=self.kwargs["schema"],
+            protocol="llama_cpp_json_schema", sampling_profile="qwen36_nonthinking_llama_cpp")
+
+    def test_qwen36_manifest_binds_new_checkpoint_to_non_neutral_recipe(self):
+        weights = dict(self.weight_data, model_id="ggml-org/Qwen3.6-35B-A3B-GGUF")
+        self.weights.write_text(json.dumps(weights))
+        client = self.qwen36_client()
+        with patch.object(client, "complete") as transport:
+            manifest = build_manifest(client, **dict(self.kwargs, trials=1))
+        transport.assert_not_called()
+        self.assertEqual(manifest["model_id"], weights["model_id"])
+        protocol = manifest["protocol"]
+        self.assertEqual(protocol["sampling_profile"], "qwen36_nonthinking_llama_cpp")
+        self.assertEqual(protocol["sampling_request_parameters"], client.sampling_parameters)
+        self.assertEqual(protocol["sampling_request_parameters"]["presence_penalty"], 1.5)
+        self.assertEqual(protocol["sampling_request_parameters"]["repeat_last_n"], 64)
+        self.assertEqual(protocol["trials_per_case"], 1)
+        self.assertFalse(protocol["enable_thinking"])
+
+    def test_qwen36_identity_cannot_reuse_qwen38_or_other_candidate_recipe(self):
+        model = "ggml-org/Qwen3.6-35B-A3B-GGUF"
+        for client, model_id, quantization in (
+            (self.qwen36_client(), model, "Q4_0"),
+            (self.qwen36_client(), "other/Qwen3.6-35B-A3B-GGUF", "Q4_K_M"),
+            (self.qwen36_client(), model + "-copy", "Q4_K_M"),
+            (self.qwen36_client(), self.weight_data["model_id"], "Q4_K_M"),
+            (self.client, model, "Q4_K_M"),
+            (self.exaone_client(), model, "Q4_K_M"),
+            (self.glm_flash_client(), model, "Q4_K_M"),
+            (self.gemma_client(), model, "Q4_0"),
+        ):
+            with self.subTest(profile=client.sampling_profile, model_id=model_id, quantization=quantization):
+                self.weights.write_text(json.dumps(dict(self.weight_data, model_id=model_id)))
+                self.write_runtime(dict(native_metadata(), quantization=quantization))
+                with patch.object(client, "complete") as transport:
+                    with self.assertRaisesRegex(ValueError, "exact model ID and quantization"):
+                        build_manifest(client, **dict(self.kwargs, trials=1))
+                transport.assert_not_called()
+
     def glm_flash_client(self):
         return LocalRequirementClient(
             "http://127.0.0.1:8003", "synthetic-native", generation_contract=GenerationContract.QUOTES,
