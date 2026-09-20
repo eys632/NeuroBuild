@@ -1,0 +1,1 @@
+{"status": "COMPILE_PASS_NOT_EXECUTED", "report": "var/research/native-glm47-contract/context-build.json", "report_sha256": "737234c286864486c57721007b6858fae61bb7613eee02eb007ab5be0e5795bd", "binary_sha256": "3da5aa2debc3307277eab2794194541858e384c0fcfc0cfbe79e0f5b973f3017"}

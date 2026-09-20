@@ -1,0 +1,75 @@
+{
+  "kind": "GLM47_FLASH_PREPARATION_INDEX_INDEPENDENT_READ_REVIEW",
+  "status": "PASS_NO_MATERIAL_BLOCKER",
+  "at_utc": "2026-09-20T12:03:23.945903+00:00",
+  "review_timing": "Index audit completed before root commit; receipt publication followed commit. Empty post-commit staged list prevented an index-map capture, so the matching committed delta map is labeled separately.",
+  "reviewed_commit": "cba4830762ae4d5bd310987604e0f31dfc4d8eb1",
+  "index_snapshot_observed_before_commit": {
+    "staged_files": 119,
+    "archive_files": 110,
+    "nonarchive_files": 9,
+    "staged_bytes": 1523972,
+    "download_log_name": "download/glm47-flash-download-cli.log.txt",
+    "download_log_rename_preserves_original_bytes": true
+  },
+  "committed_delta_path_mode_git_blob_map_sha256": "abc769aa3d6652c0a0081d00ebe63cdd89f135974c57df5684946319b6afb658",
+  "archive_verification": {
+    "integrity_manifests": 8,
+    "hashed_items": 102,
+    "exact_original_copies": 97,
+    "index_worktree_bytes_equal": true,
+    "archive_coverage_complete": true,
+    "hash_or_copy_failures": 0
+  },
+  "regression": {
+    "tests_run": 416,
+    "skipped": 0,
+    "seconds": 19.398,
+    "source_pins_current_and_index": 7,
+    "receipt_sha256": "293bfc5b4f94e728af5eeb021a3aae2230376a74dae6e631d0c70a1c4e513fac",
+    "log_sha256": "c342132012c9d6192164b09ddf3c806b82faaaaec3cc8be99379f2cea2e0463d",
+    "log_hash_and_runner_summary_match": true,
+    "independent_test_rerun": false
+  },
+  "preserved_results": {
+    "public_v1_FAIL": "7eba381e83c09f14d9dcfaf898e20dd02badc3cc02362ac5e8eab5d9eb9b5b43",
+    "public_v2_FAIL": "534f6aba740056ea8f959a1834bf6ce66f299952bfbe26c35d19b9f71385ae01",
+    "public_v3_PASS": "d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c",
+    "full_header_PASS": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef",
+    "public_pass_links_both_prior_failures": true,
+    "public_scope": "Template/parser/schema fixtures only, GGUF not loaded/native tokenization NOT_RUN; no GPU or quality inference.",
+    "header_scope": "Recorded full-file SHA/header 844 tensors/47 main/no MTP/Q4_K_M; no runtime execution claim."
+  },
+  "content_scope_review": {
+    "obvious_private_key_or_service_token_patterns": 0,
+    "native_ELF_files": 0,
+    "environment_or_weight_or_object_files": 0,
+    "scope_is_bounded_index_screen_not_universal_secret_absence_proof": true,
+    "docs_keep_phase5x_incomplete_phase6_unstarted_and_candidate_not_adopted": true,
+    "no_GLM_GPU_or_quality_PASS_claim": true
+  },
+  "whitespace": {
+    "findings": 2,
+    "file": "metadata/upstream/README.md",
+    "lines": [
+      165,
+      171
+    ],
+    "original_pinned_sha256": "7bfcbced42741ceb3fff8809f8d6c84ada9696850e257c4e53e6c2fe9ef4f9bf",
+    "original_bytes_preserved": true,
+    "reformatting_performed": false
+  },
+  "findings": [],
+  "activity": {
+    "tests_run": 0,
+    "native_executions": 0,
+    "model_calls": 0,
+    "gpu_queries": 0,
+    "http_calls": 0,
+    "evaluation_replays": 0,
+    "dataset_reads": 0,
+    "weights_read": 0,
+    "production_or_index_edits": 0
+  },
+  "scope_limit": "Root performed the commit; no remote/push verification was undertaken by this reviewer. This ignored receipt is not part of the reviewed commit."
+}

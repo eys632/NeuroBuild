@@ -1,0 +1,63 @@
+{
+  "kind": "GLM47_FLASH_CONTEXT_ONLY_PREPARATION",
+  "status": "PREPARED_NOT_COMPILED_OR_EXECUTED",
+  "at_utc": "2026-09-20T12:09:39.601200+00:00",
+  "new_files_sha256": {
+    "context_validator.cpp": "fe5f71fdce897d4138b77f670d5931ea685715b29b2795d50219f80b25510410",
+    "build_context.py": "6049c61c7dfba476034e975894ee8cebbaf3b274c78afcea11374d661f46e9b3",
+    "context_check.py": "6fda606bb9ec4ce86a775f4d6023707539c617c2424db895752be7d7bd46998d"
+  },
+  "preserved_files_sha256": {
+    "validator.cpp": "c99c5759b65a4ae4a4f31df9f3fda75cdcd454771b126683afe7c75d7707edf9",
+    "validator_v2.cpp": "d206571cdc4b6893a1bf6565a260303b6d5c1ea1fb7b4e7efba46d60b0046d29",
+    "validator_v3.cpp": "c0676b4c6f4bb962bc228cc041ee3fba85fdcd1824e68d17ab7a2c7eb4adf272",
+    "build.py": "5c2a98c7aa2f86e293ec3bd5ff37ddaa9c7cd3fa461e7ccb8065289bacb08e86",
+    "build_v2.py": "18f1af03d12c4e0fa4353e48bd935dcc11a1009b987d2359cb4a57d640910f26",
+    "build_v3.py": "d4fc565e3cac0f49b949fba9d059a166805d4befc0a6e7d7a96139a3b522efc4",
+    "public_check.py": "2ee13e3092232beecfdf0a550de2bd5ba18e1935901ec8d406303cc06722e43b",
+    "public_check_v2.py": "1f138f3cd54b0f3e660c0f0afe866b31db2f4c06d4d86646cdada249f504c996",
+    "public_check_v3.py": "06dc94dc5211e84c91fedde470ea5aebbc11bd93f1bd83e6a3b3aae85f8ffc45",
+    "public-proof.json": "7eba381e83c09f14d9dcfaf898e20dd02badc3cc02362ac5e8eab5d9eb9b5b43",
+    "public-proof-v2.json": "534f6aba740056ea8f959a1834bf6ce66f299952bfbe26c35d19b9f71385ae01",
+    "public-proof-v3.json": "d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c",
+    "official-tokenizer-fixture.json": "e67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3",
+    "vocab_check.py": "aafeaa2d9bf6ef7b5ceccfac1d4e4b0e1f70ef34cd17c2d34e8df4035e124d70"
+  },
+  "pending_actual_pins": [
+    "VOCAB_PROOF_SHA",
+    "CONTEXT_BUILD_SHA",
+    "CONTEXT_BINARY_SHA"
+  ],
+  "input_split_planned_counts": {
+    "exposed120": 120,
+    "v2_length80": 80
+  },
+  "planned_public_tokenizer_cases_repeated": 0,
+  "planned_native_vocab_only_loads": 2,
+  "planned_full_model_hashes": 1,
+  "planned_checks": [
+    "exact actual client control fields",
+    "whole original system/user model-aware template bytes",
+    "native prompt token roundtrip",
+    "fixed schema grammar and configured generation prefix",
+    "actual native sampler fields",
+    "native length plus768<=4096"
+  ],
+  "new_dataset_or_result_inputs": false,
+  "unused_holdout_paths_included": false,
+  "ast_parse_files": [
+    "build_context.py",
+    "context_check.py"
+  ],
+  "request_parse_cpp_function_byte_identical_to_public_v3": true,
+  "execution_counts": {
+    "dataset_read": 0,
+    "tokenizer_encode": 0,
+    "native": 0,
+    "compile": 0,
+    "gguf_open": 0,
+    "model_inference": 0,
+    "http": 0,
+    "gpu": 0
+  }
+}

@@ -1124,3 +1124,24 @@ Template20/fullsystem·user/sampling/10schema허용·20거절/finalJSON20/protoc
 Actualnativevocab/context/GPU/품질은아직미실행이다. 원본두FAIL을포함한publicCPU45개자료와
 외부재사용7정의·sourceclosure, header19개자료를exactcopy했다. 독립실제receipt검토
 59c9fded41f02f991a3a8aee52217ebef7eb2d2eeb1f740ddf4cac92f144eba8도범위한정PASS.
+
+
+### 2026-09-20 — GLM 실제 vocabulary와 기존 입력 길이 PASS
+
+준비 checkpoint cba4830762ae4d5bd310987604e0f31dfc4d8eb1 push 및 원격 일치를 확인했다.
+독립 index 검토8d707303af291ad3c7ffa5c27788ebfa70174269f59e2736d49e528806f1fb1d는
+commit 전119개 관측과 commit 후 빈 index 시점을 구분한다.
+`CUDA_VISIBLE_DEVICES='' .conda/bin/python var/research/native-glm47-contract/vocab_check.py`
+최초 actual vocab PASS f3e31a724dcec94f6d3b285a9dd793d6a8b6c91c3c8c475a63c25709c94d6cf7.
+공식 ID20/20·native raw20/20·공식 ID raw20/20, public2827+768=3595, 공백ID220이다.
+
+새 context TU 독립 읽기검토 PASS 후 `build_context.py`로 기존194objects를 재사용했다.
+Build737234c286864486c57721007b6858fae61bb7613eee02eb007ab5be0e5795bd,
+binary3da5aa2debc3307277eab2794194541858e384c0fcfc0cfbe79e0f5b973f3017.
+`context_check.py`의 None3개만 실제 vocab/build/binary hash로 채운 뒤 CPU 첫 실행했다.
+최종 helpercf271201279b5deea15b8394faecc05eb363971255f5ea9d1c66e917c2abb2d9,
+actual context PASS66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb607.
+기존 노출120 min2811/max3257/+7684025, 기존 V2 80 min2833/max3164/+7683932.
+전체 system/user·공식 template·raw roundtrip·sampling·fixed grammar가 일치했다.
+공개20개 재실행0, scoring0, 미사용80개 접근0, 모델 context/tensor/backend/GPU/inference0이다.
+Production 변경 없어416 regression을 반복하지 않았다. 실제 runtime 연결은 다음 검토 범위다.

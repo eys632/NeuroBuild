@@ -1,0 +1,1 @@
+{"status": "PASS", "phase": "FINISHED", "observed_all20": true, "report": "var/research/native-glm47-contract/public-vocab-proof.json", "sha256": "f3e31a724dcec94f6d3b285a9dd793d6a8b6c91c3c8c475a63c25709c94d6cf7"}

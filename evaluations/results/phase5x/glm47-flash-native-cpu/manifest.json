@@ -1,0 +1,191 @@
+{
+  "kind": "GLM47_FLASH_NATIVE_CPU_ARCHIVE_MANIFEST",
+  "status": "ACTUAL_PUBLIC_VOCAB_AND_CONTEXT_CPU_PASS",
+  "created_at_utc": "2026-09-20T12:13:36.198515+00:00",
+  "files": {
+    "vocabulary/vocab_check.py": {
+      "original_path": "var/research/native-glm47-contract/vocab_check.py",
+      "bytes": 16957,
+      "sha256": "aafeaa2d9bf6ef7b5ceccfac1d4e4b0e1f70ef34cd17c2d34e8df4035e124d70",
+      "copy_mode": "EXACT_BYTES",
+      "status": "REPRODUCTION_DEFINITION"
+    },
+    "vocabulary/vocab_preparation.json": {
+      "original_path": "var/research/native-glm47-contract/vocab_preparation.json",
+      "bytes": 1654,
+      "sha256": "658152b2d01014794c45aee0bc9ab02d92cded7d898b22338953c9bc6034ed8e",
+      "copy_mode": "EXACT_BYTES",
+      "status": "HISTORICAL_PREPARATION"
+    },
+    "vocabulary/public-vocab-proof.json": {
+      "original_path": "var/research/native-glm47-contract/public-vocab-proof.json",
+      "bytes": 4362,
+      "sha256": "f3e31a724dcec94f6d3b285a9dd793d6a8b6c91c3c8c475a63c25709c94d6cf7",
+      "copy_mode": "EXACT_BYTES",
+      "status": "ACTUAL_VOCAB_PASS"
+    },
+    "vocabulary/vocab-cli.log.txt": {
+      "original_path": "var/research/native-glm47-contract/vocab-cli.log",
+      "bytes": 214,
+      "sha256": "2ef1de3c421a576895d64dd81893a8f321e04aa20568d298bf42e70e38f7439b",
+      "copy_mode": "EXACT_BYTES",
+      "status": "ACTUAL_VOCAB_PASS"
+    },
+    "vocabulary/vocab-cli.stderr.log.txt": {
+      "original_path": "var/research/native-glm47-contract/vocab-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_mode": "EXACT_BYTES",
+      "status": "ACTUAL_VOCAB_PASS"
+    },
+    "context/context_validator.cpp": {
+      "original_path": "var/research/native-glm47-contract/context_validator.cpp",
+      "bytes": 11602,
+      "sha256": "fe5f71fdce897d4138b77f670d5931ea685715b29b2795d50219f80b25510410",
+      "copy_mode": "EXACT_BYTES",
+      "status": "REPRODUCTION_DEFINITION"
+    },
+    "context/build_context.py": {
+      "original_path": "var/research/native-glm47-contract/build_context.py",
+      "bytes": 12002,
+      "sha256": "6049c61c7dfba476034e975894ee8cebbaf3b274c78afcea11374d661f46e9b3",
+      "copy_mode": "EXACT_BYTES",
+      "status": "REPRODUCTION_DEFINITION"
+    },
+    "context/context_check.py": {
+      "original_path": "var/research/native-glm47-contract/context_check.py",
+      "bytes": 13505,
+      "sha256": "cf271201279b5deea15b8394faecc05eb363971255f5ea9d1c66e917c2abb2d9",
+      "copy_mode": "EXACT_BYTES",
+      "status": "REPRODUCTION_DEFINITION"
+    },
+    "context/context_preparation.json": {
+      "original_path": "var/research/native-glm47-contract/context_preparation.json",
+      "bytes": 2806,
+      "sha256": "b2e65f7bd471e6b7de56332a551af63ee38e784ce5c4caf96d16a0290036487b",
+      "copy_mode": "EXACT_BYTES",
+      "status": "HISTORICAL_PREPARATION"
+    },
+    "context/vocab-context-proof.json": {
+      "original_path": "var/research/native-glm47-contract/vocab-context-proof.json",
+      "bytes": 4406,
+      "sha256": "66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb607",
+      "copy_mode": "EXACT_BYTES",
+      "status": "ACTUAL_CONTEXT_CPU_PASS"
+    },
+    "context/context-build.json": {
+      "original_path": "var/research/native-glm47-contract/context-build.json",
+      "bytes": 12212,
+      "sha256": "737234c286864486c57721007b6858fae61bb7613eee02eb007ab5be0e5795bd",
+      "copy_mode": "EXACT_BYTES",
+      "status": "ACTUAL_CONTEXT_CPU_PASS"
+    },
+    "context/context-build.log.txt": {
+      "original_path": "var/research/native-glm47-contract/context-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_mode": "EXACT_BYTES",
+      "status": "ACTUAL_CONTEXT_CPU_PASS"
+    },
+    "context/context-build-cli.log.txt": {
+      "original_path": "var/research/native-glm47-contract/context-build-cli.log",
+      "bytes": 277,
+      "sha256": "1bc6848f4fed04fe503a190b91b29260e748d04c8ed98fa04f2d60503ed6394a",
+      "copy_mode": "EXACT_BYTES",
+      "status": "ACTUAL_CONTEXT_CPU_PASS"
+    },
+    "context/context-build-cli.stderr.log.txt": {
+      "original_path": "var/research/native-glm47-contract/context-build-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_mode": "EXACT_BYTES",
+      "status": "ACTUAL_CONTEXT_CPU_PASS"
+    },
+    "context/context-cli.log.txt": {
+      "original_path": "var/research/native-glm47-contract/context-cli.log",
+      "bytes": 191,
+      "sha256": "ed048bfa6c4e12f40728c15c1bedaf25a77e0f90fd85ff8a34d58e27ccff098a",
+      "copy_mode": "EXACT_BYTES",
+      "status": "ACTUAL_CONTEXT_CPU_PASS"
+    },
+    "context/context-cli.stderr.log.txt": {
+      "original_path": "var/research/native-glm47-contract/context-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_mode": "EXACT_BYTES",
+      "status": "ACTUAL_CONTEXT_CPU_PASS"
+    },
+    "review/glm47-preparation-index-independent-review.json": {
+      "original_path": "var/research/glm47-preparation-index-independent-review.json",
+      "bytes": 3257,
+      "sha256": "8d707303af291ad3c7ffa5c27788ebfa70174269f59e2736d49e528806f1fb1d",
+      "copy_mode": "EXACT_BYTES",
+      "status": "INDEPENDENT_PREPARATION_INDEX_REVIEW"
+    }
+  },
+  "external_archive_refs_sha256": {
+    "evaluations/results/phase5x/glm47-flash-preparation/header/glm47-flash-gguf-header.json": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef",
+    "evaluations/results/phase5x/glm47-flash-preparation/header/integrity.json": "273f20f40c230f47c1275ecf11d4123200c3e41d680de93c9d1ad8357ffc465a",
+    "evaluations/results/phase5x/glm47-flash-preparation/public_cpu/public-proof.json": "7eba381e83c09f14d9dcfaf898e20dd02badc3cc02362ac5e8eab5d9eb9b5b43",
+    "evaluations/results/phase5x/glm47-flash-preparation/public_cpu/public-proof-v2.json": "534f6aba740056ea8f959a1834bf6ce66f299952bfbe26c35d19b9f71385ae01",
+    "evaluations/results/phase5x/glm47-flash-preparation/public_cpu/public-proof-v3.json": "d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c",
+    "evaluations/results/phase5x/glm47-flash-preparation/public_cpu/official-tokenizer-fixture.json": "e67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3",
+    "evaluations/results/phase5x/glm47-flash-preparation/public_cpu/archive_integrity.json": "dfed8013ae9d4ba8d2daad42aacd7227f2f364f7d8f64fa2c670f066c4d36978",
+    "evaluations/results/phase5x/glm47-flash-preparation/public_cpu/source-closure.json": "d11f877bb0c1358f3a16e86c231fa3a34d2aecb098e927438813382a7a5321b1",
+    "evaluations/results/phase5x/glm47-flash-preparation/metadata/archive_integrity.json": "02538db1a7d930aabde340faf6ed78cc6ec94076513990852b5041b712647a35"
+  },
+  "public_vocab_observed": {
+    "case_count": 20,
+    "official_id_match_count": 20,
+    "native_raw_roundtrip_count": 20,
+    "reference_ids_raw_roundtrip_count": 20,
+    "public_input_tokens": 2827,
+    "max_output_tokens": 768,
+    "public_input_plus_output": 3595,
+    "space_token_id": 220
+  },
+  "context_status": "Actual CPU native tokenization and prompt-byte checks passed for exposed120 and already-exposed v2_length80; no inference or quality scoring.",
+  "historical_context_preparation": {
+    "prepared_wrapper_sha256": "6fda606bb9ec4ce86a775f4d6023707539c617c2424db895752be7d7bd46998d",
+    "final_wrapper_sha256": "cf271201279b5deea15b8394faecc05eb363971255f5ea9d1c66e917c2abb2d9",
+    "change": "Root filled only VOCAB_PROOF_SHA, CONTEXT_BUILD_SHA and CONTEXT_BINARY_SHA from actual receipts; historical receipt not rewritten."
+  },
+  "actual_context_build_report_sha256_reported_by_root": "737234c286864486c57721007b6858fae61bb7613eee02eb007ab5be0e5795bd",
+  "actual_context_binary_sha256_reported_by_root": "3da5aa2debc3307277eab2794194541858e384c0fcfc0cfbe79e0f5b973f3017",
+  "archive_operation_executed_native_or_model": false,
+  "excluded": [
+    "model weight",
+    "binary",
+    "object/archive libraries",
+    "environment",
+    "tokenizer JSON",
+    "evaluation dataset",
+    "reasoning body"
+  ],
+  "finalized_at_utc": "2026-09-20T12:14:28.078222+00:00",
+  "context_observed": {
+    "proof_sha256": "66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb607",
+    "splits": {
+      "exposed120": {
+        "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+        "input_count": 120,
+        "min_input_tokens": 2811,
+        "max_input_tokens": 3257,
+        "max_input_plus_output": 4025,
+        "bundle_sha256": "af22ebf795c999fd2ffa8a91404f984ceb861101153c9bdd4ae770094bdbcc4b"
+      },
+      "v2_length80": {
+        "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+        "input_count": 80,
+        "min_input_tokens": 2833,
+        "max_input_tokens": 3164,
+        "max_input_plus_output": 3932,
+        "bundle_sha256": "9c1f1b900b1870220f3499f83697b1336f830690ee73796db8373915a56b17b6"
+      }
+    },
+    "input_count": 200,
+    "public_tokenizer_cases_repeated": 0,
+    "model_inference_calls": 0,
+    "native_vocab_only_loads": 2
+  }
+}

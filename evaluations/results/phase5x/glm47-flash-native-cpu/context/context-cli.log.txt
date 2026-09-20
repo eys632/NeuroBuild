@@ -1,0 +1,1 @@
+{"status": "PASS", "phase": "FINISHED", "report": "var/research/native-glm47-contract/vocab-context-proof.json", "sha256": "66e2ab245e0d7c2a2760d2b98e0a191fb8b27248be6fae6d61cf922c814bb607"}

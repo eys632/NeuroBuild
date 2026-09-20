@@ -1,0 +1,28 @@
+{
+  "kind": "GLM47_FLASH_PUBLIC_VOCAB_WRAPPER_PREPARATION",
+  "status": "READY_FOR_REVIEW_NOT_EXECUTED",
+  "at_utc": "2026-09-20T11:59:21.238940+00:00",
+  "helper_path": "var/research/native-glm47-contract/vocab_check.py",
+  "helper_sha256": "aafeaa2d9bf6ef7b5ceccfac1d4e4b0e1f70ef34cd17c2d34e8df4035e124d70",
+  "pins": {
+    "MODEL_SHA": "b6019edc5fbe37d3660d2e994d16c839a7855a6f03362c5dcf8142ba479cd0d2",
+    "MODEL_BYTES": 18244193920,
+    "HEADER_SHA": "595a7efd19914b65e91f1d92aaee141a0457472039c7278264cc1b5d314659ef",
+    "TEMPLATE_SHA": "d63ad536c3c81880043e22ec7fd08db42b4d8fb7c89c7138bc562bfa25281375",
+    "TOKENIZER_SHA": "19e773648cb4e65de8660ea6365e10acca112d42a854923df93db4a6f333a82d",
+    "PUBLIC_HELPER_SHA": "06dc94dc5211e84c91fedde470ea5aebbc11bd93f1bd83e6a3b3aae85f8ffc45",
+    "FIXTURE_SHA": "e67bd4d05462587e0466f092351ada8c8fa4efdd9a10da0b4cecb25a4d3dc8f3",
+    "PUBLIC_PROOF_SHA": "d8f8fe1faf2ee73b06f6df35d16dba3a29cb78ad41af35a8a1be6cff888ac85c",
+    "BUILD_REPORT_SHA": "befeeb0c258f9c570b6c148e78e426979811a1b628090bf0ad1bc25ceac2cbef",
+    "BINARY_SHA": "19e5641f0e6051348a96f06fe6986cb40c5228e83bb352a2c21ea9317fcad3cb"
+  },
+  "python_AST_parse": true,
+  "actual_public_v3_proof_status": "PASS",
+  "future_native_invocation_count": 1,
+  "input_scope": "same official public20 and inherent public template/grammar corpus only; no evaluation inputs",
+  "original_source_or_proofs_modified": false,
+  "helper_import_main_native_gguf_calls": 0,
+  "official_reference_encode_repeated": false,
+  "output_path": "var/research/native-glm47-contract/public-vocab-proof.json",
+  "runtime_or_context_eligibility": "NOT_ESTABLISHED"
+}
