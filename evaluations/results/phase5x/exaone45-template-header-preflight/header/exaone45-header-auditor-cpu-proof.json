@@ -1,0 +1,38 @@
+{
+  "kind": "EXAONE45_GGUF_AUDITOR_SYNTHETIC_CPU_PROOF",
+  "status": "PASS",
+  "generated_at_utc": "2026-09-20T09:58:38.231118+00:00",
+  "tests": 17,
+  "seconds": 0.683,
+  "generic_ast_exact_nodes": [
+    "AuditError",
+    "require",
+    "safe_open",
+    "read_bound",
+    "stat_key",
+    "Reader",
+    "parse_header",
+    "finish_hash"
+  ],
+  "copied_generic_source_sha256": "cb8ef9e58aea7066c050d3e96da24708b4be4eae0c7c7498f879e2dddc41940c",
+  "sha256": {
+    "var/research/inspect_exaone45_gguf.py": "953870de33d51d4543978a41264cd0e2d982868e9072507cf0f118ce6657177e",
+    "var/research/test_inspect_exaone45_gguf.py": "634d923efa3a01bf9236515bd6fc8d7816b2f98c9dca70f24d3695891731f083"
+  },
+  "checks": [
+    "public pinned source/config/index/tokenizer metadata only",
+    "main64 plus MTP1 and untied output required",
+    "722 source text/MTP names plus generated rope tensor",
+    "role-specific F32/Q4_K/Q6_K only",
+    "dtype/shape/missing-output/MTP/SWA/pretype/template/content tamper rejection",
+    "bounded header-only diagnosis never PASS and never payload hash",
+    "whole-file hash mismatch fails",
+    "exact model path, symlinks, hardlinks and output overwrite reject"
+  ],
+  "actual_gguf_opened": false,
+  "model_calls": 0,
+  "native_calls": 0,
+  "gpu_calls": 0,
+  "network_calls": 0,
+  "actual_header_status": "NOT_RUN"
+}

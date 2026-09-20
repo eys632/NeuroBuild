@@ -372,6 +372,80 @@ class NativeGuardTests(unittest.TestCase):
                 self.assertEqual(path.read_bytes(), before)
         self.assertTrue(alias.is_symlink())
 
+    def test_template_override_requires_a_complete_explicit_pair(self):
+        path = Path("var/templates/public.jinja")
+        for change in ({"chat_template_path": path}, {"chat_template_sha256": "a" * 64},
+                       {"chat_template_path": str(path), "chat_template_sha256": "a" * 64},
+                       {"chat_template_path": path, "chat_template_sha256": "A" * 64},
+                       {"chat_template_path": path, "chat_template_sha256": True}):
+            with self.subTest(change=change), self.assertRaises(PreflightError) as caught:
+                replace(self.config, **change)
+            self.assertEqual(caught.exception.code, "INVALID_CONFIG")
+
+    def test_template_override_is_pinned_in_argv_and_report_without_logging_body(self):
+        template = self.write("var/templates/public.jinja", b"PUBLIC_TEMPLATE_SENTINEL {{ messages }}")
+        config = replace(self.config, chat_template_path=template, chat_template_sha256=self.sha(template))
+        plain = native.native_arguments(self.config, self.root)
+        self.assertNotIn("--chat-template-file", plain)
+        self.assertEqual(native.native_arguments(config, self.root), plain + ["--chat-template-file", str(template)])
+        report, queries, launches, _ = self.run_fake(config=config)
+        self.assertEqual(report["reason"], "TIME_LIMIT")
+        self.assertTrue(queries)
+        self.assertEqual(launches[0][0][-2:], ["--chat-template-file", str(template)])
+        self.assertEqual(report["native_artifacts"]["chat_template_override"],
+                         {"path": str(template.relative_to(self.root)), "sha256": self.sha(template)})
+        self.assertNotIn("PUBLIC_TEMPLATE_SENTINEL", json.dumps(report))
+
+    def test_invalid_or_aliased_template_never_queries_or_spawns(self):
+        template = self.write("var/templates/public.jinja", b"{{ messages }}")
+        original = template.read_bytes()
+        config = replace(self.config, chat_template_path=template, chat_template_sha256=self.sha(template))
+        for value, expected in ((b"changed", "NATIVE_HASH_MISMATCH"), (b"", "INVALID_NATIVE_PROOF"),
+                                (b"x" * 65537, "INVALID_NATIVE_PROOF"), (b"\xff", "INVALID_NATIVE_PROOF"),
+                                (b"nul\0text", "INVALID_NATIVE_PROOF")):
+            template.write_bytes(value)
+            candidate = config if expected == "NATIVE_HASH_MISMATCH" else replace(config, chat_template_sha256=self.sha(template))
+            with self.subTest(expected=expected, size=len(value)):
+                report, queries, launches, _ = self.run_fake(config=candidate)
+                self.assertEqual((report["reason"], queries, launches), (expected, [], []))
+        template.write_bytes(original)
+        alias = template.with_name("alias.jinja")
+        alias.symlink_to(template.name)
+        report, queries, launches, _ = self.run_fake(config=replace(config, chat_template_path=alias))
+        self.assertEqual((report["reason"], queries, launches), ("INVALID_PATH", [], []))
+        alias.unlink()
+        os.link(template, alias)
+        report, queries, launches, _ = self.run_fake(config=config)
+        self.assertEqual((report["reason"], queries, launches), ("INVALID_PATH", [], []))
+
+    def test_template_cannot_be_a_runtime_output_and_is_rechecked_before_spawn(self):
+        template = self.write("var/reports/public.jinja", b"{{ messages }}")
+        before = template.read_bytes()
+        config = replace(self.config, chat_template_path=template, chat_template_sha256=self.sha(template))
+        for key in ("log_file", "report_file"):
+            with self.subTest(output=key):
+                report, queries, launches, _ = self.run_fake(config=replace(config, **{key: template}))
+                self.assertEqual((report["reason"], queries, launches), ("INVALID_PATH", [], []))
+                self.assertEqual(template.read_bytes(), before)
+        runtime = native._NativeRuntime()
+        runtime.validate(config, self.root, self.model)
+        template.write_bytes(b"changed after validation")
+        with self.assertRaises(PreflightError) as caught:
+            native.native_arguments(config, self.root)
+        self.assertEqual(caught.exception.code, "NATIVE_HASH_MISMATCH")
+
+    def test_cli_parses_optional_template_path_and_keeps_absence_as_none(self):
+        template = self.write("var/templates/public.jinja", b"{{ messages }}")
+        for candidate in (self.config, replace(self.config, chat_template_path=template, chat_template_sha256=self.sha(template))):
+            values = asdict(candidate)
+            path = self.proof("launch", {key: str(value) if isinstance(value, Path) else value for key, value in values.items()})
+            result = {"reason": "TIME_LIMIT", "native_identity_verified": True, "shutdown": {"child_reaped": True}}
+            with patch.object(native, "ROOT", self.root), patch.object(native, "run_guard", return_value=result) as guard, redirect_stdout(StringIO()):
+                self.assertEqual(native.main(["--config", str(path)]), 0)
+            actual = guard.call_args.args[0]
+            self.assertEqual(actual.chat_template_path, candidate.chat_template_path)
+            self.assertEqual(actual.chat_template_sha256, candidate.chat_template_sha256)
+
     def test_cli_configuration_itself_cannot_be_a_live_report_file(self):
         path = self.root / "var/reports/launch-config.json"
         values = asdict(replace(self.config, report_file=path))

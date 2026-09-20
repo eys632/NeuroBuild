@@ -1,0 +1,466 @@
+{
+  "kind": "EXAONE45_PUBLIC_OFFICIAL_TOKENIZER_FIXTURE",
+  "status": "OFFICIAL_REFERENCE_RECORDED_NATIVE_PARITY_NOT_RUN",
+  "at_utc": "2026-09-20T09:51:25.241616+00:00",
+  "model_id": "LGAI-EXAONE/EXAONE-4.5-33B",
+  "revision": "570aa4b15a4f45ba1133072b45f50198f6e3b4fd",
+  "tokenizer_path": "var/research/exaone45-33b-candidate-metadata/upstream/tokenizer.json",
+  "tokenizer_sha256": "0bd798efa30739e209d51f36cfc2f0a636711e37ad9d69b77e4e5c8ca5f09fab",
+  "tokenizers_version": "0.21.2",
+  "normalizer": "NFC",
+  "add_special_tokens": false,
+  "decode_skip_special_tokens": false,
+  "native_expected_options": {
+    "add_special": false,
+    "parse_special": true
+  },
+  "case_count": 20,
+  "official_raw_roundtrip_count": 18,
+  "official_raw_mismatch_indices": [
+    11,
+    12
+  ],
+  "official_nfc_source_roundtrip_count": 20,
+  "tokenizer_parity": [
+    {
+      "text": "",
+      "expected_token_ids": []
+    },
+    {
+      "text": " ",
+      "expected_token_ids": [
+        582
+      ]
+    },
+    {
+      "text": "\n\t",
+      "expected_token_ids": [
+        560,
+        559
+      ]
+    },
+    {
+      "text": "  공개 문자열의 앞뒤 공백  ",
+      "expected_token_ids": [
+        33,
+        48487,
+        150149,
+        31447,
+        31352,
+        33
+      ]
+    },
+    {
+      "text": "가구 하나의 상대 이동은 아직 적용하지 않습니다.",
+      "expected_token_ids": [
+        56907,
+        125754,
+        4826,
+        5346,
+        132177,
+        5552,
+        126060,
+        375
+      ]
+    },
+    {
+      "text": "X축 -14.70cm; Y축 +0.035m",
+      "expected_token_ids": [
+        417,
+        3236,
+        672,
+        378,
+        381,
+        375,
+        384,
+        377,
+        13889,
+        388,
+        1396,
+        3236,
+        1096,
+        377,
+        375,
+        377,
+        380,
+        382,
+        438
+      ]
+    },
+    {
+      "text": "0 01 123456789 0.0005 +7mm",
+      "expected_token_ids": [
+        377,
+        582,
+        377,
+        378,
+        582,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        582,
+        377,
+        375,
+        377,
+        377,
+        377,
+        382,
+        1096,
+        384,
+        13005
+      ]
+    },
+    {
+      "text": "1/3m １ｍ 1⁄3m −Y",
+      "expected_token_ids": [
+        378,
+        376,
+        380,
+        438,
+        582,
+        70604,
+        601,
+        533,
+        483,
+        597,
+        582,
+        378,
+        70969,
+        588,
+        380,
+        438,
+        4433,
+        418
+      ]
+    },
+    {
+      "text": "선택 범위: 왼쪽 물건을 제외한 오른쪽 물건",
+      "expected_token_ids": [
+        30571,
+        11422,
+        387,
+        10273,
+        128535,
+        127178,
+        10177,
+        7776
+      ]
+    },
+    {
+      "text": "공개\n줄바꿈\t탭\\경로 \"인용\"",
+      "expected_token_ids": [
+        48487,
+        560,
+        6539,
+        54481,
+        559,
+        132988,
+        421,
+        134020,
+        738,
+        133365,
+        363
+      ]
+    },
+    {
+      "text": "가나다와 한글 완성형",
+      "expected_token_ids": [
+        905,
+        15990,
+        2030,
+        16763,
+        6161,
+        2318
+      ]
+    },
+    {
+      "text": "가나다",
+      "expected_token_ids": [
+        905,
+        15990
+      ]
+    },
+    {
+      "text": "é café",
+      "expected_token_ids": [
+        2581,
+        58282
+      ]
+    },
+    {
+      "text": "é café",
+      "expected_token_ids": [
+        2581,
+        58282
+      ]
+    },
+    {
+      "text": "literal ▁ and spaces",
+      "expected_token_ids": [
+        75292,
+        5140,
+        585,
+        686,
+        11899
+      ]
+    },
+    {
+      "text": "한국어·日本語·中文 😀 👩‍🔬",
+      "expected_token_ids": [
+        133926,
+        17005,
+        107222,
+        17005,
+        100437,
+        38961,
+        584,
+        84582,
+        464,
+        45433,
+        138171,
+        467
+      ]
+    },
+    {
+      "text": "{\"decision\":\"CLARIFICATION\",\"reason\":null}",
+      "expected_token_ids": [
+        10104,
+        150089,
+        72205,
+        7760,
+        2979,
+        64837,
+        36418,
+        57190,
+        26942,
+        58762,
+        454
+      ]
+    },
+    {
+      "text": "<|system|>\n<|user|>\n<|assistant|>\n",
+      "expected_token_ids": [
+        50,
+        560,
+        51,
+        560,
+        52,
+        560
+      ]
+    },
+    {
+      "text": "<think>\n\n</think>\n\n",
+      "expected_token_ids": [
+        54,
+        49,
+        55,
+        49
+      ]
+    },
+    {
+      "text": "[BOS][PAD][UNK]<|endofturn|>",
+      "expected_token_ids": [
+        1,
+        0,
+        3,
+        53
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "index": 0,
+      "token_count": 0,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "decoded_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "index": 1,
+      "token_count": 1,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068",
+      "decoded_sha256": "36a9e7f1c95b82ffb99743e0c5c4ce95d83c9a430aac59f84ef3cbfab6145068"
+    },
+    {
+      "index": 2,
+      "token_count": 2,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "e8822f532ae9349b2b5743c494efd216ed4e44f9ebc82a6b1cb54895a5b88433",
+      "decoded_sha256": "e8822f532ae9349b2b5743c494efd216ed4e44f9ebc82a6b1cb54895a5b88433"
+    },
+    {
+      "index": 3,
+      "token_count": 6,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "d2c7674e0093880ccc5376f42714f94a508fde394e7613748901ca7386a3d279",
+      "decoded_sha256": "d2c7674e0093880ccc5376f42714f94a508fde394e7613748901ca7386a3d279"
+    },
+    {
+      "index": 4,
+      "token_count": 8,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "a4c7794d5281847becd687b3ceafc1b42655419406d9275c7b610333675945e3",
+      "decoded_sha256": "a4c7794d5281847becd687b3ceafc1b42655419406d9275c7b610333675945e3"
+    },
+    {
+      "index": 5,
+      "token_count": 19,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "f8b917a4539e8ab3f9178bf1f058177a86e54f44079722699cede8ec179c109b",
+      "decoded_sha256": "f8b917a4539e8ab3f9178bf1f058177a86e54f44079722699cede8ec179c109b"
+    },
+    {
+      "index": 6,
+      "token_count": 24,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "508d73633f0e1671304a4634748e42036722ae0ee75559b80fc17e6d527c9399",
+      "decoded_sha256": "508d73633f0e1671304a4634748e42036722ae0ee75559b80fc17e6d527c9399"
+    },
+    {
+      "index": 7,
+      "token_count": 18,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "de29f22d461fba2840ca4c847efe6b7a2f53eec8ee44fa84d16abb241d4812f9",
+      "decoded_sha256": "de29f22d461fba2840ca4c847efe6b7a2f53eec8ee44fa84d16abb241d4812f9"
+    },
+    {
+      "index": 8,
+      "token_count": 8,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "2fe26ec44778ae941bfb80b4f9c4ada48c0465a07bbc09696e59e317c31e5d12",
+      "decoded_sha256": "2fe26ec44778ae941bfb80b4f9c4ada48c0465a07bbc09696e59e317c31e5d12"
+    },
+    {
+      "index": 9,
+      "token_count": 11,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "db9adf11563e2d880c8d269501d579f31de511daa04ed81883a6bea794570f60",
+      "decoded_sha256": "db9adf11563e2d880c8d269501d579f31de511daa04ed81883a6bea794570f60"
+    },
+    {
+      "index": 10,
+      "token_count": 6,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "1f1d168eadb1866780e1761c57cbd3f8a4657853f8fbcacd65dbddce3bcead28",
+      "decoded_sha256": "1f1d168eadb1866780e1761c57cbd3f8a4657853f8fbcacd65dbddce3bcead28"
+    },
+    {
+      "index": 11,
+      "token_count": 2,
+      "raw_original_roundtrip": false,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": true,
+      "source_sha256": "3b1be382867f001020b6f5d8377303d3febf4ed50d414853812a4c8ee3db7fed",
+      "decoded_sha256": "29205b39ec5e51163b59abe55c48c1aa0c52fb2868cab35e23f9265e473771f4"
+    },
+    {
+      "index": 12,
+      "token_count": 2,
+      "raw_original_roundtrip": false,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": true,
+      "source_sha256": "145ab23bea38c06724d671914bdff73a1f4a16a9989ed2f45b6fa40c080615cd",
+      "decoded_sha256": "47c57b2972ef4f762316b17a9f5d3e65935db17143671fef06cfe581eaca5f91"
+    },
+    {
+      "index": 13,
+      "token_count": 2,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "47c57b2972ef4f762316b17a9f5d3e65935db17143671fef06cfe581eaca5f91",
+      "decoded_sha256": "47c57b2972ef4f762316b17a9f5d3e65935db17143671fef06cfe581eaca5f91"
+    },
+    {
+      "index": 14,
+      "token_count": 5,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "8c77a1c2c7e05c21512e3aed97cacc3b0218a0251bdb472f6e7a6fbca7b52932",
+      "decoded_sha256": "8c77a1c2c7e05c21512e3aed97cacc3b0218a0251bdb472f6e7a6fbca7b52932"
+    },
+    {
+      "index": 15,
+      "token_count": 12,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "d8dd4e17f183ac9f7bbfa88a0e28cbe55692da74a5eaf5bef8096ef3677cde40",
+      "decoded_sha256": "d8dd4e17f183ac9f7bbfa88a0e28cbe55692da74a5eaf5bef8096ef3677cde40"
+    },
+    {
+      "index": 16,
+      "token_count": 11,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "3197cd1e5b32cbc273c710335d3d5903762697d1c5912ba610c40a1cb1531103",
+      "decoded_sha256": "3197cd1e5b32cbc273c710335d3d5903762697d1c5912ba610c40a1cb1531103"
+    },
+    {
+      "index": 17,
+      "token_count": 6,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "0963ea7dd3501765f50e4e147c571a4cd967e91a53d71343afdb621230f906cb",
+      "decoded_sha256": "0963ea7dd3501765f50e4e147c571a4cd967e91a53d71343afdb621230f906cb"
+    },
+    {
+      "index": 18,
+      "token_count": 4,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "8dc13d8ef34c7e8b4178329b0beeb5bec4c15d01596e1407b1a9421665b70965",
+      "decoded_sha256": "8dc13d8ef34c7e8b4178329b0beeb5bec4c15d01596e1407b1a9421665b70965"
+    },
+    {
+      "index": 19,
+      "token_count": 4,
+      "raw_original_roundtrip": true,
+      "decoded_equals_nfc_source": true,
+      "source_changed_by_nfc": false,
+      "source_sha256": "a85fb2892f526376d480acd6e6194fc33bc9e1069ff5c5f67d38bf7f581ab69d",
+      "decoded_sha256": "a85fb2892f526376d480acd6e6194fc33bc9e1069ff5c5f67d38bf7f581ab69d"
+    }
+  ],
+  "corpus_text_sha256": "00baccbb3ae1ef913409bdd097f12cbe6493d0ef299bc46822efef5e4aad7dfd",
+  "helper_sha256": "a84e6b3b711cb57b835bb28ab170ab667021a104ead48b0b4dca9537592198a5",
+  "model_calls": 0,
+  "native_calls": 0,
+  "gpu_calls": 0,
+  "http_calls": 0,
+  "application_input_output_repair": false,
+  "scope": "New public synthetic corpus; no private/evaluation input or output. NFC diagnostic is separate from raw roundtrip and changes no application source."
+}

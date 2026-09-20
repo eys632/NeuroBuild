@@ -1,6 +1,11 @@
 # EXAONE4.5-33B Q4_K_M 조건부 자원·계약 계획
 
 2026-09-20. **새 후보 사전 검증 단계, 미채택·품질 미검증.**
+
+후속 상태: 다운로드/strict header와 continue-free template의 공개CPU검증을 완료했다.
+원본native에서 system정책이누락되는문제를별도override로검증한근거는
+[사전 보고서](reports/phase5x_exaone45_template_preflight_report.md)에보존했다. 실제vocab/context/GPU/품질은아직미검증이다.
+아래다운로드전계획과공식template의원래상태는역사기록으로유지한다.
 Qwen3.8 V2와 Gemma4 첫 gate 실패를 그대로 보존하고 다른 공식 계열을 비교한다.
 한국어 일반 점수나 모델 크기로 이 프로젝트의 exact-quote/안전 gate 통과를 예상하지 않는다.
 

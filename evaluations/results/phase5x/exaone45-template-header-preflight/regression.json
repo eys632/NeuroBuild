@@ -1,0 +1,23 @@
+{
+  "kind": "OPTIONAL_NATIVE_TEMPLATE_OVERRIDE_REGRESSION",
+  "status": "PASS",
+  "tests": 408,
+  "skipped": 0,
+  "elapsed_seconds": 21.33,
+  "actual_postgresql_and_ifcopenshell": true,
+  "headless": true,
+  "cuda_visible_devices": "",
+  "model_gpu_calls": 0,
+  "log_path": "var/phase5x-exaone45-template-override-regression.log",
+  "log_sha256": "b2ae7a43b2fa3af31758528cf0ada58a63e689c6da6f53434f738bfe419ef20b",
+  "focused_tests": 22,
+  "focused_log_sha256": "dc4cf1f035ae98f74a1bdf3b50013d1e04223960fb38c2ed78aa94ee1a266c79",
+  "source_sha256": {
+    "scripts/llama_server.py": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+    "tests/test_llama_server.py": "e5cb6fb1e6471f7730ecdd54144d9c393ff7fb260c2131794344df8fd76fbcd6",
+    "src/neurobuild/infrastructure/local_model.py": "48276a8f9cb7a2a818a9f12e7f86b2b53f525a37de61a1be70fe73648f07c151",
+    "scripts/evaluate_requirements.py": "48734d5fda8069efe9bd927387cf6cf04fa4167f7a4d028f13509476a0511fef",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "scripts/native_model_bootstrap.py": "22e56159a6496aabf52dc6b567c800c54822c9def9713eb8a4ff0fac4183c2bf"
+  }
+}

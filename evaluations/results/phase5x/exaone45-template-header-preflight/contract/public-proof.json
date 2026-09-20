@@ -1,0 +1,37 @@
+{
+  "kind": "EXAONE45_NATIVE_PUBLIC_TEMPLATE_CPU_PROOF",
+  "status": "FAIL",
+  "at_utc": "2026-09-20T10:00:47.053625+00:00",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "model_id": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+  "model_revision": "0e969634ef24db05151b435970297a6dee634b7e",
+  "protocol": "llama_cpp_json_schema",
+  "sampling_profile": "exaone45_nonthinking_llama_cpp",
+  "enable_thinking": false,
+  "native": {
+    "kind": "EXAONE45_NATIVE_PUBLIC_CONTRACT_CPU_PREFLIGHT",
+    "status": "FAIL",
+    "code": "CHECK_FAILED",
+    "stage": 0,
+    "check_line": 236,
+    "discarded_stderr_bytes": 0
+  },
+  "exit_code": 1,
+  "binary_sha256": "7d0ecba0963b1ae07714e422f41cd7c05c1ee32bcb4c8cb8855f9c20aabd6fa1",
+  "build_report_sha256": "4fc1445dc63a61fe777fe65594a56156f7979b3041d42a70e0f93c758ca6689d",
+  "helper_sha256": "41e4edb533045b1cb29f8ab99c0dfd0a04af16a4aa8ee5c117dc0a9037c46560",
+  "inputs": {
+    "var/research/exaone45-33b-candidate-metadata/upstream/chat_template.jinja": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "src/neurobuild/infrastructure/local_model.py": "48276a8f9cb7a2a818a9f12e7f86b2b53f525a37de61a1be70fe73648f07c151"
+  },
+  "production_client_sha256": "48276a8f9cb7a2a818a9f12e7f86b2b53f525a37de61a1be70fe73648f07c151",
+  "corpus_sha256": "06c60313cf1ba3117473e534c3bd1f0eca5622dda14c6094db00cfd2796d9c4e",
+  "request_sha256": "8268161cd9f03ce4d1fdc2b98934032210030156674ae3a3ee81b298e410325e",
+  "gpu_calls": 0,
+  "http_calls": 0,
+  "model_calls": 0,
+  "gguf_loaded": false,
+  "scope": "Public policy examples and synthetic fixtures only; no evaluation body or model output"
+}

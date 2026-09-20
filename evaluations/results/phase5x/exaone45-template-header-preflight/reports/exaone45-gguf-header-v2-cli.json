@@ -1,0 +1,1 @@
+{"kind": "GGUF_HEADER_AUDIT", "status": "PASS", "report": "var/reports/exaone45-gguf-header-v2.json", "report_sha256": "fb5260c6e1e3356741f7728e4077f771763ea39affd77e8ac9772e417aa70c12", "tensor_count": 723, "candidate_validation_error": null}

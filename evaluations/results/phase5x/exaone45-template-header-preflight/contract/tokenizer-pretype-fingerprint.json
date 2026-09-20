@@ -1,0 +1,18 @@
+{
+  "kind": "EXAONE45_OFFICIAL_TOKENIZER_PRETYPE_FINGERPRINT",
+  "status": "PASS_SOURCE_FINGERPRINT_ONLY",
+  "fingerprint_sha256": "6c81ce329e0802883b22eabab0d3fa48357337ef1ecb45443828bf1f6254833f",
+  "native_preidentifier": "exaone-moe",
+  "public_chktxt_sha256": "a36179c1e2b1cfcfbfad1dc779addad2ffc778201e4cf0d538bddeafa2c526da",
+  "public_token_count": 201,
+  "source_path": "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/base.py",
+  "source_sha256": "e0ae8621e67e8b8ea2682177b1f16adbe95b2c154ee8e2de975e942148d66575",
+  "tokenizer_sha256": "0bd798efa30739e209d51f36cfc2f0a636711e37ad9d69b77e4e5c8ca5f09fab",
+  "tokenizers_version": "0.21.2",
+  "add_special_true_false_ids_equal": true,
+  "actual_gguf_header_read": false,
+  "native_parity_verified": false,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "torch_imported": false
+}

@@ -934,3 +934,44 @@ Regress receipt/source SHA는 exaone45-preparation/regression.json에 보존한�
 
 독립 production 읽기검토 PASS: 명시native profile/정확model·quant pairing, 기존wire·parser·scorer 유지,
 reasoning 폐기/no-retry 및 조합거절 테스트 보존을 확인했다. Native실제sampler/tokenizer/grammar gate와구분한다.
+
+
+### 2026-09-20 — EXAONE 다운로드 완료, header와 template의 최초 차이 보존
+
+준비7f2df3928cefb4cd9042fb0ab857be4ecd1525c4와 evidence log보완ed8a4a2c0b531b3be39b0f1fe0844e01750fa7a5를
+각각push/원격exact확인. 보관본18개가commit 내hash와일치한다(작은CPUlog는globignore예외로명시추적).
+다운로드3파일 고정size/SHA검증PASS/childexit0/reaped, receiptb2ac226eb068a2d788564f37304ccebc742f1d54aee058b3987389b3817f048c.
+시작09:51:43.616705UTC/완료10:00:40.238642UTC, 모델/native/GPU실행0.
+
+Root 첫 strictGGUFheader는 CONFIG_METADATA_MISMATCH로중단, CLIreceipt0cebc4bdde081daf426e25f63f7c0dca9bab038608c3743cadb88316311f46a1을보존했다.
+별도boundedheader6,587,328B진단은DIAGNOSTIC_NOT_PASS/a5bbe3b83d31649b757a23ef502b62a27b683c9a12bf08f3dd59df4b3d6bf44f.
+전체723tensors/F32265/Q4_K391/Q6_K67은예상name/shape/role에맞았다.
+차이는SWA패턴 main64만expect했으나actual은보조nextn포함65bool이다. 메모리계획은이미65층1040MiB를포함한다.
+원본auditor·실패를보존하고로더의main64/nextnSKIP 근거를확인한별도v2를준비한다.
+
+공개CPUtemplate검증에서systempolicy8974B가nativeprompt177B에누락되는실제호환성blocker를찾았다.
+고정minja의중첩if출력이continue탈출로버려지는경로다. 이전부분grammarPASS로이를우회하지않는다.
+공식template의동등한continue-free분기와원본Jinja대조를준비하며실제GPU/품질호출은여전히0.
+Root가선택적pinnedtemplate path/hash launcher지원및거절경계5개를추가했다.
+Nativeguard fake test22개PASS0.230s;모델/GPU/process실행은없다. 전체회귀·독립review는변경확정후수행한다.
+
+
+Header v2는SWA65bool 한줄수정만, 다른v1bytes그대로다. 새20합성검사PASS1.208s뒤 root실제
+strictheader+fullSHA PASSfb5260c6e1e3356741f7728e4077f771763ea39affd77e8ac9772e417aa70c12.
+원본723tensor/name/shape/dtype/orderedtokenizer/template일치,숫자weight연산미검증이다.
+
+공개template v3 proof fc7109fe4e9fbbe4a619ad16dc701cda01a4976ec8bd53d726aeb09f34f39408:
+원본officialJinja=derivedJinja=derivednative18/18 byteexact, 실제fakewireprompt9176B와system8974/user121보존.
+원본native177B/system소실 및7/18 mismatches는별도로확인. 원본template5930B/e4ece…와
+효과template5829B/7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851를분리했다.
+원본v2grammar부분PASS는systembinding누락으로runtimeeligibility가아님을진단receipt에기록했다.
+
+Launcher좁은override지원 independentreviewPASS, rootfull408/skip0 PASS21.330s,
+logSHA b2ae7a43b2fa3af31758528cf0ada58a63e689c6da6f53434f738bfe419ef20b.
+신규launcherSHA6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed,
+원본nativebinary/guard/bootstrap불변. 현재GGUF vocab·Unicode·context gate는진행중이므로GPU기동/품질평가0.
+Header/publicv1/v2/v3/failure/diagnosis/새408receipt를exaone45-template-header-preflight에보존한다.
+
+독립보관검토35원본/37hash및stagedindex37/37 PASS. 정책내용/원문/원본template·nativebinary불변,
+active문서링크/secret pattern/환경·weight·ELF 제외검증PASS. 고정derivedtemplate2사본의원래공백16건은
+검증한exact bytes 보존예외이며다른공백오류0. Source6pins가408회귀시점과같음을확인했다.

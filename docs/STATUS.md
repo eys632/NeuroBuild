@@ -7,13 +7,13 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 보존 `f46b2cfe2c81769a10df06a92a4a28f1c4a72f84` push·원격 일치 확인 |
+| GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 준비 `ed8a4a2c0b531b3be39b0f1fe0844e01750fa7a5` push·원격 일치 확인 |
 | 현재 작업 | **Gemma4 실패 보존 후 다른 공식 모델의 조건부 비교** |
 | 최근 후보 | Gemma4-31B QAT Q4_0 / pinned llama.cpp: 첫 품질 gate FAIL, 미채택. Qwen3.8도 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
-| 회귀 검증 | **403 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless20.417초. EXAONE 명시profile·혼합거절 검증 |
+| 회귀 검증 | **408 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless21.330초. EXAONE 명시profile·pinned template override 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
 | 모델 실행 | Qwen Epoch4·5·6 및 Gemma Epoch1 STOPPED/exit0/reaped·GPU3 메모리 반환 확인. 실행 중인 자체 모델 서버 없음 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
@@ -114,7 +114,10 @@ Gemma의 [모델별 사전 검사](reports/phase5x_gemma4_preflight_report.md)�
 공개20개 공식/native ID·원문 roundtrip PASS와 literal U+2581의 별도 roundtrip FAIL을 구분한다.
 이미 완료한 공통 startup/resource/runtime 검사는 재시작하지 않는다.
 [공식 후보 비교](next_model_candidate_comparison.md)의 EXAONE4.5-33B를 다음 연구 후보로 검토한다.
-공식 metadata/source/license/전체 자원 계획을 완료하고 [EXAONE 사전 검증](exaone45_33b_resource_plan.md)을 준비한다.
-현재 고정 weight 다운로드 중이며 기동·품질 PASS는 없다. 예상 whole peak28672MiB는 실측 상한이 아니다.
+공식 metadata/source/license/전체 자원 계획과 고정weight 다운로드를 완료했다.
+[EXAONE header·template 검증](reports/phase5x_exaone45_template_preflight_report.md)은 PASS다.
+최초65패턴예상오류와원본native의systempolicy누락을보존했고, 별도continue-free template의공개18개
+공식render동등성과시스템정책전체보존을확인했다. 실제GGUF tokenization/원문/context gate는검사중이다.
+기동·품질 PASS는없다. 예상whole peak28672MiB는실측상한이아니다.
 미사용80개 초안은 ignored var에서 보존하며, 미래 후보도 1차 gate를 통과해야 후속 평가를 결정한다.
 비필수 runtime 최적화는 future optimization이다. Phase5.x 미완료·모델 미채택·Phase6 미시작을 유지한다.

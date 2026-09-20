@@ -1,0 +1,21 @@
+{
+  "kind": "EXAONE45_CONTINUE_FREE_TEMPLATE_OVERRIDE",
+  "candidate_variant": "exaone45-gguf-continue-free-korean-v1",
+  "model_id": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+  "model_revision": "0e969634ef24db05151b435970297a6dee634b7e",
+  "native_source_commit": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "official_embedded_template_sha256": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+  "effective_template_path": "runtime/templates/exaone45-continue-free.jinja",
+  "effective_template_bytes": 5829,
+  "effective_template_sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+  "transformation": "First system branch uses if i == 0 and role == system / elif assistant; remove continue only by equivalent branch selection. Message content and remaining bytes unchanged.",
+  "reason": "Pinned nested minja if loses accumulated system output on continue; actual original native prompt 177B omitted 8974B system policy.",
+  "public_proof_sha256": "fc7109fe4e9fbbe4a619ad16dc701cda01a4976ec8bd53d726aeb09f34f39408",
+  "official_original_derived_jinja_cases": 18,
+  "official_derived_native_exact_cases": 18,
+  "derived_prompt_bytes": 9176,
+  "original_native_mismatch_cases": 7,
+  "launcher_sha256": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+  "vocabulary_context_gpu_quality": "PENDING_NOT_VALIDATED",
+  "archive": "evaluations/results/phase5x/exaone45-template-header-preflight"
+}

@@ -1,0 +1,17 @@
+# EXAONE4.5 GGUF auditor preparation
+
+Status: **CPU synthetic PASS; actual GGUF audit NOT_RUN**. No download, real weight-file open, native/model/GPU/network call, production edit, or prior evaluation replay was performed to prepare this checker.
+
+`inspect_exaone45_gguf.py` pins the official GGUF revision `0e969634ef24db05151b435970297a6dee634b7e`, file `EXAONE-4.5-33B-Q4_K_M.gguf`, 20,047,839,424 bytes, SHA256 `5ba3839b67dcee5618ea7b2206cedc8f9e2ec90fbcec3c95a8cc8b33967f6baf`. Source metadata refers to upstream revision `570aa4b15a4f45ba1133072b45f50198f6e3b4fd`; the publisher has not supplied a conversion revision or per-tensor quantization command.
+
+Eight generic AST nodes (`AuditError`, `require`, `safe_open`, `read_bound`, `stat_key`, `Reader`, `parse_header`, `finish_hash`) are unchanged from the earlier pinned bounded parser `cb8ef9e58aea7066c050d3e96da24708b4be4eae0c7c7498f879e2dddc41940c`. Parser limits, owned single-link regular files, directory-FD/no-symlink traversal, no-overwrite report publication, exact offset coverage, zero padding, one-stream full SHA, and before/after file identity checks remain in force.
+
+The new candidate layer binds 13 pinned runtime source files, official config/index/tokenizer/template hashes and the metadata-only tokenizer pretype fingerprint. Expected geometry is main64 + MTP1 = block65, nextn1, 722 text/MTP source names plus one converter-generated RoPE tensor = 723 GGUF tensors. Separate input embedding and output matrix are mandatory. Vision/projector tensors are excluded; the source index's text/MTP names must match exactly. Normal KV is 64 layers/1024MiB at context4096 with F16 K/V; the conservative 65-layer planning value is1040MiB. These are shape calculations, not measured allocations.
+
+Generic storage types are only F32, Q4_K and Q6_K. Vectors/RoPE require F32; base matrices require Q4_K; output requires Q6_K; only attention-V and FFN-down may use either Q4_K or Q6_K according to pinned Q4_K_M quantizer role handling. This permits no unknown dtype and infers no custom per-tensor override. A different actual recipe must fail and receive separate source-supported diagnosis; the checker must not be adjusted silently to obtain PASS.
+
+Token/merge order and token-type wire hashes are checked independently against public tokenizer metadata. The official fingerprint identifies `exaone-moe`; `exaone4` is not treated as interchangeable. Embedded template bytes must match exactly. Official source normalization is NFC; header equality is not runtime token-ID parity or a universal raw-Unicode roundtrip guarantee.
+
+After root authorizes access to the completed pinned file, optional `--metadata-only` reads only the bounded header and always returns kind `GGUF_METADATA_DIAGNOSTIC`, status `DIAGNOSTIC_NOT_PASS`, no payload SHA, and any candidate mismatch code. This receipt cannot satisfy the native launcher's `GGUF_HEADER_AUDIT/PASS` gate. Default mode validates the same strict candidate contract, then hashes the entire payload once; no numerical tensor decoding or model loading occurs. A failed gate never repairs metadata, rewrites the file, or retries with a looser dtype policy.
+
+New candidate tests: **17 PASS / 0.683s**. They cover main/MTP/output inventory, shape and role-dtype corruption, SWA/KV metadata, pretype/template/vocabulary identity, forbidden types, quant block sizes, padding, paths, whole-hash failure, and diagnosis/full-audit separation. Evidence is `exaone45-header-auditor-cpu-proof.json`. Actual model/runtime/quality gates remain separate.

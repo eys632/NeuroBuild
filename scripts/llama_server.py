@@ -107,6 +107,8 @@ class NativeLaunchConfig:
     peak_allowance_mib: int = 0
     batch_size: int = 2
     ubatch_size: int = 1
+    chat_template_path: Path | None = None
+    chat_template_sha256: str | None = None
 
     def __post_init__(self):
         Policy(self.profile, self.estimated_peak_mib)
@@ -134,7 +136,13 @@ class NativeLaunchConfig:
                 "INVALID_CONFIG", "Native batch64 requires a whole-peak estimate of at least 28672 MiB")
         require(type(self.served_model_name) is str and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,99}", self.served_model_name),
                 "INVALID_CONFIG", "Use a short safe model alias")
+        require((self.chat_template_path is None and self.chat_template_sha256 is None)
+                or (isinstance(self.chat_template_path, Path) and type(self.chat_template_sha256) is str
+                    and re.fullmatch(HASH, self.chat_template_sha256) is not None),
+                "INVALID_CONFIG", "A template override requires an explicit local path and exact SHA256")
         for field in fields(self):
+            if field.name == "chat_template_path" and self.chat_template_path is None:
+                continue
             if field.name.endswith("_path") or field.name in ("build_report", "source_report", "model_header_report", "log_file", "report_file"):
                 require(isinstance(getattr(self, field.name), Path), "INVALID_CONFIG", "Use explicit local paths")
 
@@ -153,8 +161,24 @@ def child_environment(root, environ):
     return child
 
 
+def pinned_chat_template(config, root):
+    if config.chat_template_path is None:
+        return None
+    path = checked_file(config.chat_template_path, root)
+    require(0 < path.stat().st_size <= 65536, "INVALID_NATIVE_PROOF", "Template override must be bounded text")
+    reject_output_collisions(config, root, path)
+    verified_hash(path, config.chat_template_sha256)
+    raw = path.read_bytes()
+    require(b"\0" not in raw, "INVALID_NATIVE_PROOF", "Template override must not contain NUL")
+    try:
+        raw.decode("utf-8", "strict")
+    except UnicodeError:
+        raise PreflightError("INVALID_NATIVE_PROOF", "Template override must be UTF-8 text") from None
+    return path
+
+
 def native_arguments(config, root):
-    return [str(checked_file(config.binary_path, root)), "--model", str(checked_file(config.model_path, root)),
+    arguments = [str(checked_file(config.binary_path, root)), "--model", str(checked_file(config.model_path, root)),
             "--alias", config.served_model_name, "--host", "127.0.0.1", "--port", str(config.port),
             "--device", "CUDA0", "--main-gpu", "0", "--split-mode", "none", "--gpu-layers", "all",
             "--fit", "off", "--ctx-size", "4096", "--parallel", "1", "--no-context-shift",
@@ -166,6 +190,11 @@ def native_arguments(config, root):
             "--no-ui-mcp-proxy", "--no-models-autoload", "--jinja", "--reasoning",
             "on" if config.enable_reasoning else "off", "--reasoning-format", "deepseek",
             "--no-reasoning-preserve", "--no-skip-chat-parsing", "--log-disable"]
+    # Recheck this small input immediately before spawn after GPU preflight.
+    template = pinned_chat_template(config, root)
+    if template is not None:
+        arguments.extend(("--chat-template-file", str(template)))
+    return arguments
 
 
 class _NativeRuntime:
@@ -192,6 +221,7 @@ class _NativeRuntime:
             proofs = [checked_file(path, root) for path in
                       (config.build_report, config.source_report, config.model_header_report)]
             reject_output_collisions(config, root, binary, model, *proofs)
+            template = pinned_chat_template(config, root)
             require(model.suffix == ".gguf" and os.access(binary, os.X_OK),
                     "INVALID_NATIVE_PROOF", "Local GGUF and executable native binary required")
             require(not binary.stat().st_mode & (stat.S_ISUID | stat.S_ISGID),
@@ -276,6 +306,9 @@ class _NativeRuntime:
                               "model_sha256": config.model_sha256, "model_revision": config.model_revision,
                               "model_header_report_sha256": config.model_header_report_sha256,
                               "project_library_count": len(deps)}
+            if template is not None:
+                self.artifacts["chat_template_override"] = {
+                    "path": str(template.relative_to(root)), "sha256": config.chat_template_sha256}
         except PreflightError:
             raise
         except (KeyError, TypeError, ValueError, UnicodeError):
@@ -365,6 +398,8 @@ def main(argv=None):
             values = json.loads(path.read_text(), object_pairs_hook=_pairs)
             for key in ("binary_path", "build_report", "source_report", "model_path", "model_header_report", "log_file", "report_file"):
                 values[key] = Path(values[key])
+            if values.get("chat_template_path") is not None:
+                values["chat_template_path"] = Path(values["chat_template_path"])
             config = NativeLaunchConfig(**values)
             reject_output_collisions(config, ROOT, path)
             report = run_guard(config, stop_requested=stop.is_set)

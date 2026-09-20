@@ -1,0 +1,42 @@
+{
+  "kind": "EXAONE45_GGUF_AUDITOR_V2_SYNTHETIC_CPU_PROOF",
+  "status": "PASS",
+  "generated_at_utc": "2026-09-20T10:08:20.340196+00:00",
+  "tests": 20,
+  "seconds": 1.208,
+  "sha256": {
+    "var/research/inspect_exaone45_gguf_v2.py": "b79f8ada7cc5809b3165bc5c10f556b5e41fe67242afcdf0f4a82176107ce4c5",
+    "var/research/test_inspect_exaone45_gguf_v2.py": "9992570e0b25200e44ea96b2a72398a1f0f0eaafac809f4693c66c3e67e25aea",
+    "var/research/exaone45-header-v1-preserved/integrity.json": "cf0086635fbbbab122a46ef2801f49b8fa3e6b0518788ab514acd9a16d784ebe"
+  },
+  "original_helper_sha256": "953870de33d51d4543978a41264cd0e2d982868e9072507cf0f118ce6657177e",
+  "actual_metadata_diagnostic_sha256": "a5bbe3b83d31649b757a23ef502b62a27b683c9a12bf08f3dd59df4b3d6bf44f",
+  "v1_inverse_byte_identity": true,
+  "changed_ast_functions": [
+    "expected_metadata"
+  ],
+  "generic_ast_exact_nodes": [
+    "AuditError",
+    "require",
+    "safe_open",
+    "read_bound",
+    "stat_key",
+    "Reader",
+    "parse_header",
+    "finish_hash"
+  ],
+  "sole_policy_change": "Exact SWA bool array LLLG x16 + True: 65 stored layer entries; 64 executed main layers unchanged",
+  "preserved_v1_files": 6,
+  "actual_gguf_opened": false,
+  "actual_v2_audit_status": "NOT_RUN",
+  "native_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "network_calls": 0,
+  "checks": [
+    "v1 code/failure exact preservation",
+    "exact65 strict BOOL array; truncated/extended/false terminal/int terminal/count/type tamper rejected",
+    "main64/MTP1/KV1040 planning unchanged",
+    "all original generic and candidate synthetic controls reused unchanged"
+  ]
+}

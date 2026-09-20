@@ -1,0 +1,33 @@
+{
+  "kind": "EXAONE45_ORIGINAL_TEMPLATE_SYSTEM_LOSS_DIAGNOSIS",
+  "status": "BLOCKED_ORIGINAL_NATIVE_TEMPLATE",
+  "at_utc": "2026-09-20T10:09:30.323837+00:00",
+  "public_only": true,
+  "request_sha256": "8268161cd9f03ce4d1fdc2b98934032210030156674ae3a3ee81b298e410325e",
+  "request_roles": [
+    "system",
+    "user"
+  ],
+  "message_utf8_bytes": [
+    8974,
+    121
+  ],
+  "native_original_prompt_bytes": 177,
+  "public_v2_proof_sha256": "76fe6c198061610ee93e62c65090988dab55b14f7a0c3c208facde1a33a16b81",
+  "public_v2_scope_gap": "Checks system content presence neither individually nor by full render equality; its subset PASS is not template fidelity or runtime eligibility.",
+  "original_template_sha256": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+  "pinned_jinja_runtime_sha256": "a51c57dce6838341d0d88d27b6e12078275ccd0cc394aab7f658cb1398778700",
+  "source_reason": "Nested if accumulates text locally then returns only normally; continue signal bypasses this return; outer for catches signal and skips appending that statement output.",
+  "source_lines": {
+    "if_local_output": 461,
+    "for_statement_execution": 622,
+    "continue_catch": 626
+  },
+  "original_artifacts_unchanged": true,
+  "candidate_override_sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+  "candidate_reference_native_parity": "PENDING_NOT_EXECUTED",
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "http_calls": 0,
+  "gguf_loaded": false
+}

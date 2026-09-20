@@ -341,3 +341,24 @@ Presence 숫자만 넣고 penalties/window를 비활성화한 기존 profile을 
 모든 평가/재현 증거는 보존했다. Fresh disk reserve 확인 뒤 고정manifest download를 수행한다.
 새 모델별 header/공식tokenizer·template·grammar/최대context와 실제wholepeak는 여전히 gate다.
 공통 runtime 완료 검사는 반복하지 않으며 첫 품질 진단도 사전동결·원격checkpoint 후 한 번만 수행한다.
+
+
+## D041 — 시스템 정책을 누락하는 native template continue 호환성 수정
+
+EXAONE 공식 template의 첫 system분기에서 continue를 만나면 pinned minja가 중첩 if의
+누적 출력을 반환하지 않고 버린다. 실제 production fake wire는 system8974B/user121B인데
+native prompt는177B여서 system정책이 없다. 이는 품질평가로 확인할 문제가 아니라 기동 전 계약 실패다.
+기존 public CPU v2의 grammar/final-content PASS는 이 누락을 검사하지 않았으므로 runtime 적격 근거가 아니다.
+첫 public실패/수정/부분PASS와 새 prompt-fidelity실패를 각각 보존하며 최종PASS로 합치지 않는다.
+
+고정 native source/binary와 공식GGUF/embeddedtemplate는 바꾸지 않는다. 첫 system분기의 continue를
+동등한 if/elif 선택으로 표현하는 별도 candidate template override를 준비한다. 공식Jinja 원본 render와
+native override render의 바이트 동등성, 실제 production system/user 원문전체 포함을 새 CPU gate로 요구한다.
+Application message 재배치, policy내용/사용자원문 수정, 응답repair, 원래template 교체는 없다.
+이 변경은 EXAONE별 실행variant로 명시하고 해당profile의 tokenizer/runtime/품질을 별도검증한다.
+
+Launcher에는 선택적 local template path+SHA256 쌍만 추가한다. 한쪽만 지정/오류hash/alias/외부경로/
+과대·비정상text/runtime출력과충돌을 거절하고 GPU조회 전에 검증한다. 작은 파일은 childspawn 직전에도
+재확인하고 override path/hash를 native_artifacts에 기록한다. 미지정시기존argv/동작을유지한다.
+공식render 동등성과새회귀·독립검토를통과하기전기동하지않는다. 완료공통startup/resource를재실행하거나
+throughput tuning을추가하는것이아니라, 시스템정책전달을보존하기위한실제호환성차단요인해결이다.
