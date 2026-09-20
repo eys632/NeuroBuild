@@ -1,0 +1,190 @@
+{
+  "kind": "GEMMA12_NEW_CARRY_CONSUMER_CONTROLS",
+  "status": "PASS",
+  "at_utc": "2026-09-20T15:45:59.425567+00:00",
+  "control_count": 4,
+  "controls": [
+    {
+      "name": "actual_saved_receipt",
+      "status": "ACCEPTED_AS_CARRY_FORWARD_ONLY"
+    },
+    {
+      "name": "wrong_caller_sha",
+      "status": "REJECTED",
+      "code": "GEMMA12_CARRY_HASH_NOT_PINNED"
+    },
+    {
+      "name": "old31_proof_path",
+      "status": "REJECTED",
+      "code": "GEMMA12_CARRY_PATH_MISMATCH"
+    },
+    {
+      "name": "current_source_mismatch",
+      "status": "REJECTED",
+      "code": "GEMMA12_REFERENCE_HASH_MISMATCH"
+    }
+  ],
+  "blocked_helper_sha256": "11f764b4c7d824220e6b308773fa285127f37f5b31fc4d18ae1c2aeef9d6d255",
+  "blocked_controller_sha256": "dc20beda8d0b7dd301b79750c131aeb89395f13091eb126491bd699cd7323283",
+  "config_sha256": "03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812",
+  "test_source_sha256": "dbd47e2ee642f3cc31c49827aeeed122a1b3a38441afe572da94d0db307e99fc",
+  "carry_proof_sha256": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f",
+  "provenance": {
+    "model_id": "google/gemma-4-12B-it-qat-q4_0-gguf",
+    "model_revision": "29d097773436b69ff9feafd636ab4cf873786537",
+    "candidate_variant": "gemma4-12b-qat-q4_0-carried-contract-v1",
+    "cpu_proof_sha256": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f",
+    "cpu_proof_kind": "GEMMA4_12B_CPU_CONTRACT_CARRY_FORWARD",
+    "cpu_proof_status": "CARRIED_FORWARD_BY_EXACT_INPUT_EQUIVALENCE",
+    "chat_template_sha256": "ae53464bf3be25802b3a5b37def7fd89667067d7577049b3b2d74c4d8de4c6d4",
+    "tokenizer_json_sha256": "cc8d3a0ce36466ccc1278bf987df5f71db1719b9ca6b4118264f45cb627bfe0f",
+    "tokenizer_contract": "carried_forward_by_exact_typed_tokenizer_and_effective_input_equivalence",
+    "historical_measurements": {
+      "measured_model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+      "measured_revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+      "measured_gguf_sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b",
+      "original_status": "PASS",
+      "measurement_status_for_new_candidate": "CARRIED_FORWARD_BY_EXACT_INPUT_EQUIVALENCE",
+      "public_contract": {
+        "status": "PASS",
+        "kind": "GEMMA4_NATIVE_CONTRACT_CPU_PREFLIGHT",
+        "schema_cases_accepted": 10,
+        "schema_cases_rejected": 20,
+        "native_final_content_exact_cases": 10,
+        "native_grammar_generation_prompt_prefilled": true,
+        "native_grammar_prefill_bytes": 41,
+        "core_dump_limit_zero": true,
+        "native_sampling_schema_binding": true,
+        "native_request_grammar_nonempty": true,
+        "grammar_lazy": false,
+        "grammar_triggers": 1,
+        "native_fence_rejection_cases": 4,
+        "artificial_thought_split_cases": 1,
+        "final_json_bytes_unchanged": true,
+        "native_grammar_bytes": 6461,
+        "standalone_grammar_bytes": 4248,
+        "native_request_prompt_bytes": 9171,
+        "model_context_created": false,
+        "backend_init_called": false,
+        "weight_tensors_loaded": false,
+        "native_tokenization": "NOT_RUN",
+        "discarded_stderr_bytes": 0
+      },
+      "official_tokenizer_parity": {
+        "status": "PASS",
+        "case_count": 20,
+        "id_match_count": 20,
+        "native_original_roundtrip_count": 20
+      },
+      "splits": {
+        "exposed120": {
+          "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+          "input_count": 120,
+          "min_input_tokens": 2339,
+          "max_input_tokens": 2646,
+          "max_input_plus_output": 3414,
+          "bundle_sha256": "a22a2dc11b66006544b0b521cc074dd60d1322c5127649c67662139917e1a519"
+        },
+        "v2_length80": {
+          "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+          "input_count": 80,
+          "min_input_tokens": 2360,
+          "max_input_tokens": 2593,
+          "max_input_plus_output": 3361,
+          "bundle_sha256": "4cd947414eb26e953fb55b37138c96cbab44359f1670b7e2d0cbe45bc6b511b8"
+        }
+      }
+    },
+    "new_cpu_executions": {
+      "native_public": 0,
+      "vocab": 0,
+      "context": 0,
+      "model_inference": 0,
+      "http": 0,
+      "gpu": 0
+    },
+    "sampling_behavior": {
+      "http_recipe_equal": true,
+      "full_sampling_equivalent": false,
+      "additional_suppressed_ids": [
+        258883,
+        258882
+      ],
+      "suppression_eog_disjoint": true,
+      "native_effect": "Model-owned negative-infinity logit bias before the unchanged HTTP sampling recipe"
+    },
+    "normalization_limitation": {
+      "official_hf_literal_u2581_raw_roundtrip": false,
+      "reference": "tokenizer_fixture.normalization_witness",
+      "global_unicode_roundtrip_guarantee": false,
+      "input_output_repair": false
+    },
+    "literal_u2581_witness_status": "FAIL_NATIVE_ORIGINAL_ROUNDTRIP",
+    "application_input_output_nfc_repair": false,
+    "cpu_proof_refs": {
+      "old_header": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/header-v2.json",
+        "sha256": "d867a3300b2a93534fb1b480e8e42b30321c894aaec05b5729a529e848817756"
+      },
+      "new_header": {
+        "path": "var/reports/gemma4-12b-gguf-header.json",
+        "sha256": "97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0"
+      },
+      "tokenizer_comparison": {
+        "path": "var/reports/gemma4-12b-saved-tokenizer-comparison.json",
+        "sha256": "a6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481"
+      },
+      "source_equivalence": {
+        "path": "var/research/gemma12-gemma-branch-source-equivalence.json",
+        "sha256": "c21cbd6102933e1511f51625a88471b85caf8d9192dd3fe01fcd4ac644a37f20"
+      },
+      "historical_aggregate": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/final-cpu-proof.json",
+        "sha256": "a27cd1f7a37899873aac346404e1cea8d0805c8db899f03eba6e3d7d7340029d"
+      },
+      "public_contract": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-proof.json",
+        "sha256": "d7cd7032f019af566e2d7484afed85f9dab95fcbc0da06fc2a602cf5b7a76334"
+      },
+      "vocab": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/public-vocab-v2-proof.json",
+        "sha256": "70886f2ad74ef3758fe839f13b4b6740e22cb749f8f0989a98ea376382cc09c6"
+      },
+      "vocab_context": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/vocab-context-v2-proof.json",
+        "sha256": "06ef550b4ea48b3c3c65d631dafca06c85bd3d350311888b9bc5c86630caf64a"
+      },
+      "tokenizer_fixture": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/tokenizer-fixture.json",
+        "sha256": "42b2a10fdc4ebc066acb878a5a9e0c9e407affe0b91bc7d32145d8d360dc13e5"
+      },
+      "normalization_witness": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/normalization-witness-proof.json",
+        "sha256": "bbb9ed28cdae06bb07a3f66949c2e23e59728324f74440be82b567f0a8662e73"
+      },
+      "historical_cpu_build": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/build-v2.json",
+        "sha256": "1b6dce0e85790b267ec2514da8c81158c76b9d01a27aa6c2e584787a160e67ee"
+      },
+      "historical_cpp": {
+        "path": "evaluations/results/phase5x/gemma4-cpu-preflight/contract/validator_v2.cpp",
+        "sha256": "fecf647d431a3af0137f5e9459ddd8afece4e571d4a6a240dc2f4929acf9f20d"
+      }
+    },
+    "cpu_source_sha256": {
+      "src/neurobuild/infrastructure/local_model.py": "7dfc3f673ba6ab4e4970055c4cbee66ae440da2d42070af959a5fe415a9ab780",
+      "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+    },
+    "cpu_checks_rerun": false
+  },
+  "resource_probe_token_id": 236743,
+  "require_ready_patched_locally_for_saved_consumer_only": true,
+  "controller_main_calls": 0,
+  "binding_process_http_calls": 0,
+  "native_gpu_model_calls": 0,
+  "corpus_parsing_or_replay_calls": 0,
+  "old_tests_or_public_context_executions": 0
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "GEMMA12_RUNTIME_CONSUMER_ACTIVATION_BINDING",
+  "status": "DEFINITION_FINALIZED_NOT_EXECUTED",
+  "controls_report": "var/research/gemma12-runtime-carry-consumer-controls.json",
+  "controls_report_sha256": "836f1421ca51f75d1db5a9fdd1732662e3c57d0dcf9f941dafd2f5a21b32677d",
+  "controls_count": 4,
+  "controls_repeated_after_activation": false,
+  "blocked_sha256": {
+    "var/research/gemma4_12b_runtime_probe.py": "11f764b4c7d824220e6b308773fa285127f37f5b31fc4d18ae1c2aeef9d6d255",
+    "var/research/run_native_gemma4_12b_epoch1_probe.py": "dc20beda8d0b7dd301b79750c131aeb89395f13091eb126491bd699cd7323283"
+  },
+  "final_sha256": {
+    "var/research/gemma4_12b_runtime_probe.py": "69c90fbbab9ee2a5f9db45723be6be7ebc544f44622b191bba76f3a7afc62d4d",
+    "var/research/run_native_gemma4_12b_epoch1_probe.py": "10ca99d2f7e70b3cd5d1e0019afaea1a87cf9c9aaa66845aa62cfef0077ad2b4"
+  },
+  "config_sha256": "03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812",
+  "activation_patch_sha256": "df845651f0fbfb00a8a8bc837db33f30468073e892c3b02896e25c567a18278f",
+  "tested_consumer_executable_ast_unchanged": true,
+  "other_probe_function_ast_unchanged": true,
+  "controller_main_ast_unchanged": true,
+  "changed_function_logic": [
+    "probe.require_ready",
+    "controller.require_ready"
+  ],
+  "other_changes": [
+    "helper pin",
+    "definition status and docstrings",
+    "historical public30/tokenizer20 wording"
+  ],
+  "model_native_http_gpu_calls": 0,
+  "controller_main_calls": 0,
+  "old_corpus_or_replay_calls": 0
+}

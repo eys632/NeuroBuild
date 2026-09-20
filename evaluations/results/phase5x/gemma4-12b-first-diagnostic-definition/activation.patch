@@ -1,0 +1,55 @@
+--- before-activation/contract.py
++++ contract.py
+@@ -1,9 +1,10 @@
+ """Pure Gemma12 first-diagnostic draft constants; no artifact reads or activation."""
+ from copy import deepcopy
+ from pathlib import Path
++import re
+ 
+ ROOT = Path('/home/a202192020/NeuroBuild_v2')
+-PREPARATION_STATUS = 'BLOCKED_FINAL_INDEPENDENT_REVIEW_AND_EXPLICIT_RELEASE_PENDING'
++PREPARATION_STATUS = 'FINAL_DEFINITION_READY_FOR_ROOT_SINGLE_FREEZE'
+ MODEL = 'google/gemma-4-12B-it-qat-q4_0-gguf'
+ REVISION = '29d097773436b69ff9feafd636ab4cf873786537'
+ VARIANT = 'gemma4-12b-qat-q4_0-carried-contract-v1'
+@@ -40,7 +41,6 @@
+ REGRESSION_SHA = 'f2b00ee159ab4f723f72af18d41413e54f8580a6e5af3f56a193e3f44e1c0988'
+ REGRESSION_LOG = 'evaluations/results/phase5x/gemma4-12b-preparation/regression/backend.log.txt'
+ REGRESSION_LOG_SHA = '2652a0b4cc990b9e97cfbe1a9840c00232b2c5036e1c1783a964d209b6d73916'
+-FREEZE_SHA = SOURCE_SNAPSHOT_SHA = None
+ RUNTIME_SHA = {'evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/launch_config.json': '03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812', 'evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/runtime_metadata.json': '6efd2f49f7601ac80de0e0816d2cc5e2ed91c04ed7a211ea4d40bab87f2e5cd4', 'evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/resource_report.json': 'cb35db98aae6b5bfcfd3c725f541418109f32e3824da03a2ce84226f8597604a', 'evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/listeners.json': '056f5a0ae82d83502edf76b83835092fa53fca7623f5f105f31c67bdb6604076', 'evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/startup.json': '9949a39bb15dff4aa3d195f72f354b2055fb92407ab0a19b040f0f4842993213', 'evaluations/results/phase5x/gemma4-12b-native-public-smoke-epoch1/report.json': '042ed74b7c23ebcd084c36579fd39f4e5ca0680960a2b49da7d45f2e8b2d5e5f', 'evaluations/results/phase5x/gemma4-12b-native-resource-epoch1/report.json': 'b2edfb4c0fc73615a456b97547690b75138f01310a042fb8141767d3388666c5'}
+ 
+ GATES = {'schema_required':120,'schema_denominator':120,'semantic_required_at_least':114,
+@@ -69,7 +69,31 @@
+ 
+ 
+ def require_ready():
+-    raise ValueError('GEMMA12_DRAFT_NOT_ACTIVATED_NO_PUBLICATION_OR_REPLAY')
++    """Root-reviewed explicit release; missing or mismatched pins fail closed."""
++    pins = (CPU_SHA, PROBE_SHA, CONFIG_SHA, CONTROLLER_SHA, REGRESSION_SHA,
++            REGRESSION_LOG_SHA, HEADER_SHA, TOKENIZER_COMPARISON_SHA, *RUNTIME_SHA.values())
++    expected_paths = {START+n for n in ('launch_config.json','runtime_metadata.json',
++                                       'resource_report.json','listeners.json','startup.json')} | {PUBLIC,RESOURCE}
++    expected_gates = {'schema_required':120,'schema_denominator':120,'semantic_required_at_least':114,
++                     'semantic_denominator':120,'critical_model_ready_fp_required':0,
++                     'critical_model_ready_fp_denominator':58,'unsafe_accepted_ready_total_required':0,
++                     'unsafe_accepted_ready_total_denominator':120}
++    valid = (all(type(pin) is str and re.fullmatch('[a-f0-9]{64}',pin) is not None for pin in pins)
++             and set(RUNTIME_SHA)==expected_paths and len(RUNTIME_SHA)==7
++             and RUNTIME_SHA[START+'launch_config.json']==CONFIG_SHA
++             and VARIANT=='gemma4-12b-qat-q4_0-carried-contract-v1'
++             and MODEL=='google/gemma-4-12B-it-qat-q4_0-gguf'
++             and SOURCE_COMMIT=='fa3d337871f2d8078a6145b3a3632a0ddeab7ce6'
++             and CPU_SHA=='cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f'
++             and PROBE_SHA=='69c90fbbab9ee2a5f9db45723be6be7ebc544f44622b191bba76f3a7afc62d4d'
++             and CONTROLLER_SHA=='10ca99d2f7e70b3cd5d1e0019afaea1a87cf9c9aaa66845aa62cfef0077ad2b4'
++             and CONFIG_SHA=='03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812'
++             and CPU_ARCHIVED_PROOF=='evaluations/results/phase5x/gemma4-12b-cpu-preflight/contract/cpu-carry-forward.json'
++             and CPU_STATUS=='CARRIED_FORWARD_BY_EXACT_INPUT_EQUIVALENCE'
++             and set(CPU_REFS)==CPU_REF_KEYS and len(CPU_REFS)==12
++             and GATES==expected_gates and all(type(v) is int for v in GATES.values()))
++    if not valid:
++        raise ValueError('GEMMA12_FINAL_PIN_OR_CONTRACT_MISMATCH')
+ 
+ 
+ def planned_contract():

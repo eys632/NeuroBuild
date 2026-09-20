@@ -1,0 +1,1 @@
+{"action": "resource", "report_dir": "var/reports/gemma4-12b-native-resource-epoch1", "sha256": {"report.json": "b2edfb4c0fc73615a456b97547690b75138f01310a042fb8141767d3388666c5"}, "status": "PASS"}

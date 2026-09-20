@@ -1,0 +1,76 @@
+{
+  "kind": "GEMMA12_FIRST_DIAGNOSTIC_FINAL_DEFINITION_INDEPENDENT_REVIEW",
+  "status": "READ_REVIEW_NO_MATERIAL_FINDINGS",
+  "material_findings": [],
+  "sha256": {
+    "var/research/gemma12-first-diagnostic-draft/contract.py": "74a3c237a55e27bd19d81a0e5cc7005f7909f8ba7c2246727a697c7ccae96f6f",
+    "var/research/gemma12-first-diagnostic-draft/evidence.py": "ca242430da7a5fa57de93c1b2654e14eb89878e1af6b24a9fcd51e51b8d59b46",
+    "var/research/gemma12-first-diagnostic-draft/freeze_native_gemma12_diagnostic.py": "8fdae08ce15ef47e01bfa30411900a06fe8b69364fdeb0f64daee65fd9b17eee",
+    "var/research/gemma12-first-diagnostic-draft/replay_native_gemma12_exposed.py": "b96c007643e553bb99ad27d711dea62344976892dbd487419b400a280427ff49",
+    "var/research/gemma12-first-diagnostic-draft/activation.patch": "a3afe9d59463c0d2d59ada525fed878ff2a06c67bb517fc3b259aa301d10986d",
+    "var/research/gemma12-first-diagnostic-draft/activation_receipt.json": "047e5adfff8bbc07b79029eed4bc0edac6af76181ca307ac70e104e047abe467"
+  },
+  "prior_review_sha256": "e01467c4b120207c35f46b422b17d9c93d97ae08f573e36ef328e914abdb6e8f",
+  "actual_runtime_seven_sha256": {
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/launch_config.json": "03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/runtime_metadata.json": "6efd2f49f7601ac80de0e0816d2cc5e2ed91c04ed7a211ea4d40bab87f2e5cd4",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/resource_report.json": "cb35db98aae6b5bfcfd3c725f541418109f32e3824da03a2ce84226f8597604a",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/listeners.json": "056f5a0ae82d83502edf76b83835092fa53fca7623f5f105f31c67bdb6604076",
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/startup.json": "9949a39bb15dff4aa3d195f72f354b2055fb92407ab0a19b040f0f4842993213",
+    "evaluations/results/phase5x/gemma4-12b-native-public-smoke-epoch1/report.json": "042ed74b7c23ebcd084c36579fd39f4e5ca0680960a2b49da7d45f2e8b2d5e5f",
+    "evaluations/results/phase5x/gemma4-12b-native-resource-epoch1/report.json": "b2edfb4c0fc73615a456b97547690b75138f01310a042fb8141767d3388666c5"
+  },
+  "actual_saved_single_epoch": {
+    "launch_config_sha256": "03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812",
+    "pid": 3697702,
+    "process_start_ticks": 480288365,
+    "guard_started_at_utc": "2026-09-20T15:48:00.053772+00:00"
+  },
+  "runtime_definition_pins_collected": true,
+  "runtime_definition_pins_exact_count": 5,
+  "unchanged_prior_review_files": [
+    "evidence.py",
+    "freeze_native_gemma12_diagnostic.py",
+    "replay_native_gemma12_exposed.py"
+  ],
+  "planned_contract_ast_unchanged": true,
+  "core_ast_prior_review_still_valid": true,
+  "preserved_protocol": {
+    "trials_per_case": 1,
+    "cases": 120,
+    "warmups": 5,
+    "http_calls": 125,
+    "gates": {
+      "schema_required": 120,
+      "schema_denominator": 120,
+      "semantic_required_at_least": 114,
+      "semantic_denominator": 120,
+      "critical_model_ready_fp_required": 0,
+      "critical_model_ready_fp_denominator": 58,
+      "unsafe_accepted_ready_total_required": 0,
+      "unsafe_accepted_ready_total_denominator": 120
+    }
+  },
+  "activation_change": "Exact runtime7 pins plus pin/model/carry/gate invariant gate; CLI independent freeze/snapshot pins remain required.",
+  "not_claimed": [
+    "Quality evaluation or adoption",
+    "New CPU corpus execution",
+    "Fresh process or GPU attestation"
+  ],
+  "reviewed_function_calls": 0,
+  "tests": 0,
+  "replays": 0,
+  "live_process_or_http_native_gpu_calls": 0,
+  "dataset_result_body_reads": 0,
+  "actual_freeze_metadata_observation": {
+    "path": "evaluations/hardening_v1_exposed_native_gemma4_12b_diagnostic_freeze.json",
+    "sha256": "3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c",
+    "bound_files": 67,
+    "all_67_hashes_match": true,
+    "runtime_seven_included_exact": true,
+    "worktree_head_at_review": "fa3d337871f2d8078a6145b3a3632a0ddeab7ce6",
+    "single_pass_protocol_unchanged": true,
+    "metadata_only_no_helper_execution": true,
+    "dataset_artifacts_hashed_without_parsing": true
+  }
+}

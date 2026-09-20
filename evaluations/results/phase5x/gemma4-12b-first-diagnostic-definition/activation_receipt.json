@@ -1,0 +1,25 @@
+{
+  "kind": "GEMMA12_ROOT_AUTHORIZED_DEFINITION_ACTIVATION",
+  "status": "FINAL_DEFINITIONS_NOT_INVOKED",
+  "sha256": {
+    "var/research/gemma12-first-diagnostic-draft/contract.py": "74a3c237a55e27bd19d81a0e5cc7005f7909f8ba7c2246727a697c7ccae96f6f",
+    "var/research/gemma12-first-diagnostic-draft/evidence.py": "ca242430da7a5fa57de93c1b2654e14eb89878e1af6b24a9fcd51e51b8d59b46",
+    "var/research/gemma12-first-diagnostic-draft/freeze_native_gemma12_diagnostic.py": "8fdae08ce15ef47e01bfa30411900a06fe8b69364fdeb0f64daee65fd9b17eee",
+    "var/research/gemma12-first-diagnostic-draft/replay_native_gemma12_exposed.py": "b96c007643e553bb99ad27d711dea62344976892dbd487419b400a280427ff49",
+    "var/research/gemma12-first-diagnostic-draft/README.md": "9d834fbf08ac55f34de784fef3806fe6b186a1e7d69c4f584e36219de45f6a78",
+    "var/research/gemma12-first-diagnostic-draft/activation.patch": "a3afe9d59463c0d2d59ada525fed878ff2a06c67bb517fc3b259aa301d10986d"
+  },
+  "before_contract_sha256": "450acf2306ec97eab3bc745a514ad3ba4c46b779d4d1ee164ac75a4613b1f391",
+  "runtime7_binding_receipt_sha256": "83681a85fd147f08cc3fd57f277541533d15bae7631fe8e4163a631a83729f40",
+  "unconditional_gate_replaced_by": "Complete SHA pins, exact runtime7 paths/config, approved model/variant/source/carry/collector/controller, refs12, immutable gate counts",
+  "core3_ast_unchanged": true,
+  "helper_imports": 0,
+  "helper_main_calls": 0,
+  "tests": 0,
+  "corpus_body_reads": 0,
+  "replay_calls": 0,
+  "http_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "freeze_publications": 0
+}

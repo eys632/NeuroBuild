@@ -8,7 +8,7 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
 | GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 진단동결 `c466013439e6d202e627ed48c7a4ed1e45cf82c0` push·원격 일치 확인; EXAONE 실패·종료 `daeccacee7bb1912e03c8be696572b80b12c9f4c` push·원격 일치 확인 |
-| 현재 작업 | **Gemma4-12B QAT의 header·CPU 승계 완료, 첫 runtime과 단회 평가 정의 준비** |
+| 현재 작업 | **Gemma4-12B QAT의 첫 runtime PASS, 120×1+warmup5 품질 평가 동결** |
 | 최근 후보 | GLM4.7-Flash 첫 의미·안전 gate FAIL. EXAONE4.5 첫 의미 gate FAIL, Gemma4 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
@@ -17,9 +17,9 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
 | 회귀 검증 | **418 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless21.412초. 새 공식Gemma12/Q4_0 exact identity binding 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
-| 모델 실행 | **NeuroBuild 모델 서버 STOPPED**. GLM epoch2 child exit0/reaped, GPU3 free36373/used3965/util0으로 반환 |
+| 모델 실행 | **Gemma12 epoch1 RUNNING**, GPU3 only. 이전 GLM은 종료·반환 완료 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 검증 | 새12B의 첫 GPU runtime. 아직 GPU/runtime/품질 호출0 |
+| 다음 검증 | 새12B의 첫120개 단회 품질 gate. 아직 품질 호출0 |
 
 ## 다음 후보 준비 — Gemma4-12B QAT
 
@@ -42,9 +42,19 @@ Suppression 차이 때문에 전체 sampling 동작이 같다고 주장하지 �
 기존 검증된 runtime 정책을 유지하며 추가10,240MiB 여유를 둔다. 이 값은 실측이나 하드 상한이 아니다.
 기동 직전 GPU3 free/utilization과 별도 safety margin으로 실행 가능성을 확인한다.
 Evaluator의 공식12B/Q4_0 exact pair 허용 추가와 새test2개 뒤 **418회귀 PASS**를 확인했다.
-GPU 모델 서버·새 품질 호출은0, Phase5.x 미완료·미채택·Phase6 미시작이다.
+CPU checkpoint 당시 GPU 모델·품질 호출0 기록은 아래 실제 runtime 결과로 갱신한다.
+Phase5.x 미완료·미채택·Phase6 미시작이다.
 [후보 계획](gemma4_12b_candidate.md), [준비 보고서](reports/phase5x_gemma4_12b_preparation_report.md),
 [실제 header·CPU 승계 보고서](reports/phase5x_gemma4_12b_cpu_report.md).
+
+CPU checkpoint **fa3d337871f2d8078a6145b3a3632a0ddeab7ce6** push·원격 일치 뒤 새12B를 처음 기동했다.
+직전5회 free36373MiB/util0, margin7275MiB, 가용29098MiB 안에 운영예산28672MiB가 들어갔다.
+Own guard3697642/child3697702 단일 epoch에서 startup PASS, 공개 production 요청1건 PASS **2.601869초**,
+full context3328+768 요청1건 PASS **13.969568초**다. 이 시점 aggregatepeak **7724MiB**/minfree **28650MiB**.
+기존 runtime/public/resource 반복은0회다. Loopback/모델 identity/원본template/suppression 차이를 묶은
+새7개 receipt를 보관했다. 1차120×1+warmup5를 사전동결하고 clean/pushed commit에서만 실행한다.
+명백한 FAIL이면 동일 후보 반복·V2·미사용80 접근 없이 종료한다.
+[단회 평가 보고서](reports/phase5x_native_gemma12_diagnostic_report.md).
 
 ## GLM 첫 단회 결과와 종료
 

@@ -1,0 +1,1 @@
+{"status": "FROZEN_NOT_EVALUATED", "path": "evaluations/hardening_v1_exposed_native_gemma4_12b_diagnostic_freeze.json", "sha256": "3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c", "candidate_variant": "gemma4-12b-qat-q4_0-carried-contract-v1", "bound_files": 67}

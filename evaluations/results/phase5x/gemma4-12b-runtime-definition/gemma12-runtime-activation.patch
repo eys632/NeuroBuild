@@ -1,0 +1,100 @@
+--- var/research/gemma4_12b_runtime_probe.py (blocked)
++++ var/research/gemma4_12b_runtime_probe.py (final)
+@@ -1,4 +1,4 @@
+-"""Gemma4 12B DRAFT ONLY: all candidate entrypoints fail require_ready().
++"""Gemma4 12B evidence collector definition; no import-time runtime actions.
+ 
+ Import checks the historical generic helper hash, but never contacts a server,
+ reads a process, loads a model, runs native code or creates a proof. No CLI/main.
+@@ -48,7 +48,7 @@
+ CPU_CARRYFORWARD_SHA = 'cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f'
+ TOKENIZER_METADATA_COMPARISON_SHA = 'a6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481'
+ CANDIDATE_VARIANT = 'gemma4-12b-qat-q4_0-carried-contract-v1'
+-PREPARATION_STATUS = 'BLOCKED_FINAL_RUNTIME_ACTIVATION_REVIEW_PENDING'
++PREPARATION_STATUS = 'FINALIZED_DEFINITION_RUNTIME_NOT_RUN'
+ CONDITIONAL_MODEL_ESTIMATE_MIB = 18432
+ OPERATIONAL_BUDGET_MIB = 28672
+ ADDITIONAL_CONSERVATIVE_ALLOWANCE_MIB = 10240
+@@ -69,14 +69,14 @@
+     'cuda_graphs': False, 'fit': 'off', 'gpu_layers': 'all',
+     'host': '127.0.0.1', 'estimated_peak_mib': OPERATIONAL_BUDGET_MIB, 'peak_allowance_mib': 0,
+ }
+-# Finalization must bind exact receipts, not relabel prior 31B checks as 12B runs.
++# Exact receipts are bound without relabeling prior 31B checks as 12B runs.
+ CARRYFORWARD_REQUIREMENTS = (
+     'Exact new full-SHA/header PASS and saved typed tokenizer.* equality, with only the declared suppression difference.',
+     'Historical 31B CPU/public/vocab/context proof hashes and their original model identity remain explicit.',
+     'Unchanged pinned native binary/source and model-aware tokenizer/template/BOS/EOG path; no inference of equality from file names.',
+     'Current production request/profile/prompt/schema/parser source and original input-file hashes bound to historical observations without reading inputs here.',
+     'Same official template/tokenizer bytes; preserve literal U+2581 normalization witness and no input/output repair.',
+-    'Carry historical public20/context200 counts as historical only; max input plus 768 <= 4096; no claim of new model quality or GPU compatibility.',
++    'Carry historical public30/tokenizer20/context200 counts as historical only; max input plus 768 <= 4096; no claim of new model quality or GPU compatibility.',
+     'New I32 suppression [258883,258882], EOG disjointness and negative-infinity native bias recorded separately from client recipe.',
+     'Resource token proof and suppression noncollision remain explicit before any resource request.',
+     'Use the existing 28672 MiB operational budget plus fresh GPU3 safety margin; the conditional 18432 MiB model estimate leaves 10240 MiB additional conservative allowance, not a strict allocation cap.',
+@@ -84,8 +84,18 @@
+ 
+ 
+ def require_ready():
+-    # Filling constants alone cannot activate this draft. No controller is provided.
+-    raise ValueError('GEMMA12_RUNTIME_ACTIVATION_REVIEW_PENDING')
++    require(PREPARATION_STATUS == 'FINALIZED_DEFINITION_RUNTIME_NOT_RUN'
++            and CPU_CARRYFORWARD_SHA == 'cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f'
++            and HEADER_SHA == '97a9bd3cb854c446edd7b534011eaceac389f76f8f6c49b1dd0ec5e06be4eac0'
++            and TOKENIZER_METADATA_COMPARISON_SHA == 'a6d70d937b44a9743735b7843b59d9ba85dca2f9db300cf13c61d108a8c5f481'
++            and PRODUCER_SHA == '4653f4e09a6d52bb9d04a6d3d2579bdd6d3d12c1588289d0465e7717ad227281'
++            and CANDIDATE_VARIANT == 'gemma4-12b-qat-q4_0-carried-contract-v1'
++            and PROFILE == 'gemma4_nonthinking_llama_cpp'
++            and OPERATIONAL_BUDGET_MIB == 28672
++            and CONDITIONAL_MODEL_ESTIMATE_MIB + ADDITIONAL_CONSERVATIVE_ALLOWANCE_MIB == OPERATIONAL_BUDGET_MIB
++            and SUPPRESS_TOKENS == [258883, 258882]
++            and COMPLETE_EFFECTIVE_SAMPLING_EQUIVALENT_TO_31B is False,
++            'GEMMA12_FINALIZED_DEFINITION_MISMATCH')
+ 
+ PRODUCER_PATH = Path('var/research/produce_gemma12_cpu_carry_forward.py')
+ PRODUCER_SHA = '4653f4e09a6d52bb9d04a6d3d2579bdd6d3d12c1588289d0465e7717ad227281'
+@@ -181,7 +191,7 @@
+ def cpu_provenance(config, proof_path, proof_sha):
+     """Consume exact saved carry evidence; never execute prior CPU tests/corpora.
+ 
+-    Historical public20/context200 are not relabeled as measurements on 12B.
++    Historical public30/tokenizer20/context200 are not relabeled as measurements on 12B.
+     The final evaluation freeze separately hashes current dataset bytes.
+     """
+     require_ready()
+--- var/research/run_native_gemma4_12b_epoch1_probe.py (blocked)
++++ var/research/run_native_gemma4_12b_epoch1_probe.py (final)
+@@ -1,4 +1,4 @@
+-"""BLOCKED Gemma12 controller definition; root finalizes exact pins before use."""
++"""Explicit Gemma12 single-step collector; no launch, retry or raw-body logs."""
+ import argparse
+ import hashlib
+ import json
+@@ -9,7 +9,7 @@
+ 
+ ROOT = Path('/home/a202192020/NeuroBuild_v2')
+ HELPER = ROOT / 'var/research/gemma4_12b_runtime_probe.py'
+-HELPER_SHA = '11f764b4c7d824220e6b308773fa285127f37f5b31fc4d18ae1c2aeef9d6d255'
++HELPER_SHA = '69c90fbbab9ee2a5f9db45723be6be7ebc544f44622b191bba76f3a7afc62d4d'
+ CONFIG = ROOT / 'var/research/gemma4-12b-native-launch-epoch1.json'
+ CONFIG_SHA = '03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812'
+ CPU_PROOF = ROOT / 'var/research/native-gemma4-12b-contract/cpu-carry-forward.json'
+@@ -17,7 +17,17 @@
+ 
+ 
+ def require_ready():
+-    raise ValueError('GEMMA12_CONTROLLER_FINAL_REVIEW_PENDING')
++    expected = (
++        ('var/research/gemma4_12b_runtime_probe.py', HELPER, HELPER_SHA),
++        ('var/research/gemma4-12b-native-launch-epoch1.json', CONFIG, CONFIG_SHA),
++        ('var/research/native-gemma4-12b-contract/cpu-carry-forward.json', CPU_PROOF, CPU_PROOF_SHA),
++    )
++    for relative, path, pin in expected:
++        if (path != ROOT / relative or type(pin) is not str
++                or re.fullmatch('[0-9a-f]{64}', pin) is None
++                or path.is_symlink() or not path.is_file() or path.stat().st_size > 2 * 1024 * 1024
++                or hashlib.sha256(path.read_bytes()).hexdigest() != pin):
++            raise ValueError('GEMMA12_CONTROLLER_BOUND_DEFINITION_MISMATCH')
+ 
+ 
+ def main():

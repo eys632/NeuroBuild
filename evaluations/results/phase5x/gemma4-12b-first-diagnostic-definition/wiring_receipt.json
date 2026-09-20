@@ -1,0 +1,45 @@
+{
+  "kind": "GEMMA12_FIRST_DIAGNOSTIC_COMPLETE_WIRING_SOURCE_REVIEW",
+  "status": "IMPLEMENTED_BUT_UNCONDITIONALLY_BLOCKED_PENDING_RUNTIME_PINS_AND_ROOT_REVIEW",
+  "sha256": {
+    "var/research/gemma12-first-diagnostic-draft/README.md": "24145188da60ad9cba80fb6cf8109038acdefc7e5652450983236d29ddc42c1f",
+    "var/research/gemma12-first-diagnostic-draft/contract.py": "cb5c6c7b9d254fd7e400bb9c7b503787607ffef6e1d0228d5376e612feaa5bcd",
+    "var/research/gemma12-first-diagnostic-draft/evidence.py": "ca242430da7a5fa57de93c1b2654e14eb89878e1af6b24a9fcd51e51b8d59b46",
+    "var/research/gemma12-first-diagnostic-draft/freeze_native_gemma12_diagnostic.py": "8fdae08ce15ef47e01bfa30411900a06fe8b69364fdeb0f64daee65fd9b17eee",
+    "var/research/gemma12-first-diagnostic-draft/replay_native_gemma12_exposed.py": "b96c007643e553bb99ad27d711dea62344976892dbd487419b400a280427ff49"
+  },
+  "core_functions_ast_equal_to_glm_and_gemma31": [
+    "load_snapshot",
+    "replay_row",
+    "replay_groups"
+  ],
+  "both_main_first_action_is_unconditional_gate": true,
+  "source_ancestor_commit": "fa3d337871f2d8078a6145b3a3632a0ddeab7ce6",
+  "actual_carry_sha256": "cb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f",
+  "regression_sha256": "f2b00ee159ab4f723f72af18d41413e54f8580a6e5af3f56a193e3f44e1c0988",
+  "remaining_substitutions": [
+    "RUNTIME_SHA(seven actual single-epoch receipts)",
+    "require_ready(root-reviewed explicit release)"
+  ],
+  "not_substitution_or_execution_claim": [
+    "Independent evaluation commit/snapshot SHA/freeze SHA remain required future replay CLI inputs.",
+    "Current helper definitions have only AST/source checks; no new fake or prior native suites run."
+  ],
+  "helper_imports": 0,
+  "helper_main_calls": 0,
+  "tests_run": 0,
+  "corpus_body_reads": 0,
+  "native_executions": 0,
+  "model_calls": 0,
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "result_replays": 0,
+  "freeze_publications": 0,
+  "runtime_definition_pins": {
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63",
+    "var/research/gemma12-runtime-carry-consumer-controls.json": "836f1421ca51f75d1db5a9fdd1732662e3c57d0dcf9f941dafd2f5a21b32677d",
+    "var/research/test_gemma12_runtime_carry_consumer.py": "dbd47e2ee642f3cc31c49827aeeed122a1b3a38441afe572da94d0db307e99fc",
+    "var/research/gemma12-runtime-activation-binding.json": "9e0db49c46bbd30d81fcb6001f749fc42124e87b6b160bdd75fa23d31b626f31",
+    "var/research/gemma12-runtime-activation.patch": "df845651f0fbfb00a8a8bc837db33f30468073e892c3b02896e25c567a18278f"
+  }
+}

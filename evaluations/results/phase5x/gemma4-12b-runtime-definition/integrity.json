@@ -1,0 +1,111 @@
+{
+  "kind": "GEMMA12_FIRST_RUNTIME_SAVED_EVIDENCE",
+  "quality_status": "NOT_RUN",
+  "files": {
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/launch_config.json": {
+      "original_path": "var/reports/gemma4-12b-native-startup-epoch1/launch_config.json",
+      "bytes": 1385,
+      "sha256": "03bef49517deff1a8410625569fa7566433db31b20b381d989e275814a71b812"
+    },
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/runtime_metadata.json": {
+      "original_path": "var/reports/gemma4-12b-native-startup-epoch1/runtime_metadata.json",
+      "bytes": 1357,
+      "sha256": "6efd2f49f7601ac80de0e0816d2cc5e2ed91c04ed7a211ea4d40bab87f2e5cd4"
+    },
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/resource_report.json": {
+      "original_path": "var/reports/gemma4-12b-native-startup-epoch1/resource_report.json",
+      "bytes": 5190,
+      "sha256": "cb35db98aae6b5bfcfd3c725f541418109f32e3824da03a2ce84226f8597604a"
+    },
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/listeners.json": {
+      "original_path": "var/reports/gemma4-12b-native-startup-epoch1/listeners.json",
+      "bytes": 592,
+      "sha256": "056f5a0ae82d83502edf76b83835092fa53fca7623f5f105f31c67bdb6604076"
+    },
+    "evaluations/results/phase5x/gemma4-12b-native-startup-epoch1/startup.json": {
+      "original_path": "var/reports/gemma4-12b-native-startup-epoch1/startup.json",
+      "bytes": 8891,
+      "sha256": "9949a39bb15dff4aa3d195f72f354b2055fb92407ab0a19b040f0f4842993213"
+    },
+    "evaluations/results/phase5x/gemma4-12b-native-public-smoke-epoch1/report.json": {
+      "original_path": "var/reports/gemma4-12b-native-public-smoke-epoch1/report.json",
+      "bytes": 7691,
+      "sha256": "042ed74b7c23ebcd084c36579fd39f4e5ca0680960a2b49da7d45f2e8b2d5e5f"
+    },
+    "evaluations/results/phase5x/gemma4-12b-native-resource-epoch1/report.json": {
+      "original_path": "var/reports/gemma4-12b-native-resource-epoch1/report.json",
+      "bytes": 8322,
+      "sha256": "b2edfb4c0fc73615a456b97547690b75138f01310a042fb8141767d3388666c5"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/gemma4_12b_runtime_probe.py": {
+      "original_path": "var/research/gemma4_12b_runtime_probe.py",
+      "bytes": 28462,
+      "sha256": "69c90fbbab9ee2a5f9db45723be6be7ebc544f44622b191bba76f3a7afc62d4d"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/run_native_gemma4_12b_epoch1_probe.py": {
+      "original_path": "var/research/run_native_gemma4_12b_epoch1_probe.py",
+      "bytes": 3778,
+      "sha256": "10ca99d2f7e70b3cd5d1e0019afaea1a87cf9c9aaa66845aa62cfef0077ad2b4"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/gemma4_12b_runtime_probe_blocked.py": {
+      "original_path": "var/research/gemma4_12b_runtime_probe_blocked.py",
+      "bytes": 27633,
+      "sha256": "11f764b4c7d824220e6b308773fa285127f37f5b31fc4d18ae1c2aeef9d6d255"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/run_native_gemma4_12b_epoch1_probe_blocked.py": {
+      "original_path": "var/research/run_native_gemma4_12b_epoch1_probe_blocked.py",
+      "bytes": 3149,
+      "sha256": "dc20beda8d0b7dd301b79750c131aeb89395f13091eb126491bd699cd7323283"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/gemma12-runtime-carry-consumer-controls.json": {
+      "original_path": "var/research/gemma12-runtime-carry-consumer-controls.json",
+      "bytes": 8568,
+      "sha256": "836f1421ca51f75d1db5a9fdd1732662e3c57d0dcf9f941dafd2f5a21b32677d"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/test_gemma12_runtime_carry_consumer.py": {
+      "original_path": "var/research/test_gemma12_runtime_carry_consumer.py",
+      "bytes": 5339,
+      "sha256": "dbd47e2ee642f3cc31c49827aeeed122a1b3a38441afe572da94d0db307e99fc"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/gemma12-runtime-activation-binding.json": {
+      "original_path": "var/research/gemma12-runtime-activation-binding.json",
+      "bytes": 1538,
+      "sha256": "9e0db49c46bbd30d81fcb6001f749fc42124e87b6b160bdd75fa23d31b626f31"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/gemma12-runtime-activation.patch": {
+      "original_path": "var/research/gemma12-runtime-activation.patch",
+      "bytes": 6246,
+      "sha256": "df845651f0fbfb00a8a8bc837db33f30468073e892c3b02896e25c567a18278f"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/startup-cli.log.txt": {
+      "original_path": "var/research/gemma12-native-epoch1-startup-cli.log",
+      "bytes": 559,
+      "sha256": "b2b17a94ec4bdf9b4562ca7776dfd230c1a11e1f71516711ea5f3c4aab57a80e"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/startup-cli.stderr.txt": {
+      "original_path": "var/research/gemma12-native-epoch1-startup-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/public-cli.log.txt": {
+      "original_path": "var/research/gemma12-native-epoch1-public-cli.log",
+      "bytes": 201,
+      "sha256": "8617f1706eec992b7428ddcdc596f829ba86d7216b8d4192f849b98f8f3f48dc"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/public-cli.stderr.txt": {
+      "original_path": "var/research/gemma12-native-epoch1-public-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/resource-cli.log.txt": {
+      "original_path": "var/research/gemma12-native-epoch1-resource-cli.log",
+      "bytes": 199,
+      "sha256": "cfdea04313669f9c984c7165ff3662662494eca5f0b3f0cd4a438630c615b11e"
+    },
+    "evaluations/results/phase5x/gemma4-12b-runtime-definition/resource-cli.stderr.txt": {
+      "original_path": "var/research/gemma12-native-epoch1-resource-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

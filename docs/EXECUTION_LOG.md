@@ -1284,3 +1284,23 @@ receiptcb2370d7a012b40fe62dae039551d9f8d37f4961aaaccc7a9845dd8bfdee0a2f.
 새 savedmetadata 합성 경계5개 PASS0.062초, receiptf88a0683dd138479051cf9d3f5bc7b2c85503641ce7c53f79237c409ebace6fb.
 Archive19entry/18exactcopies/302164B, integrityf33fa11f659eb0238ae3af330aab8f847bb2f060e4e09411dfb90446bb649d56.
 기존125 평가·재생/완료 runtime 검사/변경 없는418회귀 재실행0, 새GPU·모델·품질 호출0이다.
+
+
+### 2026-09-21 KST — Gemma12 최초 runtime과 단회 평가 동결
+
+CPU checkpointfa3d337871f2d8078a6145b3a3632a0ddeab7ce6 GitHub v2 push·원격일치 완료.
+새 consumer4controls 한 번 PASS, receipt836f1421ca51f75d1db5a9fdd1732662e3c57d0dcf9f941dafd2f5a21b32677d.
+Activation 변경분과 소비자 실행AST 불변을 읽기 검토했고 기존418회귀·native corpus는 반복하지 않았다.
+
+`CUDA_VISIBLE_DEVICES=3 .conda/bin/python scripts/llama_server.py --config var/research/gemma4-12b-native-launch-epoch1.json`
+최초 기동. 5×free36373/used3965/util0, margin7275, available29098, operational28672 admission PASS.
+Own guard3697642/start480286400, child3697702/start480288365, guardstart2026-09-20T15:48:00.053772+00:00.
+Saved ownidentityd8c5ba5d9f32775522dc176e7cae291d2398f17e915741210189fa95a8e06aa3.
+Controller startup/public/resource 각각1회 PASS; startup GET3, public POST1/2.601869003s,
+resource POST1/13.969568458s, tokens3328+768/cache4095, aggregatepeak7724/minfree28650MiB.
+Runtime7·collector/controls/CLI21copies119100B, integritya31e32f9618d81ad76d3e03204a92bc1fdda2610483dde3835e86b9ca6f2382d.
+
+Actual freezer1회 exit0, frozen67files, SHA3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c.
+Sourceancestorfa3d337, exactsource/datasetSHA/carry/new7sameepoch/418근거/1trial125calls/기존gate연결.
+Replaycore3 AST unchanged, finite120 int/float 유지. 품질응답 관측 전 정의를 고정했다.
+기존 평가·재생·startup/resource 반복0, 새 품질 호출은 아직0회다.

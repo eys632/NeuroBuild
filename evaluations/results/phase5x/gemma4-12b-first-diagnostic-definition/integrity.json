@@ -1,0 +1,58 @@
+{
+  "kind": "GEMMA12_FROZEN_DIAGNOSTIC_DEFINITION_ARCHIVE",
+  "files": {
+    "contract.py": {
+      "original_path": "var/research/gemma12-first-diagnostic-draft/contract.py",
+      "bytes": 15661,
+      "sha256": "74a3c237a55e27bd19d81a0e5cc7005f7909f8ba7c2246727a697c7ccae96f6f"
+    },
+    "evidence.py": {
+      "original_path": "var/research/gemma12-first-diagnostic-draft/evidence.py",
+      "bytes": 13062,
+      "sha256": "ca242430da7a5fa57de93c1b2654e14eb89878e1af6b24a9fcd51e51b8d59b46"
+    },
+    "freeze_native_gemma12_diagnostic.py": {
+      "original_path": "var/research/gemma12-first-diagnostic-draft/freeze_native_gemma12_diagnostic.py",
+      "bytes": 10344,
+      "sha256": "8fdae08ce15ef47e01bfa30411900a06fe8b69364fdeb0f64daee65fd9b17eee"
+    },
+    "replay_native_gemma12_exposed.py": {
+      "original_path": "var/research/gemma12-first-diagnostic-draft/replay_native_gemma12_exposed.py",
+      "bytes": 28157,
+      "sha256": "b96c007643e553bb99ad27d711dea62344976892dbd487419b400a280427ff49"
+    },
+    "README.md": {
+      "original_path": "var/research/gemma12-first-diagnostic-draft/README.md",
+      "bytes": 6309,
+      "sha256": "9d834fbf08ac55f34de784fef3806fe6b186a1e7d69c4f584e36219de45f6a78"
+    },
+    "activation.patch": {
+      "original_path": "var/research/gemma12-first-diagnostic-draft/activation.patch",
+      "bytes": 4323,
+      "sha256": "a3afe9d59463c0d2d59ada525fed878ff2a06c67bb517fc3b259aa301d10986d"
+    },
+    "activation_receipt.json": {
+      "original_path": "var/research/gemma12-first-diagnostic-draft/activation_receipt.json",
+      "bytes": 1561,
+      "sha256": "047e5adfff8bbc07b79029eed4bc0edac6af76181ca307ac70e104e047abe467"
+    },
+    "wiring_receipt.json": {
+      "original_path": "var/research/gemma12-first-diagnostic-draft/wiring_receipt.json",
+      "bytes": 2585,
+      "sha256": "d70b0876a1f047d31c0ca069b7fe110a9b09456a3f882d22bdfc79f8f445ae13"
+    },
+    "freeze-cli.log.txt": {
+      "original_path": "var/research/gemma12-first-diagnostic-freeze-cli.log",
+      "bytes": 281,
+      "sha256": "eb0f33bc8be68a41e270156ac437fb30c36115f9dbd5654871c6d6b320371b1c"
+    },
+    "freeze-cli.stderr.txt": {
+      "original_path": "var/research/gemma12-first-diagnostic-freeze-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "freeze_path": "evaluations/hardening_v1_exposed_native_gemma4_12b_diagnostic_freeze.json",
+  "freeze_sha256": "3d8ef116b569d660926c42b8f84834bed61c1fa5494122ae9181b0ec818d959c",
+  "quality_status": "NOT_RUN"
+}
