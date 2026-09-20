@@ -1,0 +1,73 @@
+{
+  "kind": "EXAONE45_CONDITIONAL_WHOLE_PEAK_SCREENING",
+  "recorded_at_utc": "2026-09-20T09:46:05.796017+00:00",
+  "status": "CONDITIONALLY_WITHIN_A100_BUDGET_NOT_MEASURED_NOT_START_AUTHORIZATION",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "provenance_sha256": "74ed2ba7b8b4e21c83269d795d8983a487c75b3f2e25865fc25c9143ccab09f8",
+  "assumptions": {
+    "context": 4096,
+    "sequences": 1,
+    "batch": 64,
+    "ubatch": 64,
+    "k_type": "f16",
+    "v_type": "f16",
+    "flash_attention": false,
+    "cuda_graphs": false,
+    "text_only": true,
+    "vision_mmproj": false,
+    "mtp_or_speculative": false,
+    "all_supported_model_layers_on_single_allowed_gpu": true,
+    "automatic_cpu_or_other_gpu_fallback": false
+  },
+  "terms_mib": {
+    "whole_gguf_weight_ceiling": 19120,
+    "f16_kv_allowance_65_full_layers": 1040,
+    "largest_single_f32_dequant": 3000,
+    "graph_activation_attention_output_allowance": 2048,
+    "cuda_driver_modules_handles_allowance": 1024,
+    "retained_pool_workspace_rounding_allowance": 1024,
+    "unmeasured_loading_fragmentation_allowance": 1416
+  },
+  "estimate_mib": 28672,
+  "extra_allowance_mib": 0,
+  "a100_policy": {
+    "baseline_free_mib": 36373,
+    "safety_margin_mib": 7275,
+    "candidate_budget_mib": 29098,
+    "remaining_after_estimate_and_margin_mib": 426,
+    "expected_free_after_peak_mib": 7701,
+    "arithmetic_condition_pass": true,
+    "fresh_baseline_and_active_watchdog_required": true
+  },
+  "source_supported_facts": [
+    "Main graph runs 64 layers; MTP layer tensors are skipped and not executed.",
+    "Normal context filters layer index below main layer count for both SW/global caches; expected full-context F16 KV is1024MiB, but1040 retained as conservative preheader allowance.",
+    "A single vocab153600 x hidden5120 F32 expansion is3000MiB; FFN27392 x hidden5120 F32 is535MiB.",
+    "CUDA fallback conversion allocates temporary tensors through a pool. Legacy pool can retain old buffers and grows requested sizes by about5%; VMM highwater and graph/handles must be budgeted."
+  ],
+  "not_source_proven_upper_bounds": [
+    "graph2048",
+    "driver/modules1024",
+    "pool/workspace1024",
+    "loading/fragmentation1416",
+    "whole28672"
+  ],
+  "required_before_any_start": [
+    "Actual pinned weight SHA, complete GGUF tensor/header/type/template/vocab verification",
+    "Native CPU chat-schema/final-content and tokenizer exactness checks, preserving any failures",
+    "Source-based plan adjustment if actual artifact differs",
+    "Fresh physical GPU3 free/margin plus unchanged own-process guard, then separately authorized startup and maximum-context resource measurement"
+  ],
+  "rtx5090": {
+    "status": "CURRENT_CONSERVATIVE_PLAN_DOES_NOT_FIT_32GIB_WITH_20_PERCENT_MARGIN",
+    "total_mib_nominal": 32768,
+    "allowed_at_80_percent_mib": 26214.4,
+    "estimate_exceeds_by_mib": 2457.6,
+    "not_a_claim_model_intrinsically_cannot_fit": true,
+    "actual_peak_and_sm120_build_unverified": true
+  },
+  "independent_source_reviewer": "/root/runtime_skeleton; source review communicated before final report publication, separate evidence file pending",
+  "actual_new_gpu_calls": 0,
+  "model_calls": 0,
+  "native_execution_calls": 0
+}

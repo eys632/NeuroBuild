@@ -1,0 +1,94 @@
+{
+  "kind": "EXAONE45_SOURCE_ONLY_FEASIBILITY",
+  "status": "CONDITIONAL_PLAN_NOT_RUNTIME_VALIDATED",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "gguf": {
+    "model_id": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+    "revision": "0e969634ef24db05151b435970297a6dee634b7e",
+    "filename": "EXAONE-4.5-33B-Q4_K_M.gguf",
+    "bytes": 20047839424,
+    "sha256": "5ba3839b67dcee5618ea7b2206cedc8f9e2ec90fbcec3c95a8cc8b33967f6baf",
+    "header_observed": false
+  },
+  "runtime_plan": {
+    "physical_gpu": 3,
+    "visible_device": 0,
+    "context": 4096,
+    "parallel": 1,
+    "batch": 64,
+    "ubatch": 64,
+    "cache_k": "f16",
+    "cache_v": "f16",
+    "flash_attention": false,
+    "cuda_graphs": false,
+    "vision_projector": false,
+    "speculative_mtp": false
+  },
+  "memory_mib": {
+    "weights_exact": 19119.10955810547,
+    "expected_kv64": 1024,
+    "planning_kv65": 1040,
+    "largest_f32_vocab_matrix": 3000,
+    "largest_f32_ffn_matrix": 535,
+    "one_f32_attention_plane_b64": 40,
+    "one_f32_ffn_activation_b64": 6.6875,
+    "qkv_activation_b64": 1.75,
+    "all64_logits": 37.5,
+    "components": {
+      "gguf_file_ceiling": 19120,
+      "f16_kv_including_one_extra_conservative_layer": 1040,
+      "largest_single_f32_dequantization": 3000,
+      "graph_and_intermediate_planning_allowance": 2048,
+      "cuda_driver_modules_handles_planning_allowance": 1024,
+      "pool_workspace_alignment_planning_allowance": 1024,
+      "loading_fragmentation_unknown_planning_allowance": 1416
+    },
+    "whole_planned": 28672,
+    "reference_free_not_fresh": 36373,
+    "reference_margin": 7275,
+    "reference_available": 29098,
+    "available_minus_plan": 426,
+    "reference_free_minus_plan": 7701,
+    "measured_peak": null,
+    "mathematically_proven_upper_bound": false
+  },
+  "metadata_sha256": {
+    "var/research/exaone45-33b-candidate-metadata/upstream/config.json": "29e21fcbfe95268e11a151577b6440d77385064b41c960aceff83a2b70eea090",
+    "var/research/exaone45-33b-candidate-metadata/upstream/chat_template.jinja": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+    "var/research/exaone45-33b-candidate-metadata/upstream/tokenizer.json": "0bd798efa30739e209d51f36cfc2f0a636711e37ad9d69b77e4e5c8ca5f09fab",
+    "var/research/exaone45-33b-candidate-metadata/gguf/LICENSE": "8c1762fb4bd94c8f17e114c5caa567e0948e1da7d02b79b55e99be9616e0f9e3",
+    "var/research/exaone45-33b-candidate-metadata/gguf/README.md": "7616b420f4f3861ae28d4eb8acbc0ac9f004fa4e33ea82b061579409ccc4cdba",
+    "var/research/exaone45-33b-candidate-metadata/candidate_download_manifest.json": "98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8",
+    "var/research/exaone45-33b-candidate-metadata/provenance.json": "74ed2ba7b8b4e21c83269d795d8983a487c75b3f2e25865fc25c9143ccab09f8"
+  },
+  "source_sha256": {
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/exaone.py": "9f3dd7859cf59bcf6e900560954fb094e931d603cd3d8b1300ec664ad778b356",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/exaone4.cpp": "6b71eec534bf3f56c25e67c1046f32c4eb598442fc441ded16e1d13cf38582f3",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-model.cpp": "530dff0cd544382346cc18520cbdb7d7a6f6743c35f7af52aae0bec11d18992a",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-kv-cache-iswa.cpp": "567fe836543e1dd9cdd5b7cb3a91afd049c17c7010f0bddf9fe149b02b5243cb",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-vocab.cpp": "82e8996cbbd81c1648b1f4946b5f481138aa897a1343dcd8b1a4abe8cff0b5fc",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-sampler.cpp": "30b739d8d2bab2c57d5bdb9d082cb115f9942d9668871501506360b55c3360a0",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat.cpp": "ed5db316e93459c6528526633b11943f4b4611634c773b4eab30a66c1f4a91b3",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat.h": "12b3f8a287698b1b5f3f4e020e52162f5026b06596b55946fa865a4a0b3c4abc",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/jinja/lexer.cpp": "3d6774bc2dac477e10ddbee69eff403df36f5925c8512ccf8a249bde5c26dbd7",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/sampling.cpp": "f23f8d663932bfd73abac1bd5e99055fc6efb07e21ef27dd7e25af2f2da40bff",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/ggml-cuda.cu": "af947e45946d0c47cfae9e056f589a25b61892e4273decf0a893e2dcad48d065",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/mmq.cu": "a35bb96dfc917c9026023482e24dcf47539fc08ccee1bb4236f40932e9fe540e",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/common.cuh": "a210a71f965419ab55cce071b900df118c2520c1566ea5e068d8be07805644a2"
+  },
+  "actions": {
+    "model_calls": 0,
+    "http_model_calls": 0,
+    "gpu_calls": 0,
+    "native_binary_calls": 0,
+    "compile_calls": 0,
+    "weight_downloads": 0,
+    "package_installs": 0
+  },
+  "limits": [
+    "GGUF header, actual storage dtypes and tokenizer_pre unobserved",
+    "Planning allowances are not measured values or proven maxima",
+    "No runtime, tokenizer, schema, context, resource, quality, or RTX pass asserted",
+    "Current disk reserve failed per metadata agent; no deletion performed"
+  ]
+}

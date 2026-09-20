@@ -1,0 +1,16 @@
+{
+  "status": "PASS_PREDOWNLOAD_ONLY",
+  "manifest_sha256": "98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8",
+  "helper_sha256": "5899fddcd789aa0aeb356d2f66f4d6c0dcceb1e2a6e3960330dd16fb19df49b1",
+  "cleanup_report_sha256": "361bdaf23bf437d1bd5eced87bf74141caa42e814f58411f32455e37eb6678a9",
+  "initial_free_bytes": 45774725120,
+  "manifest_bytes": 20047878049,
+  "predicted_remaining_bytes": 25726847071,
+  "reserve_and_buffer_bytes": 22011707392,
+  "focused_cpu_tests": {
+    "count": 3,
+    "status": "PASS",
+    "log_sha256": "239573c1665ba0d20880d981ec7058ee3d44a42932e841724fdcee3ca672055d"
+  },
+  "gpu_or_native_or_model_execution": false
+}

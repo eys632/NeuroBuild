@@ -897,3 +897,40 @@ Checkpoint 검토: 원본49/49, snapshot29/29 Git bytes/OID/mode, freeze143/143�
 새 archive50파일 hash, 문서 링크/secret pattern/환경·weight·binary 제외 검증 PASS.
 고정 snapshot model_guard.py의 기존 EOF blank1개는 exact Git blob 보존 예외로 기록하고 수정하지 않았다.
 그 외 staged 공백 오류0. 제품 source 변경0, 테스트/모델 재호출0.
+
+
+### 2026-09-20 — Gemma 실패 원격 checkpoint 후 EXAONE 후보 준비
+
+Commit f46b2cfe2c81769a10df06a92a4a28f1c4a72f84를 origin v2에 push하고 ls-remote와 exact 일치 확인.
+새 후보 공식 metadata12,389,867B를 고정하고 native text converter/loader 지원과 전체28672MiB 계획을
+독립 검토했다. NC 내부 연구 범위/실제 header·NFC·generic chat contract 미검증/RTX예산미달을 기록한다.
+한국어 sampling T.6/P.95/K20/presence1.5와 nativewindow64/penalties-first를 별도profile로 구현 중이다.
+
+디스크 부족은 비활성 Gemma GGUF 한 파일17,651,001,568B만 회수해 해결했다.
+ExactSHA179cfb…874b, ownUID/regular/nlink1/no-symlink/inode-size-times, sharedlock,
+자체종료SHA526e…01ed 및 fullhash 전후 ownFD/maps 사용 없음 확인. 타인proc내용 접근/신호0.
+동일UID 로그인 서비스3개의 maps/fd 권한제한은 기존 인프라 allowlist만 예외로 보고서에 남겼다.
+평가/metadata/manifest/header/CPU/runtime/freeze 모두 유지했고 복원 명령을 보존했다.
+CleanupSHA361bdaf23bf437d1bd5eced87bf74141caa42e814f58411f32455e37eb6678a9.
+
+EXAONE manifestSHA98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8,
+고정파일3개20,047,878,049B. Fresh free45,774,725,120B→예상25,726,847,071B>floor22,011,707,392B.
+재사용 download helper의7함수 AST동일, candidate/cleanup identity만 변경한3개 CPU검사 PASS0.016s.
+EmptyCUDA/2초diskguard/1800초한도/기존자체childcleanup으로 다운로드를 시작했다. GPU/modelcalls0.
+이 기록은 시작 상태이며 완료 payloadSHA나 runtime PASS를 주장하지 않는다.
+
+
+EXAONE profile 구현 검증: 신규 fake-opener8개 PASS0.276s, 기존33 wire byte동일/21 invalid동일,
+canonicalparser/generationadapter 불변. Root 첫 full403은 기존 native조합 test의 EXAONE allowlist 누락으로
+failure1+동일실패 후 exception-context error1,21.320s였다. 원본로그 SHA14920b53729aadf26021691117fc20f3d88ccfe38ca6a33f7cf04b4ee6cf9131 보존.
+기존조합검사를 신규명시 profile에 맞춰 수정하고 assertRaises 범위를 subTest 안에 두었다.
+Focused 해당1검사 PASS0.023s 뒤 root full403/skip0 PASS20.417s. 실제 PostgreSQL/IfcOpenShell,
+DISPLAY/WAYLAND unset/emptyCUDA, 모델·GPU호출0. 새필요수정/실패에 따른 재실행이며 완료평가 반복이 아니다.
+Regress receipt/source SHA는 exaone45-preparation/regression.json에 보존한다.
+
+준비 checkpoint 검토: archive18파일 hash/원본17개 bytes 일치, active문서 링크/secret pattern/weight·환경·binary 제외 PASS.
+공식 LICENSE/card/template3개에 원래 있는 공백24건은 고정 공식 bytes 보존 예외이며 재서식하지 않았다.
+제품 코드와 새 문서의 공백 오류0.
+
+독립 production 읽기검토 PASS: 명시native profile/정확model·quant pairing, 기존wire·parser·scorer 유지,
+reasoning 폐기/no-retry 및 조합거절 테스트 보존을 확인했다. Native실제sampler/tokenizer/grammar gate와구분한다.

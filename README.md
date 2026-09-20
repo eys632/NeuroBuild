@@ -2,7 +2,7 @@
 
 A100과 RTX5090에서 같은 Application 코드를 사용하는 BIM 시스템의 greenfield rewrite.
 현재 **Phase0~5 원격 checkpoint 완료**, **Phase5.x 미완료·모델 미채택·Phase6 미시작**이다.
-전체 회귀 테스트는 **395개 PASS, skip 0**이며 PostgreSQL/IfcOpenShell과 headless 조건을 포함한다.
+전체 회귀 테스트는 **403개 PASS, skip 0**이며 PostgreSQL/IfcOpenShell과 headless 조건을 포함한다.
 Qwen3.8-27B 단회120개는 semantic117/120, rawFP0/58, unsafe0/120으로 첫 gate를 통과했다.
 Warmup 포함125개 독립 재생 PASS를 보존하고 반복하지 않았다. 이후 V2 단회80개는
 semantic73/80, rawFP1/40, unsafe1/80으로 실패했다.

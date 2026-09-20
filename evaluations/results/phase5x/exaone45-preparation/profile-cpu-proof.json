@@ -1,0 +1,232 @@
+{
+  "kind": "EXAONE_PROFILE_CPU_WIRE_REGRESSION",
+  "status": "PASS",
+  "baseline_commit": "f46b2cfe2c81769a10df06a92a4a28f1c4a72f84",
+  "focused_tests": {
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 0.276,
+    "transport": "fake opener; no sockets"
+  },
+  "legacy_request_bytes_equal": 33,
+  "legacy_invalid_combinations_equal": 21,
+  "legacy_requests": [
+    {
+      "contract": "1.0",
+      "profile": "legacy_greedy",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "3ed8d7ea1967f511c09c0b19cc0fd6bf2e4b192568fcb65938569544301af2a6"
+    },
+    {
+      "contract": "1.0",
+      "profile": "legacy_greedy",
+      "protocol": "structured_outputs",
+      "request_sha256": "8357e1a451c24652ace7331de11467cde4b01015775c9ecf3fab3694d8b92db0"
+    },
+    {
+      "contract": "1.0",
+      "profile": "legacy_greedy",
+      "protocol": "llama_cpp_json_schema",
+      "request_sha256": "3c8134d414723d2c4defbdc645e4a27cd4b76cbdf4ace8c0253bbc71cdfeeae5"
+    },
+    {
+      "contract": "1.0",
+      "profile": "qwen3_nonthinking",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "68c17d62ef16a1be4535fcbb4b2fe6f19c4bd6dc2dd89608cc801b576fd41c0b"
+    },
+    {
+      "contract": "1.0",
+      "profile": "qwen3_nonthinking",
+      "protocol": "structured_outputs",
+      "request_sha256": "9761d56dde3340eae3b76d8eaa5186610777ee969d81964304477d4e8cb9189d"
+    },
+    {
+      "contract": "1.0",
+      "profile": "qwen3_nonthinking_awq",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "18872ae122f017f4181bc749bcf4fe9fef2c7d0c94eeaeae922e1db0db773f1c"
+    },
+    {
+      "contract": "1.0",
+      "profile": "qwen3_nonthinking_awq",
+      "protocol": "structured_outputs",
+      "request_sha256": "cc2a11c2f66ed3ce9ebf635a6c2a5299c47a57c6f4ffaa5fd517d7fc456b1ba7"
+    },
+    {
+      "contract": "1.0",
+      "profile": "qwen3_thinking_awq",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "99963b1881936e6082124dc21ec61180e3392ff62c2cabeb5f473c501c36a781"
+    },
+    {
+      "contract": "1.0",
+      "profile": "qwen3_thinking_awq",
+      "protocol": "structured_outputs",
+      "request_sha256": "3d38060412d8e2402062f4177c974e724eb4040a703c03e187133767606009a1"
+    },
+    {
+      "contract": "1.0",
+      "profile": "qwen38_nonthinking_llama_cpp",
+      "protocol": "llama_cpp_json_schema",
+      "request_sha256": "4c5f670dc2e0949f69d7a09fd8d20e6b3211606b5490abe7fa4f6a6e2ebe3bed"
+    },
+    {
+      "contract": "1.0",
+      "profile": "gemma4_nonthinking_llama_cpp",
+      "protocol": "llama_cpp_json_schema",
+      "request_sha256": "ece2cc79236089cf4e167cf2a40f1231cc7c786cc4365b28e517bf950365985e"
+    },
+    {
+      "contract": "2.0",
+      "profile": "legacy_greedy",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "c74a216cae4374d0fb2bba898b59663b17b867b7e146d5e4feb251ca6ce66130"
+    },
+    {
+      "contract": "2.0",
+      "profile": "legacy_greedy",
+      "protocol": "structured_outputs",
+      "request_sha256": "6beb141595da9f3a63eb3682eb6507db0e420801b93310431974e71aa6e8812a"
+    },
+    {
+      "contract": "2.0",
+      "profile": "legacy_greedy",
+      "protocol": "llama_cpp_json_schema",
+      "request_sha256": "fdc371a657ad98c27a41b461589c8cb844db62beaf5ed2674dd9814f137072c4"
+    },
+    {
+      "contract": "2.0",
+      "profile": "qwen3_nonthinking",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "df0dd8071dce9e722e5009766148908295eaa76def4c3b85b16290a31e18c02c"
+    },
+    {
+      "contract": "2.0",
+      "profile": "qwen3_nonthinking",
+      "protocol": "structured_outputs",
+      "request_sha256": "81a7e5fd074c0488e38219a741502b816ed4aae816a72c7716e15745113f5c8c"
+    },
+    {
+      "contract": "2.0",
+      "profile": "qwen3_nonthinking_awq",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "77e79286867056d4e7550da8eaf6d8c9ac1e9d2ce4496bf63e36bbb4f57ae625"
+    },
+    {
+      "contract": "2.0",
+      "profile": "qwen3_nonthinking_awq",
+      "protocol": "structured_outputs",
+      "request_sha256": "8d92c96ca1cc89dc69bdb8293fadcc6a4920f3a6af704c257fba3350ac8ff6c6"
+    },
+    {
+      "contract": "2.0",
+      "profile": "qwen3_thinking_awq",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "bbe17ee94ef52eda4f4accd7eac4e90c008db6fe1ff710569bf79e672b3db99d"
+    },
+    {
+      "contract": "2.0",
+      "profile": "qwen3_thinking_awq",
+      "protocol": "structured_outputs",
+      "request_sha256": "694ab14ed1fb5556767ab8713df8eb5d16b5662c874abf6dcc88d0ae35c4bc6e"
+    },
+    {
+      "contract": "2.0",
+      "profile": "qwen38_nonthinking_llama_cpp",
+      "protocol": "llama_cpp_json_schema",
+      "request_sha256": "e472808ce4ddc018f1fa25fd2632cf26135c105a46c63e9a099778b50cb86944"
+    },
+    {
+      "contract": "2.0",
+      "profile": "gemma4_nonthinking_llama_cpp",
+      "protocol": "llama_cpp_json_schema",
+      "request_sha256": "bb136343bbdeefb8070d3fe1d88eceeeecb5c274660fe111259dfc649e4b5378"
+    },
+    {
+      "contract": "3.0",
+      "profile": "legacy_greedy",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "3ac11cb6eaf68c0db3cee7383ffb1f8c9c17e2095a5e3d57b870283696d6b06b"
+    },
+    {
+      "contract": "3.0",
+      "profile": "legacy_greedy",
+      "protocol": "structured_outputs",
+      "request_sha256": "b440e788978086612c4a836b11decbdd6b4f9b9e97a07b980e78052903a93848"
+    },
+    {
+      "contract": "3.0",
+      "profile": "legacy_greedy",
+      "protocol": "llama_cpp_json_schema",
+      "request_sha256": "2dd7c4953d2107157a6103133333067045974d796418940373cb648c29d0a71a"
+    },
+    {
+      "contract": "3.0",
+      "profile": "qwen3_nonthinking",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "c65c7f8429938c953bcf0c1f86a1f243367cbf8b0cf4484fe0bca1fd44e295aa"
+    },
+    {
+      "contract": "3.0",
+      "profile": "qwen3_nonthinking",
+      "protocol": "structured_outputs",
+      "request_sha256": "fbecd9082172c9663a259904b89e395b4c3662bb2773b5f0664be4f1a7efebe0"
+    },
+    {
+      "contract": "3.0",
+      "profile": "qwen3_nonthinking_awq",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "62d4cc9202a1250c82cd91f1be9d61435e03949d9b68d7c48e32bbc08b717d39"
+    },
+    {
+      "contract": "3.0",
+      "profile": "qwen3_nonthinking_awq",
+      "protocol": "structured_outputs",
+      "request_sha256": "cced86033df82b7ca0a4afdaa8e35b4648bc9041b1c3be3f48fb971cb7cf7fad"
+    },
+    {
+      "contract": "3.0",
+      "profile": "qwen3_thinking_awq",
+      "protocol": "legacy_guided_json",
+      "request_sha256": "a3d601390c0e6edaafef94545d449ddb88fa020a2134592ab494d3b584d3d055"
+    },
+    {
+      "contract": "3.0",
+      "profile": "qwen3_thinking_awq",
+      "protocol": "structured_outputs",
+      "request_sha256": "92fe9e8011e9e9a53497284971bd394df0cc71ecf1b3acb97f554b21fc920b48"
+    },
+    {
+      "contract": "3.0",
+      "profile": "qwen38_nonthinking_llama_cpp",
+      "protocol": "llama_cpp_json_schema",
+      "request_sha256": "75ef30ca71ef5d88ab9a79e9a3f248da73b35d2977ddcd13f3405dfb90ae6c57"
+    },
+    {
+      "contract": "3.0",
+      "profile": "gemma4_nonthinking_llama_cpp",
+      "protocol": "llama_cpp_json_schema",
+      "request_sha256": "3d03da35efa2d740cd7682b2218abf6bd53372e5e3d4622d4a1d797d7cf8d772"
+    }
+  ],
+  "source_sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "48276a8f9cb7a2a818a9f12e7f86b2b53f525a37de61a1be70fe73648f07c151",
+    "scripts/evaluate_requirements.py": "48734d5fda8069efe9bd927387cf6cf04fa4167f7a4d028f13509476a0511fef",
+    "tests/test_local_model.py": "8346b88874e4fdd0039be270dd296df0eb8f51ad577fabecd7ef2cce53c89273",
+    "tests/test_native_requirement_evaluation.py": "b89e727e51104cd5a49053b5cfcf63878f77d9137acc64ebe36510ecb1b41154"
+  },
+  "unchanged_parser_sha256": {
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a"
+  },
+  "evaluator_changed_functions": [
+    "build_manifest"
+  ],
+  "model_calls": 0,
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "native_binary_calls": 0,
+  "holdout_files_read": 0
+}

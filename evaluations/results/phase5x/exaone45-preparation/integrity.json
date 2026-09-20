@@ -1,0 +1,45 @@
+{
+  "kind": "EXAONE45_CANDIDATE_PREPARATION_NOT_RUNTIME_VALIDATED",
+  "sha256": {
+    "candidate_review.md": "1921a4f5f7e4b42c14f1c0b576eddc41552dc78a660faf2a638eaf13ee6d8fde",
+    "cleanup_gemma4.json": "361bdaf23bf437d1bd5eced87bf74141caa42e814f58411f32455e37eb6678a9",
+    "cleanup_unused_gemma4_cache.py": "9daa7da50c5010caf775f10a12fa7abf4e62571a8fecb1cc8c555666b49db2fc",
+    "download_exaone45_guarded.py": "5899fddcd789aa0aeb356d2f66f4d6c0dcceb1e2a6e3960330dd16fb19df49b1",
+    "download_identity_cpu_tests.log": "239573c1665ba0d20880d981ec7058ee3d44a42932e841724fdcee3ca672055d",
+    "native_feasibility_numbers.json": "ffea32e0db61e65a3ff321b7505afde19d8c588671a675b68293b37f10024dc8",
+    "native_feasibility_review.md": "0f4d38283244cee89c90854b3792ebb2bf0e8bad2dba893178a8005360c0916b",
+    "official/LICENSE": "8c1762fb4bd94c8f17e114c5caa567e0948e1da7d02b79b55e99be9616e0f9e3",
+    "official/README.md": "7616b420f4f3861ae28d4eb8acbc0ac9f004fa4e33ea82b061579409ccc4cdba",
+    "official/chat_template.jinja": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+    "official/config.json": "29e21fcbfe95268e11a151577b6440d77385064b41c960aceff83a2b70eea090",
+    "official/generation_config.json": "3d8c4567a8962ae9c8ba8fad85b8c2c3d8451a68b54fe88f81d79a9468012190",
+    "predownload_plan.json": "70c6a724567568d6f188887c12d50a048ba4b08d408b9589f492caf70f52376c",
+    "resource_screening_addendum.json": "571ef5b66073f3eef8497c601cce9a0ebe774191b5b30c2c989c1c9988eb1588",
+    "test_download_exaone45_identity.py": "6142c1b847c2202b53562515f46036a588f5a64f8031f303caa2a9c7120570df",
+    "regression.json": "a54711796ee37da778ca075903a19408035d12c5da45daf2bc032f9263fdb187",
+    "profile-cpu-proof.json": "03ba52e6defe6056b19f4c301c1d7bd57de98bf8f56f5e7a19af14dab9b4f4c8",
+    "profile_implementation_report.md": "aa7b6f9aad5279de7ee4e707c99f24ba91fd76b3250770a43d6da4deeb576d06"
+  },
+  "source_paths": {
+    "candidate_review.md": "var/research/exaone45-33b-candidate-metadata/candidate_review.md",
+    "native_feasibility_review.md": "var/research/exaone45_native_feasibility_review.md",
+    "native_feasibility_numbers.json": "var/research/exaone45_native_feasibility_numbers.json",
+    "resource_screening_addendum.json": "var/research/exaone45-33b-candidate-metadata/resource_screening_addendum.json",
+    "cleanup_gemma4.json": "var/reports/unused-gemma4-weight-cache-cleanup.json",
+    "cleanup_unused_gemma4_cache.py": "var/research/cleanup_unused_gemma4_cache.py",
+    "download_exaone45_guarded.py": "var/research/download_exaone45_guarded.py",
+    "test_download_exaone45_identity.py": "var/research/test_download_exaone45_identity.py",
+    "download_identity_cpu_tests.log": "var/research/exaone45-download-identity-cpu-tests.log",
+    "predownload_plan.json": "var/research/exaone45-predownload-plan.json",
+    "official/LICENSE": "var/research/exaone45-33b-candidate-metadata/gguf/LICENSE",
+    "official/README.md": "var/research/exaone45-33b-candidate-metadata/gguf/README.md",
+    "official/config.json": "var/research/exaone45-33b-candidate-metadata/upstream/config.json",
+    "official/generation_config.json": "var/research/exaone45-33b-candidate-metadata/upstream/generation_config.json",
+    "official/chat_template.jinja": "var/research/exaone45-33b-candidate-metadata/upstream/chat_template.jinja",
+    "profile-cpu-proof.json": "var/research/exaone45-profile-cpu-proof.json",
+    "profile_implementation_report.md": "var/research/exaone45_profile_implementation_report.md"
+  },
+  "notes": [
+    "regression.json is a checkpoint receipt for original retained logs; profile-cpu-proof reflects the earlier eight-test state before the separately documented old mixed-profile test update."
+  ]
+}

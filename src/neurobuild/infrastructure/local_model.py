@@ -115,6 +115,7 @@ class SamplingProfile(StrEnum):
     QWEN3_THINKING_AWQ = "qwen3_thinking_awq"
     QWEN38_NONTHINKING_LLAMA_CPP = "qwen38_nonthinking_llama_cpp"
     GEMMA4_NONTHINKING_LLAMA_CPP = "gemma4_nonthinking_llama_cpp"
+    EXAONE45_NONTHINKING_LLAMA_CPP = "exaone45_nonthinking_llama_cpp"
 
 
 class LocalJSONCompletionClient:
@@ -140,7 +141,8 @@ class LocalJSONCompletionClient:
         except ValueError:
             _error("LOCAL_MODEL_CONFIG_INVALID")
         native_profiles = (SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP,
-                           SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP)
+                           SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP,
+                           SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP)
         if (self._sampling_profile in native_profiles
                 and self._protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA):
             _error("LOCAL_MODEL_CONFIG_INVALID")
@@ -235,6 +237,15 @@ class LocalJSONCompletionClient:
                     "presence_penalty": 0.0, "frequency_penalty": 0.0,
                     "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
                     "samplers": ["temperature", "top_k", "top_p", "min_p"]}
+        if self.sampling_profile is SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP:
+            # Official Korean recipe: temperature/top_p/top_k/presence penalty.
+            # Window 64 and active sampler order follow pinned native defaults;
+            # penalties see both prompt and generated tokens. Other fields are
+            # our explicit settings, not additional model-card recommendations.
+            return {"temperature": 0.6, "top_p": 0.95, "top_k": 20, "min_p": 0.0,
+                    "presence_penalty": 1.5, "frequency_penalty": 0.0,
+                    "repeat_penalty": 1.0, "repeat_last_n": 64, "seed": 42,
+                    "samplers": ["penalties", "top_k", "top_p", "min_p", "temperature"]}
         _error("LOCAL_MODEL_CONFIG_INVALID")
 
     def complete(self, source_text: str, *, axis_convention: str | None = None) -> Completion:

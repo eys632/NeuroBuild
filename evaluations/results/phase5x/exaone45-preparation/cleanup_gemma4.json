@@ -1,0 +1,64 @@
+{
+  "kind": "REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_GEMMA4_WEIGHT_CACHE",
+  "state": "COMPLETE",
+  "started_at_utc": "2026-09-20T09:50:13.109948+00:00",
+  "model_id": "google/gemma-4-31B-it-qat-q4_0-gguf",
+  "revision": "59dde24573e7e61570dba08b18a2e1fe246955ed",
+  "manifest_sha256": "16d471fc5bb8ae266015d73b0a648e2b576dab6e6e453de8c28fdc0f1a8a6e3c",
+  "shutdown_report_sha256": "526e5247cc6eb881a0ef364f5e97a9c5bc7e8732224cf5796b0264174e2501ed",
+  "native_build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "own_process_inspection": {
+    "maps_and_descriptors_checked": 39,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3313268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3543803,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "free_before_bytes": 28125577216,
+  "removed_files": [
+    {
+      "name": "gemma-4-31B_q4_0-it.gguf",
+      "bytes": 17651001568,
+      "sha256": "179cfb99212709597eae5929112cfca677e1bbf566178b479ae1da0c4772874b"
+    }
+  ],
+  "restore_command": ".conda/bin/python scripts/download_model.py runtime/models/gemma4-31b-qat-q4-0.json",
+  "scope": "One same-UID regular single-link cache file only; all metadata, manifests and evaluation results retained",
+  "foreign_processes_or_files_changed": false,
+  "own_process_inspection_before_unlink": {
+    "maps_and_descriptors_checked": 39,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3313268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3543803,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "removed_bytes": 17651001568,
+  "free_after_bytes": 45775863808,
+  "finished_at_utc": "2026-09-20T09:51:08.308940+00:00"
+}

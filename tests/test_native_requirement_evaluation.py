@@ -227,6 +227,50 @@ class NativeRequirementEvaluationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             runtime_metadata(self.runtime)
 
+    def exaone_client(self):
+        return LocalRequirementClient(
+            "http://127.0.0.1:8003", "synthetic-native", generation_contract=GenerationContract.QUOTES,
+            prompt_path=self.kwargs["prompt"], schema_path=self.kwargs["schema"],
+            protocol="llama_cpp_json_schema", sampling_profile="exaone45_nonthinking_llama_cpp")
+
+    def test_exaone_manifest_records_exact_model_and_non_neutral_native_presence_recipe(self):
+        weights = deepcopy(self.weight_data)
+        weights["model_id"] = "LGAI-EXAONE/EXAONE-4.5-33B-GGUF"
+        weights["files"][0]["name"] = "EXAONE-4.5-33B-Q4_K_M.gguf"
+        self.weights.write_text(json.dumps(weights))
+        client = self.exaone_client()
+        with patch.object(client, "complete") as transport:
+            manifest = build_manifest(client, **self.kwargs)
+        transport.assert_not_called()
+        self.assertEqual(manifest["model_id"], weights["model_id"])
+        self.assertEqual(manifest["runtime"]["quantization"], "Q4_K_M")
+        protocol = manifest["protocol"]
+        self.assertEqual(protocol["sampling_profile"], "exaone45_nonthinking_llama_cpp")
+        self.assertEqual(protocol["sampling_request_parameters"], client.sampling_parameters)
+        self.assertEqual(protocol["sampling_request_parameters"]["repeat_last_n"], 64)
+        self.assertEqual(protocol["sampling_request_parameters"]["presence_penalty"], 1.5)
+        self.assertEqual(protocol["sampling_request_parameters"]["samplers"][0], "penalties")
+        self.assertFalse(protocol["enable_thinking"])
+
+    def test_exaone_model_identity_cannot_cross_pair_with_other_native_profiles(self):
+        exaone = "LGAI-EXAONE/EXAONE-4.5-33B-GGUF"
+        for client, model_id, quantization in (
+            (self.exaone_client(), exaone, "Q4_0"),
+            (self.exaone_client(), self.weight_data["model_id"], "Q4_K_M"),
+            (self.exaone_client(), "google/gemma-4-31B-it-qat-q4_0-gguf", "Q4_0"),
+            (self.exaone_client(), "other/EXAONE-4.5-33B-GGUF", "Q4_K_M"),
+            (self.exaone_client(), exaone + "-copy", "Q4_K_M"),
+            (self.client, exaone, "Q4_K_M"),
+            (self.gemma_client(), exaone, "Q4_0"),
+        ):
+            with self.subTest(profile=client.sampling_profile, model_id=model_id, quantization=quantization):
+                self.weights.write_text(json.dumps(dict(self.weight_data, model_id=model_id)))
+                self.write_runtime(dict(native_metadata(), quantization=quantization))
+                with patch.object(client, "complete") as transport:
+                    with self.assertRaisesRegex(ValueError, "exact model ID and quantization"):
+                        build_manifest(client, **self.kwargs)
+                transport.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

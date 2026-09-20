@@ -322,3 +322,22 @@ GPU3 최종 aggregate peak18864/minfree17510MiB, 종료 후5회 free36373/used39
 Production source가 그대로여서 직전395 regression PASS는 유효하고 suite를 반복하지 않는다.
 새 archive의 exact bytes/hash/source snapshot/freeze·문서 일관성 검증을 checkpoint 조건으로 둔다.
 비필수 runtime 최적화는 future optimization이며 Phase5.x 미완료·Phase6 미시작이다.
+
+
+## D040 — EXAONE4.5 조건부 연구 비교와 명시한 한국어 sampling
+
+Gemma 첫 안전 gate 실패 뒤 다른 공식 모델 계열 EXAONE4.5-33B Q4_K_M을 조건부 사전 검증한다.
+NC 라이선스의 내부 비상업 연구 평가 범위이며 상업 제품·외부 배포 허가를 가정하지 않는다.
+전체28672MiB 계획은 GPU3의 과거 free 기준예산29098MiB 안이지만 hard bound나 실행 PASS가 아니다.
+현재 RTX32GiB에 동일 margin을 적용하면 계획이 맞지 않으며 공통 source와 별개로 미검증 한계다.
+
+공식 한국어 권고 T.6/P.95/K20/presence1.5를 별도 명시 profile로 선택한다.
+Native default window64와 활성순서 penalties→top_k→top_p→min_p→temperature,
+neutral repeat1/frequency0/min_p0/seed42는 프로젝트 고정 조건이다. Prompt+generated history에 적용된다.
+Presence 숫자만 넣고 penalties/window를 비활성화한 기존 profile을 그대로 재사용하지 않는다.
+공식 text-only T1/P.95와 구분하고 old wire/scorer/parser/prompt/gold/gate는 보존한다.
+
+비활성 Gemma weight 한 파일만 재다운로드 가능성·SHA·소유·미사용·독점lock 확인 후 회수했고
+모든 평가/재현 증거는 보존했다. Fresh disk reserve 확인 뒤 고정manifest download를 수행한다.
+새 모델별 header/공식tokenizer·template·grammar/최대context와 실제wholepeak는 여전히 gate다.
+공통 runtime 완료 검사는 반복하지 않으며 첫 품질 진단도 사전동결·원격checkpoint 후 한 번만 수행한다.

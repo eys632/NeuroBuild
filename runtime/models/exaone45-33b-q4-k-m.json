@@ -1,0 +1,23 @@
+{
+  "model_id": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+  "revision": "0e969634ef24db05151b435970297a6dee634b7e",
+  "license": "EXAONE-AI-Model-License-1.2-NC",
+  "source": "https://huggingface.co/api/models/LGAI-EXAONE/EXAONE-4.5-33B-GGUF/revision/0e969634ef24db05151b435970297a6dee634b7e?blobs=true",
+  "files": [
+    {
+      "name": "LICENSE",
+      "bytes": 13288,
+      "sha256": "8c1762fb4bd94c8f17e114c5caa567e0948e1da7d02b79b55e99be9616e0f9e3"
+    },
+    {
+      "name": "README.md",
+      "bytes": 25337,
+      "sha256": "7616b420f4f3861ae28d4eb8acbc0ac9f004fa4e33ea82b061579409ccc4cdba"
+    },
+    {
+      "name": "EXAONE-4.5-33B-Q4_K_M.gguf",
+      "bytes": 20047839424,
+      "sha256": "5ba3839b67dcee5618ea7b2206cedc8f9e2ec90fbcec3c95a8cc8b33967f6baf"
+    }
+  ]
+}

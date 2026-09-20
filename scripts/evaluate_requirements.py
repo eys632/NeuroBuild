@@ -526,6 +526,7 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
         native_candidates = {
             SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP: ("ggml-org/Qwen3.8-27B-GGUF", "Q4_K_M"),
             SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP: ("google/gemma-4-31B-it-qat-q4_0-gguf", "Q4_0"),
+            SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP: ("LGAI-EXAONE/EXAONE-4.5-33B-GGUF", "Q4_K_M"),
         }
         if client.sampling_profile not in native_candidates:
             raise ValueError("Native evaluation requires the explicitly planned native sampling profile")

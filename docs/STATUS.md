@@ -7,13 +7,13 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 검증·진단 동결 `eb60307cfeaf477f62cbef2e10e23853500bd3db` push·원격 일치 확인. 이 checkpoint는 Gemma 실패 원본·종료 증거 보존 |
+| GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 보존 `f46b2cfe2c81769a10df06a92a4a28f1c4a72f84` push·원격 일치 확인 |
 | 현재 작업 | **Gemma4 실패 보존 후 다른 공식 모델의 조건부 비교** |
 | 최근 후보 | Gemma4-31B QAT Q4_0 / pinned llama.cpp: 첫 품질 gate FAIL, 미채택. Qwen3.8도 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
-| 회귀 검증 | **395 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless19.339초. Gemma 명시profile 추가 검증 |
+| 회귀 검증 | **403 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless20.417초. EXAONE 명시profile·혼합거절 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
 | 모델 실행 | Qwen Epoch4·5·6 및 Gemma Epoch1 STOPPED/exit0/reaped·GPU3 메모리 반환 확인. 실행 중인 자체 모델 서버 없음 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
@@ -76,7 +76,8 @@ Gold는 **AUTO-GENERATED / NOT HUMAN VERIFIED**다. Root의 일부 입력 노출
 공식 HF tokenizer19/20 FAIL과 별도 raw reference20/20을 구분하고 입력·출력 NFC 보정은 하지 않는다.
 Private PostgreSQL은 project0700 Unix socket/peer 인증/TCP OFF다. 환경·weight·cache·binary는 Git에서 제외한다.
 비활성 Qwen3-32B 가중치4개19,325,481,744B를 SHA/소유·사용 검사 후 회수했다.
-Gemma 다운로드 완료 후 디스크 약26.3GiB free다.
+이후 비활성 Gemma GGUF17,651,001,568B만 exactSHA/소유·미사용 검사 후 회수했다.
+EXAONE 다운로드 직전 약42.63GiB free, 예상 완료 후23.96GiB로 reserve를 충족한다.
 Manifest/평가/복원 정보는 보존했다. 새 다운로드에도20GiB+512MiB reserve를 유지한다.
 Phase4 human review는 아직 메모리 보존이며 Object resolution/API/browser는 미구현이다.
 영속 review/queue/worker는 Phase7 예정이다. **RTX5090은 PREDICTED_UNVERIFIED**다.
@@ -105,13 +106,15 @@ Gemma Epoch1 최종1702.239초/3023표본에서 GPU3 aggregate 증가 최대 **1
 Own identity를 확인한 guard에만 pidfd SIGTERM을 전달했고 자체 child group TERM/KILL 정리 뒤
 exit0/reaped였다. 첫 Python wrapper 부재로 신호 전에 실패한 시도도 보존했다.
 종료 후5회 모두 **free36,373MiB/used3,965MiB/util0%**로 복귀했다. 타인 process는 변경하지 않았다.
-기존395 regression 대상 production source가 그대로라 suite를 반복하지 않고 새 보관본과 문서를 검증한다.
+Gemma 실패 보존 checkpoint 당시 production source가 그대로여서 기존395 regression을 반복하지 않았다.
+이후 EXAONE 명시 profile 추가로403개 회귀를 수행했다. 기존 조합 테스트 누락 실패와 수정 후 PASS를 모두 보존한다.
 
 Gemma의 [모델별 사전 검사](reports/phase5x_gemma4_preflight_report.md)와
 [143파일 freeze](../evaluations/hardening_v1_exposed_native_gemma4_diagnostic_freeze.json)는 그대로 보존한다.
 공개20개 공식/native ID·원문 roundtrip PASS와 literal U+2581의 별도 roundtrip FAIL을 구분한다.
 이미 완료한 공통 startup/resource/runtime 검사는 재시작하지 않는다.
 [공식 후보 비교](next_model_candidate_comparison.md)의 EXAONE4.5-33B를 다음 연구 후보로 검토한다.
-현재 범위는 metadata/source/license/전체 자원 계획이며 새 weight 다운로드·기동·품질 PASS는 없다.
+공식 metadata/source/license/전체 자원 계획을 완료하고 [EXAONE 사전 검증](exaone45_33b_resource_plan.md)을 준비한다.
+현재 고정 weight 다운로드 중이며 기동·품질 PASS는 없다. 예상 whole peak28672MiB는 실측 상한이 아니다.
 미사용80개 초안은 ignored var에서 보존하며, 미래 후보도 1차 gate를 통과해야 후속 평가를 결정한다.
 비필수 runtime 최적화는 future optimization이다. Phase5.x 미완료·모델 미채택·Phase6 미시작을 유지한다.

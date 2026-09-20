@@ -1,0 +1,34 @@
+{
+  "kind": "EXAONE45_EXPLICIT_PROFILE_REGRESSION",
+  "status": "PASS",
+  "tests": 403,
+  "skipped": 0,
+  "elapsed_seconds": 20.417,
+  "headless": true,
+  "display_and_wayland_unset": true,
+  "cuda_visible_devices": "",
+  "actual_postgresql_and_ifcopenshell": true,
+  "model_or_gpu_calls": 0,
+  "log_path": "var/phase5x-exaone45-profile-regression-v2.log",
+  "log_sha256": "bde54eb03803d258591c00ed6a0c3e288beaa96558607d20fc19c7597930d915",
+  "source_sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "48276a8f9cb7a2a818a9f12e7f86b2b53f525a37de61a1be70fe73648f07c151",
+    "scripts/evaluate_requirements.py": "48734d5fda8069efe9bd927387cf6cf04fa4167f7a4d028f13509476a0511fef",
+    "tests/test_local_model.py": "1764e08a618d4d306a6d153cf6c6d3c94bae5170dca919721507888e94b4eece",
+    "tests/test_native_requirement_evaluation.py": "b89e727e51104cd5a49053b5cfcf63878f77d9137acc64ebe36510ecb1b41154",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+  },
+  "prior_attempt": {
+    "log_path": "var/phase5x-exaone45-profile-regression.log",
+    "log_sha256": "14920b53729aadf26021691117fc20f3d88ccfe38ca6a33f7cf04b4ee6cf9131",
+    "tests": 403,
+    "elapsed_seconds": 21.32,
+    "failures": 1,
+    "errors": 1,
+    "cause": "Existing native-profile combination test omitted new EXAONE member; failed assertRaises also caused secondary exception-context AttributeError.",
+    "correction": "Add explicit EXAONE native membership on both permitted/rejected sides; nest assertRaises and code check inside subTest. Existing rejection policy preserved."
+  }
+}
