@@ -1,19 +1,19 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 12:25 KST**. **Phase 0~5 원격 checkpoint 완료. Phase5.x 품질 gate는 미통과이며 Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 12:39 KST**. **Phase 0~5 원격 checkpoint 완료. Phase5.x 품질 gate는 미통과이며 Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
-| GitHub | 공통 `v2`, 마지막 원격 확인 `c6bdbeb400c37016897bfe6b08ab080cc33ee8cf` |
+| GitHub | 공통 `v2`, 마지막 원격 확인 `0fd60350b6e9df6538e5cf3d1ee1b13fa949fccc` |
 | 회귀 검증 | **346 tests PASS**, skip 0, 실제 PostgreSQL/IfcOpenShell, headless 18.730초 |
 | 현재 작업 | **32B facts3.0 FAIL 보존 완료, 같은32B의 기존2.0+thinking 제한 비교 준비**. 최종 모델 미채택, Phase6 시작 전 |
 | 잠정 모델 | Phase5 작은 seed 범위의 Qwen3-14B-AWQ/v3. 확대 gate 통과를 뜻하지 않음 |
 | Hard blocker | 없음. 품질 문제를 해결 중이며 GPU3 메모리 예산은 실행 가능했음 |
 | Backend | `.conda`: Python3.12.14 / PostgreSQL17.11 / psycopg3.2.10 / IfcOpenShell0.8.5 |
-| Model runtime | `.conda-vllm`: Python3.12.14 / cu118 vLLM0.8.5 / Torch2.6.0. 자체 모델 서버 종료 |
-| 다음 검증 | 기존2.0+thinking, 총completion1024/timeout120의 단일 비교를 CPU 검증·동결. Gold·parser·gate 유지 |
+| Model runtime | `.conda-vllm`: Python3.12.14 / cu118 vLLM0.8.5 / Torch2.6.0. 새32B thinking epoch RUNNING, 아직 품질 호출0 |
+| 다음 검증 | 기존2.0+thinking, 총completion1024/timeout120의 단일 비교를 CPU 검증 PASS, runtime 검증 PASS, 동결·push 준비. Gold·parser·gate 유지 |
 
 ## 최근 품질 결과
 

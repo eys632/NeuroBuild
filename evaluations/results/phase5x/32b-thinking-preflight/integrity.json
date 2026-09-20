@@ -1,0 +1,30 @@
+{
+  "status": "VERIFIED",
+  "meaning": "Final CPU preflight archive; no model inference or quality acceptance",
+  "files": {
+    "README.md": {
+      "bytes": 2870,
+      "sha256": "af6d453eec822449838e03c183ecb0570186c06b133a1a708686adc896ff7353"
+    },
+    "baseline.json": {
+      "bytes": 1472,
+      "sha256": "31301f2f15ed38514d53f2637d3ca43f8973718b54200aa6e00337a085fb303f"
+    },
+    "cpu_preflight.json": {
+      "bytes": 14643,
+      "sha256": "2b40e70de79b7f0224f7afd80079246c9cb2c4f34286ab89a405290915d2002c"
+    },
+    "independent_review.md": {
+      "bytes": 4918,
+      "sha256": "ff5ed6b5f989d21752cbdf4aa4b1e7da548ce2a2ec7a65f0598fc9483c4432a7"
+    },
+    "verify_cpu_preflight.py": {
+      "bytes": 21438,
+      "sha256": "9a5daa42679fca2c2a84a2814c946616ed0833af3b8caa23c94e1951a51530d1"
+    }
+  },
+  "excluded_self": "integrity.json",
+  "source_hashes_rechecked": true,
+  "v2_payloads_in_archive": false,
+  "raw_reasoning_bodies_in_archive": false
+}

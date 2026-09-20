@@ -1,0 +1,17 @@
+{
+  "commit": "0fd60350b6e9df6538e5cf3d1ee1b13fa949fccc",
+  "method": "Exact git show COMMIT:path bytes compared to current files before CPU proof",
+  "source_hashes": {
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirement_facts.py": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5",
+    "src/neurobuild/infrastructure/local_model.py": "9bdb19a65ba79e253afe262a72e2dc4ecfcaacbc33ca9588c940f553be58123f",
+    "scripts/evaluate_requirements.py": "b6d7068af5916c0f23f10068485affbce792a234891cb9f28aaeae10f587b5aa",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "schemas/requirement_generation_v2.schema.json": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "runtime/models/qwen3-32b-awq.json": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03",
+    "scripts/model_server.py": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab"
+  }
+}

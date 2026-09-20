@@ -187,3 +187,18 @@ Facts19개 거절은 비원문 target7/scope2, target 안 scope 불포함5/exclu
 STOPPED/child exit0/reaped/FileStore cleaned, TERM+KILL 기록을 보존했다.
 GPU3는 used3965/free36373MiB/util0으로 복귀했으며 다른 process/GPU는 변경하지 않았다.
 다음 설계는 원래 gate를 유지하며 따로 검토한다. Facts 후보는 최종 채택하지 않았다.
+
+
+## 같은32B의 기존2.0+thinking 제한 비교 준비
+
+[계획](../requirement_thinking_control_plan.md)에 따라 새 facts 표현을 더하지 않고 기존2.0 branch schema로 돌아간다.
+Prompt의 첫 출력 지시만 최종 content 범위로 명시했고, 나머지 정책·7예시는 원본과 byte 동일하다.
+별도 파일 SHA db1880ecebf697a215d4f3fedb970e0cdb1668837d0b121c92276cda8f6870e2.
+기존 client/adapter/canonical/scorer/schema는0fd6035와 byte 동일하며 전체346 회귀를 새로 실행했다고 주장하지 않는다.
+
+독립 CPU 검증은200개 fake payload,7개 schema/grammar/parser 예시, thinking 전후 grammar 적용과
+reasoning/final 분리를 확인했다. 최대 입력+총completion1024는 exposed3947/4096, v2 길이만3872/4096이다.
+잘림 위험은 남으며 실패 시 기존 분모에 보존한다. 모델 reasoning 원문은 저장하지 않는다.
+새 GPU3 epoch는 true/deepseek_r1/FP16/AWQMarlin과 자체5개 loopback listener를 확인했다.
+관측 startup aggregate20314MiB/minfree16060MiB로 floor7275/limit25600을 지켰다.
+이것은 품질 결과가 아니며 사전 동결·원격 checkpoint 뒤120×1+warmup5 한 번을 실행한다.

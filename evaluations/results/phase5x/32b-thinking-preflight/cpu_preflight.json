@@ -1,0 +1,337 @@
+{
+  "status": "PASS",
+  "kind": "CPU_ONLY_32B_THINKING_PREFLIGHT",
+  "model_id": "Qwen/Qwen3-32B-AWQ",
+  "model_revision": "0499c3ac83fdef8810b907a23894ba91e95eddd8",
+  "generation_contract": "2.0",
+  "sampling_profile": "qwen3_thinking_awq",
+  "sampling_request_parameters": {
+    "temperature": 0.6,
+    "top_p": 0.95,
+    "top_k": 20,
+    "min_p": 0.0,
+    "presence_penalty": 1.5,
+    "frequency_penalty": 0.0,
+    "repetition_penalty": 1.0,
+    "seed": 42
+  },
+  "enable_thinking": true,
+  "max_tokens": 1024,
+  "timeout_seconds": 120,
+  "context_limit": 4096,
+  "structured_output_protocol": "legacy_guided_json",
+  "guided_decoding_backend": "xgrammar:no-fallback",
+  "required_runtime": {
+    "VLLM_USE_V1": "0",
+    "enable_reasoning": true,
+    "reasoning_parser": "deepseek_r1"
+  },
+  "source_hashes": {
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirement_facts.py": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5",
+    "src/neurobuild/infrastructure/local_model.py": "9bdb19a65ba79e253afe262a72e2dc4ecfcaacbc33ca9588c940f553be58123f",
+    "scripts/evaluate_requirements.py": "b6d7068af5916c0f23f10068485affbce792a234891cb9f28aaeae10f587b5aa",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "schemas/requirement_generation_v2.schema.json": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "runtime/models/qwen3-32b-awq.json": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03",
+    "scripts/model_server.py": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab",
+    "prompts/requirement_generation_v2_thinking_v1.txt": "db1880ecebf697a215d4f3fedb970e0cdb1668837d0b121c92276cda8f6870e2",
+    "docs/requirement_thinking_control_plan.md": "e6eaeadadf9871f57ba03a59c7b11d083a8b1ca18b7ba7c0392e17d7f0ccea39"
+  },
+  "baseline_commit": "0fd60350b6e9df6538e5cf3d1ee1b13fa949fccc",
+  "baseline_sha256": "31301f2f15ed38514d53f2637d3ca43f8973718b54200aa6e00337a085fb303f",
+  "baseline_source_hashes": {
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirement_facts.py": "2e47ed917640740777c98d7037a853446de2ac3ac5acc8beee4cbb817a86fec5",
+    "src/neurobuild/infrastructure/local_model.py": "9bdb19a65ba79e253afe262a72e2dc4ecfcaacbc33ca9588c940f553be58123f",
+    "scripts/evaluate_requirements.py": "b6d7068af5916c0f23f10068485affbce792a234891cb9f28aaeae10f587b5aa",
+    "schemas/semantic_requirement.schema.json": "dd131db08fe9087e795059445b075f22876e44b42481201cc0ea70608a708f94",
+    "schemas/requirement_generation_v2.schema.json": "6ca6fed3e8666244cd4bd779d33c0dd647490d5f641134307930008ea440436c",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "runtime/models/qwen3-32b-awq.json": "fbb3d1c98f3ceeeceb2fd5306dde9439d1be12516dd5054c0b2f5a299a260e03",
+    "scripts/model_server.py": "6e0c84166861e9556a6be53a0e4f69f43381388d1e6d7f3feadae79f879388ab"
+  },
+  "source_unchanged_vs_baseline": true,
+  "prompt_inverse_byte_identity": true,
+  "prompt_identity_evidence": {
+    "replacement_count": 2,
+    "changed_lines": [
+      1
+    ],
+    "all_lines_after_first_byte_identical": true,
+    "old_sha256": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "new_sha256": "db1880ecebf697a215d4f3fedb970e0cdb1668837d0b121c92276cda8f6870e2",
+    "scope": "Only two output-format clauses scoped to final content; no rules or example changes"
+  },
+  "tokenizer_metadata": {
+    "config.json": {
+      "name": "config.json",
+      "bytes": 907,
+      "sha256": "0e0c09d430b12e84773ef83ca83dba7c9174caf5a94bb940cd895b82df6c6528"
+    },
+    "tokenizer_config.json": {
+      "name": "tokenizer_config.json",
+      "bytes": 9732,
+      "sha256": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101"
+    },
+    "tokenizer.json": {
+      "name": "tokenizer.json",
+      "bytes": 11422654,
+      "sha256": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4"
+    },
+    "vocab.json": {
+      "name": "vocab.json",
+      "bytes": 2776833,
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "merges.txt": {
+      "name": "merges.txt",
+      "bytes": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5"
+    }
+  },
+  "chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+  "thinking_template_assistant_suffix": "<|im_start|>assistant\\n",
+  "system_prompt_tokens": 2507,
+  "input_lengths": {
+    "development": {
+      "dataset_sha256": "85734d7c5845bbc52af43941631adfa66f3b43cc7494177e1230de6dfb18ff88",
+      "count": 40,
+      "min_input_tokens": 2543,
+      "max_input_tokens": 2918,
+      "max_input_plus_output": 3942,
+      "context_slack_tokens": 154,
+      "scope": "INPUT_LENGTH_ONLY; no input/gold/body/case ID/per-case lengths disclosed"
+    },
+    "exposed_previous_holdout_regression": {
+      "dataset_sha256": "12c08e85a3b64c459fe7385e1cab35a4a036c6ceb3bc1d27d137ba3515e74d78",
+      "count": 80,
+      "min_input_tokens": 2549,
+      "max_input_tokens": 2923,
+      "max_input_plus_output": 3947,
+      "context_slack_tokens": 149,
+      "scope": "INPUT_LENGTH_ONLY; no input/gold/body/case ID/per-case lengths disclosed"
+    },
+    "v2_input_length_only": {
+      "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+      "count": 80,
+      "min_input_tokens": 2569,
+      "max_input_tokens": 2848,
+      "max_input_plus_output": 3872,
+      "context_slack_tokens": 224,
+      "scope": "INPUT_LENGTH_ONLY; no input/gold/body/case ID/per-case lengths disclosed"
+    }
+  },
+  "fake_http_capture_count": 200,
+  "additional_transport_boundary_calls": 3,
+  "payload_exact_match": true,
+  "reasoning_fields_discarded_in_200_fake_completions": true,
+  "transport_rejections": [
+    {
+      "fixture": "truncated",
+      "error_code": "LOCAL_MODEL_TRUNCATED"
+    },
+    {
+      "fixture": "missing_final_content",
+      "error_code": "LOCAL_MODEL_RESPONSE_INVALID"
+    },
+    {
+      "fixture": "reasoning_in_final_content",
+      "error_code": "LOCAL_MODEL_REASONING_CONTENT"
+    }
+  ],
+  "grammar_compile_seconds": 1.8858575290068984,
+  "xgrammar_unsupported_features": false,
+  "examples_validated": 7,
+  "examples": [
+    {
+      "example_number": 1,
+      "json_schema_valid": true,
+      "grammar_tokens_and_eos_accepted": true,
+      "quote_adapter_canonical_parser_accepted": true
+    },
+    {
+      "example_number": 2,
+      "json_schema_valid": true,
+      "grammar_tokens_and_eos_accepted": true,
+      "quote_adapter_canonical_parser_accepted": true
+    },
+    {
+      "example_number": 3,
+      "json_schema_valid": true,
+      "grammar_tokens_and_eos_accepted": true,
+      "quote_adapter_canonical_parser_accepted": true
+    },
+    {
+      "example_number": 4,
+      "json_schema_valid": true,
+      "grammar_tokens_and_eos_accepted": true,
+      "quote_adapter_canonical_parser_accepted": true
+    },
+    {
+      "example_number": 5,
+      "json_schema_valid": true,
+      "grammar_tokens_and_eos_accepted": true,
+      "quote_adapter_canonical_parser_accepted": true
+    },
+    {
+      "example_number": 6,
+      "json_schema_valid": true,
+      "grammar_tokens_and_eos_accepted": true,
+      "quote_adapter_canonical_parser_accepted": true
+    },
+    {
+      "example_number": 7,
+      "json_schema_valid": true,
+      "grammar_tokens_and_eos_accepted": true,
+      "quote_adapter_canonical_parser_accepted": true
+    }
+  ],
+  "runtime_compatibility": {
+    "installed_vllm_source_hashes": {
+      "engine/arg_utils.py": "65dfb922f57b5b242ac226024ae6a8041cc141b5b003831ea0d372d37d9e1caa",
+      "engine/async_llm_engine.py": "3558f4d4d6d8c7228ded61172665f372206170c666bce3f41f3677e74b2093ca",
+      "engine/llm_engine.py": "8518fa99df7f8fd6785968c16bb30f74af90e96c4553a6fc92efc3d50b8797ea",
+      "model_executor/guided_decoding/__init__.py": "4e9149a04578b6250e247deaddf2dc479a370509d4b4f11f30b33290c28a89d9",
+      "model_executor/guided_decoding/xgrammar_decoding.py": "c65607b1a9211d7559a90dd0ad606d54ae00718565bd26b148642aa38d032642",
+      "reasoning/__init__.py": "9e2a22026f7c072f46603d54d820a3d308302e939c781a22392eee99dca591c0",
+      "reasoning/deepseek_r1_reasoning_parser.py": "a21a4857ab368f47e16b7626bb12955051598e2aef4edabc4c64ece6bf6a90ce",
+      "entrypoints/openai/serving_chat.py": "6e8b5e6029eaca133df7446e1bc832f92ec8c90f4c631351d03dcd2b13b821aa"
+    },
+    "extracted_exact_method_ast_sha256": {
+      "is_reasoning_end": "f98051bd31c20cd8e203466722350202c451805971c85b08f5ccb5dc39355ad6",
+      "extract_reasoning_content": "ebf142560f1efb46e5d462f90a7faf7dcd507b5d085488336590646e077e6eae",
+      "XGrammarLogitsProcessor.__call__": "df1d35cb82756650c0224949397d7ddee45aa9e6566758edd522ca040289a2b8"
+    },
+    "cpu_end_marker_controls": 2,
+    "cpu_content_split_controls": 4,
+    "cpu_grammar_gate_controls": 2,
+    "findings": [
+      "V0 config passes deepseek_r1 into the guided decoding builder",
+      "Installed xgrammar processor leaves scores unchanged before reasoning end, enters grammar after end",
+      "Installed parser returns no final content when end marker/final answer is missing",
+      "OpenAI serving splits reasoning_content and final content; client returns only final content"
+    ],
+    "historical_14b_runs": [
+      {
+        "archive": "evaluations/results/phase5x/development-v6-thinking-diagnostic",
+        "manifest_sha256": "7b718dac941aa1254f87bd6c2dc57fd4a4c4cfe41044e272c65f1397025fa13c",
+        "results_sha256": "b6d3d9e10df6d3d6bef5dfb19dc6eb0dc395c28cce1cd4d5bd67eefef8bebc7a",
+        "run_id": "20260919T214743Z-27a340f0e04343be8be10a062a6eb25d",
+        "model_id": "Qwen/Qwen3-14B-AWQ",
+        "runtime": {
+          "python": "3.12.14",
+          "vllm": "0.8.5+cu118",
+          "torch": "2.6.0+cu118",
+          "cuda": "11.8",
+          "transformers": "4.51.3",
+          "xgrammar": "0.1.18",
+          "driver": "535.183.01",
+          "gpu": "NVIDIA A100-PCIE-40GB",
+          "quantization": "awq_marlin",
+          "dtype": "float16",
+          "physical_gpu": 3,
+          "max_model_len": 4096,
+          "tensor_parallel_size": 1,
+          "profile": "a100",
+          "chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+          "launch_config_sha256": "c164bef7dae09ffa751ec954f0a16d87ccc96c273c5e84e151f58d06a30dad26",
+          "enable_reasoning": true,
+          "reasoning_parser": "deepseek_r1"
+        },
+        "trials": 40,
+        "schema_valid": {
+          "numerator": 40,
+          "denominator": 40,
+          "rate": 1.0,
+          "wilson_95": [
+            0.9123783988027135,
+            1.0
+          ]
+        },
+        "parser_accepted": {
+          "numerator": 20,
+          "denominator": 40,
+          "rate": 0.5,
+          "wilson_95": [
+            0.35199526933465386,
+            0.6480047306653461
+          ]
+        },
+        "scope": "Historical 14B protocol execution only; not 32B quality or completion-budget proof"
+      },
+      {
+        "archive": "evaluations/results/phase5x/development-v7-thinking-diagnostic",
+        "manifest_sha256": "14c2c70ef991c48ec6aab19e87bc11f837ed17655d14bd949e868027f2ead2e4",
+        "results_sha256": "8522c5ab83f4254e5fe50ed4c799649d7152ffbe36afc81ac093938dbc78b3c2",
+        "run_id": "20260919T220158Z-72efdc2dad274cb98b1d61b669597b75",
+        "model_id": "Qwen/Qwen3-14B-AWQ",
+        "runtime": {
+          "python": "3.12.14",
+          "vllm": "0.8.5+cu118",
+          "torch": "2.6.0+cu118",
+          "cuda": "11.8",
+          "transformers": "4.51.3",
+          "xgrammar": "0.1.18",
+          "driver": "535.183.01",
+          "gpu": "NVIDIA A100-PCIE-40GB",
+          "quantization": "awq_marlin",
+          "dtype": "float16",
+          "physical_gpu": 3,
+          "max_model_len": 4096,
+          "tensor_parallel_size": 1,
+          "profile": "a100",
+          "chat_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+          "launch_config_sha256": "c164bef7dae09ffa751ec954f0a16d87ccc96c273c5e84e151f58d06a30dad26",
+          "enable_reasoning": true,
+          "reasoning_parser": "deepseek_r1"
+        },
+        "trials": 40,
+        "schema_valid": {
+          "numerator": 40,
+          "denominator": 40,
+          "rate": 1.0,
+          "wilson_95": [
+            0.9123783988027135,
+            1.0
+          ]
+        },
+        "parser_accepted": {
+          "numerator": 35,
+          "denominator": 40,
+          "rate": 0.875,
+          "wilson_95": [
+            0.738878801611489,
+            0.945404997490546
+          ]
+        },
+        "scope": "Historical 14B protocol execution only; not 32B quality or completion-budget proof"
+      }
+    ],
+    "limitation": "Static source plus isolated CPU method probes and earlier 14B execution; no 32B thinking model call"
+  },
+  "versions": {
+    "transformers": "4.51.3",
+    "xgrammar": "0.1.18",
+    "torch": "2.6.0+cu118",
+    "jsonschema": "4.26.0",
+    "vllm": "0.8.5+cu118"
+  },
+  "helper_sha256": "9a5daa42679fca2c2a84a2814c946616ed0833af3b8caa23c94e1951a51530d1",
+  "cuda_initialized": false,
+  "real_http_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "weight_payload_reads": 0,
+  "limitations": [
+    "1024 is the combined reasoning and final-answer budget; context fit does not ensure completion",
+    "Thinking, sampling, prompt output scope and output cap differ together from prior greedy control",
+    "Synthetic gold is not human verified; root v2 input exposure remains disclosed; v2 used here for length only",
+    "RTX5090 actual execution and 32B thinking quality remain unverified"
+  ]
+}

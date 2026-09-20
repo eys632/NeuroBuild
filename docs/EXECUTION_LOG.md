@@ -485,3 +485,24 @@ Epoch1402.678초/minfree14512/aggregatepeak21862. Shutdown artifact SHA
 a5b7608a9205d5509095284b7ee86e2f6214949d153bbb0b946b688b725e43b6.
 종료 뒤 nvidia-smi GPU3 only는 total40960/used3965/free36373/util0이었다.
 다른 사용자 process와 GPU0/1/2 변경은 없었다. Formal 반복은 시작하지 않는다.
+
+
+## 기존2.0 계약의 thinking 제한 비교 준비
+
+실패 기록과 다음 계획을0fd60350b6e9df6538e5cf3d1ee1b13fa949fccc로 commit/push했고 remote hash 및 clean을 확인했다.
+별도 thinking prompt는 기존generation2/v2 첫 줄의 출력 지시만 최종 content에 적용됨을 명시하며,
+첫 줄 이후의 정책·7예시는 byte 그대로다. 신규 파일 SHA db1880ecebf697a215d4f3fedb970e0cdb1668837d0b121c92276cda8f6870e2.
+Application·schema·parser·gold 변경은 없으며 기존346 회귀 결과를 유지한다. 최종 prompt로 CPU 검증을 별도 수행한다.
+
+FreshGPU3 preflight5회는 free36373/util0/swing0, peak25600+margin7275 뒤3498MiB로 PASS였다.
+Guard가 같은 조건을 다시 측정한 뒤 같은32B/FP16/AWQMarlin/ctx4096/seq1/KV256/.60/.60/allowance0를 기동했다.
+새 session93856, --enable-reasoning 명시, maxseconds10800, generation2-thinking-v1의 새 log/report 경로다.
+보고서에서 enable_reasoning=true/deepseek_r1 및 own child3483717 RUNNING을 확인했다.
+Startup 관측 minfree16060/aggregatepeak20314였다. Model completion은 아직0이며 CPU·runtime 증거와
+사전 동결·원격 checkpoint 확인 뒤에만120×1+warmup5를 실행한다. Disk df28G/99%, 추가 설치·다운로드 없음.
+
+최종 독립 CPU proof는200 fake payload/7예시/grammar/추론 경계 검증 PASS이며, exposedmax3947/4096 및v2길이만3872/4096이다.
+CPU proof SHA2b40e70de79b7f0224f7afd80079246c9cb2c4f34286ab89a405290915d2002c.
+새 runtime five JSON은 own guard3483689/child3483717와 실제 true/deepseek_r1/5loopback에 연결했다.
+Thinking freeze e0bf7d237fdbfa61d3e4fe09aefa6d706872a4a3db100fec5541ec0eebc0c19d의41파일 hash를 독립 재검증했다.
+V2 보존9개/weight4stat/기존346회귀log도 확인했고 모델 호출은 아직0이다. 정식 품질 성공이나 완결성 보장이 아니다.
