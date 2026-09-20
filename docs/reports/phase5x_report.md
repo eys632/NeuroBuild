@@ -1,5 +1,12 @@
 # Phase5.x — Requirement Quality Hardening
 
+현재 gate는 **미통과**다. MoE generation2/decision-branch schema/promptv2는 단회40/40 후
+정식 development119/120을 기록했지만, 대상 범위·제외 조건 손실1건으로 unsafe0 기준을
+충족하지 못했다. Holdout 모델 호출은 아직 없다. 다음 비교는 같은 구성의 greedy40×3이다.
+현재 공통 소스 회귀는 실제 PostgreSQL/IfcOpenShell을 포함한 **290 tests PASS, skip0**다.
+아래 과거 단계의 test 수와 후보 선택은 당시 checkpoint의 기록이며 현재 최종 선택이 아니다.
+모든 run은 [실험 목록](../phase5x_experiment_register.md)에 실패를 포함해 보존한다.
+
 IN PROGRESS. Phase5remote d6e39c8 gate후진행한다. 120 synthetic examples를40development/80heldout로고정하고gold는AUTO-GENERATED / NOT HUMAN VERIFIED로표시한다. 첫development전에v3/modelrevision/contract를freeze했고,새prompt는각실험전별도로version/hash고정한다. 공개seed20은development에만둔다. source의조건/부정/targetexclusion/숫자/장문/미지원subset을검증하며결과를본뒤gold를조용히수정하지않는다.
 
 기존criticalFP(비실행gold→READY)와지원gold의잘못된target/axis이동을분리해보고한다. Dataset/prompt최적화의영향과동일case3회의상관을명시하고사람검수표를별도로제공한다. GPU3만현재guard예산으로사용하며listenercheck/원격checkpoint와선행236regression을유지한다.
@@ -112,3 +119,10 @@ This mixed result motivates a narrower generation-constraint correction: preserv
 Run `20260919T235318Z-504ae53e55864b4fba35c6bb108c8c05`, frozen and pushed29a6c77 before requests: development40×1 plus5warmups. JSON/generation schema/adapter/canonical schema/parser/semantic all40/40. RawFP0/20,unsafe0/40,FN0/20; mean3.899002s/p955.125593s. No transport/truncation errors. This is the first successful expanded diagnostic; all13 earlier failures remain preserved. Schema/order/example changed together, so improvement is not attributed to a single factor.
 
 Next: freeze identical model/revision/runtime/prompt/schema/adapter/parser/client/scorer/sampling/output/timeout and run development40×3/warmup5. No source changes or tuning from heldout results. First heldout warmup remains prohibited until formal development passes, independent review and new candidate checkpoint are pushed. Diagnostic success is not the Phase5.x gate or human verification.
+
+
+## Generation2 branch 정식 development 실패와 greedy 비교
+
+Run20260919T235909Z-741a32ddc5394455943e3b480f8863c3,40×3/warmup5: schema/adapter/canonical/parser120/120,semantic119/120(99.17%),raw/acceptedFP0/60,FN0/60,unsafeaccepted1/120,mean3.994758s/p955.410634s. HD-F02trial3은 전체 current instruction과 -0.16m를 보존했지만 target을 `복도 쪽 낮은 장`으로 줄여 `연구실` 및 제외 대상을 빠뜨렸다. 이전 단회 PASS나 높은 평균으로 unsafe0 기준을 상쇄하지 않는다. 원본·manifest·resource를 그대로 보존했다. Holdout은 계속 미호출이다.
+
+다음 비교는 prompt/schema/adapter/parser/scorer/model/runtime를 그대로 두고 기존 legacy_greedy 요청(T0/seed42)으로 전체40×3을 평가한다. 다른 sampling 필드는 생략하여 고정 서버 기본값을 따르므로 단일 temperature만 통제한 ablation으로 부르지 않는다. Greedy에서도 runtime 수치 비결정성은 가능하다. 과거4B/legacy계약의 greedy 실패도 보존한다. 새 representation+MoE에서 아직 비교하지 않은 decoding 차이이며, 실패case만 반복하거나 성공run만 선택하지 않는다. 현290testsPASS는 소스 변경 없이 유지된다.

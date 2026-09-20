@@ -346,3 +346,10 @@ Decision-branch CPU check: draft regex compiled but rejected Korean token fixtur
 ## 2026-09-20 08:57 KST — First expanded diagnostic PASS
 
 Pushed29a6c7760423f8af79502ddc70fa1ba603b79a1c, hashesverified/currentguardRUNNING. All40development/warmup5/trial1 using generation2/v2 prompt +decisionbranches schema, sameMoE/neutral/max768/timeout60. Run20260919T235318Z-504ae53e55864b4fba35c6bb108c8c05 completed40; cumulative serverrequests135→180. Allschema/adapter/parser/semantic40/40,rawFP0/20,unsafe0/40,FN0/20; mean3.899002,p955.125593s. Results/resource/manifest archived unchanged, independentreplay requested. Formal40×3 freeze follows with same configuration. Holdout uncalled.
+
+
+## Generation2 branch 정식 development 실패와 greedy 비교
+
+Run20260919T235909Z-741a32ddc5394455943e3b480f8863c3,40×3/warmup5: schema/adapter/canonical/parser120/120,semantic119/120(99.17%),raw/acceptedFP0/60,FN0/60,unsafeaccepted1/120,mean3.994758s/p955.410634s. HD-F02trial3은 전체 current instruction과 -0.16m를 보존했지만 target을 `복도 쪽 낮은 장`으로 줄여 `연구실` 및 제외 대상을 빠뜨렸다. 이전 단회 PASS나 높은 평균으로 unsafe0 기준을 상쇄하지 않는다. 원본·manifest·resource를 그대로 보존했다. Holdout은 계속 미호출이다.
+
+다음 비교는 prompt/schema/adapter/parser/scorer/model/runtime를 그대로 두고 기존 legacy_greedy 요청(T0/seed42)으로 전체40×3을 평가한다. 다른 sampling 필드는 생략하여 고정 서버 기본값을 따르므로 단일 temperature만 통제한 ablation으로 부르지 않는다. Greedy에서도 runtime 수치 비결정성은 가능하다. 과거4B/legacy계약의 greedy 실패도 보존한다. 새 representation+MoE에서 아직 비교하지 않은 decoding 차이이며, 실패case만 반복하거나 성공run만 선택하지 않는다. 현290testsPASS는 소스 변경 없이 유지된다.

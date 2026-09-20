@@ -1,23 +1,23 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 08:57 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
+갱신: **2026-09-20 09:10 KST**. **Phase 0~5 원격 checkpoint 완료. Phase 5.x 평가 확대 진행 중이며, Internal Technical MVP는 아직 완료되지 않았다.**
 
 | 항목 | 현재 상태 |
 |---|---|
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b`: Phase 5 commit/push 및 remote hash 일치 |
-| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `29a6c77` |
+| GitHub | 공통 `v2`, SSH push 정상. 마지막 확인 checkpoint `39748c1` |
 | 회귀 검증 | 전체 **290 tests PASS**, skip 0. 실제 PostgreSQL/IfcOpenShell, DISPLAY 없이 17.329초 |
-| 현재 작업 | **MoE + generation2/branch schema/promptv2 단회 진단40/40 PASS, raw FP0·잘못 수용0. 같은 설정의 정식 development40×3 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
+| 현재 작업 | **MoE + generation2/branch schema/promptv2 정식 development119/120, unsafe1로 FAIL. 같은 구성의 greedy decoding40×3 준비**. 기존1.0 parser/domain 및 gold/gate는 유지 |
 | 잠정 모델 | Phase 5 범위의 **Qwen3-14B-AWQ + v3**. 확대 평가 gate 통과 전 최종 채택으로 보지 않음 |
 | Hard blocker | 없음. GPU 3 가용량을 측정한 공존 실행 조건 통과 |
 | Backend | `.conda`: Python 3.12.14 / PostgreSQL 17.11 / psycopg 3.2.10 / IfcOpenShell 0.8.5 |
 | Model Runtime | `.conda-vllm`: Python 3.12.14 / cu118 vLLM 0.8.5 / Torch 2.6.0. 현재 MoE 후보 서버 가동. TP 1 / context 4096 / sequence 1 |
-| 다음 검증 | 진단이 개선되면 같은 설정으로 development 40×3 평가. 이후 고정된 holdout 80×3 평가 |
+| 다음 검증 | Greedy development 40×3. 통과·독립 검토·동결 뒤에만 holdout 80×3 |
 
 ## Phase 5.x 평가 상태
 
-120개 자료를 development 40개와 holdout 80개로 고정했다. **Holdout은 아직 한 번도 모델에 호출하지 않았다.** 단회 진단을 통과한 첫 후보가 나왔으나 정식 development/holdout gate는 아직 통과하지 않았다.
+120개 자료를 development 40개와 holdout 80개로 고정했다. **Holdout은 아직 한 번도 모델에 호출하지 않았다.** 단회 진단40/40 후 정식 development119/120에서 잘못 수용한 대상1건이 발견됐다. 정식 development/holdout gate는 아직 통과하지 않았다.
 
 | 최근 development 진단 | 의미 정확도 | Raw READY 오판 | 잘못 수용된 출력 | 판단 |
 |---|---:|---:|---:|---|
@@ -28,9 +28,10 @@
 | 30B-A3B Instruct AWQ + v3 | 34/40 (85%) | 1/20 | 1/40 | gate 미충족 |
 | 30B-A3B Instruct AWQ + v4 | 34/40 (85%) | 1/20 | 2/40 | gate 미충족 |
 | MoE + generation2/v1 | 29/40 (72.5%) | 1/20 | 0/40 | gate 미충족 |
-| MoE + generation2/branch/v2 | 40/40 (100%) | 0/20 | 0/40 | 단회 진단 PASS, 정식 평가 필요 |
+| MoE + generation2/branch/v2 진단 | 40/40 (100%) | 0/20 | 0/40 | 단회 진단 PASS |
+| 같은 구성 정식 평가 | 119/120 (99.17%) | 0/60 | 1/120 | unsafe0 기준 FAIL |
 
-Raw READY 오판의 분모는 non-READY gold 20개이고, 잘못 수용된 출력의 분모는 전체 40개다. Backend가 수용한 결과에도 대상 범위 손실 등 의미 오류가 남아 있다. 40개 단회 진단은 정식 3회 평가를 대신하지 않는다. Gate는 **schema 100% / 의미 정확도 95% 이상 / raw READY 오판 0 / 잘못 수용된 출력 0**을 유지한다.
+Raw READY 오판의 분모는 진단 non-READY gold20개/정식60개이고, 잘못 수용된 출력의 분모는 전체 진단40개/정식120개다. Backend가 수용한 결과에도 대상 범위 손실 등 의미 오류가 남아 있다. 40개 단회 진단은 정식 3회 평가를 대신하지 않는다. Gate는 **schema 100% / 의미 정확도 95% 이상 / raw READY 오판 0 / 잘못 수용된 출력 0**을 유지한다.
 
 V8 run `20260919T223831Z-af6ebcd137394488a0adc427bd63edcf`는 schema 40/40, parser 39/40, FN 1/20이다. 세 프롬프트 비교 후 추가 prompt 수정을 중단했다. 기존 v3의 `legacy_greedy` profile 비교도 실패했다. 새 MoE 후보는 파일 검증과 fresh GPU3 예산 검사, 실제 기동 및 loopback 검증을 통과했다. [후보 근거](moe_instruction_candidate.md)와 고정 v3/neutral 진단 기록을 사용한다. 채택 전 실제 runtime·품질 검증이 남아 있다.
 
@@ -45,7 +46,7 @@ V8 run `20260919T223831Z-af6ebcd137394488a0adc427bd63edcf`는 schema 40/40, pars
 
 ## 운영 상태
 
-**GPU 3만 사용한다.** 이전 14B 서버는 자신의 guard와 child만 정상 종료했고, `neurobuild-instruct` alias의 4B BF16 서버도 자신의 guard를 통해 정상 종료했다. 현재 `neurobuild-moe` 후보 서버만 GPU3에서 실행한다. 예상 peak24,576MiB와 안전 여유7,275MiB로 재검사했고 v3 진단을 포함한 관측 최소 free는18,734MiB다. 다른 사용자의 프로세스·파일·환경은 변경하지 않았으며 다른 GPU로 fallback하지 않는다.
+**GPU 3만 사용한다.** 이전 14B 서버는 자신의 guard와 child만 정상 종료했고, `neurobuild-instruct` alias의 4B BF16 서버도 자신의 guard를 통해 정상 종료했다. 현재 `neurobuild-moe` 후보 서버만 GPU3에서 실행한다. 예상 peak24,576MiB와 안전 여유7,275MiB로 재검사했고 v3 진단을 포함한 관측 최소 free는18,642MiB다. 다른 사용자의 프로세스·파일·환경은 변경하지 않았으며 다른 GPU로 fallback하지 않는다.
 
 4B 시작 전 GPU 3 free 36,373MiB / utilization 0%에서 예상 전체 peak 16,384MiB와 margin 7,275MiB가 들어감을 확인했다. Guard의 free 하한은 **7,275MiB**, 현재 구간의 최종 관측 최소 free는 **26,530MiB**다. 종료 후 free 36,373MiB / utilization 0%로 복귀했다. 이는 GPU 전체 관측값이며 전용 메모리 예약이나 정확한 process peak 보장이 아니다. 기동 시 실제 TCP listener 5개가 모두 `127.0.0.1`임을 확인했다.
 

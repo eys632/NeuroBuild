@@ -1,11 +1,16 @@
-# 30B-A3B instruction AWQ 조건부 후보 준비
+# 30B-A3B instruction AWQ 후보 검토와 A100 실측 근거
 
-2026-09-20 KST. **다음 실측 비교 준비 / 최종 모델 미선정 / GPU 및 한국어 BIM 품질 미검증.**
-처음에는 4B 비교와 별개의 contingency로 같은 Qwen3-30B-A3B-Instruct-2507의 공개
+2026-09-20 KST. **A100 다운로드·기동·development 평가 수행 / 최종 모델 미선정 /
+RTX5090 PREDICTED_UNVERIFIED.** 이 문서는 초기 준비 당시의 정적 검토와 이후의
+실측 증거를 구분한다. 실제 실행 기록은 마지막 절에 연결했으며, 품질 gate의 현재
+판정은 [Phase 5.x 보고서](reports/phase5x_report.md)를 따른다.
+
+초기 준비에서는 4B 비교와 별개의 contingency로 같은 Qwen3-30B-A3B-Instruct-2507의 공개
 AWQ 파일을 조사했다. 4B v3 greedy 비교 종료 후 root가 이 후보의 다음 실험 준비를
 결정했다. 다른 모델 목록으로 확대하지 않았다.
-작은 metadata만 조회·보존했으며 weight 다운로드, 환경 설치, 모델 실행, GPU 조회,
-진행 중인 서버 종료 또는 Application 코드 변경은 수행하지 않았다.
+당시 정적 검토자는 작은 metadata만 조회·보존했고 weight 다운로드, 환경 설치,
+모델 실행, GPU 조회, 진행 중인 서버 종료 또는 Application 코드 변경은 하지 않았다.
+이 범위 설명은 이후 프로젝트에서 수행한 실제 다운로드·실행을 부정하는 현재 상태가 아니다.
 
 ## 출처와 고정 파일
 
@@ -34,7 +39,8 @@ weight shard4개를 포함한 **15개 파일, 16,830,441,067bytes = 15.674570GiB
 | 합계 | **16,809,467,824** | **15.655037GiB** |
 
 Weight hash/size는 [고정 Hub API](https://huggingface.co/api/models/ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ/revision/9f41ff709102dbe73e614f9365f8280170db268e?blobs=true)의
-LFS metadata를 사용했다. 아직 실제 weight bytes를 받거나 hash를 계산하지 않았다.
+LFS metadata를 사용했다. 초기 준비 시점에는 실제 weight를 받거나 hash를 계산하지 않았고,
+이후 downloader가 파일별 검증을 수행한 완료 manifest와 실행 기록은 마지막 절에 구분했다.
 작은 파일은 고정 revision URL에서 읽어 size와 Hub Git blob SHA-1 또는 LFS SHA-256을
 대조한 뒤 각 SHA-256을 계산했다. Index의 56,115개 key는 48층·128 experts와 attention의
 예상 AWQ qweight/qzeros/scales 및 비양자화 parameter key 집합과 정확히 일치했다.
@@ -64,8 +70,10 @@ ELVISIO revision 자체에는 **LICENSE 파일이 없다**. 따라서 downloader
 `0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe`의 LICENSE는11,343bytes이고 SHA-256은
 **`05cab46843576551502bfdf712f84e93e6e9590d9997306ed4f6635ef82811d9`**다.
 Apache License2.0 본문과 Git blob hash를 확인했으며 위 evidence directory의
-`UPSTREAM_LICENSE`로 보존했다. Manifest 파일 합은 이 별도 provenance 본문을
-다운로드 대상으로 포함하지 않는다.
+`UPSTREAM_LICENSE`로 보존했다. 같은 본문을 byte 변경 없이 저장소의
+[license 파일](../runtime/licenses/qwen3-30b-a3b-instruct-2507.LICENSE)에도 복사했으며,
+[출처 설명](../runtime/licenses/README.md)에 원본과 제3자 배포본의 관계를 기록했다.
+Manifest 파일 합은 이 별도 provenance 본문을 다운로드 대상으로 포함하지 않는다.
 [고정 원본 LICENSE](https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507/blob/0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe/LICENSE).
 
 ## 설치된 런타임의 정적 호환성
@@ -73,8 +81,8 @@ Apache License2.0 본문과 Git blob hash를 확인했으며 위 evidence direct
 현재 `.conda-vllm`은 Python3.12.14, vLLM0.8.5+cu118, Torch2.6.0+cu118,
 Transformers4.51.3이다. 원본의 공식 안내는 vLLM≥0.8.5와 Transformers≥4.51.0이지만,
 제3자 AWQ 배포자의 구체적인 컨테이너 예시는 **vLLM0.10.0**이다. 원본 architecture
-지원과 이 양자화본의 구버전 실행 실증은 다르다. 이 검토는 현재 버전을 바꾸지 않고
-읽은 소스에 기반하며 0.8.5에서 로딩·kernel 실행이 성공했다고 주장하지 않는다.
+지원과 이 양자화본의 구버전 실행 실증은 다르다. 이 절은 준비 당시 버전을 바꾸지 않고
+읽은 소스에 기반한다. 이후 0.8.5에서의 실제 기동·추론 근거는 마지막 절에서 별도로 다룬다.
 [공식 원본 Quickstart](https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507#quickstart),
 [배포자 실행 예시](https://huggingface.co/ELVISIO/Qwen3-30B-A3B-Instruct-2507-AWQ#inference).
 
@@ -156,14 +164,15 @@ context, 임시 repack 및 allocator 여유를 포함하는 **24GiB(24,576MiB) �
 startup/inference peak 추정**을 조건부 출발점으로 둔다. 측정값·hard cap·실행 허가가 아니다.
 W13 repack loop에는 expert당 약1.5MiB의 임시 결과도 존재한다. 변환은 module별로
 순차 수행하므로 전체 checkpoint의 두 배를 동시에 유지한다고 볼 근거는 없지만,
-allocator 잔류와 실제 긴 prefill peak·throughput은 아직 측정하지 않았다.
+allocator 잔류와 실제 긴 prefill peak·throughput은 이 초기 검토에서 측정하지 않았다.
 [MoE kernel 경로](https://github.com/vllm-project/vllm/blob/v0.8.5/vllm/model_executor/layers/fused_moe/fused_marlin_moe.py).
 
 과거 free36,373MiB에만 대입하면 margin=max(6144,ceil(36373×.2))=7,275MiB,
 추정+margin=**31,851MiB ≤ 36,373MiB**, model budget29,098MiB다. 후보의 runtime와
 Torch fraction을 모두 .60으로 정한다면 명목 total40,960MiB 기준24,576MiB이며,
 기존 watchdog의 estimate+allowance1024에 따른 aggregate 증가 한계는25,600MiB다.
-아직 이 값으로 실행하지 않았다. 다른 자체 서버의 사용량을 무시하고 위 과거 free를
+이 계산은 실행 전 추정이며 이후 실제 설정·관측은 마지막 절과 archive에 있다.
+다른 자체 서버의 사용량을 무시하고 위 과거 free를
 재사용하면 안 된다. 실행 시 기존 자체 서버의 정상 종료를 확인한 뒤 **GPU3만 새 preflight**를 해야 한다.
 다른 GPU fallback, 타인 작업 변경, 동시 후보 적재는 허용하지 않는다. Sampling으로
 관측한 aggregate 증가는 per-process peak나 강한 GPU 격리 보장이 아니다.
@@ -233,4 +242,40 @@ output·고정 development 평가를 순서대로 진행할 수 있도록 준비
 
 ## V4 comparison context check
 
-After the preserved v3 diagnostic failed, the actual downloaded tokenizer was checked with existing v4 (SHA2fdd6a5a92860cde27d14adc10916a242b2221e1569015541ddf31581d1a14d8). System2350 tokens; development40 maximum2761+768=3529/4096, holdout80 input-length-only maximum2766+768=3534/4096. All11 small metadata files matched manifest bytes/SHA, separate template40c21f34…7b541 was selected automatically. No Torch/GPU/network/model calls or prompt/gold changes were made by this CPU check. Quality remains unverified for v4.
+After the preserved v3 diagnostic failed, the actual downloaded tokenizer was checked with existing v4 (SHA2fdd6a5a92860cde27d14adc10916a242b2221e1569015541ddf31581d1a14d8). System2350 tokens; development40 maximum2761+768=3529/4096, holdout80 input-length-only maximum2766+768=3534/4096. All11 small metadata files matched manifest bytes/SHA, separate template40c21f34…7b541 was selected automatically. No Torch/GPU/network/model calls or prompt/gold changes were made by this CPU check. This was a context precheck; the subsequent v4 diagnostic is preserved below and did not pass the quality gate.
+
+## 이후 수행한 실제 A100 검증
+
+다음 근거는 위 정적 조사 이후 수행됐다. 초기 예상치를 실행 성공으로 바꾸어 표기하지
+않고, 실제 완료한 파일 검증·기동·추론 범위만 구분한다.
+
+| 검증 | 실제 근거와 한계 |
+|---|---|
+| 다운로드 | 고정15개 파일이 로컬에 존재하고 size가 manifest와 일치한다. Downloader는 파일별 size/SHA를 검증한 뒤 완료 manifest를 기록하며, 로컬 `neurobuild-manifest.json`은 원본 manifest와 같은 SHA `32ff8e50…8939c`다. 이번 문서 갱신에서16.8GB weight 전체를 다시 hash하지는 않았다. |
+| Tensor header | [Header audit](../evaluations/results/phase5x/moe-instruct-v1-launch/safetensors_header_audit.json): 56,115개 key의 shape/dtype/offset 및 shard 배치 대조 PASS. Header-only 검증이며 weight 수치나 양자화 품질의 증명은 아니다. |
+| 실제 기동 설정 | [Launch archive](../evaluations/results/phase5x/moe-instruct-v1-launch/launch_config.json): GPU3, half, TP1, context4096, sequence1, batched tokens4096, GPU/Torch fraction 각각0.60, KV blocks256, eager, V0/uni, reasoning 비활성. |
+| Runtime | [Metadata](../evaluations/results/phase5x/moe-instruct-v1-launch/runtime_metadata.json): vLLM0.8.5+cu118/Torch2.6.0+cu118, AWQ Marlin/FP16. 연결된 launch SHA `8137d448…96296b`가 archive와 일치한다. HTTP 모델 이름과 operator 기록이며 원격 weight attestation은 아니다. |
+| 기동·네트워크 | [Health](../evaluations/results/phase5x/moe-instruct-v1-launch/health.json), [listener snapshot](../evaluations/results/phase5x/moe-instruct-v1-launch/listener_proof.json): 실제 기동 및 자체 PID의 TCP listener5개 loopback 확인. 정확한 cold startup 시간이나 모든 향후 socket의 보장은 아니다. |
+| 자원 보호 | [시작 구간 report](../evaluations/results/phase5x/moe-instruct-v1-launch/initial_resource_report.json): 예상 peak24,576MiB와 안전 여유7,275MiB로 사전 검사. 실제 설정과 GPU 전체 관측을 보존하며, process별 peak나 강한 GPU 격리로 표현하지 않는다. |
+
+자체 서버 로그에는 AWQ→Marlin 선택, model weights15.74GiB, CPU offload0,
+GPU blocks256/CPU blocks0이 기록됐다. **활성3B만 VRAM에 올린 구성이 아니라 전체
+expert weight를 적재한 구성**이다. KV256은 block size16에서4096 tokens에 해당하며,
+FP16 KV384MiB는 여전히 구조에 따른 산술이다. Profiling 로그의 나머지 KV 예산을
+실제256 blocks의 할당량으로 혼동하지 않는다. Native backend 선택과 실제 실행은
+RTX의 현대 MoE backend 검증을 대신하지 않는다.
+
+실제 development 결과도 보존했다: [원래 v3](../evaluations/results/phase5x/development-moe-v3-diagnostic/results.json),
+[v4](../evaluations/results/phase5x/development-moe-v4-diagnostic/results.json),
+[generation2 첫 진단](../evaluations/results/phase5x/development-generation2-moe-diagnostic/results.json),
+[분기 schema 진단](../evaluations/results/phase5x/development-generation2-branches-moe-diagnostic/results.json),
+[같은 설정의 정식 development](../evaluations/results/phase5x/development-generation2-branches-moe-formal/results.json).
+보존된 neutral profile의 정식 평가에서는 의미 정확도119/120, unsafe accepted1/120으로
+gate를 통과하지 못했다. Holdout은 아직 호출하지 않았으며 후보를 최종 선정하지 않았다.
+단회 진단의 성공을 최종 품질 보장으로 일반화하지 않으며 실패·반복 변동도 유지한다.
+Gold는 AUTO-GENERATED / NOT HUMAN VERIFIED이고 실제 IFC 적용이나 사람 승인은
+이 평가에서 수행하지 않았다. 최종 모델·Phase gate 판단은 전체 평가 기록을 따른다.
+
+문서 갱신 전 디스크 재확인은 약38.03GiB free(`df -h` 표시39G)였다. 이는 다운로드 전
+54.10GiB 추정과 구분되는 이후 관측이며, downloader의20GiB reserve를 유지한다.
+기존 후보·cache·평가 증거를 이 문서 작업에서 삭제하지 않았다.

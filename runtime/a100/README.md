@@ -1,5 +1,10 @@
 # A100 model runtime — Phase5 실제 검증
 
+이 문서의 14B 선택과 실행 예시는 **Phase5의 과거 checkpoint 재현용**이다.
+Phase5.x에서는 같은 환경에서 4B 및 30B-A3B instruction 후보를 추가 비교했다.
+현재 MoE 서버의 실측 설정은 [launch 기록](../../evaluations/results/phase5x/moe-instruct-v1-launch/),
+품질 gate와 다음 비교는 [STATUS](../../docs/STATUS.md)를 따른다. 확대 평가의 최종 모델은 아직 선정하지 않았다.
+
 프로젝트 `.conda-vllm` Python3.12.14와 공식 **vLLM0.8.5+cu118 / PyTorch2.6.0+cu118**를 설치했다. pip check 및 torch/vllm._C/번들 FlashAttention2/xgrammar import는 통과했다. GPU3 startup/JSON inference를 실제 통과했다. 14B-AWQ promptv3를 내부 개발용으로 선정했다. 고정 development seed20×3에서 schema/parser/자동 의미60/60, READY오판0/33이다. 자동생성 gold이며 heldout/human 정확도가 아니다. 시스템 driver535.183.01, CUDA11.8, glibc2.31을 변경하지 않았다. Backend `.conda`에는 GPU dependency를 설치하지 않는다.
 
 재현 정의:
@@ -38,7 +43,7 @@ GPU3 only, mask3, logical cuda:0, TP1이다. 시작 직전 [GPU budget guard](..
 모델 다운로드는 `.conda/bin/python scripts/download_model.py runtime/models/qwen3-14b-awq.json`으로 프로젝트 var 아래에 저장한다. 파일별 size/SHA256검증과 20GiB root disk reserve를 적용하며 모델 remote code를 사용하지 않는다.
 
 선정한 모델을 다시 시작할 때는 검증된 local weight와 위 환경을 사용한다. 다음은
-현재 A100의 명시적 launch 설정이다. `configs/*.json`을 변경해도 이 CLI의 인자가
+Phase5 14B checkpoint의 명시적 launch 설정이다. `configs/*.json`을 변경해도 이 CLI의 인자가
 자동으로 바뀌지는 않는다. 실행기는 **매번 새 preflight**에서 GPU3의 현재 free/utilization을
 측정하고 예상 peak18432MiB와 안전 여유를 비교한다. 과거의 여유7275MiB나 fit 결과를
 새 실행의 허가로 재사용하지 않는다. 이미 이 프로젝트 guard가 실행 중이면 lock 때문에

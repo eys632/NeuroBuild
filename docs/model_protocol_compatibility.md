@@ -1,22 +1,26 @@
 # Local model server 프로토콜 호환성
 
 공식 문서/소스 조회: **2026-09-20**. A100에서 사용하는 vLLM0.8.5와 향후 RTX5090
-runtime의 HTTP payload 차이를 기록한다. **RTX5090 설치·실행·통합 검증은 수행하지
-않았다.** 이 문서는 client/config 변경이나 새 runtime 검증 완료를 뜻하지 않는다.
+runtime의 HTTP payload 차이를 기록한다. 공통 client의 명시적 dialect 선택은 구현됐다.
+**RTX5090 설치·실행·통합 검증은 수행하지 않았다.** 구현 및 fake HTTP 검증과 실제
+현대 runtime의 검증 완료를 구분한다.
 
 ## 명시적인 dialect 설정
 
-공통 `LocalRequirementClient`에 다음 두 dialect를 명시적으로 선택하는 설정을
-추가하는 방식을 권고한다. Application/schema/parser/Domain/승인 로직은 공통으로
-유지하고, 차이는 transport 요청 필드와 runtime launch 설정에 한정한다.
+공통 [LocalRequirementClient](../src/neurobuild/infrastructure/local_model.py)는
+`StructuredOutputProtocol` enum 또는 같은 문자열로 다음 두 dialect를 명시적으로
+선택한다. 모델명·GPU·응답으로 자동 판별하거나 다른 dialect로 재시도하지 않는다.
+Application/schema/parser/Domain/승인 로직은 공통이며, 서버별 차이는 transport 요청
+필드와 runtime launch 설정에 한정한다. 별도의 `generation_contract` 선택은 어느
+dialect에서도 같은 출력 계약을 사용하며 하드웨어에 따른 business logic 분기가 아니다.
 
-| Dialect 후보 | 요청의 schema 필드 | Backend 선택 |
+| 구현된 dialect | 요청의 schema 필드 | Backend 선택 |
 |---|---|---|
 | `legacy_guided_json` | `"guided_json": schema`, `"guided_decoding_backend": "xgrammar:no-fallback"` | 현재 A100 v0.8.5 경로 |
 | `structured_outputs` | `"structured_outputs": {"json": schema}` | 현대 runtime의 launch 설정에서 `xgrammar` 명시 |
 
 [v0.8.5 공식 요청 계약](https://github.com/vllm-project/vllm/blob/v0.8.5/vllm/entrypoints/openai/protocol.py)은
-legacy 필드를 지원한다. 현재 client는 이 경로를 사용한다.
+legacy 필드를 지원한다. 실제 A100 평가는 client의 이 dialect를 사용한다.
 [현행 structured output 문서](https://docs.vllm.ai/en/stable/features/structured_outputs/)는
 `guided_json`, `guided_decoding_backend` 등 구형 필드가 **v0.12.0에서 제거**되었으며,
 JSON schema를 `structured_outputs.json`으로 전달하도록 안내한다.
@@ -65,12 +69,20 @@ API 필드 보존만을 이유로 RTX runtime을 오래된 버전에 고정하�
 driver/OS와 SM120·선정 모델·quantization에 맞는 runtime을 고른 뒤 dialect를
 설정하는 방식이 작은 변경으로 runtime 선택의 여지를 보존한다.
 
-구현 시 두 payload의 fake HTTP 회귀, unknown dialect 거절, manifest 기록을
-추가한다. RTX 사용이 가능해지면 해당 서버의 허용 **physical GPU1**에서 사전 예산
+두 payload와 unknown dialect 거절·자동 fallback 부재는
+[fake HTTP 회귀](../tests/test_local_model.py)로 검증하며, 실제 선택은 run manifest에
+기록한다. A100 legacy 경로에는 실제 평가 근거가 있지만 modern payload의 fake 서버
+검증만으로 RTX 서버의 grammar 적용을 입증하지 않는다. RTX 사용이 가능해지면
+해당 서버의 허용 **physical GPU1**에서 사전 예산
 검사를 거쳐 실제 modern protocol 통합을 검증해야 한다. pin한 버전의 요청 계약과
 backend 설정을 확인하고 실제 schema/tokenizer compile, 제약이 적용되는 응답,
 지원하지 않는 제약의 거절, 동일 synthetic 의미 회귀를 함께 확인한다. 기존 A100
 성공이나 fake HTTP 테스트를 RTX 실측으로 표시하지 않는다.
+
+아래14B의 dense Marlin 검토와30B-A3B의 MoE backend 검토는 별개다. 현재 MoE 후보의
+정적 SM120 근거, 명시적 expert backend 및 emulation 금지 조건은
+[MoE 후보 검토](moe_instruction_candidate.md)를 따른다. 어느 쪽도 RTX 현장 실행
+또는 설치 가능한 dependency lock이 확정됐다는 뜻은 아니다.
 
 ## Qwen3-14B-AWQ의 RTX5090 실행 가능성 — PREDICTED_UNVERIFIED
 
