@@ -1,6 +1,6 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-20 KST — GLM 최초 실행 PASS 보존, epoch1 시간 제한 종료·GPU3 반환 확인**.
+갱신: **2026-09-20 KST — GLM 완료 검사 재사용, 새 평가 epoch2 신원 확인 PASS**.
 Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 미채택, Phase6 미시작**이다.
 
 | 항목 | 현재 상태 |
@@ -8,7 +8,7 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
 | GitHub | 공통 `v2`; 기존 단회 `704e9f6`, V2 실패 `3a89af9`, Gemma 실패 `f46b2cf`, EXAONE 진단동결 `c466013439e6d202e627ed48c7a4ed1e45cf82c0` push·원격 일치 확인; EXAONE 실패·종료 `daeccacee7bb1912e03c8be696572b80b12c9f4c` push·원격 일치 확인 |
-| 현재 작업 | **GLM 완료 검사와 epoch1 자동 종료 보존, 검사 재사용을 명시한 첫120×1+warmup5 동결 준비** |
+| 현재 작업 | **GLM epoch1 검사·종료 증거를 새 epoch2에 연결한 첫120×1+warmup5 사전동결** |
 | 최근 후보 | EXAONE4.5-33B Q4_K_M: 첫 의미 정확도 gate FAIL. Gemma4-31B 첫 안전 gate FAIL, Qwen3.8 V2 FAIL |
 | Qwen 1차 품질 결과 | 노출120×1: schema120, parser119, semantic117, rawFP0/58, unsafe0/120 — PASS 보존 |
 | Gemma 1차 품질 결과 | 노출120×1: schema/parser120, semantic115, rawFP1/58, unsafe2/120 — **FAIL** |
@@ -16,7 +16,7 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 현재 후보 
 | V2 품질 결과 | 80×1: schema80, parser79, semantic73, rawFP1/40, unsafe1/80 — FAIL |
 | 회귀 검증 | **416 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless19.398초. GLM 명시 profile·실제 metadata의 정확한 모델/type 연결 검증 |
 | Hard blocker | 없음. 품질 gate 미달로 Phase6 진행 불가, Phase5.x 다른 후보 검토 계속 |
-| 모델 실행 | Qwen/Gemma/EXAONE/GLM epoch1 모두 STOPPED. GLM TIME_LIMIT7200.766초, child exit0/reaped; 반환 후5회 free36373/used3965/util0 |
+| 모델 실행 | 이전 서버와 GLM epoch1 STOPPED·GPU3 반환 확인. 새 GLM epoch2 own guard3683401/child3683504, GPU3만 감시 중 |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
 | 다음 검증 | 새 GLM 첫120×1+warmup5 사전동결·commit/push 후 품질 평가. 현재 품질 호출0, 이전 실패 후보 반복0회 |
 
@@ -49,6 +49,17 @@ peak17960/minfree18414MiB, child exit0/reaped였다. 반환 후5회 free36373/us
 [실행 보고서](reports/phase5x_glm47_flash_runtime_preflight_report.md),
 [첫 단회 계획](glm47_flash_diagnostic_plan.md). 비필수 최적화는 future optimization이다.
 [Epoch1 종료 증거](../evaluations/results/phase5x/glm47-flash-epoch1-time-limit-stop/README.md).
+
+종료 checkpoint `fe3fa9ac95d898739431ba149e4b47f3846f6917`도 push·원격 일치를 확인했다.
+Epoch2는 config의 log/report 경로만 바꾸고 동일 model/source/template/profile/메모리 설정을 유지한다.
+새 startup GET3와 own identity PASS, startup SHA `29f5443a8e2b9d1936801860d5776dc3014ba69ba6f73bc6a3407fb4ca9b098c`.
+Epoch2 공개입력·resource POST0, CPU/native corpus 재실행0, 품질 호출0이다.
+평가 freeze는 epoch1 완료 증거와 epoch2 실행 신원을 별도 필드로 구분한다.
+전환 검사의 신규12개 거절 경계와 실제 저장 metadata 정상 연결을 통과했고 기존 검사는 반복하지 않았다.
+첫 단회 [239개 hash 동결](../evaluations/hardening_v1_exposed_native_glm47_diagnostic_freeze.json)을 생성했다.
+Freeze SHA `211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa`,
+120×1+warmup5, 기존 schema120/semantic≥114/rawFP0/unsafe0 기준을 유지한다.
+동결 checkpoint의 push·원격 일치 후 첫 품질 요청을 시작한다.
 
 ## 보존한 단회 결과와 오류3건
 

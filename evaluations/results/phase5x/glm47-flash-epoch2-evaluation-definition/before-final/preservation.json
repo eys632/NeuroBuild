@@ -1,0 +1,8 @@
+{
+  "kind": "GLM47_EPOCH2_V3_DRAFT_PRESERVATION",
+  "sha256": {
+    "var/research/freeze_native_glm47_diagnostic_v3.py": "7ae3db9e3de5da1d921d3cd5404fe6f47fa2ea6583d5ccd9151c0677690ecf4a",
+    "var/research/replay_native_glm47_exposed_v3.py": "a4a7ff81f9824bfc8314a3c3b32fa6f6e38e12e3171f79a0aa6ae019d4af9b8f"
+  },
+  "helper_execution": false
+}

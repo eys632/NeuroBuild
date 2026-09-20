@@ -1,0 +1,100 @@
+{
+  "kind": "GLM47_EPOCH2_EVALUATION_DEFINITION_ARCHIVE",
+  "original_exact_copies": 18,
+  "files": {
+    "freeze_native_glm47_diagnostic_v3.py": {
+      "source_path": "var/research/freeze_native_glm47_diagnostic_v3.py",
+      "bytes": 33217,
+      "sha256": "c4ff15f18cb14ff99a165963397b4360b7c4c43e22164b623f6fe6eed04a010f"
+    },
+    "replay_native_glm47_exposed_v3.py": {
+      "source_path": "var/research/replay_native_glm47_exposed_v3.py",
+      "bytes": 48289,
+      "sha256": "386ba1d07bcba38c8d88509da5743443fb1330c3c866d39117f71195549f2576"
+    },
+    "check_glm47_epoch_transition_v3.py": {
+      "source_path": "var/research/check_glm47_epoch_transition_v3.py",
+      "bytes": 4027,
+      "sha256": "3bffcd6792e2282c3a2c3888e4d56142757eaa54837641e5cce10d7b49e2b4fd"
+    },
+    "glm47-epoch-transition-v3-proof.json": {
+      "source_path": "var/research/glm47-epoch-transition-v3-proof.json",
+      "bytes": 2679,
+      "sha256": "fda7eae4d307dbb668868b71fed6a8b67aa92e97a2ded7217c2a298ef3d06fe5"
+    },
+    "glm47-flash-native-launch-epoch2.json": {
+      "source_path": "var/research/glm47-flash-native-launch-epoch2.json",
+      "bytes": 1372,
+      "sha256": "d0a5ae9663d9caf4420651a018ce687325b0e8fc7fb154963e948b4251e56994"
+    },
+    "run_native_glm47_epoch2_startup.py": {
+      "source_path": "var/research/run_native_glm47_epoch2_startup.py",
+      "bytes": 2964,
+      "sha256": "c4fa474512ae41aa107c8564b278397886deb2682e16c6663ae055a4aa1be8e4"
+    },
+    "glm47-native-epoch2-own-identity.json": {
+      "source_path": "var/research/glm47-native-epoch2-own-identity.json",
+      "bytes": 2128,
+      "sha256": "b20bab7820b78bd9f7c35eb4f0eb311f6c2c495f7c0974e574afcf39b39b1ded"
+    },
+    "glm47-native-epoch2-startup-cli.log.txt": {
+      "source_path": "var/research/glm47-native-epoch2-startup-cli.log",
+      "bytes": 560,
+      "sha256": "c6196ab72a004901be1d832b4535ff8a086734716c35e00a299c4f749e88de00"
+    },
+    "glm47-native-epoch2-startup-cli.stderr.txt": {
+      "source_path": "var/research/glm47-native-epoch2-startup-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "glm47-epoch2-v3-definition-independent-review.json": {
+      "source_path": "var/research/glm47-epoch2-v3-definition-independent-review.json",
+      "bytes": 3269,
+      "sha256": "d476b694ee5bb11437804cfc8fe70bc4448d113325bfe84e98ae35f2ec47f1ce"
+    },
+    "before-final/preservation.json": {
+      "source_path": "var/research/glm47-epoch2-v3-before-final/preservation.json",
+      "bytes": 345,
+      "sha256": "d29510ef60796c3e38a03e6a660f2928b5d142ec0088e105c7a5bc57dd7ea414"
+    },
+    "before-final/freeze_native_glm47_diagnostic_v3.py": {
+      "source_path": "var/research/glm47-epoch2-v3-before-final/freeze_native_glm47_diagnostic_v3.py",
+      "bytes": 33094,
+      "sha256": "7ae3db9e3de5da1d921d3cd5404fe6f47fa2ea6583d5ccd9151c0677690ecf4a"
+    },
+    "before-final/replay_native_glm47_exposed_v3.py": {
+      "source_path": "var/research/glm47-epoch2-v3-before-final/replay_native_glm47_exposed_v3.py",
+      "bytes": 48213,
+      "sha256": "a4a7ff81f9824bfc8314a3c3b32fa6f6e38e12e3171f79a0aa6ae019d4af9b8f"
+    },
+    "prepare_glm47_replay_snapshot.py": {
+      "source_path": "var/research/prepare_glm47_replay_snapshot.py",
+      "bytes": 8548,
+      "sha256": "a0970066343e87f853b495f2b6439442fe0e066c94615639cb4e06d0a6ae6abb"
+    },
+    "prepare_glm47_replay_snapshot_v2.py": {
+      "source_path": "var/research/prepare_glm47_replay_snapshot_v2.py",
+      "bytes": 8548,
+      "sha256": "dda61d53db9ef9b5499aa69f9eb8d6303ae54b4d5da4fd8b64972c55d749bbae"
+    },
+    "glm47-future-snapshot-preparation.json": {
+      "source_path": "var/research/glm47-future-snapshot-preparation.json",
+      "bytes": 3621,
+      "sha256": "135be7b525f78b0221f5748c0fbf5925d5e6559bb2d7291920a5e850413e22e4"
+    },
+    "glm47-freeze-publication-cli.log.txt": {
+      "source_path": "var/research/glm47-freeze-publication-cli.log",
+      "bytes": 269,
+      "sha256": "3f77d5e23839e0b6e09a4e5e9f97cbf5f8934c0426187a209b3f486856cf5b64"
+    },
+    "glm47-freeze-publication-cli.stderr.txt": {
+      "source_path": "var/research/glm47-freeze-publication-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "README.md": {
+      "bytes": 1528,
+      "sha256": "58242d5d11e2ecf03462f0992c4169373f2d2799e9ed4284b92e75a34c495b44"
+    }
+  }
+}

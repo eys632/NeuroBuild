@@ -1,0 +1,56 @@
+{
+  "kind": "GLM47_EPOCH2_V3_DEFINITION_INDEPENDENT_READ_REVIEW",
+  "status": "READ_REVIEW_PASS_PREPARATION_ONLY",
+  "at_utc": "2026-09-20T14:44:30.594191+00:00",
+  "source_sha256": {
+    "var/research/freeze_native_glm47_diagnostic_v2.py": "b5defcb12bbab663fb95284e2e7048a80eb7a10a8604fadef0fd87b46405f903",
+    "var/research/freeze_native_glm47_diagnostic_v3.py": "7ae3db9e3de5da1d921d3cd5404fe6f47fa2ea6583d5ccd9151c0677690ecf4a",
+    "var/research/replay_native_glm47_exposed_v2.py": "077ea06179ae4504e803ece33c87da8638c3f413e59fd8f6d5a3c269788f4ff0",
+    "var/research/replay_native_glm47_exposed_v3.py": "a4a7ff81f9824bfc8314a3c3b32fa6f6e38e12e3171f79a0aa6ae019d4af9b8f"
+  },
+  "checks": {
+    "exact_read_files": true,
+    "load_snapshot_ast_unchanged": true,
+    "replay_row_ast_unchanged": true,
+    "replay_groups_ast_unchanged": true,
+    "validate_identity_ast_unchanged": true,
+    "validate_cpu_metadata_ast_unchanged": true,
+    "freezer_prerequisite_validation_body_unchanged": true,
+    "GATES_replay_unchanged": true,
+    "SAMPLING_replay_unchanged": true,
+    "PATHS_replay_unchanged": true,
+    "CPU_SOURCE_replay_unchanged": true,
+    "CPU_REFS_replay_unchanged": true,
+    "gate_freezer_replay_same": true,
+    "both_actual_startup_pins_pending": true,
+    "both_entrypoints_unconditionally_pending": true,
+    "prior_replay_only_removed_epoch1_nonexistent_freeze_clock": true,
+    "freezer_replay_transition_ast_same": true,
+    "stopped_original_guard_exact_sha": true,
+    "actual_old_guard_stopped_reaped": true,
+    "startup_only_controller_exact_sha": true,
+    "controller_calls_only_capture_startup_not_public_resource": true
+  },
+  "material_findings": [],
+  "read_review_findings": [
+    "Epoch1 public/resource stay on exact historical epoch1 paths and validated through unchanged original prerequisite checks; no replay or model calls are prerequisites.",
+    "Epoch2 launch permits only log_file/report_file differences; runtime metadata permits only launch/startup/listener digest differences. Original model/build/profile/template/CPU/platform remain equal.",
+    "Exact immutable epoch1 STOPPED/TIME_LIMIT/exit0/reaped proof is required; epoch2 must start after its completion and have different process epoch.",
+    "Actual epoch2 startup requires3GET/zero explicit generation, original CPU/template/provenance match, current loopback/PID/ticks/guard/artifact checks and hash links.",
+    "Current freeze runtime metadata and epoch snapshot bind epoch2; prerequisite_epoch1 and epoch_carryforward_policy separately bind historical resources. Time observation applies to epoch2 only.",
+    "Current source is intentionally non-executable pending actual startup SHA and final transition-control paths; it does not authorize freeze or infer an actual epoch2 PASS."
+  ],
+  "pending_finalization": [
+    "Root supplies actual epoch2 startup hash",
+    "Owner finalizes require_ready and transition selfcheck source/proof pins",
+    "Final saved-evidence validation and actual own-epoch checks belong to root"
+  ],
+  "review_execution": {
+    "helper_imports_or_function_calls": 0,
+    "tests_or_probes": 0,
+    "dataset_or_result_reads": 0,
+    "snapshot_creation": 0,
+    "model_native_gpu_http_calls": 0,
+    "source_edits": 0
+  }
+}

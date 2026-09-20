@@ -1183,3 +1183,24 @@ Finalguard792b8585672b82d6a702ef3600149fc19d4250fe5f48c795eb441de1eb3d1e86,
 poststopad2757dad2b86663e54291570097dc4755437a28a55a8c839305da08b0491023.
 품질호출0/다른사용자신호0/GPU0·1·2 fallback0.
 완료 public/resource/CPU 검사를 재실행하지 않고 새epoch2 identity/현재예산만 연결해 첫단회를 준비한다.
+
+
+### 2026-09-20 — GLM epoch2 최초 평가용 신원 연결
+
+Epoch1 종료 보존fe3fa9ac95d898739431ba149e4b47f3846f6917 push·원격일치.
+새configd0a5ae9663d9caf4420651a018ce687325b0e8fc7fb154963e948b4251e56994는log/report 경로2개만 변경했다.
+`CUDA_VISIBLE_DEVICES=3 .conda/bin/python scripts/llama_server.py --config var/research/glm47-flash-native-launch-epoch2.json`
+으로동일모델을첫품질평가용으로기동했다. 이미완료한public/resource/CPU검사는재사용한다.
+`run_native_glm47_epoch2_startup.py`의 GET3만 PASS, startup29f5443a8e2b9d1936801860d5776dc3014ba69ba6f73bc6a3407fb4ca9b098c,
+metadata cf6c6d2b38be7607cc2103c9c7668dd4264570334c2b8a0466df242669971394.
+새 own guard3683401/start479902187·child3683504/start479906575, guardstart14:43:57.927254UTC.
+Identityb20bab7820b78bd9f7c35eb4f0eb311f6c2c495f7c0974e574afcf39b39b1ded.
+Startup5개 JSON을exactcopy. 새public/resourcePOST0·기존corpus재실행0·품질호출0.
+V3 freeze/replay는epoch1완료검사+STOPPED와새epoch2신원을분리하고같은inference설정을검증한다.
+
+새 epoch 전환 controls12개와 actual saved metadata 두소비자연결 PASS fda7eae4d307dbb668868b71fed6a8b67aa92e97a2ded7217c2a298ef3d06fe5.
+기존12/control/core/public/resource 미호출. 최종freezerc4ff15f18cb14ff99a165963397b4360b7c4c43e22164b623f6fe6eed04a010f,
+replay386ba1d07bcba38c8d88509da5743443fb1330c3c866d39117f71195549f2576.
+Root는 finalv3를 publication1회 호출했고239hash의 첫품질freeze를생성했다.
+SHA211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa, freeze시epoch2elapsed134.944/remaining7065.056s.
+중복dry-check없음, modelquality0. Epoch1완료검사/종료와epoch2현재신원을별도필드로보존하며source/profile/gates/분모변경없다.

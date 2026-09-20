@@ -1,0 +1,31 @@
+{
+  "kind": "GLM47_EPOCH2_STARTUP_GET_ONLY_ARCHIVE",
+  "public_resource_repeated": false,
+  "files": {
+    "launch_config.json": {
+      "source_path": "var/reports/glm47-flash-native-startup-epoch2/launch_config.json",
+      "bytes": 1372,
+      "sha256": "d0a5ae9663d9caf4420651a018ce687325b0e8fc7fb154963e948b4251e56994"
+    },
+    "resource_report.json": {
+      "source_path": "var/reports/glm47-flash-native-startup-epoch2/resource_report.json",
+      "bytes": 5176,
+      "sha256": "cd2f485ab513567e9fec1544402fd1da0898fada124abb3ec370756a07c04b39"
+    },
+    "listeners.json": {
+      "source_path": "var/reports/glm47-flash-native-startup-epoch2/listeners.json",
+      "bytes": 592,
+      "sha256": "bd287b3d2350548ad48d4f51ef0885964ad870debb941528424b9178c22cb2a4"
+    },
+    "startup.json": {
+      "source_path": "var/reports/glm47-flash-native-startup-epoch2/startup.json",
+      "bytes": 5010,
+      "sha256": "29f5443a8e2b9d1936801860d5776dc3014ba69ba6f73bc6a3407fb4ca9b098c"
+    },
+    "runtime_metadata.json": {
+      "source_path": "var/reports/glm47-flash-native-startup-epoch2/runtime_metadata.json",
+      "bytes": 1359,
+      "sha256": "cf6c6d2b38be7607cc2103c9c7668dd4264570334c2b8a0466df242669971394"
+    }
+  }
+}

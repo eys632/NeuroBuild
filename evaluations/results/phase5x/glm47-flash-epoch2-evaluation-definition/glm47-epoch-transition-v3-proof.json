@@ -1,0 +1,40 @@
+{
+  "kind": "GLM47_EPOCH_TRANSITION_NEW_CONTROLS",
+  "status": "PASS_NEW_EPOCH_TRANSITION_CONTROLS_ONLY",
+  "helper_sha256": "c4ff15f18cb14ff99a165963397b4360b7c4c43e22164b623f6fe6eed04a010f",
+  "replay_sha256": "386ba1d07bcba38c8d88509da5743443fb1330c3c866d39117f71195549f2576",
+  "selfcheck_sha256": "3bffcd6792e2282c3a2c3888e4d56142757eaa54837641e5cce10d7b49e2b4fd",
+  "actual_saved_epoch2_transition_positive": "PASS_BOTH_CONSUMERS",
+  "tampering_rejected": [
+    "changed_batch",
+    "changed_template_policy",
+    "reused_output_path",
+    "changed_build_identity",
+    "old_guard_not_stopped",
+    "old_child_not_reaped",
+    "old_final_wrong_pid",
+    "reused_old_child_identity",
+    "new_guard_before_old_stop",
+    "new_listener_wrong_pid",
+    "new_cpu_proof_changed",
+    "new_guard_below_floor"
+  ],
+  "saved_metadata_sha256": {
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/launch_config.json": "4824463fcabca13c2eaa07a9774c324b7980a2383915868f4f493b149dc245c4",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/launch_config.json": "d0a5ae9663d9caf4420651a018ce687325b0e8fc7fb154963e948b4251e56994",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/runtime_metadata.json": "abf2fe43d2f01dee1bf18819aa7890088eb5e02b6a41f03d56322f2236e80b41",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/runtime_metadata.json": "cf6c6d2b38be7607cc2103c9c7668dd4264570334c2b8a0466df242669971394",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/startup.json": "2a19dde7fd90416638137a370cf68ed0b08ce66d7be277c32a4bbba27b10aaa0",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/startup.json": "29f5443a8e2b9d1936801860d5776dc3014ba69ba6f73bc6a3407fb4ca9b098c",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch1/resource_report.json": "8c3c1e1a1f86453c0c4dcdca21f0fcd6011382a2c4994758a7b8f43847432c63",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/resource_report.json": "cd2f485ab513567e9fec1544402fd1da0898fada124abb3ec370756a07c04b39",
+    "evaluations/results/phase5x/glm47-flash-native-startup-epoch2/listeners.json": "bd287b3d2350548ad48d4f51ef0885964ad870debb941528424b9178c22cb2a4",
+    "evaluations/results/phase5x/glm47-flash-epoch1-time-limit-stop/final_guard.json": "792b8585672b82d6a702ef3600149fc19d4250fe5f48c795eb441de1eb3d1e86"
+  },
+  "core_functions_invoked": 0,
+  "old12_controls_rerun": 0,
+  "public_resource_calls": 0,
+  "dataset_or_result_body_reads": 0,
+  "model_native_gpu_http_calls": 0,
+  "scope": "Only new epoch transition metadata; not runtime execution, prior smoke replay or quality evaluation."
+}

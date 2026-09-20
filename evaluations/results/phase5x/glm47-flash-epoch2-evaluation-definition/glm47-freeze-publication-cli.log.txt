@@ -1,0 +1,1 @@
+{"status": "FROZEN_NOT_EVALUATED", "path": "evaluations/hardening_v1_exposed_native_glm47_diagnostic_freeze.json", "sha256": "211750093b2c8f97cd1703538d8f04640f0f922fc7f4ef1ec93fe1ec42a043fa", "candidate_variant": "glm47-flash-gguf-nonthinking-v1", "bound_files": 239}
