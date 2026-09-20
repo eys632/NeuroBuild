@@ -1,0 +1,27 @@
+{
+  "kind": "EXAONE45_FREEZER_DRAFT_METADATA_CPU_PROOF",
+  "status": "PASS",
+  "tests": 8,
+  "seconds": 0.012,
+  "sha256": {
+    "var/research/freeze_native_exaone45_diagnostic.py": "e59e33cd18a7ac8048af31b3d6584543c77006d43748982a284d5239951ca652",
+    "var/research/test_freeze_native_exaone45_diagnostic.py": "f5f58be669c3797a4e021e6951740dcf0652868d7fda1fe061801f5c79b8f0d8"
+  },
+  "draft_main_and_gates": "Called only under mocked no-IO test; unconditional pending rejection verified",
+  "actual_validate_fixed_executed": false,
+  "freeze_created": false,
+  "actual_cpu_or_runtime_eligibility": false,
+  "candidate_variant": "exaone45-gguf-continue-free-raw-unicode-korean-v1",
+  "template_proof_variant": "exaone45-gguf-continue-free-korean-v1",
+  "copied_ast_nodes": [
+    "require",
+    "checked",
+    "digest",
+    "load",
+    "validate_current"
+  ],
+  "base_helper_sha256": "2f37aa29bfe71e49e14cc4a5e569e725e83a2f1effeec955c57e7276b8052ff6",
+  "actual_dataset_or_result_parses": 0,
+  "model_http_gpu_calls": 0,
+  "old125_replay_calls": 0
+}

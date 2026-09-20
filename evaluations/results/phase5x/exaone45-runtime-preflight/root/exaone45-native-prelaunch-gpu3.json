@@ -1,0 +1,57 @@
+{
+  "status": "PASS",
+  "kind": "EXAONE45_FRESH_GPU3_BUDGET",
+  "samples": [
+    {
+      "at_utc": "2026-09-20T10:33:24.245178+00:00",
+      "index": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "total_mib": 40960,
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T10:33:24.821130+00:00",
+      "index": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "total_mib": 40960,
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T10:33:25.375919+00:00",
+      "index": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "total_mib": 40960,
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T10:33:25.929083+00:00",
+      "index": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "total_mib": 40960,
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    },
+    {
+      "at_utc": "2026-09-20T10:33:26.483182+00:00",
+      "index": 3,
+      "uuid": "GPU-e56265ed-69de-738b-d683-52fbf895e538",
+      "total_mib": 40960,
+      "used_mib": 3965,
+      "free_mib": 36373,
+      "utilization_percent": 0
+    }
+  ],
+  "whole_peak_estimate_mib": 28672,
+  "safety_margin_mib": 7275,
+  "available_after_margin_mib": 29098,
+  "estimate_is_hard_bound": false,
+  "other_process_changes": 0,
+  "gpu_fallback": false
+}

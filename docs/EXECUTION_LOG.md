@@ -975,3 +975,41 @@ Header/publicv1/v2/v3/failure/diagnosis/새408receipt를exaone45-template-header
 독립보관검토35원본/37hash및stagedindex37/37 PASS. 정책내용/원문/원본template·nativebinary불변,
 active문서링크/secret pattern/환경·weight·ELF 제외검증PASS. 고정derivedtemplate2사본의원래공백16건은
 검증한exact bytes 보존예외이며다른공백오류0. Source6pins가408회귀시점과같음을확인했다.
+
+
+### 2026-09-20 — EXAONE 실제 vocab 공식18/20 FAIL과 원문 보존 관측
+
+Template/header checkpoint91ec570d0924ec600c35bc636df8903c1ad616ba push/ls-remoteexact확인.
+실제GGUF CPUvocab-only(emptydevices/noalloc/loadnone/notensors/nocontext)에서 공식20건전부관찰:
+ID18/20, mismatchindices11/12, native rawroundtrip20/20, officialreference rawroundtrip18/20.
+Proof66442010a8c4ee9f5f554bfea34273fd80659d50d42b9acdba6b2879400285d1은FAIL그대로보존.
+원본embedded/effectiveoverride일치, vocab-backed전체prompt9176B/공개18render,
+grammar20accept/40reject/EOG PASS. Publicinput1910+output768=2678, ordinaryspaceID582/roundtriptrue.
+평가자료본문/품질출력/GPU/모델호출0. 이전공식fixture를고치지않았다.
+D042에따라 별도NFC-offreference 대조와새variant의기존200입력길이만검증하도록지시했다.
+미사용80draft는읽거나평가하지않는다. 이시점rawreference/context/최종CPUaggregate는미완료다.
+
+
+### 2026-09-20 — EXAONE 별도 raw CPU gate와 첫 GPU3 실행
+
+공식18/20 FAIL을 보존한 별도raw20/20 ID·원문왕복 PASS, 기존200입력 길이만 확인했다.
+노출120 input1900–2122/+768최대2890, 기존V280 input1915–2088/+768최대2856(4096이내).
+최종CPU proof2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209.
+새미사용80읽기0/모델추론0인CPU증거를원본실패와함께exaone45-cpu-preflight/contract에보존했다.
+새runtime_v4소비4tests PASS(0.073s), 15변조거절과3entrypoint의HTTP전거절을검증했다.
+독립읽기검토PASS, 실제root config hash1e872da88b6d00750447dd7c39213d7a4ce19b161fa64cb4c51cab1f7b8b7761도CPU소비PASS.
+Production은직전408회귀시점과같고전체suite를반복하지않는다.
+
+Fresh GPU3 5회 free36373/used3965/util0, margin7275/허용29098 대비 wholeestimate28672MiB.
+`CUDA_VISIBLE_DEVICES=3 .conda/bin/python scripts/llama_server.py --config var/research/exaone45-native-launch-epoch1.json`
+으로own guard3622309/child3622453(ticks478405342),10:33:32.120893UTC epoch시작.
+Root single-step probe startup/public/resource를각각1회실행했고모두PASS다.
+공개production입력4.491796460s, resource3328+768/cached4095/limit27.610334212s.
+Resource시점aggregate최대19946/minfree16428MiB, requiredfloor7275MiB.
+세종류7원본JSON을tracked epoch1폴더에exactcopy했다. 품질평가·기존평가재실행0.
+공통완료검사/driver/CUDA환경변경/타인process변경/GPUfallback은없다.
+
+새 freezer14/14 focusedPASS0.043s, replay18변조거절/3coreAST동일을보존했다.
+Root actual --dry-check PASS뒤exclusive-create 사전동결을발행했다.
+Freeze SHA fdec20e52ac3e7e9940e830ff78599e019bfaf75cca6f28d761809970f973cd6, bound179files, expected125calls/trials1.
+Runtime+CPU+freezer 재현소스/증거를별도archive에보존했다. 아직품질호출0이며clean checkpoint/push 후시작한다.

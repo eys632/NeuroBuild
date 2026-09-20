@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "kind": "EXAONE45_ACTUAL_CONFIG_CPU_BINDING",
+  "config_sha256": "1e872da88b6d00750447dd7c39213d7a4ce19b161fa64cb4c51cab1f7b8b7761",
+  "helper_sha256": "7e2ff0e719304df4667baa988c416307405c61b5bca090f6609b8715eb024ee2",
+  "wrapper_sha256": "970985e1ba5935862915744403810b5c0698127eb3aec1af341af7cb1a4a353b",
+  "cpu_proof_sha256": "2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209",
+  "runtime_variant": "exaone45-gguf-continue-free-raw-unicode-korean-v1",
+  "resource_token": 582,
+  "official_hf_status": "FAIL",
+  "http_gpu_model_calls": 0
+}

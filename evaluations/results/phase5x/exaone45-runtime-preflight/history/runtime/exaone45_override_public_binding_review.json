@@ -1,0 +1,42 @@
+{
+  "kind": "EXAONE_OVERRIDE_PUBLIC_PROOF_BINDING_REVIEW",
+  "status": "PUBLIC_METADATA_BINDING_PASS_FULL_RUNTIME_PENDING",
+  "public_proof": {
+    "path": "var/research/native-exaone45-contract/public-proof-v3.json",
+    "sha256": "fc7109fe4e9fbbe4a619ad16dc701cda01a4976ec8bd53d726aeb09f34f39408"
+  },
+  "chat_template_override": {
+    "path": "var/research/native-exaone45-contract/chat_template_continue_override.jinja",
+    "sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+    "bytes": 5829,
+    "original_embedded_template_sha256": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+    "transform": "continue-free-system-message-branch-v1"
+  },
+  "template_render_parity": {
+    "status": "PASS",
+    "reference_cases": 18,
+    "official_original_derived_reference_byte_equal": true,
+    "derived_native_system_and_user_exact": true,
+    "derived_native_prompt_equals_official_reference": true,
+    "proof_ref": {
+      "path": "var/research/native-exaone45-contract/public-proof-v3.json",
+      "sha256": "fc7109fe4e9fbbe4a619ad16dc701cda01a4976ec8bd53d726aeb09f34f39408"
+    }
+  },
+  "original_failure_retained": {
+    "public_cases_mismatched": 7,
+    "case_count": 18,
+    "system_present": false,
+    "prompt_bytes": 177
+  },
+  "derived_native_prompt_bytes": 9176,
+  "official_reference_scope": "18 public template cases and captured production request only; not all possible conversations",
+  "full_gguf_tokenizer_context_gate": "PENDING",
+  "evidence_review_actions": {
+    "native_calls": 0,
+    "model_calls": 0,
+    "http_calls": 0,
+    "gpu_calls": 0,
+    "dataset_body_reads": 0
+  }
+}

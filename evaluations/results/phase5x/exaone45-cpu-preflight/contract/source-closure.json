@@ -1,0 +1,574 @@
+{
+  "kind": "EXAONE45_CPU_CONTRACT_SOURCE_CLOSURE",
+  "created_utc": "2026-09-20T10:33:56.591692+00:00",
+  "project_root": "/home/a202192020/NeuroBuild_v2",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "exact_copies": {
+    "validator_v4.cpp": {
+      "original_path": "var/research/native-exaone45-contract/validator_v4.cpp",
+      "bytes": 25039,
+      "sha256": "49acbf43b4f4030748fd96613a558b075b470f4150dfe2915518c486230196aa",
+      "copy": "EXACT_BYTES"
+    },
+    "validator_v5.cpp": {
+      "original_path": "var/research/native-exaone45-contract/validator_v5.cpp",
+      "bytes": 27064,
+      "sha256": "3229773054eda0fd5e55e8e8f6a57021ebf4c4ece425ad5ec8043869161dcc90",
+      "copy": "EXACT_BYTES"
+    },
+    "build_v4.py": {
+      "original_path": "var/research/native-exaone45-contract/build_v4.py",
+      "bytes": 12039,
+      "sha256": "3d75378b84fcb1a8d6fba7d30e25880471748cebb62a06adaee679a54a0c39b5",
+      "copy": "EXACT_BYTES"
+    },
+    "build_v5.py": {
+      "original_path": "var/research/native-exaone45-contract/build_v5.py",
+      "bytes": 12974,
+      "sha256": "9a9467dc6f062f3ae3d695dd4bc638b065b5b9a21bf5b7799a292ea3bef6a208",
+      "copy": "EXACT_BYTES"
+    },
+    "build-v4.json": {
+      "original_path": "var/research/native-exaone45-contract/build-v4.json",
+      "bytes": 12679,
+      "sha256": "5de72ee7055dd044f2d97fe35ca5798f0d352b0e1dbe1058a63b50a99475d256",
+      "copy": "EXACT_BYTES"
+    },
+    "build-v5.json": {
+      "original_path": "var/research/native-exaone45-contract/build-v5.json",
+      "bytes": 13628,
+      "sha256": "399bcaf6cb6fa3a40cb13461d8b34f8862372d4162ffa18eb4fc42b28855ad34",
+      "copy": "EXACT_BYTES"
+    },
+    "vocab_check.py": {
+      "original_path": "var/research/native-exaone45-contract/vocab_check.py",
+      "bytes": 8934,
+      "sha256": "7cc2ebcd1521dca5fc02cc7b76a3288aab412adb53f5c2a6ab9ec66c7184228b",
+      "copy": "EXACT_BYTES"
+    },
+    "public-vocab-proof.json": {
+      "original_path": "var/research/native-exaone45-contract/public-vocab-proof.json",
+      "bytes": 4125,
+      "sha256": "66442010a8c4ee9f5f554bfea34273fd80659d50d42b9acdba6b2879400285d1",
+      "copy": "EXACT_BYTES"
+    },
+    "prepare_raw_reference.py": {
+      "original_path": "var/research/native-exaone45-contract/prepare_raw_reference.py",
+      "bytes": 3207,
+      "sha256": "23291791df7e3a49f5f7a70bf0b4774937b4bff9560fee4061527f27e4f0d67a",
+      "copy": "EXACT_BYTES"
+    },
+    "raw-reference-diagnostic.json": {
+      "original_path": "var/research/native-exaone45-contract/raw-reference-diagnostic.json",
+      "bytes": 7206,
+      "sha256": "9a379ccf7cab7c85c23582c45f77c6b4ec481a9bb1469009564dba0fe894bf2c",
+      "copy": "EXACT_BYTES"
+    },
+    "raw_context_check.py": {
+      "original_path": "var/research/native-exaone45-contract/raw_context_check.py",
+      "bytes": 15769,
+      "sha256": "481a40c8c6372aadb1e146b977f90ea61231fca81a87fd3c9ecb02f32ffd892e",
+      "copy": "EXACT_BYTES"
+    },
+    "test_raw_context_check.py": {
+      "original_path": "var/research/native-exaone45-contract/test_raw_context_check.py",
+      "bytes": 2952,
+      "sha256": "546a8392c8c76f5e3ee252387c8e1abc8eb86da587e9ed365b0b743468f6ea44",
+      "copy": "EXACT_BYTES"
+    },
+    "raw-context-selfcheck.json": {
+      "original_path": "var/research/native-exaone45-contract/raw-context-selfcheck.json",
+      "bytes": 381,
+      "sha256": "91d3a29b00d6ecd71f65fd2b80b751b7f9e6ef62880a306232411d6c9a44b190",
+      "copy": "EXACT_BYTES"
+    },
+    "raw-vocab-proof.json": {
+      "original_path": "var/research/native-exaone45-contract/raw-vocab-proof.json",
+      "bytes": 4938,
+      "sha256": "2ce12c5e4d93f7d3baff40da67b1f2c3b5575e117dff081c84d03835e07e8c9d",
+      "copy": "EXACT_BYTES"
+    },
+    "vocab-context-raw-proof.json": {
+      "original_path": "var/research/native-exaone45-contract/vocab-context-raw-proof.json",
+      "bytes": 9032,
+      "sha256": "f450e9f0bf3a206204474ed860bc6d191597cbe6cc31a7349efe894b5d3775bb",
+      "copy": "EXACT_BYTES"
+    },
+    "finalize_cpu_proof.py": {
+      "original_path": "var/research/native-exaone45-contract/finalize_cpu_proof.py",
+      "bytes": 8392,
+      "sha256": "63092a6286cbaea5251058c1fbd63c3ce7ec795a942372700325804d1af8c3ea",
+      "copy": "EXACT_BYTES"
+    },
+    "final-cpu-proof.json": {
+      "original_path": "var/research/native-exaone45-contract/final-cpu-proof.json",
+      "bytes": 6583,
+      "sha256": "2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209",
+      "copy": "EXACT_BYTES"
+    },
+    "build-v4.log.txt": {
+      "original_path": "var/research/native-exaone45-contract/build-v4.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy": "EXACT_BYTES_EMPTY_BUILD_LOG"
+    },
+    "build-v5.log.txt": {
+      "original_path": "var/research/native-exaone45-contract/build-v5.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy": "EXACT_BYTES_EMPTY_BUILD_LOG"
+    }
+  },
+  "historical_and_external_pins": {
+    "var/research/run_llama_build.py": {
+      "sha256": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+      "bytes": 15117,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/helpers/run_llama_build.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/relink_llama_rpath.py": {
+      "sha256": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0",
+      "bytes": 14356,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/helpers/relink_llama_rpath.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/verify_llama_build.py": {
+      "sha256": "81285c40d1ee3862f747bbbc32fc9868d7a0604b4ea402dc8a8b5e9a1a06573e",
+      "bytes": 19770,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/helpers/verify_llama_build.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/build_native_contract_cpu.py": {
+      "sha256": "0f46ea1d2009d882077a5735aef17a62ad6cd9d327e5635c32081b7f82299510",
+      "bytes": 11498,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/helpers/build_native_contract_cpu.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/reports/llama-native-contract-cpu-build-v4.json": {
+      "sha256": "f149c7eda01dda9b36f4dba9327cb368bbdf2e3c591fa7db287b47787be7aea0",
+      "bytes": 9340,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/prior-proofs/llama-native-contract-cpu-build-v4.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-contract-validator/validator.cpp": {
+      "sha256": "92ed10acd9be33d02d4cc6ea446dc2bea93ffb60b7d17ffc3c0f0268aab6c6b2",
+      "bytes": 22456,
+      "tracked_exact_copies": [
+        "runtime/native/a100-llama-f072/native-contract-validator/validator.cpp"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/validator.cpp": {
+      "sha256": "21292aa312940a41db31757f38039545b1d619b877754e1f268493eb3720e1f0",
+      "bytes": 14287,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/validator.cpp"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-gemma4-contract/validator_v2.cpp": {
+      "sha256": "fecf647d431a3af0137f5e9459ddd8afece4e571d4a6a240dc2f4929acf9f20d",
+      "bytes": 26469,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/gemma4-cpu-preflight/contract/validator_v2.cpp"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-gemma4-contract/gemma4-cpu-validator-v2": {
+      "sha256": "61abafb662bd944d10958c79cde6a5e308967af921beee6e63edcaa43e03a52d",
+      "bytes": 11322648,
+      "tracked_exact_copies": [],
+      "reproduction": "REBUILD_LOCAL_BINARY_NOT_ARCHIVED"
+    },
+    "var/research/native-gemma4-contract/build-v2.json": {
+      "sha256": "1b6dce0e85790b267ec2514da8c81158c76b9d01a27aa6c2e584787a160e67ee",
+      "bytes": 11788,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/gemma4-cpu-preflight/contract/build-v2.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/validator_v2.cpp": {
+      "sha256": "ea747948a6e994b870c2aa21283ef84061752f2e37456587968f6b9749598d89",
+      "bytes": 14467,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/validator_v2.cpp"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/build.py": {
+      "sha256": "44d6417eef50df522819acbb0d280c0a76f4b7b9baf53a242ef4de2f3c419126",
+      "bytes": 9425,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/build.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/build.json": {
+      "sha256": "4fc1445dc63a61fe777fe65594a56156f7979b3041d42a70e0f93c758ca6689d",
+      "bytes": 9992,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/build.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/public_check.py": {
+      "sha256": "41e4edb533045b1cb29f8ab99c0dfd0a04af16a4aa8ee5c117dc0a9037c46560",
+      "bytes": 8200,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/public_check.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/public-proof.json": {
+      "sha256": "c58985624c279226f8f9140ed7a5b298ef205280761c1cf45d80e7871e7f70c6",
+      "bytes": 1905,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/public-proof.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/exaone45-cpu-validator": {
+      "sha256": "7d0ecba0963b1ae07714e422f41cd7c05c1ee32bcb4c8cb8855f9c20aabd6fa1",
+      "bytes": 11309192,
+      "tracked_exact_copies": [],
+      "reproduction": "REBUILD_LOCAL_BINARY_NOT_ARCHIVED"
+    },
+    "var/research/native-exaone45-contract/validator_v3.cpp": {
+      "sha256": "61e95744bf27bee90b37719615e4a2c54c18b96b21ba65b9cd0f50bcc5ff93ab",
+      "bytes": 17504,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/validator_v3.cpp"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/build_v2.py": {
+      "sha256": "df5d703e80c5ed75d4c5002c5e0da16c65d661649e466da2d89b15964bb6372f",
+      "bytes": 10304,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/build_v2.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/build-v2.json": {
+      "sha256": "8d9c5f7bb4c3e7586df386b9ef8f9361ce375f75c6beb984a7ea93c5a956c8b3",
+      "bytes": 10920,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/build-v2.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/public_check_v2.py": {
+      "sha256": "69c1cfb6c4af783a4fce5328585a96f10c9d854f2dea520692f1d4c9d314c8ff",
+      "bytes": 8635,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/public_check_v2.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/public-proof-v2.json": {
+      "sha256": "76fe6c198061610ee93e62c65090988dab55b14f7a0c3c208facde1a33a16b81",
+      "bytes": 3121,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/public-proof-v2.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/exaone45-cpu-validator-v2": {
+      "sha256": "57b11efe13d88847ef1059971f8b734a472207b1c606be5a564538337f1ff130",
+      "bytes": 11313288,
+      "tracked_exact_copies": [],
+      "reproduction": "REBUILD_LOCAL_BINARY_NOT_ARCHIVED"
+    },
+    "var/research/native-exaone45-contract/chat_template_continue_override.jinja": {
+      "sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+      "bytes": 5829,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/chat_template_continue_override.jinja"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/validator_v4.cpp": {
+      "sha256": "49acbf43b4f4030748fd96613a558b075b470f4150dfe2915518c486230196aa",
+      "bytes": 25039,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/validator_v4.cpp"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/build_v3.py": {
+      "sha256": "04e381cb6ea42f1d71cdd17cf808f0b7d1dbc7425f739265b8024fa249d1c125",
+      "bytes": 11237,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/build_v3.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/build-v3.json": {
+      "sha256": "c022b7af0e91fadf21f511bd66c9ffb1d589b144b876c4c7f89b14f83a09f696",
+      "bytes": 11867,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/build-v3.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/public_check_v3.py": {
+      "sha256": "803767732db366774600f2521eb39db475e8c1d587ba28e9680a0be3a47deb74",
+      "bytes": 12310,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/public_check_v3.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/public-proof-v3.json": {
+      "sha256": "fc7109fe4e9fbbe4a619ad16dc701cda01a4976ec8bd53d726aeb09f34f39408",
+      "bytes": 4303,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/contract/public-proof-v3.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/exaone45-cpu-validator-v3": {
+      "sha256": "9e996da5bd5978c074eea61c36b0da1865a27b250fdc8d38cf082314adf0ed20",
+      "bytes": 11317912,
+      "tracked_exact_copies": [],
+      "reproduction": "REBUILD_LOCAL_BINARY_NOT_ARCHIVED"
+    },
+    "var/research/native-exaone45-contract/build_v4.py": {
+      "sha256": "3d75378b84fcb1a8d6fba7d30e25880471748cebb62a06adaee679a54a0c39b5",
+      "bytes": 12039,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/build_v4.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "scripts/model_guard.py": {
+      "sha256": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+      "bytes": 11948,
+      "tracked_exact_copies": [
+        "scripts/model_guard.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/validator_v5.cpp": {
+      "sha256": "3229773054eda0fd5e55e8e8f6a57021ebf4c4ece425ad5ec8043869161dcc90",
+      "bytes": 27064,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/validator_v5.cpp"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/build-v4.json": {
+      "sha256": "5de72ee7055dd044f2d97fe35ca5798f0d352b0e1dbe1058a63b50a99475d256",
+      "bytes": 12679,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/build-v4.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/vocab_check.py": {
+      "sha256": "7cc2ebcd1521dca5fc02cc7b76a3288aab412adb53f5c2a6ab9ec66c7184228b",
+      "bytes": 8934,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/vocab_check.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/public-vocab-proof.json": {
+      "sha256": "66442010a8c4ee9f5f554bfea34273fd80659d50d42b9acdba6b2879400285d1",
+      "bytes": 4125,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/public-vocab-proof.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/exaone45-cpu-validator-v4": {
+      "sha256": "b755a5c4218b7251ab76f268f2f24aaf021831cb7cd0f23f7979af869225fd79",
+      "bytes": 11335024,
+      "tracked_exact_copies": [],
+      "reproduction": "REBUILD_LOCAL_BINARY_NOT_ARCHIVED"
+    },
+    "var/research/native-exaone45-contract/raw-reference-diagnostic.json": {
+      "sha256": "9a379ccf7cab7c85c23582c45f77c6b4ec481a9bb1469009564dba0fe894bf2c",
+      "bytes": 7206,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/raw-reference-diagnostic.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/build_v5.py": {
+      "sha256": "9a9467dc6f062f3ae3d695dd4bc638b065b5b9a21bf5b7799a292ea3bef6a208",
+      "bytes": 12974,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/build_v5.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/build-v5.json": {
+      "sha256": "399bcaf6cb6fa3a40cb13461d8b34f8862372d4162ffa18eb4fc42b28855ad34",
+      "bytes": 13628,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/build-v5.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/prepare_raw_reference.py": {
+      "sha256": "23291791df7e3a49f5f7a70bf0b4774937b4bff9560fee4061527f27e4f0d67a",
+      "bytes": 3207,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/prepare_raw_reference.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/raw_context_check.py": {
+      "sha256": "481a40c8c6372aadb1e146b977f90ea61231fca81a87fd3c9ecb02f32ffd892e",
+      "bytes": 15769,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/raw_context_check.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/test_raw_context_check.py": {
+      "sha256": "546a8392c8c76f5e3ee252387c8e1abc8eb86da587e9ed365b0b743468f6ea44",
+      "bytes": 2952,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/test_raw_context_check.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/raw-context-selfcheck.json": {
+      "sha256": "91d3a29b00d6ecd71f65fd2b80b751b7f9e6ef62880a306232411d6c9a44b190",
+      "bytes": 381,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/raw-context-selfcheck.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/raw-vocab-proof.json": {
+      "sha256": "2ce12c5e4d93f7d3baff40da67b1f2c3b5575e117dff081c84d03835e07e8c9d",
+      "bytes": 4938,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/raw-vocab-proof.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/vocab-context-raw-proof.json": {
+      "sha256": "f450e9f0bf3a206204474ed860bc6d191597cbe6cc31a7349efe894b5d3775bb",
+      "bytes": 9032,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/vocab-context-raw-proof.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/finalize_cpu_proof.py": {
+      "sha256": "63092a6286cbaea5251058c1fbd63c3ce7ec795a942372700325804d1af8c3ea",
+      "bytes": 8392,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/finalize_cpu_proof.py"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/research/native-exaone45-contract/final-cpu-proof.json": {
+      "sha256": "2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209",
+      "bytes": 6583,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-cpu-preflight/contract/final-cpu-proof.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    },
+    "var/reports/exaone45-gguf-header-v2.json": {
+      "sha256": "fb5260c6e1e3356741f7728e4077f771763ea39affd77e8ac9772e417aa70c12",
+      "bytes": 237403,
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-template-header-preflight/reports/exaone45-gguf-header-v2.json"
+      ],
+      "reproduction": "RESTORE_EXACT_BYTES_TO_ORIGINAL_PROJECT_RELATIVE_PATH"
+    }
+  },
+  "pinned_official_metadata": [
+    {
+      "original_path": "var/research/exaone45-33b-candidate-metadata/upstream/tokenizer.json",
+      "bytes": 12160205,
+      "sha256": "0bd798efa30739e209d51f36cfc2f0a636711e37ad9d69b77e4e5c8ca5f09fab",
+      "official_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/tokenizer.json",
+      "tracked_exact_copies": [],
+      "downloaded_or_revalidated_in_this_archive_step": false
+    },
+    {
+      "original_path": "var/research/exaone45-33b-candidate-metadata/upstream/tokenizer_config.json",
+      "bytes": 526,
+      "sha256": "41fd7d740786df4f0a2edbe58d74341c4b83556b185b698e5b4d177a56e7b5e9",
+      "official_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/tokenizer_config.json",
+      "tracked_exact_copies": [],
+      "downloaded_or_revalidated_in_this_archive_step": false
+    },
+    {
+      "original_path": "var/research/exaone45-33b-candidate-metadata/upstream/chat_template.jinja",
+      "bytes": 5930,
+      "sha256": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+      "official_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/chat_template.jinja",
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-preparation/official/chat_template.jinja"
+      ],
+      "downloaded_or_revalidated_in_this_archive_step": false
+    },
+    {
+      "original_path": "var/research/exaone45-33b-candidate-metadata/upstream/config.json",
+      "bytes": 3537,
+      "sha256": "29e21fcbfe95268e11a151577b6440d77385064b41c960aceff83a2b70eea090",
+      "official_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/config.json",
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-preparation/official/config.json"
+      ],
+      "downloaded_or_revalidated_in_this_archive_step": false
+    },
+    {
+      "original_path": "var/research/exaone45-33b-candidate-metadata/upstream/generation_config.json",
+      "bytes": 308,
+      "sha256": "3d8c4567a8962ae9c8ba8fad85b8c2c3d8451a68b54fe88f81d79a9468012190",
+      "official_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/generation_config.json",
+      "tracked_exact_copies": [
+        "evaluations/results/phase5x/exaone45-preparation/official/generation_config.json"
+      ],
+      "downloaded_or_revalidated_in_this_archive_step": false
+    },
+    {
+      "original_path": "var/research/exaone45-33b-candidate-metadata/upstream/model.safetensors.index.json",
+      "bytes": 99036,
+      "sha256": "fb5d6e4ec8c9c86a2c50c562c29724b911effe90272a6921552f71fe92c9a00c",
+      "official_url": "https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-33B/resolve/570aa4b15a4f45ba1133072b45f50198f6e3b4fd/model.safetensors.index.json",
+      "tracked_exact_copies": [],
+      "downloaded_or_revalidated_in_this_archive_step": false
+    }
+  ],
+  "build_foundation_provenance": "runtime/native/a100-llama-f072/provenance.json",
+  "build_foundation_README": "runtime/native/a100-llama-f072/README.md",
+  "historical_template_header_archive": "evaluations/results/phase5x/exaone45-template-header-preflight/",
+  "original_GGUF_manifest": "runtime/models/exaone45-33b-q4-k-m.json",
+  "original_GGUF_sha256": "5ba3839b67dcee5618ea7b2206cedc8f9e2ec90fbcec3c95a8cc8b33967f6baf",
+  "original_GGUF_bytes": 20047839424,
+  "excluded": [
+    "native executables/objects/static archives",
+    "Conda environments/toolchain/source trees",
+    "12 MB tokenizer.json/vocab/merges",
+    "GGUF weights",
+    "datasets/gold/model outputs/reasoning bodies"
+  ],
+  "dataset_access_in_archive_step": false,
+  "native_execution_in_archive_step": false,
+  "limits": [
+    "Definition restoration is not a promise of bit-identical binaries under another toolchain. Helpers enforce historical pins and require a separate versioned receipt if rebuild identity changes.",
+    "Do not overwrite historical failures or regenerate old receipts to match their prior timestamp-bearing hashes.",
+    "Existing .conda and .conda-vllm are reused; this archive is not authorization to install tools or fetch weights."
+  ]
+}

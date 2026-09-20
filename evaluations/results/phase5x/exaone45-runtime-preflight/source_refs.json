@@ -1,0 +1,26 @@
+{
+  "kind": "EXAONE45_RUNTIME_HELPER_HISTORICAL_SOURCE_REFERENCES",
+  "references": [
+    {
+      "source_path": "var/research/native_runtime_probe.py",
+      "archived_path": "evaluations/results/phase5x/native-runtime-batch64-preflight/native_runtime_probe.py",
+      "sha256": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63",
+      "scope": "Unchanged generic identity, lifecycle, loopback and resource methods"
+    },
+    {
+      "source_path": "var/research/gemma4_runtime_probe_v3.py",
+      "archived_path": "evaluations/results/phase5x/gemma4-cpu-preflight/gemma4_runtime_probe_v3.py",
+      "sha256": "14fdc596eea3a15a2a343c961e9080b05d876eac34d34b6f893a2c2cedd97a37",
+      "scope": "Historical model-wrapper pattern; not selected EXAONE evidence"
+    },
+    {
+      "source_path": "var/review-tools/replay_native_gemma4_exposed.py",
+      "archived_path": "evaluations/results/phase5x/exposed-native-gemma4-diagnostic/replay_native_gemma4_exposed.py",
+      "sha256": "0ce14fc2a532eb5add9a02f0137ce3a7aec77ae5837b7a1942a96e7804c41ff0",
+      "scope": "Three replay core functions exact AST"
+    }
+  ],
+  "production_unchanged_since_408": true,
+  "production_regression_path": "evaluations/results/phase5x/exaone45-template-header-preflight/regression.json",
+  "source_snapshot_runtime_not_included": true
+}

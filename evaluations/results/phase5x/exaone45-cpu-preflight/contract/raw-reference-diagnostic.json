@@ -1,0 +1,387 @@
+{
+  "kind": "EXAONE45_DERIVED_NO_NFC_PUBLIC_DIAGNOSTIC_REFERENCE",
+  "status": "DIAGNOSTIC_REFERENCE_ONLY_NOT_ADOPTED",
+  "at_utc": "2026-09-20T10:18:15.509070+00:00",
+  "reference_kind": "official_metadata_with_only_NFC_normalizer_disabled",
+  "official_fixture_sha256": "49b40b3390cba92f3088c22606632348ba261e69ea0b385b74aa9126be8c46cb",
+  "official_tokenizer_sha256": "0bd798efa30739e209d51f36cfc2f0a636711e37ad9d69b77e4e5c8ca5f09fab",
+  "derived_in_memory_tokenizer_sha256": "67de15f325485a68a819964afe43129f6809aa44a04bb473949d1ccb927d7c62",
+  "corpus_text_sha256": "00baccbb3ae1ef913409bdd097f12cbe6493d0ef299bc46822efef5e4aad7dfd",
+  "case_count": 20,
+  "official_fixture_text_order_unchanged": true,
+  "raw_roundtrip_count": 20,
+  "official_id_difference_indices": [
+    11,
+    12
+  ],
+  "tokenizer_parity": [
+    {
+      "text": "",
+      "expected_token_ids": []
+    },
+    {
+      "text": " ",
+      "expected_token_ids": [
+        582
+      ]
+    },
+    {
+      "text": "\n\t",
+      "expected_token_ids": [
+        560,
+        559
+      ]
+    },
+    {
+      "text": "  공개 문자열의 앞뒤 공백  ",
+      "expected_token_ids": [
+        33,
+        48487,
+        150149,
+        31447,
+        31352,
+        33
+      ]
+    },
+    {
+      "text": "가구 하나의 상대 이동은 아직 적용하지 않습니다.",
+      "expected_token_ids": [
+        56907,
+        125754,
+        4826,
+        5346,
+        132177,
+        5552,
+        126060,
+        375
+      ]
+    },
+    {
+      "text": "X축 -14.70cm; Y축 +0.035m",
+      "expected_token_ids": [
+        417,
+        3236,
+        672,
+        378,
+        381,
+        375,
+        384,
+        377,
+        13889,
+        388,
+        1396,
+        3236,
+        1096,
+        377,
+        375,
+        377,
+        380,
+        382,
+        438
+      ]
+    },
+    {
+      "text": "0 01 123456789 0.0005 +7mm",
+      "expected_token_ids": [
+        377,
+        582,
+        377,
+        378,
+        582,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        582,
+        377,
+        375,
+        377,
+        377,
+        377,
+        382,
+        1096,
+        384,
+        13005
+      ]
+    },
+    {
+      "text": "1/3m １ｍ 1⁄3m −Y",
+      "expected_token_ids": [
+        378,
+        376,
+        380,
+        438,
+        582,
+        70604,
+        601,
+        533,
+        483,
+        597,
+        582,
+        378,
+        70969,
+        588,
+        380,
+        438,
+        4433,
+        418
+      ]
+    },
+    {
+      "text": "선택 범위: 왼쪽 물건을 제외한 오른쪽 물건",
+      "expected_token_ids": [
+        30571,
+        11422,
+        387,
+        10273,
+        128535,
+        127178,
+        10177,
+        7776
+      ]
+    },
+    {
+      "text": "공개\n줄바꿈\t탭\\경로 \"인용\"",
+      "expected_token_ids": [
+        48487,
+        560,
+        6539,
+        54481,
+        559,
+        132988,
+        421,
+        134020,
+        738,
+        133365,
+        363
+      ]
+    },
+    {
+      "text": "가나다와 한글 완성형",
+      "expected_token_ids": [
+        905,
+        15990,
+        2030,
+        16763,
+        6161,
+        2318
+      ]
+    },
+    {
+      "text": "가나다",
+      "expected_token_ids": [
+        33628,
+        1894,
+        456,
+        45503,
+        1894,
+        456,
+        23181,
+        1894,
+        456
+      ]
+    },
+    {
+      "text": "é café",
+      "expected_token_ids": [
+        430,
+        95601,
+        34572,
+        95601
+      ]
+    },
+    {
+      "text": "é café",
+      "expected_token_ids": [
+        2581,
+        58282
+      ]
+    },
+    {
+      "text": "literal ▁ and spaces",
+      "expected_token_ids": [
+        75292,
+        5140,
+        585,
+        686,
+        11899
+      ]
+    },
+    {
+      "text": "한국어·日本語·中文 😀 👩‍🔬",
+      "expected_token_ids": [
+        133926,
+        17005,
+        107222,
+        17005,
+        100437,
+        38961,
+        584,
+        84582,
+        464,
+        45433,
+        138171,
+        467
+      ]
+    },
+    {
+      "text": "{\"decision\":\"CLARIFICATION\",\"reason\":null}",
+      "expected_token_ids": [
+        10104,
+        150089,
+        72205,
+        7760,
+        2979,
+        64837,
+        36418,
+        57190,
+        26942,
+        58762,
+        454
+      ]
+    },
+    {
+      "text": "<|system|>\n<|user|>\n<|assistant|>\n",
+      "expected_token_ids": [
+        50,
+        560,
+        51,
+        560,
+        52,
+        560
+      ]
+    },
+    {
+      "text": "<think>\n\n</think>\n\n",
+      "expected_token_ids": [
+        54,
+        49,
+        55,
+        49
+      ]
+    },
+    {
+      "text": "[BOS][PAD][UNK]<|endofturn|>",
+      "expected_token_ids": [
+        1,
+        0,
+        3,
+        53
+      ]
+    }
+  ],
+  "observations": [
+    {
+      "index": 0,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 1,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 2,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 3,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 4,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 5,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 6,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 7,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 8,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 9,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 10,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 11,
+      "raw_roundtrip": true,
+      "official_ids_equal": false
+    },
+    {
+      "index": 12,
+      "raw_roundtrip": true,
+      "official_ids_equal": false
+    },
+    {
+      "index": 13,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 14,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 15,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 16,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 17,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 18,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    },
+    {
+      "index": 19,
+      "raw_roundtrip": true,
+      "official_ids_equal": true
+    }
+  ],
+  "tokenizers_version": "0.21.2",
+  "helper_sha256": "23291791df7e3a49f5f7a70bf0b4774937b4bff9560fee4061527f27e4f0d67a",
+  "native_calls": 0,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "application_input_output_nfc_repair": false,
+  "limitation": "Diagnostic derived reference is not official HF equivalence, not a production input transform, and not a selected runtime contract."
+}

@@ -1,0 +1,163 @@
+{
+  "kind": "EXAONE45_RUNTIME_CPU_CONSUMER_REVIEW",
+  "status": "PASS_SAVED_CPU_PROOFS_ONLY_RUNTIME_NOT_RUN",
+  "helper_sha256": "7e2ff0e719304df4667baa988c416307405c61b5bca090f6609b8715eb024ee2",
+  "tests_sha256": "6e6d9e222bc1f720322802a5e125d609bed97ea7e14c6fb1042a8c92802de489",
+  "actual_aggregate_path": "var/research/native-exaone45-contract/final-cpu-proof.json",
+  "actual_aggregate_sha256": "2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209",
+  "header_sha256": "fb5260c6e1e3356741f7728e4077f771763ea39affd77e8ac9772e417aa70c12",
+  "manifest_sha256": "98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8",
+  "runtime_launcher_sha256": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+  "focused_tests": {
+    "passed": 4,
+    "seconds": 0.073,
+    "aggregate_and_linked_mutations_rejected": 15,
+    "entrypoints_reject_wrong_cpu_sha_before_live": 3,
+    "command": "PYTHONPATH=src .conda/bin/python -B -W error::ResourceWarning var/research/test_exaone45_runtime_probe_v4.py -v"
+  },
+  "prior_helpers_unchanged": {
+    "var/research/exaone45_runtime_probe_v3.py": "ce080b0486a8459ae68f8f86454bb0186efb3c3ed8375adf5aff11d77641c49d",
+    "var/research/exaone45_runtime_probe_v2.py": "4749d3c392a858f1641f499f6c91d3e2f029187f94e323fd8ba960ffeebdf06c",
+    "var/research/exaone45_runtime_probe.py": "3e3dca444d21e5373311ec3e8ebaf3a5146e4e839f702e283cef9f6ed03d49ef",
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63"
+  },
+  "v2_lifecycle_functions_ast_identical": [
+    "require_launcher_pin",
+    "load_config",
+    "pinned_override",
+    "exaone_binding",
+    "validate_health_models_props",
+    "make_metadata",
+    "begin",
+    "finish",
+    "capture_startup",
+    "public_smoke",
+    "run_resource_smoke"
+  ],
+  "consumed_provenance": {
+    "runtime_variant": "exaone45-gguf-continue-free-raw-unicode-korean-v1",
+    "model_id": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+    "model_revision": "0e969634ef24db05151b435970297a6dee634b7e",
+    "manifest_sha256": "98aa8ad498c2a55db6359754c80793e33b880f60c191ec3fbe449097833c4bb8",
+    "cpu_proof_sha256": "2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209",
+    "cpu_proof_kind": "EXAONE45_NATIVE_CONTRACT_CPU_PROOF",
+    "chat_template_sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+    "original_embedded_template_sha256": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+    "effective_chat_template_sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+    "runtime_launcher_sha256": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+    "chat_template_override": {
+      "path": "runtime/templates/exaone45-continue-free.jinja",
+      "sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+      "bytes": 5829,
+      "original_embedded_template_sha256": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+      "transform": "continue-free-system-message-branch-v1"
+    },
+    "template_render_parity": {
+      "status": "PASS",
+      "reference_cases": 18,
+      "official_original_derived_reference_byte_equal": true,
+      "derived_native_system_and_user_exact": true,
+      "derived_native_prompt_equals_official_reference": true,
+      "proof_ref": {
+        "path": "var/research/native-exaone45-contract/public-proof-v3.json",
+        "sha256": "fc7109fe4e9fbbe4a619ad16dc701cda01a4976ec8bd53d726aeb09f34f39408"
+      }
+    },
+    "tokenizer_json_sha256": "0bd798efa30739e209d51f36cfc2f0a636711e37ad9d69b77e4e5c8ca5f09fab",
+    "official_reference_limitation": {
+      "case_count": 20,
+      "raw_original_roundtrip_count": 18,
+      "raw_original_mismatch_indices": [
+        11,
+        12
+      ],
+      "nfc_source_roundtrip_count": 20,
+      "normalizer": "NFC",
+      "native_parity_observed": false
+    },
+    "template_proof_variant": "exaone45-gguf-continue-free-korean-v1",
+    "official_hf_equivalence": {
+      "status": "FAIL",
+      "case_count": 20,
+      "id_match_count": 18,
+      "mismatch_indices": [
+        11,
+        12
+      ],
+      "native_raw_roundtrip_count": 20,
+      "official_ids_raw_roundtrip_count": 18,
+      "proof_ref": {
+        "path": "var/research/native-exaone45-contract/public-vocab-proof.json",
+        "sha256": "66442010a8c4ee9f5f554bfea34273fd80659d50d42b9acdba6b2879400285d1"
+      }
+    },
+    "context_tokenizer": "native_raw_unicode_no_nfc_repair",
+    "official_fixture_sha256": "49b40b3390cba92f3088c22606632348ba261e69ea0b385b74aa9126be8c46cb",
+    "application_input_output_nfc_repair": false,
+    "cpu_proof_refs": {
+      "public_contract": {
+        "path": "var/research/native-exaone45-contract/public-proof-v3.json",
+        "sha256": "fc7109fe4e9fbbe4a619ad16dc701cda01a4976ec8bd53d726aeb09f34f39408"
+      },
+      "vocab_context": {
+        "path": "var/research/native-exaone45-contract/vocab-context-raw-proof.json",
+        "sha256": "f450e9f0bf3a206204474ed860bc6d191597cbe6cc31a7349efe894b5d3775bb"
+      },
+      "tokenizer_fixture": {
+        "path": "var/research/native-exaone45-contract/raw-reference-diagnostic.json",
+        "sha256": "9a379ccf7cab7c85c23582c45f77c6b4ec481a9bb1469009564dba0fe894bf2c"
+      }
+    },
+    "cpu_source_sha256": {
+      "src/neurobuild/infrastructure/local_model.py": "48276a8f9cb7a2a818a9f12e7f86b2b53f525a37de61a1be70fe73648f07c151",
+      "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+      "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+      "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+      "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+    },
+    "cpu_checks_rerun": false,
+    "tokenizer_contract_status": "EXPLICIT_RAW_REFERENCE_CPU_PASS_OFFICIAL_HF_FAIL",
+    "raw_reference": {
+      "reference_kind": "official_metadata_with_only_NFC_normalizer_disabled",
+      "fixture_ref": {
+        "path": "var/research/native-exaone45-contract/raw-reference-diagnostic.json",
+        "sha256": "9a379ccf7cab7c85c23582c45f77c6b4ec481a9bb1469009564dba0fe894bf2c"
+      },
+      "proof_ref": {
+        "path": "var/research/native-exaone45-contract/raw-vocab-proof.json",
+        "sha256": "2ce12c5e4d93f7d3baff40da67b1f2c3b5575e117dff081c84d03835e07e8c9d"
+      },
+      "case_count": 20,
+      "id_match_count": 20,
+      "native_raw_roundtrip_count": 20,
+      "official_hf_equivalence": "NOT_ASSERTED_BY_DERIVED_REFERENCE"
+    },
+    "normalization_limitation": {
+      "official_normalizer": "NFC",
+      "official_public_raw_roundtrip_count": 18,
+      "native_public_raw_roundtrip_count": 20,
+      "public_case_count": 20,
+      "global_unicode_roundtrip_guarantee": false
+    },
+    "tokenizer_contract": "native_raw_unicode_no_nfc_repair",
+    "official_reference_fixture_ref": {
+      "path": "var/research/native-exaone45-contract/official-tokenizer-fixture.json",
+      "sha256": "49b40b3390cba92f3088c22606632348ba261e69ea0b385b74aa9126be8c46cb"
+    }
+  },
+  "resource_probe_token_id": 582,
+  "config_scope": "CPU gate exercised with explicit proof-bound config fields only; fresh launch config/own UID PID argv listeners live guard and health are root startup work, not claimed here.",
+  "limits": [
+    "Official HF token-ID equivalence remains FAIL18/20.",
+    "Raw reference20/20 and length200 are recorded CPU observations; this consumer did not rerun native proofs.",
+    "No claim of universal Unicode roundtrip or GPU/VRAM/quality success.",
+    "Replay v2 remains pending actual freeze/runtime evidence; no saved rows replayed."
+  ],
+  "actual_http_calls": 0,
+  "native_calls": 0,
+  "gpu_calls": 0,
+  "model_calls": 0,
+  "actual_process_probes": 0,
+  "dataset_bodies_read": 0,
+  "weight_payload_reads": 0
+}

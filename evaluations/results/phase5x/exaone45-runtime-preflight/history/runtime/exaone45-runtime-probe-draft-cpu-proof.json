@@ -1,0 +1,38 @@
+{
+  "kind": "EXAONE45_RUNTIME_HELPER_DRAFT_CPU_CONTROLS",
+  "status": "CPU_FAKE_CONTROLS_PASS_LIVE_ENTRYPOINTS_BLOCKED",
+  "tests": 5,
+  "errors": 0,
+  "failures": 0,
+  "elapsed_seconds": 0.018,
+  "command": "PYTHONPATH=src .conda/bin/python -B -W error::ResourceWarning var/research/test_exaone45_runtime_probe.py -v",
+  "sha256": {
+    "var/research/exaone45_runtime_probe.py": "3e3dca444d21e5373311ec3e8ebaf3a5146e4e839f702e283cef9f6ed03d49ef",
+    "var/research/test_exaone45_runtime_probe.py": "817c56f43faeb274491b52267ca18c965c2e9fb0a39fa1a9f4ebdd2a05860307",
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63",
+    "var/research/gemma4_runtime_probe_v3.py": "14fdc596eea3a15a2a343c961e9080b05d876eac34d34b6f893a2c2cedd97a37",
+    "var/research/native-exaone45-contract/official-tokenizer-fixture.json": "49b40b3390cba92f3088c22606632348ba261e69ea0b385b74aa9126be8c46cb"
+  },
+  "candidate_variant": "exaone45-gguf-nonthinking-korean-v1",
+  "tokenizer_contract_status": "PENDING_ACTUAL_GGUF_AND_EXPLICIT_CONTRACT_DECISION",
+  "observed_official_reference": {
+    "raw_roundtrip": 18,
+    "nfc_source_roundtrip": 20,
+    "cases": 20,
+    "raw_mismatch_indices": [
+      11,
+      12
+    ],
+    "native_gguf_parity_observed": false
+  },
+  "actual_cpu_aggregate_consumed": false,
+  "all_live_entrypoints_reject_even_synthetic_complete_claim": true,
+  "application_input_output_repair": false,
+  "old_helpers_changed": false,
+  "model_calls": 0,
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "native_binary_calls": 0,
+  "own_process_queries": 0,
+  "dataset_files_opened": 0
+}

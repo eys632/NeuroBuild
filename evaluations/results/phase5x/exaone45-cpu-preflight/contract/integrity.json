@@ -1,0 +1,127 @@
+{
+  "kind": "EXAONE45_CPU_CONTRACT_ARCHIVE_INTEGRITY",
+  "created_utc": "2026-09-20T10:35:56.817730+00:00",
+  "files": {
+    "README.md": {
+      "bytes": 3446,
+      "sha256": "e927ecbd4b35a52e9311e678ff37b348873621d54e52a13b8421f689ab652deb"
+    },
+    "build-v4.json": {
+      "bytes": 12679,
+      "sha256": "5de72ee7055dd044f2d97fe35ca5798f0d352b0e1dbe1058a63b50a99475d256",
+      "original_path": "var/research/native-exaone45-contract/build-v4.json"
+    },
+    "build-v4.log.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-exaone45-contract/build-v4.log"
+    },
+    "build-v5.json": {
+      "bytes": 13628,
+      "sha256": "399bcaf6cb6fa3a40cb13461d8b34f8862372d4162ffa18eb4fc42b28855ad34",
+      "original_path": "var/research/native-exaone45-contract/build-v5.json"
+    },
+    "build-v5.log.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "var/research/native-exaone45-contract/build-v5.log"
+    },
+    "build_v4.py": {
+      "bytes": 12039,
+      "sha256": "3d75378b84fcb1a8d6fba7d30e25880471748cebb62a06adaee679a54a0c39b5",
+      "original_path": "var/research/native-exaone45-contract/build_v4.py"
+    },
+    "build_v5.py": {
+      "bytes": 12974,
+      "sha256": "9a9467dc6f062f3ae3d695dd4bc638b065b5b9a21bf5b7799a292ea3bef6a208",
+      "original_path": "var/research/native-exaone45-contract/build_v5.py"
+    },
+    "final-cpu-proof.json": {
+      "bytes": 6583,
+      "sha256": "2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209",
+      "original_path": "var/research/native-exaone45-contract/final-cpu-proof.json"
+    },
+    "finalize_cpu_proof.py": {
+      "bytes": 8392,
+      "sha256": "63092a6286cbaea5251058c1fbd63c3ce7ec795a942372700325804d1af8c3ea",
+      "original_path": "var/research/native-exaone45-contract/finalize_cpu_proof.py"
+    },
+    "prepare_raw_reference.py": {
+      "bytes": 3207,
+      "sha256": "23291791df7e3a49f5f7a70bf0b4774937b4bff9560fee4061527f27e4f0d67a",
+      "original_path": "var/research/native-exaone45-contract/prepare_raw_reference.py"
+    },
+    "public-vocab-proof.json": {
+      "bytes": 4125,
+      "sha256": "66442010a8c4ee9f5f554bfea34273fd80659d50d42b9acdba6b2879400285d1",
+      "original_path": "var/research/native-exaone45-contract/public-vocab-proof.json"
+    },
+    "raw-context-selfcheck.json": {
+      "bytes": 381,
+      "sha256": "91d3a29b00d6ecd71f65fd2b80b751b7f9e6ef62880a306232411d6c9a44b190",
+      "original_path": "var/research/native-exaone45-contract/raw-context-selfcheck.json"
+    },
+    "raw-reference-diagnostic.json": {
+      "bytes": 7206,
+      "sha256": "9a379ccf7cab7c85c23582c45f77c6b4ec481a9bb1469009564dba0fe894bf2c",
+      "original_path": "var/research/native-exaone45-contract/raw-reference-diagnostic.json"
+    },
+    "raw-vocab-proof.json": {
+      "bytes": 4938,
+      "sha256": "2ce12c5e4d93f7d3baff40da67b1f2c3b5575e117dff081c84d03835e07e8c9d",
+      "original_path": "var/research/native-exaone45-contract/raw-vocab-proof.json"
+    },
+    "raw_context_check.py": {
+      "bytes": 15769,
+      "sha256": "481a40c8c6372aadb1e146b977f90ea61231fca81a87fd3c9ecb02f32ffd892e",
+      "original_path": "var/research/native-exaone45-contract/raw_context_check.py"
+    },
+    "source-closure.json": {
+      "bytes": 27351,
+      "sha256": "8cdd4acdd5c9eaccdeb4db115b4361e785803f996e56f0c64e4382d1f67b24f3"
+    },
+    "test_raw_context_check.py": {
+      "bytes": 2952,
+      "sha256": "546a8392c8c76f5e3ee252387c8e1abc8eb86da587e9ed365b0b743468f6ea44",
+      "original_path": "var/research/native-exaone45-contract/test_raw_context_check.py"
+    },
+    "validator_v4.cpp": {
+      "bytes": 25039,
+      "sha256": "49acbf43b4f4030748fd96613a558b075b470f4150dfe2915518c486230196aa",
+      "original_path": "var/research/native-exaone45-contract/validator_v4.cpp"
+    },
+    "validator_v5.cpp": {
+      "bytes": 27064,
+      "sha256": "3229773054eda0fd5e55e8e8f6a57021ebf4c4ece425ad5ec8043869161dcc90",
+      "original_path": "var/research/native-exaone45-contract/validator_v5.cpp"
+    },
+    "vocab-context-raw-proof.json": {
+      "bytes": 9032,
+      "sha256": "f450e9f0bf3a206204474ed860bc6d191597cbe6cc31a7349efe894b5d3775bb",
+      "original_path": "var/research/native-exaone45-contract/vocab-context-raw-proof.json"
+    },
+    "vocab_check.py": {
+      "bytes": 8934,
+      "sha256": "7cc2ebcd1521dca5fc02cc7b76a3288aab412adb53f5c2a6ab9ec66c7184228b",
+      "original_path": "var/research/native-exaone45-contract/vocab_check.py"
+    }
+  },
+  "exact_original_copies": 19,
+  "archive_documents": 2,
+  "external_report": {
+    "path": "docs/reports/phase5x_exaone45_cpu_preflight_report.md",
+    "sha256": "e37735781ac83b064dc0402bb02af563d4d8fd1add66cecc6b612bef76aef640"
+  },
+  "historical_cross_reference": "evaluations/results/phase5x/exaone45-template-header-preflight/integrity.json",
+  "historical_cross_reference_sha256": "4f5601f79bd4db2217e005625903245ec6a456268e689012870090b8813356c2",
+  "final_cpu_proof_sha256": "2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209",
+  "official_hf_equivalence": "FAIL_18_MATCHED_OF20",
+  "candidate_cpu_contract": "PASS_EXPLICIT_CONTINUE_FREE_RAW_UNICODE",
+  "archive_step": {
+    "exact_byte_copy_only": true,
+    "native_execution": false,
+    "model_or_http_or_gpu_calls": 0,
+    "dataset_reads": 0,
+    "git_stage_or_commit": false
+  }
+}

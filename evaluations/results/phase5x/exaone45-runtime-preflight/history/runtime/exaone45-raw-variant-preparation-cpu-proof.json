@@ -1,0 +1,68 @@
+{
+  "kind": "EXAONE45_RAW_VARIANT_PREPARATION_CPU_CONTROLS",
+  "status": "PASS_NEW_BINDINGS_ONLY_ACTUAL_RAW_CONTEXT_PENDING",
+  "runtime_variant": "exaone45-gguf-continue-free-raw-unicode-korean-v1",
+  "template_proof_variant": "exaone45-gguf-continue-free-korean-v1",
+  "helper_paths_sha256": {
+    "var/research/exaone45_runtime_probe_v3.py": "ce080b0486a8459ae68f8f86454bb0186efb3c3ed8375adf5aff11d77641c49d",
+    "var/research/test_exaone45_raw_variant_preparation.py": "8c171f97651c20cb17d5e9aecf1131680131e78c5aa1c1f03ab751690bb151a2",
+    "var/review-tools/replay_native_exaone45_exposed_v2.py": "aa42a61d6382adb371b077e1e93eac1c8d3513c0f1d2d82ec2455c0ad5fb0c44",
+    "var/review-tools/check_native_exaone45_raw_metadata_synthetic.py": "2f9a00bad450a78756a8cb5997b34ce91c4f114e7bab6d7d8bb5de23ad1d7d5b",
+    "var/research/exaone45-replay-raw-metadata-draft-cpu-proof.json": "066170c7fec5a46272668b345f89eb0c54d78f2648c32bdddf4245fc1f6c928a"
+  },
+  "prior_artifacts_unchanged_sha256": {
+    "var/research/exaone45_runtime_probe_v2.py": "4749d3c392a858f1641f499f6c91d3e2f029187f94e323fd8ba960ffeebdf06c",
+    "var/research/exaone45-runtime-probe-v2-cpu-proof.json": "c40dcfa3e49ce3a1693decf1c6bd0f9470f366aa6b01f2bb0bb529788ab6d3e5",
+    "var/review-tools/replay_native_exaone45_exposed.py": "64983334034d0a8f1a50fc7674ec7b978b849f3a20c7dc0afe8c85ed2644cd2b",
+    "var/research/exaone45-replay-metadata-draft-cpu-proof.json": "537fa40954d0c90c952b22ca604ea49303e52d2e4a3d570f3f4efd00facd262e",
+    "var/research/native_runtime_probe.py": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63"
+  },
+  "focused_tests": {
+    "count": 3,
+    "passed": 3,
+    "seconds": 0.005,
+    "command": "PYTHONPATH=src .conda/bin/python -B -W error::ResourceWarning var/research/test_exaone45_raw_variant_preparation.py -v"
+  },
+  "replay_metadata_controls": {
+    "tamper_cases_rejected": 26,
+    "core_functions_ast_exact": [
+      "load_snapshot",
+      "replay_row",
+      "replay_groups"
+    ],
+    "core_functions_invoked": 0
+  },
+  "initial_replay_receipt_publication": {
+    "status": "BLOCKED_NO_CLOBBER",
+    "reason": "New selfcheck retained old receipt destination; exclusive create rejected before overwrite. Corrected new receipt filename, then repeated metadata-only controls.",
+    "old_receipt_unchanged": true
+  },
+  "official_hf_equivalence": {
+    "status": "FAIL",
+    "case_count": 20,
+    "id_match_count": 18,
+    "mismatch_indices": [
+      11,
+      12
+    ],
+    "proof_path": "var/research/native-exaone45-contract/public-vocab-proof.json",
+    "proof_sha256": "66442010a8c4ee9f5f554bfea34273fd80659d50d42b9acdba6b2879400285d1"
+  },
+  "actual_raw_public_proof_consumed": false,
+  "actual_context_proof_consumed": false,
+  "runtime_entrypoints_unconditionally_blocked": true,
+  "replay_evidence_unconditionally_blocked": true,
+  "future_required_reference_kind": "official_metadata_with_only_NFC_normalizer_disabled",
+  "future_required_raw_public_path": "var/research/native-exaone45-contract/raw-vocab-proof.json",
+  "future_required_context_path": "var/research/native-exaone45-contract/vocab-context-raw-proof.json",
+  "raw_proof_sha256": null,
+  "context_proof_sha256": null,
+  "application_input_output_nfc_repair": false,
+  "model_calls": 0,
+  "native_calls": 0,
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "dataset_bodies_read": 0,
+  "weight_payload_reads": 0,
+  "scope": "Preparation controls only. Root must review actual derived public20 parity/raw20 and context200 aggregate before a new reviewed gate implementation can enable HTTP. Metadata official failure never relabeled as equivalence."
+}

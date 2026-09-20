@@ -1,0 +1,112 @@
+{
+  "kind": "EXAONE45_OVERRIDE_PROBE_V2_INPUT_PLAN",
+  "status": "PLAN_NOT_RUNTIME_VALIDATED",
+  "candidate_variant": "exaone45-gguf-continue-free-korean-v1",
+  "v1_preserved": {
+    "path": "var/research/exaone45_runtime_probe.py",
+    "sha256": "3e3dca444d21e5373311ec3e8ebaf3a5146e4e839f702e283cef9f6ed03d49ef"
+  },
+  "generic_preserved": {
+    "path": "var/research/native_runtime_probe.py",
+    "sha256": "ac100df7949b2b14a517c4568fa66369bd98c599b39507ef19f873490a0f9f63"
+  },
+  "known_identity": {
+    "model_id": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+    "revision": "0e969634ef24db05151b435970297a6dee634b7e",
+    "gguf_sha256": "5ba3839b67dcee5618ea7b2206cedc8f9e2ec90fbcec3c95a8cc8b33967f6baf",
+    "gguf_bytes": 20047839424,
+    "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+    "sampling_profile": "exaone45_nonthinking_llama_cpp",
+    "protocol": "llama_cpp_json_schema"
+  },
+  "template_identities": {
+    "original_embedded": {
+      "metadata_path": "var/research/exaone45-33b-candidate-metadata/upstream/chat_template.jinja",
+      "bytes": 5930,
+      "sha256": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5"
+    },
+    "effective_override": {
+      "path": "var/research/native-exaone45-contract/chat_template_continue_override.jinja",
+      "bytes": 5829,
+      "sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851"
+    },
+    "expected_props_representation": {
+      "bytes": 5828,
+      "sha256": "b8bc1ef1b1fcd30cdd28fe7655bf79020aec666142107c01231b7b59f15cb1ef",
+      "derivation": "pinned_f072_lexer_removes_one_terminal_LF_no_CR_present",
+      "actual_http_observed": false
+    }
+  },
+  "final_pins_not_available": {
+    "reviewed_launcher_sha256": null,
+    "actual_public_override_proof_sha256": null,
+    "final_gguf_cpu_aggregate_sha256": null,
+    "final_context_cpu_proof_sha256": null,
+    "tokenizer_contract_decision": null,
+    "launch_config_sha256": null
+  },
+  "required_final_aggregate_fields": {
+    "chat_template_override": [
+      "path",
+      "sha256",
+      "bytes",
+      "original_embedded_template_sha256",
+      "transform"
+    ],
+    "template_render_parity": [
+      "status",
+      "reference_cases",
+      "official_original_derived_reference_byte_equal",
+      "derived_native_system_and_user_exact",
+      "derived_native_prompt_equals_official_reference",
+      "proof_ref"
+    ],
+    "proof_ref": [
+      "path",
+      "sha256"
+    ]
+  },
+  "required_render_receipt_values_not_observed": {
+    "status": "PASS",
+    "reference_cases": 18,
+    "official_original_derived_reference_byte_equal": true,
+    "derived_native_system_and_user_exact": true,
+    "derived_native_prompt_equals_official_reference": true
+  },
+  "official_tokenizer_reference_only": {
+    "raw_original_roundtrip_count": 18,
+    "case_count": 20,
+    "nfc_source_roundtrip_count": 20,
+    "raw_mismatch_indices": [
+      11,
+      12
+    ],
+    "native_gguf_observed": false
+  },
+  "metadata_semantics_proposed": {
+    "chat_template_sha256": "effective_override.sha256",
+    "original_embedded_template": "separate startup+CPU+header binding",
+    "runtime_variant": "startup+CPU+freeze, bound through metadata.startup_report_sha256"
+  },
+  "common_runtime_policy": {
+    "physical_gpu": 3,
+    "logical_gpu": 0,
+    "whole_peak_mib": 28672,
+    "peak_allowance_mib": 0,
+    "batch_size": 64,
+    "ubatch_size": 64,
+    "max_context_tokens": 4096,
+    "max_output_tokens": 768,
+    "parallel": 1,
+    "enable_thinking": false,
+    "raw_http_bodies_saved": false
+  },
+  "readiness": "BLOCKED_PENDING_ACTUAL_CPU_TOKENIZER_CONTRACT_AND_REVIEWED_LAUNCHER",
+  "calls_this_task": {
+    "model": 0,
+    "gpu": 0,
+    "http": 0,
+    "native": 0,
+    "dataset_body_reads": 0
+  }
+}

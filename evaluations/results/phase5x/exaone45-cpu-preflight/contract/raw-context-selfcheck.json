@@ -1,0 +1,12 @@
+{
+  "kind": "EXAONE45_RAW_REFERENCE_GATE_SYNTHETIC_CONTROLS",
+  "status": "PASS",
+  "tests": 7,
+  "helper_sha256": "481a40c8c6372aadb1e146b977f90ea61231fca81a87fd3c9ecb02f32ffd892e",
+  "selftest_sha256": "546a8392c8c76f5e3ee252387c8e1abc8eb86da587e9ed365b0b743468f6ea44",
+  "native_calls": 0,
+  "evaluation_body_reads": 0,
+  "model_calls": 0,
+  "gpu_calls": 0,
+  "http_calls": 0
+}

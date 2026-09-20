@@ -1,6 +1,6 @@
 # EXAONE4.5-33B 첫 단회 진단 계획
 
-상태: **DRAFT — 모델별 CPU/runtime 검증 전, 품질 호출0.**
+상태: **DRAFT — 별도 원문 보존 variant CPU·GPU runtime 검증 완료, 사전동결 전, 품질 호출0.**
 [자원·계약 계획](exaone45_33b_resource_plan.md)의 선행 gate를 통과한 뒤 별도 freeze를 만든다.
 이 문서나 metadata 다운로드만으로 실제 품질 평가를 시작하지 않는다.
 
@@ -19,6 +19,13 @@ Window64는 prompt와 generated history 모두를 포함한다. 모델 카드의
 Production generation2.0/single/promptv2/decision-branch schema,
 output768/timeout120, ctx4096/sequence1/batch64/ubatch64/graphsOFF/flashOFF/F16KV다.
 Final content만 보존하며 reasoning/tool invocation/repair/fallback/선별재시도는 없다.
+
+실행 variant는 `exaone45-gguf-continue-free-raw-unicode-korean-v1`이다.
+원본 native template의 system 누락은 공식 render와 공개18개가 같은 별도 continue-free template로 해결한다.
+공식 HF token-ID18/20 FAIL을 그대로 보존하고 NFC만 끈 별도 reference20/20 PASS를 구분한다.
+입력·출력 NFC 보정은 없으며 모든 Unicode의 동등성을 주장하지 않는다.
+실제 CPU vocab-backed 길이 검증에서 기존120입력+출력768 최대2890/4096토큰이다.
+기존V280 길이만 확인했으며 새 미사용80개는 읽거나 평가하지 않았다.
 
 ## 평가와 중단 판단
 

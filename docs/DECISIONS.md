@@ -362,3 +362,25 @@ Launcher에는 선택적 local template path+SHA256 쌍만 추가한다. 한쪽�
 재확인하고 override path/hash를 native_artifacts에 기록한다. 미지정시기존argv/동작을유지한다.
 공식render 동등성과새회귀·독립검토를통과하기전기동하지않는다. 완료공통startup/resource를재실행하거나
 throughput tuning을추가하는것이아니라, 시스템정책전달을보존하기위한실제호환성차단요인해결이다.
+
+
+## D042 — EXAONE의 공식 NFC 동등성 실패 보존과 별도 원문 보존 variant 검증
+
+실제 GGUF vocab-only 공개20건에서 공식HF token IDs는18/20 FAIL(index11,12)이고
+native 원문roundtrip은20/20이다. 공식reference 자체는분해형한글/combiningaccent를NFC로바꾸어
+원문roundtrip18/20이다. 원본proof66442010a8c4ee9f5f554bfea34273fd80659d50d42b9acdba6b2879400285d1을보존한다.
+공식 동등성FAIL을PASS로수정하거나사용자입출력NFC보정으로가리지않는다.
+
+정확한 원문인용을 유지하는 native raw tokenization을 별도실험variant
+`exaone45-gguf-continue-free-raw-unicode-korean-v1`로검증한다. 이전Qwenvariant를자동승계하지않고
+이후보에서 NFC만disabled한별도HFreference와공개20개를대조한다. 해당진단의실제PASS와
+현재effective template로생성한실제입력token수/문맥여유증거가완료되어야기동조건에사용한다.
+이후 실제 raw reference20/20 ID·원문왕복 PASS와 기존200입력의 길이 검증을 완료했다.
+출력768을 포함한 최대값은 노출120의2890/기존V2의2856토큰으로4096 이내다.
+최종CPU proof는 `2a937a8adeca827f4724c9b65947291005aa34dc8ca4af823739fd09ca248209`다.
+이는 명시한 별도variant의 기동 전 계약 결과이며 GPU/runtime/품질 채택을 의미하지 않는다.
+
+원본officialtemplate/metadata/tokenizer/proof를유지하고별도rawreference와각SHA를구분한다.
+모델본체·sampling·정책prompt·schema·gold·canonicalparser·평가기준은변경하지않는다.
+공식HF동등성이아닌현native실행구성의품질을비교하는한계와별도variant이름을manifest/freeze에남긴다.
+공식18/20FAIL과별도reference결과는함께보고하며, 안전gate실패시반복0/V2미실행원칙은동일하다.

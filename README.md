@@ -9,6 +9,8 @@ semantic73/80, rawFP1/40, unsafe1/80으로 실패했다.
 다른 후보 Gemma4-31B QAT의 첫120개도 semantic115/120이나 rawFP1/58, unsafe2/120으로 실패했다.
 각 결과와 자체 모델 서버 종료·GPU3 VRAM 반환 증거를 보존했다. 실제 IFC 실행은 없었다.
 동일 모델 전체3회 반복을 취소했으며, 명백한 실패 후보는 재평가·V2 없이 다른 후보 비교로 넘어간다.
+다음 EXAONE4.5-33B의 별도 template/raw-Unicode 구성은 CPU 계약과 GPU3 사전 실행을 통과했다.
+공식 tokenizer18/20 실패는 보존하며, 품질 판단은 별도 동결한 첫120×1+warmup5 뒤에 한다.
 Gold는 자동 생성·사람 미검수이며 Internal Technical MVP는 아직 완료되지 않았다.
 최신 상태는 [STATUS](docs/STATUS.md), 비교 수치는 [실험 목록](docs/phase5x_experiment_register.md)을 따른다.
 Durable review/job queue, API와 frontend는 후속 단계다.

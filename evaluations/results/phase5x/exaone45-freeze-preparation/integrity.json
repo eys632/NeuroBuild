@@ -1,0 +1,39 @@
+{
+  "kind": "EXAONE45_FREEZE_PREPARATION_ARCHIVE",
+  "files": {
+    "freeze_native_exaone45_diagnostic_v2.py": {
+      "original_path": "var/research/freeze_native_exaone45_diagnostic_v2.py",
+      "bytes": 30605,
+      "sha256": "268a3437cfe09494e6b39252c7c1a837ec3c099eba1e30b4c812f95b7aac6d82"
+    },
+    "test_freeze_native_exaone45_diagnostic_v2.py": {
+      "original_path": "var/research/test_freeze_native_exaone45_diagnostic_v2.py",
+      "bytes": 11879,
+      "sha256": "27339967835ce2b3c9fc07e9a8092ad2cba83fa85922ff79ec60ccfbbd545344"
+    },
+    "exaone45-freezer-v2-cpu-proof.json": {
+      "original_path": "var/research/exaone45-freezer-v2-cpu-proof.json",
+      "bytes": 1793,
+      "sha256": "8f7a83a000076eb94dd1b13a13288b979b02c1b0692fe0b17544ae8d99f43370"
+    },
+    "freeze_native_exaone45_diagnostic.py": {
+      "original_path": "var/research/freeze_native_exaone45_diagnostic.py",
+      "bytes": 17305,
+      "sha256": "e59e33cd18a7ac8048af31b3d6584543c77006d43748982a284d5239951ca652"
+    },
+    "exaone45-freezer-draft-cpu-proof.json": {
+      "original_path": "var/research/exaone45-freezer-draft-cpu-proof.json",
+      "bytes": 1050,
+      "sha256": "1fbb0e79471d747faf8e4cd18393c768458e4430b37f6c027877d220002544a7"
+    },
+    "exaone45-freeze-actual-drycheck.json": {
+      "original_path": "var/research/exaone45-freeze-actual-drycheck.json",
+      "bytes": 145,
+      "sha256": "68029cbe557b8bdc9db6c0380719ae59b4962460ec56d8215b64c592e85f4c86"
+    },
+    "README.md": {
+      "bytes": 864,
+      "sha256": "505b592c5621f4e6edd658de481e3355e9d87df3be2418bc9d07d48c4e6541e1"
+    }
+  }
+}

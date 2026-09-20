@@ -1,0 +1,139 @@
+{
+  "kind": "EXAONE45_NATIVE_CONTRACT_CPU_PROOF",
+  "status": "PASS",
+  "at_utc": "2026-09-20T10:25:48.360952+00:00",
+  "runtime_variant": "exaone45-gguf-continue-free-raw-unicode-korean-v1",
+  "template_proof_variant": "exaone45-gguf-continue-free-korean-v1",
+  "model_id": "LGAI-EXAONE/EXAONE-4.5-33B-GGUF",
+  "revision": "0e969634ef24db05151b435970297a6dee634b7e",
+  "gguf_sha256": "5ba3839b67dcee5618ea7b2206cedc8f9e2ec90fbcec3c95a8cc8b33967f6baf",
+  "header_sha256": "fb5260c6e1e3356741f7728e4077f771763ea39affd77e8ac9772e417aa70c12",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "protocol": "llama_cpp_json_schema",
+  "sampling_profile": "exaone45_nonthinking_llama_cpp",
+  "cpu_binary_sha256": "79ed8a05dbb429e774601cd8ad0d85398a5240c0a553a975d281f6d090580aea",
+  "cpu_cpp_source_sha256": "3229773054eda0fd5e55e8e8f6a57021ebf4c4ece425ad5ec8043869161dcc90",
+  "cpu_build_report_sha256": "399bcaf6cb6fa3a40cb13461d8b34f8862372d4162ffa18eb4fc42b28855ad34",
+  "runtime_launcher_sha256": "6a58ee1ea09636df182125da4a4a2711012e6c53f5f90c06548a63b9915369ed",
+  "template_sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+  "original_embedded_template_sha256": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+  "tokenizer_json_sha256": "0bd798efa30739e209d51f36cfc2f0a636711e37ad9d69b77e4e5c8ca5f09fab",
+  "chat_template_override": {
+    "path": "runtime/templates/exaone45-continue-free.jinja",
+    "sha256": "7de6c8ba3df6db54564c7a63385cc29572c0a616d5848961e969ecbb8c349851",
+    "bytes": 5829,
+    "original_embedded_template_sha256": "e4ece7acc79ba82121d4d57791fb7ecb796e39185087197377da5d2286bec0e5",
+    "transform": "continue-free-system-message-branch-v1"
+  },
+  "template_render_parity": {
+    "status": "PASS",
+    "reference_cases": 18,
+    "official_original_derived_reference_byte_equal": true,
+    "derived_native_system_and_user_exact": true,
+    "derived_native_prompt_equals_official_reference": true,
+    "proof_ref": {
+      "path": "var/research/native-exaone45-contract/public-proof-v3.json",
+      "sha256": "fc7109fe4e9fbbe4a619ad16dc701cda01a4976ec8bd53d726aeb09f34f39408"
+    }
+  },
+  "official_hf_equivalence": {
+    "status": "FAIL",
+    "case_count": 20,
+    "id_match_count": 18,
+    "mismatch_indices": [
+      11,
+      12
+    ],
+    "native_raw_roundtrip_count": 20,
+    "official_ids_raw_roundtrip_count": 18,
+    "proof_ref": {
+      "path": "var/research/native-exaone45-contract/public-vocab-proof.json",
+      "sha256": "66442010a8c4ee9f5f554bfea34273fd80659d50d42b9acdba6b2879400285d1"
+    }
+  },
+  "raw_reference": {
+    "reference_kind": "official_metadata_with_only_NFC_normalizer_disabled",
+    "fixture_ref": {
+      "path": "var/research/native-exaone45-contract/raw-reference-diagnostic.json",
+      "sha256": "9a379ccf7cab7c85c23582c45f77c6b4ec481a9bb1469009564dba0fe894bf2c"
+    },
+    "proof_ref": {
+      "path": "var/research/native-exaone45-contract/raw-vocab-proof.json",
+      "sha256": "2ce12c5e4d93f7d3baff40da67b1f2c3b5575e117dff081c84d03835e07e8c9d"
+    },
+    "case_count": 20,
+    "id_match_count": 20,
+    "native_raw_roundtrip_count": 20,
+    "official_hf_equivalence": "NOT_ASSERTED_BY_DERIVED_REFERENCE"
+  },
+  "official_reference_fixture_ref": {
+    "path": "var/research/native-exaone45-contract/official-tokenizer-fixture.json",
+    "sha256": "49b40b3390cba92f3088c22606632348ba261e69ea0b385b74aa9126be8c46cb"
+  },
+  "context_tokenizer": "native_raw_unicode_no_nfc_repair",
+  "application_input_output_nfc_repair": false,
+  "enable_thinking": false,
+  "model_inference_calls": 0,
+  "gpu_or_http_calls": 0,
+  "max_output_tokens": 768,
+  "max_context_tokens": 4096,
+  "splits": {
+    "exposed120": {
+      "dataset_sha256": "7e5b9a05932df7aafdbf683655b044b3e3b25cbffb4115d298e1490aecbc7a5b",
+      "input_count": 120,
+      "min_input_tokens": 1900,
+      "max_input_tokens": 2122,
+      "max_input_plus_output": 2890,
+      "bundle_sha256": "ca36b2f563dd7077041598379e5ff150db3a5402d64d8989c86c7964c904e287"
+    },
+    "v2_length80": {
+      "dataset_sha256": "7416f05613b1490358672f3926770dbd8653e676577eeee6ba65f863b27cec40",
+      "input_count": 80,
+      "min_input_tokens": 1915,
+      "max_input_tokens": 2088,
+      "max_input_plus_output": 2856,
+      "bundle_sha256": "7d12826822dd793111ee648f6a4d25bf70ea2595e9891764607e277ddf45365c"
+    }
+  },
+  "resource_probe_token": {
+    "text": " ",
+    "token_id": 582,
+    "native_token_count": 1,
+    "native_roundtrip": true
+  },
+  "source_sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "48276a8f9cb7a2a818a9f12e7f86b2b53f525a37de61a1be70fe73648f07c151",
+    "src/neurobuild/application/requirement_generation.py": "fcba16f6adc906923859f3bcf4ae2f680e76716863a759582167cd9326f03198",
+    "src/neurobuild/application/requirements.py": "a940f3952c0c4133ab51732f6abf76516d8ff66617470545222b52adfa49fb4a",
+    "prompts/requirement_generation_v2_v2.txt": "99d737124372836ba5f985fa6e5570afef693e769798844931f000fb21403cf6",
+    "schemas/requirement_generation_v2_decision_branches.schema.json": "36d42b9fa3d24f4a1bc1d14381110e36e8d89103b696bc83113be006b64934e2"
+  },
+  "proof_refs": {
+    "public_contract": {
+      "path": "var/research/native-exaone45-contract/public-proof-v3.json",
+      "sha256": "fc7109fe4e9fbbe4a619ad16dc701cda01a4976ec8bd53d726aeb09f34f39408"
+    },
+    "vocab_context": {
+      "path": "var/research/native-exaone45-contract/vocab-context-raw-proof.json",
+      "sha256": "f450e9f0bf3a206204474ed860bc6d191597cbe6cc31a7349efe894b5d3775bb"
+    },
+    "tokenizer_fixture": {
+      "path": "var/research/native-exaone45-contract/raw-reference-diagnostic.json",
+      "sha256": "9a379ccf7cab7c85c23582c45f77c6b4ec481a9bb1469009564dba0fe894bf2c"
+    }
+  },
+  "normalization_limitation": {
+    "official_normalizer": "NFC",
+    "official_public_raw_roundtrip_count": 18,
+    "native_public_raw_roundtrip_count": 20,
+    "public_case_count": 20,
+    "global_unicode_roundtrip_guarantee": false
+  },
+  "helper_sha256": "63092a6286cbaea5251058c1fbd63c3ce7ec795a942372700325804d1af8c3ea",
+  "limits": [
+    "PASS applies to this explicit template-override/raw-Unicode CPU contract; original HF token-ID equivalence remains FAIL.",
+    "Twenty public probes do not establish all-Unicode equivalence or preservation.",
+    "200 inputs are length-only with source-byte fidelity in rendering; no model generation, GPU, quality scoring, or unused future holdout access.",
+    "CPU vocabulary checks do not establish native CUDA loading, VRAM peak, or semantic gate success."
+  ]
+}

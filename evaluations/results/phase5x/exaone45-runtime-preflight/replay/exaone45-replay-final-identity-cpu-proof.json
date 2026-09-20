@@ -1,0 +1,11 @@
+{
+  "kind": "EXAONE45_FINAL_REPLAY_IDENTITY_COMPATIBILITY",
+  "status": "PASS_SYNTHETIC_MANIFEST_ONLY",
+  "replay_sha256": "47981646b4efe96ba7b7f85c991fad526b287f5c64407102aefcd2d8bbee30e4",
+  "launch_config_sha256": "1e872da88b6d00750447dd7c39213d7a4ce19b161fa64cb4c51cab1f7b8b7761",
+  "full_five_field_override_accepted": true,
+  "actual_manifest_read": false,
+  "actual_results_read": false,
+  "dataset_bodies_read": 0,
+  "native_gpu_http_model_calls": 0
+}
