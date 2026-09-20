@@ -122,3 +122,17 @@ V2는 model-output-unseen이지만 root 입력 노출 이력이 있다. 이 사�
 공식32B/기존single2.0의품질103/120/rawFP1/58/unsafe1/120이실패했다. 125개독립재생에서채점/metrics일치,copy/parser오류0이다. 명시방향을무시하거나원문에없는충돌·객체확정조건을추가하는FN11과현재승인우회수용1이주요문제다. 더큰모델/동일few-shot반복및span추출대안을택하지않는다.
 
 같은32B/runtime의한호출에서원문semantic facts를명시한뒤모델이최종root decision을출력하는별도3.0계약을설계검토한다. 원문에있는조건과후속inventory/targetconfirmation/approval를분리하고,모순은거절만한다. 최종decision은projection에서바꾸지않으며rawREADY는validation전에계수한다. Canonical1.0parser는byte불변,기존2.0quoteadapter행동과기존wire를보존한다. Metadata는새3.0과2.0projection을구분한다. 새계약성공이나채택을미리주장하지않으며실제비교전CPU/회귀/독립review/동결/commit/push가필요하다. v2모델출력미노출과root입력노출이력의구분은유지한다.
+
+
+## D030 — Facts 실패 보존과 예산을 제한한 thinking 비교
+
+32B facts3.0은 raw 분류115/120이지만 semantic95/120/rawFP3/unsafe1로 실패했다.
+중복 인용과 대상 선택 제외·단순 비대상 보존의 혼동이 추가 거절을 만들었고 실제 조건 누락도 남았다.
+Facts 검사를 없애는 경로는 unsafe를 늘리므로 채택하지 않는다.
+
+같은32B에서 복사/parser120/120이었던 기존single2.0을 사용하고 내부 thinking을 한 번 비교한다.
+Context4096/seq1/KV256을 유지하며 총completion1024/timeout120으로 제한한다.
+기존prompt의 정책·예시는 보존하고 첫 출력 지시의 적용 범위만 최종 content로 명시한다.
+기존 명시 thinking sampling/parser를 사용하며 reasoning 원문은 저장하지 않는다.
+잘림과 no-final도 실패 분모에 남고 retry/cap증액/decision 보정은 없다.
+[고정할 조건과 한계](requirement_thinking_control_plan.md)를 실제 호출 전에 검증·동결한다.

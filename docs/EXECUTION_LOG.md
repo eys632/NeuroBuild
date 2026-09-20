@@ -468,3 +468,20 @@ BackendprivatePG DSN으로 env -u DISPLAY -u WAYLAND_DISPLAY bash scripts/test_b
 FreshGPU3preflight5회free36373/util0/swing0, wholepeak25600+margin7275 뒤3498MiB잔여PASS. 같은모델/FP16AWQMarlin/ctx4096/seq1/KV256/fraction.60/.60/allowance0로 새generation3-v1 epoch기동을시작했다. Guard는자체5회preflight를반복한다. 이번epochmaxseconds10800으로제한하고freefloor/aggregate감시를유지한다. 다른process변경이나GPUfallback없다. rootfilesystemdf28Gfree/99%이며새download/install은없다.
 
 새32B facts epoch 2026-09-20T02:56:53.177123Z, own guard3476219/child3476232. Health200/v1models alias·root·ctx4096, ownTCP5개127.0.0.1검증. FreshCPUversionprobe와localtemplate를새launch/runtimehash에연결했다. Initialsnapshotelapsed186.288s/minfree16060/aggregate20314/floor7275/limit25600. AWQMarlinFP16/weights18.1453GiB/activation.76GiB/KV256. 새freeze820c16c7bd130666fbe8e2446cfd22a308cd9902c4bb1b3ac3481961939bb831는44개source/proofhash와별도v2고정9개를검증했다. 진단120×1+warmup5/generation3.0/output1024/T0/onecall,gate불변. 아직completion0이며commit/push후freshliveness와hash를확인하고시작한다.
+
+
+## Facts3.0 실제 진단 FAIL 및 서버 종료
+
+Commit/push/remotehash/clean c6bdbeb400c37016897bfe6b08ab080cc33ee8cf와 freeze44hash/현재own runtime을 확인했다.
+2026-09-20T03:02:27Z부터 run20260920T030227Z-e8d3568e4a1243d69e674ea3d6fc9727을 실행했다.
+Session18482 exit0,125요청 완료, schema120/facts101/parser99/semantic95/rawFP3/58/unsafe1/120/FN10/62,
+UNGROUNDED21,mean7.859892285009846/p959.356667160987854. Warmup5는 semantic4이며 평가 분모에서 제외했다.
+독립125개 재생과 집계가 일치했다. Exit0는 결과 저장 완료이며 품질 gate는 FAIL이다.
+
+모델 응답·gold·parser를 수정하지 않았다. Source/프롬프트/평가 조건은 실행 중 고정했다.
+Own guard3476219/child3476232의 UID·startticks·model/report 실행 인자를 확인하고 guard에 SIGTERM을 보냈다.
+Session2033 exit0. STOPPED/STOP_REQUESTED/child exit0/reaped/FileStore cleaned, TERM+KILL 기록을 확인했다.
+Epoch1402.678초/minfree14512/aggregatepeak21862. Shutdown artifact SHA
+a5b7608a9205d5509095284b7ee86e2f6214949d153bbb0b946b688b725e43b6.
+종료 뒤 nvidia-smi GPU3 only는 total40960/used3965/free36373/util0이었다.
+다른 사용자 process와 GPU0/1/2 변경은 없었다. Formal 반복은 시작하지 않는다.

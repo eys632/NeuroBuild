@@ -1,0 +1,375 @@
+{
+  "meaning": "Post-run failure classification from original retained JSON; no output repairs or rubric changes",
+  "results_sha256": "dae84b42d2dfa86525d946671ceaa78003e08c9004339830959869ec8ec6937d",
+  "grounding_failures": [
+    {
+      "case_id": "C01",
+      "expected_decision": "UNSUPPORTED",
+      "raw_decision": "UNSUPPORTED",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_contained_in_target:selection_scope_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_contained_in_target:selection_scope_quote"
+      ],
+      "target_selection_quote": "내력벽",
+      "selection_scope_quote": "회의실",
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "D01",
+      "expected_decision": "UNSUPPORTED",
+      "raw_decision": "UNSUPPORTED",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "target_quote_not_exact_source",
+      "all_observed_contract_violations": [
+        "target_quote_not_exact_source",
+        "facts_quote_not_exact_source:selection_scope_quote",
+        "facts_quote_not_contained_in_target:selection_scope_quote"
+      ],
+      "target_selection_quote": "회의실 책상, 로비 의자",
+      "selection_scope_quote": "회의실, 로비",
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "E02",
+      "expected_decision": "CLARIFICATION",
+      "raw_decision": "CLARIFICATION",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "target_quote_not_exact_source",
+      "all_observed_contract_violations": [
+        "target_quote_not_exact_source"
+      ],
+      "target_selection_quote": "회의실 책상",
+      "selection_scope_quote": "회의실",
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "F02",
+      "expected_decision": "READY",
+      "raw_decision": "READY",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_contained_in_target:selection_scope_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_contained_in_target:selection_scope_quote",
+        "facts_quote_not_contained_in_target:selection_exclusion_quote"
+      ],
+      "target_selection_quote": "창가 쪽 책상",
+      "selection_scope_quote": "회의실",
+      "selection_exclusion_quote": "회의실 입구 쪽 책상"
+    },
+    {
+      "case_id": "H02",
+      "expected_decision": "CLARIFICATION",
+      "raw_decision": "CLARIFICATION",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "target_quote_not_exact_source",
+      "all_observed_contract_violations": [
+        "target_quote_not_exact_source"
+      ],
+      "target_selection_quote": "회의실 책상들",
+      "selection_scope_quote": "회의실",
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "I01",
+      "expected_decision": "READY",
+      "raw_decision": "READY",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_contained_in_target:selection_exclusion_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_contained_in_target:selection_exclusion_quote"
+      ],
+      "target_selection_quote": "3층 서쪽 회의실 창가의 파란색 책상",
+      "selection_scope_quote": "3층 서쪽 회의실 창가",
+      "selection_exclusion_quote": "다른 의자와 소파"
+    },
+    {
+      "case_id": "J02",
+      "expected_decision": "UNSUPPORTED",
+      "raw_decision": "UNSUPPORTED",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "target_quote_not_exact_source",
+      "all_observed_contract_violations": [
+        "target_quote_not_exact_source"
+      ],
+      "target_selection_quote": ": 회의실",
+      "selection_scope_quote": null,
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "HD-B01",
+      "expected_decision": "CLARIFICATION",
+      "raw_decision": "READY",
+      "failed_stage": "quotes_to_canonical",
+      "first_failing_invariant": "quote_axis_unsigned_direction",
+      "all_observed_contract_violations": [
+        "quote_axis_unsigned_direction"
+      ],
+      "target_selection_quote": "촬영실 보조 탁자",
+      "selection_scope_quote": "촬영실",
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "HD-F01",
+      "expected_decision": "READY",
+      "raw_decision": "READY",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_exact_source:selection_scope_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_exact_source:selection_scope_quote",
+        "facts_quote_not_contained_in_target:selection_scope_quote",
+        "facts_quote_not_contained_in_target:selection_exclusion_quote"
+      ],
+      "target_selection_quote": "내벽 쪽 높은 장",
+      "selection_scope_quote": "연구실 복도 쪽, 내벽 쪽",
+      "selection_exclusion_quote": "연구실 복도 쪽 낮은 장"
+    },
+    {
+      "case_id": "HD-F02",
+      "expected_decision": "READY",
+      "raw_decision": "READY",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_exact_source:selection_scope_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_exact_source:selection_scope_quote",
+        "facts_quote_not_contained_in_target:selection_scope_quote",
+        "facts_quote_not_contained_in_target:selection_exclusion_quote"
+      ],
+      "target_selection_quote": "복도 쪽 낮은 장",
+      "selection_scope_quote": "연구실 내벽 쪽, 복도 쪽",
+      "selection_exclusion_quote": "연구실 내벽 쪽 높은 장"
+    },
+    {
+      "case_id": "HH-B01",
+      "expected_decision": "CLARIFICATION",
+      "raw_decision": "READY",
+      "failed_stage": "quotes_to_canonical",
+      "first_failing_invariant": "quote_axis_nonexact_evidence_and_undefined_direction_frame",
+      "all_observed_contract_violations": [
+        "quote_axis_nonexact_evidence_and_undefined_direction_frame"
+      ],
+      "target_selection_quote": "독서실 흰 의자",
+      "selection_scope_quote": "독서실",
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "HH-D01",
+      "expected_decision": "UNSUPPORTED",
+      "raw_decision": "UNSUPPORTED",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "target_quote_not_exact_source",
+      "all_observed_contract_violations": [
+        "target_quote_not_exact_source"
+      ],
+      "target_selection_quote": "홀 왼쪽 의자, 홀 오른쪽 의자",
+      "selection_scope_quote": "홀",
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "HH-D02",
+      "expected_decision": "READY",
+      "raw_decision": "READY",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_contained_in_target:selection_exclusion_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_contained_in_target:selection_exclusion_quote"
+      ],
+      "target_selection_quote": "홀 왼쪽 의자",
+      "selection_scope_quote": "홀",
+      "selection_exclusion_quote": "홀 오른쪽 의자"
+    },
+    {
+      "case_id": "HH-D03",
+      "expected_decision": "UNSUPPORTED",
+      "raw_decision": "UNSUPPORTED",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "target_quote_not_exact_source",
+      "all_observed_contract_violations": [
+        "target_quote_not_exact_source"
+      ],
+      "target_selection_quote": "작업실 회색 책상, 옆 캐비닛",
+      "selection_scope_quote": "작업실",
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "HH-D04",
+      "expected_decision": "READY",
+      "raw_decision": "READY",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_contained_in_target:selection_exclusion_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_contained_in_target:selection_exclusion_quote"
+      ],
+      "target_selection_quote": "작업실 회색 책상",
+      "selection_scope_quote": "작업실",
+      "selection_exclusion_quote": "옆 캐비닛"
+    },
+    {
+      "case_id": "HH-F03",
+      "expected_decision": "READY",
+      "raw_decision": "READY",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_contained_in_target:selection_scope_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_contained_in_target:selection_scope_quote",
+        "facts_quote_not_contained_in_target:selection_exclusion_quote"
+      ],
+      "target_selection_quote": "유리벽 옆 의자",
+      "selection_scope_quote": "기술실 출입구 옆",
+      "selection_exclusion_quote": "기술실 출입구 옆 의자"
+    },
+    {
+      "case_id": "HH-I01",
+      "expected_decision": "READY",
+      "raw_decision": "READY",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_contained_in_target:selection_exclusion_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_contained_in_target:selection_exclusion_quote"
+      ],
+      "target_selection_quote": "동별관 도면실 갈색 책상",
+      "selection_scope_quote": "동별관 도면실",
+      "selection_exclusion_quote": "다른 방의 가구"
+    },
+    {
+      "case_id": "HH-I02",
+      "expected_decision": "READY",
+      "raw_decision": "READY",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_contained_in_target:selection_exclusion_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_contained_in_target:selection_exclusion_quote"
+      ],
+      "target_selection_quote": "동별관 도면실 갈색 책상",
+      "selection_scope_quote": "동별관 도면실",
+      "selection_exclusion_quote": "다른 방의 가구"
+    },
+    {
+      "case_id": "HH-J04",
+      "expected_decision": "UNSUPPORTED",
+      "raw_decision": "UNSUPPORTED",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_contained_in_target:selection_scope_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_contained_in_target:selection_scope_quote"
+      ],
+      "target_selection_quote": "창문과 지붕",
+      "selection_scope_quote": "새 전시관",
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "HH-J05",
+      "expected_decision": "UNSUPPORTED",
+      "raw_decision": "UNSUPPORTED",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "target_quote_not_exact_source",
+      "all_observed_contract_violations": [
+        "target_quote_not_exact_source"
+      ],
+      "target_selection_quote": "다목적실 가구",
+      "selection_scope_quote": "다목적실",
+      "selection_exclusion_quote": null
+    },
+    {
+      "case_id": "HH-J07",
+      "expected_decision": "UNSUPPORTED",
+      "raw_decision": "UNSUPPORTED",
+      "failed_stage": "facts_to_quotes",
+      "first_failing_invariant": "facts_quote_not_contained_in_target:selection_scope_quote",
+      "all_observed_contract_violations": [
+        "facts_quote_not_contained_in_target:selection_scope_quote"
+      ],
+      "target_selection_quote": "",
+      "selection_scope_quote": "휴게동",
+      "selection_exclusion_quote": null
+    }
+  ],
+  "first_failure_families": {
+    "facts_quote_not_contained_in_target:selection_scope_quote": [
+      "C01",
+      "F02",
+      "HH-F03",
+      "HH-J04",
+      "HH-J07"
+    ],
+    "target_quote_not_exact_source": [
+      "D01",
+      "E02",
+      "H02",
+      "J02",
+      "HH-D01",
+      "HH-D03",
+      "HH-J05"
+    ],
+    "facts_quote_not_contained_in_target:selection_exclusion_quote": [
+      "I01",
+      "HH-D02",
+      "HH-D04",
+      "HH-I01",
+      "HH-I02"
+    ],
+    "quote_axis_unsigned_direction": [
+      "HD-B01"
+    ],
+    "facts_quote_not_exact_source:selection_scope_quote": [
+      "HD-F01",
+      "HD-F02"
+    ],
+    "quote_axis_nonexact_evidence_and_undefined_direction_frame": [
+      "HH-B01"
+    ]
+  },
+  "parser_accepted_semantic_failures": [
+    "HD-J02",
+    "HH-G08",
+    "HH-I06",
+    "HH-I07"
+  ],
+  "raw_ready_false_positives": [
+    "HD-B01",
+    "HH-B01",
+    "HH-I06"
+  ],
+  "paired_semantic_outcomes": {
+    "previously_correct_now_wrong": [
+      "C01",
+      "D01",
+      "E02",
+      "F02",
+      "I01",
+      "J02",
+      "HD-B01",
+      "HD-F01",
+      "HD-F02",
+      "HD-J02",
+      "HH-B01",
+      "HH-D01",
+      "HH-D02",
+      "HH-D03",
+      "HH-D04",
+      "HH-F03",
+      "HH-G08",
+      "HH-I01",
+      "HH-I02",
+      "HH-I06",
+      "HH-J04",
+      "HH-J07"
+    ],
+    "previously_wrong_now_correct": [
+      "A02",
+      "HD-A01",
+      "HD-A02",
+      "HD-H02",
+      "HH-B04",
+      "HH-B06",
+      "HH-C07",
+      "HH-E03",
+      "HH-F07",
+      "HH-F08",
+      "HH-G01",
+      "HH-G07",
+      "HH-H08",
+      "HH-I04"
+    ]
+  }
+}

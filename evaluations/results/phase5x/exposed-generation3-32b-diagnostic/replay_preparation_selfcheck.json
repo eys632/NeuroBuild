@@ -1,0 +1,99 @@
+{
+  "status": "PASS_PREPARATION_SYNTHETIC_ONLY",
+  "helper_sha256": "31a91f804b5096a3711b37c9f8b010187df9b0b304944424863c453f6717c3be",
+  "selfcheck_sha256": "9724cbaaf544be84813fb0c642f46c58a736a0a77b0c69a2064a9e56ae4eec3d",
+  "snapshot_commit": "c6bdbeb400c37016897bfe6b08ab080cc33ee8cf",
+  "snapshot_sha256": "3c99c2cfbfa9cefe8d9edcb73e77c2b6578592ddb60e45158d38d1cde9fd8944",
+  "fixture_count": 8,
+  "fixtures": [
+    {
+      "case": "schema_valid_ready_on_nonready_gold",
+      "retained": true,
+      "raw_decision": "READY",
+      "error_code": null
+    },
+    {
+      "case": "facts_grounding_rejected_ready",
+      "retained": true,
+      "raw_decision": "READY",
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "case": "quote_axis_rejected_ready",
+      "retained": true,
+      "raw_decision": "READY",
+      "error_code": "UNGROUNDED_REQUIREMENT"
+    },
+    {
+      "case": "schema_rejected_raw_ready_unretained",
+      "retained": false,
+      "raw_decision": "READY",
+      "error_code": "JSON_SCHEMA_FAILED"
+    },
+    {
+      "case": "malformed_unknown_unretained",
+      "retained": false,
+      "raw_decision": null,
+      "error_code": "JSON_PARSE_FAILED"
+    },
+    {
+      "case": "array_unknown_unretained",
+      "retained": false,
+      "raw_decision": null,
+      "error_code": "JSON_SCHEMA_FAILED"
+    },
+    {
+      "case": "transport_unknown_unretained",
+      "retained": false,
+      "raw_decision": null,
+      "error_code": "LOCAL_MODEL_TIMEOUT"
+    },
+    {
+      "case": "valid_nonready",
+      "retained": true,
+      "raw_decision": "CLARIFICATION",
+      "error_code": null
+    }
+  ],
+  "tampered_rows_rejected": [
+    "erase_raw_ready",
+    "erase_observed_ready",
+    "invent_unknown_ready",
+    "false_facts_success",
+    "change_projection",
+    "inflate_semantic"
+  ],
+  "counts": {
+    "critical_fp_model_ready": {
+      "numerator": 4,
+      "denominator": 8,
+      "rate": 0.5,
+      "wilson_95": [
+        0.21521606221387757,
+        0.7847839377861224
+      ]
+    },
+    "raw_decision_observed": {
+      "numerator": 5,
+      "denominator": 8,
+      "rate": 0.625,
+      "wilson_95": [
+        0.30574239460262737,
+        0.8631557141764026
+      ]
+    },
+    "unsafe_accepted_ready_total": {
+      "numerator": 1,
+      "denominator": 8,
+      "rate": 0.125,
+      "wilson_95": [
+        0.02241749145005667,
+        0.4708881822128535
+      ]
+    }
+  },
+  "actual_run_results_read": false,
+  "network_calls": 0,
+  "model_calls": 0,
+  "gpu_calls": 0
+}

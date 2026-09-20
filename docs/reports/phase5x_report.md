@@ -168,3 +168,22 @@ Canonicalparser/gold/gate는유지하며자료노출이력도계속공개한다.
 346개회귀테스트와독립CPU문법/문맥/오류회계검토가통과했다. Actual32B tokenizer의최대입력+1024출력=3622/4096이다. 같은4096context/seq1/KV256을유지하므로기존wholepeak25GiB계획을사용하되freshGPU3측정및watchdog가필수다. Prompt/schema/출력한도가동시에바뀌므로효과를한요소에귀속하지않는다.
 
 다음은exposed120×1+warmup5 진단이며schema120/semantic≥114/rawFP0of58/unsafe0of120기준을유지한다. 진단전후보동결·원격checkpoint가필요하고모델결과나채택은아직없다. 통과한경우에만별도동결한120×3정식후v2평가로진행한다. V2는model-output-unseen이나root가일부input/gold를본이력이있으며완전맹검이나사람검수라고부르지않는다.
+
+
+## Facts3.0 전체 진단 — FAIL
+
+Pushed c6bdbeb/clean 상태에서 run20260920T030227Z-e8d3568e4a1243d69e674ea3d6fc9727의120×1+warmup5를 완료했다.
+Schema120/facts projection101/parser99/semantic95, rawFP3/58/unsafe1/120/FN10/62이며 근거 거절21건이다.
+독립125개 재생과 전체 metrics가 일치했다. Mean7.859892s/p959.356667s, 정식 반복은 실행하지 않는다.
+
+Raw 분류 정답115/120은 이전32B single2.0의104/120보다 높았으나 대상·scope·exclusion 인용이 손상됐다.
+Facts19개 거절은 비원문 target7/scope2, target 안 scope 불포함5/exclusion 불포함5로 분류된다.
+기존2.0 거절2건은 부호 없는 X축과 좌표 미정 앞방향의 raw READY 오판이다.
+유일하게 잘못 수용한 HH-I06은 ‘정확히 하나인 경우에만’이라는 실제 외부 조건을 누락했다.
+검사 제거는 실제 제외대상 손실도 수용하므로 개선으로 인정하지 않는다.
+[상세 실패 분석](../reviews/phase5x_generation3_32b_exposed_review.md)을 보존한다.
+
+자체 모델 서버는 신원 재확인 후 종료했다. Epoch1402.678초/minfree14512MiB/aggregatepeak21862MiB,
+STOPPED/child exit0/reaped/FileStore cleaned, TERM+KILL 기록을 보존했다.
+GPU3는 used3965/free36373MiB/util0으로 복귀했으며 다른 process/GPU는 변경하지 않았다.
+다음 설계는 원래 gate를 유지하며 따로 검토한다. Facts 후보는 최종 채택하지 않았다.

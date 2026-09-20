@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NeuroBuild quote-only requirement generation 2.0",
+  "description": "Generation shape only. Backend validation enforces READY/non-READY null rules, quote limits, exact source spans and numeric grounding before the unchanged 1.0 parser. No approval or IFC identity is generated.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "target_selection_quote", "current_instruction_quote", "dx_evidence", "dy_evidence", "decision", "reason"],
+  "properties": {
+    "schema_version": {"type": "string", "enum": ["2.0"]},
+    "target_selection_quote": {"type": "string"},
+    "current_instruction_quote": {"anyOf": [{"type": "null"}, {"type": "string"}]},
+    "dx_evidence": {"anyOf": [{"type": "null"}, {"type": "string"}]},
+    "dy_evidence": {"anyOf": [{"type": "null"}, {"type": "string"}]},
+    "decision": {"type": "string", "enum": ["READY", "CLARIFICATION", "UNSUPPORTED"]},
+    "reason": {"anyOf": [{"type": "null"}, {"type": "string"}]}
+  }
+}

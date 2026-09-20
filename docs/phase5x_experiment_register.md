@@ -91,3 +91,20 @@ Classifier decision 자체는108/120이며 rawFP11건 중6건은 후단이 거�
 Run20260920T022318Z-88be9f58a8fa4017b9ad432ea95740b9,cleanedb586a. Schema/parser120/120,semantic103/120,raw+acceptedFP1/58,unsafe1/120,FN11/62,errors0. Mean5.077785s/p956.068347s. Warmup5는semantic4/5이며분모제외. 125개독립재생일치. [독립검토](reviews/phase5x_generation2_32b_exposed_review.md). ResultsSHA `f6ba0506921464c084899d7cfa457d6241b685e952caffa224c71f842472eec3`.
 
 완료된Phase5.x는20run,1560 formal/diagnostictrial,100warmup사례다. 같은자료/greedy반복은독립표본이아니며split별결과를합산정확도로만들지않는다. 크기만변경한이번후보는채택하지않고formal도미실행이다. 새weights나같은few-shot반복대신기존32B에서one-call facts계약을제한설계검토한다.
+
+
+## 32B facts3.0 단일 호출 전체120개 진단 — FAIL
+
+Run `20260920T030227Z-e8d3568e4a1243d69e674ea3d6fc9727`, clean pushed `c6bdbeb400c37016897bfe6b08ab080cc33ee8cf`.
+같은 공식32B/runtime에서 single3.0/promptv1/schema3/legacy_greedy, output1024/timeout60,
+120×1+warmup5를 완료했다. Schema120/facts projection101/parser99/semantic95(79.17%),
+rawFP3/58/acceptedFP1/58/unsafe1/120/FN10/62, UNGROUNDED21이다.
+Mean7.859892285s/p959.356667161s이며 warmup은 semantic4/5로 본 집계에서 제외했다.
+125개 보존 응답의 독립 재생과 전체 metrics가 원본과 일치했다.
+[원본 결과](../evaluations/results/phase5x/exposed-generation3-32b-diagnostic/results.json),
+[독립 검토](reviews/phase5x_generation3_32b_exposed_review.md).
+
+완료 누적은21 run/1680 formal 또는 diagnostic trial/105 warmup 사례다.
+원래120개 gold와 gate를 유지하며 formal 반복·모델 채택·Phase6 진행은 하지 않는다.
+Facts 검사 거절을 없애는 방식은 실제 제외 대상을 놓친 출력까지 수용하므로 선택하지 않는다.
+다음 접근은 실패 원인과 기존 비교를 재검토한 뒤 한 번의 제한 실험으로 고정한다.
