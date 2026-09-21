@@ -393,13 +393,15 @@ class LocalModelClientTests(unittest.TestCase):
                                                 SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP,
                                                 SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP,
                                                 SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP,
-                                                SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP))
+                                                SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP,
+                                                SamplingProfile.MINISTRAL3_NONTHINKING_LLAMA_CPP))
                            or (protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA
                                and profile in (SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP,
                                                SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP,
                                                SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP,
                                                SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP,
-                                               SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP)))
+                                               SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP,
+                                               SamplingProfile.MINISTRAL3_NONTHINKING_LLAMA_CPP)))
                 if invalid:
                     with self.subTest(protocol=protocol, profile=profile):
                         with self.assertRaises(DomainError) as caught:
@@ -1209,6 +1211,123 @@ class GlmFlashNativeProfileTests(unittest.TestCase):
         no_final["choices"][0]["message"] = {"role": "assistant", "content": None,
                                                "reasoning_content": "DO_NOT_ECHO_SECRET"}
         for response, status in (({"error": "DO_NOT_ECHO_SECRET"}, 400), (truncated, 200), (no_final, 200),
+                                 (envelope('```json\n' + json.dumps(QUOTE_FINAL) + '\n```'), 200)):
+            with self.subTest(status=status, response=response):
+                client = self.client()
+                transport = self.fake_response(client, response, status)
+                with self.assertRaises(DomainError) as caught:
+                    client.extract(SOURCE, requirement_id=uuid4(), project_id=uuid4(), base_revision_id=uuid4())
+                self.assertNotIn("DO_NOT_ECHO_SECRET", str(caught.exception))
+                transport.assert_called_once()
+
+
+class MinistralNativeProfileTests(unittest.TestCase):
+    """New profile's fake transport contract; no native sampler execution."""
+    root = Path(__file__).resolve().parents[1]
+    sampling = {
+        "temperature": 0.05, "top_p": 1.0, "top_k": 0, "min_p": 0.0,
+        "presence_penalty": 0.0, "frequency_penalty": 0.0,
+        "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
+        "samplers": ["temperature", "top_k", "top_p", "min_p"],
+    }
+    fake_response = GemmaNativeProfileTests.fake_response
+
+    def client(self, profile=SamplingProfile.MINISTRAL3_NONTHINKING_LLAMA_CPP):
+        return LocalRequirementClient(
+            "http://127.0.0.1:8003", "synthetic-test-model", protocol="llama_cpp_json_schema",
+            sampling_profile=profile, generation_contract="2.0",
+            prompt_path=self.root / "prompts/requirement_generation_v2_v2.txt",
+            schema_path=self.root / "schemas/requirement_generation_v2_decision_branches.schema.json")
+
+    def test_ministral_wire_and_quote_conversion_are_explicit(self):
+        for profile in (SamplingProfile.MINISTRAL3_NONTHINKING_LLAMA_CPP, "ministral3_nonthinking_llama_cpp"):
+            with self.subTest(profile=profile):
+                client = self.client(profile)
+                transport = self.fake_response(client)
+                result = client.extract(SOURCE, axis_convention="project_xy", requirement_id=uuid4(),
+                                        project_id=uuid4(), base_revision_id=uuid4())
+                transport.assert_called_once()
+                expected = {
+                    "model": "synthetic-test-model",
+                    "messages": [
+                        {"role": "system", "content": (self.root / "prompts/requirement_generation_v2_v2.txt").read_text()},
+                        {"role": "user", "content": json.dumps(
+                            {"source_text": SOURCE, "axis_convention": "project_xy"}, ensure_ascii=False)},
+                    ],
+                    **self.sampling, "max_tokens": 768, "stream": False,
+                    "chat_template_kwargs": {"enable_thinking": False},
+                    "response_format": {"type": "json_schema", "json_schema": {"schema": client.schema}},
+                }
+                self.assertEqual(transport.call_args.args[0].data, json.dumps(expected, ensure_ascii=False).encode())
+                self.assertIs(client.sampling_profile, SamplingProfile.MINISTRAL3_NONTHINKING_LLAMA_CPP)
+                self.assertFalse(client.enable_thinking)
+                self.assertEqual(result.operation.dx.metres, 1)
+                self.assertEqual(result.target_description, "회의실 책상")
+
+    def test_ministral_profile_is_native_only_and_never_selected_by_name(self):
+        with patch("neurobuild.infrastructure.local_model.build_opener") as opener:
+            for protocol in ("legacy_guided_json", "structured_outputs"):
+                with self.subTest(protocol=protocol):
+                    with self.assertRaises(DomainError) as caught:
+                        LocalRequirementClient("http://127.0.0.1:8003", "model", protocol=protocol,
+                                               sampling_profile="ministral3_nonthinking_llama_cpp")
+                    self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
+            for profile in ("MINISTRAL3_NONTHINKING_LLAMA_CPP", "ministral3_nonthinking_llama_cpp ", True):
+                with self.subTest(profile=profile):
+                    with self.assertRaises(DomainError) as caught:
+                        self.client(profile)
+                    self.assertEqual(caught.exception.code, "LOCAL_MODEL_CONFIG_INVALID")
+            opener.assert_not_called()
+        default = LocalRequirementClient("http://127.0.0.1:8003", "mistralai/Ministral-3-14B-Instruct-2512-GGUF")
+        self.assertIs(default.sampling_profile, SamplingProfile.LEGACY_GREEDY)
+
+    def test_ministral_sampler_copy_cannot_change_next_request(self):
+        client = self.client()
+        copied = client.sampling_parameters
+        copied["samplers"].clear()
+        copied["top_k"] = 40
+        copied["repeat_last_n"] = 64
+        with self.assertRaises(AttributeError):
+            client.sampling_profile = SamplingProfile.LEGACY_GREEDY
+        transport = self.fake_response(client)
+        client.complete(SOURCE)
+        request = json.loads(transport.call_args.args[0].data)
+        self.assertEqual({key: request[key] for key in self.sampling}, self.sampling)
+
+    def test_ministral_separate_reasoning_is_discarded_without_logging(self):
+        client = self.client()
+        response = envelope(json.dumps(QUOTE_FINAL))
+        response["choices"][0]["message"]["reasoning_content"] = "DO_NOT_ECHO_SECRET"
+        transport = self.fake_response(client, response)
+        out, err = StringIO(), StringIO()
+        with redirect_stdout(out), redirect_stderr(err):
+            completion = client.complete(SOURCE)
+        transport.assert_called_once()
+        self.assertEqual(json.loads(completion.content), QUOTE_FINAL)
+        self.assertFalse(hasattr(completion, "reasoning_content"))
+        self.assertNotIn("DO_NOT_ECHO_SECRET", repr(completion))
+        self.assertEqual(out.getvalue() + err.getvalue(), "")
+
+    def test_ministral_inline_native_markers_are_not_repaired(self):
+        for marker in ("[THINK]DO_NOT_ECHO_SECRET[/THINK]", "[TOOL_CALLS]", "<think>DO_NOT_ECHO_SECRET</think>"):
+            with self.subTest(marker=marker):
+                client = self.client()
+                transport = self.fake_response(client, envelope(marker + json.dumps(QUOTE_FINAL)))
+                with self.assertRaises(DomainError) as caught:
+                    client.extract(SOURCE, requirement_id=uuid4(), project_id=uuid4(), base_revision_id=uuid4())
+                self.assertIn(caught.exception.code, ("INVALID_MODEL_OUTPUT", "LOCAL_MODEL_REASONING_CONTENT"))
+                self.assertNotIn("DO_NOT_ECHO_SECRET", str(caught.exception))
+                transport.assert_called_once()
+
+    def test_ministral_failure_and_nonfinal_content_never_retry(self):
+        truncated = envelope(json.dumps(QUOTE_FINAL))
+        truncated["choices"][0]["finish_reason"] = "length"
+        no_final = envelope()
+        no_final["choices"][0]["message"] = {"role": "assistant", "content": None,
+                                               "reasoning_content": "DO_NOT_ECHO_SECRET"}
+        tool = envelope(json.dumps(QUOTE_FINAL))
+        tool["choices"][0]["message"]["tool_calls"] = [{"id": "synthetic", "type": "function"}]
+        for response, status in (({"error": "DO_NOT_ECHO_SECRET"}, 400), (truncated, 200), (no_final, 200), (tool, 200),
                                  (envelope('```json\n' + json.dumps(QUOTE_FINAL) + '\n```'), 200)):
             with self.subTest(status=status, response=response):
                 client = self.client()

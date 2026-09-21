@@ -1,0 +1,186 @@
+{
+  "kind": "GGUF_HEADER_STRUCTURAL_COMPLETION",
+  "status": "STRUCTURAL_PASS",
+  "completion_revision": 2,
+  "created_at_utc": "2026-09-20T18:08:53.990104+00:00",
+  "model_id": "mistralai/Ministral-3-14B-Instruct-2512-GGUF",
+  "revision": "74fac473c43357d7fb2671713608183cc72496d0",
+  "model_path": "var/models/mistralai--Ministral-3-14B-Instruct-2512-GGUF/74fac473c43357d7fb2671713608183cc72496d0/Ministral-3-14B-Instruct-2512-Q4_K_M.gguf",
+  "file_sha256": "824e0f3373e69b84f2cae46fdcb9bd1ebc6ab3bfc7acc125d818b7b8178cc613",
+  "file_bytes": 8239593024,
+  "full_file_sha256_verified": true,
+  "full_file_sha256_verification_scope": "INHERITED_EXACT_ORIGINAL_FULL_AUDIT; NO_NEW_WEIGHT_READ",
+  "original_audit": {
+    "path": "var/reports/ministral3-gguf-header.json",
+    "sha256": "587e2f3b56d70184496554ddd642d7487dbbe9ccd74e6dd0db02f57139928d58",
+    "status": "STRUCTURAL_FAIL",
+    "failure_code": "TOKENIZER_SCORES_METADATA_MISMATCH"
+  },
+  "original_helper": {
+    "path": "var/research/inspect_ministral3_gguf.py",
+    "sha256": "cd3ff0cf422933fa67566256be629f3660254b779bfb5ac24e504756ffee6ea7"
+  },
+  "prior_completion_failure": {
+    "helper_path": "var/research/complete_ministral3_saved_header.py",
+    "helper_sha256": "b004ff14be33b99e3c585b94d8f5d9980266e91a55e7365b575ff0b4fbab011c",
+    "receipt_path": "var/research/ministral3-header-completion-cli.log",
+    "receipt_sha256": "7fffef94071b229c1ddb940920bb2824822b845538babeeb9eb4b0f0d74d45c7",
+    "status": "FAIL",
+    "code": "SAVED_CANONICAL_ARRAY_MISMATCH"
+  },
+  "token_reference_diagnostic": {
+    "path": "var/research/ministral3-header-token-diagnostic.json",
+    "sha256": "0f2a85ba731be998768b3aab8c7ddceed5af25ddfa53b1c13e4b4c305d6224d9",
+    "array_diagnostic_path": "var/research/ministral3-saved-header-array-diagnostic.json",
+    "array_diagnostic_sha256": "767f9a35846a88610693ab05fe551e8eb2114509a802b7d95267c8741b0f526f",
+    "special_mismatches": 2,
+    "ordinary_mismatches": 0,
+    "gguf_payload_bytes_read": 0
+  },
+  "conversion_source_revision": null,
+  "runtime_source_revision": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "source_sha256": {
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-vocab.cpp": "82e8996cbbd81c1648b1f4946b5f481138aa897a1343dcd8b1a4abe8cff0b5fc",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/gguf-py/gguf/vocab.py": "16cddd93700f86c8b72e6f9e741e2362189155b9f96aa9e3bbb0995060095f1a",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/gguf-py/gguf/gguf_writer.py": "7e3ff8d04b290dde083ae30d1091b67c95299f6865958fe1cdcb7e35dd201766",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/gguf-py/gguf/constants.py": "df0078c283a48061260ca4b3f35df36611230c3e7c2ac271bb8a11d2632839ba",
+    "var/research/ministral3-14b-candidate-metadata/official-tokenizer-source/tekken.py": "914d6e6f4ae4e1ba3709557a9992ee540644ffd16075efc9474a6e12c15ae6f3"
+  },
+  "reference_tekken": {
+    "path": "var/research/ministral3-14b-candidate-metadata/bf16/tekken.json",
+    "sha256": "600bb27946565481ecf51ba8aee252e49b9a68507866080ac9c30185bb312843"
+  },
+  "bindings": {
+    "validation_scope": "FILE_IDENTITY_AND_TEXT_MODEL_STRUCTURE_ONLY",
+    "config_values_bound": 30,
+    "text_tensors_shape_matched": 363,
+    "layers": 40,
+    "quantization": "Q4_K_M",
+    "ftype": 15,
+    "quantization_policy": "KNOWN_DENSE_STORAGE_FORMATS; publisher per-role recipe unpublished",
+    "actual_per_role_dtypes": {
+      "blk.*.attn_k.weight": {
+        "q4_K": 40
+      },
+      "blk.*.attn_norm.weight": {
+        "f32": 40
+      },
+      "blk.*.attn_output.weight": {
+        "q4_K": 40
+      },
+      "blk.*.attn_q.weight": {
+        "q4_K": 40
+      },
+      "blk.*.attn_v.weight": {
+        "q6_K": 20,
+        "q4_K": 20
+      },
+      "blk.*.ffn_down.weight": {
+        "q6_K": 20,
+        "q4_K": 20
+      },
+      "blk.*.ffn_gate.weight": {
+        "q4_K": 40
+      },
+      "blk.*.ffn_norm.weight": {
+        "f32": 40
+      },
+      "blk.*.ffn_up.weight": {
+        "q4_K": 40
+      },
+      "output.weight": {
+        "q6_K": 1
+      },
+      "output_norm.weight": {
+        "f32": 1
+      },
+      "token_embd.weight": {
+        "q4_K": 1
+      }
+    },
+    "conditional_f072_default_recipe_matches": true,
+    "conditional_recipe_match_is_conversion_proof": false,
+    "untied_output_present": true,
+    "vision_projector_tensors": 0,
+    "mtp_layers": 0,
+    "moe_experts": 0,
+    "tokenizer_special_entries_bound": 1000,
+    "canonical_special_entries_matched": 998,
+    "native_special_overrides": {
+      "34": "[THINK]",
+      "35": "[/THINK]"
+    },
+    "tokenizer_arrays_typed_and_hashed": true,
+    "tokenizer_full_vocab_or_merges_equivalence": "PENDING",
+    "embedded_template_sha256": "6cc0f8c0cfbafcfd8b146d60e947a1b2511ace4db907b0a73f6a474d04bdca9b",
+    "embedded_template_bytes": 7754,
+    "reference_template_sha256": "2f545122222db8bb43ca0ea0c49e9185320a8670f7d35575b0da0eb48b1e8970",
+    "reference_template_byte_equal": false,
+    "template_compatibility": "PENDING_NEW_CPU_CONTRACT",
+    "tokenizer_compatibility": "PENDING_NEW_REFERENCE_AND_NATIVE_PARITY",
+    "runtime_compatibility": "PENDING",
+    "quality": "PENDING",
+    "tensor_payload_numeric_validity": "NOT_DECODED_OR_TESTED",
+    "ordered_tokens_and_types": "EXACT_FULL_WIRE_HASH_MATCH_WITH_TWO_OBSERVED_SPECIAL_NAMES",
+    "canonical_token_array_sha256": "17bf99b57ba9f61eb1b550651d13cfa0c3108d5f4fad022a47269201136d72ed",
+    "actual_token_array_sha256": "43bb36566989b2f7167232cfce7219a83554f724fa8319f6427ae8de611af6ff",
+    "ordinary_tokens_exact": 130072,
+    "canonical_special_tokens_exact": 998,
+    "canonical_full_token_equivalence": false,
+    "native_special_name_override_count": 2,
+    "input_text_repair": false,
+    "canonical_type_array_sha256": "a48351cf8b6a06749be78cc67e8859c43365449254742535169a5ef61c188991",
+    "tokenizer_scores": {
+      "wire_type": "INT32(5)",
+      "count": 131072,
+      "all_zero_wire_sha256": "07854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541",
+      "native_conversion": "static_cast<float>(iscores[i])",
+      "numeric_equivalence_to_float_zero": true
+    },
+    "merges_content_equivalence": "PENDING_NATIVE_TOKENIZATION_REFERENCE",
+    "native_token_id_parity": "PENDING",
+    "native_raw_roundtrip": "PENDING"
+  },
+  "template_export": {
+    "path": "var/reports/ministral3-embedded-chat-template.jinja",
+    "bytes": 7754,
+    "sha256": "6cc0f8c0cfbafcfd8b146d60e947a1b2511ace4db907b0a73f6a474d04bdca9b"
+  },
+  "tensor_summary": {
+    "count": 363,
+    "payload_bytes": 8231178240,
+    "dtype_counts": {
+      "q6_K": 41,
+      "f32": 81,
+      "q4_K": 241
+    }
+  },
+  "completed_remaining_checks": [
+    "INT32 all-zero scores supported by pinned loader/writer",
+    "Full131072 token strings match after exactly2 observed native special-name substitutions",
+    "Ordinary130072 and special998 canonical entries exact; all131072 type entries exact",
+    "Exact saved embedded template export/hash and original candidate structural conditions"
+  ],
+  "new_execution_counts": {
+    "gguf_opens": 0,
+    "gguf_stats": 0,
+    "weight_hashes": 0,
+    "native": 0,
+    "tokenize": 0,
+    "template_render": 0,
+    "corpus": 0,
+    "model": 0,
+    "http": 0,
+    "gpu": 0
+  },
+  "limitations": [
+    "Original firstFAIL and helper are immutable; this is a separately sourced completion.",
+    "Saved fullSHA/coverage are historical observations, not a current file integrity refresh.",
+    "Canonical full-token equality is false at IDs34/35; observed native THINK labels are explicit artifact facts.",
+    "The two label substitutions reconstruct metadata only; no input normalization or tokenizer installation changes.",
+    "Byte/type array reconstruction is not native tokenizer/merge-regex parity.",
+    "Actual template differs from current reference; new CPU contract remains pending.",
+    "No source revision lineage, runtime peak or semantic quality PASS is asserted."
+  ],
+  "helper_sha256": "d5d7101a4456973cbada059473ae8948fc0c84536d55c98eb45909042ac7d11f"
+}

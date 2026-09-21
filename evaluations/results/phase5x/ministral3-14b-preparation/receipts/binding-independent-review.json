@@ -1,0 +1,91 @@
+{
+  "kind": "MINISTRAL3_BINDING_APPLIED_SOURCE_READ_REVIEW",
+  "status": "PASS_SOURCE_SCOPE_ONLY",
+  "created_at_utc": "2026-09-20T17:30:13.949579+00:00",
+  "base_commit": "117611f74051b09b59dc98ae7cbeeb43e16f519f",
+  "patch_sha256": "5133fc025fcd74fa91af8c1c4cc0d363381e4c9fa17054f35e4bafebd1539f3f",
+  "applied_files": [
+    {
+      "path": "src/neurobuild/infrastructure/local_model.py",
+      "base_sha256": "0814c6a5a695c3abb3c4c6cf244990bd569ed372840b1786d2b488e72e0f3120",
+      "applied_sha256": "647e08df6bbc5059776956ca79eccc7291c7656ce4b837e30ddfe15a299bc9b6",
+      "exact_proposed_bytes": true
+    },
+    {
+      "path": "scripts/evaluate_requirements.py",
+      "base_sha256": "1915ee707cb6dca4f9f6927b760b0bdce1c1c5d6929837be489dafc97fb0cbfd",
+      "applied_sha256": "e66824d77a3f57b666c92bad2a2877faab324c3ed57258d0b96d39dd3114e7a6",
+      "exact_proposed_bytes": true
+    },
+    {
+      "path": "tests/test_local_model.py",
+      "base_sha256": "fef278522273e4fbe0819dc7702bebe26da4ca39b7912b6c1ce7c48a8975f859",
+      "applied_sha256": "82593f1ccd7dd1f8e0b1d8cb29f059c2351e8d395a9aa1283a08317b4a11e8d4",
+      "exact_proposed_bytes": true
+    },
+    {
+      "path": "tests/test_native_requirement_evaluation.py",
+      "base_sha256": "c350555aad68267de789a797824cc3cbe645b2ea00d68b53026f94b892f3397d",
+      "applied_sha256": "0a0e2f026f25a54200195bbac591b98c6e6112d317d5e469fa792e7b21a02595",
+      "exact_proposed_bytes": true
+    }
+  ],
+  "prior_sampling_branches_ast_equal": [
+    "self.sampling_profile is SamplingProfile.LEGACY_GREEDY",
+    "self.sampling_profile is SamplingProfile.QWEN3_NONTHINKING",
+    "self.sampling_profile is SamplingProfile.QWEN3_NONTHINKING_AWQ",
+    "self.sampling_profile is SamplingProfile.QWEN3_THINKING_AWQ",
+    "self.sampling_profile is SamplingProfile.QWEN38_NONTHINKING_LLAMA_CPP",
+    "self.sampling_profile is SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP",
+    "self.sampling_profile is SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP",
+    "self.sampling_profile is SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP",
+    "self.sampling_profile is SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP"
+  ],
+  "prior_branch_count": 9,
+  "client_init_ast_equal_after_removing_only_new_native_profile": true,
+  "unchanged_transport_functions_ast": [
+    "enable_thinking",
+    "complete",
+    "_complete"
+  ],
+  "evaluator_ast_equal_after_removing_only_new_pair": true,
+  "unchanged_evaluator_functions_ast": [
+    "_pairs",
+    "_constant",
+    "strict_json",
+    "file_sha",
+    "load_cases",
+    "target_slots",
+    "expected_ready_target",
+    "score_output",
+    "evaluate_trial",
+    "evaluate_staged_trial",
+    "rate",
+    "latency_summary",
+    "summarize",
+    "run_evaluation",
+    "native_runtime_metadata",
+    "runtime_metadata",
+    "git_info",
+    "save_json",
+    "main"
+  ],
+  "new_tuple": [
+    "ministral3_nonthinking_llama_cpp",
+    "mistralai/Ministral-3-14B-Instruct-2512-GGUF",
+    "Q4_K_M"
+  ],
+  "native_reasoning_static_assessment": "Existing deepseek splitter and final-only content boundary are compatible in source; new actual template/grammar/optional-reasoning proof remains pending.",
+  "official_vs_project_sampling": "Official temperature below0.1; exact0.05 and allother recipefields projectselection.",
+  "max_model_len_unchanged": 4096,
+  "material_findings": [],
+  "tests_executed": 0,
+  "application_functions_executed": 0,
+  "native_calls": 0,
+  "model_calls": 0,
+  "http_calls": 0,
+  "gpu_calls": 0,
+  "dataset_body_reads": 0,
+  "weight_reads": 0,
+  "limitation": "Source-only review does not establish actual header/tokenizer/native/runtime/quality PASS; root owns regression execution."
+}

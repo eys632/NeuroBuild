@@ -1445,3 +1445,32 @@ Scanner 본체 변경 없이 backend/모델 회귀 반복0. Receipt78fce10d…99
 핵심 정리 전체 index 검사:1960/1960파일, findings0/errors0/exit0.
 최종 문서 추가 뒤 index 검사를 거쳐 일반 commit/push한다. 삭제 원문 diff/history rewrite/force push는 수행하지 않는다.
 자세한 범위와 증거는 docs/reports/provenance_cleanup_20260921.md 및 같은 이름 JSON에 기록했다.
+
+보안 정리의 최종 전체 index와 working tree 각각1961개 검사에서 findings0/errors0/exit0.
+일반 commit8e5d6422c0ee42866cdc08124955389d0fa073ef push 및 GitHubv2 HEAD 일치를 확인했다.
+History rewrite/forcepush/완료 평가 반복0. 이후 기존 자율 계획의 Ministral CPU 준비를 재개했다.
+
+### 2026-09-21 KST — Ministral 준비 증거 승계와 실제 구조 차이
+
+보안 정리 전에 완료한 inactiveQwen36 weight cleanup449ee660…12b2와 Ministral guarded download34beef40…0fca를 보존한다.
+Qwen36 비활성한파일20,419,565,568B 회수 뒤 pinned Ministral2파일8,239,596,365B 다운로드/검증완료,
+diskfloor22,011,707,392B/최저free34,738,761,728B. 원downloadreceipt의 phase label download-qwen36은stale label이며
+실제manifest/command/model은Ministral이므로 원문수정없이 설명했다. 환경설치/다른사용자변경0.
+Production에명시profile/exactmodel-quant만추가했고430PASS/skip0/21.501s, realPG/Ifc/headless/emptyCUDA.
+기존9profile/transport/prompt/schema/scorer불변을독립검토09effccc…cdc2로확인했고 suite반복0.
+
+실제header/fullSHA1회는원파일824e0f33…cc613/363tensors/payload8231178240B를확인했으나
+STRUCTURAL_FAIL TOKENIZER_SCORES_METADATA_MISMATCH,원proof587e2f3b…8d58를보존했다.
+고정loader가I32scores를지원함을확인한savedcompletion1회도canonicaltokenhash차이로FAIL했다.
+원helperb004ff14…011c/FAILCLI7fffef94…45c7를보존했다.
+추가header-only1회8,393,191B/payload0/모든저장arrayfingerprint일치:
+ordinary130072동일, special34/35만actualTHINK/closeTHINK명칭이었다. 진단0f2a85ba…24d9.
+이두차이만선언한savedcompletionv2 d5d7101a…d11f 단회PASS6c0014ee…3f4d,
+추가GGUF열기/전체weightSHA/토큰화/모델실행0. 최초결과와conversionlineage불명은그대로유지한다.
+
+PublicCPU build756a8071…72cf와 contextCPU build0e0e4d05…ef56는기존194CPUobjects를재사용했다.
+Compile/link각exit0/ownchildcleanup완료/GPUdependency0이며최저free각34,724,286,464/34,708,168,704B다.
+새tiktokenreference12개는1회rawbytes12/12 PASS35287c19…2baa, officialpackage/native/GGUF실행0.
+Actualtemplate7754B/6cc0f8c0…ca9b의metadata public1 native실행은PASSbf2ad1cc…0d33:
+fullS/U9139B/prefix0/lazyfalse/trigger1/grammaraccept2-reject4/finalJSONexact/원모델·vocabload0.
+실제vocab parity와노출120길이는다음별도최소검사이며, GPU·품질·V2/미사용80호출은0이다.

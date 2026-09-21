@@ -1,0 +1,91 @@
+{
+  "kind": "MINISTRAL3_STATIC_WHOLE_VRAM_ESTIMATE",
+  "status": "CONDITIONAL_NOT_RUNTIME_PASS",
+  "units": "MiB",
+  "profile": {
+    "context": 4096,
+    "sequences": 1,
+    "batch": 64,
+    "ubatch": 64,
+    "kv_types": [
+      "F16",
+      "F16"
+    ],
+    "flash_attention": false,
+    "cuda_graphs": false,
+    "all_layers_gpu": true,
+    "tensor_parallel": 1,
+    "physical_gpu": 3,
+    "cpu_offload": false
+  },
+  "components": [
+    {
+      "name": "full_file_weights_proxy",
+      "mib": 7857.888244628906,
+      "basis": "Entire published text GGUF; both untied vocab matrices included."
+    },
+    {
+      "name": "persistent_f16_kv",
+      "mib": 640,
+      "basis": "40*4096*8*128*2(K,V)*2 bytes / MiB."
+    },
+    {
+      "name": "largest_f32_matrix_scratch",
+      "mib": 2560,
+      "basis": "131072*5120*4 / MiB; defensive largest fallback, not observed allocation."
+    },
+    {
+      "name": "graph_scheduler_activations_logits",
+      "mib": 4096,
+      "basis": "Engineering allowance; attention score/logits each32MiB at4096/64/32heads."
+    },
+    {
+      "name": "driver_modules_handles",
+      "mib": 1024,
+      "basis": "Engineering allowance."
+    },
+    {
+      "name": "additional_retained_pool_alignment",
+      "mib": 2048,
+      "basis": "Engineering allowance; no physical reservation or strict cap inferred from CUDA VMM."
+    },
+    {
+      "name": "loading_transients",
+      "mib": 2048,
+      "basis": "Engineering allowance beyond resident weight proxy."
+    },
+    {
+      "name": "unmodeled_uncertainty",
+      "mib": 1024,
+      "basis": "Explicit allowance, not demonstrated bound."
+    }
+  ],
+  "derived_sum_mib": 21297.888244628906,
+  "rounded_estimate_mib": 21504,
+  "operational_guard_budget_mib": 28672,
+  "extra_operational_allowance_mib": 7168,
+  "historical_baseline_free_mib": 36373,
+  "historical_margin_mib": 7275,
+  "historical_candidate_budget_mib": 29098,
+  "fresh_admission_required": true,
+  "small_scratch_examples_mib": {
+    "attention_scores": 32,
+    "all64_logits": 32,
+    "ffn_activations": 4,
+    "hidden_activations": 1.25,
+    "largest_ffn_f32_matrix": 320
+  },
+  "recurrent_moe_mtp_scratch_mib": 0,
+  "build_force_mmq": false,
+  "build_force_cublas": false,
+  "build_graphs": false,
+  "strict_upper_bound": false,
+  "actual_peak_measured": false,
+  "limitations": [
+    "Allocator/liveness/fragmentation/workspace/loading allowances are engineering estimates, not proven upper bounds.",
+    "Pinned SM80 MMQ supports expected Q4_K/Q6_K; no actual candidate kernel/load tested.",
+    "Both vocab matrices are resident, but largest one-matrix scratch plus retained-pool allowance is used; simultaneous unbounded duplicate expansion is not assumed safe.",
+    "Actual header/type/layout/context/quant policy changes require review before launch.",
+    "Future GPU admission and lifetime monitoring must use fresh free-memory margin; 28672 is not an allocation cap."
+  ]
+}

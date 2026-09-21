@@ -1,0 +1,67 @@
+{
+  "kind": "GUARDED_PINNED_PUBLIC_MODEL_DOWNLOAD",
+  "status": "PASS_DOWNLOAD_ONLY_NOT_RUNTIME_VALIDATED",
+  "created_at_utc": "2026-09-20T17:26:13.232169+00:00",
+  "helper_sha256": "38cae1fa2a24a74b09f3a09e49a073074f82c4606d752fb31bc79a6f6eac4986",
+  "model_id": "mistralai/Ministral-3-14B-Instruct-2512-GGUF",
+  "revision": "74fac473c43357d7fb2671713608183cc72496d0",
+  "source_pin": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "input_sha256": {
+    "runtime/models/ministral3-14b-instruct-q4-k-m.json": "ebc2763eed81cbc64fc07713dc784022244a0b45df51659a562a128ae2c7962c",
+    "scripts/download_model.py": "eea7da3f210addeaece15cb2a7072145cb9c380bd475c4a4f92292df78b88353",
+    "scripts/model_guard.py": "cc95f6cccf9ca5b749bea2fc8c82d2af9d56d55b94a6aee947379b3a2f4de528",
+    "var/research/run_llama_build.py": "e901372cc4f39dbee1e0574baf318fd2ae6edca167963f8bfe66274c06b8d52f",
+    "var/research/relink_llama_rpath.py": "52ab2e85128c1ff8fff978017aa7225268615d31ba653cdf20bb1c7f202333e0"
+  },
+  "build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "cleanup_report_sha256": "449ee66008bd6ec4b0da9dac17ec2bc19312ff2563cbe247e6e57f75961e12b2",
+  "cuda_visible_devices": "",
+  "disk_floor_bytes": 22011707392,
+  "disk_poll_seconds": 2,
+  "max_phase_seconds": 1800,
+  "termination_grace_is_additional": true,
+  "initial_free_bytes": 42981142528,
+  "conservative_remaining_bytes": 8239596365,
+  "child_stdout_stderr": "DISCARDED; supervisor emits only fixed metadata",
+  "gpu_or_native_execution": false,
+  "phases": [
+    {
+      "name": "download-qwen36",
+      "command": [
+        "/home/a202192020/NeuroBuild_v2/.conda/bin/python",
+        "-I",
+        "-B",
+        "/home/a202192020/NeuroBuild_v2/scripts/download_model.py",
+        "/home/a202192020/NeuroBuild_v2/runtime/models/ministral3-14b-instruct-q4-k-m.json"
+      ],
+      "started_at_utc": "2026-09-20T17:26:13.246636+00:00",
+      "max_seconds": 1800,
+      "budget_bytes": 8776467277,
+      "reserve_bytes": 21474836480,
+      "own_child_pid": 3724361,
+      "guardian_shutdown": {
+        "term_sent": true,
+        "kill_sent": true,
+        "child_reaped": true
+      },
+      "exit_code": 0,
+      "finished_at_utc": "2026-09-20T17:29:50.763457+00:00",
+      "native_cleanup": {
+        "guardian_pid": 3724361,
+        "native_pid": 3724362,
+        "term_sent": true,
+        "kill_sent": true,
+        "native_reaped": true,
+        "cleanup_complete": true,
+        "native_exit_code": 0,
+        "stop_requested": false
+      }
+    }
+  ],
+  "minimum_free_bytes": 34738761728,
+  "maximum_own_allocated_bytes": 8239616000,
+  "verified_files": 2,
+  "model_path": "var/models/mistralai--Ministral-3-14B-Instruct-2512-GGUF/74fac473c43357d7fb2671713608183cc72496d0",
+  "downloaded_manifest_sha256": "ebc2763eed81cbc64fc07713dc784022244a0b45df51659a562a128ae2c7962c",
+  "finished_at_utc": "2026-09-20T17:29:50.778163+00:00"
+}

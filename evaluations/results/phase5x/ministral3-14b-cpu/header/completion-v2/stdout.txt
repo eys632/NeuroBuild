@@ -1,0 +1,1 @@
+{"kind": "GGUF_HEADER_STRUCTURAL_COMPLETION", "status": "STRUCTURAL_PASS", "report": "var/reports/ministral3-gguf-header-completion-v2.json", "report_sha256": "6c0014eeaa8ea40a0dd95c9625acc28a9a4b296a5caa35b9d80a64e922233f4d", "file_sha256": "824e0f3373e69b84f2cae46fdcb9bd1ebc6ab3bfc7acc125d818b7b8178cc613", "new_gguf_reads": 0, "tokenizer_runtime_quality": "PENDING"}

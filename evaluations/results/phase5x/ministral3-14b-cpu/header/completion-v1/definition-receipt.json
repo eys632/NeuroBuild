@@ -1,0 +1,28 @@
+{
+  "kind": "MINISTRAL3_SAVED_HEADER_COMPLETION_DEFINITION_REVIEW",
+  "status": "PREPARED_NOT_EXECUTED",
+  "helper_path": "var/research/complete_ministral3_saved_header.py",
+  "helper_sha256": "b004ff14be33b99e3c585b94d8f5d9980266e91a55e7365b575ff0b4fbab011c",
+  "original_helper_sha256": "cd3ff0cf422933fa67566256be629f3660254b779bfb5ac24e504756ffee6ea7",
+  "original_audit_sha256": "587e2f3b56d70184496554ddd642d7487dbbe9ccd74e6dd0db02f57139928d58",
+  "bytes_to_unicode_exact_source_AST": true,
+  "score_source_basis": [
+    "src/llama-vocab.cpp2470-2485 accepts INT32/FLOAT32;2521 casts integer scores tofloat",
+    "gguf/vocab.py794-813 emits integer0 scores;gguf_writer1238->add_array andconstants5804inferINT32"
+  ],
+  "completion_scope": [
+    "Recompute full canonical token-string/type-array wire hashes from pinnedTekken; source byte conversion only",
+    "Require exact savedI32 count131072/allzero wireSHA",
+    "Recheck shape363/config/index/YaRN/tempScale and all post-scores original conditions",
+    "Exact actualtemplate export bytes bound; template/native/tokenizer/quality remainpending"
+  ],
+  "source_corrections_only": [
+    "Validator scores constraint changes F32-only to actualknownINT32/allzero supportedbyloader",
+    "No original helper/report mutation; noGGUFread/fullhashrepeat"
+  ],
+  "helper_imports_or_function_calls": 0,
+  "tests": 0,
+  "native_gpu_model_http": 0,
+  "static_unbound_name_check": {},
+  "canonical_special_is_control_flags": "All1000 observedtrue in the pinnedTekken metadata; conversionCONTROL mapping separately sourced."
+}

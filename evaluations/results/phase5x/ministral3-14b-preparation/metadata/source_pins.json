@@ -1,0 +1,24 @@
+{
+  "runtime_revision": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+  "sha256": {
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/mistral3.py": "2557b19ac439836ae3deebefe5281b38e8ae4cb204c6f59815288de3e1d250ef",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/mistral.py": "08b157feb91b3f3d62210252313fc0d45482bc397efd13b9411d40ecce146e21",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/llama.py": "6739a507a74d54a0fb884374da57f6f7844495f233cd1a4d9183cf1a15577eb2",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/conversion/base.py": "e0ae8621e67e8b8ea2682177b1f16adbe95b2c154ee8e2de975e942148d66575",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/gguf-py/gguf/vocab.py": "16cddd93700f86c8b72e6f9e741e2362189155b9f96aa9e3bbb0995060095f1a",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/gguf-py/gguf/constants.py": "df0078c283a48061260ca4b3f35df36611230c3e7c2ac271bb8a11d2632839ba",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/models/mistral3.cpp": "3cc33d10acfcc7bbabe93a76dbcaf5b138306481531982e1c2c2643c74489cbd",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-quant.cpp": "a33dea76120a10b2eac8b5d81b9425dcd401e2c8ae4bb04f59b00922f0355fdd",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-vocab.cpp": "82e8996cbbd81c1648b1f4946b5f481138aa897a1343dcd8b1a4abe8cff0b5fc",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-kv-cache.cpp": "16b40ff274e5aed3827f0d1c13a04f4f44c4d800c4eecbb5294b04127ab213c3",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-graph.cpp": "90f5c6f082790599124630680ba1293d702b369e9ce9088680d210b69905c8d3",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/chat.cpp": "ed5db316e93459c6528526633b11943f4b4611634c773b4eab30a66c1f4a91b3",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/common/parsers/ministral3.cpp": "b9e4b6e38abd7da35ea3181e8a8d8ddaa405a30f1194a751f7f37b80594823df",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/ggml-cuda.cu": "af947e45946d0c47cfae9e056f589a25b61892e4273decf0a893e2dcad48d065",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/mmq.cu": "a35bb96dfc917c9026023482e24dcf47539fc08ccee1bb4236f40932e9fe540e",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-cuda/mmq.cuh": "50db23f5055af6e28c142fcb4c7fb16c51f7137184ebf8c0ca113ed88906851b",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/include/ggml.h": "12ee71f99db7db9b353bc02b1fbb57c344ee17c01ac5fb7952b41a637a747ea9",
+    "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/ggml/src/ggml-common.h": "0061131b615c5721fc88a78feeb22c1f8c450f1c2646a317d80796a653bf595c"
+  },
+  "source_execution": false
+}

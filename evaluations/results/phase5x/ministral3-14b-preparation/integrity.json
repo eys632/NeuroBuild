@@ -1,0 +1,77 @@
+{
+  "kind": "MINISTRAL3_MINIMAL_PREPARATION_ARCHIVE_INTEGRITY",
+  "status": "METADATA_DOWNLOAD_BINDING_ONLY_NOT_NATIVE_READY",
+  "files": {
+    "README.md": {
+      "bytes": 2059,
+      "sha256": "cce181f703128e323feff4a6d3c79f690cd870796eb44e864033014647175934"
+    },
+    "metadata/APACHE-2.0.txt": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "metadata/chat_template.jinja": {
+      "bytes": 11913,
+      "sha256": "2f545122222db8bb43ca0ea0c49e9185320a8670f7d35575b0da0eb48b1e8970"
+    },
+    "metadata/config.json": {
+      "bytes": 1550,
+      "sha256": "b1897778395bb1795489a048ebde2e6d216eee21014ce9c18193d15f097454a6"
+    },
+    "metadata/expected_text_inventory.json": {
+      "bytes": 67678,
+      "sha256": "b6c279498d99d9fa2c65f87faf5bb4c629326b8b2fd397d198dbe1d32f152249"
+    },
+    "metadata/generation_config.json": {
+      "bytes": 131,
+      "sha256": "e0923390059f84a9180b00e5501778acc45ea9856cd7f2fd68208b360927c677"
+    },
+    "metadata/license-source.md": {
+      "bytes": 1211,
+      "sha256": "0517e592482768be7919510b46c8c1c6fbb28a397eea2367c739c6262cdb5d48"
+    },
+    "metadata/params.json": {
+      "bytes": 1101,
+      "sha256": "b2fc120fee26653d0aa07052122793f86750db9c12b6e11bcf7dfb36440da077"
+    },
+    "metadata/provenance.json": {
+      "bytes": 4364,
+      "sha256": "ee9cfad0beed02a5a7e8db3b8f9fa7da812ec78bf3130a27d9c71726de7312fc"
+    },
+    "metadata/resource_plan.json": {
+      "bytes": 2941,
+      "sha256": "e0b5b417fba5150019a058812d588a82d97266af15fc6c3839a7c59bbbd2432b"
+    },
+    "metadata/source_pins.json": {
+      "bytes": 3085,
+      "sha256": "26b48a59677cbd30b13caa6222d75115610461c3393ce7e42b83edd8e44df2ce"
+    },
+    "receipts/binding-independent-review.json": {
+      "bytes": 3684,
+      "sha256": "09effccc7b98c15d24c4bdcb9c3f5a5df019ac9d0d9cd8dc6fe7a0aad7dfcdc2"
+    },
+    "receipts/binding-regression-output.txt": {
+      "bytes": 76426,
+      "sha256": "b26bc8b7607723bc670a58b27dfe3f1750ac4d3ff29b0f56ddacbb6728bee2c2"
+    },
+    "receipts/binding-regression.json": {
+      "bytes": 1047,
+      "sha256": "2a87693d8ad1b9b7cfe0231c78200f981cc082db946f24f0f500370a11e38b30"
+    },
+    "receipts/guarded-download.json": {
+      "bytes": 2936,
+      "sha256": "34beef404d2aa470bfaf3aac1b39f174b318623128c811220fbd51d8b2c30fca"
+    },
+    "receipts/inactive-qwen36-cache-cleanup.json": {
+      "bytes": 2006,
+      "sha256": "449ee66008bd6ec4b0da9dac17ec2bc19312ff2563cbe247e6e57f75961e12b2"
+    },
+    "source_refs.json": {
+      "bytes": 4270,
+      "sha256": "9d8c54c77f590f872b9ba0799b5ecdf235c0c9656ddd0b31b1f114006b11d9f2"
+    }
+  },
+  "file_count_excluding_self": 17,
+  "bytes_excluding_self": 197760,
+  "self_excluded": true
+}

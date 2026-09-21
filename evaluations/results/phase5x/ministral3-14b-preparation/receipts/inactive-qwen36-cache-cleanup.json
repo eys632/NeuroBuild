@@ -1,0 +1,54 @@
+{
+  "kind": "REMOVE_VERIFIED_REDOWNLOADABLE_UNUSED_QWEN36_WEIGHT_CACHE",
+  "state": "COMPLETE",
+  "started_at_utc": "2026-09-20T17:24:33.922990+00:00",
+  "model_id": "ggml-org/Qwen3.6-35B-A3B-GGUF",
+  "revision": "baec3ebee244827cda0f4557eafa8b28f7545fa6",
+  "manifest_sha256": "70d4c0f73f763e10d17b0bad75acda2079dff6d49a9e2ed25575a86cff62b76c",
+  "shutdown_report_sha256": "d4cd9d39273c3ff8fec51cd370ec2dbd75b2295fae2763113d9ece3a5eab78b9",
+  "native_build_report_sha256": "ee6004f691015540ed694f721de7a0fd05ddc37b406419f9e527a860e6cb8b37",
+  "own_process_inspection": {
+    "maps_and_descriptors_checked": 29,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3680268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "free_before_bytes": 22562988032,
+  "removed_files": [
+    {
+      "name": "Qwen3.6-35B-A3B-Q4_K_M.gguf",
+      "bytes": 20419565568,
+      "sha256": "671e47e0ec53c665d048b98c3ecbfd5236b5ca9c3e02ed19fc8f81f7b85140c7"
+    }
+  ],
+  "restore_command": ".conda/bin/python scripts/download_model.py runtime/models/qwen36-35b-a3b-q4-k-m.json",
+  "scope": "One same-UID regular single-link cache file only; all metadata, manifests and evaluation results retained",
+  "foreign_processes_or_files_changed": false,
+  "own_process_inspection_before_unlink": {
+    "maps_and_descriptors_checked": 29,
+    "permission_limited_session_processes": [
+      {
+        "pid": 557494,
+        "comm": "(sd-pam)",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      },
+      {
+        "pid": 3680268,
+        "comm": "sshd",
+        "maps_and_descriptors": "PERMISSION_DENIED_SESSION_INFRASTRUCTURE"
+      }
+    ]
+  },
+  "removed_bytes": 20419565568,
+  "free_after_bytes": 42981343232,
+  "finished_at_utc": "2026-09-20T17:25:20.768013+00:00"
+}

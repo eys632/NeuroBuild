@@ -1,0 +1,31 @@
+{
+  "kind": "MINISTRAL3_HEADER_INSPECTOR_DEFINITION_REVIEW",
+  "status": "DEFINITION_PREPARED_NOT_EXECUTED",
+  "helper_sha256": "cd3ff0cf422933fa67566256be629f3660254b779bfb5ac24e504756ffee6ea7",
+  "source_helper": "var/research/inspect_qwen36_gguf.py",
+  "source_helper_sha256": "6e19db06be126b95ec619d434b7230a88dc4542d10d506c026f9cebb71114d97",
+  "generic_core_AST_equal": {
+    "AuditError": true,
+    "require": true,
+    "safe_open": true,
+    "read_bound": true,
+    "stat_key": true,
+    "Reader": true,
+    "parse_header": true,
+    "finish_hash": true
+  },
+  "new_logic": [
+    "Bounded header capture and metadata-only template/special extraction",
+    "Official config/index/shape363 and typed metadata validation",
+    "Known storage formats with no unpublished recipe claim",
+    "STRUCTURAL_PASS versus pending tokenizer/runtime/quality and diagnostic preservation"
+  ],
+  "candidate_gguf_opens": 0,
+  "native_gpu_calls": 0,
+  "test_or_helper_function_calls": 0,
+  "download_evidence": {
+    "manifest_sha256": "ebc2763eed81cbc64fc07713dc784022244a0b45df51659a562a128ae2c7962c",
+    "report_sha256": "34beef404d2aa470bfaf3aac1b39f174b318623128c811220fbd51d8b2c30fca"
+  },
+  "status_scope": "STRUCTURAL_PASS only; tokenizer/template/runtime/quality PENDING"
+}

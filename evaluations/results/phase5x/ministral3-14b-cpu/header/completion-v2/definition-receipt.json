@@ -1,0 +1,30 @@
+{
+  "kind": "MINISTRAL3_SAVED_HEADER_COMPLETION_V2_DEFINITION",
+  "status": "PREPARED_NOT_EXECUTED",
+  "helper_sha256": "d5d7101a4456973cbada059473ae8948fc0c84536d55c98eb45909042ac7d11f",
+  "prior_helper_sha256": "b004ff14be33b99e3c585b94d8f5d9980266e91a55e7365b575ff0b4fbab011c",
+  "preserved_functions_AST": {
+    "require": true,
+    "load_base": true,
+    "bytes_to_unicode": true
+  },
+  "static_unbound_names": {},
+  "exact_difference_scope": {
+    "ids": [
+      34,
+      35
+    ],
+    "native_strings": [
+      "[THINK]",
+      "[/THINK]"
+    ],
+    "ordinary_entries_unchanged": 130072,
+    "canonical_special_entries_unchanged": 998,
+    "scope": "Metadata reconstruction only; actual conversion source unknown and native behavior pending"
+  },
+  "saved_diagnostic_sha256": "0f2a85ba731be998768b3aab8c7ddceed5af25ddfa53b1c13e4b4c305d6224d9",
+  "original_full_audit_sha256": "587e2f3b56d70184496554ddd642d7487dbbe9ccd74e6dd0db02f57139928d58",
+  "helper_imports_or_function_calls": 0,
+  "new_gguf_reads": 0,
+  "native_tokenize_gpu_model_http": 0
+}

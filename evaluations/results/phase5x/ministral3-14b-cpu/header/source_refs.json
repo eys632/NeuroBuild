@@ -1,0 +1,162 @@
+{
+  "kind": "MINISTRAL3_HEADER_EVIDENCE_SOURCE_MAP",
+  "exact_original_count": 20,
+  "files": {
+    "original/inspect_ministral3_gguf.py": {
+      "original_path": "var/research/inspect_ministral3_gguf.py",
+      "bytes": 27710,
+      "sha256": "cd3ff0cf422933fa67566256be629f3660254b779bfb5ac24e504756ffee6ea7",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "original/header-audit.json": {
+      "original_path": "var/reports/ministral3-gguf-header.json",
+      "bytes": 127481,
+      "sha256": "587e2f3b56d70184496554ddd642d7487dbbe9ccd74e6dd0db02f57139928d58",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "original/stdout.txt": {
+      "original_path": "var/research/ministral3-header-cli.log",
+      "bytes": 482,
+      "sha256": "4af5fe08ff41bb7ddad8dba1d9ae7216907a86d3ede0c12198247c3b31afcf3d",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "original/stderr.txt": {
+      "original_path": "var/research/ministral3-header-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "original/definition-receipt.json": {
+      "original_path": "var/research/ministral3-header-definition-receipt.json",
+      "bytes": 1274,
+      "sha256": "723ff5df8caa8213667d02e50692ebfd193d7e05ed8d043341bcf127c750617b",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "original/embedded-chat-template.jinja": {
+      "original_path": "var/reports/ministral3-embedded-chat-template.jinja",
+      "bytes": 7754,
+      "sha256": "6cc0f8c0cfbafcfd8b146d60e947a1b2511ace4db907b0a73f6a474d04bdca9b",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "completion-v1/complete_ministral3_saved_header.py": {
+      "original_path": "var/research/complete_ministral3_saved_header.py",
+      "bytes": 18929,
+      "sha256": "b004ff14be33b99e3c585b94d8f5d9980266e91a55e7365b575ff0b4fbab011c",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "completion-v1/stdout.txt": {
+      "original_path": "var/research/ministral3-header-completion-cli.log",
+      "bytes": 106,
+      "sha256": "7fffef94071b229c1ddb940920bb2824822b845538babeeb9eb4b0f0d74d45c7",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "completion-v1/stderr.txt": {
+      "original_path": "var/research/ministral3-header-completion-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "completion-v1/definition-receipt.json": {
+      "original_path": "var/research/ministral3-scores-completion-definition.json",
+      "bytes": 1575,
+      "sha256": "6aaaeacb9276a63551a4ff97bb5a724def0a68aaa08192ff2b4c292c3e877b00",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "diagnostics/saved-array-diagnostic.json": {
+      "original_path": "var/research/ministral3-saved-header-array-diagnostic.json",
+      "bytes": 1182,
+      "sha256": "767f9a35846a88610693ab05fe551e8eb2114509a802b7d95267c8741b0f526f",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "diagnostics/diagnose_ministral3_header_tokens.py": {
+      "original_path": "var/research/diagnose_ministral3_header_tokens.py",
+      "bytes": 4841,
+      "sha256": "7fddc52c529ecdab17ee5b334842c33e22148bd510538b98dfde138ead81564f",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "diagnostics/header-token-diagnostic.json": {
+      "original_path": "var/research/ministral3-header-token-diagnostic.json",
+      "bytes": 1933,
+      "sha256": "0f2a85ba731be998768b3aab8c7ddceed5af25ddfa53b1c13e4b4c305d6224d9",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "diagnostics/header-token-stdout.txt": {
+      "original_path": "var/research/ministral3-header-token-diagnostic-cli.log",
+      "bytes": 1106,
+      "sha256": "f0c784246e1b0618cd94ad56069e26375009df8a030c8a34ce717c8c98a63db2",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "diagnostics/header-token-stderr.txt": {
+      "original_path": "var/research/ministral3-header-token-diagnostic-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "completion-v2/complete_ministral3_saved_header_v2.py": {
+      "original_path": "var/research/complete_ministral3_saved_header_v2.py",
+      "bytes": 24770,
+      "sha256": "d5d7101a4456973cbada059473ae8948fc0c84536d55c98eb45909042ac7d11f",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "completion-v2/structural-completion.json": {
+      "original_path": "var/reports/ministral3-gguf-header-completion-v2.json",
+      "bytes": 8127,
+      "sha256": "6c0014eeaa8ea40a0dd95c9625acc28a9a4b296a5caa35b9d80a64e922233f4d",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "completion-v2/stdout.txt": {
+      "original_path": "var/research/ministral3-header-completion-v2-cli.log",
+      "bytes": 371,
+      "sha256": "2b2c1bf6aa88bb5ae495dba1bc0750d15bab938f253105b21cf8d11ef022cf1f",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "completion-v2/stderr.txt": {
+      "original_path": "var/research/ministral3-header-completion-v2-cli.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "completion-v2/definition-receipt.json": {
+      "original_path": "var/research/ministral3-scores-completion-v2-definition.json",
+      "bytes": 1056,
+      "sha256": "15cf15dd183c73754ac6346e57d57c6d0694564ae29aff28d32d09fa0633083c",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    }
+  },
+  "cross_references": {
+    "preparation_archive": {
+      "path": "evaluations/results/phase5x/ministral3-14b-preparation",
+      "integrity_sha256": "1798fe08f1cf8cde85add03f03a20723b5ef47abe7b4f3595c954b9473e4646f",
+      "existing18files_unchanged": true
+    },
+    "pinned_native_source_revision": "f072b103714dfa1eee531f80b24512faf38e3dd2",
+    "selected_source_sha256": {
+      "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/src/llama-vocab.cpp": "82e8996cbbd81c1648b1f4946b5f481138aa897a1343dcd8b1a4abe8cff0b5fc",
+      "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/gguf-py/gguf/vocab.py": "16cddd93700f86c8b72e6f9e741e2362189155b9f96aa9e3bbb0995060095f1a",
+      "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/gguf-py/gguf/gguf_writer.py": "7e3ff8d04b290dde083ae30d1091b67c95299f6865958fe1cdcb7e35dd201766",
+      "var/runtime-src/llama.cpp-f072b103714dfa1eee531f80b24512faf38e3dd2/gguf-py/gguf/constants.py": "df0078c283a48061260ca4b3f35df36611230c3e7c2ac271bb8a11d2632839ba",
+      "var/research/ministral3-14b-candidate-metadata/official-tokenizer-source/tekken.py": "914d6e6f4ae4e1ba3709557a9992ee540644ffd16075efc9474a6e12c15ae6f3"
+    },
+    "canonical_tekken": {
+      "url": "https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512-BF16/resolve/3cea74c1ebaf5ce5f5a2553de470e2ceab825142/tekken.json",
+      "sha256": "600bb27946565481ecf51ba8aee252e49b9a68507866080ac9c30185bb312843",
+      "bytes": 16753784,
+      "archive_payload_retained": false
+    },
+    "official_tokenizer_source": {
+      "url": "https://github.com/mistralai/mistral-common/blob/f469a42770517baafec6d688abc4a6f39250c447/src/mistral_common/tokens/tokenizers/tekken.py",
+      "sha256": "914d6e6f4ae4e1ba3709557a9992ee540644ffd16075efc9474a6e12c15ae6f3",
+      "archive_payload_retained": false
+    }
+  },
+  "not_copied": [
+    "rawAPI responses",
+    "HTML",
+    "JavaScript",
+    "fulltokenizer",
+    "weights",
+    "nativebinaries/objects",
+    "incompletepublic/reference/nativeCPUproofs"
+  ],
+  "archive_copy_execution_scope": "Read/hash/copy saved evidence only; no candidate helper, GGUF, native, tokenize, model, HTTP, GPU, corpus, replay or test invocation."
+}

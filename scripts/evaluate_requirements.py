@@ -532,6 +532,7 @@ def build_manifest(client, *, dataset, prompt, schema, weights, runtime, revisio
             },
             SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP: {("LGAI-EXAONE/EXAONE-4.5-33B-GGUF", "Q4_K_M")},
             SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP: {("ggml-org/GLM-4.7-Flash-GGUF", "Q4_K_M")},
+            SamplingProfile.MINISTRAL3_NONTHINKING_LLAMA_CPP: {("mistralai/Ministral-3-14B-Instruct-2512-GGUF", "Q4_K_M")},
         }
         if client.sampling_profile not in native_candidates:
             raise ValueError("Native evaluation requires the explicitly planned native sampling profile")

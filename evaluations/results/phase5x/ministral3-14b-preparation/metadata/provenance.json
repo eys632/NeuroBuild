@@ -1,0 +1,99 @@
+{
+  "kind": "MINISTRAL3_MINIMAL_PUBLIC_SOURCE_PROVENANCE",
+  "status": "METADATA_DOWNLOAD_BINDING_ONLY_NOT_NATIVE_READY",
+  "verified_date": "2026-09-21 KST",
+  "model_id": "mistralai/Ministral-3-14B-Instruct-2512-GGUF",
+  "revision": "74fac473c43357d7fb2671713608183cc72496d0",
+  "official_urls": {
+    "gguf": "https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512-GGUF/tree/74fac473c43357d7fb2671713608183cc72496d0",
+    "upstream_fp8_reference": "https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512/tree/29439f81c2be264d8d393273f99e7db9c0961120",
+    "upstream_bf16_reference": "https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512-BF16/tree/3cea74c1ebaf5ce5f5a2553de470e2ceab825142",
+    "license": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+    "canonical_tokenizer": "https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512-BF16/resolve/3cea74c1ebaf5ce5f5a2553de470e2ceab825142/tekken.json",
+    "official_tokenizer_source": "https://github.com/mistralai/mistral-common/blob/f469a42770517baafec6d688abc4a6f39250c447/src/mistral_common/tokens/tokenizers/tekken.py"
+  },
+  "candidate_weight": {
+    "filename": "Ministral-3-14B-Instruct-2512-Q4_K_M.gguf",
+    "bytes": 8239593024,
+    "sha256": "824e0f3373e69b84f2cae46fdcb9bd1ebc6ab3bfc7acc125d818b7b8178cc613",
+    "download_receipt": "receipts/guarded-download.json"
+  },
+  "publisher": "mistralai",
+  "license_identifier": "Apache-2.0",
+  "repository_LICENSE_present": false,
+  "retained_license": "metadata/APACHE-2.0.txt",
+  "conversion_source_revision": null,
+  "conversion_recipe": null,
+  "conversion_precision_path": null,
+  "source_lineage_limit": "Pinned current FP8/BF16 metadata are references, not proof of the GGUF conversion origin.",
+  "canonical_tekken": {
+    "bytes": 16753784,
+    "sha256": "600bb27946565481ecf51ba8aee252e49b9a68507866080ac9c30185bb312843",
+    "version": "v13",
+    "retained_in_git": false,
+    "ordinary_tokens": 130072,
+    "special_tokens": 1000,
+    "no_reference_encoding_executed_during_metadata_capture": true
+  },
+  "current_reference_template": {
+    "bytes": 11913,
+    "sha256": "2f545122222db8bb43ca0ea0c49e9185320a8670f7d35575b0da0eb48b1e8970",
+    "actual_GGUF_byte_equality_not_assumed": true
+  },
+  "capture_scope": {
+    "all_small_raw_capture_bytes_in_ignored_directory": 17567920,
+    "raw_API_HTML_JS_readme_tekken_copied_here": false,
+    "retained_original_configs_templates_licenses_are_required_reproducibility_inputs": true
+  },
+  "sampling": {
+    "official_recommendation": "temperature below0.1",
+    "project_profile": "ministral3_nonthinking_llama_cpp",
+    "project_recipe": {
+      "temperature": 0.05,
+      "top_p": 1.0,
+      "top_k": 0,
+      "min_p": 0.0,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 0,
+      "seed": 42,
+      "samplers": [
+        "temperature",
+        "top_k",
+        "top_p",
+        "min_p"
+      ]
+    },
+    "all_other_values_are_project_decisions": true
+  },
+  "resource_status": "CONDITIONAL_STATIC_ESTIMATE_NOT_MEASURED_PEAK",
+  "resource_estimate_mib": 21504,
+  "operational_budget_mib": 28672,
+  "fresh_free_memory_margin_required": true,
+  "completed_receipts": {
+    "inactive_old_weight_cleanup": "COMPLETE_ONE_QWEN36_FILE",
+    "download": "PASS_DOWNLOAD_ONLY_NOT_RUNTIME_VALIDATED",
+    "binding_regression": "430_PASS_ROOT_EXECUTED_ONCE",
+    "binding_independent_review": "PASS_SOURCE_SCOPE_ONLY"
+  },
+  "download_receipt_label_note": "The immutable receipt phase label is download-qwen36, but its command, model_id, manifest, path, size and SHA identify Ministral3. This stale display label is preserved unchanged.",
+  "actual_header_status_at_archive": "FIRST_STRUCTURAL_FAIL_TOKENIZER_SCORES_METADATA_MISMATCH_RETAINED_SEPARATELY",
+  "actual_header_ref": {
+    "path": "var/reports/ministral3-gguf-header.json",
+    "sha256": "587e2f3b56d70184496554ddd642d7487dbbe9ccd74e6dd0db02f57139928d58"
+  },
+  "cpu_contract_status": "PENDING",
+  "runtime_status": "NOT_RUN",
+  "quality_status": "NOT_RUN",
+  "archive_creation_executions": {
+    "tests": 0,
+    "replay": 0,
+    "native": 0,
+    "model": 0,
+    "gpu": 0,
+    "http": 0,
+    "corpus_reads": 0
+  },
+  "raw_source_retention": "Raw API responses and large tokenizer remain ignored var/research; no git add-f permitted."
+}

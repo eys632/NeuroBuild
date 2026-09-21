@@ -1,0 +1,96 @@
+{
+  "kind": "MINIMAL_PREPARATION_ARCHIVE_SOURCE_MAP",
+  "exact_copies": {
+    "metadata/config.json": {
+      "original_path": "var/research/ministral3-14b-candidate-metadata/bf16/config.json",
+      "bytes": 1550,
+      "sha256": "b1897778395bb1795489a048ebde2e6d216eee21014ce9c18193d15f097454a6",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "metadata/params.json": {
+      "original_path": "var/research/ministral3-14b-candidate-metadata/bf16/params.json",
+      "bytes": 1101,
+      "sha256": "b2fc120fee26653d0aa07052122793f86750db9c12b6e11bcf7dfb36440da077",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "metadata/generation_config.json": {
+      "original_path": "var/research/ministral3-14b-candidate-metadata/bf16/generation_config.json",
+      "bytes": 131,
+      "sha256": "e0923390059f84a9180b00e5501778acc45ea9856cd7f2fd68208b360927c677",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "metadata/chat_template.jinja": {
+      "original_path": "var/research/ministral3-14b-candidate-metadata/bf16/chat_template.jinja",
+      "bytes": 11913,
+      "sha256": "2f545122222db8bb43ca0ea0c49e9185320a8670f7d35575b0da0eb48b1e8970",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "metadata/APACHE-2.0.txt": {
+      "original_path": "var/research/ministral3-14b-candidate-metadata/official-license/APACHE-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "metadata/resource_plan.json": {
+      "original_path": "var/research/ministral3-14b-candidate-metadata/resource_plan.json",
+      "bytes": 2941,
+      "sha256": "e0b5b417fba5150019a058812d588a82d97266af15fc6c3839a7c59bbbd2432b",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "metadata/expected_text_inventory.json": {
+      "original_path": "var/research/ministral3-14b-candidate-metadata/expected_text_inventory.json",
+      "bytes": 67678,
+      "sha256": "b6c279498d99d9fa2c65f87faf5bb4c629326b8b2fd397d198dbe1d32f152249",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "metadata/source_pins.json": {
+      "original_path": "var/research/ministral3-14b-candidate-metadata/source_pins.json",
+      "bytes": 3085,
+      "sha256": "26b48a59677cbd30b13caa6222d75115610461c3393ce7e42b83edd8e44df2ce",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "receipts/guarded-download.json": {
+      "original_path": "var/reports/ministral3-14b-guarded-download.json",
+      "bytes": 2936,
+      "sha256": "34beef404d2aa470bfaf3aac1b39f174b318623128c811220fbd51d8b2c30fca",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "receipts/inactive-qwen36-cache-cleanup.json": {
+      "original_path": "var/reports/unused-qwen36-weight-cache-cleanup.json",
+      "bytes": 2006,
+      "sha256": "449ee66008bd6ec4b0da9dac17ec2bc19312ff2563cbe247e6e57f75961e12b2",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "receipts/binding-regression.json": {
+      "original_path": "var/research/ministral3-binding-regression.json",
+      "bytes": 1047,
+      "sha256": "2a87693d8ad1b9b7cfe0231c78200f981cc082db946f24f0f500370a11e38b30",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "receipts/binding-independent-review.json": {
+      "original_path": "var/research/ministral3-binding-independent-review.json",
+      "bytes": 3684,
+      "sha256": "09effccc7b98c15d24c4bdcb9c3f5a5df019ac9d0d9cd8dc6fe7a0aad7dfcdc2",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    },
+    "receipts/binding-regression-output.txt": {
+      "original_path": "var/phase5x-ministral3-binding-regression.log",
+      "bytes": 76426,
+      "sha256": "b26bc8b7607723bc670a58b27dfe3f1750ac4d3ff29b0f56ddacbb6728bee2c2",
+      "copy_mode": "EXACT_ORIGINAL_BYTES"
+    }
+  },
+  "ignored_raw_capture_integrity_sha256": "cc94642512778d2cf12b82599d0de0057f6199bd0085871e4db4d16f73f37a0c",
+  "ignored_raw_capture_provenance_sha256": "c16c96ebf86a7b5209eeb18e09f759e42153e417b4f7effec294d31df551b273",
+  "excluded_source_classes": [
+    "full HTTP API response JSON",
+    "full repository README pages",
+    "HTML",
+    "JavaScript",
+    "16MB canonical Tekken",
+    "weights",
+    "native binaries/objects",
+    "unfinished CPU/header PASS claims"
+  ],
+  "archived_by_source_copy_only": true
+}

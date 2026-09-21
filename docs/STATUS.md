@@ -1,6 +1,6 @@
 # NeuroBuild_v2 실행 상태
 
-갱신: **2026-09-21 KST — Qwen3.6 첫 단회 의미 gate FAIL, 원본·독립 재검산 보존, GPU3 반환 완료**.
+갱신: **2026-09-21 KST — Qwen3.6 FAIL 보존, 공개 HTML 정리 push 완료, Ministral3 새 CPU 계약 검증 중**.
 Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 모델 미채택, Phase6 미시작**이다.
 
 2026-09-21 provenance 정리: 공개 Google 페이지 raw HTML을 제거하고 최소 license metadata와 Apache-2.0 텍스트를 보존했다.
@@ -11,16 +11,26 @@ Phase0~5 원격 checkpoint는 완료했다. **Phase5.x 미완료, 모델 미채�
 | 완료 Phase | 0 Foundation, 1 Domain, 2 Persistence, 3 IFC Engine, 4 Explicit Workflow, 5 Local Model |
 | 마지막 완료 Phase checkpoint | `d6e39c89658c552c59a8049d7198da051290bd3b` |
 | 평가 실행 기준 | clean/pushed `23b8d018c184c96e72165d212b8e840e3a75206f`, 공통 GitHub `v2` |
-| 현재 작업 | Qwen3.6 실패 결과 checkpoint 후, 다른 계열 후보의 공식 metadata/source 비교 |
+| 현재 작업 | 다른 계열 Ministral3-14B 공식 GGUF의 구조·tokenizer·native CPU 계약 검증 |
 | Qwen3.8 보존 결과 | 첫120×1: schema120/parser119/semantic117, rawFP0/58, unsafe0/120 **PASS**. 이후 별도 V2 73/80·rawFP1·unsafe1 **FAIL** |
 | 다른 후보 보존 결과 | Gemma31 semantic115/120·rawFP1·unsafe2, EXAONE106·rawFP0·unsafe0, GLM104·rawFP1·unsafe1, Gemma12 112·rawFP3·unsafe1: 모두 첫 gate FAIL |
 | Qwen3.6 첫 결과 | schema120/parser119/**semantic106/120(88.33%)**, rawFP0/58, unsafe0/120, FN11/62 — **의미 gate FAIL** |
 | Qwen3.6 latency | 평가120개 평균 **2.765226808초**, p95 **3.142153062초**; warmup5개 별도 |
-| 회귀 검증 | **422 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell, headless20.758초. 해당 production/test와 동일하므로 변경 없는 suite 반복0 |
+| 회귀 검증 | 새 Ministral profile **430 tests PASS**, skip0, 실제 PostgreSQL/IfcOpenShell/headless21.501초. 이후 동일 suite 반복0; secret scanner14개는 별도 focused 검증 |
 | Hard blocker | 없음. 품질 기준 미달로 Phase6는 진행하지 않으며 Phase5.x 후보 비교 계속 |
 | 모델 실행 | **NeuroBuild 모델 서버 STOPPED**. GPU3 종료 후5회 모두 free36373/used3965MiB/util0% |
 | Backend | `.conda`: Python3.12.14/PostgreSQL17.11/psycopg3.2.10/IfcOpenShell0.8.5 |
-| 다음 판단 | 공식 Ministral3-14B Instruct GGUF의 작은 metadata/source 검토. 다운로드·GPU 실행은 별도 자원·계약 근거 충족 뒤 판단 |
+| 다음 판단 | Ministral 구조 보완·metadata public1 PASS. 새 실제 vocabulary parity 후 노출120 길이 측정; GPU 실행은 별도 자원·계약 근거 충족 뒤 판단 |
+
+## 다음 후보 준비
+
+공식 `mistralai/Ministral-3-14B-Instruct-2512-GGUF@74fac473c43357d7fb2671713608183cc72496d0`의
+8,239,593,024-byte Q4_K_M 다운로드와 전체 SHA 확인을 완료했다. 비활성 Qwen3.6 weight만 검증 후 회수했다.
+430회귀 PASS의 명시적 새 profile 외에 기존 prompt/schema/scorer는 바꾸지 않았다.
+실제 파일의 INT32 score와 special34/35 THINK 이름 차이를 숨기지 않고 최초 두 실패와 별도 구조 완료 증거를 보존했다.
+실제 template의 새 metadata public 요청1개는 PASS했으며 품질 평가 결과가 아니다.
+모델 채택·새 GPU 실행·새 품질 평가·V2/미사용80 접근은 아직0회다.
+[후보와 제약](ministral3_candidate.md), [준비 보고서](reports/phase5x_ministral3_preparation_report.md)를 따른다.
 
 ## Qwen3.6 첫 결과와 종료
 

@@ -396,5 +396,58 @@ class NativeRequirementEvaluationTests(unittest.TestCase):
                 transport.assert_not_called()
 
 
+    def ministral_client(self, profile="ministral3_nonthinking_llama_cpp"):
+        return LocalRequirementClient(
+            "http://127.0.0.1:8003", "synthetic-native", generation_contract=GenerationContract.QUOTES,
+            prompt_path=self.kwargs["prompt"], schema_path=self.kwargs["schema"],
+            protocol="llama_cpp_json_schema", sampling_profile=profile)
+
+    def test_ministral_manifest_binds_official_publisher_and_project_recipe(self):
+        weights = deepcopy(self.weight_data)
+        weights["model_id"] = "mistralai/Ministral-3-14B-Instruct-2512-GGUF"
+        weights["files"][0]["name"] = "Ministral-3-14B-Instruct-2512-Q4_K_M.gguf"
+        self.weights.write_text(json.dumps(weights))
+        client = self.ministral_client()
+        with patch.object(client, "complete") as transport:
+            manifest = build_manifest(client, **dict(self.kwargs, trials=1))
+        transport.assert_not_called()
+        self.assertEqual(manifest["model_id"], weights["model_id"])
+        self.assertEqual(manifest["runtime"]["quantization"], "Q4_K_M")
+        self.assertEqual(manifest["runtime"]["reasoning_parser"], "deepseek")
+        self.assertEqual(manifest["runtime"]["max_model_len"], 4096)
+        protocol = manifest["protocol"]
+        self.assertEqual(protocol["sampling_profile"], "ministral3_nonthinking_llama_cpp")
+        self.assertEqual(protocol["trials_per_case"], 1)
+        self.assertEqual(protocol["warmups"], 5)
+        self.assertEqual(protocol["sampling_request_parameters"], client.sampling_parameters)
+        self.assertEqual(protocol["sampling_request_parameters"]["temperature"], 0.05)
+        self.assertEqual(protocol["sampling_request_parameters"]["top_p"], 1.0)
+        self.assertEqual(protocol["sampling_request_parameters"]["repeat_last_n"], 0)
+        self.assertFalse(protocol["enable_thinking"])
+
+    def test_ministral_publisher_quantization_and_profile_are_exact(self):
+        model = "mistralai/Ministral-3-14B-Instruct-2512-GGUF"
+        wrong_pairs = [
+            ("ministral3_nonthinking_llama_cpp", "ggml-org/Ministral-3-14B-Instruct-2512-GGUF", "Q4_K_M"),
+            ("ministral3_nonthinking_llama_cpp", model + "-copy", "Q4_K_M"),
+            ("ministral3_nonthinking_llama_cpp", "mistralai/Ministral-3-14B-Reasoning-2512-GGUF", "Q4_K_M"),
+            ("ministral3_nonthinking_llama_cpp", model, "Q4_0"),
+            ("ministral3_nonthinking_llama_cpp", self.weight_data["model_id"], "Q4_K_M"),
+        ]
+        for old_profile in ("qwen38_nonthinking_llama_cpp", "qwen36_nonthinking_llama_cpp",
+                            "gemma4_nonthinking_llama_cpp", "exaone45_nonthinking_llama_cpp",
+                            "glm47_flash_nonthinking_llama_cpp"):
+            wrong_pairs.append((old_profile, model, "Q4_K_M"))
+        for profile, model_id, quantization in wrong_pairs:
+            with self.subTest(profile=profile, model_id=model_id, quantization=quantization):
+                client = self.ministral_client(profile)
+                self.weights.write_text(json.dumps(dict(self.weight_data, model_id=model_id)))
+                self.write_runtime(dict(native_metadata(), quantization=quantization))
+                with patch.object(client, "complete") as transport:
+                    with self.assertRaisesRegex(ValueError, "exact model ID and quantization"):
+                        build_manifest(client, **dict(self.kwargs, trials=1))
+                transport.assert_not_called()
+
+
 if __name__ == "__main__":
     unittest.main()

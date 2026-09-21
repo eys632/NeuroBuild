@@ -1,0 +1,16 @@
+{
+  "model_id": "mistralai/Ministral-3-14B-Instruct-2512-GGUF",
+  "revision": "74fac473c43357d7fb2671713608183cc72496d0",
+  "files": [
+    {
+      "name": "README.md",
+      "bytes": 3341,
+      "sha256": "94e3eb13362e606620a37b31c02c4c191fbd2780ada510ce75e73dabd3c3877d"
+    },
+    {
+      "name": "Ministral-3-14B-Instruct-2512-Q4_K_M.gguf",
+      "bytes": 8239593024,
+      "sha256": "824e0f3373e69b84f2cae46fdcb9bd1ebc6ab3bfc7acc125d818b7b8178cc613"
+    }
+  ]
+}

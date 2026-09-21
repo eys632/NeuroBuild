@@ -546,3 +546,23 @@ aggregatepeak19854MiB의 자원 성능이나 안전 오판0은 의미 실패를 
 다운로드 전 디스크 floor와 비활성 cache 사용 여부, 기동 전 전체peak+freshGPU3 free/util+margin을 확인한다.
 또 실패하면 모델·seed·quant를 자동 순회하지 않고 기존과 다른 개선 근거를 먼저 세운다.
 Gate·raw분모·gold·사람검수 한계를 유지하며 Phase6를 우회하지 않는다.
+
+## D050 — Ministral3의 실제 metadata와 최소 신규 CPU 검증
+
+공식 원저자 GGUF의 다른 계열 후보를 고정하고 전용 T0.05/P1/K0/minP0/neutral profile을 명시한다.
+정확 model ID/quant 조합과 manifest revision을 결합하며 기존 prompt/schema/scorer 및 품질 threshold는 유지한다.
+새 code binding의430회귀 PASS를 보존하고 동일 suite나 이전 후보 평가를 다시 실행하지 않는다.
+
+현재 FP8/BF16 참고 revision은 실제 GGUF conversion lineage의 증거가 아니다.
+전체 SHA와363개 tensor 구조는 확인됐지만, 최초 검사기는 INT32 score를 잘못 제외했다.
+고정 로더의 명시적 INT32 지원을 확인한 뒤에도 token 문자열은 canonical과 정확2개가 달랐다.
+헤더만 추가 비교해 ordinary130072와special998의 일치, actualspecial34/35의 THINK 이름을 확인했다.
+두 원본 실패를 보존하고 정확한 두 차이를 기록한 별도 구조 완료 증거를 사용한다.
+전체 canonical tokenizer 동등성 또는 변환 원본 확정으로 바꾸지 않는다.
+
+실제 embedded template를 사용한 새 metadata public1은 통과했다.
+완료한 ordinary12 참조는 승계하며, 실제 special 이름에 따른 wire 기대만 명시적으로 파생한다.
+단일 vocab-only CPU process에서 새 public parity를 통과한 뒤 노출120 길이만 측정한다.
+V2/미사용80은 읽지 않으며, context 확대는 관측된 길이와 전체 자원 재검토 뒤에만 판단한다.
+구조/CPU 성공은 runtime/품질 PASS가 아니다. GPU3 fresh free/util+wholepeak+margin과 own-process guard는 계속 필요하다.
+비필수 runtime 최적화는 future optimization이고, 첫 품질 gate FAIL 뒤 동일 후보 전체 반복은0회다.

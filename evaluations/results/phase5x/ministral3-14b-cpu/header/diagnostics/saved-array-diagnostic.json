@@ -1,0 +1,34 @@
+{
+  "kind": "MINISTRAL3_SAVED_HEADER_ARRAY_DIAGNOSTIC",
+  "arrays": [
+    {
+      "array": "tokens",
+      "count": 131072,
+      "type": 8,
+      "saved_sha256": "43bb36566989b2f7167232cfce7219a83554f724fa8319f6427ae8de611af6ff",
+      "canonical_sha256": "17bf99b57ba9f61eb1b550651d13cfa0c3108d5f4fad022a47269201136d72ed",
+      "match": false
+    },
+    {
+      "array": "token_type",
+      "count": 131072,
+      "type": 5,
+      "saved_sha256": "a48351cf8b6a06749be78cc67e8859c43365449254742535169a5ef61c188991",
+      "canonical_sha256": "a48351cf8b6a06749be78cc67e8859c43365449254742535169a5ef61c188991",
+      "match": true
+    },
+    {
+      "array": "scores",
+      "count": 131072,
+      "type": 5,
+      "saved_sha256": "07854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541",
+      "canonical_sha256": "07854d2fef297a06ba81685e660c332de36d5d18d546927d30daad6d7fda1541",
+      "match": true
+    }
+  ],
+  "gguf_reads": 0,
+  "tokenizer_calls": 0,
+  "model_calls": 0,
+  "original_audit_sha256": "587e2f3b56d70184496554ddd642d7487dbbe9ccd74e6dd0db02f57139928d58",
+  "completion_helper_sha256": "b004ff14be33b99e3c585b94d8f5d9980266e91a55e7365b575ff0b4fbab011c"
+}

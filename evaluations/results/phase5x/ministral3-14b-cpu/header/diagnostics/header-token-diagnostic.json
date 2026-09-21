@@ -1,0 +1,51 @@
+{
+  "kind": "MINISTRAL3_HEADER_ONLY_TOKEN_REFERENCE_DIAGNOSTIC",
+  "original_audit_sha256": "587e2f3b56d70184496554ddd642d7487dbbe9ccd74e6dd0db02f57139928d58",
+  "canonical_tekken_sha256": "600bb27946565481ecf51ba8aee252e49b9a68507866080ac9c30185bb312843",
+  "source_helper_sha256": "b004ff14be33b99e3c585b94d8f5d9980266e91a55e7365b575ff0b4fbab011c",
+  "helper_sha256": "7fddc52c529ecdab17ee5b334842c33e22148bd510538b98dfde138ead81564f",
+  "model_path": "var/models/mistralai--Ministral-3-14B-Instruct-2512-GGUF/74fac473c43357d7fb2671713608183cc72496d0/Ministral-3-14B-Instruct-2512-Q4_K_M.gguf",
+  "header_bytes_read": 8393191,
+  "tensor_payload_bytes_read": 0,
+  "gguf_open_count": 1,
+  "native_calls": 0,
+  "tokenize_calls": 0,
+  "model_calls": 0,
+  "all_saved_array_fingerprints_match": true,
+  "total_mismatches": 2,
+  "special_mismatches": 2,
+  "ordinary_mismatches": 0,
+  "critical_special_id_text_matches": {
+    "0": true,
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true,
+    "9": true,
+    "11": true,
+    "17": true,
+    "18": true,
+    "32": true
+  },
+  "mismatches": [
+    {
+      "id": 34,
+      "kind": "special",
+      "saved_token_bytes": 7,
+      "reference_token_bytes": 12,
+      "saved_token_sha256": "64e3a14b6398c32f22f32f7309cd98257da7f1a0c8d61efd0e3bf299baeb715d",
+      "reference_token_sha256": "fa0526e264251e3a5dca9533272c077d9df69abd6c9f8e78696b76ac50d0dcdf",
+      "canonical_index_of_saved_token": null
+    },
+    {
+      "id": 35,
+      "kind": "special",
+      "saved_token_bytes": 8,
+      "reference_token_bytes": 12,
+      "saved_token_sha256": "d8f8ec6395714e2bfa23fa94d2704f94809056bbb4bf88131210077720d6e467",
+      "reference_token_sha256": "a309fd8e6223aa3357b8c664d6e22fc2a085b01bf8d1c46de9ae1e72c35b155f",
+      "canonical_index_of_saved_token": null
+    }
+  ],
+  "note": "Diagnostic only. Exact conversion lineage and native behavior remain unproven. No token text emitted."
+}

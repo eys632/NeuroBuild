@@ -1,0 +1,19 @@
+{
+  "kind": "MINISTRAL3_EXPLICIT_NATIVE_PROFILE_REGRESSION",
+  "exit_code": 0,
+  "started_at_utc": "2026-09-20T17:29:00.555861+00:00",
+  "elapsed_wall_seconds": 22.14146038144827,
+  "log_path": "var/phase5x-ministral3-binding-regression.log",
+  "log_sha256": "b26bc8b7607723bc670a58b27dfe3f1750ac4d3ff29b0f56ddacbb6728bee2c2",
+  "real_postgresql": true,
+  "real_ifcopenshell": true,
+  "headless": true,
+  "cuda_visible_devices": "",
+  "source_sha256": {
+    "src/neurobuild/infrastructure/local_model.py": "647e08df6bbc5059776956ca79eccc7291c7656ce4b837e30ddfe15a299bc9b6",
+    "scripts/evaluate_requirements.py": "e66824d77a3f57b666c92bad2a2877faab324c3ed57258d0b96d39dd3114e7a6",
+    "tests/test_local_model.py": "82593f1ccd7dd1f8e0b1d8cb29f059c2351e8d395a9aa1283a08317b4a11e8d4",
+    "tests/test_native_requirement_evaluation.py": "0a0e2f026f25a54200195bbac591b98c6e6112d317d5e469fa792e7b21a02595"
+  },
+  "reason": "New exact Ministral3 native profile/candidate binding; existing prompt/schema/gate unchanged; one relevant regression suite."
+}

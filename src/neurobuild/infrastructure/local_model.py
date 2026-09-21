@@ -118,6 +118,7 @@ class SamplingProfile(StrEnum):
     GEMMA4_NONTHINKING_LLAMA_CPP = "gemma4_nonthinking_llama_cpp"
     EXAONE45_NONTHINKING_LLAMA_CPP = "exaone45_nonthinking_llama_cpp"
     GLM47_FLASH_NONTHINKING_LLAMA_CPP = "glm47_flash_nonthinking_llama_cpp"
+    MINISTRAL3_NONTHINKING_LLAMA_CPP = "ministral3_nonthinking_llama_cpp"
 
 
 class LocalJSONCompletionClient:
@@ -146,7 +147,8 @@ class LocalJSONCompletionClient:
                            SamplingProfile.QWEN36_NONTHINKING_LLAMA_CPP,
                            SamplingProfile.GEMMA4_NONTHINKING_LLAMA_CPP,
                            SamplingProfile.EXAONE45_NONTHINKING_LLAMA_CPP,
-                           SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP)
+                           SamplingProfile.GLM47_FLASH_NONTHINKING_LLAMA_CPP,
+                           SamplingProfile.MINISTRAL3_NONTHINKING_LLAMA_CPP)
         if (self._sampling_profile in native_profiles
                 and self._protocol is not StructuredOutputProtocol.LLAMA_CPP_JSON_SCHEMA):
             _error("LOCAL_MODEL_CONFIG_INVALID")
@@ -264,6 +266,14 @@ class LocalJSONCompletionClient:
             # disabled top-k/min-p/penalties, seed and order are our recipe;
             # these are not Korean or non-thinking-specific recommendations.
             return {"temperature": 1.0, "top_p": 0.95, "top_k": 0, "min_p": 0.0,
+                    "presence_penalty": 0.0, "frequency_penalty": 0.0,
+                    "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
+                    "samplers": ["temperature", "top_k", "top_p", "min_p"]}
+        if self.sampling_profile is SamplingProfile.MINISTRAL3_NONTHINKING_LLAMA_CPP:
+            # Official production guidance is temperature below 0.1. The exact
+            # 0.05 temperature and all other fields are project choices;
+            # non-thinking requests still use the native reasoning splitter.
+            return {"temperature": 0.05, "top_p": 1.0, "top_k": 0, "min_p": 0.0,
                     "presence_penalty": 0.0, "frequency_penalty": 0.0,
                     "repeat_penalty": 1.0, "repeat_last_n": 0, "seed": 42,
                     "samplers": ["temperature", "top_k", "top_p", "min_p"]}
