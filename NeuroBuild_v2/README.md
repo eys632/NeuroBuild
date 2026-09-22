@@ -18,7 +18,7 @@ Durable review/job queue, API와 frontend는 후속 단계다.
 LLM은 요구사항을 구조화하고, 결정론적인 BIM Engine이 승인된 변경을 실행한다.
 첫 vertical slice는 IFC4의 단일 IfcFurniture를 같은 층에서 상대 XY 이동하는 `MOVE_FURNITURE`다.
 
-작업 root는 `/home/a202192020/NeuroBuild_v2`, 공통 개발 branch는 `v2`다.
+작업 root는 `<repo-root>/NeuroBuild_v2`, 공통 개발 branch는 `v2`다. A100과 RTX5090 모두 동일한 저장소 구조를 사용하며 실제 HOME 절대경로는 하드코딩하지 않는다.
 기존 구현은 Git 이력과 기존 디렉터리에 보존하며 새 코드에 편입하지 않는다.
 
 ## 빠른 확인
@@ -27,7 +27,7 @@ LLM은 요구사항을 구조화하고, 결정론적인 BIM Engine이 승인된 
 시스템 Python은 이 기본 진단에만 사용하고 향후 Backend 개발은 Python3.12 `.conda`에서 진행한다.
 
 ```sh
-cd /home/a202192020/NeuroBuild_v2
+cd "$(git rev-parse --show-toplevel)/NeuroBuild_v2"
 /usr/bin/python3 scripts/show_runtime_info.py --profile a100
 /usr/bin/python3 scripts/show_runtime_info.py --profile a100 --json
 ```

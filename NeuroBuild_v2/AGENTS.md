@@ -2,8 +2,8 @@
 
 ## 적용 범위와 단계
 
-- A100 작업 root: `/home/a202192020/NeuroBuild_v2`. RTX5090에서는 checkout root를 기준으로 상대 경로를 사용한다.
-- 서버 환경 관리는 해당 서버의 전역 정책이 담당한다. A100에서는 먼저 `/home/a202192020/.codex/AGENTS.md`를 읽는다. 이 파일은 제품/저장소 지침이며 전역 정책을 대체하지 않는다.
+- Git repository root는 `<repo-root>`로 표현하며, NeuroBuild_v2의 project root는 `<repo-root>/NeuroBuild_v2`이다. 실제 HOME 절대경로를 프로젝트 지침이나 Application 코드에 하드코딩하지 않는다.
+- 서버 환경 관리는 각 서버의 사용자 전역 정책이 담당한다. Codex를 사용하는 경우 해당 사용자의 `~/.codex/AGENTS.md`를 먼저 따른다. 이 파일은 NeuroBuild_v2의 프로젝트 지침이며 전역 정책을 대체하지 않는다.
 - 2026-09-19 사용자 지침 변경: Phase 0 기반부터 Phase 11 Internal Technical MVP까지 자율 개발한다. Phase별 사용자 승인 대기는 폐지했다. 현재 단계와 blocker는 `docs/STATUS.md`를 기준으로 한다.
 - 2026-09-20 checkpoint 지시: 완료한125개 단회 진단과 독립 재생을 반복하지 않는다. 동일 모델의 전체3회 평가를 자동으로 요구하지 않는다. 단회4gate 미달이면 다음 후보를 검토하고, 통과/경계선일 때만 미확정 사실을 해결하는 최소 반복을 판단한다. V2는1차 gate 통과 후에만 실행한다. 이미 완료한 runtime/resource 검사를 처음부터 반복하지 않고 Phase를 막지 않는 최적화는 future optimization으로 둔다. 최신 반복 판단은 D036과 STATUS를 따른다.
 - 과거 코드는 참고 자료다. Git에 보존된 `NeuroBuild_v1/`, 기존 `NeuroBuild_v2/` placeholder를 새 Application에 import하거나 검증 없이 복사하지 않는다.
